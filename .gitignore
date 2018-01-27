@@ -1,0 +1,16 @@
+*.jar
+.metadata
+RemoteSystemsTempFiles
+target
+.grunt
+.idea
+.classpath
+.project
+.settings
+bin
+.vlt
+.DS_Store
+.vlt-sync-config.properties
+.vlt-sync.log
+.brackets.json
+.metadata/

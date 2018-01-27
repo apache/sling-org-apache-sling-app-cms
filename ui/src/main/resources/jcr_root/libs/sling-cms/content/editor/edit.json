@@ -1,0 +1,16 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"jcr:primaryType": "nt:unstructured",
+		"jcr:title": "Edit",
+		"sling:resourceType" : "sling-cms/components/pages/editor",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"suffixinclude": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/includeeditor"
+			}
+		}
+	}
+}

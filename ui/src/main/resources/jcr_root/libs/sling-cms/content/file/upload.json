@@ -1,0 +1,39 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Upload File",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"richtext": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/general/richtext",
+				"text": "<h3>Upload File</h3>"
+			},
+			"slingform": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/editor/slingform",
+				"button": "Upload File",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "sling-cms/components/general/container",
+					"file": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/file",
+						"label": "File",
+						"name": "*",
+						"required": true
+					},
+					"typeHint": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "*@TypeHint",
+						"value": "nt:file"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,60 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Create Page",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"richtext": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/general/richtext",
+				"text": "<h3>Create Page</h3>"
+			},
+			"slingform": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/editor/slingform",
+				"actionSuffix": "/*",
+				"button": "Create Page",
+				"successPrepend":"/libs/sling-cms/content/site/content.html",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "sling-cms/components/general/container",
+					"title": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Title",
+						"name": "jcr:content/jcr:title",
+						"required": true
+					},
+					"name": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Name",
+						"name": ":name",
+						"required": true
+					},
+					"primaryType": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "jcr:primaryType",
+						"value": "sling:Page"
+					},
+					"contentPrimaryType": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "jcr:content/jcr:primaryType",
+						"value": "nt:unstructured"
+					},
+					"contentResourceType": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/select",
+						"name": "jcr:content/sling:resourceType",
+						"value": "nt:unstructured"
+					}
+				}
+			}
+		}
+	}
+}

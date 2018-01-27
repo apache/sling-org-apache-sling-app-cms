@@ -1,0 +1,41 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save Page Type",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"title": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Title",
+			"name": "title",
+			"required": true
+		},
+		"allowedPaths": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/repeating",
+			"type": "text",
+			"label": "Allowed Paths",
+			"name": "allowedPaths",
+			"required": true
+		},
+		"availableComponentTypes": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/cms/availablecomponenttypes"
+		},
+		"template": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/textarea",
+			"label": "Template",
+			"name": "template",
+			"required": true
+		},
+		"format": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/button",
+			"label": "Format",
+			"onclick": "javascript:try {$('textarea[name=template]').val(JSON.stringify(JSON.parse($('textarea[name=template]').val()), null, 2));} catch (e) { alert('Unable to parse Template JSON'); };return false;"
+		}
+	}
+}

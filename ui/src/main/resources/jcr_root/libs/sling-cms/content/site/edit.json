@@ -1,0 +1,40 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Edit Site",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"richtext": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/general/richtext",
+				"text": "<h3>Edit Site</h3>"
+			},
+			"slingform": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/editor/slingform",
+				"button": "Edit Site",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "sling-cms/components/general/container",
+					"title": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Title",
+						"name": "jcr:title",
+						"required": true
+					},
+					"description": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/textarea",
+						"label": "Description",
+						"name": "jcr:description",
+						"required": false
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Start",
+		"jcr:primaryType": "nt:unstructured",
+		"sling:vanityPath": "/cms",
+		"sling:redirect": true,
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"richtext": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/general/richtext",
+				"text": "<h2>Welcome to the Apache Sling CMS!<\/h2><p>This is a full-featured Content Management System built using the Apache Sling Framework! To begin using this framework, select + Site on the left to add your first website.<\/p>"
+			}
+		}
+	}
+}
