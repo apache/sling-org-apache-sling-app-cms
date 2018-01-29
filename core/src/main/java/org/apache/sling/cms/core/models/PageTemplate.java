@@ -17,7 +17,9 @@
 package org.apache.sling.cms.core.models;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,6 +43,9 @@ public class PageTemplate {
 	@Optional
 	private String[] availableComponentTypes;
 
+	@Inject
+	private List<Resource> componentConfigurations;
+	
 	@Inject
 	private List<Resource> fields;
 
@@ -70,6 +75,19 @@ public class PageTemplate {
 	 */
 	public String[] getAvailableComponentTypes() {
 		return availableComponentTypes;
+	}
+	
+	
+
+	/**
+	 * @return the componentConfigs
+	 */
+	public Map<String,Resource> getComponentConfigs() {
+		Map<String,Resource> configs = new HashMap<String,Resource>();
+		for(Resource cfg : componentConfigurations){
+			configs.put(cfg.getValueMap().get("type", String.class), cfg);
+		}
+		return configs;
 	}
 
 	/**

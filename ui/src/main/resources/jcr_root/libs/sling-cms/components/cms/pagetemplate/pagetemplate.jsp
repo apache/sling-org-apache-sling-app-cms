@@ -25,7 +25,7 @@
 		Title
 	</dt>
 	<dd>
-		<sling:encode value="${properties.title}" mode="HTML" />
+		<sling:encode value="${properties['jcr:title']}" mode="HTML" />
 	</dd>
 	<dt>
 		Allowed Paths
@@ -59,6 +59,15 @@
 				</li>
 			</c:forEach>
 		</ul>
+	</dd>
+	<dt>
+		Component Configurations
+	</dt>
+	<dd>
+		<c:set var="oldAvailableTypes" value="${availableTypes}" />
+		<c:set var="availableTypes" value="SlingCMS-ComponentConfig" scope="request" />
+		<sling:include path="componentConfigurations" resourceType="sling-cms/components/general/container" />
+		<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 	</dd>
 	<dt>
 		Template Content

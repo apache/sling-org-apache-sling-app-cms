@@ -17,12 +17,5 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="Field-Group">
-	<label for="availableComponentTypes">
-		Component Types
-	</label>
-	<div class="Field-Input">
-		<select 
-	</div>
-	<input type="hidden" name="availableComponentTypes@TypeHint" value="String[]" />
+<div class="Sling-CMS__include-config" data-path="${resource.path}.html" data-source="select[name=type]">
 </div>

@@ -1,0 +1,21 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save Component Config",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"type": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Component",
+			"name": "type",
+			"optionsScript": "/libs/sling-cms/components/editor/scripts/componentConfigOptions.jsp",
+			"required": true
+		},
+		"includeconfig": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/cms/includeconfig"
+		}
+	}
+}

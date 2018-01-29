@@ -163,6 +163,22 @@ Sling.CMS = {
 		}
 	};
 
+	Sling.CMS.ext['includeconfig'] = {
+		decorate: function($ctx){
+			$ctx.find('.Sling-CMS__include-config').each(function(){
+				var $ctr = $(this);
+				var load = function(){
+					var config = $($ctr.data('source')).find('option:selected').data('config');
+					$ctr.load(config + $ctr.parents('form').attr('action'), function(){
+						Sling.CMS.decorate($ctr.children());
+					});
+				};
+				$($ctr.data('source')).change(load);
+				load();
+			});
+		}
+	}
+
 	Sling.CMS.ext['namehint'] = {
 		decorate: function($ctx){
 			$ctx.find('.namehint').each(function(){
@@ -189,6 +205,7 @@ Sling.CMS = {
 						}
 						$ctr.find('input,textarea,select').change(updateContent);
 						$ctr.parents('form').submit(updateContent);
+						Sling.CMS.decorate($ctr.children());
 					});
 				});
 			});
@@ -217,7 +234,14 @@ Sling.CMS = {
 	Sling.CMS.ext['richtext'] = {
 		decorate: function($ctx){
 			$ctx.find('.richtext').summernote({
-			    height: 200
+				toolbar: [
+					['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
+				    ['insert', ['picture', 'link', 'table', 'hr']],
+				    ['para', ['style','ul', 'ol', 'paragraph']],
+				    ['misc', ['codeview', 'undo','redo','help']]
+				],
+				dialogsInBody: true,
+				height: 200
 			});
 		}
 	}

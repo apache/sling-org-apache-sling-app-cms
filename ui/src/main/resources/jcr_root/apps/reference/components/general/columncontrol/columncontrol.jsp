@@ -16,13 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@include file="/libs/sling-cms/global.jsp"%>
-<div class="Field-Group">
-	<label for="availableComponentTypes">
-		Component Types
-	</label>
-	<div class="Field-Input">
-		<select 
-	</div>
-	<input type="hidden" name="availableComponentTypes@TypeHint" value="String[]" />
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<div class="row">
+	<c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
+		<div class="${sling:encode(col,'HTML_ATTR')}">
+			<sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
+		</div>
+	</c:forEach>
 </div>

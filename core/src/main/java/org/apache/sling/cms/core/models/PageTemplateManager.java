@@ -43,10 +43,12 @@ public class PageTemplateManager {
 		List<PageTemplate> availableTemplates = new ArrayList<PageTemplate>();
 		if (siteConfig != null && siteConfig.getPageTemplates() != null) {
 			for (PageTemplate template : siteConfig.getPageTemplates()) {
-				for (String allowedPath : template.getAllowedPaths()) {
-					if (path.matches(allowedPath)) {
-						availableTemplates.add(template);
-						break;
+				if (template != null && template.getAllowedPaths() != null) {
+					for (String allowedPath : template.getAllowedPaths()) {
+						if (path.matches(allowedPath)) {
+							availableTemplates.add(template);
+							break;
+						}
 					}
 				}
 			}
@@ -54,7 +56,9 @@ public class PageTemplateManager {
 		return availableTemplates;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

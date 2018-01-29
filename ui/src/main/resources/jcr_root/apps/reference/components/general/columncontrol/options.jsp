@@ -16,13 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@include file="/libs/sling-cms/global.jsp"%>
-<div class="Field-Group">
-	<label for="availableComponentTypes">
-		Component Types
-	</label>
-	<div class="Field-Input">
-		<select 
-	</div>
-	<input type="hidden" name="availableComponentTypes@TypeHint" value="String[]" />
-</div>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
+pagemgr=${pageMgr }
+template=${pageMgr.page.template}
+configs=${pageMgr.page.template.componentConfigs }
+<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
+config=${configRsrc }
+<c:forEach var="layout" items="${configRsrc.valueMap.columns}">
+	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.layout == sling:encode(fn:split(layout,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(layout,'=')[1],'HTML_ATTR')}">
+		${sling:encode(fn:split(layout,'=')[0],'HTML')}
+	</option>
+</c:forEach>
