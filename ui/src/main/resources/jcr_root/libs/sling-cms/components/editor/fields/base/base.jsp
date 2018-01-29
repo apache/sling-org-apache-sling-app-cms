@@ -21,17 +21,27 @@
 	<sling:getResource path="${slingRequest.requestPathInfo.suffix}" var="editedResource" />
 	<c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.resource.ValueMap')}" scope="request"/>
 </c:if>
-<c:if test="${properties.required}">
-	<c:set var="required" value="required='required'" scope="request" />
-</c:if>
-<c:if test="${properties.disabled}">
-	<c:set var="disabled" value="disabled='disabled'" scope="request" />
-</c:if>
+<c:choose>
+	<c:when test="${properties.required}">
+		<c:set var="required" value="required='required'" scope="request" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="required" value="" scope="request" />
+	</c:otherwise>
+</c:choose>
+<c:choose>
+	<c:when test="${properties.disabled}">
+		<c:set var="disabled" value="disabled='disabled'" scope="request" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="disabled" value="" scope="request" />
+	</c:otherwise>
+</c:choose>
 <div class="Field-Group">
 	<c:if test="${not empty properties.label}">
 		<label for="${properties.name}">
 			<sling:encode value="${properties.label}" mode="HTML" />
-			<c:if test="${required}"><span class="error">*</span></c:if>
+			<c:if test="${properties.required}"><span class="error">*</span></c:if>
 		</label>
 	</c:if>
 	<div class="Field-Input">

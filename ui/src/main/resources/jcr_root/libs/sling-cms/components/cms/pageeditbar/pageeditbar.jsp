@@ -18,7 +18,8 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <link rel="stylesheet" href="/etc/clientlibs/sling-cms/css/editor.css" />
+<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 <div class="Sling-CMS__edit-bar">
-	<a href="/cms" target="_blank" class="Sling-CMS__component-title">Sling CMS</a> &gt;
-	<a href="/cms/site/content.html${slingRequest.requestPathInfo.suffix}" target="_blank" class="Sling-CMS__component-title">Open Page</a> 
+	<a href="/cms" target="_blank" class="Sling-CMS__component-title">Sling CMS</a> 
 </div>
+<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
