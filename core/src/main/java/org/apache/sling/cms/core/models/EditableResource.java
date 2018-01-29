@@ -31,6 +31,15 @@ public class EditableResource {
 		this.resource = resource;
 	}
 
+	/**
+	 * Gets the component for the specified resource.
+	 * 
+	 * @return the component for the specified resource
+	 */
+	public Resource getComponent() {
+		return resource.getResourceResolver().getResource(resource.getResourceType());
+	}
+
 	private Resource getComponentEditPath(Resource component) {
 		if (component != null) {
 			if (component.getChild("edit") != null) {
@@ -62,8 +71,7 @@ public class EditableResource {
 	 * @return the editor resource or null
 	 */
 	public Resource getEditResource() {
-		Resource component = resource.getResourceResolver().getResource(resource.getResourceType());
-		return getComponentEditPath(component);
+		return getComponentEditPath(getComponent());
 	}
 
 	/**

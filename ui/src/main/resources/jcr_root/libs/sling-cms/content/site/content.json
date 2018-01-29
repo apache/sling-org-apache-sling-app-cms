@@ -77,9 +77,17 @@
 								"type": "Actions",
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
 									"title": "Delete the specified page",
 									"text": "&times;",
 									"prefix": "/cms/shared/delete.html"
+								},
+								"edit": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": false,
+									"title": "Edit Page",
+									"text": "&#x270f;",
+									"prefix": "/cms/page/edit.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",

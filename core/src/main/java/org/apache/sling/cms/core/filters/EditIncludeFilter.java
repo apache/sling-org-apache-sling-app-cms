@@ -33,6 +33,7 @@ import org.apache.felix.scr.annotations.sling.SlingFilterScope;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.core.models.EditableResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +86,8 @@ public class EditIncludeFilter implements Filter {
 			writer.write("<div class=\"Sling-CMS__edit-bar\">");
 			writer.write(
 					"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
-							+ resource.getPath() + "\" data-sling-cms-edit=\"" + editPath + "\" title=\"Edit\">&#x270f;</button>");
+							+ resource.getPath() + "\" data-sling-cms-edit=\"" + editPath
+							+ "\" title=\"Edit\">&#x270f;</button>");
 			if (!first) {
 				writer.write(
 						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"moveup\" data-sling-cms-path=\""
@@ -100,6 +102,11 @@ public class EditIncludeFilter implements Filter {
 				writer.write(
 						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
 								+ resource.getPath() + "\" title=\"Delete\">&times;</button>");
+			}
+			Resource component = resource.adaptTo(EditableResource.class).getComponent();
+			if (component != null && component.getValueMap().containsKey(CMSConstants.PN_TITLE)) {
+				writer.write("<span class=\"Sling-CMS__component-title\">"
+						+ component.getValueMap().get(CMSConstants.PN_TITLE, String.class) + "</span>");
 			}
 			writer.write("</div>");
 		}

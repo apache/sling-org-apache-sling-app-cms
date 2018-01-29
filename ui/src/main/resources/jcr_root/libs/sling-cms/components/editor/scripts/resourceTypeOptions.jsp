@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<option>Select Component</option>
+<option value="">Select Component</option>
 <c:forEach var="type" items="${fn:split(param.availableTypes,',')}">
 	<optgroup label="${sling:encode(type,'HTML_ATTR')}">
 		<c:set var="query" value="SELECT * FROM [sling:Component] WHERE [componentType]='${type}'" />

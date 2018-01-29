@@ -17,13 +17,12 @@
 package org.apache.sling.cms.core.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Model;
 
 /**
  * A model for retrieving sites.
  */
-@Model(adaptables = ResourceResolver.class)
+@Model(adaptables = Resource.class)
 public class SiteManager {
 
 	private final Site site;

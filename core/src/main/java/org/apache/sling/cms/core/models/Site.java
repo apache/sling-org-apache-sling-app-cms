@@ -19,8 +19,8 @@ package org.apache.sling.cms.core.models;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -34,10 +34,10 @@ public class Site {
 	public static final String PN_CONFIG = CMSConstants.NAMESPACE + ":config";
 
 	private static Resource findSiteResource(Resource resource) {
-		if (resource != null) {
-			String[] pathSegments = resource.getPath().split("\\/");
-			String sitePath = "/content/" + pathSegments[2];
-			return resource.getResourceResolver().getResource(sitePath);
+		if (CMSConstants.NT_SITE.equals(resource.getValueMap().get(JcrConstants.JCR_PRIMARYTYPE, String.class))) {
+			return resource;
+		} else if (resource.getParent() != null) {
+			return findSiteResource(resource.getParent());
 		}
 		return null;
 	}
@@ -68,14 +68,6 @@ public class Site {
 
 	public Site(Resource resource) {
 		this.resource = resource;
-	}
-
-	public Resource getConfig() {
-		return resource.getResourceResolver().getResource(resource.getValueMap().get(PN_CONFIG, String.class));
-	}
-
-	public ValueMap getConfigProperties() {
-		return getConfig().getValueMap();
 	}
 
 	public String getDescription() {

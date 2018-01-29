@@ -1,0 +1,23 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save Field",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"name": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Name",
+			"name": "name",
+			"required": true
+		},
+		"value": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Value",
+			"name": "value",
+			"required": true
+		}
+	}
+}

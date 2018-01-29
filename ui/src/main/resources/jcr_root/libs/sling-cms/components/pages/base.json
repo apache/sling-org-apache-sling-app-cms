@@ -1,5 +1,4 @@
 {
     "jcr:primaryType" : "sling:Component",
-    "componentType": "Page",
     "jcr:title": "CMS - Base Page"
 }

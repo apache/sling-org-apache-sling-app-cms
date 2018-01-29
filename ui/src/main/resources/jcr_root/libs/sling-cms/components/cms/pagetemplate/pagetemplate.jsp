@@ -17,6 +17,9 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
+<div>
+	Template ${resource.path}
+</div>
 <dl>
 	<dt>
 		Title

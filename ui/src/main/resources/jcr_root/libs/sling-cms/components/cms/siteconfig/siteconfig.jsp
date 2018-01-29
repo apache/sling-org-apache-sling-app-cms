@@ -29,7 +29,7 @@
 <h3>Page Templates</h3>
 <c:set var="oldAvailableTypes" value="${availableTypes}" />
 <c:set var="availableTypes" value="SlingCMS-PageTemplate" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}/pageTemplates" resourceType="sling-cms/components/general/container" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}/pageTemplates" resourceType="sling-cms/components/general/namedcontainer" />
 <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 
 <c:set var="cmsEditEnabled" value="false" scope="request" />

@@ -20,9 +20,10 @@
 .Sling-CMS__edit-bar {
 	width: 100%;
 	height: 38px;
-	border-radius: 4px 4px 0 0;
 	padding: .2em;
 	background-color: silver;
+    line-height: 12px;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .Sling-CMS__edit-button {
@@ -41,6 +42,10 @@
 
 .Sling-CMS__component:hover {
 	border: 1px dashed #adadad;
+}
+
+.Sling-CMS__component-title {
+	padding: 0 10px;
 }
 
 .Sling-CMS__modal-background {
@@ -83,4 +88,20 @@
 
 .Sling-CMS__modal-close {
 	float:right;
+}
+
+.Sling-CMS__page-wrapper-frame {
+	position: fixed;
+	top: 30px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	width: 100%;
+	height: 100%;
+	border: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	z-index: 998;
+    padding-top: 8px;
 }

@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<input type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} />
+<input type="${not empty properties.type ? properties.type : 'text'}" name="${properties.name}" value="${not empty editProperties[properties.name] ? editProperties[properties.name] : properties.defaultValue}" ${required} ${disabled} />

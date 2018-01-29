@@ -22,6 +22,9 @@ if(!window.CMSEditor){
 			$(".Sling-CMS__edit-button[data-sling-cms-action=add]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/add.html'+$(this).attr('data-sling-cms-path')+'?availableTypes='+$(this).data('sling-cms-available-types'));
 			});
+			$(".Sling-CMS__edit-button[data-sling-cms-action=add-named]").click(function(){
+				CMSEditor.ui.showModal('/cms/editor/add-named.html'+$(this).attr('data-sling-cms-path')+'?availableTypes='+$(this).data('sling-cms-available-types'));
+			});
 			$(".Sling-CMS__edit-button[data-sling-cms-action=delete]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/delete.html'+$(this).attr('data-sling-cms-path'));
 			});
@@ -55,8 +58,8 @@ if(!window.CMSEditor){
 			modalDisplayed: false,
 			hideModal: function() {
 				if(CMSEditor.ui.modalDisplayed) {
-					$(".Sling-CMS__modal-background").fadeOut("slow");
-					$(".Sling-CMS__modal-box").fadeOut("slow");
+					$(".Sling-CMS__modal-background").hide();
+					$(".Sling-CMS__modal-box").hide();
 					CMSEditor.ui.modalDisplayed = false;
 				}
 			},
@@ -66,8 +69,8 @@ if(!window.CMSEditor){
 				}
 				
 				$(".Sling-CMS__modal-box iframe").attr('src',url);
-				$(".Sling-CMS__modal-background").fadeIn("slow");
-				$(".Sling-CMS__modal-box").fadeIn("slow");
+				$(".Sling-CMS__modal-background").show();
+				$(".Sling-CMS__modal-box").show();
 				
 				CMSEditor.ui.modalDisplayed = true;
 			}

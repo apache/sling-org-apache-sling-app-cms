@@ -16,6 +16,9 @@
  */
 package org.apache.sling.cms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
 
@@ -33,5 +36,26 @@ public class CMSUtils {
 			}
 		}
 		return null;
+	}
+
+	public static final <T> List<T> adaptResources(Resource[] resources, Class<T> type) {
+		List<T> values = new ArrayList<T>();
+		if (resources != null) {
+			for (Resource resource : resources) {
+				values.add(resource.adaptTo(type));
+			}
+		}
+		return values;
+	}
+	
+
+	public static final <T> List<T> adaptResources(List<Resource> resources, Class<T> type) {
+		List<T> values = new ArrayList<T>();
+		if (resources != null) {
+			for (Resource resource : resources) {
+				values.add(resource.adaptTo(type));
+			}
+		}
+		return values;
 	}
 }

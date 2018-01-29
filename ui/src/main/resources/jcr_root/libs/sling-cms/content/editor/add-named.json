@@ -1,0 +1,42 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"jcr:primaryType": "nt:unstructured",
+		"jcr:title": "Edit",
+		"sling:resourceType": "sling-cms/components/pages/editor",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"add": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/editor/slingform",
+				"button": "Add Component",
+				"actionSuffix": "/*",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "sling-cms/components/general/container",
+					"primaryType": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType" : "sling-cms/components/editor/fields/hidden",
+						"name": "jcr:primaryType",
+						"value": "nt:unstructured"
+					},
+					"name": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType" : "sling-cms/components/editor/fields/text",
+						"name": ":name",
+						"label": "Name",
+						"required": true
+					},
+					"type": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/select",
+						"name": "sling:resourceType",
+						"optionsScript": "/libs/sling-cms/components/editor/scripts/resourceTypeOptions.jsp",
+						"required": true
+					}
+				}
+			}
+		}
+	}
+}

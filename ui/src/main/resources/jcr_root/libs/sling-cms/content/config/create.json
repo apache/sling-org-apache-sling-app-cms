@@ -63,7 +63,7 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
 						"name": "parameters/sling:resourceType",
-						"value": "sling-cms/components/general/container"
+						"value": "sling-cms/components/general/namedcontainer"
 					}
 				}
 			}

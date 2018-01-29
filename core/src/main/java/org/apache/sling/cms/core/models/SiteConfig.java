@@ -21,8 +21,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
 
 /**
  * A model representing a site configuration.
@@ -31,31 +31,35 @@ import org.apache.sling.models.annotations.Optional;
 public class SiteConfig {
 
 	@Inject
-	@Optional
-	private List<Parameter> parameters;
+	private List<Resource> pageTemplates;
 
 	@Inject
-	@Optional
-	private List<PageTemplate> pageTemplates;
+	private List<Resource> parameters;
+
+	private Resource resource;
+
+	public SiteConfig(Resource resource) {
+		this.resource = resource;
+	}
 
 	/**
 	 * @return the pageTemplates
 	 */
 	public List<PageTemplate> getPageTemplates() {
-		return pageTemplates;
+		return CMSUtils.adaptResources(pageTemplates, PageTemplate.class);
 	}
 
 	/**
 	 * @return the parameters
 	 */
 	public List<Parameter> getParameters() {
-		return parameters;
+		return CMSUtils.adaptResources(parameters, Parameter.class);
 	}
 
 	public String getParameterValue(String key) {
 		String value = null;
 		if (parameters != null) {
-			for (Parameter param : parameters) {
+			for (Parameter param : getParameters()) {
 				if (key.equals(param.getKey())) {
 					value = param.getValue();
 					break;
@@ -65,20 +69,15 @@ public class SiteConfig {
 		return value;
 	}
 
-	/**
-	 * @param pageTemplates
-	 *            the pageTemplates to set
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
 	 */
-	public void setPageTemplates(List<PageTemplate> pageTemplates) {
-		this.pageTemplates = pageTemplates;
-	}
-
-	/**
-	 * @param parameters
-	 *            the parameters to set
-	 */
-	public void setParameters(List<Parameter> parameters) {
-		this.parameters = parameters;
+	@Override
+	public String toString() {
+		return "SiteConfig [parameters=" + parameters + ", pageTemplates=" + pageTemplates + ", resource=" + resource
+				+ "]";
 	}
 
 }

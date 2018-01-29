@@ -17,7 +17,6 @@
 package org.apache.sling.cms.core.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.models.annotations.Model;
@@ -25,7 +24,7 @@ import org.apache.sling.models.annotations.Model;
 /**
  * A model used to retrieve pages.
  */
-@Model(adaptables = ResourceResolver.class)
+@Model(adaptables = Resource.class)
 public class PageManager {
 
 	private final Page page;

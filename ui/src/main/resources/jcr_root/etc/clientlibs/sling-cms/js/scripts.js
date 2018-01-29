@@ -83,7 +83,14 @@ Sling.CMS = {
 				return $modal;
 			}
 		},
-		util: {
+		utils: {
+			form2Obj: function ($form){
+			    var data = {};
+			    $.map($form.serializeArray(), function(n, i){
+			    	data[n['name']] = n['value'];
+			    });
+			    return data;
+			}
 		}
 	}
 
@@ -167,6 +174,26 @@ Sling.CMS = {
 			});
 		}
 	}
+	Sling.CMS.ext['pageproperties'] = {
+		decorate: function($ctx){
+			$ctx.find('.Sling-CMS__page-properties').each(function(){
+				var $ctr = $(this);
+				$($ctr.data('source')).change(function(){
+					var config = $(this).val();
+					$ctr.load($ctr.data('path')+config, function(){
+						var source   = $('#content-template').html();
+						var template = Handlebars.compile(source);
+						var updateContent = function(){
+							var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
+							$('input[name=":content"]').val(template(data));
+						}
+						$ctr.find('input,textarea,select').change(updateContent);
+						$ctr.parents('form').submit(updateContent);
+					});
+				});
+			});
+		}
+	}
 
 	Sling.CMS.ext['repeating'] = {
 		decorate: function($ctx){
@@ -191,6 +218,14 @@ Sling.CMS = {
 		decorate: function($ctx){
 			$ctx.find('.richtext').summernote({
 			    height: 200
+			});
+		}
+	}
+	
+	Sling.CMS.ext['toggle-hidden'] = {
+		decorate: function($ctx){
+			$ctx.find('.Toggle-Hidden').click(function(){
+				$($(this).data('target')).toggleClass('Hide');
 			});
 		}
 	}

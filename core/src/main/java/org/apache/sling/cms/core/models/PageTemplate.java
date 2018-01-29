@@ -16,6 +16,9 @@
  */
 package org.apache.sling.cms.core.models;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -28,21 +31,85 @@ import org.apache.sling.models.annotations.Optional;
  * A simple model for representing a page template
  */
 @Model(adaptables = Resource.class)
-public interface PageTemplate {
+public class PageTemplate {
 
 	@Inject
 	@Optional
-	String[] availableComponentTypes();
+	private String[] allowedPaths;
 
 	@Inject
 	@Optional
-	String[] getAllowedPaths();
+	private String[] availableComponentTypes;
 
 	@Inject
-	String getTemplate();
+	private List<Resource> fields;
+
+	private Resource resource;
+
+	@Inject
+	@Optional
+	private String template;
 
 	@Inject
 	@Named(CMSConstants.PN_TITLE)
-	String getTitle();
+	private String title;
+
+	public PageTemplate(Resource resource) {
+		this.resource = resource;
+	}
+
+	/**
+	 * @return the allowedPaths
+	 */
+	public String[] getAllowedPaths() {
+		return allowedPaths;
+	}
+
+	/**
+	 * @return the availableComponentTypes
+	 */
+	public String[] getAvailableComponentTypes() {
+		return availableComponentTypes;
+	}
+
+	/**
+	 * @return the fields
+	 */
+	public List<Resource> getFields() {
+		return fields;
+	}
+
+	/**
+	 * @return the resource
+	 */
+	public Resource getResource() {
+		return resource;
+	}
+
+	/**
+	 * @return the template
+	 */
+	public String getTemplate() {
+		return template;
+	}
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PageTemplate [allowedPaths=" + Arrays.toString(allowedPaths) + ", availableComponentTypes="
+				+ Arrays.toString(availableComponentTypes) + ", fields=" + fields + ", resource=" + resource
+				+ ", template=" + template + ", title=" + title + "]";
+	}
 
 }

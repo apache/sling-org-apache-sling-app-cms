@@ -25,25 +25,16 @@
 		CMS
 	</a>
 </h1>
-<ul class="Nav">
-	<li  class="Nav-Header">Sites</li>
-	<sling:include path="sitenav" resourceType="sling-cms/components/cms/sitenav" />
-	<li class="Nav-Item"><a href="/cms/site/create.html/content" title="Create a new Site" class="Fetch-Modal" data-title="Create Site" data-path=".Main-Content form">+ Site</a></li>
-</ul>
-<ul class="Nav">
-	<li  class="Nav-Header">Config</li>
-	<sling:include path="sitenav" resourceType="sling-cms/components/cms/confignav" />
-	<li class="Nav-Item"><a href="/cms/config/create.html/etc/config" title="Create a new Config" class="Fetch-Modal" data-title="Create Site Config" data-path=".Main-Content form">+ Config</a></li>
-</ul>
-<ul>
-	<li  class="Nav-Header">Admin</li>
+<sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
+<h3 class="Nav-Header Toggle-Hidden" data-target="#Tools-Nav">Tools</h3>
+<ul id="Tools-Nav" class="Hide">
 	<li class="Nav-Item"><a href="/bin/browser.html" title="Browse the JCR content of this site">Node Browser</a></li>
 	<li class="Nav-Item"><a href="/bin/packages.html" title="Create content packages">Content Packages</a></li>
 	<li class="Nav-Item"><a href="/bin/users.html/" title="Manage Users and Groups">Users &amp; Groups</a></li>
 	<li class="Nav-Item"><a href="/system/console/bundles" title="Edit the OSGi bundles of this site">System Console</a></li>
 </ul>
 <div>
-<strong>Session</strong>
+<h3 class="Nav-Header">Session</h3>
 <div id="Login" style="display: block;"><a href="/system/sling/login.html" title="Login to Apache Sling">Login</a></div>
 <div id="Logout" style="display: none;"><a href="/system/sling/logout" title="Logout of Apache Sling">Logout,</a> </div>
 </div>

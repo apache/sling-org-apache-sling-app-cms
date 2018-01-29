@@ -27,6 +27,7 @@
 		"template": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/textarea",
+			"defaultValue":"{\r\n  \"jcr:primaryType\": \"sling:Page\",\r\n  \"jcr:content\": {\r\n    \"jcr:primaryType\": \"nt:unstructured\",\r\n    \"jcr:title\": \"{{title}}\",\r\n    \"sling:template\": \"{{template}}\",\r\n    \"sling:resourceType\": \"sling-cms\/components\/page\/base\"\r\n  }\r\n}",
 			"label": "Template",
 			"name": "template",
 			"required": true
