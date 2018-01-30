@@ -1,0 +1,112 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Taxonomy",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"contentactions": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contentactions",
+				"actions": {
+					"taxonomy": {
+						"jcr:primaryType": "nt:unstructured",
+						"label": "Taxonomy Item",
+						"prefix": "/cms/taxonomy/create.html"
+					}
+				}
+			},
+			"contentbreadcrumb": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
+				"depth": 3,
+				"prefix": "/cms/taxonomy/list.html",
+				"titleProp": "jcr:title"
+			},
+			"contenttable": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contenttable",
+				"columns": {
+					"jcr:primaryType": "nt:unstructured",
+					"name": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Name"
+					},
+					"title": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Title"
+					},
+					"lastModified": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Last Modified"
+					},
+					"lastModifiedBy": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Last Modified By"
+					},
+					"actions": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Actions"
+					}
+				},
+				"types": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:Taxonomy":{
+						"jcr:primaryType": "nt:unstructured",
+						"columns": {
+							"jcr:primaryType": "nt:unstructured",
+							"name": {
+								"jcr:primaryType": "nt:unstructured",
+								"link": true,
+								"prefix": "/cms/taxonomy/list.html",
+								"type": "Name"
+							},
+							"title": {
+								"jcr:primaryType": "nt:unstructured",
+								"property": "jcr:title",
+								"type": "String"
+							},
+							"lastModified": {
+								"jcr:primaryType": "nt:unstructured",
+								"property": "jcr:content/jcr:lastModified",
+								"type": "Date"
+							},
+							"lastModifiedBy": {
+								"jcr:primaryType": "nt:unstructured",
+								"property": "jcr:content/jcr:lastModifiedBy",
+								"type": "String"
+							},
+							"actions": {
+								"jcr:primaryType": "nt:unstructured",
+								"type": "Actions",
+								"edit": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Edit Taxonomy Item",
+									"text": "&#x270f;",
+									"prefix": "/cms/taxonomy/edit.html"
+								},
+								"movecopy": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Move / Copy Taxonomy Item",
+									"text": "&#x21c6;",
+									"prefix": "/cms/shared/movecopy.html"
+								},
+								"delete": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Delete the specified taxonomy item",
+									"text": "&times;",
+									"prefix": "/cms/shared/delete.html"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

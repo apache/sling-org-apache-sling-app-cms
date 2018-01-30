@@ -11,6 +11,34 @@
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/cms/siteheader"
 			},
+			"contentactions": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contentactions",
+				"actions": {
+					"page": {
+						"jcr:primaryType": "nt:unstructured",
+						"label": "Page",
+						"prefix": "/cms/page/create.html"
+					},
+					"file": {
+						"jcr:primaryType": "nt:unstructured",
+						"label": "File",
+						"prefix": "/cms/file/upload.html"
+					},
+					"folder": {
+						"jcr:primaryType": "nt:unstructured",
+						"label": "Folder",
+						"prefix": "/cms/folder/create.html"
+					}
+				}
+			},
+			"contentbreadcrumb": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
+				"depth": 2,
+				"prefix": "/cms/site/content.html",
+				"titleProp": "jcr:content/jcr:title"
+			},
 			"contenttable": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/cms/contenttable",
@@ -54,6 +82,7 @@
 							"name": {
 								"jcr:primaryType": "nt:unstructured",
 								"link": true,
+								"prefix": "/cms/site/content.html",
 								"type": "Name"
 							},
 							"title": {
@@ -173,6 +202,7 @@
 							"name": {
 								"jcr:primaryType": "nt:unstructured",
 								"link": true,
+								"prefix": "/cms/site/content.html",
 								"type": "Name"
 							},
 							"title": {
@@ -233,6 +263,7 @@
 							"name": {
 								"jcr:primaryType": "nt:unstructured",
 								"link": true,
+								"prefix": "/cms/site/content.html",
 								"type": "Name"
 							},
 							"title": {

@@ -42,14 +42,24 @@
 	- jcr:lastModified (date)
 	- jcr:lastModifiedBy (string)
 	- jcr:title (string)
-	+ * (nt:base) = nt:base version
+	+ * (nt:unstructured) = nt:unstructured version
 
 [sling:Page] > nt:hierarchyNode
 	orderable
 	- published (boolean)
-	+ jcr:content (nt:base) = nt:unstructured copy primary
+	+ jcr:content (nt:unstructured) = nt:unstructured copy primary
 	+ * (nt:base) = nt:base version
 
 [sling:Component] > nt:unstructured
-	- componentType (boolean)
-	- jcr:title (boolean)
+	- componentType (string)
+	- jcr:title (string)
+
+[sling:Taxonomy] > nt:hierarchyNode
+	orderable
+	- sling:related (string)
+	- sling:created (date)
+	- sling:createdBy (string)
+	- jcr:lastModified (date)
+	- jcr:lastModifiedBy (string)
+	- jcr:title (string)
+	+ * (sling:Taxonomy) = sling:Taxonomy version

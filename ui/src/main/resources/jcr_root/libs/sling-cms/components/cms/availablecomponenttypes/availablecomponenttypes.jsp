@@ -19,10 +19,26 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="Field-Group">
 	<label for="availableComponentTypes">
-		Component Types
+		Available Component Types
 	</label>
 	<div class="Field-Input">
-		<select 
+		<c:set var="currentTypes" value="|${fn:join(slingRequest.requestPathInfo.suffixResource.valueMap.availableComponentTypes, '|')}|"/>
+		<sling:adaptTo var="componentManager" adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.core.models.ComponentManager" />
+		<c:forEach var="type" items="${componentManager.componentTypes}">
+			<label class="Checkbox-Label">
+				<c:set var="search" value="|${type}|" />
+				<c:choose>
+					<c:when test="${fn:contains(currentTypes,search)}">
+						<c:set var="checked">checked="checked"</c:set>
+					</c:when>
+					<c:otherwise>
+						<c:set var="checked" value="" />
+					</c:otherwise>
+				</c:choose>
+				<input name="availableComponentTypes" type="checkbox" ${checked} value="${sling:encode(type,'HTML_ATTR')}">
+				<sling:encode value="${type}" mode="HTML" />
+			</label>
+		</c:forEach>
 	</div>
 	<input type="hidden" name="availableComponentTypes@TypeHint" value="String[]" />
 </div>

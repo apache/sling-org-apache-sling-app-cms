@@ -17,31 +17,6 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <a class="Button Fetch-Modal" data-title="Add Page" data-path=".Main-Content form" href="/cms/page/create.html${slingRequest.requestPathInfo.suffix}">+ Page</a>
-  | <a class="Button Fetch-Modal" data-title="Add File" data-path=".Main-Content form" href="/cms/file/upload.html${slingRequest.requestPathInfo.suffix}">+ File</a>
-  | <a class="Button Fetch-Modal" data-title="Add Folder" data-path=".Main-Content form" href="/cms/folder/create.html${slingRequest.requestPathInfo.suffix}">+ Folder</a>
-<sling:getParent resource="${slingRequest.requestPathInfo.suffixResource}" var="site" level="2" />
-<ul class="Breadcrumb">
-	<li class="Breadcrumb-Item">
-		<a href="/cms/site/content.html${site.path}">
-			<sling:encode value="${site.valueMap['jcr:title']}" mode="HTML" />
-		</a>
-	</li>
-	<c:if test="${site.path != slingRequest.requestPathInfo.suffix && site.path != slingRequest.requestPathInfo.suffixResource.parent.path}">
-		<c:forEach var="parent" items="${sling:getParents(slingRequest.requestPathInfo.suffixResource,3)}">
-			<li class="Breadcrumb-Item">
-				<a href="/cms/site/content.html${parent.path}">
-					<sling:encode value="${parent.valueMap['jcr:content/jcr:title']}" default="${parent.name}" mode="HTML" />
-				</a>
-			</li>
-		</c:forEach>
-	</c:if>
-	<c:if test="${site.path != slingRequest.requestPathInfo.suffix}">
-		<li class="Breadcrumb-Item">
-			<sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:title']}" default="${slingRequest.requestPathInfo.suffix}" mode="HTML" />
-		</li>
-	</c:if>
-</ul>
 <table>
 	<thead>
 		<tr>
@@ -113,7 +88,7 @@
 									<td class="Cell-${colConfig.valueMap.type}" title="${sling:encode(colValue,'HTML_ATTR')}">
 										<c:choose>
 											<c:when test="${colConfig.valueMap.link}">
-												<a href="/cms/site/content.html${child.path}">
+												<a href="${colConfig.valueMap.prefix}${child.path}">
 													<sling:encode value="${colValue}" mode="HTML" />
 												</a>
 											</c:when>
