@@ -20,6 +20,8 @@
 <link rel="stylesheet" href="/etc/clientlibs/sling-cms/css/editor.css" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 <div class="Sling-CMS__edit-bar">
-	<a href="/cms" target="_blank" class="Sling-CMS__component-title">Sling CMS</a> 
+	<a href="/cms/start.html" target="_blank" class="Sling-CMS__component-title" target="Sling CMS">
+		<img src="/sling-logo.svg" class="Sling-CMS__logo" />
+	</a>
 </div>
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />

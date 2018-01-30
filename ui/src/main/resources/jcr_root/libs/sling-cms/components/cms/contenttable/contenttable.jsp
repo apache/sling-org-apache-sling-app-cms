@@ -79,6 +79,22 @@
 										</c:forEach>
 									</td>
 								</c:when>
+								<c:when test="${colConfig.valueMap.type == 'Publish'}">
+									<td class="Cell-${colConfig.valueMap.type}">
+										<c:choose>
+											<c:when test="${sling:getRelativeResource(child,'jcr:content').valueMap.published}">
+												<a class="Button Fetch-Modal"  href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+													 &#10003;
+												</a>
+											</c:when>
+											<c:otherwise>
+												<a class="Button Fetch-Modal"  href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
+													 &#10007;
+												</a>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</c:when>
 								<c:otherwise>
 									<c:choose>
 										<c:when test="${colConfig.valueMap.type == 'Static'}">

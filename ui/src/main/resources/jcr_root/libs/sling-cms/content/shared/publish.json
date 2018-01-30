@@ -1,0 +1,43 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Publish Content",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"richtext": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/general/richtext",
+				"text": "<h3>Publish Content</h3>"
+			},
+			"slingform": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/editor/slingform",
+				"button": "Publish",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "sling-cms/components/general/container",
+					"path": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType" : "sling-cms/components/editor/fields/suffixlabel",
+						"label": "Do you want to publish:"
+					},
+					"published": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "jcr:content/published",
+						"value": "true"
+					},
+					"publishedTypeHint": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "jcr:content/published@TypeHint",
+						"value": "Boolean"
+					}
+				}
+			}
+		}
+	}
+}

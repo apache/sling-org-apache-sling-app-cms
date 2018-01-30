@@ -24,6 +24,10 @@
 						"jcr:primaryType": "nt:unstructured",
 						"title": "Title"
 					},
+					"published": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Published"
+					},
 					"type": {
 						"jcr:primaryType": "nt:unstructured",
 						"title": "Type"
@@ -57,6 +61,10 @@
 								"property": "jcr:content/jcr:title",
 								"type": "String"
 							},
+							"publish": {
+								"jcr:primaryType": "nt:unstructured",
+								"type": "Publish"
+							},
 							"type": {
 								"jcr:primaryType": "nt:unstructured",
 								"value": "Page",
@@ -75,13 +83,6 @@
 							"actions": {
 								"jcr:primaryType": "nt:unstructured",
 								"type": "Actions",
-								"delete": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"title": "Delete the specified page",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html"
-								},
 								"edit": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,
@@ -95,6 +96,13 @@
 									"title": "Move / Copy Page",
 									"text": "&#x21c6;",
 									"prefix": "/cms/shared/movecopy.html"
+								},
+								"delete": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Delete the specified page",
+									"text": "&times;",
+									"prefix": "/cms/shared/delete.html"
 								}
 							}
 						}
@@ -112,6 +120,10 @@
 								"jcr:primaryType": "nt:unstructured",
 								"link": false,
 								"type": "Name"
+							},
+							"publish": {
+								"jcr:primaryType": "nt:unstructured",
+								"type": "Publish"
 							},
 							"type": {
 								"jcr:primaryType": "nt:unstructured",
@@ -131,13 +143,6 @@
 							"actions": {
 								"jcr:primaryType": "nt:unstructured",
 								"type": "Actions",
-								"delete": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"title": "Delete File",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html"
-								},
 								"download": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,
@@ -150,6 +155,13 @@
 									"title": "Move / Copy File",
 									"text": "&#x21c6;",
 									"prefix": "/cms/shared/movecopy.html"
+								},
+								"delete": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Delete File",
+									"text": "&times;",
+									"prefix": "/cms/shared/delete.html"
 								}
 							}
 						}
@@ -168,6 +180,10 @@
 								"property": "jcr:content/jcr:title",
 								"type": "String"
 							},
+							"publish": {
+								"jcr:primaryType": "nt:unstructured",
+								"type": "Publish"
+							},
 							"type": {
 								"jcr:primaryType": "nt:unstructured",
 								"value": "Folder",
@@ -193,19 +209,19 @@
 									"text": "&#x270f;",
 									"prefix": "/cms/folder/edit.html"
 								},
-								"delete": {
-									"jcr:primaryType": "nt:unstructured",
-									"title": "Delete Folder",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html",
-									"modal": true
-								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Folder",
 									"text": "&#x21c6;",
 									"prefix": "/cms/shared/movecopy.html"
+								},
+								"delete": {
+									"jcr:primaryType": "nt:unstructured",
+									"title": "Delete Folder",
+									"text": "&times;",
+									"prefix": "/cms/shared/delete.html",
+									"modal": true
 								}
 							}
 						}
@@ -224,6 +240,10 @@
 								"property": "jcr:content/jcr:title",
 								"type": "String"
 							},
+							"publish": {
+								"jcr:primaryType": "nt:unstructured",
+								"type": "Publish"
+							},
 							"type": {
 								"jcr:primaryType": "nt:unstructured",
 								"value": "Folder",
@@ -249,19 +269,19 @@
 									"text": "&#x270f;",
 									"prefix": "/cms/folder/edit.html"
 								},
-								"delete": {
-									"jcr:primaryType": "nt:unstructured",
-									"title": "Delete Folder",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html",
-									"modal": true
-								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Folder",
 									"text": "&#x21c6;",
 									"prefix": "/cms/shared/movecopy.html"
+								},
+								"delete": {
+									"jcr:primaryType": "nt:unstructured",
+									"title": "Delete Folder",
+									"text": "&times;",
+									"prefix": "/cms/shared/delete.html",
+									"modal": true
 								}
 							}
 						}
@@ -280,6 +300,10 @@
 								"link": false,
 								"type": "Name"
 							},
+							"publish": {
+								"jcr:primaryType": "nt:unstructured",
+								"type": "Publish"
+							},
 							"type": {
 								"jcr:primaryType": "nt:unstructured",
 								"value": "Folder",
@@ -305,19 +329,19 @@
 									"text": "&#x270f;",
 									"prefix": "/cms/folder/edit.html"
 								},
-								"delete": {
-									"jcr:primaryType": "nt:unstructured",
-									"title": "Delete Folder",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html",
-									"modal": true
-								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Folder",
 									"text": "&#x21c6;",
 									"prefix": "/cms/shared/movecopy.html"
+								},
+								"delete": {
+									"jcr:primaryType": "nt:unstructured",
+									"title": "Delete Folder",
+									"text": "&times;",
+									"prefix": "/cms/shared/delete.html",
+									"modal": true
 								}
 							}
 						}

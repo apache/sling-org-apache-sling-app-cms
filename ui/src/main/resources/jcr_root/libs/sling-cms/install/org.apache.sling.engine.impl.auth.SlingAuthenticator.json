@@ -1,0 +1,13 @@
+{
+    "jcr:primaryType": "sling:OsgiConfig",
+    "sling.auth.requirements": [
+      "/bin",
+      "/cms",
+      "/libs",
+      "/apps",
+      "/etc",
+      "/home",
+      "/var",
+      "-/etc/clientlibs"
+    ]
+}

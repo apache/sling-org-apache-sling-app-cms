@@ -16,6 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */ 
+
+.Sling-CMS__component {
+	border: 1px solid rgba(0,0,0,0);
+}
+
+.Sling-CMS__component:hover {
+	border: 1px dashed #adadad;
+}
+
+.Sling-CMS__component-title {
+	padding: 0 10px;
+}
+ 
  
 .Sling-CMS__edit-bar {
 	width: 100%;
@@ -23,7 +36,7 @@
 	padding: .2em;
 	background-color: silver;
     line-height: 12px;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Open Sans", arial, sans-serif;
 }
 
 .Sling-CMS__edit-button {
@@ -36,16 +49,8 @@
     text-decoration: none;
 }
 
-.Sling-CMS__component {
-	border: 1px solid rgba(0,0,0,0);
-}
-
-.Sling-CMS__component:hover {
-	border: 1px dashed #adadad;
-}
-
-.Sling-CMS__component-title {
-	padding: 0 10px;
+.Sling-CMS__logo {
+	height: 30px;
 }
 
 .Sling-CMS__modal-background {
