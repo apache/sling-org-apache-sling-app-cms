@@ -41,7 +41,8 @@
 						"basePath": "/etc/config",
 						"type": "sling:Config",
 						"label": "Site Config",
-						"name": "sling:config"
+						"name": "sling:config",
+						"titleProperty": "jcr:title"
 					},
 					"primaryType": {
 						"jcr:primaryType": "nt:unstructured",

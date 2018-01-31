@@ -17,10 +17,10 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<input type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} list="paths-${resource.name}" />
+<input type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} list="paths-${resource.name}" autocomplete="off" />
 <datalist id="paths-${resource.name}">
 	<c:set var="query" value="SELECT * FROM [${properties.type}] WHERE ISDESCENDANTNODE([${properties.basePath}])" />
 	<c:forEach var="resource" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
-		<option>${resource.path}</option>
+		<option value="${resource.path}">${resource.valueMap[properties.titleProperty]}</option>
 	</c:forEach>
 </datalist>

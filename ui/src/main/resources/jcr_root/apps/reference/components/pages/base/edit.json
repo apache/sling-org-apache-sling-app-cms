@@ -20,9 +20,18 @@
 		},
 		"keywords": {
 			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/repeating",
+			"sling:resourceType": "sling-cms/components/editor/fields/taxonomy",
 			"label": "Keywords",
 			"name": "keywords"
+		},
+		"canonical": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/path",
+			"basePath": "/content",
+			"type": "sling:Page",
+			"label": "Canonical",
+			"name": "canonical",
+			"titleProperty": "jcr:content/jcr:title"
 		},
 		"published": {
 			"jcr:primaryType": "nt:unstructured",

@@ -62,6 +62,10 @@ ul.Breadcrumb  {
 	display:none;
 }
 
+input, textarea, select {
+	width: 100%;
+}
+
 input[type="checkbox"] {
     border: 0;
     box-shadow: none;

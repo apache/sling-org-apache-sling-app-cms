@@ -216,21 +216,21 @@ Sling.CMS = {
 		decorate: function($ctx){
 			$ctx.find('.repeating').each(function(){
 				var $rep = $(this);
-				$rep.find('.repeating__remove').click(function(){
-					var $rem = $(this);
-					$rem.parents('.repeating__item').remove();
-					return false;
-				});
 				$rep.find('.repeating__add').click(function(){
 					var $div = $('<div/>').html($rep.find('.repeating__template').html());
 					Sling.CMS.decorate($div);
 					$('.repeating__container').append($div);
 					return false;
 				});
-				
+			});
+			$ctx.find('.repeating__remove').click(function(){
+				var $rem = $(this);
+				$rem.parents('.repeating__item').remove();
+				return false;
 			});
 		}
 	};
+	
 	Sling.CMS.ext['richtext'] = {
 		decorate: function($ctx){
 			$ctx.find('.richtext').summernote({
@@ -245,6 +245,41 @@ Sling.CMS = {
 			});
 		}
 	}
+
+	Sling.CMS.ext['taxonomy'] = {
+		decorate: function($ctx){
+			$ctx.find('.taxonomy').each(function(){
+				var $rep = $(this);
+				$rep.find('.taxonomy__add').click(function(){
+					var $span = $('<span/>').html($rep.find('.taxonomy__template').html());
+					var val = $ctx.find('.taxonomy__field input').val();
+					var found = false;
+					$rep.find('.taxonomy__item input').each(function(idx, el){
+						if($(el).val() === val){
+							found = true;
+						}
+					});
+					if(found){
+						return false;
+					}
+					$span.find('input').val(val);
+					var title = $ctx.find('option[value="'+val+'"]').text();
+					
+					
+					if(title !== ''){
+						$span.find('.taxonomy__title').text(title);
+						Sling.CMS.decorate($span);
+						$('.taxonomy__container').append($span);
+					}
+					return false;
+				});
+			});
+			$ctx.find('.taxonomy__item').click(function(){
+				$(this).remove();
+				return false;
+			});
+		}
+	};
 	
 	Sling.CMS.ext['toggle-hidden'] = {
 		decorate: function($ctx){
