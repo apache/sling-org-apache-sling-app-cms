@@ -22,10 +22,9 @@ package org.apache.sling.cms;
 public class CMSConstants {
 
 	/**
-	 * Private constructor to prevent instantiation of class.
+	 * The Request attribute for whether or not editing is enabled
 	 */
-	private CMSConstants() {
-	}
+	public static final String ATTR_EDIT_ENABLED = "cmsEditEnabled";
 
 	/**
 	 * Content path.
@@ -38,19 +37,14 @@ public class CMSConstants {
 	public static final String NAMESPACE = "sling";
 
 	/**
-	 * Description attribute name
+	 * Component node type.
 	 */
-	public static final String PN_DESCRIPTION = "jcr:description";
+	public static final String NT_COMPONENT = NAMESPACE + ":Component";
 
 	/**
-	 * Title attribute name
+	 * File node type
 	 */
-	public static final String PN_TITLE = "jcr:title";
-
-	/**
-	 * Site node type.
-	 */
-	public static final String NT_SITE = NAMESPACE + ":Site";
+	public static final String NT_FILE = NAMESPACE + ":File";
 
 	/**
 	 * Page node type.
@@ -58,8 +52,29 @@ public class CMSConstants {
 	public static final String NT_PAGE = NAMESPACE + ":Page";
 
 	/**
-	 * Component node type.
+	 * Site node type.
 	 */
-	public static final String NT_COMPONENT = NAMESPACE + ":Component";
+	public static final String NT_SITE = NAMESPACE + ":Site";
+
+	/**
+	 * Description attribute name
+	 */
+	public static final String PN_DESCRIPTION = "jcr:description";
+
+	/**
+	 * Published flag property
+	 */
+	public static final String PN_PUBLISHED = "published";
+
+	/**
+	 * Title attribute name
+	 */
+	public static final String PN_TITLE = "jcr:title";
+
+	/**
+	 * Private constructor to prevent instantiation of class.
+	 */
+	private CMSConstants() {
+	}
 
 }

@@ -30,7 +30,7 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
 						"name": "*@TypeHint",
-						"value": "nt:file"
+						"value": "sling:File"
 					}
 				}
 			}

@@ -22,6 +22,35 @@
 //	-  http://jackrabbit.apache.org/node-type-notation.html
 
 <sling = 'http://www.sling.apache.org/sling/1.0'>
+	
+
+[sling:Component] > nt:unstructured
+	- componentType (string)
+	- jcr:title (string)
+	
+[sling:Config] > nt:hierarchyNode
+	orderable
+	- sling:config (string)
+	- sling:created (date)
+	- sling:createdBy (string)
+	- jcr:lastModified (date)
+	- jcr:lastModifiedBy (string)
+	- jcr:title (string)
+	+ * (nt:unstructured) = nt:unstructured version
+	
+[sling:File] > nt:file
+	 - * (undefined) copy
+	 + jcr:content (sling:FileContent) = sling:FileContent copy primary autocreated
+	
+[sling:FileContent] > nt:resource
+	- * (undefined) copy
+	- * (undefined) copy multiple
+
+[sling:Page] > nt:hierarchyNode
+	orderable
+	- published (boolean)
+	+ jcr:content (nt:unstructured) = nt:unstructured copy primary
+	+ * (nt:base) = nt:base version
 
 [sling:Site] > nt:hierarchyNode
 	orderable
@@ -33,26 +62,6 @@
 	- jcr:title (string)
 	- jcr:description (string)
 	+ * (nt:base) = nt:base version
-	
-[sling:Config] > nt:hierarchyNode
-	orderable
-	- sling:config (string)
-	- sling:created (date)
-	- sling:createdBy (string)
-	- jcr:lastModified (date)
-	- jcr:lastModifiedBy (string)
-	- jcr:title (string)
-	+ * (nt:unstructured) = nt:unstructured version
-
-[sling:Page] > nt:hierarchyNode
-	orderable
-	- published (boolean)
-	+ jcr:content (nt:unstructured) = nt:unstructured copy primary
-	+ * (nt:base) = nt:base version
-
-[sling:Component] > nt:unstructured
-	- componentType (string)
-	- jcr:title (string)
 
 [sling:Taxonomy] > nt:hierarchyNode
 	orderable

@@ -136,7 +136,7 @@
 							}
 						}
 					},
-					"nt:file":{
+					"sling:File":{
 						"jcr:primaryType": "nt:unstructured",
 						"columns": {
 							"jcr:primaryType": "nt:unstructured",
@@ -270,66 +270,6 @@
 								"jcr:primaryType": "nt:unstructured",
 								"property": "jcr:content/jcr:title",
 								"type": "String"
-							},
-							"publish": {
-								"jcr:primaryType": "nt:unstructured",
-								"type": "Publish"
-							},
-							"type": {
-								"jcr:primaryType": "nt:unstructured",
-								"value": "Folder",
-								"type": "Static"
-							},
-							"lastModified": {
-								"jcr:primaryType": "nt:unstructured",
-								"property": "jcr:content/jcr:lastModified",
-								"type": "Date"
-							},
-							"lastModifiedBy": {
-								"jcr:primaryType": "nt:unstructured",
-								"property": "jcr:content/jcr:lastModifiedBy",
-								"type": "String"
-							},
-							"actions": {
-								"jcr:primaryType": "nt:unstructured",
-								"type": "Actions",
-								"edit": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"title": "Edit Folder",
-									"text": "&#x270f;",
-									"prefix": "/cms/folder/edit.html"
-								},
-								"movecopy": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"title": "Move / Copy Folder",
-									"text": "&#x21c6;",
-									"prefix": "/cms/shared/movecopy.html"
-								},
-								"delete": {
-									"jcr:primaryType": "nt:unstructured",
-									"title": "Delete Folder",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html",
-									"modal": true
-								}
-							}
-						}
-					},
-					"nt:folder":{
-						"jcr:primaryType": "nt:unstructured",
-						"columns": {
-							"jcr:primaryType": "nt:unstructured",
-							"name": {
-								"jcr:primaryType": "nt:unstructured",
-								"link": true,
-								"type": "Name"
-							},
-							"title": {
-								"jcr:primaryType": "nt:unstructured",
-								"link": false,
-								"type": "Name"
 							},
 							"publish": {
 								"jcr:primaryType": "nt:unstructured",

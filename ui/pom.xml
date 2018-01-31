@@ -38,6 +38,7 @@
                         <Sling-Nodetypes>SLING-INF/nodetypes/nodetypes.cnd</Sling-Nodetypes>
                         <Sling-Initial-Content>
                         	jcr_root/apps/reference;overwrite:=true;uninstall:=true;path:=/apps/reference,
+                            jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy,
                             jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,
                             jcr_root/etc/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/etc/clientlibs/sling-cms
                         </Sling-Initial-Content>
