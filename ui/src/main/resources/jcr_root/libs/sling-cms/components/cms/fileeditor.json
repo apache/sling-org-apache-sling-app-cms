@@ -1,0 +1,5 @@
+{
+	"jcr:primaryType": "sling:Component",
+    "componentType": "SlingCMS-FileEditor",
+    "jcr:title": "Sling CMS - File Editor"
+}

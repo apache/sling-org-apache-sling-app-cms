@@ -172,6 +172,13 @@
 							"actions": {
 								"jcr:primaryType": "nt:unstructured",
 								"type": "Actions",
+								"edit": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Edit File",
+									"text": "&#x270f;",
+									"prefix": "/cms/file/edit.html"
+								},
 								"download": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,

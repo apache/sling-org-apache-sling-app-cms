@@ -29,10 +29,7 @@ if(!window.CMSEditor){
 				CMSEditor.ui.showModal('/cms/editor/delete.html'+$(this).attr('data-sling-cms-path'));
 			});
 			$(".Sling-CMS__edit-button[data-sling-cms-action=edit]").click(function(){
-				CMSEditor.ui.showModal('/cms/editor/edit.html'+$(this).attr('data-sling-cms-path'));
-			});
-			$(".Sling-CMS__edit-button[data-sling-cms-action=editpage]").click(function(){
-				CMSEditor.ui.showModal('/cms/editor/edit.html'+$(this).attr('data-sling-cms-path'));
+				CMSEditor.ui.showModal('/cms/editor/edit.html'+$(this).attr('data-sling-cms-path')+'?editor='+$(this).attr('data-sling-cms-edit'));
 			});
 			$(".Sling-CMS__edit-button[data-sling-cms-action=moveup]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/moveup.html'+$(this).attr('data-sling-cms-path'));

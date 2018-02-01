@@ -26,9 +26,9 @@
 		<div class="Cell Small-5"></div>
 		<div class="Cell Main-Content Align-Center">
 			<div class="Grid">
-				<section class="Cell Cell-Pad Small-100">
+				<main class="Cell Cell-Pad Small-100">
 					<sling:call script="content.jsp" />
-				</section>
+				</main>
 			</div>
 		</div>
 	</div>

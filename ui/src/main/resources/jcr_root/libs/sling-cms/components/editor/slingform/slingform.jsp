@@ -19,13 +19,9 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-success-prepend="">
 	<sling:include path="fields" resourceType="sling-cms/components/general/container" />
-	<div class="row">
-		<div class="col-md-12">
-			<div class="form-group">
-				<button type="submit" class="btn btn-success" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
-					<sling:encode value="${properties.button}" mode="HTML" />
-				</button>
-			</div>
-		</div>
+	<div class="Field-Group">
+		<button type="submit" class="btn btn-success" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
+			<sling:encode value="${properties.button}" mode="HTML" />
+		</button>
 	</div>
 </form>

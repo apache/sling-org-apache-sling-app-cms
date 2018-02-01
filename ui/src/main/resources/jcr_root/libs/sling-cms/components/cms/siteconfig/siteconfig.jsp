@@ -20,6 +20,8 @@
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 <c:set var="cmsEditEnabled" value="true" scope="request" />
 
+<sling:include path="${slingRequest.requestPathInfo.suffix}/config" resourceType="sling-cms/components/cms/siteconfig/config" />
+
 <h3>Parameters</h3>
 <c:set var="oldAvailableTypes" value="${availableTypes}" />
 <c:set var="availableTypes" value="SlingCMS-Parameter" scope="request" />

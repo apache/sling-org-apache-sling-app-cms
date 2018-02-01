@@ -37,7 +37,8 @@ public class EditableResource {
 	 * @return the component for the specified resource
 	 */
 	public Resource getComponent() {
-		return resource.getResourceResolver().getResource(resource.getResourceType());
+		String resourceType = resource.getResourceType();
+		return resource.getResourceResolver().getResource(resourceType);
 	}
 
 	private Resource getComponentEditPath(Resource component) {

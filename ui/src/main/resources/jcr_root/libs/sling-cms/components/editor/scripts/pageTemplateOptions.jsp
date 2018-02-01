@@ -20,10 +20,6 @@
 <option value="">Select Page Type</option>
 <sling:adaptTo var="pageTemplateManager" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageTemplateManager" />
 <sling:adaptTo var="siteManager" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.SiteManager" />
-Site=${siteManager.site}
-Site Config=${siteManager.site.siteConfig}
-Page Templates=${siteManager.site.siteConfig.pageTemplates}
-Page Template Manager=${pageTemplateManager}
 <c:forEach var="template" items="${pageTemplateManager.availableTemplates}">
 	<option value="${template.resource.path}">
 		<sling:encode value="${template.title}" mode="HTML" />

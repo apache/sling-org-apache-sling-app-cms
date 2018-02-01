@@ -17,11 +17,26 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:findResources var="sites" query="SELECT * FROM [sling:Site] AS s WHERE ISDESCENDANTNODE(s,'/content') ORDER BY NAME()" language="JCR-SQL2" />
-<c:forEach var="site" items="${sites}">
-	<li class="Nav-Item">
-		<a href="/cms/site/content.html${site.path}" title="Browse the content of a site">
-			<sling:encode value="${site.valueMap['jcr:title']}" mode="HTML" />
-		</a>
-	</li>
-</c:forEach>
+<dl>
+	<dt>
+		MIME Types
+	</dt>
+	<dd>
+		<ul>
+			<c:forEach var="mimetype" items="${properties.mimetypes}">
+				<li>
+					<pre><sling:encode value="${mimetype}" mode="HTML" /></pre>
+				</li>
+			</c:forEach>
+		</ul>
+	</dd>
+	<dt>
+		Fields
+	</dt>
+	<dd>
+		<c:set var="oldAvailableTypes" value="${availableTypes}" />
+		<c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
+		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
+		<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+	</dd>
+</dl>

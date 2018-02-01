@@ -26,13 +26,6 @@
 	</a>
 </h1>
 <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
-<h3 class="Nav-Header Toggle-Hidden" data-target="#Tools-Nav">Tools</h3>
-<ul id="Tools-Nav" class="Hide">
-	<li class="Nav-Item"><a href="/bin/browser.html" title="Browse the JCR content of this site">Node Browser</a></li>
-	<li class="Nav-Item"><a href="/bin/packages.html" title="Create content packages">Content Packages</a></li>
-	<li class="Nav-Item"><a href="/bin/users.html/" title="Manage Users and Groups">Users &amp; Groups</a></li>
-	<li class="Nav-Item"><a href="/system/console/bundles" title="Edit the OSGi bundles of this site">System Console</a></li>
-</ul>
 <div>
 <h3 class="Nav-Header">Session</h3>
 <div id="Login" style="display: block;"><a href="/system/sling/login.html" title="Login to Apache Sling">Login</a></div>

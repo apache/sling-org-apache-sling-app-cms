@@ -79,6 +79,7 @@ public class EditIncludeFilter implements Filter {
 					last = true;
 				}
 			}
+			boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
 			writer = response.getWriter();
 			writer.write("<div class=\"Sling-CMS__component\" data-sling-cms-resource-path=\"" + resource.getPath()
 					+ "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\" data-sling-cms-edit=\""
@@ -98,7 +99,7 @@ public class EditIncludeFilter implements Filter {
 						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"movedown\" data-sling-cms-path=\""
 								+ resource.getPath() + "\" title=\"Move Down\">&#9660;</button>");
 			}
-			if (!resource.getName().equals(JcrConstants.JCR_CONTENT)) {
+			if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
 				writer.write(
 						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
 								+ resource.getPath() + "\" title=\"Delete\">&times;</button>");
@@ -120,7 +121,7 @@ public class EditIncludeFilter implements Filter {
 		log.trace("getEditPage resource={}", resource);
 		String editPath = null;
 		if (resource != null) {
-			EditableResource editResource = resource.adaptTo(EditableResource.class);
+			EditableResource editResource = new EditableResource(resource);
 			if (editResource != null) {
 				editPath = editResource.getEditPath();
 			}

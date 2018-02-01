@@ -22,28 +22,57 @@
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/cms/contentnav",
 				"createPath": "/cms/site/create.html/content",
-				"prefix":"/cms/site",
+				"prefix": "/cms/site",
 				"itemPrefix": "/cms/site/content.html",
 				"query": "SELECT * FROM [sling:Site] AS s WHERE ISCHILDNODE(s,'/content') ORDER BY NAME()",
 				"title": "Site"
-			},
-			"confignav": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentnav",
-				"createPath": "/cms/config/create.html/etc/config",
-				"prefix": "/cms/config",
-				"itemPrefix":"/cms/config/edit.html",
-				"query": "SELECT * FROM [sling:Config] AS s WHERE ISCHILDNODE(s,'/etc/config') ORDER BY NAME()",
-				"title": "Site Config"
 			},
 			"taxonomynav": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/cms/contentnav",
 				"createPath": "/cms/taxonomy/create.html/etc/taxonomy",
 				"prefix": "/cms/taxonomy",
-				"itemPrefix":"/cms/taxonomy/list.html",
+				"itemPrefix": "/cms/taxonomy/list.html",
 				"query": "SELECT * FROM [sling:Taxonomy] AS s WHERE ISCHILDNODE(s,'/etc/taxonomy') ORDER BY NAME()",
 				"title": "Taxonomy"
+			},
+			"toolsnav": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/staticnav",
+				"title": "Tools",
+				"links": {
+					"jcr:primaryType": "nt:unstructured",
+					"contentpackages": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/bin/packages.html",
+						"text": "Content Packages"
+					},
+					"fileeditors": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/cms/file/editors.html/etc/fileeditors",
+						"text": "File Editors"
+					},
+					"nodebrowser": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/bin/browser.html",
+						"text": "Node Browser"
+					},
+					"siteconfig": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/cms/config/list.html/etc/config",
+						"text": "Site Configs"
+					},
+					"systemconsole": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/system/console",
+						"text": "System Console"
+					},
+					"usersgroups": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/bin/users.html",
+						"text": "Users &amp; Groups"
+					}
+				}
 			}
 		}
 	}

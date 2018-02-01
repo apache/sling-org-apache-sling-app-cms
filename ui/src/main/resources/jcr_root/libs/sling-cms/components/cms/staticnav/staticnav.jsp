@@ -17,11 +17,15 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<input type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} list="${resource.name}" />
-<datalist id="${resource.name}">
-	<c:forEach var="item" items="${sling:findResources(resourceResolver,properties.query,properties.queryLanguage)}">
-		<c:if test="${item.valueMap[properties.valueProperty] != null and item.valueMap[properties.labelProperty] != null}">
-			<option value="${sling:encode(item.valueMap[properties.valueProperty],'HTML_ATTR')}"><sling:encode value="${item.valueMap[properties.labelProperty]}" mode="HTML" /></option>
-		</c:if>
+<h3 class="Nav-Header Toggle-Hidden" data-target="#${fn:replace(properties.title,' ','-')}-Nav">${properties.title}</h3>
+<c:set var="hidden" value="Hide" />
+<c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
+	<c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
+		<c:set var="hidden" value="" />
+	</c:if>
+</c:forEach>
+<ul id="${fn:replace(properties.title,' ','-')}-Nav" class="${hidden}">
+	<c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
+		<li class="Nav-Item ${fn:startsWith(slingRequest.requestURI,item.valueMap.link) ? 'active' : ''}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
 	</c:forEach>
-</datalist>
+</ul>

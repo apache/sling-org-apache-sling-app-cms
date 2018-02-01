@@ -26,7 +26,7 @@
  	</fieldset>
 	<div class="taxonomy__field Grid">
 		<div class="Cell Mobile-80">
- 			<input type="text" ${required} ${disabled} list="tags-${properties.name}" autocomplete="off" />
+ 			<input type="text" ${required} ${disabled} list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
  		</div>
  		<div class="Cell Mobile-20">
 	 		<button class="taxonomy__add">+</button>
@@ -40,11 +40,10 @@
  			</a>
  		</c:forEach>
  	</div>
+	<datalist id="taxonomy-${fn:replace(resource.name,':','-')}">
+		<c:set var="query" value="SELECT * FROM [sling:Taxonomy] WHERE ISDESCENDANTNODE([${not empty properties.basePath ? properties.basePath : '/etc/taxonomy'}])" />
+		<c:forEach var="taxonomy" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
+			<option value="${taxonomy.path}">${taxonomy.valueMap['jcr:title']}</option>
+		</c:forEach>
+	</datalist>
 </div>
-<datalist id="tags-${resource.name}">
-	<c:set var="query" value="SELECT * FROM [sling:Taxonomy] WHERE ISDESCENDANTNODE([${not empty properties.basePath ? properties.basePath : '/etc/taxonomy'}])" />
-	${query}
-	<c:forEach var="taxonomy" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
-		<option value="${taxonomy.path}">${taxonomy.valueMap['jcr:title']}</option>
-	</c:forEach>
-</datalist>

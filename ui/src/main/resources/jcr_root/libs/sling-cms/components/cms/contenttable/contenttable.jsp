@@ -30,7 +30,7 @@
 	<tbody>
 		<c:forEach var="child" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
 			<sling:getResource var="typeConfig" base="${resource}" path="types/${child.resourceType}" />
-			<c:if test="${typeConfig != null}">
+			<c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
 				<tr data-resource="${child.path}" data-type="${typeConfig.path}">
 					<c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(typeConfig,'columns'))}">
 					<sling:getResource var="colConfig" base="${typeConfig}" path="columns/${column.name}" />
@@ -46,7 +46,7 @@
 													</a>
 												</c:when>
 												<c:otherwise>
-													<a class="Button" target="_blank" href="${actionConfig.valueMap.prefix}${child.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+													<a class="Button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${actionConfig.valueMap.prefix}${child.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
 														${actionConfig.valueMap.text}
 													</a>
 												</c:otherwise>

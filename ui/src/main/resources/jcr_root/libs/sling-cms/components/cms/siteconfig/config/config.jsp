@@ -16,30 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@include file="/libs/sling-cms/global.jsp"%>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<h3>Configuration</h3>
 <dl>
-	<dt>
-		Label
-	</dt>
+	<dt>Field Editor</dt>
 	<dd>
-		<sling:encode value="${properties.label}" mode="HTML" />
-	</dd>
-	<dt>
-		Field Type
-	</dt>
-	<dd>
-		<sling:encode value="${properties.type}" mode="HTML" />
-	</dd>
-	<dt>
-		Name
-	</dt>
-	<dd>
-		<sling:encode value="${properties.name}" mode="HTML" />
-	</dd>
-	<dt>
-		Required
-	</dt>
-	<dd>
-		<sling:encode value="${properties.required}" mode="HTML" />
+		<c:choose>
+			<c:when test="${not empty resource.valueMap.fileeditor}">
+				<a href="/cms/file/configureeditor.html${resource.valueMap.fileeditor}">
+					Configure File Editor
+				</a>
+			</c:when>
+			<c:otherwise>
+				Not Defined
+			</c:otherwise>
+		</c:choose>
 	</dd>
 </dl>

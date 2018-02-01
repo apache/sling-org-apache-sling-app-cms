@@ -17,11 +17,14 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:findResources var="configs" query="SELECT * FROM [sling:Config] AS s WHERE ISCHILDNODE(s,'/etc/config') ORDER BY NAME()" language="JCR-SQL2" />
-<c:forEach var="config" items="${configs}">
-	<li class="Nav-Item">
-		<a href="/cms/config/edit.html/etc/config/${config.name}" title="Configure a site configuration">
-			<sling:encode value="${config.valueMap['jcr:title']}" mode="HTML" />
-		</a>
-	</li>
-</c:forEach>
+<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
+<c:set var="cmsEditEnabled" value="true" scope="request" />
+
+<h3>Page Templates</h3>
+<c:set var="oldAvailableTypes" value="${availableTypes}" />
+<c:set var="availableTypes" value="SlingCMS-FileEditor" scope="request" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}/editors" resourceType="sling-cms/components/general/container" />
+<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+
+<c:set var="cmsEditEnabled" value="false" scope="request" />
+<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
