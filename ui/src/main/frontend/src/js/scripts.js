@@ -108,16 +108,18 @@ Sling.CMS = {
 						jcrcontent = true;
 					}
 				});
-				if(jcrcontent){
-					$form.append('<input type="hidden" name="jcr:content/jcr:lastModified" />');
-					$form.append('<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />');
-					$form.append('<input type="hidden" name="jcr:content/jcr:created" />');
-					$form.append('<input type="hidden" name="jcr:content/jcr:createdBy" />');
-				} else {
-					$form.append('<input type="hidden" name="jcr:lastModified" />');
-					$form.append('<input type="hidden" name="jcr:lastModifiedBy" />');
-					$form.append('<input type="hidden" name="jcr:created" />');
-					$form.append('<input type="hidden" name="jcr:createdBy" />');
+				if($form.data('addDate') && $form.find('input[name="jcr:content/jcr:lastModified"]').length == 0){
+					if(jcrcontent){
+						$form.append('<input type="hidden" name="jcr:content/jcr:lastModified" />');
+						$form.append('<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />');
+						$form.append('<input type="hidden" name="jcr:content/jcr:created" />');
+						$form.append('<input type="hidden" name="jcr:content/jcr:createdBy" />');
+					} else {
+						$form.append('<input type="hidden" name="jcr:lastModified" />');
+						$form.append('<input type="hidden" name="jcr:lastModifiedBy" />');
+						$form.append('<input type="hidden" name="jcr:created" />');
+						$form.append('<input type="hidden" name="jcr:createdBy" />');
+					}
 				}
 				$.ajax({
 					url: $form.attr('action'),

@@ -52,6 +52,11 @@
 						"link": "/cms/file/editors.html/etc/fileeditors",
 						"text": "File Editors"
 					},
+					"i18n": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/cms/i18n/dictionaries.html/etc/i18n",
+						"text": "Internationalization (i18n)"
+					},
 					"nodebrowser": {
 						"jcr:primaryType": "nt:unstructured",
 						"link": "/bin/browser.html",
@@ -60,7 +65,7 @@
 					"siteconfig": {
 						"jcr:primaryType": "nt:unstructured",
 						"link": "/cms/config/list.html/etc/config",
-						"text": "Site Configs"
+						"text": "Site Configurations"
 					},
 					"systemconsole": {
 						"jcr:primaryType": "nt:unstructured",

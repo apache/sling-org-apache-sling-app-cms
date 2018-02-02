@@ -1,0 +1,104 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "i18n Dictionarties",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"richtext": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/general/richtext",
+				"text": "<h3>i18n Dictionarties</h3>"
+			},
+			"contentactions": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contentactions",
+				"actions": {
+					"dictionary": {
+						"jcr:primaryType": "nt:unstructured",
+						"label": "i18n Dictionary",
+						"prefix": "/cms/folder/create.html"
+					}
+				}
+			},
+			"contenttable": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contenttable",
+				"columns": {
+					"jcr:primaryType": "nt:unstructured",
+					"name": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Name"
+					},
+					"title": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Title"
+					},
+					"lastModified": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Last Modified"
+					},
+					"lastModifiedBy": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Last Modified By"
+					},
+					"actions": {
+						"jcr:primaryType": "nt:unstructured",
+						"title": "Actions"
+					}
+				},
+				"types": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:OrderedFolder": {
+						"jcr:primaryType": "nt:unstructured",
+						"columns": {
+							"jcr:primaryType": "nt:unstructured",
+							"name": {
+								"jcr:primaryType": "nt:unstructured",
+								"link": true,
+								"type": "Name",
+								"prefix": "/cms/i18n/dictionary.html"
+							},
+							"title": {
+								"jcr:primaryType": "nt:unstructured",
+								"property": "jcr:content/jcr:title",
+								"type": "String"
+							},
+							"lastModified": {
+								"jcr:primaryType": "nt:unstructured",
+								"property": "jcr:content/jcr:lastModified",
+								"type": "Date"
+							},
+							"lastModifiedBy": {
+								"jcr:primaryType": "nt:unstructured",
+								"property": "jcr:content/jcr:lastModifiedBy",
+								"type": "String"
+							},
+							"actions": {
+								"jcr:primaryType": "nt:unstructured",
+								"type": "Actions",
+								"edit": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"new": false,
+									"title": "Edit Dictionary",
+									"text": "&#x270f;",
+									"prefix": "/cms/folder/edit.html"
+								},
+								"delete": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Delete i18n Dictionary",
+									"text": "&times;",
+									"prefix": "/cms/shared/delete.html"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-success-prepend="">
+<form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="${properties.addDate != false}">
 	<sling:include path="fields" resourceType="sling-cms/components/general/container" />
 	<div class="Field-Group">
 		<button type="submit" class="btn btn-success" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
