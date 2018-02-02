@@ -17,8 +17,8 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
+ <c:set var="cmsEditEnabled" value="true" scope="request" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-<c:set var="cmsEditEnabled" value="true" scope="request" />
 
 <sling:include path="${slingRequest.requestPathInfo.suffix}/config" resourceType="sling-cms/components/cms/siteconfig/config" />
 
@@ -34,5 +34,5 @@
 <sling:include path="${slingRequest.requestPathInfo.suffix}/pageTemplates" resourceType="sling-cms/components/general/namedcontainer" />
 <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 
-<c:set var="cmsEditEnabled" value="false" scope="request" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
+<c:set var="cmsEditEnabled" value="false" scope="request" />

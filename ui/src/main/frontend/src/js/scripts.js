@@ -158,15 +158,18 @@ Sling.CMS = {
 				var $ctr = $(this);
 				var load = function(){
 					var config = $($ctr.data('source')).find('option:selected').data('config');
-					$ctr.load(config + $ctr.parents('form').attr('action'), function(){
-						Sling.CMS.decorate($ctr.children());
-					});
+					
+					if(config){
+						$ctr.load(config + $ctr.parents('form').attr('action'), function(){
+							Sling.CMS.decorate($ctr.children());
+						});
+					}
 				};
 				$($ctr.data('source')).change(load);
 				load();
 			});
 		}
-	}
+	};
 
 	Sling.CMS.ext['namehint'] = {
 		decorate: function($ctx){
@@ -178,7 +181,8 @@ Sling.CMS = {
 				});
 			});
 		}
-	}
+	};
+	
 	Sling.CMS.ext['pageproperties'] = {
 		decorate: function($ctx){
 			$ctx.find('.Sling-CMS__page-properties').each(function(){

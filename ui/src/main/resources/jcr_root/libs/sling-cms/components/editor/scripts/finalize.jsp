@@ -17,8 +17,8 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <c:if test="${cmsEditEnabled == true}">
-	<script src="/etc/clientlibs/editor/js/editor.js"></script>
+<c:if test="${cmsEditEnabled == 'true'}">
+	<script src="/etc/clientlibs/sling-cms-editor/editor.js"></script>
 	<div class="Sling-CMS__modal-background">
 		<div class="Sling-CMS__modal-box">
 			<button class="Sling-CMS__modal-close Sling-CMS__edit-button">x</button>
