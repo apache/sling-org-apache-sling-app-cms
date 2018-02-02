@@ -17,7 +17,9 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<link rel="stylesheet" href="/etc/clientlibs/sling-cms/css/editor.css" />
-<c:if test="${not empty properties.availableTypes}">
-	<c:set var="availableTypes" value="${properties.availableTypes}" scope="request" />
+ <c:if test="${cmsEditEnabled == true}">
+	<link rel="stylesheet" href="/etc/clientlibs/editor/css/editor.css" />
+	<c:if test="${not empty properties.availableTypes}">
+		<c:set var="availableTypes" value="${properties.availableTypes}" scope="request" />
+	</c:if>
 </c:if>

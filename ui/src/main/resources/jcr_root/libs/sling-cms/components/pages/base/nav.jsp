@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <a class="Cell-Pad" href="http://sling.apache.org" target="_blank" title="Visit the Apache Sling website">
-	<img src="/sling-logo.svg" alt="Apache Sling Logo"/>
+	<img src="/etc/clientlibs/sling-cms/img/sling-logo.svg" alt="Apache Sling Logo"/>
 </a>
 <h1>
 	<a href="/cms/start.html">
@@ -28,6 +28,5 @@
 <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
 <div>
 <h3 class="Nav-Header">Session</h3>
-<div id="Login" style="display: block;"><a href="/system/sling/login.html" title="Login to Apache Sling">Login</a></div>
-<div id="Logout" style="display: none;"><a href="/system/sling/logout" title="Logout of Apache Sling">Logout,</a> </div>
+<div><a href="/system/sling/logout" title="Logout of Apache Sling">Logout, ${resourceResolver.userID}</a> </div>
 </div>

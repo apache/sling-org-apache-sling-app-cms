@@ -62,16 +62,6 @@ ul.Breadcrumb  {
 	display:none;
 }
 
-input, textarea, select {
-	width: 100%;
-}
-
-input[type="checkbox"] {
-    border: 0;
-    box-shadow: none;
-    width: 20px;
-}
-
 .Modal {
     display: none; 
     position: fixed; 
@@ -151,10 +141,6 @@ table td, table th {
 td.Cell-Actions {
 	white-space: normal;
 	overflow: auto;
-}
-
-textarea {
-	height: 200px;
 }
 
 thead {

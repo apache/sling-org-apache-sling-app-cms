@@ -17,13 +17,15 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<script src="/etc/clientlibs/sling-cms/js/editor.js"></script>
-<div class="Sling-CMS__modal-background">
-	<div class="Sling-CMS__modal-box">
-		<button class="Sling-CMS__modal-close Sling-CMS__edit-button">x</button>
-		<br/>
-		<div class="Sling-CMS__modal-frame-container">
-			<iframe class="Sling-CMS__modal-frame" src=""></iframe>
+ <c:if test="${cmsEditEnabled == true}">
+	<script src="/etc/clientlibs/editor/js/editor.js"></script>
+	<div class="Sling-CMS__modal-background">
+		<div class="Sling-CMS__modal-box">
+			<button class="Sling-CMS__modal-close Sling-CMS__edit-button">x</button>
+			<br/>
+			<div class="Sling-CMS__modal-frame-container">
+				<iframe class="Sling-CMS__modal-frame" src=""></iframe>
+			</div>
 		</div>
 	</div>
-</div>
+</c:if>

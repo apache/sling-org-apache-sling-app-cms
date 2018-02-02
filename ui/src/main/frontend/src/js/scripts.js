@@ -16,19 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */ 
-var info = Sling.getSessionInfo();
-if (info.userID !== 'anonymous') {
-	var login = document.querySelector('#Login');
-	var logout = document.querySelector('#Logout');
-	if(login != null && login){
-		login.style.display = 'none';
-	}
-	if(logout != null && logout){
-		logout.style.display = 'block';
-		logout.insertAdjacentHTML('beforeend', info.userID);
-	}
-}
 
+var Sling = {};
 Sling.CMS = {
 		ext: {},
 		decorate: function($ctx){

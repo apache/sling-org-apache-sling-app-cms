@@ -21,7 +21,7 @@
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 <div class="Sling-CMS__edit-bar">
 	<a href="/cms/start.html" target="_blank" class="Sling-CMS__component-title" target="Sling CMS">
-		<img src="/sling-logo.svg" class="Sling-CMS__logo" />
+		<img src="/etc/clientlibs/sling-cms/img/sling-logo.svg" class="Sling-CMS__logo" />
 	</a>
 </div>
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />

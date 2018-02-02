@@ -22,7 +22,5 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Apache Sling :: ${properties['jcr:title']}</title>
-	<link href="/etc/clientlibs/launchpad/css/bundle.css" rel="stylesheet" />
-	<link href="/etc/clientlibs/sling-cms/css/styles.css" rel="stylesheet" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet" />
+	<link href="/etc/clientlibs/sling-cms/css/styles.min.css" rel="stylesheet" />
 </head>
