@@ -23,4 +23,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Apache Sling :: ${properties['jcr:title']}</title>
 	<link href="/etc/clientlibs/sling-cms/css/styles.min.css" rel="stylesheet" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/etc/clientlibs/sling-cms/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/etc/clientlibs/sling-cms/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/etc/clientlibs/sling-cms/img/favicon-16x16.png">
+	<link rel="mask-icon" href="/etc/clientlibs/sling-cms/img/safari-pinned-tab.svg" color="#00678c">
+	<link rel="shortcut icon" href="/etc/clientlibs/sling-cms/img/favicon.ico">
+	<meta name="apple-mobile-web-app-title" content="Apache Sling CMS">
+	<meta name="application-name" content="Apache Sling CMS">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-config" content="/etc/clientlibs/sling-cms/img/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
 </head>

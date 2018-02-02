@@ -67,7 +67,7 @@ gulp.task('styles', function() {
 var vendorJSStream = gulp.src([
 	'./node_modules/jquery/dist/jquery.min.js',
 	'./node_modules/handlebars/dist/handlebars.min.js',
-	'./node_modules/summernote/dist/summernote.min.js']);
+	'./node_modules/summernote/dist/summernote-lite.js']);
 
 var jsStream = gulp.src([
 		'./src/js/scripts.js'
@@ -88,9 +88,11 @@ gulp.task('js', function() {
 });
 
 gulp.task('assets', function() {
-	gulp.src(['./src/{fonts,img}/**/*'])
+	gulp.src('./src/{fonts,img}/**/*')
 		.pipe(gulp.dest('./dist/jcr_root/etc/clientlibs/sling-cms'))
 		.pipe(gulp.dest('./dist/jcr_root/etc/clientlibs/launchpad'));
+	gulp.src('./node_modules/summernote/dist/font/*')
+		.pipe(gulp.dest('./dist/jcr_root/etc/clientlibs/sling-cms/css/font'));
 });
 
 
