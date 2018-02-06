@@ -17,16 +17,11 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<head>
-	<meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Apache Sling :: ${resource.valueMap['jcr:title']}</title>
-    <link rel="icon" href="/etc/clientlibs/reference/favicon.ico"/>
-    <link rel="stylesheet" href="/etc/clientlibs/reference/site.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
-    <script>
-    		hljs.initHighlightingOnLoad();
-    </script>
-</head>
+ <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
+<c:set var="contentResource" value="${sling:getRelativeResource(page.resource,'jcr:content')}" />
+<c:forEach var="tagPath" items="${contentResource.valueMap['keywords']}">
+	<c:set var="tag" value="${sling:getResource(resourceResolver,tagPath)}" />
+	<a href="/tags.html${tag.path}.html" class="label">
+		<sling:encode value="${tag.valueMap['jcr:title']}" default="${tag.name}" mode="HTML" />
+	</a>
+</c:forEach>

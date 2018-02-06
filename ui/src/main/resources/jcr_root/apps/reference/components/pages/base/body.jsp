@@ -19,13 +19,48 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <body>
 	<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<sling:call script="content.jsp" />
-			</div>
+	<div class="title">
+		<div class="logo">
+			<a href="/">
+				<img border="0" alt="Apache Sling" src="/etc/clientlibs/reference/img/sling.svg"/>
+			</a>
+		</div>
+		<div class="header">
+			<a href="http://www.apache.org">
+				<img border="0" alt="Apache" src="/etc/clientlibs/reference/img/apache.png"/>
+			</a>
 		</div>
 	</div>
-	<sling:call script="scripts.jsp" />
+	<div class="menu">
+		<sling:include path="/content/sling-apache-org/index/jcr:content/menu" resourceType="sling-cms/components/general/richtext" />
+	</div>
+	<div class="main">
+		<div class="pagenav">
+			<sling:include path="breadcrumb" resourceType="reference/components/general/breadcrumb" />               
+			<div class="tags">
+				<sling:include path="tags" resourceType="reference/components/general/tags" />
+			</div>                
+		</div>
+		<h1 class="pagetitle">
+			${sling:encode(resource.valueMap['jcr:title'],'HTML')}
+		</h1>
+		<div class="row">
+			<sling:call script="content.jsp" />
+		</div>
+		<div class="footer">
+			<div class="revisionInfo">
+				Last modified by <span class="author">${sling:encode(resource.valueMap['jcr:lastModifiedBy'],'HTML')}</span>
+				on <span class="comment"><fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${resource.valueMap['jcr:lastModified'].time}" /></span>
+			</div>
+			<p>
+				Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+			</p>
+			<p>
+				<jsp:useBean id="date" class="java.util.Date" />
+				Copyright © 2011-<fmt:formatDate value="${date}" pattern="yyyy" /> The Apache Software Foundation.
+			</p>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
 </body>

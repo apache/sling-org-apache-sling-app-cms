@@ -6,7 +6,7 @@ A reference implementation of a simple Content Management System built in Apache
 
 Build an instance with of the Sling CMS
 
-    mvn clean install -Drat.skip=true
+    mvn clean install
     
 The JAR will be located under: `builder/target/org.apache.sling.cms-{VERSION].jar`
 
@@ -16,4 +16,4 @@ To run the Sling CMS, build the code and copy the files `builder/src/main/script
 
 ## Login
 
-Navigate to [http://localhost:8080/admin/login.html](http://localhost:8080/admin/login.html). The default credentials are *admin*/*admin*.
+Navigate to [http://localhost:8080/](http://localhost:8080/). The default credentials are *admin*/*admin*.
