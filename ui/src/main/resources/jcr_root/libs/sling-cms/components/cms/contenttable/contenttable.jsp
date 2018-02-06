@@ -41,7 +41,7 @@
 										<c:forEach var="actionConfig" items="${sling:listChildren(colConfig)}">
 											<c:choose>
 												<c:when test="${actionConfig.valueMap.modal}">
-													<a class="Button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path=".Main-Content form" href="${actionConfig.valueMap.prefix}${child.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+													<a class="Button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${child.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
 														${actionConfig.valueMap.text}
 													</a>
 												</c:when>

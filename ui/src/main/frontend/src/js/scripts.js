@@ -154,6 +154,20 @@ Sling.CMS = {
 		}
 	};
 
+	Sling.CMS.ext['fetch-json'] = {
+		decorate: function($ctx) {
+			$ctx.find('.fetch-json').each(function(){
+				$ctr = $(this);
+				$.getJSON($ctr.data('url'),function(res){
+					var source   = $('#'+$ctr.data('template')).html();
+					var template = Handlebars.compile(source);
+					$ctr.append(template(res));
+					Sling.CMS.decorate($ctr);
+				});
+			});
+		}
+	}
+
 	Sling.CMS.ext['includeconfig'] = {
 		decorate: function($ctx){
 			$ctx.find('.Sling-CMS__include-config').each(function(){

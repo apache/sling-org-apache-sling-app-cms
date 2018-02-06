@@ -126,6 +126,14 @@
 									"text": "&#x21c6;",
 									"prefix": "/cms/shared/movecopy.html"
 								},
+								"version": {
+									"jcr:primaryType": "nt:unstructured",
+									"ajaxPath": ".versionmanager",
+									"modal": true,
+									"title": "Manage Versions",
+									"text": "&#10710;",
+									"prefix": "/cms/shared/versions.html"
+								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
@@ -191,6 +199,14 @@
 									"title": "Move / Copy File",
 									"text": "&#x21c6;",
 									"prefix": "/cms/shared/movecopy.html"
+								},
+								"version": {
+									"jcr:primaryType": "nt:unstructured",
+									"ajaxPath": ".versionmanager",
+									"modal": true,
+									"title": "Manage Versions",
+									"text": "&#10710;",
+									"prefix": "/cms/shared/versions.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
