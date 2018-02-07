@@ -34,6 +34,7 @@ import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.core.models.Component;
 import org.apache.sling.cms.core.models.EditableResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,10 +105,9 @@ public class EditIncludeFilter implements Filter {
 						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
 								+ resource.getPath() + "\" title=\"Delete\">&times;</button>");
 			}
-			Resource component = resource.adaptTo(EditableResource.class).getComponent();
-			if (component != null && component.getValueMap().containsKey(CMSConstants.PN_TITLE)) {
-				writer.write("<span class=\"Sling-CMS__component-title\">"
-						+ component.getValueMap().get(CMSConstants.PN_TITLE, String.class) + "</span>");
+			Component component = resource.adaptTo(EditableResource.class).getComponent();
+			if (component != null) {
+				writer.write("<span class=\"Sling-CMS__component-title\">" + component.getTitle() + "</span>");
 			}
 			writer.write("</div>");
 		}
@@ -123,7 +123,10 @@ public class EditIncludeFilter implements Filter {
 		if (resource != null) {
 			EditableResource editResource = new EditableResource(resource);
 			if (editResource != null) {
-				editPath = editResource.getEditPath();
+				Component component = editResource.getComponent();
+				if (component != null && !component.isType(CMSConstants.COMPONENT_TYPE_PAGE)) {
+					editPath = component.getEditPath();
+				}
 			}
 		}
 		return editPath;

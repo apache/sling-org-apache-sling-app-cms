@@ -19,6 +19,8 @@ package org.apache.sling.cms.core.models;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -30,14 +32,16 @@ import org.apache.sling.models.annotations.Optional;
 public class Component {
 
 	@Inject
-	@Named("jcr:title")
-	private String title;
+	@Optional
+	@Named("componentType")
+	private String[] componentType;
 
 	private Resource resource;
 
 	@Inject
 	@Optional
-	private String[] componentType;
+	@Named("jcr:title")
+	private String title;
 
 	public Component(Resource resource) {
 		this.resource = resource;
@@ -65,11 +69,45 @@ public class Component {
 		return true;
 	}
 
+	private Resource getComponentEditPath(Resource component) {
+		if (component != null) {
+			if (component.getChild("edit") != null) {
+				return component.getChild("edit");
+			} else {
+				component = component.getResourceResolver()
+						.getResource(component.getResourceResolver().getParentResourceType(component));
+				if (component != null) {
+					return getComponentEditPath(component);
+				}
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * @return the componentType
 	 */
 	public String[] getComponentType() {
 		return componentType;
+	}
+
+	/**
+	 * Returns the path for the editor for this resource if available
+	 * 
+	 * @return the editor path or null
+	 */
+	public String getEditPath() {
+		Resource editResource = getEditResource();
+		return editResource != null ? editResource.getPath() : null;
+	}
+
+	/**
+	 * Returns the resource for the editor for this resource if available
+	 * 
+	 * @return the editor resource or null
+	 */
+	public Resource getEditResource() {
+		return getComponentEditPath(resource);
 	}
 
 	/**
@@ -97,6 +135,26 @@ public class Component {
 		int result = 1;
 		result = prime * result + ((resource.getPath() == null) ? 0 : resource.getPath().hashCode());
 		return result;
+	}
+
+	/**
+	 * Returns true if the only component type on the component is the specified
+	 * type.
+	 * 
+	 * @param string
+	 * @return
+	 */
+	public boolean isType(String type) {
+		boolean isType = false;
+		if (this.getComponentType() != null && ArrayUtils.contains(this.getComponentType(), type)) {
+			isType = true;
+			for (String t : getComponentType()) {
+				if (StringUtils.isNotBlank(t) && !type.equals(t)) {
+					isType = false;
+				}
+			}
+		}
+		return isType;
 	}
 
 	/*

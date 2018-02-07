@@ -30,30 +30,22 @@ public class EditableResource {
 	public EditableResource(Resource resource) {
 		this.resource = resource;
 	}
+	
+	public Component getComponent() {
+		if(getComponentResource() != null) {
+			return getComponentResource().adaptTo(Component.class);
+		}
+		return null;
+	}
 
 	/**
 	 * Gets the component for the specified resource.
 	 * 
 	 * @return the component for the specified resource
 	 */
-	public Resource getComponent() {
+	public Resource getComponentResource() {
 		String resourceType = resource.getResourceType();
 		return resource.getResourceResolver().getResource(resourceType);
-	}
-
-	private Resource getComponentEditPath(Resource component) {
-		if (component != null) {
-			if (component.getChild("edit") != null) {
-				return component.getChild("edit");
-			} else {
-				component = component.getResourceResolver()
-						.getResource(component.getResourceResolver().getParentResourceType(component));
-				if (component != null) {
-					return getComponentEditPath(component);
-				}
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -62,8 +54,10 @@ public class EditableResource {
 	 * @return the editor path or null
 	 */
 	public String getEditPath() {
-		Resource editResource = getEditResource();
-		return editResource != null ? editResource.getPath() : null;
+		if(getComponent() != null) {
+			return getComponent().getEditPath();
+		}
+		return null;
 	}
 
 	/**
@@ -72,7 +66,10 @@ public class EditableResource {
 	 * @return the editor resource or null
 	 */
 	public Resource getEditResource() {
-		return getComponentEditPath(getComponent());
+		if(getComponent() != null) {
+			return getComponent().getEditResource();
+		}
+		return null;
 	}
 
 	/**

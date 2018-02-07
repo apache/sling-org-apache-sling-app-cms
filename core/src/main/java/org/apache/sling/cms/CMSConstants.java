@@ -57,6 +57,11 @@ public class CMSConstants {
 	public static final String NT_SITE = NAMESPACE + ":Site";
 
 	/**
+	 * The Component type for pages
+	 */
+	public static final String COMPONENT_TYPE_PAGE = "Page";
+
+	/**
 	 * Description attribute name
 	 */
 	public static final String PN_DESCRIPTION = "jcr:description";

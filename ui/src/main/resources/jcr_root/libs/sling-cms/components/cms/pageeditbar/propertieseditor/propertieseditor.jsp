@@ -17,12 +17,5 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<link rel="stylesheet" href="/etc/clientlibs/sling-cms-editor/editor.css" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-<div class="Sling-CMS__edit-bar">
-	<a href="/cms/start.html" target="_blank" class="Sling-CMS__component-title" target="Sling CMS">
-		<img src="/etc/clientlibs/sling-cms/img/sling-logo.svg" class="Sling-CMS__logo" />
-	</a>
-	<sling:include path="actions" resourceType="sling-cms/components/cms/pageeditbar/actions" />
-</div>
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
+<sling:adaptTo adaptable="${sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,'jcr:content')}" adaptTo="org.apache.sling.cms.core.models.EditableResource" var="editable" />
+<sling:include path="${editable.editPath}" resourceType="sling-cms/components/editor/slingform" replaceSuffix="${editable.resource.path}" />
