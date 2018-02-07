@@ -18,3 +18,19 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <textarea class="richtext" name="${properties.name}" ${required} ${disabled}>${editProperties[properties.name]}</textarea>
+<c:set var="pageQuery" value="SELECT * FROM [sling:Page] AS s WHERE ISDESCENDANTNODE([${sling:getAbsoluteParent(slingRequest.requestPathInfo.suffixResource,2).path}])" />
+<c:set var="imageQuery" value="SELECT * FROM [sling:File] AS s WHERE ISDESCENDANTNODE([${sling:getAbsoluteParent(slingRequest.requestPathInfo.suffixResource,2).path}]) AND [jcr:content/jcr:mimeType] LIKE 'image/%'" />
+<datalist id="richtext-pages">
+	<c:forEach var="page" items="${sling:findResources(resourceResolver,pageQuery,'JCR-SQL2')}">
+		<option value="${page.path}.html">
+			<sling:encode value="${page.valueMap['jcr:content/jcr:title']}" mode="HTML" />
+		</option>
+	</c:forEach>
+</datalist>
+<datalist id="richtext-images">
+	<c:forEach var="image" items="${sling:findResources(resourceResolver,imageQuery,'JCR-SQL2')}">
+		<option value="${image.path}">
+			<sling:encode value="${image.valueMap['jcr:content/jcr:title']}" mode="HTML" default="${image.name }" />
+		</option>
+	</c:forEach>
+</datalist>

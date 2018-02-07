@@ -250,8 +250,22 @@ Sling.CMS = {
 				    ['misc', ['codeview', 'undo','redo','help']]
 				],
 				dialogsInBody: true,
-				height: 200
+				height: 200,
+			    onCreateLink: function (url) {
+			        return url;
+			    },
+			    callbacks: {
+			    		onDialogShown: function(e){
+			    			$('.note-link-url').attr('list','richtext-pages');
+			    			$('.note-image-url').attr('list','richtext-images');
+			    		}
+			    }
+			}).on('summernote.dialog.shown', function(e) {
+			  console.log('Dialog shown!');
+			}).on('summernote.keydown', function(we, e) {
+				  console.log('Key is downed:', e.keyCode);
 			});
+;
 		}
 	}
 
