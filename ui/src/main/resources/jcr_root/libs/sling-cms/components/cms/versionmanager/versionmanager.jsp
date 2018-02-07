@@ -24,28 +24,14 @@
  	</c:if>
  	<c:choose>
  		<c:when test="${versionable == 'true'}">
- 			<c:choose>
- 				<c:when test="${sling:adaptTo(slingRequest.requestPathInfo.suffixResource,'javax.jcr.Node').checkedOut}">
- 					<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-						<input type="hidden" name=":operation" value="checkin" />
-						<div class="Field-Group">
-							<button type="submit" class="btn btn-success" title="Check the content back out so it can not be edited (opposite of JCR Checkout)">
-								Checkout
-							</button>
-						</div>
-					</form>
- 				</c:when>
- 				<c:otherwise>
- 					<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-						<input type="hidden" name=":operation" value="checkout" />
-						<div class="Field-Group">
-							<button type="submit" class="btn btn-success" title="Check the content back in so it can be edited (opposite of JCR Checkin)">
-								Checkin
-							</button>
-						</div>
-					</form>
- 				</c:otherwise>
- 			</c:choose>
+ 			<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+				<input type="hidden" name=":operation" value="checkpoint" />
+				<div class="Field-Group">
+					<button type="submit" class="btn btn-success" title="Create a new version for the content">
+						Create Version
+					</button>
+				</div>
+			</form>
  		</c:when>
  		<c:otherwise>
  			<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
