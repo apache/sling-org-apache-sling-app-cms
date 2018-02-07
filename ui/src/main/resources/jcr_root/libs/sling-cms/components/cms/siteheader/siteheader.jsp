@@ -18,12 +18,13 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:getParent resource="${slingRequest.requestPathInfo.suffixResource}" var="site" level="2" />
+<div class="Pull-Right">
+	<a class="Fetch-Modal Button" data-title="Edit Site" data-path=".Main-Content form" href="/cms/site/edit.html${site.path}" title="Edit Site">&#x270f;</a>
+	<a class="Fetch-Modal Button" data-title="Move / Copy Site" data-path=".Main-Content form" href="/cms/shared/movecopy.html${site.path}" title="Delete Site">&#x21c6;</a>
+	<a class="Fetch-Modal Button" data-title="Delete Site" data-path=".Main-Content form" href="/cms/shared/delete.html${site.path}" title="Delete Site">&times;</a>
+</div>
 <h2>
 	<sling:encode value="${site.valueMap['jcr:title']}" mode="HTML" />
-	<div class="Pull-Right">
-		<a class="Fetch-Modal Button" data-title="Edit Site" data-path=".Main-Content form" href="/cms/site/edit.html${site.path}" title="Edit Site">&#x270f;</a>
-		<a class="Fetch-Modal Button" data-title="Configure Site" data-path=".Main-Content form" href="/cms/site/configure.html/etc/config/${site.name}" title="Configure Site">&#x1030e;</a>
-	</div>
 </h2>
 <p>
 	<sling:encode value="${site.valueMap['jcr:description']}" mode="HTML" />
