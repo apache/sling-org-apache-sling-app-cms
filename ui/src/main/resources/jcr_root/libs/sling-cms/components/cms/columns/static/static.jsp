@@ -16,15 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-
-<h3>Page Templates</h3>
-<c:set var="oldAvailableTypes" value="${availableTypes}" />
-<c:set var="availableTypes" value="SlingCMS-FileEditor" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}/editors" resourceType="sling-cms/components/general/container" />
-<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
-
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
-<c:set var="cmsEditEnabled" value="false" scope="request" />
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="colValue" value="${colConfig.valueMap.value}" />
+<td class="Cell-Static" title="${sling:encode(colValue,'HTML_ATTR')}">
+	<sling:encode value="${colValue}" mode="HTML" />
+</td>

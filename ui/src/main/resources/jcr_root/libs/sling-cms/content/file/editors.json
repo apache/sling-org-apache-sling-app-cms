@@ -40,10 +40,6 @@
 						"jcr:primaryType": "nt:unstructured",
 						"title": "Last Modified"
 					},
-					"lastModifiedBy": {
-						"jcr:primaryType": "nt:unstructured",
-						"title": "Last Modified By"
-					},
 					"actions": {
 						"jcr:primaryType": "nt:unstructured",
 						"title": "Actions"
@@ -57,27 +53,23 @@
 							"jcr:primaryType": "nt:unstructured",
 							"name": {
 								"jcr:primaryType": "nt:unstructured",
-								"link": false,
-								"type": "Name"
+								"sling:resourceType": "sling-cms/components/cms/columns/name",
+								"link": false
 							},
 							"title": {
 								"jcr:primaryType": "nt:unstructured",
-								"property": "jcr:title",
-								"type": "String"
+								"sling:resourceType": "sling-cms/components/cms/columns/text",
+								"property": "jcr:title"
 							},
 							"lastModified": {
 								"jcr:primaryType": "nt:unstructured",
-								"property": "jcr:lastModified",
-								"type": "Date"
-							},
-							"lastModifiedBy": {
-								"jcr:primaryType": "nt:unstructured",
-								"property": "jcr:lastModifiedBy",
-								"type": "String"
+								"sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
+								"subPath": ""
 							},
 							"actions": {
 								"jcr:primaryType": "nt:unstructured",
 								"type": "Actions",
+								"sling:resourceType": "sling-cms/components/cms/columns/actions",
 								"edit": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,

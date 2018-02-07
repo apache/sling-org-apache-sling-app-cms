@@ -16,15 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-
-<h3>Page Templates</h3>
-<c:set var="oldAvailableTypes" value="${availableTypes}" />
-<c:set var="availableTypes" value="SlingCMS-FileEditor" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}/editors" resourceType="sling-cms/components/general/container" />
-<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
-
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
-<c:set var="cmsEditEnabled" value="false" scope="request" />
+<%@include file="/libs/sling-cms/global.jsp"%>
+<td class="Cell-Name">
+	<c:set var="colValue" value="${resource.name}" />
+	<c:choose>
+		<c:when test="${colConfig.valueMap.link}">
+			<a href="${colConfig.valueMap.prefix}${resource.path}">
+				<sling:encode value="${colValue}" mode="HTML" />
+			</a>
+		</c:when>
+		<c:otherwise>
+			<sling:encode value="${colValue}" mode="HTML" />
+		</c:otherwise>
+	</c:choose>
+</td>
