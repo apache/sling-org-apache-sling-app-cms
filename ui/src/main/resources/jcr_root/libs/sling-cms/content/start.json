@@ -57,6 +57,11 @@
 						"link": "/cms/i18n/dictionaries.html/etc/i18n",
 						"text": "Internationalization (i18n)"
 					},
+					"mappings": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/cms/mappings/list.html/etc/map",
+						"text": "Mappings"
+					},
 					"nodebrowser": {
 						"jcr:primaryType": "nt:unstructured",
 						"link": "/bin/browser.html",

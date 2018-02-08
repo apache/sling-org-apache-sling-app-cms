@@ -24,17 +24,27 @@ VOLUME /opt/sling/sling
 
 # Setup Sling CMS
 RUN mkdir -p /opt/sling
-RUN wget https://repository.apache.org/content/repositories/snapshots/org/apache/sling/org.apache.sling.cms.builder/1.0.0-SNAPSHOT/org.apache.sling.cms.builder-1.0.0-20180205.233031-3.jar -O /opt/sling/org.apache.sling.cms.jar
+RUN wget https://repository.apache.org/content/repositories/snapshots/org/apache/sling/org.apache.sling.cms.builder/1.0.0-SNAPSHOT/org.apache.sling.cms.builder-1.0.0-20180208.183119-4.jar -O /opt/sling/org.apache.sling.cms.jar
 ENV JAVA_OPTS -Xmx512m
 ENV SLING_OPTS ''
 
-# Configure Apache
+# Install Apache
 RUN apt-get update 
 RUN apt-get install apache2 -y
-RUN mkdir -p /var/www/vhosts/sling-cms
-RUN mkdir -p /var/www/vhosts/sling
+
+# Configure mod_proxy
 RUN a2enmod proxy
 RUN a2enmod proxy_http
+
+# Configure mod_cache and mod_expire
+RUN a2enmod cache
+RUN a2enmod cache_disk
+RUN a2enmod expires
+RUN a2enmod headers
+
+# Configure sites
+RUN mkdir -p /var/www/vhosts/sling-cms
+RUN mkdir -p /var/www/vhosts/sling
 COPY cms.conf /etc/apache2/sites-enabled
 COPY site.conf /etc/apache2/sites-enabled
 
@@ -42,4 +52,4 @@ COPY site.conf /etc/apache2/sites-enabled
 EXPOSE 80 443
 
 # Background Apache httpd and start Sling CMS
-CMD exec service apache2 start & java $JAVA_OPTS -jar org.apache.sling.cms.jar $SLING_OPTS
+CMD exec service apache2 start & service apache-htcacheclean start & java $JAVA_OPTS -jar org.apache.sling.cms.jar $SLING_OPTS

@@ -26,7 +26,4 @@
 	</a>
 </h1>
 <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
-<div>
-<h3 class="Nav-Header">Session</h3>
-<div><a href="/system/sling/logout" title="Logout of Apache Sling">Logout, ${resourceResolver.userID}</a> </div>
-</div>
+<div><a href="/system/sling/logout" title="Logout of Apache Sling">Logout, ${resourceResolver.userID}</a></div>

@@ -1,0 +1,60 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Update Mapping",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"slingform": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/editor/slingform",
+				"addDate": false,
+				"button": "Update Mapping",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "sling-cms/components/general/container",
+					"match": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Match",
+						"name": "sling:Match",
+						"required": false
+					},
+					"redirect": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Redirect",
+						"name": "sling:redirect",
+						"required": false
+					},
+					"status": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/number",
+						"label": "Alias",
+						"name": "sling:alias",
+						"required": false
+					},
+					"statusTypeHint": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "sling:alias@TypeHint",
+						"value":"Integer"
+					},
+					"internalRedirect": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/repeating",
+						"label": "Internal Redirect",
+						"name": "sling:internalRedirect",
+						"required": false
+					},
+					"internalRedirectTypeHint": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "sling:internalRedirect@TypeHint",
+						"value":"String[]"
+					}
+				}
+			}
+		}
+	}
+}
