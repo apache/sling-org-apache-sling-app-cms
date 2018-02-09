@@ -70,8 +70,9 @@
     margin: 3em auto; 
     padding: 2em;
     border: 1px solid gray;
-    width: 85%; 
+    width: 85%;
     z-index: 1;
+    max-width: 900px;
 }
 
 .Sling-CMS__modal-frame-container {
@@ -87,6 +88,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
+	border: none;
 }
 
 .Sling-CMS__modal-close {

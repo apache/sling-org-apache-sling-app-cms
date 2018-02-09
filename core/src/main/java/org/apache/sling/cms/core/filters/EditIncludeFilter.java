@@ -82,9 +82,11 @@ public class EditIncludeFilter implements Filter {
 			}
 			boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
 			writer = response.getWriter();
-			writer.write("<div class=\"Sling-CMS__component\" data-sling-cms-resource-path=\"" + resource.getPath()
-					+ "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\" data-sling-cms-edit=\""
-					+ editPath + "\">");
+			Component component = resource.adaptTo(EditableResource.class).getComponent();
+			writer.write("<div class=\"Sling-CMS__component\" data-sling-cms-title=\""
+					+ (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
+					+ resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
+					+ "\" data-sling-cms-edit=\"" + editPath + "\">");
 			writer.write("<div class=\"Sling-CMS__edit-bar\">");
 			writer.write(
 					"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
@@ -105,7 +107,7 @@ public class EditIncludeFilter implements Filter {
 						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
 								+ resource.getPath() + "\" title=\"Delete\">&times;</button>");
 			}
-			Component component = resource.adaptTo(EditableResource.class).getComponent();
+
 			if (component != null) {
 				writer.write("<span class=\"Sling-CMS__component-title\">" + component.getTitle() + "</span>");
 			}

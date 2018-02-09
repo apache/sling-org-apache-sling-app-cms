@@ -21,8 +21,10 @@
 	<script src="/etc/clientlibs/sling-cms-editor/editor.js"></script>
 	<div class="Sling-CMS__modal-background">
 		<div class="Sling-CMS__modal-box">
-			<button class="Sling-CMS__modal-close Sling-CMS__edit-button">x</button>
-			<br/>
+			<div class="Sling-CMS__modal-frame-header">
+				<span class="Sling-CMS__modal-frame-title"></span>
+				<button class="Sling-CMS__modal-close Sling-CMS__edit-button">x</button>
+			</div>
 			<div class="Sling-CMS__modal-frame-container">
 				<iframe class="Sling-CMS__modal-frame" src=""></iframe>
 			</div>
