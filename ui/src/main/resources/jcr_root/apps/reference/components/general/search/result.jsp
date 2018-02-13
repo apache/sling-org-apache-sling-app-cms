@@ -16,11 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
-<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
-<c:forEach var="layout" items="${configRsrc.valueMap.columns}">
-	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.layout == sling:encode(fn:split(layout,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(layout,'=')[1],'HTML_ATTR')}">
-		${sling:encode(fn:split(layout,'=')[0],'HTML')}
-	</option>
-</c:forEach>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<div class="searchresult">
+	<div class="searchresult__header">
+		<sling:encode value="${result.valueMap['jcr:content/jcr:title']}" mode="HTML" />
+	</div>
+	<p class="searchresult__body">
+		<sling:encode value="${result.valueMap['jcr:content/jcr:description']}" mode="HTML" />
+	</p>
+	<a href="${result.path}.html" class="searchresult__link">
+		${fn:replace(result.path,sling:getAbsoluteParent(result,2).path,'')}.html
+	</a>
+</div>

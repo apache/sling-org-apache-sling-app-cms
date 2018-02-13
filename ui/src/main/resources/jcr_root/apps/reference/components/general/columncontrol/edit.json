@@ -1,17 +1,39 @@
  {
 	"jcr:primaryType": "nt:unstructured",
-	"sling:resourceType" : "sling-cms/components/editor/slingform",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
 	"button": "Save",
 	"fields": {
 		"jcr:primaryType": "nt:unstructured",
-		"sling:resourceType" : "sling-cms/components/general/container",
+		"sling:resourceType": "sling-cms/components/general/container",
 		"layout": {
 			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType" : "sling-cms/components/editor/fields/select",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
 			"label": "Layout",
 			"name": "layout",
 			"required": true,
 			"optionsScript": "/apps/reference/components/general/columncontrol/options.jsp"
+		},
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Wrap In Container?",
+			"name": "container",
+			"required": true,
+			"options": {
+				"no": {
+					"label": "No",
+					"value": false
+				},
+				"yes": {
+					"label": "Yes",
+					"value": true
+				}
+			}
+		},
+		"containerTypeHint": {
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "container@TypeHint",
+			"value": "Boolean"
 		}
 	}
 }

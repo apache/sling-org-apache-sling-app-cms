@@ -18,9 +18,9 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
-<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
-<c:forEach var="layout" items="${configRsrc.valueMap.columns}">
-	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.layout == sling:encode(fn:split(layout,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(layout,'=')[1],'HTML_ATTR')}">
-		${sling:encode(fn:split(layout,'=')[0],'HTML')}
+<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/stylewrapper']}" />
+<c:forEach var="style" items="${configRsrc.valueMap.styles}">
+	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.style == sling:encode(fn:split(style,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(style,'=')[1],'HTML_ATTR')}">
+		${sling:encode(fn:split(style,'=')[0],'HTML')}
 	</option>
 </c:forEach>

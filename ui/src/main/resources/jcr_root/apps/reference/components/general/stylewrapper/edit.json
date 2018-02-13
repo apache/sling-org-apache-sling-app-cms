@@ -1,0 +1,17 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"styles": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Style Option",
+			"name": "styles",
+			"required": true,
+			"optionsScript": "/apps/reference/components/general/stylewrapper/options.jsp"
+		}
+	}
+}

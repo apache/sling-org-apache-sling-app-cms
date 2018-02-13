@@ -17,10 +17,6 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
-<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
-<c:forEach var="layout" items="${configRsrc.valueMap.columns}">
-	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.layout == sling:encode(fn:split(layout,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(layout,'=')[1],'HTML_ATTR')}">
-		${sling:encode(fn:split(layout,'=')[0],'HTML')}
-	</option>
-</c:forEach>
+<div class="${properties.style}">
+	<sling:include path="container" resourceType="sling-cms/components/general/container" />
+</div>
