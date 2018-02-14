@@ -17,8 +17,8 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="searchresult">
-	<div class="searchresult__header">
+<div class="searchresult ${searchConfig.valueMap.resultClass}">
+	<div class="searchresult__header ${searchConfig.valueMap.resultHeaderClass}">
 		<sling:encode value="${result.valueMap['jcr:content/jcr:title']}" mode="HTML" />
 	</div>
 	<p class="searchresult__body">

@@ -1,19 +1,46 @@
  {
 	"jcr:primaryType": "nt:unstructured",
 	"sling:resourceType" : "sling-cms/components/general/container",
-	"columns": {
-		"jcr:primaryType": "nt:unstructured",
-		"sling:resourceType" : "sling-cms/components/editor/fields/repeating",
-		"label": "Columns",
-		"name": "columns",
-		"type": "text",
-		"required": true
-	},
-	"containerclass": {
+	"searchClass": {
 		"jcr:primaryType": "nt:unstructured",
 		"sling:resourceType" : "sling-cms/components/editor/fields/text",
-		"label": "Container Class",
-		"name": "containerclass",
+		"label": "Search Class",
+		"name": "searchClass",
+		"type": "text"
+	},
+	"resultClass": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType" : "sling-cms/components/editor/fields/text",
+		"label": "Result Class",
+		"name": "resultClass",
+		"type": "text"
+	},
+	"resultHeaderClass": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType" : "sling-cms/components/editor/fields/text",
+		"label": "Result Header Class",
+		"name": "resultHeaderClass",
+		"type": "text"
+	},
+	"paginationClass": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType" : "sling-cms/components/editor/fields/text",
+		"label": "Pagination Class",
+		"name": "paginationClass",
+		"required": true
+	},
+	"pageItemClass": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType" : "sling-cms/components/editor/fields/text",
+		"label": "Page Item Class",
+		"name": "pageItemClass",
+		"required": true
+	},
+	"pageLinkClass": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType" : "sling-cms/components/editor/fields/text",
+		"label": "PageLink Class",
+		"name": "pageLinkClass",
 		"required": true
 	}
 }
