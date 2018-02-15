@@ -64,7 +64,7 @@
 							},
 							"lastModified": {
 								"jcr:primaryType": "nt:unstructured",
-								"sling:resourceType": "sling-cms/components/cms/columns/lastModified",
+								"sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
 								"subPath": "jcr:content/"
 							},
 							"actions": {

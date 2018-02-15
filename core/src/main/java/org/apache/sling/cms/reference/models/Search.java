@@ -154,6 +154,9 @@ public class Search {
 	}
 
 	public boolean isLast() {
-		return page + 1 == pages[pages.length - 1];
+		if(pages.length > 0) {
+			return page + 1 == pages[pages.length - 1];			
+		}
+		return true;
 	}
 }

@@ -16,6 +16,8 @@
  */
 package org.apache.sling.cms.core.models;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -52,26 +54,66 @@ public class Site {
 	}
 
 	@Inject
+	@Named(PN_CONFIG)
+	private String config;
+
+	@Inject
 	@Named(CMSConstants.PN_DESCRIPTION)
 	@Optional
 	private String description;
 
 	@Inject
-	@Named(CMSConstants.PN_TITLE)
-	private String title;
-
-	@Inject
-	@Named(PN_CONFIG)
-	private String config;
+	@Named(CMSConstants.PN_LANGUAGE)
+	private String locale;
 
 	private Resource resource;
+
+	@Inject
+	@Named(CMSConstants.PN_TITLE)
+	private String title;
 
 	public Site(Resource resource) {
 		this.resource = resource;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Site other = (Site) obj;
+		if (resource == null) {
+			if (other.resource != null)
+				return false;
+		} else if (!resource.getPath().equals(other.resource.getPath()))
+			return false;
+		return true;
+	}
+
 	public String getDescription() {
 		return description;
+	}
+
+	public String getLocaleString() {
+		return locale;
+	}
+
+	public Locale getLocale() {
+		String[] segments = locale.split("_");
+		if (segments.length == 3) {
+			return new Locale(segments[0], segments[1], segments[2]);
+		} else if (segments.length == 2) {
+			return new Locale(segments[0], segments[1]);
+		}
+		return new Locale(segments[0]);
 	}
 
 	public String getPath() {
@@ -82,20 +124,44 @@ public class Site {
 		return resource;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public String getSiteConfigPath() {
-		return config;
-	}
-
 	public SiteConfig getSiteConfig() {
 		Resource scr = resource.getResourceResolver().getResource(getSiteConfigPath());
 		if (scr != null) {
 			return scr.adaptTo(SiteConfig.class);
 		}
 		return null;
+	}
+
+	public String getSiteConfigPath() {
+		return config;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((resource.getPath() == null) ? 0 : resource.getPath().hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Site [config=" + config + ", description=" + description + ", locale=" + locale + ", resource="
+				+ resource + ", title=" + title + "]";
 	}
 
 }

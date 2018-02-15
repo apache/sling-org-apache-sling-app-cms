@@ -21,18 +21,12 @@
 				"fields": {
 					"jcr:primaryType": "nt:unstructured",
 					"sling:resourceType": "sling-cms/components/general/container",
-					"title": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/text",
-						"label": "Title",
-						"name": "jcr:content/jcr:title",
-						"required": true
-					},
 					"language": {
 						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"sling:resourceType": "sling-cms/components/editor/fields/select",
 						"label": "Language",
 						"name": "jcr:language",
+						"optionsScript": "/libs/sling-cms/components/editor/scripts/localeOptions.jsp",
 						"required": true
 					},
 					"name": {
@@ -57,7 +51,7 @@
 					"contentResourceType": {
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": "jcr:content/sling:resourceType",
+						"name": "sling:resourceType",
 						"value": "sling-cms/components/cms/blank"
 					},
 					"mixin": {

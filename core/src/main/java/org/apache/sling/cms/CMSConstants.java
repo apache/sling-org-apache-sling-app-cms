@@ -27,6 +27,11 @@ public class CMSConstants {
 	public static final String ATTR_EDIT_ENABLED = "cmsEditEnabled";
 
 	/**
+	 * The Component type for pages
+	 */
+	public static final String COMPONENT_TYPE_PAGE = "Page";
+
+	/**
 	 * Content path.
 	 */
 	public static final String CONTENT_PATH = "/content";
@@ -57,14 +62,14 @@ public class CMSConstants {
 	public static final String NT_SITE = NAMESPACE + ":Site";
 
 	/**
-	 * The Component type for pages
-	 */
-	public static final String COMPONENT_TYPE_PAGE = "Page";
-
-	/**
 	 * Description attribute name
 	 */
 	public static final String PN_DESCRIPTION = "jcr:description";
+
+	/**
+	 * i18n Locale property
+	 */
+	public static final String PN_LANGUAGE =  "jcr:language";
 
 	/**
 	 * Published flag property

@@ -34,6 +34,10 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.jcr.resource.JcrResourceConstants;
 
+/**
+ * Denies requests to sling:Page and sling:File resources and children which are
+ * not set to publish=true
+ */
 @SlingFilter(order = Integer.MAX_VALUE)
 public class PublishFilter implements Filter {
 

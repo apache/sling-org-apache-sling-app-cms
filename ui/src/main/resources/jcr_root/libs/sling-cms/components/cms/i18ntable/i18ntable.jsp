@@ -25,6 +25,7 @@
 </c:forEach>
 <a class="Button Fetch-Modal" data-title="Add Entry" data-path=".Main-Content form" href="/cms/i18n/entry/create.html${firstChild.path}">+ Entry</a>
 <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+	<input type="hidden" name="_charset_" value="utf-8" />
 	<table>
 		<thead>
 			<tr>
@@ -56,7 +57,7 @@
 								<c:forEach var="entry" items="${sling:listChildren(language)}">
 									<c:if test="${entry.valueMap['sling:key'] == key}">
 										<c:set var="keyfound" value="true" />
-										<input name="${language.name}/${entry.name}/sling:message" type="text" value="${entry.valueMap['sling:message']}" />
+										<input name="${language.name}/${entry.name}/sling:message" type="text" value="${sling:encode(entry.valueMap['sling:message'],'HTML_ATTR')}" />
 										<input name="${language.name}/${entry.name}/sling:key" type="hidden" value="${key}" />
 									</c:if>
 								</c:forEach>

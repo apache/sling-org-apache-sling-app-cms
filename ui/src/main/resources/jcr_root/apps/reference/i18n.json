@@ -1,0 +1,32 @@
+{
+	"jcr:primaryType": "sling:OrderedFolder",
+	"jcr:content": {
+		"jcr:title": "CMS"
+	},
+	"en_US": {
+		"jcr:primaryType": "sling:Folder",
+		"jcr:mixinTypes": [
+			"mix:language"
+		],
+		"jcr:language": "en_US",
+		"sling:resourceType": "sling-cms/components/cms/blank",
+		"entry": {
+			"jcr:primaryType": "sling:MessageEntry",
+			"sling:message": "Found {1} results for \"{0}\". Showing results {2} - {3}.",
+			"sling:key": "slingcms.search.header"
+		}
+	},
+	"de_DE": {
+		"jcr:primaryType": "sling:Folder",
+		"jcr:mixinTypes": [
+			"mix:language"
+		],
+		"jcr:language": "de_DE",
+		"sling:resourceType": "sling-cms/components/cms/blank",
+		"entry_493865649": {
+			"jcr:primaryType": "sling:MessageEntry",
+			"sling:message": "Gefunden {1} Ergebnisse für \"{0}\". Zeige Ergebnisse {2} - {3}.",
+			"sling:key": "slingcms.search.header"
+		}
+	}
+}

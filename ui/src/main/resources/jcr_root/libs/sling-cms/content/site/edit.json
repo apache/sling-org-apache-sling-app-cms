@@ -32,6 +32,23 @@
 						"label": "Description",
 						"name": "jcr:description",
 						"required": false
+					},
+					"locale": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/select",
+						"label": "Language",
+						"name": "jcr:language",
+						"optionsScript": "/libs/sling-cms/components/editor/scripts/localeOptions.jsp",
+						"required": true
+					},
+					"config": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/path",
+						"basePath": "/etc/config",
+						"type": "sling:Config",
+						"label": "Site Config",
+						"name": "sling:config",
+						"titleProperty": "jcr:title"
 					}
 				}
 			}

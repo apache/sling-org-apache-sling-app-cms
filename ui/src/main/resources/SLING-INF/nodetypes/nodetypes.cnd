@@ -57,6 +57,7 @@
 	- sling:config (string)
 	- sling:created (date)
 	- sling:createdBy (string)
+	- jcr:language (string)
 	- jcr:lastModified (date)
 	- jcr:lastModifiedBy (string)
 	- jcr:title (string)
