@@ -19,37 +19,22 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
 <c:set var="searchConfig" value="${pageMgr.page.template.componentConfigs['reference/components/general/search']}" scope="request" />
-${searchConfig }
-<c:if test="${not empty properties.limit}">
+<c:if test="${not empty properties.limit && not empty param.q}">
+	<c:set var="search" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.Search')}" scope="request"  />
 	<div class="search ${searchConfig.valueMap.searchClass}">
 		<div class="search__header">
 			<fmt:message key="slingcms.search.header">
-				<fmt:param value="${sling:encode(param.q,'HTML')}" />
+				<fmt:param value="${sling:encode(search.term,'HTML')}" />
+				<fmt:param value="${search.start}" />
+				<fmt:param value="${search.end}" />
+				<fmt:param value="${search.count}" />
 			</fmt:message>
 		</div>
 		<div class="search__results">
-			<c:if test="${not empty param.q}">
-				<c:set var="quote" value="'"/>
-				<c:set var="escape" value=""/>
-				<c:catch>
-					<c:set var="query" value="SELECT parent.* FROM [sling:Page] AS parent INNER JOIN [nt:base] AS child ON ISDESCENDANTNODE(child,parent) WHERE ISDESCENDANTNODE(parent, '/content/danklco-com') AND CONTAINS(child.*, '${fn:replace(param.q,quote,escape)}')" scope="request" />
-					<sling:findResources var="results" query="${query}" language="JCR-SQL2" />
-					<c:choose>
-						<c:when test="${not empty param.page}">
-							<c:set var="start" value="${param.page * properties.limit}" />
-							<c:set var="end" value="${(param.page * properties.limit) + properties.limit}" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="start" value="0" />
-							<c:set var="end" value="${properties.limit}" />
-						</c:otherwise>
-					</c:choose>
-					<c:forEach var="result" items="${results}" begin="${start}" end="${end}">
-						<c:set var="result" value="${result}" scope="request" />
-						<sling:call script="result.jsp" />
-					</c:forEach>
-				</c:catch>
-			</c:if>
+			<c:forEach var="result" items="${search.results}">
+				<c:set var="result" value="${result}" scope="request" />
+				<sling:call script="result.jsp" />
+			</c:forEach>
 		</div>
 		<sling:call script="pagination.jsp" />
 	</div>

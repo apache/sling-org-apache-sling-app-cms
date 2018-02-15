@@ -12,6 +12,13 @@
 			"name": "limit",
 			"required": true,
 			"type": "number"
+		},
+		"basePath": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Base Path",
+			"name": "basePath",
+			"required": true
 		}
 	}
 }

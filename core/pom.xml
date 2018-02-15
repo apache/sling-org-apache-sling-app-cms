@@ -43,7 +43,8 @@
 				<configuration>
 					<instructions>
 						<Sling-Model-Packages>
-							org.apache.sling.cms.core.models
+							org.apache.sling.cms.core.models,
+							org.apache.sling.cms.reference.models
 						</Sling-Model-Packages>
 					</instructions>
 				</configuration>

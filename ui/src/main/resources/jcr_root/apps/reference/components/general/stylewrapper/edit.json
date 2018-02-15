@@ -5,11 +5,11 @@
 	"fields": {
 		"jcr:primaryType": "nt:unstructured",
 		"sling:resourceType": "sling-cms/components/general/container",
-		"styles": {
+		"style": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/select",
 			"label": "Style Option",
-			"name": "styles",
+			"name": "style",
 			"required": true,
 			"optionsScript": "/apps/reference/components/general/stylewrapper/options.jsp"
 		}
