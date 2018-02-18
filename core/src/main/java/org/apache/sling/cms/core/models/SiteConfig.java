@@ -23,6 +23,7 @@ import javax.inject.Inject;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Optional;
 
 /**
  * A model representing a site configuration.
@@ -31,9 +32,11 @@ import org.apache.sling.models.annotations.Model;
 public class SiteConfig {
 
 	@Inject
-	private List<Resource> pageTemplates;
+	@Optional
+	private List<Resource> templates;
 
 	@Inject
+	@Optional
 	private List<Resource> parameters;
 
 	private Resource resource;
@@ -46,7 +49,7 @@ public class SiteConfig {
 	 * @return the pageTemplates
 	 */
 	public List<PageTemplate> getPageTemplates() {
-		return CMSUtils.adaptResources(pageTemplates, PageTemplate.class);
+		return CMSUtils.adaptResources(templates, PageTemplate.class);
 	}
 
 	/**
@@ -76,7 +79,7 @@ public class SiteConfig {
 	 */
 	@Override
 	public String toString() {
-		return "SiteConfig [parameters=" + parameters + ", pageTemplates=" + pageTemplates + ", resource=" + resource
+		return "SiteConfig [parameters=" + parameters + ", templates=" + templates + ", resource=" + resource
 				+ "]";
 	}
 

@@ -91,6 +91,9 @@ gulp.task('assets', function() {
 	gulp.src('./src/{fonts,img}/**/*')
 		.pipe(gulp.dest('./dist/jcr_root/etc/clientlibs/sling-cms'))
 		.pipe(gulp.dest('./dist/jcr_root/content/starter'));
+	gulp.src('./src/img/sling-logo.svg')
+	.pipe(gulp.dest('./dist/jcr_root/content/starter'))
+	.pipe(gulp.dest('./dist/jcr_root/content/starter'));
 	gulp.src('./node_modules/summernote/dist/font/*')
 		.pipe(gulp.dest('./dist/jcr_root/etc/clientlibs/sling-cms/css/font'));
 });

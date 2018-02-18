@@ -44,8 +44,9 @@ public class PageTemplate {
 	private String[] availableComponentTypes;
 
 	@Inject
+	@Optional
 	private List<Resource> componentConfigurations;
-	
+
 	@Inject
 	private List<Resource> fields;
 
@@ -76,16 +77,16 @@ public class PageTemplate {
 	public String[] getAvailableComponentTypes() {
 		return availableComponentTypes;
 	}
-	
-	
 
 	/**
 	 * @return the componentConfigs
 	 */
-	public Map<String,Resource> getComponentConfigs() {
-		Map<String,Resource> configs = new HashMap<String,Resource>();
-		for(Resource cfg : componentConfigurations){
-			configs.put(cfg.getValueMap().get("type", String.class), cfg);
+	public Map<String, Resource> getComponentConfigs() {
+		Map<String, Resource> configs = new HashMap<String, Resource>();
+		if (componentConfigurations != null) {
+			for (Resource cfg : componentConfigurations) {
+				configs.put(cfg.getValueMap().get("type", String.class), cfg);
+			}
 		}
 		return configs;
 	}

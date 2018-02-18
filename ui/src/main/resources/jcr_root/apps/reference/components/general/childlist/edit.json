@@ -1,0 +1,49 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"basePath": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/path",
+			"basePath": "/content",
+			"label": "Base Path",
+			"name": "basePath",
+			"required": false,
+			"titleProperty": "jcr:content/jcr:title",
+			"type": "sling:Page"
+		},
+		"itemType": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Item Type",
+			"name": "itemType",
+			"optionsScript": "/apps/reference/components/general/list/listItemOptions.jsp",
+			"required": true
+		},
+		"limit": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Limit",
+			"name": "limit",
+			"required": false,
+			"type": "number"
+		},
+		"tag": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "List Tag",
+			"name": "tag",
+			"required": false
+		},
+		"class": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "List Class",
+			"name": "class",
+			"required": false
+		}
+	}
+}

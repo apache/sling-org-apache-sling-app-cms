@@ -27,13 +27,13 @@
 				},
 				"taxonomy": {
 					"jcr:primaryType": "nt:unstructured",
-					"name": "jcr:content/taxonomy",
+					"name": "jcr:content/sling:taxonomy",
 					"label": "Taxonomy",
 					"sling:resourceType": "sling-cms/components/editor/fields/taxonomy"
 				},
 				"taxonomyTypeHint": {
 					"jcr:primaryType": "nt:unstructured",
-					"name": "jcr:content/taxonomy@TypeHint",
+					"name": "jcr:content/sling:taxonomy@TypeHint",
 					"value": "String[]",
 					"sling:resourceType": "sling-cms/components/editor/fields/hidden"
 				},
