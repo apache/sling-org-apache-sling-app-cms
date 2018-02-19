@@ -18,13 +18,10 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <c:choose>
- 	<c:when test="${properties.container}">
- 		<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
+ 	<c:when test="${properties.container == true}">
+ 		<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
 		<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
-		${configRsrc}
-		${configRsrc.valueMap.containerclass}
-		<c:set var="containerClass" value="${configRsrc.valueMap.containerclass}" />
- 		<div class="${containerClass}">
+ 		<div class="${configRsrc.valueMap.containerclass}">
  			<div class="row">
 				<c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
 					<div class="${sling:encode(col,'HTML_ATTR')}">
