@@ -1,5 +1,0 @@
-{
-	"jcr:primaryType": "sling:Component",
-    "componentType": "SlingCMS-PageTemplate",
-    "jcr:title": "Sling CMS - Page Template"
-}

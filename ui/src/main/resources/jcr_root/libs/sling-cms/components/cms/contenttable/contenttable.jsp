@@ -28,8 +28,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="child" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
-			<sling:getResource var="typeConfig" base="${resource}" path="types/${child.resourceType}" />
+		<c:set var="parentPath" value="${slingRequest.requestPathInfo.suffix}${not empty properties.appendSuffix ? properties.appendSuffix : ''}" />
+		<c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}">
+			<sling:getResource var="typeConfig" base="${resource}" path="types/${child.valueMap['jcr:primaryType']}" />
 			<c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
 				<tr data-resource="${child.path}" data-type="${typeConfig.path}">
 					<c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(typeConfig,'columns'))}">
