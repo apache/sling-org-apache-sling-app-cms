@@ -25,7 +25,7 @@
 		<div class="search__header">
 			<fmt:message key="slingcms.search.header">
 				<fmt:param value="${sling:encode(search.term,'HTML')}" />
-				<fmt:param value="${search.start}" />
+				<fmt:param value="${search.start + 1}" />
 				<fmt:param value="${search.end}" />
 				<fmt:param value="${search.count}" />
 			</fmt:message>

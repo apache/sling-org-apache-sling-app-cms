@@ -101,12 +101,11 @@ public class Search {
 		Set<String> distinct = new HashSet<String>();
 
 		String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replaceAll("'", "''");
-		log.debug("Searching for pages with {} under {}", term, basePath);
 
-		Iterator<Resource> res = request.getResourceResolver().findResources(
-				"SELECT parent.* FROM [sling:Page] AS parent INNER JOIN [nt:base] AS child ON ISDESCENDANTNODE(child,parent) WHERE ISDESCENDANTNODE(parent, '"
-						+ basePath + "') AND CONTAINS(child.*, '" + term + "')",
-				Query.JCR_SQL2);
+		String query = "SELECT parent.* FROM [sling:Page] AS parent INNER JOIN [nt:base] AS child ON ISDESCENDANTNODE(child,parent) WHERE ISDESCENDANTNODE(parent, '"
+				+ basePath + "') AND CONTAINS(child.*, '" + term + "')";
+		log.debug("Searching for pages with {} under {} with query: {}", term, basePath, query);
+		Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);
 		while (res.hasNext()) {
 			Resource result = res.next();
 			if (!distinct.contains(result.getPath())) {
@@ -154,8 +153,8 @@ public class Search {
 	}
 
 	public boolean isLast() {
-		if(pages.length > 0) {
-			return page + 1 == pages[pages.length - 1];			
+		if (pages.length > 0) {
+			return page + 1 == pages[pages.length - 1];
 		}
 		return true;
 	}

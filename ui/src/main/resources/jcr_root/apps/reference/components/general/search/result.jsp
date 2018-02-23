@@ -19,7 +19,9 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="searchresult ${searchConfig.valueMap.resultClass}">
 	<div class="searchresult__header ${searchConfig.valueMap.resultHeaderClass}">
-		<sling:encode value="${result.valueMap['jcr:content/jcr:title']}" mode="HTML" />
+		<a href="${result.path}.html" class="searchresult__link">
+			<sling:encode value="${result.valueMap['jcr:content/jcr:title']}" mode="HTML" />
+		</a>
 	</div>
 	<p class="searchresult__body">
 		<sling:encode value="${result.valueMap['jcr:content/jcr:description']}" mode="HTML" />

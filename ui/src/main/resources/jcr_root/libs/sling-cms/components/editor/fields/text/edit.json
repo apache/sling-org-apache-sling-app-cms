@@ -35,6 +35,11 @@
 					"label": "Color",
 					"value": "color"
 				},
+				"date": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "Date/Time",
+					"value": "date"
+				},
 				"datetime": {
 					"jcr:primaryType": "nt:unstructured",
 					"label": "Date/Time",
