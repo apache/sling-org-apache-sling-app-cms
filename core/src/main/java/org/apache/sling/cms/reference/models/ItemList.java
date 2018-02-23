@@ -96,9 +96,13 @@ public class ItemList {
 	@PostConstruct
 	public void init() {
 
+		log.trace("init");
+
 		Set<String> distinct = new HashSet<String>();
 
-		query = query.replace("{SUFFIX}", request.getRequestPathInfo().getSuffix());
+		if (request.getRequestPathInfo().getSuffix() != null) {
+			query = query.replace("{SUFFIX}", request.getRequestPathInfo().getSuffix());
+		}
 		log.debug("Listing results of: {}", query);
 
 		Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);

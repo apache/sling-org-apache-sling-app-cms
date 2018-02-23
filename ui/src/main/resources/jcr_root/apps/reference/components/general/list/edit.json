@@ -20,6 +20,31 @@
 			"required": true,
 			"type": "number"
 		},
+		"includePagination": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Include Pagination",
+			"name": "includePagination",
+			"required": true,
+			"options": {
+				"yes": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "Yes",
+					"value": "true"
+				},
+				"no": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "No",
+					"value": "false"
+				}
+			}
+		},
+		"includePaginationTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "includePagination@TypeHint",
+			"value": "Boolean"
+		},
 		"itemType": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/select",
