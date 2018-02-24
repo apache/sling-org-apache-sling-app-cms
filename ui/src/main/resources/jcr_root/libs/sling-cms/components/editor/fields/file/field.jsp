@@ -25,4 +25,26 @@
 		<c:set var="accepts" value="image/*,audio/*,video/*,application/json,text/css,application/pdf" />
 	</c:otherwise>
 </c:choose>
-<input type="file" name="${properties.name}" ${required} accept="${accepts}" />
+<div class="repeating">
+ 	<fieldset disabled="disabled" class="repeating__template Hide">
+ 		<div class="repeating__item Grid">
+ 			<div class="Cell Mobile-80">
+	 			<input type="file" name="${properties.name}" ${required} accept="${accepts}" />
+	 		</div>
+	 		<div class="Cell Mobile-20">
+		 		<button class="repeating__remove">-</button>
+		 	</div>
+	 	</div>
+ 	</fieldset>
+ 	<div class="repeating__container">
+	 	<div class="repeating__item Grid">
+ 			<div class="Cell Mobile-80">
+	 			<input type="file" name="${properties.name}" ${required} accept="${accepts}" />
+	 		</div>
+	 		<div class="Cell Mobile-20">
+		 		<button class="repeating__remove">-</button>
+		 	</div>
+	 	</div>
+	</div>
+	<button class="repeating__add">+</button>
+</div>
