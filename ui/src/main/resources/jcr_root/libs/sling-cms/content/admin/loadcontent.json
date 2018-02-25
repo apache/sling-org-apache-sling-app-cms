@@ -46,7 +46,7 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/button",
 						"label": "Format",
-						"onclick": "javascript:try {$('textarea[name=:content]').val(JSON.stringify(JSON.parse($('textarea[name=:content]').val()), null, 2));} catch (e) { alert('Unable to parse Content JSON'); };return false;"
+						"onclick": "javascript:try {$('textarea').val(JSON.stringify(JSON.parse($('textarea').val()), null, 2));} catch (e) { alert('Unable to parse Content JSON'); };return false;"
 					}
 				}
 			}
