@@ -27,7 +27,7 @@
 		<c:forEach var="item" items="${list.items}">
 			<sling:include path="${item.path}" resourceType="${properties.itemType}" />
 		</c:forEach>
-		<c:if test="${properties.includePagitation}">
+		<c:if test="${properties.includePagination}">
 			<sling:call script="pagination.jsp" />
 		</c:if>
 	</${tag}>

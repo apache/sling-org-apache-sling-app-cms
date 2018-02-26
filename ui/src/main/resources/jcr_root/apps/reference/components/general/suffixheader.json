@@ -1,0 +1,5 @@
+{
+	"jcr:primaryType": "sling:Component",
+    "componentType": "General",
+    "jcr:title": "Suffix Header"
+}

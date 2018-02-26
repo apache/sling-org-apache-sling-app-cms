@@ -1,0 +1,55 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"subString": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Subsitution String",
+			"name": "subString",
+			"required": true
+		},
+		"property": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Suffix Resource Property",
+			"name": "property"
+		},
+		"tag": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Tag",
+			"name": "tag",
+			"required": true,
+			"options": {
+				"h1": {
+					"label": "Header 1",
+					"value": "h1"
+				},
+				"h2": {
+					"label": "Header 2",
+					"value": "h2"
+				},
+				"h3": {
+					"label": "Header 3",
+					"value": "h3"
+				},
+				"h4": {
+					"label": "Header 4",
+					"value": "h4"
+				},
+				"h5": {
+					"label": "Header 5",
+					"value": "h5"
+				},
+				"p": {
+					"label": "Paragraph",
+					"value": "p"
+				}
+			}
+		}
+	}
+}
