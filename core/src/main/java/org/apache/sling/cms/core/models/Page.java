@@ -57,11 +57,29 @@ public class Page extends AbstractContentModel {
 		return published;
 	}
 
-	public String getTemplatePath() {
-		return this.template;
+	public String getPublishedPath() {
+		Site site = resource.adaptTo(SiteManager.class).getSite();
+		if (site != null) {
+			return resource.getPath().replace(site.getPath(), "") + ".html";
+		} else {
+			return resource.getPath() + ".html";
+		}
+	}
+
+	public String getPublishedURL() {
+		Site site = resource.adaptTo(SiteManager.class).getSite();
+		if (site != null) {
+			return site.getUrl() + getPublishedPath();
+		} else {
+			return resource.getPath();
+		}
 	}
 
 	public PageTemplate getTemplate() {
 		return this.resource.getResourceResolver().getResource(template).adaptTo(PageTemplate.class);
+	}
+
+	public String getTemplatePath() {
+		return this.template;
 	}
 }

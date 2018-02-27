@@ -154,6 +154,26 @@ Sling.CMS = {
 		}
 	};
 
+	Sling.CMS.ext['content-filter'] = {
+		decorate: function($ctx) {
+			var filterContent = function(){
+				var term = $('.content-filter input[type=text]').val().toLowerCase();
+				$('.sortable tbody tr').each(function(idx,el){
+					if($(el).text().toLowerCase().indexOf(term) !== -1){
+						$(el).show();
+					} else {
+						$(el).hide();
+					}
+				});
+			}
+			$('.content-filter').submit(function(){
+				filterContent();
+				return false;
+			});
+			$('.content-filter input[type=text]').keyup(filterContent).change(filterContent);
+		}
+	}
+
 	Sling.CMS.ext['fetch-json'] = {
 		decorate: function($ctx) {
 			$ctx.find('.fetch-json').each(function(){

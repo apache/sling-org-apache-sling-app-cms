@@ -38,4 +38,10 @@
 			<sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:title'] != null ? slingRequest.requestPathInfo.suffixResource.valueMap['jcr:title'] : slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:title']}" default="${slingRequest.requestPathInfo.suffix}" mode="HTML" />
 		</li>
 	</c:if>
+	<li class="Pull-Right">
+		<form method="get" class="content-filter">
+			<label for="filter" class="hide">Filter</label>
+			<input type="text" placeholder="Filter..." />
+		</form>
+	</li>
 </ul>

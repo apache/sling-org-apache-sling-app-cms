@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<table>
+<table class="sortable">
 	<thead>
 		<tr>
 			<c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">

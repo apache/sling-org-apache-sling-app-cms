@@ -34,6 +34,7 @@ import org.apache.sling.models.annotations.Optional;
 public class Site {
 
 	public static final String PN_CONFIG = CMSConstants.NAMESPACE + ":config";
+	public static final String PN_URL = CMSConstants.NAMESPACE + ":url";
 
 	private static Resource findSiteResource(Resource resource) {
 		if (CMSConstants.NT_SITE.equals(resource.getValueMap().get(JcrConstants.JCR_PRIMARYTYPE, String.class))) {
@@ -72,6 +73,10 @@ public class Site {
 	@Named(CMSConstants.PN_TITLE)
 	private String title;
 
+	@Inject
+	@Named(PN_URL)
+	private String url;
+
 	public Site(Resource resource) {
 		this.resource = resource;
 	}
@@ -102,10 +107,6 @@ public class Site {
 		return description;
 	}
 
-	public String getLocaleString() {
-		return locale;
-	}
-
 	public Locale getLocale() {
 		String[] segments = locale.split("_");
 		if (segments.length == 3) {
@@ -114,6 +115,10 @@ public class Site {
 			return new Locale(segments[0], segments[1]);
 		}
 		return new Locale(segments[0]);
+	}
+
+	public String getLocaleString() {
+		return locale;
 	}
 
 	public String getPath() {
@@ -140,6 +145,13 @@ public class Site {
 		return title;
 	}
 
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return url;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -161,7 +173,7 @@ public class Site {
 	@Override
 	public String toString() {
 		return "Site [config=" + config + ", description=" + description + ", locale=" + locale + ", resource="
-				+ resource + ", title=" + title + "]";
+				+ resource + ", title=" + title + ", url=" + url + "]";
 	}
 
 }

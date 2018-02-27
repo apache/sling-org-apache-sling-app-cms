@@ -15,7 +15,7 @@
 			"slingform": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/editor/slingform",
-				"actionSuffix": "/*",
+				"actionSuffix": "/templates/",
 				"button": "Create Template",
 				"successPrepend":"/libs/sling-cms/content/site/content.html",
 				"fields": {
