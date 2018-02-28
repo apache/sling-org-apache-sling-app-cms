@@ -66,7 +66,7 @@ public class Page extends AbstractContentModel {
 		}
 	}
 
-	public String getPublishedURL() {
+	public String getPublishedUrl() {
 		Site site = resource.adaptTo(SiteManager.class).getSite();
 		if (site != null) {
 			return site.getUrl() + getPublishedPath();
