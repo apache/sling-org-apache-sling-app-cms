@@ -8,7 +8,7 @@
 		"jcr:mixinTypes": [
 			"mix:language"
 		],
-		"jcr:language": "en_US",
+		"jcr:language": "en",
 		"sling:resourceType": "sling-cms/components/cms/blank",
 		"entry": {
 			"jcr:primaryType": "sling:MessageEntry",
@@ -21,7 +21,7 @@
 		"jcr:mixinTypes": [
 			"mix:language"
 		],
-		"jcr:language": "de_DE",
+		"jcr:language": "de",
 		"sling:resourceType": "sling-cms/components/cms/blank",
 		"entry_493865649": {
 			"jcr:primaryType": "sling:MessageEntry",
