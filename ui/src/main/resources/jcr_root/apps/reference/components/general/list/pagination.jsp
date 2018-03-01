@@ -34,7 +34,7 @@
 			</c:otherwise>
 		</c:choose>
 		<c:forEach var="page" items="${list.pages}">
-			<li class="${listConfig.valueMap.pageItemClass} ">
+			<li class="${listConfig.valueMap.pageItemClass} ${page == list.currentPage ? 'active' : ''}">
 				<a href="?page=${page}" class="${listConfig.valueMap.pageLinkClass}">
 					${page}
 				</a>
