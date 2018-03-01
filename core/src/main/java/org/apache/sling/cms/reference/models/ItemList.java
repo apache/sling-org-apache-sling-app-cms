@@ -24,11 +24,10 @@ import javax.annotation.PostConstruct;
 import javax.jcr.query.Query;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,14 +44,14 @@ public class ItemList {
 
 	private int end;
 
-	@ValueMapValue
-	private int limit;
+	@RequestAttribute
+	private String limit;
 
 	private int page;
 
 	private Integer[] pages;
 
-	@ValueMapValue
+	@RequestAttribute
 	private String query;
 
 	private SlingHttpServletRequest request;
@@ -124,6 +123,7 @@ public class ItemList {
 			log.debug("Page {} not specified or not valid", request.getParameter("page"));
 		}
 
+		int limit = Integer.parseInt(this.limit, 10);
 		if (page * limit >= count) {
 			start = count;
 		} else {

@@ -17,15 +17,13 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:call script="init.jsp" />
-<c:if test="${list != null}">
-	<${tag} class="list ${clazz}">
-		<c:forEach var="it" items="${list.items}">
-			<c:set var="item" value="${it}" scope="request" />
-			<sling:call script="item.jsp" />
-		</c:forEach>
-		<c:if test="${includePagination}">
-			<sling:call script="pagination.jsp" />
-		</c:if>
-	</${tag}>
+ <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
+<c:set var="query" value="${properties.query}" scope="request" />
+<c:set var="limit" value="${properties.limit}" scope="request" />
+<c:set var="includePagination" value="${properties.includePagination}" scope="request" />
+<c:set var="tag" value="${not empty properties.tag ? properties.tag : 'ul'}" scope="request" />
+<c:set var="clazz" value="${not empty properties.class ? properties.class : ''}" scope="request" />
+<c:set var="listConfig" value="${pageMgr.page.template.componentConfigs['reference/components/general/list']}" scope="request" />
+<c:if test="${not empty query}">
+	<c:set var="list" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.ItemList')}" scope="request"  />
 </c:if>
