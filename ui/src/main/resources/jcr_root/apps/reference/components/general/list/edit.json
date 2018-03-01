@@ -45,14 +45,6 @@
 			"name": "includePagination@TypeHint",
 			"value": "Boolean"
 		},
-		"itemType": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/select",
-			"label": "Item Type",
-			"name": "itemType",
-			"optionsScript": "/apps/reference/components/general/list/listItemOptions.jsp",
-			"required": true
-		},
 		"tag": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/text",

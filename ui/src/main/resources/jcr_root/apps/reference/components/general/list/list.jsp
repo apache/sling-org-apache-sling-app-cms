@@ -24,8 +24,9 @@
 <c:if test="${not empty properties.limit}">
 	<c:set var="list" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.ItemList')}" scope="request"  />
 	<${tag} class="list ${clazz}">
-		<c:forEach var="item" items="${list.items}">
-			<sling:include path="${item.path}" resourceType="${properties.itemType}" />
+		<c:forEach var="it" items="${list.items}">
+			<c:set var="item" value="${it}" scope="request" />
+			<sling:call script="item.jsp" />
 		</c:forEach>
 		<c:if test="${properties.includePagination}">
 			<sling:call script="pagination.jsp" />
