@@ -21,8 +21,9 @@
 	<thead>
 		<tr>
 			<c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">
-				<th class="Column-${column.name}">
+				<th class="sortable__header" data-attribute="${column.name}">
 					<sling:encode value="${column.valueMap.title}" mode="HTML" />
+					<span class="sortable__indicator"></span>
 				</th>
 			</c:forEach>
 		</tr>
@@ -32,7 +33,7 @@
 		<c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}">
 			<sling:getResource var="typeConfig" base="${resource}" path="types/${child.valueMap['jcr:primaryType']}" />
 			<c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
-				<tr data-resource="${child.path}" data-type="${typeConfig.path}">
+				<tr class="sortable__row" data-resource="${child.path}" data-type="${typeConfig.path}">
 					<c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(typeConfig,'columns'))}">
 						<c:set var="configPath" value="columns/${column.name}"/>
 						<c:set var="colConfig" value="${sling:getRelativeResource(typeConfig,configPath)}" scope="request" />
