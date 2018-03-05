@@ -2,7 +2,7 @@
 	"jcr:primaryType": "sling:Page",
 	"jcr:content": {
 		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Move/Copy Content",
+		"jcr:title": "Bulk Replace",
 		"jcr:primaryType": "nt:unstructured",
 		"container": {
 			"jcr:primaryType": "nt:unstructured",
@@ -10,51 +10,54 @@
 			"richtext": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h3>Move/Copy Content</h3>"
+				"text": "<h3>Bulk Replace</h3>"
 			},
 			"slingform": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/editor/slingform",
-				"button": "Move/Copy",
+				"button": "Replace All",
 				"fields": {
 					"jcr:primaryType": "nt:unstructured",
 					"sling:resourceType": "sling-cms/components/general/container",
-					"path": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType" : "sling-cms/components/editor/fields/suffixlabel",
-						"label": "Existing Path:"
-					},
-					"destination": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType" : "sling-cms/components/editor/fields/text",
-						"label": "Destination:",
-						"name": ":dest"
-					},
 					"operation": {
 						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/select",
-						"label": "Operation",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
 						"name": ":operation",
+						"value": "bulkreplace"
+					},
+					"updateProperties": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Update Properties",
+						"name": "updateProperties"
+					},
+					"mode": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/select",
+						"label": "Mode",
+						"name": "mode",
 						"options": {
-							"jcr:primaryType": "nt:unstructured",
-							"copy":{
-								"jcr:primaryType": "nt:unstructured",
-								"label": "Copy",
-								"value": "copy"
+							"exact": {
+								"label": "Exact Match",
+								"value": "exact"
 							},
-							"move":{
-								"jcr:primaryType": "nt:unstructured",
-								"label": "Move",
-								"value": "move"
+							"regex": {
+								"label": "Regular Expression",
+								"value": "regex"
 							}
 						}
 					},
-					"references": {
+					"find": {
 						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/references",
-						"label": "Update References?",
-						"name": ":updateReferences",
-						"toggle": true
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Find",
+						"name": "find"
+					},
+					"replace": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Replace",
+						"name": "replace"
 					}
 				}
 			}

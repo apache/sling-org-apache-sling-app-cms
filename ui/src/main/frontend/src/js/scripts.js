@@ -347,7 +347,6 @@ Sling.CMS = {
 					$span.find('input').val(val);
 					var title = $ctx.find('option[value="'+val+'"]').text();
 					
-					
 					if(title !== ''){
 						$span.find('.taxonomy__title').text(title);
 						Sling.CMS.decorate($span);
@@ -368,6 +367,21 @@ Sling.CMS = {
 			$ctx.find('.Toggle-Hidden').click(function(){
 				$($(this).data('target')).toggleClass('Hide');
 			});
+		}
+	}
+	
+	Sling.CMS.ext['toggle-value'] = {
+		decorate: function($ctx) {
+			$ctx.find('.toggle-value').each(function(){
+				var $tog = $(this);
+				$('input[name="'+$tog.data('toggle-source')+'"], select[name="'+$tog.data('toggle-source')+'"]').change(function(){
+					if($(this).val() !== $tog.data('toggle-value')){
+						$tog.addClass('hide');
+					} else {
+						$tog.removeClass('hide');
+					}
+				});
+			})
 		}
 	}
 

@@ -24,11 +24,18 @@
 						"sling:resourceType" : "sling-cms/components/editor/fields/suffixlabel",
 						"label": "Do you want to delete:"
 					},
-					"primaryType": {
+					"operation": {
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
 						"name": ":operation",
 						"value": "delete"
+					},
+					"references": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/references",
+						"includeDestination": true,
+						"label": "The following content references this path, update references?",
+						"name": ":updateReferences"
 					}
 				}
 			}
