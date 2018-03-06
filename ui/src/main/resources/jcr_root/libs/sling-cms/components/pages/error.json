@@ -1,0 +1,5 @@
+{
+    "jcr:primaryType" : "sling:Component",
+    "sling:resourceSuperType" : "sling-cms/components/pages/base",
+    "jcr:title": "CMS - Error Page"
+}
