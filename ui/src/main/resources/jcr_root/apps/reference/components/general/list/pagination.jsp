@@ -29,7 +29,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="${listConfig.valueMap.pageItemClass}">
-					<a class="${listConfig.valueMap.pageLinkClass}" href="?page=0">&lt;</a>
+					<a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage - 1}">&lt;</a>
 				</li>
 			</c:otherwise>
 		</c:choose>
@@ -50,7 +50,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="${listConfig.valueMap.pageItemClass}">
-					<a class="${listConfig.valueMap.pageLinkClass}" href="?&page=${list.currentPage + 1}">&gt;</a>
+					<a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage + 1}">&gt;</a>
 				</li>
 			</c:otherwise>
 		</c:choose>

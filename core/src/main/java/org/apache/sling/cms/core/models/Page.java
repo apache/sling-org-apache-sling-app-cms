@@ -69,7 +69,9 @@ public class Page extends AbstractContentModel {
 		if (taxonomy != null) {
 			for (String item : taxonomy) {
 				Resource resource = this.resource.getResourceResolver().getResource(item);
-				keywords.add(resource.getValueMap().get(CMSConstants.PN_TITLE, String.class));
+				if (resource != null) {
+					keywords.add(resource.getValueMap().get(CMSConstants.PN_TITLE, String.class));
+				}
 			}
 		}
 		return keywords.toArray(new String[keywords.size()]);
