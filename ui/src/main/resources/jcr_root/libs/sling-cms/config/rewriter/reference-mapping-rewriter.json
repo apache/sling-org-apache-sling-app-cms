@@ -1,0 +1,38 @@
+{
+	"jcr:primaryType": "nt:unstructured",
+	"contentTypes": [
+		"text/html"
+	],
+	"enabled": true,
+	"extensions": [
+		"html"
+	],
+	"generatorType": "html-generator",
+	"order": 1000,
+	"paths": [
+		"/content"
+	],
+	"serializerType": "html-serializer",
+	"transformerTypes": [
+		"referencemapping"
+	],
+	"generator-html-generator": {
+		"jcr:primaryType": "nt:unstructured",
+		"includeTags": [
+			"A",
+			"AREA",
+			"AUDIO",
+			"BASE",
+			"EMBED",
+			"FORM",
+			"IFRAME",
+			"IMG",
+			"LINK",
+			"OBJECT",
+			"SCRIPT",
+			"SOURCE",
+			"TRACK",
+			"VIDEO"
+		]
+	}
+}

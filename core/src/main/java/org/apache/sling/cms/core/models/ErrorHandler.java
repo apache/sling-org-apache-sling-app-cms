@@ -61,7 +61,12 @@ public class ErrorHandler {
 		Resource resource = slingRequest.getResource();
 		ResourceResolver resolver = slingRequest.getResourceResolver();
 
-		log.debug("Calculating error handling scripts for resource {} and error code ", resource);
+		log.debug("Calculating error handling scripts for resource {} and error code {}", resource, errorCode);
+
+		if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
+			log.warn("Handing exception of type " + errorCode,
+					slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
+		}
 		SiteManager siteMgr = resource.adaptTo(SiteManager.class);
 		if (siteMgr != null && siteMgr.getSite() != null) {
 			Site site = siteMgr.getSite();

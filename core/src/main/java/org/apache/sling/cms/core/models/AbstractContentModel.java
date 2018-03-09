@@ -104,7 +104,7 @@ public abstract class AbstractContentModel {
 		return getContentResource().getValueMap();
 	}
 
-	public abstract Boolean getPublished();
+	public abstract boolean isPublished();
 
 	public Resource getResource() {
 		return resource;

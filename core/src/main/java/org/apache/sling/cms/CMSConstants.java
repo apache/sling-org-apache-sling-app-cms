@@ -69,12 +69,17 @@ public class CMSConstants {
 	/**
 	 * i18n Locale property
 	 */
-	public static final String PN_LANGUAGE =  "jcr:language";
+	public static final String PN_LANGUAGE = "jcr:language";
 
 	/**
 	 * Published flag property
 	 */
 	public static final String PN_PUBLISHED = "published";
+
+	/**
+	 * Taxonomy attribute name
+	 */
+	public static final String PN_TAXONOMY = NAMESPACE + ":taxonomy";
 
 	/**
 	 * Title attribute name

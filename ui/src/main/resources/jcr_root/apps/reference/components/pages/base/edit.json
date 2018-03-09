@@ -63,6 +63,30 @@
 			"name": "published@TypeHint",
 			"value": "Boolean"
 		},
+		"hideInSitemap": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Hide in Sitemap",
+			"name": "hideInSitemap",
+			"options": {
+				"no": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "No",
+					"value": "false"
+				},
+				"yes": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "Yes",
+					"value": "true"
+				}
+			}
+		},
+		"hideInSitemapTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "hideInSitemap@TypeHint",
+			"value": "Boolean"
+		},
 		"template": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/text",

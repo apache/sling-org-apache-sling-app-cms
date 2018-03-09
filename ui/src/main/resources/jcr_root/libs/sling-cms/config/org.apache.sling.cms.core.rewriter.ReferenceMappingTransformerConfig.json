@@ -1,0 +1,11 @@
+{
+	"jcr:primaryType": "sling:OsgiConfig",
+	"mappedAttributes": [
+		"action",
+		"href",
+		"src"
+	],
+	"enabledPaths": [
+		"/content"
+	]
+}

@@ -16,14 +16,19 @@
  */
 package org.apache.sling.cms.core.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Optional;
 
 /**
  * A model representing a page.
@@ -46,6 +51,12 @@ public class Page extends AbstractContentModel {
 	private boolean published;
 
 	@Inject
+	@Optional
+	@Named(JcrConstants.JCR_CONTENT + "/" + CMSConstants.PN_TAXONOMY)
+	private String[] taxonomy;
+
+	@Inject
+	@Optional
 	@Named("jcr:content/sling:template")
 	private String template;
 
@@ -53,7 +64,18 @@ public class Page extends AbstractContentModel {
 		this.resource = resource;
 	}
 
-	public Boolean getPublished() {
+	public String[] getKeywords() {
+		List<String> keywords = new ArrayList<String>();
+		if (taxonomy != null) {
+			for (String item : taxonomy) {
+				Resource resource = this.resource.getResourceResolver().getResource(item);
+				keywords.add(resource.getValueMap().get(CMSConstants.PN_TITLE, String.class));
+			}
+		}
+		return keywords.toArray(new String[keywords.size()]);
+	}
+
+	public boolean isPublished() {
 		return published;
 	}
 
@@ -76,7 +98,12 @@ public class Page extends AbstractContentModel {
 	}
 
 	public PageTemplate getTemplate() {
-		return this.resource.getResourceResolver().getResource(template).adaptTo(PageTemplate.class);
+		Resource templateResource = this.resource.getResourceResolver().getResource(template);
+		if (templateResource != null) {
+			return templateResource.adaptTo(PageTemplate.class);
+		} else {
+			return null;
+		}
 	}
 
 	public String getTemplatePath() {

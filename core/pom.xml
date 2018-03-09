@@ -59,7 +59,6 @@
 			<plugin>
 				<groupId>org.apache.sling</groupId>
 				<artifactId>maven-sling-plugin</artifactId>
-				<version>2.1.0</version>
 				<configuration>
 					<slingUrl>http://${sling.host}:${sling.port}/system/console</slingUrl>
 					<user>${sling.username}</user>
