@@ -1,5 +1,0 @@
-{
-	"jcr:primaryType": "sling:Component",
-    "componentType": "ListItems",
-    "jcr:title": "List Item"
-}

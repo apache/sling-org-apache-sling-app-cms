@@ -1,0 +1,50 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save CTA",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"ctaClass": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "CTA Class",
+			"name": "ctaClass",
+			"required": true,
+			"optionsScript": "/apps/reference/components/general/cta/options.jsp"
+		},
+		"text": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Text",
+			"name": "text",
+			"required": true
+		},
+		"href": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/path",
+			"basePath": "/content",
+			"type": "sling:Page",
+			"label": "CTA Link",
+			"name": "href",
+			"titleProperty": "jcr:content/jcr:title"
+		},
+		"target": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Open In New Window?",
+			"name": "target",
+			"options": {
+				"jcr:primaryType": "nt:unstructured",
+				"yes": {
+					"label": "Yes",
+					"value": " target=\"_blank\""
+				},
+				"no": {
+					"label": "No",
+					"value": ""
+				}
+			}
+		}
+	}
+}

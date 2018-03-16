@@ -1,0 +1,12 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType" : "sling-cms/components/general/container",
+	"ctaClasses": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType" : "sling-cms/components/editor/fields/repeating",
+		"label": "CTA Classes",
+		"name": "ctaClasses",
+		"type": "text",
+		"required": true
+	}
+}

@@ -32,7 +32,10 @@
 		</div>
 	</div>
 	<div class="menu">
-		<sling:include path="/content/sling-apache-org/index/jcr:content/menu" resourceType="sling-cms/components/general/richtext" />
+		<sling:include path="/content/sling-apache-org/index/jcr:content/menu" resourceType="sling-cms/components/general/container" />
+		<a href="http://apache.org/foundation/contributing.html">
+            <img border="0" alt="Support the Apache Software Foundation!" src="/etc/clientlibs/reference/img/SupportApache-small.png" width="115px">
+        </a>
 	</div>
 	<div class="main">
 		<div class="pagenav">

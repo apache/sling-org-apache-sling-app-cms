@@ -1,0 +1,12 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType" : "sling-cms/components/general/container",
+	"imageClasses": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType" : "sling-cms/components/editor/fields/repeating",
+		"label": "Image Classes",
+		"name": "imageClasses",
+		"type": "text",
+		"required": true
+	}
+}

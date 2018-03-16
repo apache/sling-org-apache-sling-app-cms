@@ -1,0 +1,44 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save IFrame",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"src": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/path",
+			"basePath": "/content",
+			"type": "sling:File",
+			"label": "Frame Source",
+			"name": "src",
+			"titleProperty": "jcr:content/jcr:title",
+			"required": true
+		},
+		"layout": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Wrapper Class",
+			"name": "wrapperClass",
+			"required": true,
+			"optionsScript": "/apps/reference/components/general/iframe/options.jsp"
+		},
+		"allowFullscreen": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Allow Fullscreen",
+			"name": "allowFullscreen",
+			"options": {
+				"jcr:primaryType": "nt:unstructured",
+				"yes": {
+					"label": "Yes",
+					"value": " allowfullscreen=\"allowfullscreen\""
+				},
+				"no": {
+					"label": "No",
+					"value": " allowfullscreen=\"allowfullscreen\""
+				}
+			}
+		}
+	}
+}

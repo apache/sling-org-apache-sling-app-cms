@@ -1,0 +1,105 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save Page",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"title": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Title",
+			"name": "jcr:title",
+			"required": true
+		},
+		"description": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/textarea",
+			"label": "Description",
+			"name": "jcr:description"
+		},
+		"taxonomy": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/taxonomy",
+			"label": "Keywords",
+			"name": "sling:taxonomy"
+		},
+		"taxonomyTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"name": "jcr:content/sling:taxonomy@TypeHint",
+			"value": "String[]",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden"
+		},
+		"canonical": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/path",
+			"basePath": "/content",
+			"type": "sling:Page",
+			"label": "Canonical",
+			"name": "canonical",
+			"titleProperty": "jcr:content/jcr:title"
+		},
+		"published": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Published",
+			"name": "published",
+			"options": {
+				"yes": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "Yes",
+					"value": "true"
+				},
+				"no": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "No",
+					"value": "false"
+				}
+			}
+		},
+		"publishedTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "published@TypeHint",
+			"value": "Boolean"
+		},
+		"publishDate": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Published Date",
+			"name": "publishDate",
+			"type": "date"
+		},
+		"hideInSitemap": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Hide in Sitemap",
+			"name": "hideInSitemap",
+			"options": {
+				"no": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "No",
+					"value": "false"
+				},
+				"yes": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "Yes",
+					"value": "true"
+				}
+			}
+		},
+		"hideInSitemapTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "hideInSitemap@TypeHint",
+			"value": "Boolean"
+		},
+		"template": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Template",
+			"name": "sling:template",
+			"disabled": true
+		}
+	}
+}

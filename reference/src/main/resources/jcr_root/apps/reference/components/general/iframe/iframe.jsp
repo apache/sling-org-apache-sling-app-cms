@@ -16,17 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<head>
-	<meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Apache Sling :: ${resource.valueMap['jcr:title']}</title>
-    <link rel="icon" href="/etc/clientlibs/reference/favicon.ico"/>
-    <link rel="stylesheet" href="/etc/clientlibs/reference/site.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
-    <script>
-    		hljs.initHighlightingOnLoad();
-    </script>
-</head>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:if test="${not empty properties.src}">
+	<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
+	<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/iframe']}" />
+	div class="${properties.wrapperClass}">
+		<iframe src="${properties.src}" class="${configRsrc.valueMap.iframeClass}" frameborder="0" ${properties.allowFullscreen}></iframe>
+	</div>
+</c:if>

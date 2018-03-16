@@ -1,0 +1,6 @@
+{
+    "jcr:primaryType" : "sling:Component",
+    "jcr:title": "Reference - Blog Post Page",
+    "sling:resourceSuperType": "reference/components/pages/base",
+    "componentType": "Page"
+}

@@ -39,6 +39,7 @@
 	<modules>
 		<module>core</module>
 		<module>ui</module>
+		<module>reference</module>
 		<module>builder</module>
 	</modules>
 	

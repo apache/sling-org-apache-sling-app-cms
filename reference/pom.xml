@@ -17,13 +17,9 @@
 		<groupId>org.apache.sling</groupId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>org.apache.sling.cms.ui</artifactId>
+	<artifactId>org.apache.sling.cms.reference</artifactId>
 	<packaging>bundle</packaging>
-	<name>Apache Sling - CMS UI</name>
-
-	<properties>
-		<frontend.target>target/frontend</frontend.target>
-	</properties>
+	<name>Apache Sling - CMS Reference Application</name>
 
 	<build>
 		<plugins>
@@ -47,61 +43,17 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.4</version>
-				<configuration>
-					<installDirectory>${frontend.target}</installDirectory>
-					<workingDirectory>${frontend.target}</workingDirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<id>install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-						<configuration>
-							<nodeVersion>v6.11.0</nodeVersion>
-							<npmVersion>3.10.10</npmVersion>
-						</configuration>
-					</execution>
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>install</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>gulp build</id>
-						<goals>
-							<goal>gulp</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Sling-Nodetypes>SLING-INF/nodetypes/nodetypes.cnd</Sling-Nodetypes>
 						<Sling-Initial-Content>
 							jcr_root,
-							jcr_root/etc/clientlibs;overwrite=true;ignoreImportProviders:=xml;path:=/etc/clientlibs,
-							jcr_root/etc/fileeditors;overwrite:=false;uninstall:=true;path:=/etc/fileeditors,
-							jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy,
-							jcr_root/libs/sling/servlet/errorhandler;overwriteProperties:=true;overwrite:=true;uninstall:=true;path:=/libs/sling/servlet/errorhandler,
-							jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,
-							jcr_root/etc/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/etc/clientlibs/sling-cms
+							jcr_root/apps/reference;overwrite:=true;uninstall:=true;path:=/apps/reference,
+							jcr_root/etc/clientlibs/reference;overwrite=true;ignoreImportProviders:=xml;path:=/etc/clientlibs/reference
 						</Sling-Initial-Content>
-            			<Include-Resource>{maven-resources},${basedir}/target/frontend/dist</Include-Resource>
 					</instructions>
 				</configuration>
 			</plugin>
