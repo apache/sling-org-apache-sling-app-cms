@@ -17,22 +17,27 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<dl>
-	<c:forEach var="val" items="${resource.valueMap}">
-		<c:if test="${not fn:contains(val.key,':')}">
-			<dt>
-				<sling:encode value="${val.key}" mode="HTML" />
-			</dt>
-			<dd>
-      			<c:catch var="ex">
-					<c:forEach var="item" items="${val.value}">
-						<sling:encode value="${item}" mode="HTML" />
-					</c:forEach>
-				</c:catch>
-				<c:if test="${ex != null}">
-					<sling:encode value="${val.value}" mode="HTML" />
-				</c:if>
-			</dd>
-		</c:if>
-</c:forEach>
-</dl>
+<c:if test="${not empty properties.type}">
+	<h4>
+		<sling:encode value="${properties.type}" mode="HTML" />
+	</h4>
+	<dl>
+		<c:forEach var="val" items="${properties}">
+			<c:if test="${not fn:contains(val.key,':') and val.key != 'type'}">
+				<dt>
+					<sling:encode value="${val.key}" mode="HTML" />
+				</dt>
+				<dd>
+	      			<c:catch var="ex">
+						<c:forEach var="item" items="${val.value}">
+							<sling:encode value="${item}" mode="HTML" />
+						</c:forEach>
+					</c:catch>
+					<c:if test="${ex != null}">
+						<sling:encode value="${val.value}" mode="HTML" />
+					</c:if>
+				</dd>
+			</c:if>
+	</c:forEach>
+	</dl>
+</c:if>

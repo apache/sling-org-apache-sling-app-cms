@@ -17,16 +17,11 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div>
-	Template ${resource.path}
-</div>
+<a href="/cms/config/edit.html${resource.parent.parent.path}">
+	&lt; Site Configuration
+</a>
+<h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${resource.path})</h3>
 <dl>
-	<dt>
-		Title
-	</dt>
-	<dd>
-		<sling:encode value="${properties['jcr:title']}" mode="HTML" />
-	</dd>
 	<dt>
 		Allowed Paths
 	</dt>
@@ -38,15 +33,6 @@
 				</li>
 			</c:forEach>
 		</ul>
-	</dd>
-	<dt>
-		Configuration Fields
-	</dt>
-	<dd>
-		<c:set var="oldAvailableTypes" value="${availableTypes}" />
-		<c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
-		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
-		<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 	</dd>
 	<dt>
 		Available Component Types
@@ -61,6 +47,21 @@
 		</ul>
 	</dd>
 	<dt>
+		Template Content
+	</dt>
+	<dd>
+		<pre><sling:encode value="${properties.template}" mode="HTML" /></pre>
+	</dd>
+	<dt>
+		Configuration Fields
+	</dt>
+	<dd>
+		<c:set var="oldAvailableTypes" value="${availableTypes}" />
+		<c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
+		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
+		<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+	</dd>
+	<dt>
 		Component Configurations
 	</dt>
 	<dd>
@@ -68,11 +69,5 @@
 		<c:set var="availableTypes" value="SlingCMS-ComponentConfig" scope="request" />
 		<sling:include path="componentConfigurations" resourceType="sling-cms/components/general/container" />
 		<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
-	</dd>
-	<dt>
-		Template Content
-	</dt>
-	<dd>
-		<pre><sling:encode value="${properties.template}" mode="HTML" /></pre>
 	</dd>
 </dl>

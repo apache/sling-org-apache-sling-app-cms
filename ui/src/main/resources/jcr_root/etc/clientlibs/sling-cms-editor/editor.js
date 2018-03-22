@@ -47,10 +47,10 @@ if(!window.CMSEditor){
 			$(".Sling-CMS__modal-background").click(function(){
 				CMSEditor.ui.hideModal();
 			});
-			$(document).keypress(function(e){
-				if(e.keyCode==27 && CMSEditor.ui.modalDisplayed===true){
+			$(window).on('keypress',function(e){
+				if(e.keyCode==27 && CMSEditor.ui.modalDisplayed === true){
 					CMSEditor.ui.hideModal();
-				} 
+				}
 			});  
 		},
 		ui: {

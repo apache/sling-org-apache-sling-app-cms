@@ -1,4 +1,0 @@
-{
-	"jcr:primaryType": "sling:OsgiConfig",
-	"user.mapping": "org.apache.sling.rewriter=sling-readall"
-}

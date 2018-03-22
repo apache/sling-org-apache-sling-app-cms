@@ -28,3 +28,15 @@
     org.apache.sling/org.apache.sling.cms.ui/1.0.0-SNAPSHOT
     org.apache.sling/org.apache.sling.cms.reference/1.0.0-SNAPSHOT
     
+[:repoinit]
+    create service user sling-rewriter
+    
+    set ACL for sling-rewriter
+        allow   jcr:read    on /
+    end
+
+[configurations]
+    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.rewriter
+        user.mapping=[
+            "org.apache.sling.rewriter\=sling-rewriter"
+        ]

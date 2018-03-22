@@ -91,7 +91,7 @@ ul.Breadcrumb  {
     background-color: white;
     margin: 20% auto; 
     padding: 2em;
-    border: 1px solid gray;
+    border: 1px solid #999;
     width: 75%; 
 }
 
@@ -124,7 +124,7 @@ ul.Breadcrumb  {
 }
 
 .Nav-Item:hover, .Nav-Item.Active {
-	background-color: lightgray;
+	background-color: #ccc;
 }
 
 .note-group-select-from-files {
@@ -157,7 +157,7 @@ td.Cell-Actions {
 
 thead {
 	text-align: left;
-	background-color: gray;
+	background-color: #999;
 	color: white;
 }
 

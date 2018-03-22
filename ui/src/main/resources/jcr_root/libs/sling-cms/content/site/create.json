@@ -35,6 +35,13 @@
 						"name": ":name",
 						"required": true
 					},
+					"url": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Primary URL",
+						"name": "sling:url",
+						"required": true
+					},
 					"locale": {
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/select",

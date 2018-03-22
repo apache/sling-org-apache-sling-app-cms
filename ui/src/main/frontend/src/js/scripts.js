@@ -101,9 +101,10 @@ Sling.CMS = {
 		decorate: function($ctx){
 			$ctx.find('.Form-Ajax').submit(function(){
 				
-				$form = $(this);
+				var $form = $(this);
+				var $inputs = $form.find('input,select,textarea,button');
 				var jcrcontent = false;
-				$form.find('input').each(function(idx,inp){
+				$form.find('input,select,textarea').each(function(idx,inp){
 					if(inp.name.indexOf('jcr:content') != -1){
 						jcrcontent = true;
 					}
@@ -121,10 +122,12 @@ Sling.CMS = {
 						$form.append('<input type="hidden" name="jcr:createdBy" />');
 					}
 				}
+				var data = new FormData(this);
+				$form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
 				$.ajax({
 					url: $form.attr('action'),
 					type: 'POST',
-					data: new FormData(this),
+					data: data,
 					processData: false,
 					contentType: false,
 					dataType: 'json',
@@ -142,9 +145,11 @@ Sling.CMS = {
 					error: function(xhr, msg, err){
 						if(window.self !== window.top){
 							window.top.Sling.CMS.ui.confirmMessage(msg, err,function(){
+								$form.find('.Form-Ajax__wrapper').removeAttr('disabled');
 							});
 						} else {
 							Sling.CMS.ui.confirmMessage(msg, err,function(){
+								$form.find('.Form-Ajax__wrapper').removeAttr('disabled');
 							});
 						}
 					}
@@ -351,6 +356,7 @@ Sling.CMS = {
 						$span.find('.taxonomy__title').text(title);
 						Sling.CMS.decorate($span);
 						$('.taxonomy__container').append($span);
+						$ctx.find('.taxonomy__field input').val('');
 					}
 					return false;
 				});
