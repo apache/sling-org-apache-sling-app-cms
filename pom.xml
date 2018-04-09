@@ -26,6 +26,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<sling.protocol>http</sling.protocol>
 		<sling.host>localhost</sling.host>
 		<sling.port>8080</sling.port>
 		<sling.username>admin</sling.username>

@@ -60,7 +60,7 @@
 				<groupId>org.apache.sling</groupId>
 				<artifactId>maven-sling-plugin</artifactId>
 				<configuration>
-					<slingUrl>http://${sling.host}:${sling.port}/system/console</slingUrl>
+					<slingUrl>${sling.protocol}://${sling.host}:${sling.port}/system/console</slingUrl>
 					<user>${sling.username}</user>
 					<password>${sling.password}</password>
 				</configuration>
