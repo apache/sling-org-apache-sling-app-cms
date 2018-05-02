@@ -94,8 +94,8 @@
 						<Sling-Nodetypes>SLING-INF/nodetypes/nodetypes.cnd</Sling-Nodetypes>
 						<Sling-Initial-Content>
 							jcr_root,
+							jcr_root/conf/global;overwrite:=false;uninstall:=true;path:=/conf/global,
 							jcr_root/etc/clientlibs;overwrite=true;ignoreImportProviders:=xml;path:=/etc/clientlibs,
-							jcr_root/etc/fileeditors;overwrite:=false;uninstall:=true;path:=/etc/fileeditors,
 							jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy,
 							jcr_root/libs/sling/servlet/errorhandler;overwriteProperties:=true;overwrite:=true;uninstall:=true;path:=/libs/sling/servlet/errorhandler,
 							jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,

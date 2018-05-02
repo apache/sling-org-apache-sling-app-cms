@@ -2,7 +2,7 @@
 	"jcr:primaryType": "sling:Page",
 	"jcr:content": {
 		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Create Site",
+		"jcr:title": "Edit Site Group",
 		"jcr:primaryType": "nt:unstructured",
 		"container": {
 			"jcr:primaryType": "nt:unstructured",
@@ -10,13 +10,13 @@
 			"richtext": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h3>Create Site</h3>"
+				"text": "<h3>Edit Site Group</h3>"
 			},
 			"slingform": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/editor/slingform",
 				"actionSuffix": "/*",
-				"button": "Create Site",
+				"button": "Create Folder",
 				"successPrepend":"/libs/sling-cms/content/site/content.html",
 				"fields": {
 					"jcr:primaryType": "nt:unstructured",
@@ -25,29 +25,7 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/text",
 						"label": "Title",
-						"name": "jcr:title",
-						"required": true
-					},
-					"name": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/text",
-						"label": "Name",
-						"name": ":name",
-						"required": true
-					},
-					"url": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/text",
-						"label": "Primary URL",
-						"name": "sling:url",
-						"required": true
-					},
-					"locale": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/select",
-						"label": "Language",
-						"name": "jcr:language",
-						"optionsScript": "/libs/sling-cms/components/editor/scripts/localeOptions.jsp",
+						"name": "jcr:content/jcr:title",
 						"required": true
 					},
 					"config": {
@@ -59,12 +37,6 @@
 						"required": false,
 						"titleProperty": "jcr:content/jcr:title",
 						"type": "sling:OrderedFolder"
-					},
-					"primaryType": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": "jcr:primaryType",
-						"value": "sling:Site"
 					}
 				}
 			}

@@ -17,6 +17,11 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
+ 
+<a href="/cms/config/edit.html${slingRequest.requestPathInfo.suffixResource.parent.parent.path}">
+	&lt; Site Configuration
+</a>
+ <br/>
  <c:set var="cmsEditEnabled" value="true" scope="request" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 

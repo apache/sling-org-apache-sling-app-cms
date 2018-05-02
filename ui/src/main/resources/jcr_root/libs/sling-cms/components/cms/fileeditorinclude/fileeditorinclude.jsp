@@ -17,13 +17,10 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="site" value="${sling:getAbsoluteParent(slingRequest.requestPathInfo.suffixResource,2)}" />
-<c:set var="config" value="${sling:getRelativeResource(sling:getResource(resourceResolver,site.valueMap['sling:config']),'config')}" />
-<c:set var="path" value="${config.valueMap.fileeditor}/editors" />
-<c:set var="editors" value="${sling:getResource(resourceResolver,path)}" />
+ <sling:getCAConfigResources var="editors" resource="${slingRequest.requestPathInfo.suffixResource}" bucket="files" name="editors" />
 <c:set var="mimetype" value="|${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType']}|" />
-<c:forEach var="editor" items="${sling:listChildren(editors)}">
-	<c:set var="mimetypes" value="|${fn:join(editor.valueMap.mimetypes,'|')}|" />
+<c:forEach var="editor" items="${editors}">
+	<c:set var="mimetypes" value="|${fn:join(sling:getRelativeResource(editor,'jcr:content').valueMap.mimetypes,'|')}|" />
 	<c:choose>
 		<c:when test="${fn:length(mimetypes) == 2}">
 			<c:set var="general" value="${editor}" />

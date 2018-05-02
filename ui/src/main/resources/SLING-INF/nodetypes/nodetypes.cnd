@@ -30,9 +30,9 @@
 	
 [sling:Config] > nt:hierarchyNode
 	orderable
-	- sling:config (string)
 	- sling:created (date)
 	- sling:createdBy (string)
+	- sling:resourceType (string)
 	- jcr:lastModified (date)
 	- jcr:lastModifiedBy (string)
 	- jcr:title (string)
@@ -54,7 +54,7 @@
 
 [sling:Site] > nt:hierarchyNode
 	orderable
-	- sling:config (string)
+	- sling:configRef (string)
 	- sling:created (date)
 	- sling:createdBy (string)
 	- sling:url (string)

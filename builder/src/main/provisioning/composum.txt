@@ -27,4 +27,4 @@
   com.composum.sling.core/composum-sling-core-jslibs/${composum.version}
   com.composum.sling.core/composum-sling-user-management/${composum.version}
   com.composum.sling.core/composum-sling-package-manager/${composum.version}
-  org.apache.jackrabbit.vault/org.apache.jackrabbit.vault/3.1.30
+  org.apache.jackrabbit.vault/org.apache.jackrabbit.vault/3.1.42

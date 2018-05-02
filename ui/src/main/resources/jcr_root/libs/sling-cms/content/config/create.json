@@ -47,23 +47,12 @@
 						"name": "pageTemplates/jcr:primaryType",
 						"value": "nt:unstructured"
 					},
-					"pageTemplatesResourceType": {
+					"type": {
 						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": "pageTemplates/sling:resourceType",
-						"value": "sling-cms/components/general/container"
-					},
-					"parametersPrimaryType": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": "parameters/jcr:primaryType",
-						"value": "nt:unstructured"
-					},
-					"parametersResourceType": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": "parameters/sling:resourceType",
-						"value": "sling-cms/components/general/namedcontainer"
+						"sling:resourceType": "sling-cms/components/editor/fields/select",
+						"name": "sling:resourceType",
+						"optionsScript": "/libs/sling-cms/components/editor/scripts/configResourceTypeOptions.jsp",
+						"required": true
 					}
 				}
 			}

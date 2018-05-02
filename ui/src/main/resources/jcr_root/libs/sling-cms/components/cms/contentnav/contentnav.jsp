@@ -24,7 +24,14 @@
 		<c:set var="prefixPath" value="${item.path}/" />
 		<li class="Nav-Item ${(fn:startsWith(slingRequest.requestPathInfo.suffix, prefixPath) || slingRequest.requestPathInfo.suffix == item.path) ? 'Active' : ''}">
 			<a href="${properties.itemPrefix}${item.path}" title="View ${item.valueMap['jcr:title']}">
-				<sling:encode value="${item.valueMap['jcr:title']}" mode="HTML" />
+				<c:choose>
+					<c:when test="${sling:getRelativeResource(item,'jcr:content') != null}">
+						<sling:encode value="${sling:getRelativeResource(item,'jcr:content').valueMap['jcr:title']}" mode="HTML" />
+					</c:when>
+					<c:otherwise>
+						<sling:encode value="${item.valueMap['jcr:title']}" mode="HTML" />
+					</c:otherwise>
+				</c:choose>
 			</a>
 		</li>
 	</c:forEach>

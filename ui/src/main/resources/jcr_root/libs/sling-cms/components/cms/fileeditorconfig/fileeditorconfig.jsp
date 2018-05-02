@@ -20,10 +20,9 @@
 <c:set var="cmsEditEnabled" value="true" scope="request" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 
-<h3>Page Templates</h3>
 <c:set var="oldAvailableTypes" value="${availableTypes}" />
 <c:set var="availableTypes" value="SlingCMS-FileEditor" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}/editors" resourceType="sling-cms/components/general/container" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/cms/fileeditorconfig/config" />
 <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />

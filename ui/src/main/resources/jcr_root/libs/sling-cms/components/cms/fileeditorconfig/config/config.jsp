@@ -17,7 +17,26 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div>
-	<strong>${properties.key}</strong><br/>
-	${properties.value}
-</div>
+<dl>
+	<dt>
+		MIME Types
+	</dt>
+	<dd>
+		<ul>
+			<c:forEach var="mimetype" items="${sling:getRelativeResource(resource,'jcr:content').valueMap.mimetypes}">
+				<li>
+					<pre><sling:encode value="${mimetype}" mode="HTML" /></pre>
+				</li>
+			</c:forEach>
+		</ul>
+	</dd>
+	<dt>
+		Fields
+	</dt>
+	<dd>
+		<c:set var="oldAvailableTypes" value="${availableTypes}" />
+		<c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
+		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
+		<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+	</dd>
+</dl>

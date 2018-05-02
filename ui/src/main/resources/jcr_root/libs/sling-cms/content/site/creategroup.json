@@ -2,7 +2,7 @@
 	"jcr:primaryType": "sling:Page",
 	"jcr:content": {
 		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Create File Editor",
+		"jcr:title": "Create Folder",
 		"jcr:primaryType": "nt:unstructured",
 		"container": {
 			"jcr:primaryType": "nt:unstructured",
@@ -10,13 +10,14 @@
 			"richtext": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h3>Create File Editor</h3>"
+				"text": "<h3>Create Site Group</h3>"
 			},
 			"slingform": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/editor/slingform",
 				"actionSuffix": "/*",
-				"button": "Create File Editor",
+				"button": "Create Site Group",
+				"successPrepend":"/libs/sling-cms/content/site/content.html",
 				"fields": {
 					"jcr:primaryType": "nt:unstructured",
 					"sling:resourceType": "sling-cms/components/general/container",
@@ -24,7 +25,7 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/text",
 						"label": "Title",
-						"name": "jcr:title",
+						"name": "jcr:content/jcr:title",
 						"required": true
 					},
 					"name": {
@@ -34,10 +35,26 @@
 						"name": ":name",
 						"required": true
 					},
+					"config": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/path",
+						"basePath": "/conf",
+						"label": "Config",
+						"name": "sling:configRef",
+						"required": false,
+						"titleProperty": "jcr:content/jcr:title",
+						"type": "sling:OrderedFolder"
+					},
 					"primaryType": {
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
 						"name": "jcr:primaryType",
+						"value": "sling:OrderedFolder"
+					},
+					"contentPrimaryType": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": "jcr:content/jcr:primaryType",
 						"value": "nt:unstructured"
 					}
 				}

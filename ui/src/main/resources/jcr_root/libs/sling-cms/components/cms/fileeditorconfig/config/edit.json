@@ -10,8 +10,14 @@
 			"sling:resourceType": "sling-cms/components/editor/fields/repeating",
 			"type": "text",
 			"label": "MIME Types",
-			"name": "mimetypes",
+			"name": "jcr:content/mimetypes",
 			"required": true
+		},
+		"mimetypesTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "jcr:content/mimetypes@TypeHint",
+			"value":"String[]"
 		}
 	}
 }

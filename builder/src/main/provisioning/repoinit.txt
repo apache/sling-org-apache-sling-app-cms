@@ -27,7 +27,7 @@
     # general
     create path (sling:OrderedFolder) /content
     set ACL for everyone
-        allow   jcr:read	on /
+        allow   jcr:read	on /content
     end
 
     # sling-mapping

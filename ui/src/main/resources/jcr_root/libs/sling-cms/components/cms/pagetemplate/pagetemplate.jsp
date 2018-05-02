@@ -17,9 +17,6 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<a href="/cms/config/edit.html${resource.parent.parent.path}">
-	&lt; Site Configuration
-</a>
 <h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${resource.path})</h3>
 <dl>
 	<dt>

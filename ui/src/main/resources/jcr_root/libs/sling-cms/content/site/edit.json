@@ -51,11 +51,12 @@
 					"config": {
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/path",
-						"basePath": "/etc/config",
-						"type": "sling:Config",
-						"label": "Site Config",
-						"name": "sling:config",
-						"titleProperty": "jcr:title"
+						"basePath": "/conf",
+						"label": "Config",
+						"name": "sling:configRef",
+						"required": false,
+						"titleProperty": "jcr:content/jcr:title",
+						"type": "sling:OrderedFolder"
 					}
 				}
 			}

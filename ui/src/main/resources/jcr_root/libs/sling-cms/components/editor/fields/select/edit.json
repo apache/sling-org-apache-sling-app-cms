@@ -18,6 +18,13 @@
 			"label": "Name",
 			"name": "name",
 			"required": true
+		},
+		"options": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/textarea",
+			"label": "Options",
+			"name": "options",
+			"required": true
 		}
 	}
 }
