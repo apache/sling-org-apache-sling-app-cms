@@ -29,6 +29,11 @@
     set ACL for everyone
         allow   jcr:read	on /content
     end
+    
+    create path (sling:OrderedFolder) /etc/clientlibs
+    set ACL for everyone
+        allow   jcr:read	on /etc/clientlibs
+    end
 
     # sling-mapping
     create service user sling-mapping

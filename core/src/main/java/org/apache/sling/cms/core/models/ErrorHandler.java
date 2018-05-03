@@ -16,8 +16,11 @@
  */
 package org.apache.sling.cms.core.models;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -27,6 +30,7 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,13 +54,16 @@ public class ErrorHandler {
 	private SlingHttpServletRequest slingRequest;
 
 	private Resource handler;
+	
+	@SlingObject
+	private HttpServletResponse response;
 
 	public ErrorHandler(SlingHttpServletRequest slingRequest) {
 		this.slingRequest = slingRequest;
 	}
 
 	@PostConstruct
-	public void init() {
+	public void init() throws IOException {
 
 		Resource resource = slingRequest.getResource();
 		ResourceResolver resolver = slingRequest.getResourceResolver();
@@ -67,34 +74,49 @@ public class ErrorHandler {
 			log.warn("Handing exception of type " + errorCode,
 					slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
 		}
-		SiteManager siteMgr = resource.adaptTo(SiteManager.class);
-		if (siteMgr != null && siteMgr.getSite() != null) {
-			Site site = siteMgr.getSite();
-			log.debug("Checking for error pages in the site {}", site.getPath());
+		
+		
+		try {
+			SiteManager siteMgr = resource.adaptTo(SiteManager.class);
+			if (siteMgr != null && siteMgr.getSite() != null) {
+				Site site = siteMgr.getSite();
+				log.debug("Checking for error pages in the site {}", site.getPath());
 
-			handler = site.getResource().getChild("errors/" + errorCode.toString());
-			if (handler == null) {
-				handler = site.getResource().getChild("errors/default");
-			}
+				handler = site.getResource().getChild("errors/" + errorCode.toString());
+				if (handler == null) {
+					handler = site.getResource().getChild("errors/default");
+				}
 
-			if (handler != null) {
-				log.debug("Using error handler {}", handler);
-			} else {
-				log.debug("No error page defined for site {}", site.getPath());
+				if (handler != null) {
+					log.debug("Using error handler {}", handler);
+				} else {
+					log.debug("No error page defined for site {}", site.getPath());
+				}
 			}
+		} catch (Exception e) {
+			log.debug("Failed to retrieve current site, using default error handling");
 		}
 
 		if (handler == null) {
 			log.debug("Using Sling CMS default error pages");
-			handler = resolver.getResource("/libs/sling-cms/content/errorhandling/" + errorCode.toString());
+			handler = resolver.getResource("/content/sling-cms/errorhandling/" + errorCode.toString());
 			if (handler == null) {
-				handler = resolver.getResource("/libs/sling-cms/content/errorhandling/default");
+				handler = resolver.getResource("/content/sling-cms/errorhandling/default");
 			}
 			log.debug("Using Sling CMS error handler {}", handler);
 		}
+		
+		log.debug("Sending error {}",errorCode);
+		response.sendError(errorCode);
+		
+		log.debug("Error handler initialized successfully!");
 	}
 
 	public Resource getHandler() {
 		return handler;
+	}
+	
+	public int getErrorCode() {
+		return errorCode;
 	}
 }
