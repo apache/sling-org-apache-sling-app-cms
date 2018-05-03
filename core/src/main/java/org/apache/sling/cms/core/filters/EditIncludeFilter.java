@@ -92,15 +92,10 @@ public class EditIncludeFilter implements Filter {
 					"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
 							+ resource.getPath() + "\" data-sling-cms-edit=\"" + editPath
 							+ "\" title=\"Edit\">&#x270f;</button>");
-			if (!first) {
+			if (!first || !last) {
 				writer.write(
-						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"moveup\" data-sling-cms-path=\""
-								+ resource.getPath() + "\" title=\"Move Up\">&#9650;</button>");
-			}
-			if (!last) {
-				writer.write(
-						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"movedown\" data-sling-cms-path=\""
-								+ resource.getPath() + "\" title=\"Move Down\">&#9660;</button>");
+						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"reorder\" data-sling-cms-path=\""
+								+ resource.getPath() + "\" title=\"Reorder\">&#8597;</button>");
 			}
 			if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
 				writer.write(

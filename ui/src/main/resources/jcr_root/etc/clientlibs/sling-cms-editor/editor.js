@@ -33,11 +33,8 @@ if(!window.CMSEditor){
 					'/cms/editor/edit.html'+$(this).attr('data-sling-cms-path')+'?editor='+$(this).attr('data-sling-cms-edit'),
 					$(this).closest('.Sling-CMS__component').attr('data-sling-cms-title'));
 			});
-			$(".Sling-CMS__edit-button[data-sling-cms-action=moveup]").click(function(){
-				CMSEditor.ui.showModal('/cms/editor/moveup.html'+$(this).attr('data-sling-cms-path'));
-			});
-			$(".Sling-CMS__edit-button[data-sling-cms-action=movedown]").click(function(){
-				CMSEditor.ui.showModal('/cms/editor/movedown.html'+$(this).attr('data-sling-cms-path'));
+			$(".Sling-CMS__edit-button[data-sling-cms-action=reorder]").click(function(){
+				CMSEditor.ui.showModal('/cms/editor/reorder.html'+$(this).attr('data-sling-cms-path'));
 			});
 			
 			// closing the modal
