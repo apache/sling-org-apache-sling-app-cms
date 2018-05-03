@@ -25,6 +25,6 @@
 		CMS
 	</a>
 </h1>
-<a class="Cell-Pad"href="https://apache.org" target="_blank" id="asf-logo" title="Visit the Apache Software Foundation website">
+<a class="Cell-Pad" href="https://apache.org" target="_blank" id="asf-logo" title="Visit the Apache Software Foundation website">
     <img src="/content/starter/img/asf-logo.svg" alt="Apache Software Foundation Logo">
 </a>
