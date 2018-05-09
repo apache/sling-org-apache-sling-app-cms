@@ -33,7 +33,7 @@ import org.apache.sling.models.annotations.Optional;
 @Model(adaptables = Resource.class)
 public class Site {
 
-	public static final String PN_CONFIG = CMSConstants.NAMESPACE + ":config";
+	public static final String PN_CONFIG = CMSConstants.NAMESPACE + ":configRef";
 	public static final String PN_URL = CMSConstants.NAMESPACE + ":url";
 
 	private static Resource findSiteResource(Resource resource) {

@@ -22,19 +22,19 @@
 	<div class="title">
 		<div class="logo">
 			<a href="/">
-				<img border="0" alt="Apache Sling" src="/etc/clientlibs/reference/img/sling.svg"/>
+				<img border="0" alt="Apache Sling" src="/static/clientlibs/reference/img/sling.svg"/>
 			</a>
 		</div>
 		<div class="header">
 			<a href="http://www.apache.org">
-				<img border="0" alt="Apache" src="/etc/clientlibs/reference/img/apache.png"/>
+				<img border="0" alt="Apache" src="/static/clientlibs/reference/img/apache.png"/>
 			</a>
 		</div>
 	</div>
 	<div class="menu">
 		<sling:include path="/content/apache/sling-apache-org/index/jcr:content/menu" resourceType="sling-cms/components/general/container" />
 		<a href="http://apache.org/foundation/contributing.html">
-            <img border="0" alt="Support the Apache Software Foundation!" src="/etc/clientlibs/reference/img/SupportApache-small.png" width="115px">
+            <img border="0" alt="Support the Apache Software Foundation!" src="/static/clientlibs/reference/img/SupportApache-small.png" width="115px">
         </a>
 	</div>
 	<div class="main">

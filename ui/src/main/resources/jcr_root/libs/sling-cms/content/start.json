@@ -22,10 +22,21 @@
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/cms/contentnav",
 				"createPath": "/cms/site/creategroup.html/content",
+				"createTitle": "Site Group",
 				"prefix": "/cms/site",
 				"itemPrefix": "/cms/site/sites.html",
 				"query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/content') ORDER BY NAME()",
-				"title": "Site Group"
+				"title": "Sites"
+			},
+			"staticnav": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contentnav",
+				"createPath": "/cms/folder/create.html/static",
+				"createTitle": "Folder",
+				"prefix": "/cms/static",
+				"itemPrefix": "/cms/static/content.html",
+				"query": "SELECT * FROM [sling:Folder] AS s WHERE ISCHILDNODE(s,'/static') ORDER BY NAME()",
+				"title": "Static Content"
 			},
 			"taxonomynav": {
 				"jcr:primaryType": "nt:unstructured",

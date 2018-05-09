@@ -52,7 +52,7 @@
 						<Sling-Initial-Content>
 							jcr_root,
 							jcr_root/apps/reference;overwrite:=true;uninstall:=true;path:=/apps/reference,
-							jcr_root/etc/clientlibs/reference;overwrite=true;ignoreImportProviders:=xml;path:=/etc/clientlibs/reference
+							jcr_root/static/clientlibs/reference;overwrite=true;ignoreImportProviders:=xml;path:=/static/clientlibs/reference
 						</Sling-Initial-Content>
 					</instructions>
 				</configuration>

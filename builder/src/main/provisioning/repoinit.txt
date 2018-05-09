@@ -30,9 +30,9 @@
         allow   jcr:read	on /content
     end
     
-    create path (sling:OrderedFolder) /etc/clientlibs
+    create path (sling:OrderedFolder) /static
     set ACL for everyone
-        allow   jcr:read	on /etc/clientlibs
+        allow   jcr:read	on /static
     end
 
     # sling-mapping

@@ -35,5 +35,5 @@
 			</a>
 		</li>
 	</c:forEach>
-<li class="Nav-Item"><a href="${properties.createPath}" title="Create a new ${properties.title}" class="Fetch-Modal" data-title="Create ${properties.title}" data-path=".Main-Content form">+ ${properties.title}</a></li>
+<li class="Nav-Item"><a href="${properties.createPath}" title="Create a new ${not empty properties.createTitle ? properties.createTitle : properties.title}" class="Fetch-Modal" data-title="Create ${not empty properties.createTitle ? properties.createTitle : properties.title}" data-path=".Main-Content form">+ ${not empty properties.createTitle ? properties.createTitle : properties.title}</a></li>
 </ul>
