@@ -28,12 +28,23 @@
 					<c:when test="${sling:getRelativeResource(item,'jcr:content') != null}">
 						<sling:encode value="${sling:getRelativeResource(item,'jcr:content').valueMap['jcr:title']}" mode="HTML" />
 					</c:when>
-					<c:otherwise>
+					<c:when test="${not empty item.valueMap['jcr:title']}">
 						<sling:encode value="${item.valueMap['jcr:title']}" mode="HTML" />
+					</c:when>
+					<c:otherwise>
+						<sling:encode value="${item.name}" mode="HTML" />
 					</c:otherwise>
 				</c:choose>
 			</a>
 		</li>
 	</c:forEach>
-<li class="Nav-Item"><a href="${properties.createPath}" title="Create a new ${not empty properties.createTitle ? properties.createTitle : properties.title}" class="Fetch-Modal" data-title="Create ${not empty properties.createTitle ? properties.createTitle : properties.title}" data-path=".Main-Content form">+ ${not empty properties.createTitle ? properties.createTitle : properties.title}</a></li>
+	<c:choose>
+		<c:when test="${not empty properties.createTitle}">
+			<c:set var="createTitle" value="${properties.createTitle}" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="createTitle" value="${properties.title}" />
+		</c:otherwise>		
+	</c:choose>
+	<li class="Nav-Item"><a href="${properties.createPath}" title="Create a new ${createTitle}" class="Fetch-Modal" data-title="Create ${createTitle}" data-path=".Main-Content form">+ ${createTitle}</a></li>
 </ul>
