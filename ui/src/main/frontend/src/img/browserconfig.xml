@@ -20,7 +20,7 @@
 <browserconfig>
     <msapplication>
         <tile>
-            <square150x150logo src="/etc/clientlibs/sling-cms/img/mstile-150x150.png"/>
+            <square150x150logo src="/static/clientlibs/sling-cms/img/mstile-150x150.png"/>
             <TileColor>#ffffff</TileColor>
         </tile>
     </msapplication>

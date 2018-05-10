@@ -94,12 +94,13 @@
 						<Sling-Nodetypes>SLING-INF/nodetypes/nodetypes.cnd</Sling-Nodetypes>
 						<Sling-Initial-Content>
 							jcr_root,
+							jcr_root/oak%3Aindex;overwrite:=false;uninstall:=true;path:=/oak:index,
 							jcr_root/conf/global;overwrite:=false;uninstall:=true;path:=/conf/global,
 							jcr_root/etc/clientlibs;overwrite=true;ignoreImportProviders:=xml;path:=/etc/clientlibs,
 							jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy,
 							jcr_root/libs/sling/servlet/errorhandler;overwriteProperties:=true;overwrite:=true;uninstall:=true;path:=/libs/sling/servlet/errorhandler,
 							jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,
-							jcr_root/etc/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/etc/clientlibs/sling-cms
+							jcr_root/static/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/static/clientlibs/sling-cms
 						</Sling-Initial-Content>
             			<Include-Resource>{maven-resources},${basedir}/target/frontend/dist</Include-Resource>
 					</instructions>

@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<script src="/etc/clientlibs/sling-cms/js/scripts.min.js"></script>
+<script src="/static/clientlibs/sling-cms/js/scripts.min.js"></script>

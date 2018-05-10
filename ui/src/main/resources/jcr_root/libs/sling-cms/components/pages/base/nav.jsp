@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <a class="Cell-Pad" href="http://sling.apache.org" target="_blank" title="Visit the Apache Sling website">
-	<img src="/etc/clientlibs/sling-cms/img/sling-logo.svg" alt="Apache Sling Logo"/>
+	<img src="/static/clientlibs/sling-cms/img/sling-logo.svg" alt="Apache Sling Logo"/>
 </a>
 <h1>
 	<a href="/cms/start.html">
