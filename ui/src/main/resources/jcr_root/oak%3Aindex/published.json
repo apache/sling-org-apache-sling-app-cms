@@ -1,0 +1,9 @@
+{
+  "jcr:primaryType": "oak:QueryIndexDefinition",
+  "propertyNames": [
+    "published"
+  ],
+  "type": "property",
+  "reindex": false,
+  "reindexCount": 1
+}

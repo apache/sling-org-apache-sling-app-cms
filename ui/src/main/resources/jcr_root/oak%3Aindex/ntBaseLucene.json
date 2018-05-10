@@ -1,0 +1,40 @@
+{
+	"jcr:primaryType": "oak:QueryIndexDefinition",
+	"compatVersion": 2,
+	"indexPath": "/oak:index/ntBaseLucene",
+	"name": "ntBaseLucene",
+	"type": "lucene",
+	"async": [
+		"async",
+		"nrt"
+	],
+	"evaluatePathRestrictions": false,
+	"excludedPaths": [
+		"/jcr:system"
+	],
+	"reindex": false,
+	"reindexCount": 1,
+	"indexRules": {
+		"jcr:primaryType": "nt:unstructured",
+		"nt:base": {
+			"jcr:primaryType": "nt:unstructured",
+			"properties": {
+				"jcr:primaryType": "nt:unstructured",
+				"cqTags": {
+					"jcr:primaryType": "nt:unstructured",
+					"ordered": false,
+					"propertyIndex": true,
+					"name": "sling:taxonomy",
+					"type": "String"
+				},
+				"slingResource": {
+					"jcr:primaryType": "nt:unstructured",
+					"ordered": false,
+					"propertyIndex": true,
+					"name": "sling:resource",
+					"type": "String"
+				}
+			}
+		}
+	}
+}

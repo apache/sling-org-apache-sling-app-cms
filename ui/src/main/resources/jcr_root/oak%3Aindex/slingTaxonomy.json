@@ -1,0 +1,31 @@
+{
+	"jcr:primaryType": "oak:QueryIndexDefinition",
+	"compatVersion": 2,
+	"type": "lucene",
+	"async": [
+		"async",
+		"nrt"
+	],
+	"excludedPaths": [
+		"/var",
+		"/jcr:system"
+	],
+	"reindex": false,
+	"reindexCount": 1,
+	"indexRules": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:Taxonomy": {
+			"jcr:primaryType": "nt:unstructured",
+			"properties": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcrTitle": {
+					"jcr:primaryType": "nt:unstructured",
+					"propertyIndex": true,
+					"analyzed": true,
+					"name": "jcr:title",
+					"type": "String"
+				}
+			}
+		}
+	}
+}

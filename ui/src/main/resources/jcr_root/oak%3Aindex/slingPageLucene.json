@@ -1,0 +1,78 @@
+{
+	"jcr:primaryType": "oak:QueryIndexDefinition",
+	"compatVersion": 2,
+	"type": "lucene",
+	"async": [
+		"async",
+		"nrt"
+	],
+	"evaluatePathRestrictions": true,
+	"excludedPaths": [
+		"/var",
+		"/jcr:system"
+	],
+	"reindex": false,
+	"reindexCount": 1,
+	"aggregates": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:Page": {
+			"jcr:primaryType": "nt:unstructured",
+			"include0": {
+				"jcr:primaryType": "nt:unstructured",
+				"relativeNode": true,
+				"path": "jcr:content"
+			}
+		},
+		"nt:file": {
+			"jcr:primaryType": "nt:unstructured",
+			"include0": {
+				"jcr:primaryType": "nt:unstructured",
+				"path": "jcr:content"
+			}
+		},
+		"nt:unstructured": {
+			"jcr:primaryType": "nt:unstructured",
+			"include0": {
+				"jcr:primaryType": "nt:unstructured",
+				"path": "*"
+			},
+			"include1": {
+				"jcr:primaryType": "nt:unstructured",
+				"path": "*/*"
+			},
+			"include2": {
+				"jcr:primaryType": "nt:unstructured",
+				"path": "*/*/*"
+			},
+			"include3": {
+				"jcr:primaryType": "nt:unstructured",
+				"path": "*/*/*/*"
+			}
+		}
+	},
+	"indexRules": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:Page": {
+			"jcr:primaryType": "nt:unstructured",
+			"properties": {
+				"jcr:primaryType": "nt:unstructured",
+				"cqLastModified": {
+					"jcr:primaryType": "nt:unstructured",
+					"ordered": true,
+					"propertyIndex": true,
+					"name": "jcr:content/sling:lastModified",
+					"type": "Date"
+				},
+				"jcrTitle": {
+					"jcr:primaryType": "nt:unstructured",
+					"nodeScopeIndex": true,
+					"useInSuggest": true,
+					"propertyIndex": true,
+					"useInSpellcheck": true,
+					"name": "jcr:content/jcr:title",
+					"type": "String"
+				}
+			}
+		}
+	}
+}
