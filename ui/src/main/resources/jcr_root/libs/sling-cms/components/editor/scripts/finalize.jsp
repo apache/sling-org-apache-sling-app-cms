@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-	<script src="/static/clientlibs/sling-cms-editor/editor.js"></script>
+	<script src="/etc/clientlibs/sling-cms-editor/editor.js"></script>
 	<div class="Sling-CMS__modal-background">
 		<div class="Sling-CMS__modal-box">
 			<div class="Sling-CMS__modal-frame-header">

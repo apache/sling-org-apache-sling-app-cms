@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<link rel="stylesheet" href="/static/clientlibs/sling-cms-editor/editor.css" />
+<link rel="stylesheet" href="/etc/clientlibs/sling-cms-editor/editor.css" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 <div class="Sling-CMS__edit-bar">
 	<a href="/cms/start.html" target="_blank" class="Sling-CMS__component-title" target="Sling CMS">
