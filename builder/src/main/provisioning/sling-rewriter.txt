@@ -17,30 +17,23 @@
 #  under the License.
 #
 #
-[feature name=sling-event]
+[feature name=sling-rewriter]
 
 [artifacts]
-    org.apache.sling/org.apache.sling.discovery.api/1.0.4
-    org.apache.sling/org.apache.sling.discovery.support/1.0.4
-    org.apache.sling/org.apache.sling.discovery.commons/1.0.20
-    org.apache.sling/org.apache.sling.discovery.base/2.0.8
-    org.apache.sling/org.apache.sling.discovery.oak/1.2.22
+    org.apache.sling/org.apache.sling.commons.html/1.0.0
+    org.apache.sling/org.apache.sling.rewriter/1.2.2
 
 [:repoinit]
-    create service user sling-discovery
+    create service user sling-rewriter
 
-    create path (sling:Folder) /var/discovery
-    create path (sling:Folder) /var/discovery/oak
 
-    set ACL for sling-discovery
-        allow   jcr:read,rep:write    on /var/discovery
+    set ACL for sling-rewriter
+        allow   jcr:read    on /
     end
 
 
 [configurations]
-    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.discovery
+    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.rewriter
         user.mapping=[
-            "org.apache.sling.discovery.commons\=sling-discovery",
-            "org.apache.sling.discovery.base\=sling-discovery",
-            "org.apache.sling.discovery.oak\=sling-discovery"
+            "org.apache.sling.rewriter\=sling-rewriter"
         ]

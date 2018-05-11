@@ -25,9 +25,24 @@
 
 [:repoinit]
     # general
+    create path (sling:OrderedFolder) /conf
+    set ACL for everyone
+        allow   jcr:read	on /conf
+    end
+    
     create path (sling:OrderedFolder) /content
     set ACL for everyone
         allow   jcr:read	on /content
+    end
+    
+    create path (sling:OrderedFolder) /etc/i18n
+    set ACL for everyone
+        allow   jcr:read	on /etc/i18n
+    end
+    
+    create path (sling:OrderedFolder) /etc/taxonomy
+    set ACL for everyone
+        allow   jcr:read	on /etc/taxonomy
     end
     
     create path (sling:OrderedFolder) /static
