@@ -22,6 +22,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.rewriter.ProcessingComponentConfiguration;
 import org.apache.sling.rewriter.ProcessingContext;
 import org.apache.sling.rewriter.Transformer;
@@ -145,7 +146,11 @@ public class ReferenceMappingTransformer implements Transformer {
 	public void init(ProcessingContext context, ProcessingComponentConfiguration cfg) throws IOException {
 		log.trace("init");
 		slingRequest = context.getRequest();
-		if (config != null && config.enabledPaths() != null) {
+
+		// make sure that the configuration is specified and that we're not currently in
+		// edit mode
+		if (config != null && config.enabledPaths() != null
+				&& !"true".equals(slingRequest.getAttribute(CMSConstants.ATTR_EDIT_ENABLED))) {
 			for (String enabledPath : config.enabledPaths()) {
 				if (slingRequest.getResource().getPath().startsWith(enabledPath)) {
 					enabled = true;

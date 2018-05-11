@@ -17,15 +17,18 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- 
-<a href="/cms/config/edit.html${slingRequest.requestPathInfo.suffixResource.parent.parent.path}">
-	&lt; Site Configuration
-</a>
- <br/>
- <c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/cms/template/config" />
-
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
-<c:set var="cmsEditEnabled" value="false" scope="request" />
+<h3>Rewrite Configuration</h3>
+<dl>
+	<dt>Doctype</dt>
+	<dd>
+		<sling:encode value="${resource.valueMap.doctype}" mode="HTML" />
+	</dd>
+	<dt>Rewritten Attributes</dt>
+	<dd>
+		<ul>
+			<c:forEach var="attribute" items="${resource.valueMap.attributes}">
+				<sling:encode value="${attribute}" mode="HTML" />
+			</c:forEach>
+		</ul>
+	</dd>
+</dl>
