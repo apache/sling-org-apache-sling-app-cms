@@ -4,10 +4,93 @@
 		"jcr:primaryType": "nt:unstructured",
 		"jcr:title": "Global"
 	},
+	"files": {
+		"jcr:primaryType": "sling:OrderedFolder",
+		"jcr:content": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:title": "File Configurations"
+		},
+		"editors": {
+			"jcr:primaryType": "sling:OrderedFolder",
+			"jcr:content": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:title": "File Editor"
+			},
+			"default": {
+				"jcr:primaryType": "sling:Config",
+				"jcr:title": "Default File Editor",
+				"sling:resourceType": "sling-cms/components/cms/fileeditorconfig",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"title": {
+						"jcr:primaryType": "nt:unstructured",
+						"required": false,
+						"name": "jcr:content/jcr:title",
+						"type": "text",
+						"label": "Title",
+						"sling:resourceType": "sling-cms/components/editor/fields/text"
+					},
+					"jcrmimeType": {
+						"jcr:primaryType": "nt:unstructured",
+						"required": true,
+						"name": "jcr:content/jcr:mimeType",
+						"type": "text",
+						"label": "MIME Type",
+						"sling:resourceType": "sling-cms/components/editor/fields/text"
+					},
+					"licensing": {
+						"jcr:primaryType": "nt:unstructured",
+						"required": false,
+						"name": "jcr:content/licensing",
+						"type": "text",
+						"label": "Licensing",
+						"sling:resourceType": "sling-cms/components/editor/fields/text"
+					},
+					"taxonomy": {
+						"jcr:primaryType": "nt:unstructured",
+						"name": "jcr:content/sling:taxonomy",
+						"label": "Taxonomy",
+						"sling:resourceType": "sling-cms/components/editor/fields/taxonomy"
+					},
+					"taxonomyTypeHint": {
+						"jcr:primaryType": "nt:unstructured",
+						"name": "jcr:content/sling:taxonomy@TypeHint",
+						"value": "String[]",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden"
+					},
+					"published": {
+						"jcr:primaryType": "nt:unstructured",
+						"options": "Yes=true, No=false",
+						"name": "jcr:content/published",
+						"label": "Published",
+						"sling:resourceType": "sling-cms/components/editor/fields/select"
+					},
+					"publishedTypeHint": {
+						"jcr:primaryType": "nt:unstructured",
+						"name": "jcr:content/published@TypeHint",
+						"value": "Boolean",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden"
+					}
+				}
+			}
+		}
+	},
 	"site": {
 		"jcr:primaryType": "sling:Config",
-		"jcr:title": "Default Site Configuration",
 		"sling:resourceType": "sling-cms/components/cms/siteconfig",
+		"jcr:content": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:title": "Default Site Configuration"
+		},
+		"rewrite": {
+			"jcr:primaryType": "nt:unstructured",
+			"doctype": "<!DOCTYPE html>",
+			"attributes": [
+				"action",
+				"href",
+				"src"
+			]
+		},
 		"templates": {
 			"jcr:primaryType": "nt:unstructured",
 			"base-page": {
@@ -15,12 +98,10 @@
 				"jcr:title": "Base Page",
 				"template": "{\r\n  \"jcr:primaryType\": \"sling:Page\",\r\n  \"jcr:content\": {\r\n    \"jcr:primaryType\": \"nt:unstructured\",\r\n    \"jcr:title\": \"{{title}}\",\r\n    \"sling:template\": \"/conf/global/site/templates/base-page\",\r\n    \"sling:resourceType\": \"reference/components/pages/base\",\r\n    \"published\": false\r\n  }\r\n}",
 				"availableComponentTypes": [
-					"General",
-					"SlingCMS-ComponentConfig"
+					"General"
 				],
-				"jcr:lastModifiedBy": "admin",
 				"allowedPaths": [
-					"/content/apache-sling-org.*"
+					"/content/apache/apache-sling-org.*"
 				],
 				"sling:resourceType": "sling-cms/components/cms/pagetemplate",
 				"fields": {
@@ -54,144 +135,6 @@
 						],
 						"sling:resourceType": "sling-cms/components/cms/componentconfig"
 					}
-				}
-			}
-		},
-		"jcr:content": {
-			"jcr:primaryType": "nt:unstructured",
-			"jcr:title": "Default Site Configuration"
-		}
-	},
-	"files": {
-		"jcr:primaryType": "sling:OrderedFolder",
-		"jcr:content": {
-			"jcr:primaryType": "nt:unstructured",
-			"jcr:title": "File Configurations"
-		},
-		"editors": {
-			"jcr:primaryType": "sling:OrderedFolder",
-			"jcr:content": {
-				"jcr:primaryType": "nt:unstructured",
-				"jcr:title": "File Editor"
-			},
-			"default": {
-				"jcr:primaryType": "sling:Config",
-				"jcr:title": "Default File Editor",
-				"sling:resourceType": "sling-cms/components/cms/fileeditorconfig",
-				"fields": {
-					"jcr:primaryType": "nt:unstructured",
-					"text": {
-						"jcr:primaryType": "nt:unstructured",
-						"required": false,
-						"name": "jcr:content/jcr:title",
-						"type": "text",
-						"label": "Title",
-						"sling:resourceType": "sling-cms/components/editor/fields/text"
-					},
-					"text_1274324601": {
-						"jcr:primaryType": "nt:unstructured",
-						"required": true,
-						"name": "jcr:content/jcr:mimeType",
-						"type": "text",
-						"label": "MIME Type",
-						"sling:resourceType": "sling-cms/components/editor/fields/text"
-					},
-					"text_1001913053": {
-						"jcr:primaryType": "nt:unstructured",
-						"required": false,
-						"name": "jcr:content/licensing",
-						"type": "text",
-						"label": "Licensing",
-						"sling:resourceType": "sling-cms/components/editor/fields/text"
-					},
-					"taxonomy": {
-						"jcr:primaryType": "nt:unstructured",
-						"name": "jcr:content/sling:taxonomy",
-						"label": "Taxonomy",
-						"sling:resourceType": "sling-cms/components/editor/fields/taxonomy"
-					},
-					"hidden": {
-						"jcr:primaryType": "nt:unstructured",
-						"name": "jcr:content/sling:taxonomy@TypeHint",
-						"value": "String[]",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden"
-					},
-					"select": {
-						"jcr:primaryType": "nt:unstructured",
-						"options": "Yes=true, No=false",
-						"name": "jcr:content/published",
-						"label": "Published",
-						"sling:resourceType": "sling-cms/components/editor/fields/select"
-					},
-					"hidden_200038586": {
-						"jcr:primaryType": "nt:unstructured",
-						"name": "jcr:content/published@TypeHint",
-						"value": "Boolean",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden"
-					}
-				}
-			},
-			"video": {
-				"jcr:primaryType": "sling:Config",
-				"jcr:title": "Video File Editor",
-				"sling:resourceType": "sling-cms/components/cms/fileeditorconfig",
-				"fields": {
-					"jcr:primaryType": "nt:unstructured",
-					"text": {
-						"jcr:primaryType": "nt:unstructured",
-						"required": false,
-						"name": "jcr:content/jcr:title",
-						"type": "text",
-						"label": "Video Title",
-						"sling:resourceType": "sling-cms/components/editor/fields/text"
-					},
-					"text_1274324601": {
-						"jcr:primaryType": "nt:unstructured",
-						"required": true,
-						"name": "jcr:content/jcr:mimeType",
-						"type": "text",
-						"label": "MIME Type",
-						"sling:resourceType": "sling-cms/components/editor/fields/text"
-					},
-					"text_1001913053": {
-						"jcr:primaryType": "nt:unstructured",
-						"required": false,
-						"name": "jcr:content/licensing",
-						"type": "text",
-						"label": "Licensing",
-						"sling:resourceType": "sling-cms/components/editor/fields/text"
-					},
-					"taxonomy": {
-						"jcr:primaryType": "nt:unstructured",
-						"name": "jcr:content/sling:taxonomy",
-						"label": "Taxonomy",
-						"sling:resourceType": "sling-cms/components/editor/fields/taxonomy"
-					},
-					"hidden": {
-						"jcr:primaryType": "nt:unstructured",
-						"name": "jcr:content/sling:taxonomy@TypeHint",
-						"value": "String[]",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden"
-					},
-					"select": {
-						"jcr:primaryType": "nt:unstructured",
-						"options": "Yes=true, No=false",
-						"name": "jcr:content/published",
-						"label": "Published",
-						"sling:resourceType": "sling-cms/components/editor/fields/select"
-					},
-					"hidden_200038586": {
-						"jcr:primaryType": "nt:unstructured",
-						"name": "jcr:content/published@TypeHint",
-						"value": "Boolean",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden"
-					}
-				},
-				"jcr:content": {
-					"jcr:primaryType": "nt:unstructured",
-					"mimetypes": [
-						"video/mp4"
-					]
 				}
 			}
 		}

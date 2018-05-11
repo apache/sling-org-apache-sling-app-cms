@@ -16,11 +16,13 @@
  */
 package org.apache.sling.cms.core.rewriter;
 
+import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.apache.sling.rewriter.Transformer;
 import org.apache.sling.rewriter.TransformerFactory;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +40,9 @@ public class ReferenceMappingTransformerFactory implements TransformerFactory {
 	private static final Logger log = LoggerFactory.getLogger(ReferenceMappingTransformerFactory.class);
 	private ReferenceMappingTransformerConfig config;
 
+	@Reference
+	private ConfigurationResourceResolver resolver;
+
 	
 	@Activate
     public void activate(ReferenceMappingTransformerConfig config) {
@@ -52,7 +57,7 @@ public class ReferenceMappingTransformerFactory implements TransformerFactory {
 	@Override
 	public Transformer createTransformer() {
 		log.trace("createTransformer");
-		return new ReferenceMappingTransformer(config);
+		return new ReferenceMappingTransformer(config, resolver);
 	}
 
 }

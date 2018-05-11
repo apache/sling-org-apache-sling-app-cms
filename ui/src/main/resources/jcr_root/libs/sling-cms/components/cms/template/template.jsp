@@ -25,7 +25,7 @@
  <c:set var="cmsEditEnabled" value="true" scope="request" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/cms/pagetemplate" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/cms/template/config" />
 
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
 <c:set var="cmsEditEnabled" value="false" scope="request" />

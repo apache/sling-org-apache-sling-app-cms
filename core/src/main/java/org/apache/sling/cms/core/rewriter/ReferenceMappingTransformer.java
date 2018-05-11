@@ -20,6 +20,8 @@ import java.io.IOException;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.apache.sling.rewriter.ProcessingComponentConfiguration;
 import org.apache.sling.rewriter.ProcessingContext;
 import org.apache.sling.rewriter.Transformer;
@@ -47,8 +49,14 @@ public class ReferenceMappingTransformer implements Transformer {
 
 	private boolean enabled = false;
 
-	public ReferenceMappingTransformer(ReferenceMappingTransformerConfig config) {
+	private ConfigurationResourceResolver resolver;
+
+	private String[] attributes;
+
+	public ReferenceMappingTransformer(ReferenceMappingTransformerConfig config,
+			ConfigurationResourceResolver resolver) {
 		this.config = config;
+		this.resolver = resolver;
 	}
 
 	@Override
@@ -87,7 +95,7 @@ public class ReferenceMappingTransformer implements Transformer {
 			AttributesImpl newAtts = new AttributesImpl();
 			for (int i = 0; i < atts.getLength(); i++) {
 				String value = null;
-				if (ArrayUtils.contains(config.mappedAttributes(), atts.getLocalName(i).toLowerCase())
+				if (ArrayUtils.contains(attributes, atts.getLocalName(i).toLowerCase())
 						&& atts.getValue(i).startsWith("/")) {
 					log.trace("Updating attribute {}", atts.getLocalName(i));
 					value = slingRequest.getResourceResolver().map(slingRequest, atts.getValue(i));
@@ -137,13 +145,15 @@ public class ReferenceMappingTransformer implements Transformer {
 	public void init(ProcessingContext context, ProcessingComponentConfiguration cfg) throws IOException {
 		log.trace("init");
 		slingRequest = context.getRequest();
-		if(config != null && config.enabledPaths() != null) {
+		if (config != null && config.enabledPaths() != null) {
 			for (String enabledPath : config.enabledPaths()) {
 				if (slingRequest.getResource().getPath().startsWith(enabledPath)) {
 					enabled = true;
 					break;
 				}
 			}
+			Resource configResource = resolver.getResource(slingRequest.getResource(), "site", "rewrite");
+			attributes = configResource.getValueMap().get("attributes", String[].class);
 		}
 	}
 

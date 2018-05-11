@@ -25,10 +25,6 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 @ObjectClassDefinition(name = "Reference Mapping Transformer Configuration")
 public @interface ReferenceMappingTransformerConfig {
 
-	@AttributeDefinition(name = "Mapped Attributes", description = "Element attributes which should be mapped", defaultValue = {
-			"action", "href", "src" })
-	String[] mappedAttributes();
-
 	@AttributeDefinition(name = "Enabled Paths", description = "Paths under which this transformer will be enabled", defaultValue = {
 			"/content" })
 	String[] enabledPaths();

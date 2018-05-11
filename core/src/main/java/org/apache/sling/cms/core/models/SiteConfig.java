@@ -52,26 +52,6 @@ public class SiteConfig {
 		return CMSUtils.adaptResources(templates, PageTemplate.class);
 	}
 
-	/**
-	 * @return the parameters
-	 */
-	public List<Parameter> getParameters() {
-		return CMSUtils.adaptResources(parameters, Parameter.class);
-	}
-
-	public String getParameterValue(String key) {
-		String value = null;
-		if (parameters != null) {
-			for (Parameter param : getParameters()) {
-				if (key.equals(param.getKey())) {
-					value = param.getValue();
-					break;
-				}
-			}
-		}
-		return value;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
