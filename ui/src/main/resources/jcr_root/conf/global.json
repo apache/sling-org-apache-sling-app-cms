@@ -78,10 +78,7 @@
 	"site": {
 		"jcr:primaryType": "sling:Config",
 		"sling:resourceType": "sling-cms/components/cms/siteconfig",
-		"jcr:content": {
-			"jcr:primaryType": "nt:unstructured",
-			"jcr:title": "Default Site Configuration"
-		},
+		"jcr:title": "Default Site Configuration",
 		"rewrite": {
 			"jcr:primaryType": "nt:unstructured",
 			"doctype": "<!DOCTYPE html>",
