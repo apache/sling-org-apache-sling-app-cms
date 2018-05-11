@@ -292,7 +292,7 @@ Sling.CMS = {
 				$rep.find('.repeating__add').click(function(){
 					var $div = $('<div/>').html($rep.find('.repeating__template').html());
 					Sling.CMS.decorate($div);
-					$('.repeating__container').append($div);
+					$rep.find('.repeating__container').append($div);
 					return false;
 				});
 			});
