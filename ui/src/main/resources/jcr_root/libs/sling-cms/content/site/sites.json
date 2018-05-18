@@ -67,7 +67,7 @@
 							"title": {
 								"jcr:primaryType": "nt:unstructured",
 								"sling:resourceType": "sling-cms/components/cms/columns/text",
-								"property": "jcr:content/jcr:title",
+								"property": "jcr:title",
 								"type": "String"
 							},
 							"lastModified": {
