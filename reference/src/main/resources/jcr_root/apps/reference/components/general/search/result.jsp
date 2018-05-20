@@ -27,6 +27,6 @@
 		<sling:encode value="${result.valueMap['jcr:content/jcr:description']}" mode="HTML" />
 	</p>
 	<a href="${result.path}.html" class="searchresult__link">
-		${fn:replace(result.path,sling:getAbsoluteParent(result,2).path,'')}.html
+		${fn:replace(result.path,sling:getAbsoluteParent(result,3).path,'')}.html
 	</a>
 </div>
