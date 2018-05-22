@@ -27,17 +27,18 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.jstl.fmt.LocalizationContext;
-import org.apache.felix.scr.annotations.sling.SlingFilter;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.cms.core.models.Site;
 import org.apache.sling.cms.core.models.SiteManager;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Sets the locale for the request based on the containing site.
  */
-@SlingFilter(order = 0)
+@Component(service = { Filter.class }, immediate = true, property = { "sling.filter.scope=request" })
 public class LocaleFilter implements Filter {
 
 	private static final Logger log = LoggerFactory.getLogger(LocaleFilter.class);
@@ -58,6 +59,8 @@ public class LocaleFilter implements Filter {
 				ResourceBundle bundle = slingRequest.getResourceBundle(site.getLocale());
 				Config.set(slingRequest, "javax.servlet.jsp.jstl.fmt.localizationContext",
 						new LocalizationContext(bundle, slingRequest.getLocale()));
+			} else {
+				log.trace("No site for {}", slingRequest);
 			}
 		}
 

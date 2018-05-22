@@ -27,18 +27,19 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.felix.scr.annotations.sling.SlingFilter;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.jcr.resource.JcrResourceConstants;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Denies requests to sling:Page and sling:File resources and children which are
  * not set to publish=true
  */
-@SlingFilter(order = Integer.MAX_VALUE)
+@Component(service = { Filter.class }, property = { "sling.filter.scope=request",
+		"service.ranking=" + Integer.MAX_VALUE })
 public class PublishFilter implements Filter {
 
 	public static final String[] PUBLISHABLE_TYPES = new String[] { CMSConstants.NT_FILE, CMSConstants.NT_PAGE,

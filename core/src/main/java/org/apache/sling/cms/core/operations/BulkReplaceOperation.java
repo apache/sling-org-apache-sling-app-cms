@@ -26,9 +26,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
@@ -36,6 +33,7 @@ import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.PostOperation;
 import org.apache.sling.servlets.post.PostResponse;
 import org.apache.sling.servlets.post.SlingPostProcessor;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,9 +42,8 @@ import org.slf4j.LoggerFactory;
  * applicable to the supplied parameters under the resource for the operation,
  * replacing the find string with the replacement value.
  */
-@Component(immediate = true)
-@Service
-@Property(name = PostOperation.PROP_OPERATION_NAME, value = "bulkreplace")
+@Component(immediate = true, service = { PostOperation.class }, property = PostOperation.PROP_OPERATION_NAME
+		+ "=bulkreplace")
 public class BulkReplaceOperation implements PostOperation {
 
 	private static final Logger log = LoggerFactory.getLogger(BulkReplaceOperation.class);

@@ -19,24 +19,26 @@ package org.apache.sling.cms.core.servlets;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Servlet which includes the content of the page when the page is accessed.
  */
-@SlingServlet(resourceTypes = { "sling:Page" }, methods = { HttpConstants.METHOD_TRACE, HttpConstants.METHOD_GET,
-		HttpConstants.METHOD_OPTIONS, HttpConstants.METHOD_HEAD })
+@Component(service = { Servlet.class }, property = { "sling.servlet.resourceTypes=sling:Page",
+		"sling.servlet.methods=" + HttpConstants.METHOD_TRACE, "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+		"sling.servlet.methods=" + HttpConstants.METHOD_OPTIONS, "sling.servlet.methods=" + HttpConstants.METHOD_HEAD })
 public class CMSPageServlet extends SlingSafeMethodsServlet {
 
 	private static final long serialVersionUID = -410942682163323725L;

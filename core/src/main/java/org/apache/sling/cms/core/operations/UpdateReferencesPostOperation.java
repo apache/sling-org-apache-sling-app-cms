@@ -18,11 +18,7 @@ package org.apache.sling.cms.core.operations;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
@@ -31,6 +27,7 @@ import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.SlingPostConstants;
 import org.apache.sling.servlets.post.SlingPostProcessor;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,9 +36,8 @@ import org.slf4j.LoggerFactory;
  * references from a resource which is being moved or deleted to another
  * resource.
  */
-@Component(immediate = true)
-@Service
-@Property(name = Constants.SERVICE_RANKING, intValue = -1)
+@Component(immediate = true, service = { SlingPostProcessor.class }, property = Constants.SERVICE_RANKING
+		+ "=-1")
 public class UpdateReferencesPostOperation implements SlingPostProcessor {
 
 	public static final String RP_UPDATE_REFERENCES = SlingPostConstants.RP_PREFIX + "updateReferences";
@@ -49,7 +45,7 @@ public class UpdateReferencesPostOperation implements SlingPostProcessor {
 	private static final Logger log = LoggerFactory.getLogger(UpdateReferencesPostOperation.class);
 
 	@Override
-	public void process(SlingHttpServletRequest request, List<Modification> changes) throws Exception {
+	public void process(SlingHttpServletRequest request, final List<Modification> changes) throws Exception {
 		if ((SlingPostConstants.OPERATION_DELETE.equals(request.getParameter(SlingPostConstants.RP_OPERATION))
 				|| SlingPostConstants.OPERATION_MOVE.equals(request.getParameter(SlingPostConstants.RP_OPERATION)))
 				&& "true".equalsIgnoreCase(request.getParameter(RP_UPDATE_REFERENCES))) {

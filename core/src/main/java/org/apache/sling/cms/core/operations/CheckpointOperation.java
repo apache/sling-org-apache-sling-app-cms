@@ -27,9 +27,6 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
@@ -37,6 +34,7 @@ import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.PostOperation;
 import org.apache.sling.servlets.post.PostResponse;
 import org.apache.sling.servlets.post.SlingPostProcessor;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,9 +43,8 @@ import org.slf4j.LoggerFactory;
  * Checkpoint operation on the underlying JCR Node. The checkpoint operation
  * depends on the resources being backed up by a JCR node.
  */
-@Component(immediate = true)
-@Service
-@Property(name = PostOperation.PROP_OPERATION_NAME, value = "checkpoint")
+@Component(immediate = true, service = { PostOperation.class }, property = PostOperation.PROP_OPERATION_NAME
++ "=checkpoint")
 public class CheckpointOperation implements PostOperation {
 	
 	private static final Logger log = LoggerFactory.getLogger(CheckpointOperation.class);
