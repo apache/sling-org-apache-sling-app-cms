@@ -14,19 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.rewriter;
+package org.apache.sling.cms.core.filters;
 
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
+
 
 /**
- * Configuration for the Reference Mapping Transformer
+ * Configuration for the CMSSecurityFilter
  */
-@ObjectClassDefinition(name = "%reference.mapping.transformer.name", description = "%reference.mapping.transformer.description", localization = "OSGI-INF/l10n/bundle")
-public @interface ReferenceMappingTransformerConfig {
+@ObjectClassDefinition(name = "%cms.security.filter.name", description = "%cms.security.filter.description", localization = "OSGI-INF/l10n/bundle")
+public @interface CMSSecurityFilterConfig {
 
-	@AttributeDefinition(name = "%enabledPaths.name", description = "%enabledPaths.description", defaultValue = {
-			"/content" })
-	String[] enabledPaths();
+	@AttributeDefinition(name = "%hostDomains.name", description = "%hostDomains.description")
+	String[] hostDomains();
+
+	@AttributeDefinition(name = "%allowedPatterns.name", description = "%allowedPatterns.description")
+	String[] allowedPatterns() default { "^\\/content\\/starter/.*$", "^\\/static/.*$",
+			"^\\/system\\/sling\\/form\\/login$" };
+
+	@AttributeDefinition(name = "%group.name", description = "%group.description")
+	String group();
 
 }

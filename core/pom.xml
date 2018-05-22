@@ -160,6 +160,13 @@
 			<groupId>org.apache.sling</groupId>
 			<artifactId>org.apache.sling.caconfig.api</artifactId>
 		</dependency>
-
+		<dependency>
+			<artifactId>jackrabbit-api</artifactId>
+			<groupId>org.apache.jackrabbit</groupId>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.jcr.base</artifactId>
+        </dependency>
 	</dependencies>
 </project>
