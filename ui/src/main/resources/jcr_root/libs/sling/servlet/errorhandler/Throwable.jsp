@@ -15,8 +15,5 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */ --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="errorHandler" adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.ErrorHandler" />
+ */ --%><%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@include file="/libs/sling-cms/global.jsp"%><sling:adaptTo var="errorHandler" adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.ErrorHandler" />
 <sling:include path="${sling:getRelativeResource(errorHandler.handler,'jcr:content').path}.html" resourceType="${sling:getRelativeResource(errorHandler.handler,'jcr:content').resourceType}" />
