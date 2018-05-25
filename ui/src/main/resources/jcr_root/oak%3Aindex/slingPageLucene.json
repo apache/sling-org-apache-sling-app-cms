@@ -47,6 +47,10 @@
 			"include3": {
 				"jcr:primaryType": "nt:unstructured",
 				"path": "*/*/*/*"
+			},
+			"include4": {
+				"jcr:primaryType": "nt:unstructured",
+				"path": "*/*/*/*/*"
 			}
 		}
 	},
