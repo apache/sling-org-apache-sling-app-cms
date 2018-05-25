@@ -17,7 +17,7 @@
 				"sling:resourceType": "sling-cms/components/editor/slingform",
 				"actionSuffix": "/templates/",
 				"button": "Create Template",
-				"successPrepend":"/libs/sling-cms/content/site/content.html",
+				"successPrepend": "/libs/sling-cms/content/site/content.html",
 				"fields": {
 					"jcr:primaryType": "nt:unstructured",
 					"sling:resourceType": "sling-cms/components/general/container",
@@ -32,8 +32,13 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/text",
 						"label": "Name",
-						"name": ":name",
-						"required": true
+						"name": ":name"
+					},
+					"nameParam": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": ":nameParam",
+						"value": "jcr:title"
 					},
 					"primaryType": {
 						"jcr:primaryType": "nt:unstructured",

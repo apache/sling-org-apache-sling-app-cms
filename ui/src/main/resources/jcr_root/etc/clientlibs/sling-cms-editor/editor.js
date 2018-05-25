@@ -22,9 +22,6 @@ if(!window.CMSEditor){
 			$(".Sling-CMS__edit-button[data-sling-cms-action=add]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/add.html'+$(this).attr('data-sling-cms-path')+'?availableTypes='+$(this).data('sling-cms-available-types'));
 			});
-			$(".Sling-CMS__edit-button[data-sling-cms-action=add-named]").click(function(){
-				CMSEditor.ui.showModal('/cms/editor/add-named.html'+$(this).attr('data-sling-cms-path')+'?availableTypes='+$(this).data('sling-cms-available-types'));
-			});
 			$(".Sling-CMS__edit-button[data-sling-cms-action=delete]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/delete.html'+$(this).attr('data-sling-cms-path'));
 			});
