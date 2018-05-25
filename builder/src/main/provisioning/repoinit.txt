@@ -49,13 +49,6 @@
     set ACL for everyone
         allow   jcr:read	on /static
     end
-    
-    # sling-i18n
-    create service user sling-i18n
-    
-    set ACL for sling-i18n
-        allow   jcr:read    on /
-    end
 
     # sling-mapping
     create service user sling-mapping
