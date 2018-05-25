@@ -30,11 +30,11 @@
 					"jcr:primaryType": "nt:unstructured",
 					"title": {
 						"jcr:primaryType": "nt:unstructured",
-						"title": "Title"
+						"title": "Language"
 					},
 					"language": {
 						"jcr:primaryType": "nt:unstructured",
-						"title": "Language"
+						"title": "i18n Code"
 					},
 					"actions": {
 						"jcr:primaryType": "nt:unstructured",
@@ -47,27 +47,18 @@
 						"jcr:primaryType": "nt:unstructured",
 						"columns": {
 							"jcr:primaryType": "nt:unstructured",
-							"title": {
+							"language": {
 								"jcr:primaryType": "nt:unstructured",
-								"property": "jcr:content/jcr:title",
-								"type": "String"
+								"sling:resourceType": "sling-cms/components/cms/columns/localetitle"
 							},
-							"Language": {
+							"i18n": {
 								"jcr:primaryType": "nt:unstructured",
-								"property": "jcr:language",
-								"type": "String"
+								"sling:resourceType": "sling-cms/components/cms/columns/text",
+								"property": "jcr:language"
 							},
 							"actions": {
 								"jcr:primaryType": "nt:unstructured",
-								"type": "Actions",
-								"edit": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"new": false,
-									"title": "Edit Language",
-									"text": "&#x270f;",
-									"prefix": "/cms/i18n/language/edit.html"
-								},
+								"sling:resourceType": "sling-cms/components/cms/columns/actions",
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,

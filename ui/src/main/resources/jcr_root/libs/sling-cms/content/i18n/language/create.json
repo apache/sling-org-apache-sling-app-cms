@@ -33,8 +33,13 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/text",
 						"label": "Name",
-						"name": ":name",
-						"required": true
+						"name": ":name"
+					},
+					"nameParam": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+						"name": ":nameParam",
+						"value": "jcr:language"
 					},
 					"primaryType": {
 						"jcr:primaryType": "nt:unstructured",
