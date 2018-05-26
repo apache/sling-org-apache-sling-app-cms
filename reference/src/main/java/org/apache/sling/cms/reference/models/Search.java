@@ -102,7 +102,7 @@ public class Search {
 
 		String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replaceAll("'", "''");
 
-		String query = "SELECT * FROM [sling:Page] AS p WHERE (p.[jcr:content/hideInSitemap] IS NULL OR p.[jcr:content/hideInSitemap] <> true) AND ISDESCENDANTNODE(p, '"
+		String query = "SELECT * FROM [sling:Page] AS p WHERE [jcr:content/published]=true AND (p.[jcr:content/hideInSitemap] IS NULL OR p.[jcr:content/hideInSitemap] <> true) AND ISDESCENDANTNODE(p, '"
 				+ basePath + "') AND CONTAINS(p.*, '" + term + "') ORDER BY [jcr:score]";
 		log.debug("Searching for pages with {} under {} with query: {}", term, basePath, query);
 		Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);
