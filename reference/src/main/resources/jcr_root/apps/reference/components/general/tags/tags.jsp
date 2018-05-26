@@ -17,11 +17,18 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
+<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
+<c:set var="config" value="${pageMgr.page.template.componentConfigs['reference/components/general/tags']}" scope="request" />
 <c:set var="contentResource" value="${sling:getRelativeResource(page.resource,'jcr:content')}" />
-<c:forEach var="tagPath" items="${contentResource.valueMap['keywords']}">
-	<c:set var="tag" value="${sling:getResource(resourceResolver,tagPath)}" />
-	<a href="/tags.html${tag.path}.html" class="label">
-		<sling:encode value="${tag.valueMap['jcr:title']}" default="${tag.name}" mode="HTML" />
-	</a>
-</c:forEach>
+<c:set var="listTag" value="${config.listTag}" default="div" />
+<c:set var="itemTag" value="${config.itemTag}" default="span" />
+<${listTag} class="${config.listClass}">
+	<c:forEach var="tagPath" items="${contentResource.valueMap['keywords']}">
+		<c:set var="tag" value="${sling:getResource(resourceResolver,tagPath)}" />
+		<${itemTag} class="${config.itemClass}">
+			<a href="${config.tagPage}.html${tag.path}.html">
+				<sling:encode value="${tag.valueMap['jcr:title']}" default="${tag.name}" mode="HTML" />
+			</a>
+		</${itemTag}>
+	</c:forEach>
+</${listTag}>
