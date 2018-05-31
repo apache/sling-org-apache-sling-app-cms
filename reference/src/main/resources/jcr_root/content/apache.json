@@ -1,0 +1,42 @@
+{
+	"jcr:primaryType": "sling:OrderedFolder",
+	"sling:configRef": "/conf/global",
+	"jcr:content": {
+		"jcr:primaryType": "nt:unstructured",
+		"jcr:title": "Apache Software Foundation"
+	},
+	"sling-apache-org": {
+		"jcr:primaryType": "sling:Site",
+		"jcr:title": "Apache Sling",
+		"jcr:language": "en",
+		"sling:url": "https://sling.apache.org",
+		"index": {
+			"jcr:primaryType": "sling:Page",
+			"jcr:content": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:title": "Apache Sling - Bringing Back the Fun!",
+				"sling:template": "/conf/global/site/templates/base-page",
+				"sling:taxonomy": "/etc/taxonomy/reference/community",
+				"sling:resourceType": "reference/components/pages/base",
+				"published": false,
+				"hideInSitemap": false,
+				"container": {
+					"jcr:primaryType": "nt:unstructured",
+					"richtext": {
+						"jcr:primaryType": "nt:unstructured",
+						"text": "<p>Apache Sling™ is a framework for RESTful web-applications based on an extensible content tree.</p>\r\n<p>In a nutshell, Sling maps HTTP request URLs to content resources based on the request's path, extension and selectors. Using convention over configuration, requests are processed by scripts and servlets, dynamically selected based on the current resource. This fosters meaningful URLs and resource driven request processing, while the modular nature of Sling allows for specialized server instances that include only what is needed.</p>\r\n<p>Sling serves as basis for a variety of applications ranging from blogging engines all the way to enterprise content management systems.</p>\r\n<p>Our <a href=\"#\">Getting Started</a> page will help you start playing with Sling.</p>\r\n<p>Discussions about Sling happen on our mailing lists, see our <a href=\"#\">Project Information</a> page for more info.</p>",
+						"sling:resourceType": "sling-cms/components/general/richtext"
+					}
+				},
+				"menu": {
+					"jcr:primaryType": "nt:unstructured",
+					"richtext": {
+						"jcr:primaryType": "nt:unstructured",
+						"text": "<p>\r\n                <strong><a href=\"#\">Documentation</a></strong><br>\r\n                <a href=\"#\">Getting Started</a><br>\r\n                <a href=\"#\">The Sling Engine</a><br>\r\n                <a href=\"#\">Development</a><br>\r\n                <a href=\"#\">Bundles</a><br>\r\n                <a href=\"#\">Tutorials &amp; How-Tos</a><br>\r\n                <a href=\"http://sling.apache.org/components/\">Maven Plugins</a><br>\r\n                <a href=\"#\">Configuration</a>\r\n                \r\n            </p><p>\r\n                <a href=\"http://s.apache.org/sling.wiki\">Wiki</a><br>\r\n                <a href=\"http://s.apache.org/sling.faq\">FAQ</a><br>\r\n                \r\n            </p><p>\r\n                <strong>API Docs</strong><br>\r\n                <a href=\"#\">Sling 10</a><br>\r\n                <a href=\"#\">Sling 9</a><br>\r\n                <a href=\"#\">All versions</a><br>\r\n                \r\n            </p><p>\r\n                <strong>Project Info</strong><br>\r\n                <a href=\"#\">Downloads</a><br>\r\n                <a href=\"http://www.apache.org/licenses/\">License</a><br>\r\n                <a href=\"#\">News</a><br>\r\n                <a href=\"#\">Releases</a><br>\r\n                <a href=\"https://issues.apache.org/jira/browse/SLING\">Issue Tracker</a><br>\r\n                <a href=\"#\">Links</a><br>\r\n                <a href=\"#\">Contributing</a><br>\r\n                <a href=\"#\">Project Information</a><br>\r\n                <a href=\"#\">Security</a><br>\r\n                \r\n            </p><p>\r\n                <strong>Source</strong><br>\r\n                <a href=\"https://github.com/apache/?utf8=%E2%9C%93&amp;q=sling\">GitHub</a><br>\r\n                <a href=\"https://gitbox.apache.org/repos/asf?s=sling\">Git at Apache</a><br>\r\n                \r\n            </p><p>\r\n                <strong><a href=\"#\">Site Map</a></strong>\r\n            </p><p>\r\n                <strong>Apache Software Foundation</strong><br>\r\n                <a href=\"http://www.apache.org/foundation/thanks.html\">Thanks!</a><br>\r\n                <a href=\"http://www.apache.org/foundation/sponsorship.html\">Become a Sponsor</a><br>\r\n                <a href=\"http://www.apache.org/foundation/buy_stuff.html\">Buy Stuff</a><br>\r\n                <a href=\"https://www.apache.org/events/current-event.html\">\r\n                    <img alt=\"Current ASF Events\" src=\"https://www.apache.org/events/current-event-125x125.png\" width=\"125px\" border=\"0\">\r\n                </a><a href=\"http://apache.org/foundation/contributing.html\">\r\n                    <img alt=\"Support the Apache Software Foundation!\" src=\"/res/images/SupportApache-small.png\" width=\"125px\" border=\"0\">\r\n                </a>\r\n            </p>",
+						"sling:resourceType": "sling-cms/components/general/richtext"
+					}
+				}
+			}
+		}
+	}
+}

@@ -18,12 +18,12 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
-<c:set var="config" value="${pageMgr.page.template.componentConfigs['reference/components/general/tags']}" scope="request" />
-<c:set var="contentResource" value="${sling:getRelativeResource(page.resource,'jcr:content')}" />
+<c:set var="config" value="${sling:adaptTo(pageMgr.page.template.componentConfigs['reference/components/general/tags'],'org.apache.sling.api.resource.ValueMap')}" scope="request" />
+<c:set var="contentResource" value="${sling:getRelativeResource(pageMgr.page.resource,'jcr:content')}" />
 <c:set var="listTag" value="${empty config.listTag ? 'div' : config.listTag}" />
 <c:set var="itemTag" value="${empty config.listTag ? 'span' : config.itemTag}"  />
 <${listTag} class="${config.listClass}">
-	<c:forEach var="tagPath" items="${contentResource.valueMap['keywords']}">
+	<c:forEach var="tagPath" items="${contentResource.valueMap['sling:taxonomy']}">
 		<c:set var="tag" value="${sling:getResource(resourceResolver,tagPath)}" />
 		<${itemTag} class="${config.itemClass}">
 			<a href="${config.tagPage}.html${tag.path}.html">
