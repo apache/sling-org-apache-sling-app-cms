@@ -20,8 +20,8 @@
 <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
 <c:set var="config" value="${pageMgr.page.template.componentConfigs['reference/components/general/tags']}" scope="request" />
 <c:set var="contentResource" value="${sling:getRelativeResource(page.resource,'jcr:content')}" />
-<c:set var="listTag" value="${config.listTag}" default="div" />
-<c:set var="itemTag" value="${config.itemTag}" default="span" />
+<c:set var="listTag" value="${empty config.listTag ? 'div' : config.listTag}" />
+<c:set var="itemTag" value="${empty config.listTag ? 'span' : config.itemTag}"  />
 <${listTag} class="${config.listClass}">
 	<c:forEach var="tagPath" items="${contentResource.valueMap['keywords']}">
 		<c:set var="tag" value="${sling:getResource(resourceResolver,tagPath)}" />
