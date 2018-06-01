@@ -12,7 +12,7 @@
 	"paths": [
 		"/content"
 	],
-	"serializerType": "html-serializer",
+	"serializerType": "html5-serializer",
 	"transformerTypes": [
 		"referencemapping"
 	],
