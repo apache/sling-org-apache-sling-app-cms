@@ -168,5 +168,11 @@
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.jcr.base</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.commons.johnzon</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 </project>

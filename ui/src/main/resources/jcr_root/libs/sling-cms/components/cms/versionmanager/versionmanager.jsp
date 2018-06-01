@@ -57,7 +57,7 @@
 				<th>Restore</th>
 			</tr>
 		</thead>
-		<tbody class="fetch-json" data-url="${slingRequest.requestPathInfo.suffix}.V.json" data-template="version-template">
+		<tbody class="fetch-json" data-url="${resource.path}.VI.json${slingRequest.requestPathInfo.suffix}" data-template="version-template">
 			
 		</tbody>
 	</table>

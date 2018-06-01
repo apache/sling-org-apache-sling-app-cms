@@ -44,75 +44,71 @@ import org.slf4j.LoggerFactory;
  * depends on the resources being backed up by a JCR node.
  */
 @Component(immediate = true, service = { PostOperation.class }, property = PostOperation.PROP_OPERATION_NAME
-+ "=checkpoint")
+		+ "=checkpoint")
 public class CheckpointOperation implements PostOperation {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(CheckpointOperation.class);
-	
 
-    public void run(final SlingHttpServletRequest request,
-                    final PostResponse response,
-                    final SlingPostProcessor[] processors) {
-       
+	public void run(final SlingHttpServletRequest request, final PostResponse response,
+			final SlingPostProcessor[] processors) {
 
-        try {
-            // calculate the paths
-            String path = request.getResource().getPath();
-            response.setPath(path);
+		try {
+			// calculate the paths
+			String path = request.getResource().getPath();
+			response.setPath(path);
 
+			final List<Modification> changes = new ArrayList<>();
 
-            final List<Modification> changes = new ArrayList<>();
+			doRun(request, response, changes);
 
-            doRun(request, response, changes);
+			// invoke processors
+			if (processors != null) {
+				for (SlingPostProcessor processor : processors) {
+					processor.process(request, changes);
+				}
+			}
+			log.debug("Saving changes...");
+			request.getResourceResolver().commit();
 
-            // invoke processors
-            if (processors != null) {
-                for (SlingPostProcessor processor : processors) {
-                    processor.process(request, changes);
-                }
-            }
+			// check modifications for remaining postfix and store the base path
+			final Map<String, String> modificationSourcesContainingPostfix = new HashMap<>();
+			final Set<String> allModificationSources = new HashSet<>(changes.size());
+			for (final Modification modification : changes) {
+				final String source = modification.getSource();
+				if (source != null) {
+					allModificationSources.add(source);
+					final int atIndex = source.indexOf('@');
+					if (atIndex > 0) {
+						modificationSourcesContainingPostfix.put(source.substring(0, atIndex), source);
+					}
+				}
+			}
 
-            // check modifications for remaining postfix and store the base path
-            final Map<String, String> modificationSourcesContainingPostfix = new HashMap<>();
-            final Set<String> allModificationSources = new HashSet<>(changes.size());
-            for (final Modification modification : changes) {
-                final String source = modification.getSource();
-                if (source != null) {
-                    allModificationSources.add(source);
-                    final int atIndex = source.indexOf('@');
-                    if (atIndex > 0) {
-                        modificationSourcesContainingPostfix.put(source.substring(0, atIndex), source);
-                    }
-                }
-            }
-
-
-        } catch (Exception e) {
-
-            log.error("Exception during response processing.", e);
-            response.setError(e);
-
-        } 
-    }
+		} catch (Exception e) {
+			log.error("Exception during response processing.", e);
+			response.setError(e);
+		}
+	}
 
 	protected void doRun(SlingHttpServletRequest request, PostResponse response, List<Modification> changes)
 			throws PersistenceException {
 		try {
 			Resource resource = request.getResource();
 			Node node = resource.adaptTo(Node.class);
+			
 			if (node == null) {
-				response.setStatus(HttpServletResponse.SC_NOT_FOUND,
-						"Missing source " + resource + " for checkpoint");
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND, "Missing source " + resource + " for checkpoint");
 				return;
 			}
-
+			log.debug("Adding checkpoint for Node {}", node.getPath());
 			node.getSession().getWorkspace().getVersionManager().checkpoint(node.getPath());
+			
 			changes.add(Modification.onCheckin(resource.getPath()));
 			changes.add(Modification.onCheckout(resource.getPath()));
+			
 		} catch (final RepositoryException re) {
 			throw new PersistenceException(re.getMessage(), re);
 		}
 	}
-
 
 }
