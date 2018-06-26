@@ -5,5 +5,5 @@
  - [Administrative Tools](admin-tools.md)
  - [Configuring a Site](configure-site.md)
  - [Creating a Template](templates.md)
- - [MongoDB Support](mongo.md)
+ - [MongoDB Support](mongodb.md)
  - [Securing Sling CMS](securing.md)
