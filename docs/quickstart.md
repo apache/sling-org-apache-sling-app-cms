@@ -2,7 +2,7 @@
 
 # Quickstart
 
-This gude will give you a quick introduction to getting started with Sling CMS. There are two options for getting started:
+This guide will give you a quick introduction to getting started with Sling CMS. There are two options for getting started:
 
  1. Running Locally
  2. Installing on a VM with Vagrant
