@@ -14,3 +14,4 @@ bin
 .vlt-sync.log
 .brackets.json
 .metadata/
+.vagrant/

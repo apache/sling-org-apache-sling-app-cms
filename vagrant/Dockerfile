@@ -10,9 +10,7 @@
 #        and limitations under the License.
 #
 # Apache Sling CMS Dockerfile
-#
-# https://github.com/whiteboard/cms/docker
-#
+
 
 # Pull base image.
 FROM openjdk:8-jre

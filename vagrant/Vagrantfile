@@ -1,0 +1,48 @@
+#
+#		 Licensed to the Apache Software Foundation (ASF) under one or more contributor license
+#        agreements. See the NOTICE file distributed with this work for additional information
+#        regarding copyright ownership. The ASF licenses this file to you under the Apache License,
+#        Version 2.0 (the "License"); you may not use this file except in compliance with the
+#        License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+#        Unless required by applicable law or agreed to in writing, software distributed under the
+#        License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+#        either express or implied. See the License for the specific language governing permissions
+#        and limitations under the License.
+#
+# Apache Sling CMS Dockerfile
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+    
+  config.vm.network "forwarded_port", guest: 80, host: 8090
+
+  config.vm.synced_folder ".", "/vagrant_data"
+
+  config.vm.provision "shell", inline: <<-SHELL
+     yum update -y
+     yum install -y java-1.8.0-openjdk wget httpd
+     echo "Depedencies installed..."
+
+     mkdir -p /opt/sling
+     wget https://repository.apache.org/content/repositories/snapshots/org/apache/sling/org.apache.sling.cms.builder/1.0.0-SNAPSHOT/org.apache.sling.cms.builder-1.0.0-20180627.005050-14.jar -O /opt/sling/org.apache.sling.cms-1.0.0.jar
+     cp /vagrant_data/start.sh /opt/sling
+     cp /vagrant_data/stop.sh /opt/sling
+     chmod +x /opt/sling/*.sh
+     cd /opt/sling
+     /opt/sling/start.sh
+     echo "Sling CMS installed and starting..."
+
+     cp /vagrant_data/cms.conf /etc/httpd/conf.d
+     cp /vagrant_data/site.conf /etc/httpd/conf.d
+     mkdir -p /var/www/vhosts/sling-cms
+     mkdir -p /var/www/vhosts/sling
+     mkdir -p /var/cache/httpd/danklco-com
+     chown apache:apache -R /var/www/vhosts/
+     chown -R apache:apache /var/cache/httpd/danklco-com/
+     service httpd start
+     echo "Apache Web Server installed and started..."
+  SHELL
+end
