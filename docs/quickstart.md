@@ -32,3 +32,7 @@ This option allows you to install Sling CMS and Apache web server, which allows 
  1. Clone the Sling CMS Git repo with: `git clone https://github.com/apache/sling-org-apache-sling-app-cms.git`
  2. Change directory into the *sling-org-apache-sling-app-cms/vagrant* directory
  3. Run the command `vagrant up`
+ 4. Add the following entries into your HOSTS file:
+ 		127.0.0.1	sling2.apache.org
+ 		127.0.0.1	cms.sling.apache.org
+ 5. Open a browser to [http://cms.sling.apache.org:8090/](http://cms.sling.apache.org:8090/) to view Sling CMS or [http://sling2.apache.org:8090/](http://sling2.apache.org:8090/) to view the published site
