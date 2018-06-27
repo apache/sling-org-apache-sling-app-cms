@@ -18,7 +18,7 @@
 				"sling:template": "/conf/global/site/templates/base-page",
 				"sling:taxonomy": "/etc/taxonomy/reference/community",
 				"sling:resourceType": "reference/components/pages/base",
-				"published": false,
+				"published": true,
 				"hideInSitemap": false,
 				"container": {
 					"jcr:primaryType": "nt:unstructured",
