@@ -13,7 +13,7 @@
 # Administration
 
  - [Administrative Tools](admin-tools.md)
- - [Apache Setup](cms-apache.md)
+ - [Apache Web Server Setup](cms-apache-web.md)
  - [Configuring a Site](configure-site.md)
  - [Creating a Template](templates.md)
  - [Error Pages](error-pages.md)

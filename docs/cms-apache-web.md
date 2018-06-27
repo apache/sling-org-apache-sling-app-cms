@@ -8,13 +8,19 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-[Apache Sling](https://sling.apache.org) > [Sling CMS](https://github.com/apache/sling-org-apache-sling-app-cms) > Developers
+[Apache Sling](https://sling.apache.org) > [Sling CMS](https://github.com/apache/sling-org-apache-sling-app-cms) > [Administration](administration.md) > Sling CMS Apache Web Server Setup
 
-# Developers
+# Sling CMS Apache Web Server Setup
 
-* [Building Sling CMS](building.md)
-* [Custom Components](custom-components.md)
-* [Editor Field Types](editor-field-types.md)
-* [Extending Sling CMS](extending.md)
-* [Project Intro](intro.md)
-* [Reference Project](reference.md)
+To set up Apache Web Server to proxy requests to Sling CMS, you can add a configuration similar to the one below:
+
+    <VirtualHost *:80>
+       ServerName cms.sling.apache.org
+       DocumentRoot /var/www/vhosts/sling-cms
+
+       ProxyPass /.well-known !
+       ProxyPass / http://localhost:8080/
+       ProxyPassReverse / http://localhost:8080/
+    </VirtualHost>
+
+This allows you to put a layer in front of Sling CMS to enable additional security checks, provide caching and use a friendly URL.
