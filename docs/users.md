@@ -8,15 +8,11 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-[Apache Sling](https://sling.apache.org) > [Sling CMS](https://github.com/apache/sling-org-apache-sling-app-cms) > Administration
+[Apache Sling](https://sling.apache.org) > [Sling CMS](https://github.com/apache/sling-org-apache-sling-app-cms) > Users
 
-# Administration
+# Users
 
- - [Administrative Tools](admin-tools.md)
- - [Apache Web Server Setup](cms-apache-web.md)
- - [Configuring a Site](configure-site.md)
- - [Configuring File Editor](configure-file-editor.md)
- - [Creating a Template](templates.md)
- - [Error Pages](error-pages.md)
- - [MongoDB Support](mongodb.md)
- - [Securing Sling CMS](securing.md)
+* [Editing a Page](page-editing.md)
+* [Managing Files](managing-files.md)
+* [Managing Pages](managing-pages.md)
+* [Managing Taxonomy](managing-taxonomy.md)
