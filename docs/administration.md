@@ -13,7 +13,9 @@
 # Administration
 
  - [Administrative Tools](admin-tools.md)
+ - [Apache Setup](cms-apache.md)
  - [Configuring a Site](configure-site.md)
  - [Creating a Template](templates.md)
+ - [Error Pages](error-pages.md)
  - [MongoDB Support](mongodb.md)
  - [Securing Sling CMS](securing.md)
