@@ -140,7 +140,7 @@
 								"jcr:primaryType": "nt:unstructured",
 								"sling:resourceType": "sling-cms/components/cms/columns/name",
 								"link": true,
-								"prefix": "/cms/site/content.html"
+								"prefix": "/cms/static/content.html"
 							},
 							"title": {
 								"jcr:primaryType": "nt:unstructured",
@@ -197,7 +197,7 @@
 								"jcr:primaryType": "nt:unstructured",
 								"sling:resourceType": "sling-cms/components/cms/columns/name",
 								"link": true,
-								"prefix": "/cms/site/content.html"
+								"prefix": "/cms/static/content.html"
 							},
 							"title": {
 								"jcr:primaryType": "nt:unstructured",
