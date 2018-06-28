@@ -13,6 +13,5 @@
 # Users
 
 * [Editing a Page](page-editing.md)
-* [Managing Files](managing-files.md)
-* [Managing Pages](managing-pages.md)
+* [Managing Content](managing-content.md)
 * [Managing Taxonomy](managing-taxonomy.md)
