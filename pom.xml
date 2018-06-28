@@ -43,6 +43,15 @@
 		<module>reference</module>
 		<module>builder</module>
 	</modules>
+	
+	
+
+    <scm>
+        <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-app-cms.git</connection>
+        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-app-cms.git</developerConnection>
+        <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-app-cms.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
 	<dependencyManagement>
 		<dependencies>
