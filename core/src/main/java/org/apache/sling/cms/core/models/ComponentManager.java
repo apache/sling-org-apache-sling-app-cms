@@ -67,7 +67,7 @@ public class ComponentManager {
 	 * key of the map being the component type and the value being the list of
 	 * components for that type.
 	 * 
-	 * @return
+	 * @return the components organized by componentType
 	 */
 	public Map<String, List<Component>> getComponentsByType() {
 		if (componentCache == null) {

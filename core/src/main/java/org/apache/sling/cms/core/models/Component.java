@@ -141,8 +141,8 @@ public class Component {
 	 * Returns true if the only component type on the component is the specified
 	 * type.
 	 * 
-	 * @param string
-	 * @return
+	 * @param type the type of the resource to check
+	 * @return true if the resource is of the specified type
 	 */
 	public boolean isType(String type) {
 		boolean isType = false;
