@@ -44,7 +44,6 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,6 +76,7 @@ public class VersionInfoServlet extends SlingSafeMethodsServlet {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private JsonObject getJsonObject(Resource resource) throws RepositoryException {
 		log.debug("Loading version history from {}", resource);
 		final JsonObjectBuilder result = Json.createObjectBuilder();
