@@ -62,6 +62,11 @@ public class CMSConstants {
 	public static final String NT_SITE = NAMESPACE + ":Site";
 
 	/**
+	 * User Generated Content node type.
+	 */
+	public static final String NT_UGC = NAMESPACE + ":UGC";
+
+	/**
 	 * Description attribute name
 	 */
 	public static final String PN_DESCRIPTION = "jcr:description";
