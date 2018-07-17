@@ -74,3 +74,14 @@
 	- jcr:lastModifiedBy (string)
 	- jcr:title (string)
 	+ * (sling:Taxonomy) = sling:Taxonomy version
+
+[sling:UGC] > nt:unstructured
+    - approveaction (string)
+	- contenttype (string)
+	- finalpath (string)
+	- preview (string)
+	- published (boolean)
+	- referrer (string)
+	- user (string)
+	- useragent (string)
+	- userip (string)

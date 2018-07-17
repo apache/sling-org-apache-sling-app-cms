@@ -56,6 +56,7 @@ public class Site {
 
 	@Inject
 	@Named(PN_CONFIG)
+	@Optional
 	private String config;
 
 	@Inject

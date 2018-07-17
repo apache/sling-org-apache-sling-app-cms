@@ -107,7 +107,7 @@ public class ErrorHandler {
 		}
 		
 		log.debug("Sending error {}",errorCode);
-		response.sendError(errorCode);
+		response.setStatus(errorCode);
 		
 		log.debug("Error handler initialized successfully!");
 	}

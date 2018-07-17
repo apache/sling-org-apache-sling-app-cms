@@ -17,9 +17,9 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<c:if test="${cmsEditEnabled == 'true'}">
-	<link rel="stylesheet" href="/static/clientlibs/sling-cms-editor/editor.css" />
-	<c:if test="${not empty properties.availableTypes}">
-		<c:set var="availableTypes" value="${properties.availableTypes}" scope="request" />
-	</c:if>
-</c:if>
+ <div>
+ 	<strong>
+ 		<sling:encode value="${properties.label}" mode="HTML" />:
+ 	</strong><br/>
+ 	<sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap[properties.property]}" mode="HTML" />
+ </div>

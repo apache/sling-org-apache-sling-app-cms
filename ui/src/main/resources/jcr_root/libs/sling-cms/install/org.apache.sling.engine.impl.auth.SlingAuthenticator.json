@@ -7,7 +7,6 @@
       "/apps",
       "/etc",
       "/home",
-      "/var",
-      "-/etc/clientlibs"
+      "/var"
     ]
 }

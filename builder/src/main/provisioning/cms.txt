@@ -32,9 +32,25 @@
     set ACL for sling-rewriter
         allow   jcr:read    on /
     end
+    
+    create path (sling:OrderedFolder) /etc/usergenerated
+    set ACL for everyone
+        allow   jcr:read	on /etc/usergenerated
+    end
+    
+    # sling-ugc
+    create service user sling-ugc
+
+    set ACL for sling-ugc
+        allow   jcr:all    on /etc/usergenerated
+    end
 
 [configurations]
     org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.rewriter
         user.mapping=[
             "org.apache.sling.rewriter\=sling-rewriter"
+        ]
+    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.ugc
+        user.mapping=[
+            "org.apache.sling.cms.core:sling-ugc\=sling-ugc"
         ]

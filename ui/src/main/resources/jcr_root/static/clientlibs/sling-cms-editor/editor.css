@@ -15,10 +15,9 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */ 
-
+ */
 .Sling-CMS__component {
-	border: 1px solid rgba(0,0,0,0);
+	border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .Sling-CMS__component:hover {
@@ -28,25 +27,24 @@
 .Sling-CMS__component-title {
 	padding: 0 10px;
 }
- 
- 
+
 .Sling-CMS__edit-bar {
 	width: 100%;
 	height: 38px;
 	padding: .2em;
 	background-color: silver;
-    line-height: 12px;
-    font-family: "Open Sans", arial, sans-serif;
+	line-height: 12px;
+	font-family: "Open Sans", arial, sans-serif;
 }
 
 .Sling-CMS__edit-button {
-    display: inline-block;
-    padding: 8px 12px;
-    color: white;
-    background-color: #00678c;
-    border: 0;
-    margin: .1em;
-    text-decoration: none;
+	display: inline-block;
+	padding: 8px 12px;
+	color: white;
+	background-color: #00678c;
+	border: 0;
+	margin: .1em;
+	text-decoration: none;
 }
 
 .Sling-CMS__logo {
@@ -54,25 +52,26 @@
 }
 
 .Sling-CMS__modal-background {
-    display: none; 
-    position: fixed; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.3); 
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1001;
 }
 
 .Sling-CMS__modal-box {
-    background-color: white;
-    margin: 3em auto; 
-    padding: 2em;
-    border: 1px solid gray;
-    width: 85%;
-    z-index: 1;
-    max-width: 900px;
+	background-color: white;
+	margin: 3em auto;
+	padding: 2em;
+	border: 1px solid gray;
+	width: 85%;
+	z-index: 1001;
+	max-width: 900px;
 }
 
 .Sling-CMS__modal-frame-container {
@@ -84,7 +83,7 @@
 
 .Sling-CMS__modal-frame {
 	position: absolute;
-	top:0;
+	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
@@ -92,7 +91,7 @@
 }
 
 .Sling-CMS__modal-close {
-	float:right;
+	float: right;
 }
 
 .Sling-CMS__page-wrapper-frame {
@@ -108,5 +107,5 @@
 	padding: 0;
 	overflow: hidden;
 	z-index: 998;
-    padding-top: 8px;
+	padding-top: 8px;
 }

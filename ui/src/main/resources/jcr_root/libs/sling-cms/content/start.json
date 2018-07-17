@@ -56,6 +56,16 @@
 				"query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/conf') ORDER BY NAME()",
 				"title": "Configuration"
 			},
+			"usergeneratednav": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/contentnav",
+				"createPath": "/cms/folder/create.html/etc/usergenerated",
+				"createFolder": "Bucket",
+				"prefix": "/cms/usergenerated",
+				"itemPrefix": "/cms/usergenerated/content.html",
+				"query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/etc/usergenerated') ORDER BY NAME()",
+				"title": "User Generated"
+			},
 			"toolsnav": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/cms/staticnav",
