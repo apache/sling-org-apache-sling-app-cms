@@ -16,12 +16,12 @@
     <parent>
         <artifactId>org.apache.sling.cms</artifactId>
         <groupId>org.apache.sling</groupId>
-        <version>0.9.0</version>
+        <version>0.9.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>org.apache.sling.cms.builder</artifactId>
     <packaging>slingstart</packaging>
-    <version>0.9.0</version>
+    <version>0.9.1-SNAPSHOT</version>
 
     <name>Apache Sling - CMS Application Builder</name>
 
