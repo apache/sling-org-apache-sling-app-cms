@@ -17,6 +17,7 @@
 package org.apache.sling.cms.core.models;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -24,11 +25,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
@@ -43,6 +47,8 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = SlingHttpServletRequest.class)
 public class ErrorHandler {
 
+	public static final String SERVICE_USER_NAME = "sling-cms-error";
+
 	private static final Logger log = LoggerFactory.getLogger(ErrorHandler.class);
 
 	@RequestAttribute
@@ -54,9 +60,12 @@ public class ErrorHandler {
 	private SlingHttpServletRequest slingRequest;
 
 	private Resource handler;
-	
+
 	@SlingObject
 	private HttpServletResponse response;
+
+	@OSGiService
+	private ResourceResolverFactory factory;
 
 	public ErrorHandler(SlingHttpServletRequest slingRequest) {
 		this.slingRequest = slingRequest;
@@ -74,8 +83,29 @@ public class ErrorHandler {
 			log.warn("Handing exception of type " + errorCode,
 					slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
 		}
-		
-		
+
+		if (errorCode == 404) {
+			log.debug("Validating the resource does not exist for all users");
+			ResourceResolver adminResolver;
+			try {
+				adminResolver = factory.getServiceResourceResolver(new HashMap<String, Object>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put(ResourceResolverFactory.SUBSERVICE, "sling-cms-error");
+					}
+				});
+				if (adminResolver.resolve(slingRequest, slingRequest.getResource().getPath()) != null) {
+					if ("anonymous".equals(resolver.getUserID())) {
+						errorCode = 401;
+					} else {
+						errorCode = 403;
+					}
+				}
+			} catch (LoginException e) {
+				log.error("Exception retrieving service user", e);
+			}
+		}
+
 		try {
 			SiteManager siteMgr = resource.adaptTo(SiteManager.class);
 			if (siteMgr != null && siteMgr.getSite() != null) {
@@ -105,17 +135,17 @@ public class ErrorHandler {
 			}
 			log.debug("Using Sling CMS error handler {}", handler);
 		}
-		
-		log.debug("Sending error {}",errorCode);
+
+		log.debug("Sending error {}", errorCode);
 		response.setStatus(errorCode);
-		
+
 		log.debug("Error handler initialized successfully!");
 	}
 
 	public Resource getHandler() {
 		return handler;
 	}
-	
+
 	public int getErrorCode() {
 		return errorCode;
 	}
