@@ -21,13 +21,13 @@
 
     <artifactId>org.apache.sling.cms.builder</artifactId>
     <packaging>slingstart</packaging>
-    <version>0.9.1-SNAPSHOT</version>
 
     <name>Apache Sling - CMS Application Builder</name>
 
     <properties>
         <sling.java.version>8</sling.java.version>
         <IT.expected.bundles.count>125</IT.expected.bundles.count>
+        <cms.version>${project.parent.version}</cms.version>
     </properties>
 
     <build>
@@ -63,7 +63,6 @@
             <plugin>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>slingstart-maven-plugin</artifactId>
-                <version>1.7.0</version>
                 <extensions>true</extensions>
                 <executions>
                     <execution>
@@ -82,7 +81,8 @@
                             <port>${http.port}</port>
                             <controlPort>${sling.control.port}</controlPort>
                         </server>
-                    </servers>                    
+                    </servers>           
+                    <usePomVariables>true</usePomVariables>         
                 </configuration>
             </plugin>
 

@@ -101,6 +101,13 @@
 									"text": "&#x270f;",
 									"prefix": "/cms/file/edit.html"
 								},
+								"optimize": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": false,
+									"title": "Optimize File",
+									"text": "+",
+									"prefix": "/cms/file/optimize.html"
+								},
 								"download": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,
