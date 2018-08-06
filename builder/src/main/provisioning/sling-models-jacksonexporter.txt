@@ -17,9 +17,11 @@
 #  under the License.
 #
 [feature name=models-jacksonexporter]
+[variables]
+    jackson.version=2.9.5
 
 [artifacts]
   org.apache.sling/org.apache.sling.models.jacksonexporter/1.0.8
-  com.fasterxml.jackson.core/jackson-annotations/2.9.3
-  com.fasterxml.jackson.core/jackson-core/2.9.3
-  com.fasterxml.jackson.core/jackson-databind/2.9.3
+  com.fasterxml.jackson.core/jackson-annotations/${jackson.version}
+  com.fasterxml.jackson.core/jackson-core/${jackson.version}
+  com.fasterxml.jackson.core/jackson-databind/${jackson.version}

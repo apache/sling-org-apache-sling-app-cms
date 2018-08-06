@@ -21,16 +21,21 @@
 
 [artifacts startLevel=20]
 	org.apache.cocoon/cocoon-serializers-charsets/1.0.0
+	org.apache.sling/org.apache.sling.fileoptim/0.9.0
     org.apache.sling/org.apache.sling.resourcemerger/1.3.6
-    org.apache.sling/org.apache.sling.cms.core/1.0.0-SNAPSHOT
-    org.apache.sling/org.apache.sling.cms.ui/1.0.0-SNAPSHOT
-    org.apache.sling/org.apache.sling.cms.reference/1.0.0-SNAPSHOT
+    org.apache.sling/org.apache.sling.cms.core/${cms.version}
+    org.apache.sling/org.apache.sling.cms.ui/${cms.version}
+    org.apache.sling/org.apache.sling.cms.reference/${cms.version}
     
 [:repoinit]
     create service user sling-rewriter
-    
     set ACL for sling-rewriter
         allow   jcr:read    on /
+    end
+    
+    create service user sling-cms-error
+    set ACL for sling-cms-error
+    	allow	jcr:read	on /content
     end
     
     create path (sling:OrderedFolder) /etc/usergenerated
