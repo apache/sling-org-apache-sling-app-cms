@@ -20,7 +20,7 @@
 <c:if test="${not empty properties.src}">
 	<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
 	<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/iframe']}" />
-	div class="${properties.wrapperClass}">
+	<div class="${properties.wrapperClass}">
 		<iframe src="${properties.src}" class="${configRsrc.valueMap.iframeClass}" frameborder="0" ${properties.allowFullscreen}></iframe>
 	</div>
 </c:if>
