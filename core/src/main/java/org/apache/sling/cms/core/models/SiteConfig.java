@@ -21,7 +21,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.CMSUtils;
+import org.apache.sling.cms.core.CMSUtils;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 

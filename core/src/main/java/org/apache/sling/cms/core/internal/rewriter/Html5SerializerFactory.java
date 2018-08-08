@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.rewriter;
+package org.apache.sling.cms.core.internal.rewriter;
 
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.apache.sling.rewriter.Serializer;

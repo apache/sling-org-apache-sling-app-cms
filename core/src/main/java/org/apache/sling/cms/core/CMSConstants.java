@@ -14,7 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms;
+package org.apache.sling.cms.core;
+
+import org.apache.sling.jcr.resource.JcrResourceConstants;
 
 /**
  * Constants used throughout the application.
@@ -90,6 +92,13 @@ public class CMSConstants {
 	 * Title attribute name
 	 */
 	public static final String PN_TITLE = "jcr:title";
+	
+
+	/**
+	 * The resource types which can be published
+	 */
+	public static final String[] PUBLISHABLE_TYPES = new String[] { CMSConstants.NT_FILE, CMSConstants.NT_PAGE,
+			JcrResourceConstants.NT_SLING_FOLDER, JcrResourceConstants.NT_SLING_ORDERED_FOLDER };
 
 	/**
 	 * Private constructor to prevent instantiation of class.

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.filters;
+package org.apache.sling.cms.core.internal.filters;
 
 import java.io.IOException;
 import java.util.ResourceBundle;

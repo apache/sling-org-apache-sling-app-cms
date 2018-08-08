@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.filters;
+package org.apache.sling.cms.core.internal.filters;
 
 import java.io.IOException;
 
@@ -30,7 +30,8 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.core.CMSConstants;
+import org.apache.sling.cms.core.CMSUtils;
 import org.apache.sling.jcr.resource.JcrResourceConstants;
 import org.osgi.service.component.annotations.Component;
 
@@ -42,10 +43,7 @@ import org.osgi.service.component.annotations.Component;
 		"service.ranking=" + Integer.MAX_VALUE })
 public class PublishFilter implements Filter {
 
-	public static final String[] PUBLISHABLE_TYPES = new String[] { CMSConstants.NT_FILE, CMSConstants.NT_PAGE,
-			JcrResourceConstants.NT_SLING_FOLDER, JcrResourceConstants.NT_SLING_ORDERED_FOLDER };
-
-	public static final String[] VALID_METHODS = new String[] { "GET", "HEAD" };
+	private static final String[] VALID_METHODS = new String[] { "GET", "HEAD" };
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -58,29 +56,13 @@ public class PublishFilter implements Filter {
 			SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
 			if (ArrayUtils.contains(VALID_METHODS, slingRequest.getMethod())) {
 				Object editEnabled = slingRequest.getAttribute(CMSConstants.ATTR_EDIT_ENABLED);
-				if (!"true".equals(editEnabled)) {
-					Resource publishable = findPublishableParent(slingRequest.getResource());
-					if (publishable != null && publishable.getChild(JcrConstants.JCR_CONTENT) != null) {
-						if (!(publishable.getChild(JcrConstants.JCR_CONTENT).getValueMap()
-								.get(CMSConstants.PN_PUBLISHED, true))) {
-							((HttpServletResponse) response).sendError(404);
-							return;
-						}
-					}
+				if (!"true".equals(editEnabled) && !CMSUtils.isPublished(slingRequest.getResource())) {
+					((HttpServletResponse) response).sendError(404);
+					return;
 				}
 			}
 		}
 		chain.doFilter(request, response);
-	}
-
-	private Resource findPublishableParent(Resource resource) {
-		String type = resource.getValueMap().get(JcrConstants.JCR_PRIMARYTYPE, String.class);
-		if (ArrayUtils.contains(PUBLISHABLE_TYPES, type)) {
-			return resource;
-		} else if (resource.getParent() != null) {
-			return findPublishableParent(resource.getParent());
-		}
-		return null;
 	}
 
 	@Override

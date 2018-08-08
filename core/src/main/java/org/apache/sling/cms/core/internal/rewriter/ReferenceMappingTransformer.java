@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.rewriter;
+package org.apache.sling.cms.core.internal.rewriter;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
-import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.core.CMSConstants;
 import org.apache.sling.rewriter.ProcessingComponentConfiguration;
 import org.apache.sling.rewriter.ProcessingContext;
 import org.apache.sling.rewriter.Transformer;

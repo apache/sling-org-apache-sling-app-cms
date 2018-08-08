@@ -23,7 +23,7 @@ import javax.inject.Named;
 
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.core.CMSConstants;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 

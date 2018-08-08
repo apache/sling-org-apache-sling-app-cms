@@ -24,8 +24,8 @@ import javax.inject.Named;
 
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.CMSConstants;
-import org.apache.sling.cms.CMSUtils;
+import org.apache.sling.cms.core.CMSConstants;
+import org.apache.sling.cms.core.CMSUtils;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;

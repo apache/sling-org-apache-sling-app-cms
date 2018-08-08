@@ -17,8 +17,8 @@
 package org.apache.sling.cms.core.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.CMSConstants;
-import org.apache.sling.cms.CMSUtils;
+import org.apache.sling.cms.core.CMSConstants;
+import org.apache.sling.cms.core.CMSUtils;
 import org.apache.sling.models.annotations.Model;
 
 /**

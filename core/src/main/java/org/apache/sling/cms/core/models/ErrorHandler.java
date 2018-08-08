@@ -29,6 +29,7 @@ import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.cms.core.CMSUtils;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -94,8 +95,11 @@ public class ErrorHandler {
 						put(ResourceResolverFactory.SUBSERVICE, "sling-cms-error");
 					}
 				});
-				if (adminResolver.resolve(slingRequest, slingRequest.getResource().getPath()) != null) {
-					if ("anonymous".equals(resolver.getUserID())) {
+				Resource pResource = adminResolver.resolve(slingRequest, slingRequest.getResource().getPath());
+				if (pResource != null) {
+					if (!CMSUtils.isPublished(pResource)) {
+						errorCode = 404;
+					} else if ("anonymous".equals(resolver.getUserID())) {
 						errorCode = 401;
 					} else {
 						errorCode = 403;

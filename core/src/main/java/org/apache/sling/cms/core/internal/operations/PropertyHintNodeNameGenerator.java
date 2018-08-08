@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.operations;
+package org.apache.sling.cms.core.internal.operations;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.request.RequestParameterMap;
-import org.apache.sling.cms.core.operations.PropertyHintNodeNameGenerator.Config;
+import org.apache.sling.cms.core.internal.operations.PropertyHintNodeNameGenerator.Config;
 import org.apache.sling.servlets.post.NodeNameGenerator;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.filters;
+package org.apache.sling.cms.core.internal.filters;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +31,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.core.CMSConstants;
 import org.apache.sling.cms.core.models.Component;
 import org.apache.sling.cms.core.models.EditableResource;
 import org.slf4j.Logger;

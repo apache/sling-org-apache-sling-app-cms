@@ -14,26 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.filters;
+package org.apache.sling.cms.core.internal.rewriter;
 
-import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
-
+import org.osgi.service.metatype.annotations.AttributeDefinition;
 
 /**
- * Configuration for the CMSSecurityFilter
+ * Configuration for the Reference Mapping Transformer
  */
-@ObjectClassDefinition(name = "%cms.security.filter.name", description = "%cms.security.filter.description", localization = "OSGI-INF/l10n/bundle")
-public @interface CMSSecurityFilterConfig {
+@ObjectClassDefinition(name = "%reference.mapping.transformer.name", description = "%reference.mapping.transformer.description", localization = "OSGI-INF/l10n/bundle")
+public @interface ReferenceMappingTransformerConfig {
 
-	@AttributeDefinition(name = "%hostDomains.name", description = "%hostDomains.description")
-	String[] hostDomains();
-
-	@AttributeDefinition(name = "%allowedPatterns.name", description = "%allowedPatterns.description")
-	String[] allowedPatterns() default { "^\\/content\\/starter/.*$", "^\\/static/.*$",
-			"^\\/system\\/sling\\/form\\/login$" };
-
-	@AttributeDefinition(name = "%group.name", description = "%group.description")
-	String group();
+	@AttributeDefinition(name = "%enabledPaths.name", description = "%enabledPaths.description", defaultValue = {
+			"/content" })
+	String[] enabledPaths();
 
 }
