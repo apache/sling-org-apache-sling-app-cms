@@ -34,8 +34,8 @@
 			</c:otherwise>
 		</c:choose>
 		<c:forEach var="page" items="${search.pages}">
-			<li class="${searchConfig.valueMap.pageItemClass} ">
-				<a href="?q=${sling:encode(search.term,'HTML_ATTR')}&page=${page}" class="${searchConfig.valueMap.pageLinkClass}">
+			<li class="${searchConfig.valueMap.pageItemClass}${page == param.page ? ' active' : ''}">
+				<a href="?q=${sling:encode(search.term,'HTML_ATTR')}&page=${page}" class="${searchConfig.valueMap.pageLinkClass}${page == param.page ? ' active' : ''}">
 					${page}
 				</a>
 			</li>
