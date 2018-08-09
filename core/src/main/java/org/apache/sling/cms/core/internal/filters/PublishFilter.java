@@ -27,12 +27,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.core.CMSConstants;
 import org.apache.sling.cms.core.CMSUtils;
-import org.apache.sling.jcr.resource.JcrResourceConstants;
 import org.osgi.service.component.annotations.Component;
 
 /**

@@ -17,7 +17,6 @@
 package org.apache.sling.cms.core.usergenerated.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
