@@ -14,6 +14,11 @@
 			"jcr:primaryType": "sling:MessageEntry",
 			"sling:message": "Found {3} results for \"{0}\". Showing results {1} - {2}.",
 			"sling:key": "slingcms.search.header"
+		},
+		"entry_1": {
+			"jcr:primaryType": "sling:MessageEntry",
+			"sling:message": "Search",
+			"sling:key": "slingcms.search"
 		}
 	},
 	"de_DE": {
@@ -23,10 +28,15 @@
 		],
 		"jcr:language": "de",
 		"sling:resourceType": "sling-cms/components/cms/blank",
-		"entry_493865649": {
+		"entry": {
 			"jcr:primaryType": "sling:MessageEntry",
 			"sling:message": "Gefunden {3} Ergebnisse für \"{0}\". Zeige Ergebnisse {1} - {2}.",
 			"sling:key": "slingcms.search.header"
+		},
+		"entry_1": {
+			"jcr:primaryType": "sling:MessageEntry",
+			"sling:message": "Suche",
+			"sling:key": "slingcms.search"
 		}
 	}
 }
