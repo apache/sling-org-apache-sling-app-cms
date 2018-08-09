@@ -38,4 +38,4 @@
 		</div>
 		<sling:call script="pagination.jsp" />
 	</div>
-</c:if>
+</c:if>${search.finalize}

@@ -17,8 +17,11 @@
 package org.apache.sling.cms.reference.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.jcr.query.Query;
@@ -27,7 +30,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.cms.reference.SearchService;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +67,12 @@ public class Search {
 
 	private List<Resource> results = new ArrayList<Resource>();
 
+	@OSGiService
+	private SearchService searchService;
+
 	private int start;
+
+	private ResourceResolver resolver;
 
 	public Search(SlingHttpServletRequest request) {
 		this.request = request;
@@ -102,10 +113,12 @@ public class Search {
 
 		String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replaceAll("'", "''");
 
+		resolver = searchService.getResourceResolver(request);
+
 		String query = "SELECT * FROM [sling:Page] AS p WHERE [jcr:content/published]=true AND (p.[jcr:content/hideInSitemap] IS NULL OR p.[jcr:content/hideInSitemap] <> true) AND ISDESCENDANTNODE(p, '"
 				+ basePath + "') AND CONTAINS(p.*, '" + term + "') ORDER BY [jcr:score]";
 		log.debug("Searching for pages with {} under {} with query: {}", term, basePath, query);
-		Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);
+		Iterator<Resource> res = resolver.findResources(query, Query.JCR_SQL2);
 		while (res.hasNext()) {
 			Resource result = res.next();
 			if (!distinct.contains(result.getPath())) {
@@ -146,6 +159,17 @@ public class Search {
 		}
 		pages = pgs.toArray(new Integer[pgs.size()]);
 		log.debug("Loaded pages {}", Arrays.toString(pages));
+	}
+
+	/**
+	 * This is a horrible hack to close the resource resolver used for retrieving
+	 * the search results
+	 * 
+	 * @return true, always
+	 */
+	public String getFinalize() {
+		searchService.finalize(resolver);
+		return "";
 	}
 
 	public boolean isFirst() {
