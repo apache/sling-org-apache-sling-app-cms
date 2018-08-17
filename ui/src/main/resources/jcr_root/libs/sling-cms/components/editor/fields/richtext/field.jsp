@@ -18,8 +18,16 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <textarea class="richtext" name="${properties.name}" ${required} ${disabled}>${editProperties[properties.name]}</textarea>
-<c:set var="pageQuery" value="SELECT * FROM [sling:Page] AS s WHERE ISDESCENDANTNODE([${sling:getAbsoluteParent(slingRequest.requestPathInfo.suffixResource,2).path}])" />
-<c:set var="imageQuery" value="SELECT * FROM [sling:File] AS s WHERE ISDESCENDANTNODE([${sling:getAbsoluteParent(slingRequest.requestPathInfo.suffixResource,2).path}]) AND [jcr:content/jcr:mimeType] LIKE 'image/%'" />
+<c:choose>
+	<c:when test="${slingRequest.requestPathInfo.suffixResource != null}">
+		<c:set var="path" value="${sling:getAbsoluteParent(slingRequest.requestPathInfo.suffixResource,2).path}" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="path" value="/content" />
+	</c:otherwise>
+</c:choose>
+<c:set var="pageQuery" value="SELECT * FROM [sling:Page] AS s WHERE ISDESCENDANTNODE([${path}])" />
+<c:set var="imageQuery" value="SELECT * FROM [sling:File] AS s WHERE ISDESCENDANTNODE([${path}]) AND [jcr:content/jcr:mimeType] LIKE 'image/%'" />
 <datalist id="richtext-pages">
 	<c:forEach var="page" items="${sling:findResources(resourceResolver,pageQuery,'JCR-SQL2')}">
 		<option value="${page.path}.html">
