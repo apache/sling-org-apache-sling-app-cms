@@ -24,7 +24,7 @@
 	<c:forEach var="pageRsrc" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
 		<c:set var="page" value="${sling:adaptTo(pageRsrc,'org.apache.sling.cms.core.models.PageManager').page}" />
 		<url>
-			<loc>${site.url}${page.publishedPath}</loc>
+			<loc>${site.url}${fn:replace(page.publishedPath,'index.html','')}</loc>
 			<changefreq>monthly</changefreq>
 		</url>
 	</c:forEach>
