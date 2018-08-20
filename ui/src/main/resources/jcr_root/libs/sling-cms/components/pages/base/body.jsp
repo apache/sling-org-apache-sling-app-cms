@@ -24,7 +24,7 @@
 			<sling:call script="nav.jsp" />
 		</nav>
 		<div class="Cell Small-5"></div>
-		<div class="Cell Main-Content Align-Center">
+		<div class="Cell Main-Content ${properties.center ? 'Align-Center' : '' }">
 			<div class="Grid">
 				<main class="Cell Cell-Pad Small-100">
 					<sling:call script="content.jsp" />

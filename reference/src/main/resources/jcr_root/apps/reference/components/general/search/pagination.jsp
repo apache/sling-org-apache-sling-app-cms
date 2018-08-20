@@ -17,6 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="pageParam" value="${not empty param.q ? param.q : '1'}" />
 <nav>
 	<ul class="${searchConfig.valueMap.paginationClass}">
 		<c:choose>
@@ -34,7 +35,7 @@
 			</c:otherwise>
 		</c:choose>
 		<c:forEach var="page" items="${search.pages}">
-			<li class="${searchConfig.valueMap.pageItemClass}${page == param.page ? ' active' : ''}">
+			<li class="${searchConfig.valueMap.pageItemClass}${page == pageParam ? ' active' : ''}">
 				<a href="?q=${sling:encode(search.term,'HTML_ATTR')}&page=${page}" class="${searchConfig.valueMap.pageLinkClass}${page == param.page ? ' active' : ''}">
 					${page}
 				</a>

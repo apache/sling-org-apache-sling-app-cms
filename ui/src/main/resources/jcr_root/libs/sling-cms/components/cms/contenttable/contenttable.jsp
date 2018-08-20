@@ -20,8 +20,12 @@
 <table class="sortable">
 	<thead>
 		<tr>
+			<th class="sortable__header Col-id" data-attribute="id">
+				#
+				<span class="sortable__indicator"></span>
+			</th>
 			<c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">
-				<th class="sortable__header" data-attribute="${column.name}">
+				<th class="${column.name == 'actions' ? 'Hide' : '' } sortable__header Col-${column.name}" data-attribute="${column.name}">
 					<sling:encode value="${column.valueMap.title}" mode="HTML" />
 					<span class="sortable__indicator"></span>
 				</th>
@@ -30,10 +34,14 @@
 	</thead>
 	<tbody>
 		<c:set var="parentPath" value="${slingRequest.requestPathInfo.suffix}${not empty properties.appendSuffix ? properties.appendSuffix : ''}" />
+		<c:set var="count" value="1" />
 		<c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}">
 			<sling:getResource var="typeConfig" base="${resource}" path="types/${child.valueMap['jcr:primaryType']}" />
 			<c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
 				<tr class="sortable__row" data-resource="${child.path}" data-type="${typeConfig.path}">
+					<td class="Cell-Static" title="# ${status.index + 1}}" data-sort-value="<fmt:formatNumber pattern="0000" value="${count}" />">
+						${count}
+					</td>
 					<c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(typeConfig,'columns'))}">
 						<c:set var="configPath" value="columns/${column.name}"/>
 						<c:set var="colConfig" value="${sling:getRelativeResource(typeConfig,configPath)}" scope="request" />
@@ -42,6 +50,7 @@
 						</c:if>
 					</c:forEach>
 				</tr>
+				<c:set var="count" value="${count + 1}" />
 			</c:if>
 		</c:forEach> 
 	</tbody>

@@ -81,7 +81,7 @@ Sling.CMS = {
 			    return data;
 			}
 		}
-	}
+	};
 
 	//support links which fetch HTML and display a modal
 	Sling.CMS.ext['fetch-modal'] = {
@@ -95,7 +95,7 @@ Sling.CMS = {
 				return false;
 			});
 		}
-	}
+	};
 
 	Sling.CMS.ext['ajaxform'] = {
 		decorate: function($ctx){
@@ -208,7 +208,9 @@ Sling.CMS = {
 				    			valb = $.trim($elb.text()).toLowerCase();
 				    		}
 				    		$h.data('sort-status', sortStatus * -1);
-				        return vala.localeCompare(valb) * sortStatus;
+				        return vala.localeCompare(valb, {
+				        	numeric: true
+				        }) * sortStatus;
 				    });
 				    for (var i = 0; i < list.length; i++) {
 				        list[i].parentNode.appendChild(list[i]);
@@ -216,7 +218,7 @@ Sling.CMS = {
 				});
 			});
 		}
-	}
+	};
 
 	Sling.CMS.ext['fetch-json'] = {
 		decorate: function($ctx) {
@@ -230,7 +232,7 @@ Sling.CMS = {
 				});
 			});
 		}
-	}
+	};
 
 	Sling.CMS.ext['includeconfig'] = {
 		decorate: function($ctx){
@@ -283,7 +285,7 @@ Sling.CMS = {
 				});
 			});
 		}
-	}
+	};
 
 	Sling.CMS.ext['repeating'] = {
 		decorate: function($ctx){
@@ -329,9 +331,19 @@ Sling.CMS = {
 			}).on('summernote.keydown', function(we, e) {
 				  console.log('Key is downed:', e.keyCode);
 			});
-;
 		}
-	}
+	};
+	
+	Sling.CMS.ext['table'] = {
+		decorate: function($ctx) {
+			$ctx.find('table tr').click(function(el){
+				$('#Actions-Target *').appendTo('tr.active .Cell-Actions')
+				$('tr').removeClass('active');
+				$(this).addClass('active');
+				$(this).find('.Cell-Actions *').appendTo('#Actions-Target')
+			});
+		}
+	};
 
 	Sling.CMS.ext['taxonomy'] = {
 		decorate: function($ctx){
@@ -374,7 +386,7 @@ Sling.CMS = {
 				$($(this).data('target')).toggleClass('Hide');
 			});
 		}
-	}
+	};
 	
 	Sling.CMS.ext['toggle-value'] = {
 		decorate: function($ctx) {
@@ -389,7 +401,7 @@ Sling.CMS = {
 				});
 			})
 		}
-	}
+	};
 
 	$(document).ready(function() {
 		Sling.CMS.init();

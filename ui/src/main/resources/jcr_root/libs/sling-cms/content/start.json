@@ -6,6 +6,7 @@
 		"jcr:primaryType": "nt:unstructured",
 		"sling:vanityPath": "/cms",
 		"sling:redirect": true,
+		"center": true,
 		"container": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/general/container",

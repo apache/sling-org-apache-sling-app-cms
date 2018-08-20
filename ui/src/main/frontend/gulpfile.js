@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const gulp        = require('gulp');
-const sass        = require('gulp-sass');
-const header      = require('gulp-header');
-const cleanCSS   = require('gulp-clean-css');
-var concatCss = require('gulp-concat-css');
+var gulp        = require('gulp');
+var sass        = require('gulp-sass');
+var header      = require('gulp-header');
+var cleanCSS   = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
-let sourcemaps = require('gulp-sourcemaps');
-var merge = require('merge-stream');
-var order = require("gulp-order");
+var sourcemaps = require('gulp-sourcemaps');
+var streamqueue = require('streamqueue');
+var saveLicense = require('uglify-save-license');
+
 
 const apache2License = [
 '/*',
@@ -46,44 +46,37 @@ const apache2License = [
 ''
 ].join('\n');
 
-var scssStream = gulp.src('./src/scss/*.scss')
-	.pipe(sass().on('error', sass.logError))
-	.pipe(concat('scss-files.scss'))
-    .pipe(sourcemaps.init())
-    .pipe(cleanCSS())
-    .pipe(header(apache2License));
-
-var cssStream = gulp.src('./node_modules/summernote/dist/summernote-lite.css');
-
 gulp.task('styles', function() {
-	 var mergedStream = merge(cssStream, scssStream)
+	 return streamqueue ({objectMode: true},
+			 gulp.src('./src/scss/*.scss')
+				.pipe(sass().on('error', sass.logError))
+				.pipe(concat('scss-files.scss'))
+			    .pipe(sourcemaps.init())
+			    .pipe(cleanCSS())
+			    .pipe(header(apache2License)),
+			 gulp.src('./node_modules/summernote/dist/summernote-lite.css')
+			    .pipe(cleanCSS())
+	 	)
      	.pipe(concat('styles.min.css'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'))
 	 	.pipe(rename('bundle.css'))
 	 	.pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
-	 return mergedStream;
 });
 
-var vendorJSStream = gulp.src([
-	'./node_modules/jquery/dist/jquery.min.js',
-	'./node_modules/handlebars/dist/handlebars.min.js',
-	'./node_modules/summernote/dist/summernote-lite.js']);
-
-var jsStream = gulp.src([
-		'./src/js/scripts.js'
-	])
-	.pipe(uglify())
-    .pipe(header(apache2License));
-
 gulp.task('js', function() {
-	var mergedStream = merge(jsStream, vendorJSStream)
-		.pipe(order([
-			'node_modules/jquery/**/*.js',
-			'node_modules/handlebars/**/*.js',
-			'node_modules/summernote/**/*.js',
-			'src/js/*.js',
-		]))
-		.pipe(concat('scripts.min.js'))
+	return gulp.src([
+			'./node_modules/jquery/dist/jquery.js',
+			'./node_modules/handlebars/dist/handlebars.js',
+			'./node_modules/summernote/dist/summernote-lite.js',
+			'./src/js/scripts.js'
+		])
+		.pipe(uglify({
+            output: {
+                comments: saveLicense
+            }
+        }))
+ 		.pipe(concat('scripts-all.min.js'))
+	    .pipe(header(apache2License))
 		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
 });
 

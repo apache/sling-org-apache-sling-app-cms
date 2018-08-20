@@ -40,7 +40,7 @@
 	</c:if>
 	<li class="Pull-Right">
 		<form method="get" class="content-filter">
-			<label for="filter" class="hide">Filter</label>
+			<label for="filter" class="Hide">Filter</label>
 			<input type="text" placeholder="Filter..." />
 		</form>
 	</li>

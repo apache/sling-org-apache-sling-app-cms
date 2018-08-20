@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td class="Cell-Actions">
+<td class="Cell-Actions Hide">
 	<c:forEach var="actionConfig" items="${sling:listChildren(colConfig)}">
 		<c:choose>
 			<c:when test="${actionConfig.valueMap.modal}">

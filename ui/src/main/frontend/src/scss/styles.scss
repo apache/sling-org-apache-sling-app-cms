@@ -45,14 +45,19 @@ ul.Breadcrumb  {
 	content: "";
 }
 
- .Checkbox-Label {
- 	width:100%;
- 	display:block;
- }
+.Checkbox-Label {
+	width:100%;
+	display:block;
+}
 
 .Cell-Pad {
-	padding: 1em;
+	padding: 4em 1em 1em 1em;
 }
+
+.Col-id {
+	width: 2em;
+}
+
 
 .Editor-Page  {
 	background-color: white;
@@ -166,6 +171,29 @@ thead {
 	color: white;
 }
 
-tbody tr:hover {
+tbody tr:hover, tbody tr.active {
 	background-color: lightgray;
+}
+
+@media (min-width: 62em) { 
+
+	.Col-lastModified {
+		width: 13em;
+	}
+
+	.Col-published {
+		width: 6em;
+	}
+
+	.Col-type {
+		width: 4em;
+	}
+		
+	.Content-Actions {
+		background-color: #ccc;
+		padding: .5em;
+		position: fixed;
+		top: 0px;
+		width: 100%;
+	}
 }
