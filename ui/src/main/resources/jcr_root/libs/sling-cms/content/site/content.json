@@ -173,7 +173,7 @@
 								},
 								"optimize": {
 									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
+									"modal": false,
 									"title": "Optimize File",
 									"text": "+",
 									"prefix": "/cms/file/optimize.html"
