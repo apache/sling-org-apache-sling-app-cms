@@ -337,10 +337,10 @@ Sling.CMS = {
 	Sling.CMS.ext['table'] = {
 		decorate: function($ctx) {
 			$ctx.find('table tr').click(function(el){
-				$('#Actions-Target *').appendTo('tr.active .Cell-Actions')
+				$('#Actions-Target > *').appendTo('tr.active .Cell-Actions')
 				$('tr').removeClass('active');
 				$(this).addClass('active');
-				$(this).find('.Cell-Actions *').appendTo('#Actions-Target')
+				$(this).find('.Cell-Actions > *').appendTo('#Actions-Target')
 			});
 		}
 	};

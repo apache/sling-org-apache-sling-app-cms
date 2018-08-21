@@ -26,6 +26,9 @@
     border: 0;
     margin: .1em;
     text-decoration: none;
+    height: 38px;
+	min-width: 38px;
+	text-align: center;
 }
 
 ul.Breadcrumb  {
@@ -75,6 +78,10 @@ ul.Breadcrumb  {
 	display:none;
 }
 
+.jam:before {
+	font-size:18px;
+}
+
 .Modal {
     display: none; 
     position: fixed; 
@@ -94,10 +101,11 @@ ul.Breadcrumb  {
 
 .Modal-Content {
     background-color: white;
-    margin: 20% auto; 
+    margin: 5em auto; 
     padding: 2em;
     border: 1px solid #999;
     width: 75%; 
+    max-width: 700px;
 }
 
 .Modal-Header {

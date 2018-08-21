@@ -76,14 +76,14 @@
 									"modal": true,
 									"new": false,
 									"title": "Edit Dictionary",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/folder/edit.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Delete i18n Dictionary",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html"
 								}
 							}

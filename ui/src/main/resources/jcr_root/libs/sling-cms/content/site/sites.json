@@ -81,21 +81,21 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit Site",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/site/edit.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Site",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Delete the specified site",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html"
 								}
 							}
@@ -129,20 +129,20 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit Site Group",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/folder/editgroup.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Site Group",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"title": "Delete Site Group",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html",
 									"modal": true
 								}

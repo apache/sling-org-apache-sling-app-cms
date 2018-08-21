@@ -55,7 +55,8 @@ gulp.task('styles', function() {
 			    .pipe(cleanCSS())
 			    .pipe(header(apache2License)),
 			 gulp.src('./node_modules/summernote/dist/summernote-lite.css')
-			    .pipe(cleanCSS())
+			    .pipe(cleanCSS()),
+			 gulp.src('node_modules/jam-icons/css/jam.min.css')
 	 	)
      	.pipe(concat('styles.min.css'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'))
@@ -69,6 +70,7 @@ gulp.task('js', function() {
 			'./node_modules/handlebars/dist/handlebars.js',
 			'./node_modules/summernote/dist/summernote-lite.js',
 			'./src/js/scripts.js'
+			
 		])
 		.pipe(uglify({
             output: {
@@ -85,10 +87,11 @@ gulp.task('assets', function() {
 		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms'))
 		.pipe(gulp.dest('./dist/jcr_root/content/starter'));
 	gulp.src('./src/img/sling-logo.svg')
-	.pipe(gulp.dest('./dist/jcr_root/content/starter'))
-	.pipe(gulp.dest('./dist/jcr_root/content/starter'));
+		.pipe(gulp.dest('./dist/jcr_root/content/starter'));
 	gulp.src('./node_modules/summernote/dist/font/*')
 		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css/font'));
+	gulp.src('./node_modules/jam-icons/fonts/*')
+		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/fonts'));
 });
 
 

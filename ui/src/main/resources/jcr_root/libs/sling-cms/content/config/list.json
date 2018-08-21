@@ -85,21 +85,21 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit Site Config",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/config/metadata.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Config",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Delete Site Config",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html"
 								}
 							}
@@ -132,21 +132,21 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit Folder",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/folder/edit.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Folder",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Delete Folder",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html"
 								}
 							}

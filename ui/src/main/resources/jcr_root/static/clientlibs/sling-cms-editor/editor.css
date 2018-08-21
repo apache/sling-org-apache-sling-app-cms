@@ -30,11 +30,16 @@
 
 .Sling-CMS__edit-bar {
 	width: 100%;
-	height: 38px;
+	height: 48px;
 	padding: .2em;
 	background-color: silver;
 	line-height: 12px;
 	font-family: "Open Sans", arial, sans-serif;
+}
+
+.Sling-CMS__edit-bar .Button {
+	height: 34px;
+	width: 38px;
 }
 
 .Sling-CMS__edit-button {
@@ -48,7 +53,7 @@
 }
 
 .Sling-CMS__logo {
-	height: 30px;
+	height: 36px;
 }
 
 .Sling-CMS__modal-background {
@@ -66,12 +71,12 @@
 
 .Sling-CMS__modal-box {
 	background-color: white;
-	margin: 3em auto;
-	padding: 2em;
-	border: 1px solid gray;
-	width: 85%;
+	margin: 5em auto;
+	border: 1px solid #999;
+	width: 75%;
 	z-index: 1001;
-	max-width: 900px;
+	max-width: 700px;
+	position: relative;
 }
 
 .Sling-CMS__modal-frame-container {
@@ -79,6 +84,12 @@
 	height: 0;
 	overflow: hidden;
 	padding-bottom: 56.25%;
+}
+
+.Sling-CMS__modal-frame-header {
+	cursor: move;
+	padding: 1em;
+	height: 60px;
 }
 
 .Sling-CMS__modal-frame {
@@ -92,11 +103,13 @@
 
 .Sling-CMS__modal-close {
 	float: right;
+	padding: 4px 12px;
+	margin: -5px;
 }
 
 .Sling-CMS__page-wrapper-frame {
 	position: fixed;
-	top: 30px;
+	top: 40px;
 	left: 0px;
 	bottom: 0px;
 	right: 0px;

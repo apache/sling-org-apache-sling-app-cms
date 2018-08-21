@@ -67,7 +67,7 @@
 				},
 				"types": {
 					"jcr:primaryType": "nt:unstructured",
-					"sling:Page":{
+					"sling:Page": {
 						"jcr:primaryType": "nt:unstructured",
 						"columns": {
 							"jcr:primaryType": "nt:unstructured",
@@ -104,14 +104,21 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,
 									"title": "Edit Page",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/page/edit.html"
+								},
+								"properties": {
+									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
+									"title": "Edit Page Properties",
+									"icon": "cog",
+									"prefix": "/cms/page/siteeditproperties.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Page",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"version": {
@@ -119,20 +126,20 @@
 									"ajaxPath": ".versionmanager",
 									"modal": true,
 									"title": "Manage Versions",
-									"text": "&#10710;",
+									"icon": "history",
 									"prefix": "/cms/shared/versions.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Delete the specified page",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html"
 								}
 							}
 						}
 					},
-					"sling:File":{
+					"sling:File": {
 						"jcr:primaryType": "nt:unstructured",
 						"columns": {
 							"jcr:primaryType": "nt:unstructured",
@@ -168,27 +175,27 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit File",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/file/edit.html"
 								},
 								"optimize": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,
 									"title": "Optimize File",
-									"text": "+",
+									"icon": "archive",
 									"prefix": "/cms/file/optimize.html"
 								},
 								"download": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,
 									"title": "Download file",
-									"text": "&#x21e9;"
+									"icon": "download"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy File",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"version": {
@@ -196,20 +203,20 @@
 									"ajaxPath": ".versionmanager",
 									"modal": true,
 									"title": "Manage Versions",
-									"text": "&#10710;",
+									"icon": "history",
 									"prefix": "/cms/shared/versions.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Delete File",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html"
 								}
 							}
 						}
 					},
-					"sling:OrderedFolder":{
+					"sling:OrderedFolder": {
 						"jcr:primaryType": "nt:unstructured",
 						"columns": {
 							"jcr:primaryType": "nt:unstructured",
@@ -246,27 +253,27 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit Folder",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/folder/edit.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Folder",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
 									"title": "Delete Folder",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html",
-									"modal": true
+									"icon": "trash",
+									"prefix": "/cms/shared/delete.html"
 								}
 							}
 						}
 					},
-					"sling:Folder":{
+					"sling:Folder": {
 						"jcr:primaryType": "nt:unstructured",
 						"columns": {
 							"jcr:primaryType": "nt:unstructured",
@@ -303,22 +310,22 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit Folder",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/folder/edit.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Folder",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
 									"title": "Delete Folder",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html",
-									"modal": true
+									"icon": "trash",
+									"prefix": "/cms/shared/delete.html"
 								}
 							}
 						}

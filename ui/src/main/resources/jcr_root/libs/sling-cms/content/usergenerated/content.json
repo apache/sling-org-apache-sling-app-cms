@@ -91,14 +91,14 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": false,
 									"title": "Review User Generated Content",
-									"text": "&#x270f;",
+									"icon": "eye",
 									"prefix": "/cms/usergenerated/review.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Delete User Generated Content",
-									"text": "&times;",
+									"icon": "trash",
 									"prefix": "/cms/shared/delete.html"
 								}
 							}
@@ -141,22 +141,22 @@
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Edit Folder",
-									"text": "&#x270f;",
+									"icon": "pencil-f",
 									"prefix": "/cms/folder/edit.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
 									"modal": true,
 									"title": "Move / Copy Folder",
-									"text": "&#x21c6;",
+									"icon": "move-alt",
 									"prefix": "/cms/shared/movecopy.html"
 								},
 								"delete": {
 									"jcr:primaryType": "nt:unstructured",
+									"modal": true,
 									"title": "Delete Folder",
-									"text": "&times;",
-									"prefix": "/cms/shared/delete.html",
-									"modal": true
+									"icon": "trash",
+									"prefix": "/cms/shared/delete.html"
 								}
 							}
 						}

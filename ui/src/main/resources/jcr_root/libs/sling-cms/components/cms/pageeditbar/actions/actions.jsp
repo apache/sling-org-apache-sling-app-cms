@@ -22,12 +22,12 @@
 		<c:choose>
 			<c:when test="${actionConfig.valueMap.modal}">
 				<a class="Button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-					${actionConfig.valueMap.text}
+					<span class="jam jam-${actionConfig.valueMap.icon}"></span>
 				</a>
 			</c:when>
 			<c:otherwise>
 				<a class="Button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-					${actionConfig.valueMap.text}
+					<span class="jam jam-${actionConfig.valueMap.icon}"></span>
 				</a>
 			</c:otherwise>
 		</c:choose>

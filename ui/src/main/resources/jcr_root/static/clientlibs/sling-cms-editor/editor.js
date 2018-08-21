@@ -38,14 +38,53 @@ if(!window.CMSEditor){
 			$(".Sling-CMS__modal-close").click(function(){
 				CMSEditor.ui.hideModal();
 			});
-			$(".Sling-CMS__modal-background").click(function(){
-				CMSEditor.ui.hideModal();
-			});
-			$(window).on('keypress',function(e){
+			window.addEventListener('keypress',function(e){
 				if(e.keyCode==27 && CMSEditor.ui.modalDisplayed === true){
 					CMSEditor.ui.hideModal();
 				}
-			});  
+			});
+
+			var mouseX;
+			var mouseY;
+			
+			function draggable(element) {
+				var mouseDown = false;
+				
+				var elementX = 0;
+				var elementY = 0;
+
+				  // mouse button down over the element
+				element.addEventListener('mousedown', function(evt){
+					console.log('mousedown');
+					mouseX = evt.clientX;
+					mouseY = evt.clientY;
+					mouseDown = true;
+				});
+				
+				var moveComplete = function(evt){
+					console.log('mouseup');
+					mouseDown = false;
+					elementX = parseInt(element.style.left) || 0;
+					elementY = parseInt(element.style.top) || 0;
+					return false;
+				}
+				
+				element.addEventListener('mouseup', moveComplete);
+				document.addEventListener('mouseout', moveComplete);
+				
+				document.addEventListener('mousemove', function(event) {
+					if (!mouseDown) {
+						return;
+					}
+					console.log('mousemove');
+				    var deltaX = event.clientX - mouseX;
+				    var deltaY = event.clientY - mouseY;
+				    element.style.left = elementX + deltaX + 'px';
+				    element.style.top = elementY + deltaY + 'px';
+				    return false;
+				});
+			}
+			draggable($(".Sling-CMS__modal-box")[0]);
 		},
 		ui: {
 			modalDisplayed: false,
@@ -61,6 +100,9 @@ if(!window.CMSEditor){
 				if(CMSEditor.ui.modalDisplayed) {
 					CMSEditor.ui.hideModal();
 				}
+				
+				mouseX = 0;
+				mouseY = 0;
 				
 				$(".Sling-CMS__modal-frame-title").text(title);
 				$(".Sling-CMS__modal-box iframe").attr('src',url);
