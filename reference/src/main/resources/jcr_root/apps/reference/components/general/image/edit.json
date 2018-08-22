@@ -9,7 +9,7 @@
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/path",
 			"basePath": "/content",
-			"type": "sling:File",
+			"type": "file",
 			"label": "Image Source",
 			"name": "src",
 			"titleProperty": "jcr:content/jcr:title",

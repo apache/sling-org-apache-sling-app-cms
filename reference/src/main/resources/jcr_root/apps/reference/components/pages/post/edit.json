@@ -34,10 +34,9 @@
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/path",
 			"basePath": "/content",
-			"type": "sling:Page",
+			"type": "page",
 			"label": "Canonical",
-			"name": "canonical",
-			"titleProperty": "jcr:content/jcr:title"
+			"name": "canonical"
 		},
 		"published": {
 			"jcr:primaryType": "nt:unstructured",

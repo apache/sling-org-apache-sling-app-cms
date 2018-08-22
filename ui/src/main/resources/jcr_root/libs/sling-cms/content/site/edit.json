@@ -54,9 +54,7 @@
 						"basePath": "/conf",
 						"label": "Config",
 						"name": "sling:configRef",
-						"required": false,
-						"titleProperty": "jcr:content/jcr:title",
-						"type": "sling:OrderedFolder"
+						"required": false
 					}
 				}
 			}

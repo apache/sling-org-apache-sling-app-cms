@@ -233,6 +233,9 @@ Sling.CMS = {
 				  // mouse button down over the element
 				element.addEventListener('mousedown', function(evt){
 					console.log('mousedown');
+					if(document.querySelector('.Modal-Body').contains(evt.target)){
+						return;
+					}
 					mouseX = evt.clientX;
 					mouseY = evt.clientY;
 					mouseDown = true;
@@ -279,6 +282,22 @@ Sling.CMS = {
 					$ctr.append(template(res));
 					Sling.CMS.decorate($ctr);
 				});
+			});
+		}
+	};
+	
+	Sling.CMS.ext['getform'] = {
+		decorate: function($ctx){
+			$ctx.find('.Get-Form').submit(function(){
+				var $form = $(this);
+				var params = $form.serialize();
+				$form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
+				
+				$($form.data('target')).load($form.attr('action') + '?' + params +'  ' + $form.data('load'), function(){
+					$form.find('.Form-Ajax__wrapper').removeAttr('disabled');
+					Sling.CMS.decorate($($form.data('target')));
+				});
+				return false;
 			});
 		}
 	};
@@ -331,6 +350,26 @@ Sling.CMS = {
 						$ctr.parents('form').submit(updateContent);
 						Sling.CMS.decorate($ctr.children());
 					});
+				});
+			});
+		}
+	};
+
+	Sling.CMS.ext['pathfield'] = {
+		decorate: function($ctx){
+			$ctx.find('input.Field-Path').each(function(){
+				var type = $(this).data('type');
+				var xhr;
+				new autoComplete({
+				    selector: this,
+				    source: function(term, response){
+				        try {
+				        	xhr.abort();
+				        } catch(e){}
+				        xhr = $.getJSON('/bin/cms/paths', { path: term, type: type }, function(data){
+				        	response(data);
+				        });
+				    }
 				});
 			});
 		}

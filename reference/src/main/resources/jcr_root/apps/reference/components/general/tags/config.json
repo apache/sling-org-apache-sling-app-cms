@@ -5,7 +5,8 @@
 		"jcr:primaryType": "nt:unstructured",
 		"sling:resourceType": "sling-cms/components/editor/fields/path",
 		"label": "Tag Page",
-		"name": "tagPage"
+		"name": "tagPage",
+		"type": "page"
 	},
 	"listTag": {
 		"jcr:primaryType": "nt:unstructured",

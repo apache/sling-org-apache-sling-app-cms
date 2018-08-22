@@ -31,6 +31,10 @@
 	text-align: center;
 }
 
+.autocomplete-suggestion b {
+	color: #00678c;
+}
+
 ul.Breadcrumb  {
 	margin-top: 2em;
 	margin-bottom: .2em;
@@ -108,6 +112,10 @@ ul.Breadcrumb  {
     position: relative;
 }
 
+.Modal-Footer {
+	padding: 1em;
+}
+
 .Modal-Header {
 	font-weight: bold;
 	font-size: large;
@@ -157,6 +165,24 @@ ul.Breadcrumb  {
 
 .Pull-Right {
 	float:right;
+}
+
+.Search-Result {
+    padding: .1em;
+}
+
+.Search-Result h4 {
+	margin-bottom: 0;
+}
+
+.Search-Result small {
+	font-size: x-small;
+}
+
+.Search-Result__Container {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: .5em;
 }
 
 table {

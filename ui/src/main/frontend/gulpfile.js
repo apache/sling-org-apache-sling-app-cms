@@ -48,15 +48,18 @@ const apache2License = [
 
 gulp.task('styles', function() {
 	 return streamqueue ({objectMode: true},
-			 gulp.src('./src/scss/*.scss')
+			gulp.src('./src/scss/*.scss')
 				.pipe(sass().on('error', sass.logError))
 				.pipe(concat('scss-files.scss'))
 			    .pipe(sourcemaps.init())
 			    .pipe(cleanCSS())
 			    .pipe(header(apache2License)),
-			 gulp.src('./node_modules/summernote/dist/summernote-lite.css')
+			gulp.src('./node_modules/summernote/dist/summernote-lite.css')
 			    .pipe(cleanCSS()),
-			 gulp.src('node_modules/jam-icons/css/jam.min.css')
+			gulp.src([
+				'./node_modules/jam-icons/css/jam.min.css',
+				'./node_modules/js-autocomplete/auto-complete.css'
+			])
 	 	)
      	.pipe(concat('styles.min.css'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'))
@@ -69,6 +72,7 @@ gulp.task('js', function() {
 			'./node_modules/jquery/dist/jquery.js',
 			'./node_modules/handlebars/dist/handlebars.js',
 			'./node_modules/summernote/dist/summernote-lite.js',
+			'./node_modules/js-autocomplete/auto-complete.js',
 			'./src/js/scripts.js'
 			
 		])

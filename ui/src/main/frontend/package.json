@@ -10,7 +10,8 @@
   	"jquery": "^3.3.1",
   	"handlebars": "^4.0.11",
   	"summernote": "^0.8.9",
-  	"jam-icons": "^2.0.0" 
+  	"jam-icons": "^2.0.0",
+  	"js-autocomplete": "^1.0.4" 
   },
   "devDependencies": {
     "gulp": "^3.9.1",
