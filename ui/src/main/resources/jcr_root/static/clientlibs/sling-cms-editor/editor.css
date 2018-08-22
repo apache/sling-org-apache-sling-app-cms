@@ -73,7 +73,7 @@
 	background-color: white;
 	margin: 5em auto;
 	border: 1px solid #999;
-	width: 75%;
+	width: 95%;
 	z-index: 1001;
 	max-width: 700px;
 	position: relative;
@@ -84,6 +84,7 @@
 	height: 0;
 	overflow: hidden;
 	padding-bottom: 56.25%;
+	min-height: 400px;
 }
 
 .Sling-CMS__modal-frame-header {

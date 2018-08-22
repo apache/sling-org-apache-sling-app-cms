@@ -47,7 +47,7 @@ Sling.CMS = {
 				window.scrollTo(0, 0);
 			},
 			confirmMessage: function(title, message, cb){
-				var $modal = $('<div class="Modal"><div class="Modal-Content"><div class="Modal-Header">'+title+'</div><div class="Modal-Body">'+message+'</div><div class="Modal-Footer"><button type="button" class="Modal-Close">OK</button></div></div>');
+				var $modal = $('<div class="Modal"><div class="Modal-Content Draggable"><div class="Modal-Header">'+title+'</div><div class="Modal-Body">'+message+'</div><div class="Modal-Footer"><button type="button" class="Modal-Close">OK</button></div></div>');
 				$('body').append($modal);
 				$modal.css('display','block');
 				Sling.CMS.decorate($modal);
@@ -58,7 +58,7 @@ Sling.CMS = {
 				return $modal;
 			},
 			fetchModal: function(title, link, path, complete){
-				var $modal = $('<div class="Modal"><div class="Modal-Content"><div class="Modal-Header">'+title+'<button type="button" class="Modal-Close Pull-Right">x</button></div><div class="Modal-Body"></div></div>');
+				var $modal = $('<div class="Modal"><div class="Modal-Content Draggable"><div class="Modal-Header">'+title+'<button type="button" class="Modal-Close Pull-Right">x</button></div><div class="Modal-Body"></div></div>');
 				$('body').append($modal);
 				$modal.find('.Modal-Body').load(link + " " +path,function(){
 					$modal.css('display','block');
@@ -220,6 +220,55 @@ Sling.CMS = {
 		}
 	};
 
+	Sling.CMS.ext['draggable'] = {
+		decorate: function($ctx) {
+			var draggable = function(){
+				var element = this;
+				var mouseX;
+				var mouseY;
+				var mouseDown = false;
+				var elementX = 0;
+				var elementY = 0;
+
+				  // mouse button down over the element
+				element.addEventListener('mousedown', function(evt){
+					console.log('mousedown');
+					mouseX = evt.clientX;
+					mouseY = evt.clientY;
+					mouseDown = true;
+				});
+				
+				var moveComplete = function(evt){
+					console.log('mouseup');
+					mouseDown = false;
+					elementX = parseInt(element.style.left) || 0;
+					elementY = parseInt(element.style.top) || 0;
+					return false;
+				}
+				
+				element.addEventListener('mouseup', moveComplete);
+				document.addEventListener('mouseout', moveComplete);
+				
+				document.addEventListener('mousemove', function(event) {
+					if (!mouseDown) {
+						return;
+					}
+					console.log('mousemove');
+				    var deltaX = event.clientX - mouseX;
+				    var deltaY = event.clientY - mouseY;
+				    element.style.left = elementX + deltaX + 'px';
+				    element.style.top = elementY + deltaY + 'px';
+				    return false;
+				});
+				
+			};
+			if($ctx.is('.Draggable')){
+				$ctx.each(draggable)
+			}
+			$ctx.find('.Draggable').each(draggable);
+		}
+	};
+	
 	Sling.CMS.ext['fetch-json'] = {
 		decorate: function($ctx) {
 			$ctx.find('.fetch-json').each(function(){
@@ -315,21 +364,18 @@ Sling.CMS = {
 				    ['para', ['style','ul', 'ol', 'paragraph']],
 				    ['misc', ['codeview', 'undo','redo','help']]
 				],
+				followingToolbar: false,
 				dialogsInBody: true,
 				height: 200,
 			    onCreateLink: function (url) {
 			        return url;
 			    },
 			    callbacks: {
-			    		onDialogShown: function(e){
-			    			$('.note-link-url').attr('list','richtext-pages');
-			    			$('.note-image-url').attr('list','richtext-images');
-			    		}
+		    		onDialogShown: function(e){
+		    			$('.note-link-url').attr('list','richtext-pages');
+		    			$('.note-image-url').attr('list','richtext-images');
+		    		}
 			    }
-			}).on('summernote.dialog.shown', function(e) {
-			  console.log('Dialog shown!');
-			}).on('summernote.keydown', function(we, e) {
-				  console.log('Key is downed:', e.keyCode);
 			});
 		}
 	};

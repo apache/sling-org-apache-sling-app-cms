@@ -96,21 +96,23 @@ ul.Breadcrumb  {
 }
 
 .Modal-Body {
-	padding: 2em 0;
+	padding: 0 2em 1em 2em;
 }
 
 .Modal-Content {
     background-color: white;
-    margin: 5em auto; 
-    padding: 2em;
+    margin: 5em auto;
     border: 1px solid #999;
-    width: 75%; 
+    width: 95%; 
     max-width: 700px;
+    position: relative;
 }
 
 .Modal-Header {
 	font-weight: bold;
 	font-size: large;
+	padding: 1em;
+	cursor: move;
 }
 
 .Nav-Header {
@@ -142,6 +144,10 @@ ul.Breadcrumb  {
 
 .note-group-select-from-files {
   display: none;
+}
+
+.note-toolbar-wrapper {
+    height: auto !important;
 }
 
 .Preview {
