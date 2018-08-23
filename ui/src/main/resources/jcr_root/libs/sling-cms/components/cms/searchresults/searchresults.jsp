@@ -20,7 +20,7 @@
 <div id="search-results">
 	<div class="Grid">
 	<sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.SearchResults" var="results" />
-		<c:forEach var="result" items="${results.results}" begin="0" end="100" varStatus="status">
+		<c:forEach var="result" items="${results.results}" begin="0" end="20" varStatus="status">
 			<div class="Cell Search-Result Small-50">
 				<div class="Search-Result__Container">
 					<c:choose>
@@ -56,7 +56,7 @@
 						<em>${result.path}</em>
 					</small><br/>
 					<br />
-					<a href="#" class="Button Select-Button" data-path="${result.path}">Select</a>
+					<a href="#" class="Button Search-Select-Button" data-path="${result.path}">Select</a>
 				</div>
 			</div>
 		</c:forEach>

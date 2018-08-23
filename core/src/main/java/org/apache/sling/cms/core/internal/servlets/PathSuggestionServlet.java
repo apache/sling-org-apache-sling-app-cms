@@ -53,6 +53,9 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 		typeMaps.put("page", new String[] { "sling:Page", "nt:folder", "sling:Site" });
 		typeMaps.put("file", new String[] { "nt:file", "nt:folder", "sling:Site" });
 		typeMaps.put("folder", new String[] { "nt:folder", "sling:Site" });
+		typeMaps.put("taxonomy", new String[] { "nt:folder", "sling:Taxonomy" });
+		typeMaps.put("config", new String[] { "nt:folder", "sling:Config" });
+		typeMaps.put("content", new String[] { "nt:hierarchyNode" });
 		typeMaps.put("all", new String[] { "nt:base" });
 	}
 

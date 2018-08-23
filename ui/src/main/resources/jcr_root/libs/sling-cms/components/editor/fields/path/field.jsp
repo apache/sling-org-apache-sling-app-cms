@@ -17,4 +17,20 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<input class="Field-Path" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${type}" autocomplete="off" />
+<c:choose>
+	<c:when test="${properties.hidesearch != true}">
+		<div class="Grid">
+			<div class="Cell Mobile-80">
+				<input class="Field-Path" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+			</div>
+			<div class="Cell Mobile-20">
+				<a href="/cms/shared/search.html" class="Button Fetch-Modal Search-Button" data-title="Search" data-path=".Main-Content > .Grid > .Cell > *">
+					<span class="jam jam-search"></span>
+				</a>
+			</div>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<input class="Field-Path" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+	</c:otherwise>
+</c:choose>

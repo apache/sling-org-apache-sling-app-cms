@@ -19,7 +19,7 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="taxonomy">
  	<fieldset disabled="disabled" class="taxonomy__template Hide">
- 		<a class="button taxonomy__item">
+ 		<a class="Button taxonomy__item">
 			<input type="hidden" name="${properties.name}" value="" />
 			<span class="taxonomy__title"></span>
 		</a>
@@ -34,7 +34,7 @@
  	</div>
  	<div class="taxonomy__container">
  		<c:forEach var="item" items="${editProperties[properties.name]}">
- 			<a class="button taxonomy__item">
+ 			<a class="Button taxonomy__item">
  				<input type="hidden" name="${properties.name}" value="${item}" />
  				<span class="taxonomy__title">${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}</span>
  			</a>

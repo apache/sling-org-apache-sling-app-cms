@@ -78,6 +78,15 @@ ul.Breadcrumb  {
     margin: 1em 0;
 }
 
+.Field-Input a.Button {
+	height: 30px;
+	padding: 8px 9px;
+}
+
+.Field-Input .jam:before {
+	font-size: 12px;
+}
+
 .Hide {
 	display:none;
 }

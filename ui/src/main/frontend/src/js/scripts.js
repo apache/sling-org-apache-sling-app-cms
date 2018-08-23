@@ -356,21 +356,30 @@ Sling.CMS = {
 	};
 
 	Sling.CMS.ext['pathfield'] = {
+		suggest: function(field, type, base) {
+			var xhr;
+			new autoComplete({
+				minChars: 1,
+			    selector: field,
+			    source: function(term, response){
+			        try {
+			        	xhr.abort();
+			        } catch(e){}
+			        var t = term;
+			        if(term === '/'){
+			        	term = base;
+			        }
+			        xhr = $.getJSON('/bin/cms/paths', { path: term, type: type }, function(data){
+			        	response(data);
+			        });
+			    }
+			});
+		},
 		decorate: function($ctx){
 			$ctx.find('input.Field-Path').each(function(){
 				var type = $(this).data('type');
-				var xhr;
-				new autoComplete({
-				    selector: this,
-				    source: function(term, response){
-				        try {
-				        	xhr.abort();
-				        } catch(e){}
-				        xhr = $.getJSON('/bin/cms/paths', { path: term, type: type }, function(data){
-				        	response(data);
-				        });
-				    }
-				});
+				var base = $(this).data('base');
+				Sling.CMS.ext.pathfield.suggest(this, type, base);
 			});
 		}
 	};
@@ -411,13 +420,33 @@ Sling.CMS = {
 			    },
 			    callbacks: {
 		    		onDialogShown: function(e){
-		    			$('.note-link-url').attr('list','richtext-pages');
-		    			$('.note-image-url').attr('list','richtext-images');
+						Sling.CMS.ext.pathfield.suggest($('.note-link-url')[0], 'content', '/content');
+						Sling.CMS.ext.pathfield.suggest($('.note-image-url')[0], 'content', '/content');
 		    		}
 			    }
 			});
 		}
 	};
+	
+	Sling.CMS.ext['searchselect'] = {
+		decorate: function($ctx) {
+			$ctx.find('.Search-Select-Button').click(function(evt){
+				var $btn = $(evt.target);
+				var $active = Sling.CMS.ext['searchbutton'].active;
+				$active.val($btn.data('path'));
+				$btn.closest('.Modal').remove();
+			});
+		}
+	}
+	
+	Sling.CMS.ext['searchbutton'] = {
+		active: null,
+		decorate: function($ctx) {
+			$ctx.find('.Search-Button').click(function(evt){
+				Sling.CMS.ext['searchbutton'].active = $(evt.target).closest('.Field-Input').find('.Field-Path');
+			});
+		}
+	}
 	
 	Sling.CMS.ext['table'] = {
 		decorate: function($ctx) {

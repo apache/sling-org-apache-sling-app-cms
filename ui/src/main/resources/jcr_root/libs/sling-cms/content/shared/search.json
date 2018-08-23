@@ -7,11 +7,6 @@
 		"container": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/general/container",
-			"richtext": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h3>Search</h3>"
-			},
 			"searchform": {
 				"jcr:primaryType": "nt:unstructured",
 				"sling:resourceType": "sling-cms/components/cms/getform",
@@ -44,7 +39,8 @@
 						"jcr:primaryType": "nt:unstructured",
 						"sling:resourceType": "sling-cms/components/editor/fields/path",
 						"label": "Path",
-						"name": "path"
+						"name": "path",
+						"hidesearch": true
 					}
 				}
 			},

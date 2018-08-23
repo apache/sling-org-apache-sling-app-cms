@@ -37,7 +37,7 @@
 					Replacement Path
 				</label>
 				<div class="Field-Input">
-					<input type="text" name=":dest" />
+					<input type="text" name=":dest" class="Field-Path" />
 				</div>
 			</div>
 		</c:if>

@@ -61,7 +61,8 @@
 						"basePath": "/conf",
 						"label": "Config",
 						"name": "sling:configRef",
-						"required": false
+						"required": false,
+						"type": "config"
 					},
 					"primaryType": {
 						"jcr:primaryType": "nt:unstructured",
