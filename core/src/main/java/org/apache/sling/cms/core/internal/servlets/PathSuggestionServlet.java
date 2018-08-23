@@ -33,7 +33,9 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,21 +44,24 @@ import org.slf4j.LoggerFactory;
  */
 @Component(service = { Servlet.class }, property = { "sling.servlet.paths=/bin/cms/paths",
 		"sling.servlet.methods=" + HttpConstants.METHOD_GET })
+@Designate(ocd = PathSuggestionServletConfig.class)
 public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 
 	private static final long serialVersionUID = -410942682163323725L;
 	private static final Logger log = LoggerFactory.getLogger(PathSuggestionServlet.class);
 
-	private static final Map<String, String[]> typeMaps = new HashMap<String, String[]>();
+	private static final Map<String, String[]> typeFilters = new HashMap<String, String[]>();
 
-	static {
-		typeMaps.put("page", new String[] { "sling:Page", "nt:folder", "sling:Site" });
-		typeMaps.put("file", new String[] { "nt:file", "nt:folder", "sling:Site" });
-		typeMaps.put("folder", new String[] { "nt:folder", "sling:Site" });
-		typeMaps.put("taxonomy", new String[] { "nt:folder", "sling:Taxonomy" });
-		typeMaps.put("config", new String[] { "nt:folder", "sling:Config" });
-		typeMaps.put("content", new String[] { "nt:hierarchyNode" });
-		typeMaps.put("all", new String[] { "nt:base" });
+	@Activate
+	public void activate(PathSuggestionServletConfig config) {
+		typeFilters.clear();
+		for (String filter : config.typeFilters()) {
+			String[] parts = filter.split("\\=");
+			String key = parts[0];
+			String[] types = parts[1].split("\\,");
+			typeFilters.put(key, types);
+		}
+		log.info("Loaded type filters {}", typeFilters);
 	}
 
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -69,7 +74,7 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 		log.debug("Finding valid paths under {}", path);
 
 		String type = request.getParameter("type");
-		if (!typeMaps.containsKey(type)) {
+		if (!typeFilters.containsKey(type)) {
 			type = "all";
 		}
 		log.debug("Filtering by type: {}", type);
@@ -101,7 +106,7 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 		try {
 			Node node = child.adaptTo(Node.class);
 			if (node != null) {
-				for (String t : typeMaps.get(type)) {
+				for (String t : typeFilters.get(type)) {
 					if (node.isNodeType(t)) {
 						return true;
 					}
