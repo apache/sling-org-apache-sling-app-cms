@@ -1,0 +1,47 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save Field",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"label": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Label",
+			"name": "label",
+			"required": true
+		},
+		"name": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Name",
+			"name": "name",
+			"required": true
+		},
+		"required": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/select",
+			"label": "Required",
+			"name": "required",
+			"options": {
+				"yes": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "Yes",
+					"value": "true"
+				},
+				"no": {
+					"jcr:primaryType": "nt:unstructured",
+					"label": "No",
+					"value": "false"
+				}
+			}
+		},
+		"requiredTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "required@TypeHint",
+			"value":"Boolean"
+		}
+	}
+}
