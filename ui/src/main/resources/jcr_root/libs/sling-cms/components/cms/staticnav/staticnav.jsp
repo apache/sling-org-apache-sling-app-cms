@@ -17,15 +17,17 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<h3 class="Nav-Header Toggle-Hidden" data-target="#${fn:replace(properties.title,' ','-')}-Nav">${properties.title}</h3>
+<div class="container is-fluid menu">
+<a class="menu-label Toggle-Hidden" data-target="#${fn:replace(properties.title,' ','-')}-Nav">${properties.title}</a>
 <c:set var="hidden" value="Hide" />
 <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
-	<c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
-		<c:set var="hidden" value="" />
-	</c:if>
+    <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
+        <c:set var="hidden" value="" />
+    </c:if>
 </c:forEach>
-<ul id="${fn:replace(properties.title,' ','-')}-Nav" class="${hidden}">
-	<c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
-		<li class="Nav-Item ${fn:startsWith(slingRequest.requestURI,item.valueMap.link) ? 'active' : ''}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
-	</c:forEach>
+<ul id="${fn:replace(properties.title,' ','-')}-Nav" class="menu-list ${hidden}">
+    <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
+        <li class="${fn:startsWith(slingRequest.requestURI,item.valueMap.link) ? 'active' : ''}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
+    </c:forEach>
 </ul>
+</div>

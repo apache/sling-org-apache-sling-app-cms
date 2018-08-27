@@ -17,20 +17,24 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<body class="cms">
-	<div class="Grid Fit-Small Home-Grid">
-		<div class="Gradient"></div>
-		<nav class="Cell Cell-Pad Small-20">
-			<sling:call script="nav.jsp" />
-		</nav>
-		<div class="Cell Small-5"></div>
-		<div class="Cell Main-Content ${properties.center ? 'Align-Center' : '' }">
-			<div class="Grid">
-				<main class="Cell Cell-Pad Small-100">
-					<sling:call script="content.jsp" />
-				</main>
-			</div>
-		</div>
-	</div>
-	<sling:call script="scripts.jsp" />
+<body class="layout-documentation page-components">
+    <section class="container is-fluid">
+    <sling:call script="nav.jsp" />
+    </section>
+    <section class="container is-fluid">
+    </section>
+    <section>
+    <div class="columns">
+    <div class="column is-one-quarter">
+    <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
+    </div>
+        <div class="column">
+                <main>
+                    <sling:call script="content.jsp" />
+                </main>
+            </div>
+        </div>
+    </div>
+    </section>
+    <sling:call script="scripts.jsp" />
 </body>
