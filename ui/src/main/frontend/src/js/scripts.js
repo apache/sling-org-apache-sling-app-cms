@@ -451,9 +451,9 @@ Sling.CMS = {
 	Sling.CMS.ext['table'] = {
 		decorate: function($ctx) {
 			$ctx.find('table tr').click(function(el){
-				$('#Actions-Target > *').appendTo('tr.active .Cell-Actions')
-				$('tr').removeClass('active');
-				$(this).addClass('active');
+				$('#Actions-Target > *').appendTo('tr.is-selected .Cell-Actions')
+				$('tr').removeClass('is-selected');
+				$(this).addClass('is-selected');
 				$(this).find('.Cell-Actions > *').appendTo('#Actions-Target')
 			});
 		}

@@ -20,11 +20,9 @@
 <nav class="navbar" role="navigation" aria-label="main mavigation">
 <div class="navbar-brand">
 <a class="navbar-item" href="http://sling.apache.org" >
-    <img style="max-height:2rem" src="/static/clientlibs/sling-cms/img/sling-logo.svg" width="100" alt="Apache Sling"/>
+    <img src="/static/clientlibs/sling-cms/img/sling-logo.svg" width="100" alt="Apache Sling"/>
 </a>
-<h1 class="navbar-item">
-    <a href="/cms/start.html" title="CMS Home"><span class="icon"><i class="jam jam-home-f"></i></span></a>
-</h1>
+<a href="/cms/start.html" class="navbar-item" title="CMS Home"><span class="icon"><i class="jam jam-home-f"></i></span></a>
 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
   <span aria-hidden="true"></span>
   <span aria-hidden="true"></span>
@@ -33,7 +31,7 @@
 </div>
 <div class="navbar-menu">
 <div class="navbar-end">
-<a class="navbar-item " href="/system/sling/logout" title="Logout of Apache Sling CMS"><i class="jam jam-log-out"></i><span> ${resourceResolver.userID}</span></a>
+<a class="navbar-item " href="/system/sling/logout" title="Logout of Apache Sling CMS"><span>${resourceResolver.userID} </span><i class="jam jam-log-out"></i></a>
 </div>
 </div>
 </nav>

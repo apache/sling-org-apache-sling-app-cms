@@ -18,81 +18,16 @@
  */ 
  
  
- a.Button {
-    display: inline-block;
-    padding: 8px 12px;
-    color: white;
-    background-color: #00678c;
-    border: 0;
-    margin: .1em;
-    text-decoration: none;
-    height: 38px;
-	min-width: 38px;
-	text-align: center;
-}
 
 .autocomplete-suggestion b {
 	color: #00678c;
 }
-
-ul.Breadcrumb  {
-	margin-top: 2em;
-	margin-bottom: .2em;
-}
-
-.Breadcrumb li {
-    display: inline-block;
-}
-
-.Breadcrumb li:after {
-	content: ">";
-}
-
-.Breadcrumb li:last-child:after {
-	content: "";
-}
-
-.Checkbox-Label {
-	width:100%;
-	display:block;
-}
-
-.Cell-Pad {
-	padding: 4em 1em 1em 1em;
-}
-
 .Col-id {
 	width: 2em;
 }
 
-
-.Editor-Page  {
-	background-color: white;
-}
-
-.Editor-Page form {
-	padding: 1em;
-}
-
-.Field-Group {
-    margin: 1em 0;
-}
-
-.Field-Input a.Button {
-	height: 30px;
-	padding: 8px 9px;
-}
-
-.Field-Input .jam:before {
-	font-size: 12px;
-}
-
 .Hide {
 	display:none;
-}
-
-.jam:before {
-	font-size:18px;
 }
 
 .Modal {
@@ -132,32 +67,6 @@ ul.Breadcrumb  {
 	cursor: move;
 }
 
-.Nav-Header {
-	font-weight: bold;
-	padding: .2em 0;
-}
-
-.Nav-Item {
-	border-bottom: 1px solid silver;
-	padding: .2em;
-}
-
-.Nav-Item:last-child {
-	border-bottom: none;
-}
-
-.Nav-Item a {
-	display: inline-block;
-	width: 100%;
-}
-
-.Nav-Item a:hover {
-	text-decoration: none;
-}
-
-.Nav-Item:hover, .Nav-Item.Active {
-	background-color: #ccc;
-}
 
 .note-group-select-from-files {
   display: none;
@@ -192,57 +101,4 @@ ul.Breadcrumb  {
     border: 1px solid #ccc;
     background-color: #f9f9f9;
     padding: .5em;
-}
-
-table {
-	table-layout: fixed;
-	width: 100%;
-	white-space: nowrap;
-    border-spacing: 0;
-    border-collapse: separate;
-}
-
-table td, table th {
-	padding: .2em;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-td.Cell-Actions {
-	white-space: normal;
-	overflow: auto;
-}
-
-thead {
-	text-align: left;
-	background-color: #999;
-	color: white;
-}
-
-tbody tr:hover, tbody tr.active {
-	background-color: lightgray;
-}
-
-@media (min-width: 62em) { 
-
-	.Col-lastModified {
-		width: 13em;
-	}
-
-	.Col-published {
-		width: 6em;
-	}
-
-	.Col-type {
-		width: 4em;
-	}
-		
-	.Content-Actions {
-		background-color: #ccc;
-		padding: .5em;
-		position: fixed;
-		top: 0px;
-		width: 100%;
-	}
 }

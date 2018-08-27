@@ -17,10 +17,11 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <div class="Content-Actions">
-	 <c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
-	 	<c:if test="${!status.first}"> | </c:if><a class="Button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}">+ ${action.valueMap.label}</a>
-	 </c:forEach>
-	 <span id="Actions-Target">
-	 </span>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+ <div class="buttons has-addons">
+     <c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
+        <a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}">+ ${action.valueMap.label}</a>
+     </c:forEach>
+     <span id="Actions-Target">
+     </span>
  </div>

@@ -14,11 +14,13 @@
 					"page": {
 						"jcr:primaryType": "nt:unstructured",
 						"label": "Site",
+						"icon" : "jam jam-document",
 						"prefix": "/cms/site/create.html"
 					},
 					"folder": {
 						"jcr:primaryType": "nt:unstructured",
 						"label": "Site Group",
+						"icon" : "jam jam-document-f",
 						"prefix": "/cms/site/creategroup.html"
 					}
 				}

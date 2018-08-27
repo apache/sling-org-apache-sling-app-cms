@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:getParent resource="${slingRequest.requestPathInfo.suffixResource}" var="root" level="${resource.valueMap.depth}" />
-<span class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
+<nav class="breadcrumb" aria-label="breadcrumbs">
 <ul>
     <li>
         <a href="${resource.valueMap.prefix}${root.path}">
@@ -41,10 +41,11 @@
             </a>
         </li>
     </c:if>
-    <li>
-        <form method="get" class="content-filter">
-            <label for="filter" class="Hide">Filter</label>
-            <input type="text" placeholder="Filter..." />
-        </form>
-    </li>
 </ul>
+<a href="#">
+<form method="get" class="content-filter">
+    <label for="filter" class="Hide">Filter</label>
+    <input type="text" placeholder="Filter..." />
+</form>
+</a>
+</nav>

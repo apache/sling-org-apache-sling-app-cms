@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<table class="sortable table">
+<table class="sortable table is-fullwidth is-striped">
     <thead>
         <tr>
             <th class="sortable__header Col-id" data-attribute="id">

@@ -17,16 +17,16 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td class="Cell-Publish" data-value="${sling:getRelativeResource(resource,'jcr:content').valueMap.published ? 0 : 1}">
+<td data-value="${sling:getRelativeResource(resource,'jcr:content').valueMap.published ? 0 : 1}">
 	<c:choose>
 		<c:when test="${sling:getRelativeResource(resource,'jcr:content').valueMap.published}">
-			<a class="Button Fetch-Modal"  href="/cms/shared/unpublish.html${resource.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-				 &#10003;
+			<a class="button is-success is-outlined  Fetch-Modal"  href="/cms/shared/unpublish.html${resource.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+				<i class="jam jam-check"></i>
 			</a>
 		</c:when>
 		<c:otherwise>
-			<a class="Button Fetch-Modal"  href="/cms/shared/publish.html${resource.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
-				 &#10007;
+			<a class="button is-warning is-outlined  Fetch-Modal"  href="/cms/shared/publish.html${resource.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
+				<i class="jam jam-check"></i>
 			</a>
 		</c:otherwise>
 	</c:choose>
