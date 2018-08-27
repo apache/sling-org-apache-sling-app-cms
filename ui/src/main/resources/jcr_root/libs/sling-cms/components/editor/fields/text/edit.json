@@ -37,7 +37,7 @@
 				},
 				"date": {
 					"jcr:primaryType": "nt:unstructured",
-					"label": "Date/Time",
+					"label": "Date",
 					"value": "date"
 				},
 				"datetime": {
