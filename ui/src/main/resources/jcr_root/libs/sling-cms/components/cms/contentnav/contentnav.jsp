@@ -47,6 +47,6 @@
             <c:set var="createTitle" value="${properties.title}" />
         </c:otherwise>      
     </c:choose>
-    <li><a href="${properties.createPath}" title="Create a new ${createTitle}"  data-title="Create ${createTitle}" data-path=".Main-Content form"><span class="icon is-small"><i class="jam jam-plus"></i></a></li>
+    <li><a href="${properties.createPath}" class="Fetch-Modal" title="Create a new ${createTitle}"  data-title="Create ${createTitle}" data-path=".Main-Content form"><span class="icon is-small"><i class="jam jam-plus"></i></span> ${createTitle}</a></li>
 </ul>
 </aside>
