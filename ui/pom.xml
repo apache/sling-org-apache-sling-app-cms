@@ -9,7 +9,9 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>org.apache.sling.cms</artifactId>
@@ -50,7 +52,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.4</version>
+				<version>1.6</version>
 				<configuration>
 					<installDirectory>${frontend.target}</installDirectory>
 					<workingDirectory>${frontend.target}</workingDirectory>
@@ -62,8 +64,8 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<configuration>
-							<nodeVersion>v6.11.0</nodeVersion>
-							<npmVersion>3.10.10</npmVersion>
+							<nodeVersion>v8.11.4</nodeVersion>
+							<npmVersion>5.6.0</npmVersion>
 						</configuration>
 					</execution>
 					<execution>
@@ -101,12 +103,45 @@
 							jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,
 							jcr_root/static/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/static/clientlibs/sling-cms
 						</Sling-Initial-Content>
-            			<Include-Resource>{maven-resources},${basedir}/target/frontend/dist</Include-Resource>
+						<Include-Resource>{maven-resources},${basedir}/target/frontend/dist</Include-Resource>
 					</instructions>
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.github.eirslett</groupId>
+										<artifactId>frontend-maven-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>install-node-and-npm</goal>
+											<goal>npm</goal>
+											<goal>gulp</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
+
+
 	<profiles>
 		<profile>
 			<id>autoInstallBundle</id>

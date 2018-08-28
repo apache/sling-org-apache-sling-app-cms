@@ -7,25 +7,25 @@
     "url": "https://github.com/npm/npm.git"
   },
   "dependencies": {
-  	"jquery": "^3.3.1",
-  	"handlebars": "^4.0.11",
-  	"summernote": "^0.8.9",
-  	"jam-icons": "^2.0.0",
-  	"js-autocomplete": "^1.0.4" 
+    "jquery": "^3.3.1",
+    "handlebars": "^4.0.11",
+    "summernote": "^0.8.9",
+    "jam-icons": "^2.0.0",
+    "js-autocomplete": "^1.0.4"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0",
-    "gulp-header": "^1.8.9",
-    "gulp-clean-css": "^3.9.2",
-    "gulp-sass": "^3.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.1",
+    "gulp-header": "^2.0.5",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "streamqueue": "^1.1.2",
     "uglify-save-license": "^0.4.1",
-     "bulma": "^0.7.1",
-    "node-sass": "^4.9.2"
+    "bulma": "^0.7.1",
+    "node-sass": "^4.9.3"
   },
   "license": "Apache-2.0"
 }
