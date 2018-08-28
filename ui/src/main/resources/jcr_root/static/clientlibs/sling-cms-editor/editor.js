@@ -105,7 +105,7 @@ if(!window.CMSEditor){
 				mouseY = 0;
 				
 				$(".Sling-CMS__modal-frame-title").text(title);
-				$(".Sling-CMS__modal-box iframe").attr('src',url);
+				$('.Sling-CMS__modal-frame-container').html('<iframe class="Sling-CMS__modal-frame" src="'+url+'"></iframe>');
 				$(".Sling-CMS__modal-background").show();
 				$(".Sling-CMS__modal-box").show();
 				

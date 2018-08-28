@@ -19,49 +19,6 @@
 			"name": "name",
 			"required": true
 		},
-		"inputType": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/select",
-			"label": "Input Type",
-			"name": "type",
-			"options": {
-				"text": {
-					"jcr:primaryType": "nt:unstructured",
-					"label": "Text",
-					"value": "text"
-				},
-				"color": {
-					"jcr:primaryType": "nt:unstructured",
-					"label": "Color",
-					"value": "color"
-				},
-				"date": {
-					"jcr:primaryType": "nt:unstructured",
-					"label": "Date",
-					"value": "date"
-				},
-				"datetime": {
-					"jcr:primaryType": "nt:unstructured",
-					"label": "Date/Time",
-					"value": "datetime-local"
-				},
-				"email": {
-					"jcr:primaryType": "nt:unstructured",
-					"label": "Email",
-					"value": "email"
-				},
-				"number": {
-					"jcr:primaryType": "nt:unstructured",
-					"label": "Number",
-					"value": "number"
-				},
-				"url": {
-					"jcr:primaryType": "nt:unstructured",
-					"label": "URL",
-					"value": "url"
-				}
-			}
-		},
 		"required": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/select",
