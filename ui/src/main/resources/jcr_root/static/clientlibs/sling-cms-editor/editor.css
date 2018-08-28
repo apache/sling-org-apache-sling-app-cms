@@ -85,6 +85,7 @@
 	overflow: hidden;
 	padding-bottom: 56.25%;
 	min-height: 500px;
+	background:url(./loader.gif) center center no-repeat;
 }
 
 .Sling-CMS__modal-frame-header {
