@@ -83,26 +83,11 @@ Sling.CMS = {
 		}
 	};
 
-	//support links which fetch HTML and display a modal
-	Sling.CMS.ext['fetch-modal'] = {
-		decorate : function($ctx){
-			$ctx.find('a.Fetch-Modal').click(function(){
-				var $link = $(this);
-				$link.attr('disabled', 'disabled');
-				Sling.CMS.ui.fetchModal($link.attr('data-title'), encodeURI($link.attr('href')), $link.attr('data-path'), function(){
-					$link.removeAttr('disabled');
-				});
-				return false;
-			});
-		}
-	};
-
 	Sling.CMS.ext['ajaxform'] = {
 		decorate: function($ctx){
 			$ctx.find('.Form-Ajax').submit(function(){
 				
 				var $form = $(this);
-				var $inputs = $form.find('input,select,textarea,button');
 				var jcrcontent = false;
 				$form.find('input,select,textarea').each(function(idx,inp){
 					if(inp.name.indexOf('jcr:content') != -1){
@@ -122,6 +107,7 @@ Sling.CMS = {
 						$form.append('<input type="hidden" name="jcr:createdBy" />');
 					}
 				}
+				var callback = $form.data('callback');
 				var data = new FormData(this);
 				$form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
 				$.ajax({
@@ -132,14 +118,10 @@ Sling.CMS = {
 					contentType: false,
 					dataType: 'json',
 					success: function(res,msg){
-						if(window.self !== window.top){
-							window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-								window.top.location.reload();
-							});
+						if (callback && Sling.CMS.ext[callback]){
+							Sling.CMS.ext[callback](res, msg);
 						} else {
-							Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-								location.reload();
-							});
+							Sling.CMS.ext.reload(res, msg);
 						}
 					},
 					error: function(xhr, msg, err){
@@ -190,7 +172,6 @@ Sling.CMS = {
 					if($h.data('sort-status')){
 						sortStatus = parseInt($h.data('sort-status'),10);
 					}
-					var name = $h.data('attribute');
 				    var list = $table.find(".sortable__row").get();
 				    list.sort(function(rowa, rowb) {
 				    		var vala = null;
@@ -232,7 +213,6 @@ Sling.CMS = {
 
 				  // mouse button down over the element
 				element.addEventListener('mousedown', function(evt){
-					console.log('mousedown');
 					if(document.querySelector('.Modal-Body').contains(evt.target)){
 						return;
 					}
@@ -241,8 +221,7 @@ Sling.CMS = {
 					mouseDown = true;
 				});
 				
-				var moveComplete = function(evt){
-					console.log('mouseup');
+				var moveComplete = function(){
 					mouseDown = false;
 					elementX = parseInt(element.style.left) || 0;
 					elementY = parseInt(element.style.top) || 0;
@@ -256,7 +235,6 @@ Sling.CMS = {
 					if (!mouseDown) {
 						return;
 					}
-					console.log('mousemove');
 				    var deltaX = event.clientX - mouseX;
 				    var deltaY = event.clientY - mouseY;
 				    element.style.left = elementX + deltaX + 'px';
@@ -282,6 +260,20 @@ Sling.CMS = {
 					$ctr.append(template(res));
 					Sling.CMS.decorate($ctr);
 				});
+			});
+		}
+	};
+
+	//support links which fetch HTML and display a modal
+	Sling.CMS.ext['fetch-modal'] = {
+		decorate : function($ctx){
+			$ctx.find('a.Fetch-Modal').click(function(){
+				var $link = $(this);
+				$link.attr('disabled', 'disabled');
+				Sling.CMS.ui.fetchModal($link.attr('data-title'), encodeURI($link.attr('href')), $link.attr('data-path'), function(){
+					$link.removeAttr('disabled');
+				});
+				return false;
 			});
 		}
 	};
@@ -320,6 +312,27 @@ Sling.CMS = {
 			});
 		}
 	};
+
+	Sling.CMS.ext['handledelete'] = function(res, msg){
+		if(window.location.pathname.indexOf(res.path) !== -1){
+			window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+				window.location = '/cms';
+			});
+		} else {
+			Sling.CMS.ext.reload(res, msg);
+		}
+	}
+
+	Sling.CMS.ext['handlemove'] = function(res, msg){
+		var changes = res.changes[0];
+		if(changes.type === 'moved' && window.location.pathname.indexOf(changes.argument[0]) !== -1){
+			window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+				window.location = window.location.href.replace(changes.argument[0], changes.argument[1]);
+			});
+		} else {
+			Sling.CMS.ext.reload(res, msg);
+		}
+	}
 
 	Sling.CMS.ext['namehint'] = {
 		decorate: function($ctx){
@@ -365,7 +378,6 @@ Sling.CMS = {
 			        try {
 			        	xhr.abort();
 			        } catch(e){}
-			        var t = term;
 			        if(term === '/'){
 			        	term = base;
 			        }
@@ -384,6 +396,18 @@ Sling.CMS = {
 		}
 	};
 
+	Sling.CMS.ext['reload'] = function(res, msg) {
+		if(window.self !== window.top){
+			window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+				window.top.location.reload();
+			});
+		} else {
+			Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+				location.reload();
+			});
+		}
+	}
+ 
 	Sling.CMS.ext['repeating'] = {
 		decorate: function($ctx){
 			$ctx.find('.repeating').each(function(){
@@ -419,7 +443,7 @@ Sling.CMS = {
 			        return url;
 			    },
 			    callbacks: {
-		    		onDialogShown: function(e){
+		    		onDialogShown: function(){
 						Sling.CMS.ext.pathfield.suggest($('.note-link-url')[0], 'content', '/content');
 						Sling.CMS.ext.pathfield.suggest($('.note-image-url')[0], 'content', '/content');
 		    		}

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="${properties.addDate != false}">
+<form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="${properties.addDate != false}" data-callback="${properties.callback}">
 	<fieldset class="Form-Ajax__wrapper">
 		<input type="hidden" name="_charset_" value="utf-8" />
 		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
