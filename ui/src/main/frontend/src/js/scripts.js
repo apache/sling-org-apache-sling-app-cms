@@ -47,23 +47,21 @@ Sling.CMS = {
 				window.scrollTo(0, 0);
 			},
 			confirmMessage: function(title, message, cb){
-				var $modal = $('<div class="Modal"><div class="Modal-Content Draggable"><div class="Modal-Header">'+title+'</div><div class="Modal-Body">'+message+'</div><div class="Modal-Footer"><button type="button" class="Modal-Close">OK</button></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card"><div class="modal-card-head Draggable">'+title+'</div><div class="modal-card-body">'+message+'</div><div class="Modal-Footer"><button type="button" class="modal-close">OK</button></div></div>');
 				$('body').append($modal);
-				$modal.css('display','block');
-				Sling.CMS.decorate($modal);
-				$modal.find('.Modal-Close').click(function(){
+				$modal.addClass('is-active');
+				$modal.find('.modal-close').click(function(){
 					$modal.css('display','none').remove();
 					cb();
 				});
 				return $modal;
 			},
 			fetchModal: function(title, link, path, complete){
-				var $modal = $('<div class="Modal"><div class="Modal-Content Draggable"><div class="Modal-Header">'+title+'<button type="button" class="Modal-Close Pull-Right">x</button></div><div class="Modal-Body"></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card Draggable"><div class="modal-card-head">'+title+'<button type="button" class="modal-close">x</button></div><div class="modal-card-body""></div></div>');
 				$('body').append($modal);
-				$modal.find('.Modal-Body').load(link + " " +path,function(){
-					$modal.css('display','block');
-					Sling.CMS.decorate($modal);
-					$modal.find('.Modal-Close').click(function(){
+				$modal.addClass('is-active');
+				$modal.find('.modal-card-body').load(link + " " +path,function(){
+					$modal.find('.modal-close').click(function(){
 						$modal.css('display','none').remove();
 						return false;
 					});
@@ -233,7 +231,7 @@ Sling.CMS = {
 				  // mouse button down over the element
 				element.addEventListener('mousedown', function(evt){
 					console.log('mousedown');
-					if(document.querySelector('.Modal-Body').contains(evt.target)){
+					if(document.querySelector('.modal-body').contains(evt.target)){
 						return;
 					}
 					mouseX = evt.clientX;

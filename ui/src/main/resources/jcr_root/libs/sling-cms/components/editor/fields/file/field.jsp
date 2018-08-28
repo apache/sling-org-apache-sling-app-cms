@@ -26,7 +26,7 @@
 	</c:otherwise>
 </c:choose>
 <div class="repeating">
- 	<fieldset disabled="disabled" class="repeating__template Hide">
+ 	<div disabled="disabled" class="repeating__template Hide">
  		<div class="repeating__item Grid">
  			<div class="Cell Mobile-80">
 	 			<input type="file" name="${properties.name}" ${required} accept="${accepts}" />
@@ -35,7 +35,7 @@
 		 		<button class="repeating__remove">-</button>
 		 	</div>
 	 	</div>
- 	</fieldset>
+ 	</div>
  	<div class="repeating__container">
 	 	<div class="repeating__item Grid">
  			<div class="Cell Mobile-80">

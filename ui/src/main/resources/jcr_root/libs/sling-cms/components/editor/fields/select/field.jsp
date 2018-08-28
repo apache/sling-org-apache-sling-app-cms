@@ -20,7 +20,7 @@
 <c:if test="${properties.multiple == true}">
 	<c:set var="multiple" value="multiple = \"multiple\"" />
 </c:if>
-<select class="form-control" name="${properties.name}" ${required} ${disabled} ${multiple}>
+<select class="form-control" class="select" name="${properties.name}" ${required} ${disabled} ${multiple}>
 	<c:choose>
 		<c:when test="${not empty properties.options}">
 			<c:forEach var="option" items="${properties.options}">

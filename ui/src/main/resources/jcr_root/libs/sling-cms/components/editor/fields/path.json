@@ -1,4 +1,3 @@
 {
-	"jcr:primaryType": "sling:Component",
-	"sling:resourceSuperType" : "sling-cms/components/editor/fields/base"
+	"jcr:primaryType": "sling:Component"
 }

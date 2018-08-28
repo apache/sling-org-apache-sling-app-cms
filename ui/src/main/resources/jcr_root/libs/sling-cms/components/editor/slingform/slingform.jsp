@@ -18,13 +18,13 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="${properties.addDate != false}">
-	<fieldset class="Form-Ajax__wrapper">
+	<div class="Form-Ajax__wrapper field">
 		<input type="hidden" name="_charset_" value="utf-8" />
 		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
 		<div class="Field-Group">
-			<button type="submit" class="btn btn-success" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
+			<button type="submit" class="button is-primary" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
 				<sling:encode value="${properties.button}" mode="HTML" />
 			</button>
 		</div>
-	</fieldset>
+	</div>
 </form>

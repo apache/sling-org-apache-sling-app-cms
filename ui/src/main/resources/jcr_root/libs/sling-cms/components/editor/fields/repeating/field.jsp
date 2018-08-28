@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="repeating">
- 	<fieldset disabled="disabled" class="repeating__template Hide">
+ 	<div disabled="disabled" class="repeating__template Hide">
  		<div class="repeating__item Grid">
  			<div class="Cell Mobile-80">
 	 			<input type="${properties.type}" value="" name="${properties.name}" ${required} ${disabled} />
@@ -27,7 +27,7 @@
 		 		<button class="repeating__remove">-</button>
 		 	</div>
 	 	</div>
- 	</fieldset>
+ 	</div>
  	<div class="repeating__container">
 	 	<c:forEach var="value" items="${editProperties[properties.name]}">
 	 		<div class="repeating__item Grid">

@@ -27,7 +27,7 @@
 	</c:otherwise>
 </c:choose>
 <form method="get" action="${action}" class="Get-Form" data-target="${properties.target}" data-load="${properties.load}">
-	<fieldset class="Form-Ajax__wrapper">
+	<div class="Form-Ajax__wrapper">
 		<input type="hidden" name="_charset_" value="utf-8" />
 		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
 		<div class="Field-Group">
@@ -35,5 +35,5 @@
 				<sling:encode value="${properties.button}" mode="HTML" />
 			</button>
 		</div>
-	</fieldset>
+	</div>
 </form>

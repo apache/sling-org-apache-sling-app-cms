@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<body class="layout-documentation page-components">
+<body class="cms">
     <section class="container is-fluid">
     <sling:call script="nav.jsp" />
     </section>
@@ -29,7 +29,7 @@
     <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
     </div>
         <div class="column">
-                <main>
+                <main class="Main-Content">
                     <sling:call script="content.jsp" />
                 </main>
             </div>

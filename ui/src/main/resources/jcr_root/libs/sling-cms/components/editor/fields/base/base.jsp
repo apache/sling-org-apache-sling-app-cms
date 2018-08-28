@@ -37,14 +37,14 @@
 		<c:set var="disabled" value="" scope="request" />
 	</c:otherwise>
 </c:choose>
-<div class="Field-Group">
+<div class="field">
 	<c:if test="${not empty properties.label}">
-		<label for="${properties.name}">
+		<label class="label" for="${properties.name}">
 			<sling:encode value="${properties.label}" mode="HTML" />
 			<c:if test="${properties.required}"><span class="error">*</span></c:if>
 		</label>
 	</c:if>
-	<div class="Field-Input">
-		<sling:call script="field.jsp" />
-	</div>
+	<div class="control">
+    <sling:call script="field.jsp" />
+    </div>
 </div>

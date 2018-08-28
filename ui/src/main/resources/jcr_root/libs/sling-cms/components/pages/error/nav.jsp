@@ -17,14 +17,13 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<a class="Cell-Pad" href="https://sling.apache.org" target="_blank" title="Visit the Apache Sling website">
-	<img src="/content/starter/img/sling-logo.svg" alt="Apache Sling Logo"/>
+<nav class="navbar" role="navigation" aria-label="main mavigation">
+<div class="navbar-brand">
+<a class="navbar-item" href="http://sling.apache.org" >
+    <img src="/static/clientlibs/sling-cms/img/sling-logo.svg" width="100" alt="Apache Sling"/>
 </a>
-<h1>
-	<a href="/cms/start.html">
-		CMS
-	</a>
-</h1>
-<a class="Cell-Pad" href="https://apache.org" target="_blank" id="asf-logo" title="Visit the Apache Software Foundation website">
-    <img src="/content/starter/img/asf-logo.svg" alt="Apache Software Foundation Logo">
-</a>
+<a href="/cms/start.html" class="navbar-item" title="CMS Home"><span class="icon"><i class="jam jam-home-f"></i></span></a>
+</div>
+<div class="navbar-menu">
+</div>
+</nav>

@@ -22,51 +22,9 @@
 .autocomplete-suggestion b {
 	color: #00678c;
 }
-.Col-id {
-	width: 2em;
-}
-
 .Hide {
 	display:none;
 }
-
-.Modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1002; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.3); 
-}
-
-.Modal-Body {
-	padding: 0 2em 1em 2em;
-}
-
-.Modal-Content {
-    background-color: white;
-    margin: 5em auto;
-    border: 1px solid #999;
-    width: 95%; 
-    max-width: 700px;
-    position: relative;
-}
-
-.Modal-Footer {
-	padding: 1em;
-}
-
-.Modal-Header {
-	font-weight: bold;
-	font-size: large;
-	padding: 1em;
-	cursor: move;
-}
-
 
 .note-group-select-from-files {
   display: none;
