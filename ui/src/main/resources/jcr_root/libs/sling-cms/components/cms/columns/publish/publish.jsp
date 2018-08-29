@@ -20,7 +20,7 @@
 <td data-value="${sling:getRelativeResource(resource,'jcr:content').valueMap.published ? 0 : 1}">
 	<c:choose>
 		<c:when test="${sling:getRelativeResource(resource,'jcr:content').valueMap.published}">
-			<a class="button is-success is-outlined  Fetch-Modal"  href="/cms/shared/unpublish.html${resource.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+			<a class="button is-success is-outlined Fetch-Modal"  href="/cms/shared/unpublish.html${resource.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
 				<i class="jam jam-check"></i>
 			</a>
 		</c:when>

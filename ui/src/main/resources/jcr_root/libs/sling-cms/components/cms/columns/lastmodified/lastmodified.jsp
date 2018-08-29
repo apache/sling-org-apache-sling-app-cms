@@ -21,7 +21,7 @@
 <c:set var="modifiedByProperty" value="${colConfig.valueMap.subPath}jcr:lastModifiedBy" />
 <fmt:formatDate var="lastModified" type = "both"  dateStyle = "medium" timeStyle = "medium" value="${resource.valueMap[modifiedProperty].time}" />
 <c:set var="colValue" value="${lastModified} - ${resource.valueMap[modifiedByProperty]}" />
-<td class="Cell-Static" title="${sling:encode(colValue,'HTML_ATTR')}">
+<td title="${sling:encode(colValue,'HTML_ATTR')}">
 	<sling:encode value="${lastModified}" mode="HTML" /><br/>
 	<sling:encode value="${resource.valueMap[modifiedByProperty]}" mode="HTML" />
 </td>

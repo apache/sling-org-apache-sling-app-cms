@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="Pull-Right">
+<div class="is-pulled-right">
 	<c:forEach var="actionConfig" items="${sling:listChildren(resource)}">
 		<c:choose>
 			<c:when test="${actionConfig.valueMap.modal}">

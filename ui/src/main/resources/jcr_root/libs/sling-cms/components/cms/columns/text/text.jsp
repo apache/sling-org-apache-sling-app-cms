@@ -18,7 +18,7 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="colValue" value="${resource.valueMap[colConfig.valueMap.property]}" />
-<td class="Cell-Text" title="${sling:encode(colValue,'HTML_ATTR')}">
+<td title="${sling:encode(colValue,'HTML_ATTR')}">
 	<c:choose>
 		<c:when test="${colConfig.valueMap.link}">
 			<a href="${colConfig.valueMap.prefix}${resource.path}">

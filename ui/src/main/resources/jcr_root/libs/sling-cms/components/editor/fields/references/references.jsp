@@ -37,13 +37,13 @@
 					Replacement Path
 				</label>
 				<div class="Field-Input">
-					<input type="text" name=":dest" class="Field-Path" />
+					<input type="text" name=":dest" class="pathfield input" />
 				</div>
 			</div>
 		</c:if>
 		
 		<sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.References" />
-		<ul style="max-height: 200px; overflow:auto">
+		<ul class="box">
 			<c:forEach var="ref" items="${references.references}">
 				<li>${ref}</li>
 			</c:forEach>

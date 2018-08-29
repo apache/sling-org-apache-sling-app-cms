@@ -15,48 +15,37 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */ 
- 
- 
+ */
 
-.autocomplete-suggestion b {
-	color: #00678c;
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+	font-family: 'jam-icons';
 }
-.Hide {
-	display:none;
+
+table.dataTable thead .sorting:after {
+	content: "\e943"
+}
+
+table.dataTable thead .sorting_asc:after {
+	content: "\e93f"
+}
+
+table.dataTable thead .sorting_desc:after {
+	content: "\e92a"
 }
 
 .note-group-select-from-files {
-  display: none;
+	display: none;
 }
 
 .note-toolbar-wrapper {
-    height: auto !important;
+	height: auto !important;
 }
 
 .Preview {
 	max-width: 100%;
-	padding:.5em;
-}
-
-.Pull-Right {
-	float:right;
-}
-
-.Search-Result {
-    padding: .1em;
-}
-
-.Search-Result h4 {
-	margin-bottom: 0;
-}
-
-.Search-Result small {
-	font-size: x-small;
-}
-
-.Search-Result__Container {
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    padding: .5em;
+	padding: .5em;
 }

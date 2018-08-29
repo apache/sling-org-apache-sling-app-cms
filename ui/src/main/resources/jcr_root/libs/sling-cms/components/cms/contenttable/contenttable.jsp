@@ -17,17 +17,15 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<table class="sortable table is-fullwidth is-striped">
+<table class="table is-fullwidth is-striped">
     <thead>
         <tr>
-            <th class="sortable__header Col-id" data-attribute="id">
+            <th>
                 #
-                <span class="sortable__indicator"></span>
             </th>
             <c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">
-                <th class="${column.name == 'actions' ? 'Hide' : '' } sortable__header Col-${column.name}" data-attribute="${column.name}">
+                <th class="${column.name == 'actions' ? 'is-hidden' : '' }" data-attribute="${column.name}">
                     <sling:encode value="${column.valueMap.title}" mode="HTML" />
-                    <span class="sortable__indicator"></span>
                 </th>
             </c:forEach>
         </tr>

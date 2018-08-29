@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td class="Cell-Name">
+<td>
 	<c:set var="colValue" value="${resource.name}" />
 	<c:choose>
 		<c:when test="${colConfig.valueMap.link}">

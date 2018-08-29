@@ -38,21 +38,14 @@ Sling.CMS = {
 			Sling.CMS.decorate($(document));
 		},
 		ui: {
-			alert: function(level, message){
-				$alert = $('<div class="Alert Alert-'+level+'">'+message+'</div>');
-				$('.main').prepend($alert);
-				setTimeout(function(){
-					$alert.remove();
-				}, 10000);
-				window.scrollTo(0, 0);
-			},
-			confirmMessage: function(title, message, cb){
+			confirmMessage: function(title, message, complete){
 				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card"><div class="modal-card-head Draggable">'+title+'</div><div class="modal-card-body">'+message+'</div><div class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></div></div>');
 				$('body').append($modal);
 				$modal.addClass('is-active');
 				$modal.find('.close-modal').click(function(){
 					$modal.css('display','none').remove();
-					cb();
+					Sling.CMS.decorate($modal);
+					complete();
 				});
 				return $modal;
 			},
@@ -65,6 +58,7 @@ Sling.CMS = {
 						$modal.css('display','none').remove();
 						return false;
 					});
+					Sling.CMS.decorate($modal);
 					complete();
 				});
 				return $modal;
@@ -211,7 +205,7 @@ Sling.CMS = {
 
 				  // mouse button down over the element
 				element.addEventListener('mousedown', function(evt){
-					if(document.querySelector('.Modal-Body').contains(evt.target)){
+					if(document.querySelector('.modal-card-body').contains(evt.target)){
 						return;
 					}
 					mouseX = evt.clientX;
@@ -241,10 +235,10 @@ Sling.CMS = {
 				});
 				
 			};
-			if($ctx.is('.Draggable')){
+			if($ctx.is('.is-draggable')){
 				$ctx.each(draggable)
 			}
-			$ctx.find('.Draggable').each(draggable);
+			$ctx.find('.is-draggable').each(draggable);
 		}
 	};
 	
@@ -473,10 +467,10 @@ Sling.CMS = {
 	Sling.CMS.ext['table'] = {
 		decorate: function($ctx) {
 			$ctx.find('table tbody tr').click(function(el){
-				$('#Actions-Target > *').appendTo('tr.is-selected .Cell-Actions')
+				$('#Actions-Target > *').appendTo('tr.is-selected .cell-actions')
 				$('tr').removeClass('is-selected');
 				$(this).addClass('is-selected');
-				$(this).find('.Cell-Actions > *').appendTo('#Actions-Target')
+				$(this).find('.cell-actions > *').appendTo('#Actions-Target')
 			});
 		}
 	};

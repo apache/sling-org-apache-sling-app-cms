@@ -18,6 +18,6 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="colValue" value="${colConfig.valueMap.value}" />
-<td class="Cell-Static" title="${sling:encode(colValue,'HTML_ATTR')}">
+<td title="${sling:encode(colValue,'HTML_ATTR')}">
 	<sling:encode value="${colValue}" mode="HTML" />
 </td>
