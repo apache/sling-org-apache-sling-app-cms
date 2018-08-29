@@ -17,5 +17,7 @@
 @charset "utf-8";
 $navbar-height: 5rem;
 $navbar-item-img-max-height: 4rem;
+$modal-z: 2000;
 
 @import "../../node_modules/bulma/bulma.sass";
+@import "../../node_modules/datatables-bulma/css/dataTables.bulma.css";

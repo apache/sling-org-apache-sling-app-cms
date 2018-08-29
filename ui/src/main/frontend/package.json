@@ -7,11 +7,12 @@
     "url": "https://github.com/npm/npm.git"
   },
   "dependencies": {
-    "jquery": "^3.3.1",
-    "handlebars": "^4.0.11",
-    "summernote": "^0.8.9",
-    "jam-icons": "^2.0.0",
-    "js-autocomplete": "^1.0.4"
+  	"jquery": "^3.3.1",
+  	"handlebars": "^4.0.11",
+  	"summernote": "^0.8.9",
+  	"jam-icons": "^2.0.0",
+  	"js-autocomplete": "^1.0.4",
+  	"datatables": "^1.10.18"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -25,7 +26,7 @@
     "streamqueue": "^1.1.2",
     "uglify-save-license": "^0.4.1",
     "bulma": "^0.7.1",
-    "node-sass": "^4.9.3"
+    "datatables-bulma": "^1.0.1"
   },
   "license": "Apache-2.0"
 }

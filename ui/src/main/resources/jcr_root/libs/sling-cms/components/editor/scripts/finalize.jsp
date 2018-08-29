@@ -19,13 +19,15 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
 	<script src="/static/clientlibs/sling-cms-editor/editor.js"></script>
-	<div class="Sling-CMS__modal-background">
+	<div class="Sling-CMS__modal-background modal">
 		<div class="Sling-CMS__modal-box">
-			<div class="Sling-CMS__modal-frame-header">
+		     <div class="modal-card">
+			<div class="Sling-CMS__modal-frame-header modal-card-head">
 				<span class="Sling-CMS__modal-frame-title"></span>
 				<button class="Sling-CMS__modal-close Sling-CMS__edit-button">x</button>
 			</div>
-			<div class="Sling-CMS__modal-frame-container">
+			<div class="Sling-CMS__modal-frame-container model-card-body">
+			</div>
 			</div>
 		</div>
 	</div>

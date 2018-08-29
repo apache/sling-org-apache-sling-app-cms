@@ -47,7 +47,7 @@
 <c:choose>
     <c:when test="${properties.hidesearch != true}">
           <div class="control">
-              <input class="Field-Path input" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+              <input class="input" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
           </div>
           <div class="control">
               <a href="/cms/shared/search.html" class="Button Fetch-Modal Search-Button" data-title="Search" data-path=".Main-Content > .Grid > .Cell > *">
@@ -57,7 +57,7 @@
     </c:when>
     <c:otherwise>
         <div class="control">
-        <input class="Field-Path" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+        <input class="input" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
         </div>
     </c:otherwise>
 </c:choose>

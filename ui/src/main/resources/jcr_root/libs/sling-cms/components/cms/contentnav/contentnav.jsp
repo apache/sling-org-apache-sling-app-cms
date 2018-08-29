@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:findResources var="content" query="${properties.query}" language="JCR-SQL2" />
-<aside class="container is-fluid menu">
+<aside class="menu">
 <a class="menu-label Toggle-Hidden" data-target="#Nav-${fn:replace(properties.title,' ','-')}">${properties.title}</a>
 <ul class="menu-list ${fn:startsWith(slingRequest.requestURI, properties.prefix) ? '' : 'Hide'}" id="Nav-${fn:replace(properties.title,' ','-')}">
     <c:forEach var="item" items="${content}">
