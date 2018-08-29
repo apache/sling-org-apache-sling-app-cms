@@ -130,7 +130,7 @@
 									"modal": true,
 									"title": "Edit Site Group",
 									"icon": "pencil-f",
-									"prefix": "/cms/folder/editgroup.html"
+									"prefix": "/cms/site/editgroup.html"
 								},
 								"movecopy": {
 									"jcr:primaryType": "nt:unstructured",
