@@ -26,8 +26,7 @@
     "streamqueue": "^1.1.2",
     "uglify-save-license": "^0.4.1",
     "bulma": "^0.7.1",
-    "datatables-bulma": "^1.0.1",
-    "node-sass": "^4.9.2"
+    "datatables-bulma": "^1.0.1"
   },
   "license": "Apache-2.0"
 }

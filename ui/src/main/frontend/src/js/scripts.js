@@ -47,10 +47,10 @@ Sling.CMS = {
 				window.scrollTo(0, 0);
 			},
 			confirmMessage: function(title, message, cb){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card"><div class="modal-card-head Draggable">'+title+'</div><div class="modal-card-body">'+message+'</div><div class="Modal-Footer"><button type="button" class="modal-close">OK</button></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card"><div class="modal-card-head Draggable">'+title+'</div><div class="modal-card-body">'+message+'</div><div class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></div></div>');
 				$('body').append($modal);
 				$modal.addClass('is-active');
-				$modal.find('.modal-close').click(function(){
+				$modal.find('.close-modal').click(function(){
 					$modal.css('display','none').remove();
 					cb();
 				});
