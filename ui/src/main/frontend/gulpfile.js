@@ -70,6 +70,8 @@ gulp.task('styles', function() {
 gulp.task('js', function() {
 	return gulp.src([
 			'./node_modules/jquery/dist/jquery.js',
+			'./node_modules/datatables/media/js/jquery.dataTables.js',
+			'./node_modules/datatables-bulma/js/dataTables.bulma.js',
 			'./node_modules/handlebars/dist/handlebars.js',
 			'./node_modules/summernote/dist/summernote-lite.js',
 			'./node_modules/js-autocomplete/auto-complete.js',

@@ -42,10 +42,4 @@
         </li>
     </c:if>
 </ul>
-<a href="#">
-<form method="get" class="content-filter">
-    <label for="filter" class="Hide">Filter</label>
-    <input type="text" placeholder="Filter..." />
-</form>
-</a>
 </nav>

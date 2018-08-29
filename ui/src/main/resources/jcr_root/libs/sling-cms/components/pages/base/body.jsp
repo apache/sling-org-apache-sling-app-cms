@@ -22,18 +22,17 @@
     <sling:call script="nav.jsp" />
     </section>
     <section class="container is-fluid">
-    </section>
-    <section>
     <div class="columns">
-    <div class="column is-one-quarter">
-    <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
+    <div class="column is-one-fifth">
+        <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
     </div>
-        <div class="column">
-                <main class="Main-Content">
-                    <sling:call script="content.jsp" />
-                </main>
-            </div>
-        </div>
+    <div class="column">
+        <main class="Main-Content">
+            <sling:call script="content.jsp" />
+        </main>
+    </div>
+    <div class="column is-one-fifth">
+    </div>
     </div>
     </section>
     <sling:call script="scripts.jsp" />

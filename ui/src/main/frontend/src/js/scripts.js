@@ -57,10 +57,10 @@ Sling.CMS = {
 				return $modal;
 			},
 			fetchModal: function(title, link, path, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card Draggable"><div class="modal-card-head">'+title+'<button type="button" class="modal-close">x</button></div><div class="modal-card-body""></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card Draggable"><div class="modal-card-head">'+title+'<button type="button" class="modal-close"></button></div><div class="modal-card-body""></div><div class="modal-card-foot"></div></div>');
 				$('body').append($modal);
-				$modal.addClass('is-active');
 				$modal.find('.modal-card-body').load(link + " " +path,function(){
+					$modal.addClass('is-active');
 					$modal.find('.modal-close').click(function(){
 						$modal.css('display','none').remove();
 						return false;
@@ -472,7 +472,7 @@ Sling.CMS = {
 	
 	Sling.CMS.ext['table'] = {
 		decorate: function($ctx) {
-			$ctx.find('table tr').click(function(el){
+			$ctx.find('table tbody tr').click(function(el){
 				$('#Actions-Target > *').appendTo('tr.is-selected .Cell-Actions')
 				$('tr').removeClass('is-selected');
 				$(this).addClass('is-selected');

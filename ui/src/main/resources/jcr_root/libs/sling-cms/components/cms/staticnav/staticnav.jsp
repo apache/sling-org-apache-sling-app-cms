@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="container is-fluid menu">
+<div class="menu">
 <a class="menu-label Toggle-Hidden" data-target="#${fn:replace(properties.title,' ','-')}-Nav">${properties.title}</a>
 <c:set var="hidden" value="Hide" />
 <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
