@@ -43,23 +43,24 @@
         <c:if test="${properties.required}"><span class="error">*</span></c:if>
     </label>
 </c:if>
-<div class="field has-addons">
 <c:choose>
     <c:when test="${properties.hidesearch != true}">
+    	<div class="field has-addons">
           <div class="control">
-              <input class="input" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+              <input class="input pathfield" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
           </div>
           <div class="control">
               <a href="/cms/shared/search.html" class="Button Fetch-Modal Search-Button" data-title="Search" data-path=".Main-Content > .Grid > .Cell > *">
                   <span class="jam jam-search"></span>
               </a>
           </div>
+         </div>
     </c:when>
     <c:otherwise>
-        <div class="control">
-        <input class="input" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+    	<div class="field">
+	        <div class="control">
+	        	<input class="input pathfield" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+	        </div>
         </div>
     </c:otherwise>
 </c:choose>
-
-</div>
