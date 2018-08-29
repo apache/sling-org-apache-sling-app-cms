@@ -386,7 +386,7 @@ Sling.CMS = {
 			});
 		},
 		decorate: function($ctx){
-			$ctx.find('input.Field-Path').each(function(){
+			$ctx.find('input.pathfield').each(function(){
 				var type = $(this).data('type');
 				var base = $(this).data('base');
 				Sling.CMS.ext.pathfield.suggest(this, type, base);
