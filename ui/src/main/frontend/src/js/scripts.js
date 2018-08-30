@@ -342,14 +342,17 @@ Sling.CMS = {
 		decorate: function($ctx){
 			$ctx.find('.Sling-CMS__page-properties').each(function(){
 				var $ctr = $(this);
+				var $wrapper = $ctr.closest('.Form-Ajax__wrapper');
 				$($ctr.data('source')).change(function(){
 					var config = $(this).val();
 					$ctr.load($ctr.data('path')+config, function(){
 						var source   = $('#content-template').html();
 						var template = Handlebars.compile(source);
 						var updateContent = function(){
-							var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
-							$('input[name=":content"]').val(template(data));
+							if(!$wrapper.is(':disabled')){
+								var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
+								$('input[name=":content"]').val(template(data));
+							}
 						}
 						$ctr.find('input,textarea,select').change(updateContent);
 						$ctr.parents('form').submit(updateContent);
