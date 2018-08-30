@@ -31,8 +31,6 @@
             <sling:call script="content.jsp" />
         </main>
     </div>
-    <div class="column is-one-fifth">
-    </div>
     </div>
     </section>
     <sling:call script="scripts.jsp" />
