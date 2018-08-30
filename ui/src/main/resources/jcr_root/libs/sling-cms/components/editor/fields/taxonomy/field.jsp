@@ -18,25 +18,32 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="taxonomy">
- 	<fieldset disabled="disabled" class="taxonomy__template Hide">
- 		<a class="Button taxonomy__item">
+ 	<fieldset disabled="disabled" class="taxonomy__template is-hidden">
+ 		<a class="button taxonomy__item">
 			<input type="hidden" name="${properties.name}" value="" />
-			<span class="taxonomy__title"></span>
+			<span class="taxonomy__title">
+			</span>
+			<span class="jam jam-close"></span>
 		</a>
  	</fieldset>
-	<div class="taxonomy__field Grid">
-		<div class="Cell Mobile-80">
- 			<input type="text" ${required} ${disabled} list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
+	<div class="taxonomy__field field has-addons">
+		<div class="control">
+ 			<input class="input" type="text" ${required} ${disabled} list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
  		</div>
- 		<div class="Cell Mobile-20">
-	 		<button class="taxonomy__add">+</button>
+ 		<div class="control">
+	 		<button class="taxonomy__add button">
+	 			<span class="jam jam-plus"></span>
+	 		</button>
 	 	</div>
  	</div>
  	<div class="taxonomy__container">
  		<c:forEach var="item" items="${editProperties[properties.name]}">
- 			<a class="Button taxonomy__item">
+ 			<a class="button taxonomy__item">
  				<input type="hidden" name="${properties.name}" value="${item}" />
- 				<span class="taxonomy__title">${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}</span>
+ 				<span class="taxonomy__title">
+ 					${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}
+ 				</span>
+ 				<span class="jam jam-close"></span>
  			</a>
  		</c:forEach>
  	</div>

@@ -18,14 +18,14 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="menu">
-<a class="menu-label Toggle-Hidden" data-target="#${fn:replace(properties.title,' ','-')}-Nav">${properties.title}</a>
-<c:set var="hidden" value="Hide" />
+<a class="menu-label toggle-hidden" data-target="#${fn:replace(properties.title,' ','-')}-nav">${properties.title}</a>
+<c:set var="hidden" value="is-hidden" />
 <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
     <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
         <c:set var="hidden" value="" />
     </c:if>
 </c:forEach>
-<ul id="${fn:replace(properties.title,' ','-')}-Nav" class="menu-list ${hidden}">
+<ul id="${fn:replace(properties.title,' ','-')}-nav" class="menu-list ${hidden}">
     <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
         <li class="${fn:startsWith(slingRequest.requestURI,item.valueMap.link) ? 'active' : ''}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
     </c:forEach>

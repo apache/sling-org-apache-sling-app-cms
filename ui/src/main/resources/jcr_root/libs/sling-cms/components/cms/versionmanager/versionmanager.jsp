@@ -27,7 +27,7 @@
  			<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
 				<input type="hidden" name=":operation" value="checkpoint" />
 				<div class="Field-Group">
-					<button type="submit" class="btn btn-success" title="Create a new version for the content">
+					<button type="submit" class="button is-primary" title="Create a new version for the content">
 						Create Version
 					</button>
 				</div>
@@ -40,14 +40,14 @@
 				<input type="hidden" name="jcr:mixinTypes@TypeHint" value="Type[]">
 			    <input type="hidden" name="jcr:mixinTypes" value="mix:versionable">
 				<div class="Field-Group">
-					<button type="submit" class="btn btn-success" title="Make the content versionable">
+					<button type="submit" class="button is-primary" title="Make the content versionable">
 						Make Versionable
 					</button>
 				</div>
 			</form>
  		</c:otherwise>
  	</c:choose>
-	<table>
+	<table class="table" data-sort="false" data-paginate="false">
 		<thead>
 			<tr>
 				<th>Version</th>
@@ -85,7 +85,7 @@
 						<input type="hidden" name=":operation" value="restore" />
 						<input type="hidden" name=":version" value="{{@key}}" />
 						<div class="Field-Group">
-							<button type="submit" class="btn btn-success" title="Restore the content to {{@key}}">
+							<button type="submit" class="button" title="Restore the content to {{@key}}">
 								Restore Version
 							</button>
 						</div>

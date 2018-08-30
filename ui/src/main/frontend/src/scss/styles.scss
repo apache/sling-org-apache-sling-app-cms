@@ -17,6 +17,29 @@
  * under the License.
  */
 
+.is-draggable {
+	position: relative;
+}
+
+.menu-label {
+	text-transform: none;
+	font-size: 1.25em;
+	letter-spacing: normal;
+}
+
+.note-group-select-from-files {
+	display: none;
+}
+
+.note-toolbar-wrapper {
+	height: auto !important;
+}
+
+.Preview {
+	max-width: 100%;
+	padding: .5em;
+}
+
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting_asc:after,
 table.dataTable thead .sorting_desc:after,
@@ -35,17 +58,4 @@ table.dataTable thead .sorting_asc:after {
 
 table.dataTable thead .sorting_desc:after {
 	content: "\e92a"
-}
-
-.note-group-select-from-files {
-	display: none;
-}
-
-.note-toolbar-wrapper {
-	height: auto !important;
-}
-
-.Preview {
-	max-width: 100%;
-	padding: .5em;
 }

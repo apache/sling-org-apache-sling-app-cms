@@ -18,9 +18,3 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <script src="/static/clientlibs/sling-cms/js/scripts-all.min.js"></script>
-<script>
-
-$(document).ready( function () {
-    $('.table').DataTable();
-} );
-</script>

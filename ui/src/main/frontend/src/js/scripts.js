@@ -39,7 +39,7 @@ Sling.CMS = {
 		},
 		ui: {
 			confirmMessage: function(title, message, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card"><div class="modal-card-head Draggable">'+title+'</div><div class="modal-card-body">'+message+'</div><div class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><div class="modal-card-head">'+title+'</div><div class="modal-card-body">'+message+'</div><div class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></div></div>');
 				$('body').append($modal);
 				$modal.addClass('is-active');
 				$modal.find('.close-modal').click(function(){
@@ -50,7 +50,7 @@ Sling.CMS = {
 				return $modal;
 			},
 			fetchModal: function(title, link, path, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card Draggable"><div class="modal-card-head">'+title+'<button type="button" class="modal-close"></button></div><div class="modal-card-body""></div><div class="modal-card-foot"></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><div class="modal-card-head">'+title+'<button type="button" class="modal-close"></button></div><div class="modal-card-body""></div><div class="modal-card-foot"></div></div>');
 				$('body').append($modal);
 				$modal.find('.modal-card-body').load(link + " " +path,function(){
 					$modal.addClass('is-active');
@@ -472,6 +472,15 @@ Sling.CMS = {
 				$(this).addClass('is-selected');
 				$(this).find('.cell-actions > *').appendTo('#Actions-Target')
 			});
+
+			$ctx.find('table').each(function(){
+				var sort = $(this).data('sort') !== 'false';
+				var paginate = $(this).data('paginate') !== 'false';
+				$(this).DataTable({
+					sort: sort,
+					paginate: paginate
+				});
+			});
 		}
 	};
 
@@ -512,8 +521,8 @@ Sling.CMS = {
 	
 	Sling.CMS.ext['toggle-hidden'] = {
 		decorate: function($ctx){
-			$ctx.find('.Toggle-Hidden').click(function(){
-				$($(this).data('target')).toggleClass('Hide');
+			$ctx.find('.toggle-hidden').click(function(){
+				$($(this).data('target')).toggleClass('is-hidden');
 			});
 		}
 	};

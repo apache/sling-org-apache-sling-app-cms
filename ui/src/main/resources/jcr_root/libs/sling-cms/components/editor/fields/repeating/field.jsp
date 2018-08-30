@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="repeating">
- 	<div disabled="disabled" class="repeating__template Hide">
+ 	<div disabled="disabled" class="repeating__template is-hidden">
  		<div class="repeating__item Grid">
  			<div class="Cell Mobile-80">
 	 			<input type="${properties.type}" value="" name="${properties.name}" ${required} ${disabled} />

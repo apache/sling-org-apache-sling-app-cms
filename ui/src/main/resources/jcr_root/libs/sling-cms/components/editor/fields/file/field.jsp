@@ -26,7 +26,7 @@
 	</c:otherwise>
 </c:choose>
 <div class="repeating">
- 	<div disabled="disabled" class="repeating__template Hide">
+ 	<div disabled="disabled" class="repeating__template is-hidden">
  		<div class="repeating__item Grid">
  			<div class="Cell Mobile-80">
 	 			<input type="file" name="${properties.name}" ${required} accept="${accepts}" />
