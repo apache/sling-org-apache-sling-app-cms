@@ -59,7 +59,7 @@ public class CMSSecurityFilter implements Filter {
 
 	private CMSSecurityFilterConfig config;
 
-	private List<Pattern> patterns = new ArrayList<Pattern>();
+	private List<Pattern> patterns = new ArrayList<>();
 
 	@Modified
 	@Activate
@@ -78,6 +78,7 @@ public class CMSSecurityFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		// Nothing required
 	}
 
 	@Override
@@ -148,6 +149,7 @@ public class CMSSecurityFilter implements Filter {
 
 	@Override
 	public void destroy() {
+		// Nothing required
 	}
 
 }

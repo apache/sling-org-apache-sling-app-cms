@@ -39,22 +39,22 @@ Sling.CMS = {
 		},
 		ui: {
 			confirmMessage: function(title, message, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><div class="modal-card-head">'+title+'</div><div class="modal-card-body">'+message+'</div><div class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body">'+message+'</section><footer class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></footer></div>');
 				$('body').append($modal);
+				Sling.CMS.decorate($modal);
 				$modal.addClass('is-active');
-				$modal.find('.close-modal').click(function(){
+				$modal.find('.delete,.close-modal').click(function(){
 					$modal.css('display','none').remove();
-					Sling.CMS.decorate($modal);
 					complete();
 				});
 				return $modal;
 			},
 			fetchModal: function(title, link, path, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><div class="modal-card-head">'+title+'<button type="button" class="modal-close"></button></div><div class="modal-card-body""></div><div class="modal-card-foot"></div></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"></section><footer class="modal-card-foot"></footer></div>');
 				$('body').append($modal);
 				$modal.find('.modal-card-body').load(link + " " +path,function(){
 					$modal.addClass('is-active');
-					$modal.find('.modal-close').click(function(){
+					$modal.find('.delete,.close-modal').click(function(){
 						$modal.css('display','none').remove();
 						return false;
 					});
@@ -133,66 +133,6 @@ Sling.CMS = {
 		}
 	};
 
-	Sling.CMS.ext['content-filter'] = {
-		decorate: function($ctx) {
-			var filterContent = function(){
-				var term = $('.content-filter input[type=text]').val().toLowerCase();
-				$('.sortable tbody tr').each(function(idx,el){
-					if($(el).text().toLowerCase().indexOf(term) !== -1){
-						$(el).show();
-					} else {
-						$(el).hide();
-					}
-				});
-			}
-			$('.content-filter').submit(function(){
-				filterContent();
-				return false;
-			});
-			$('.content-filter input[type=text]').keyup(filterContent).change(filterContent);
-		}
-	};
-	
-	Sling.CMS.ext['content-sort'] = {
-		decorate: function($ctx) {
-			$ctx.find('.sortable').each(function(){
-				var $table = $(this);
-				$table.find('.sortable__header').click(function() {
-					var idx = Array.from(this.parentNode.children).indexOf(this);
-					var $h = $(this);
-					var sortStatus = 1;
-					if($h.data('sort-status')){
-						sortStatus = parseInt($h.data('sort-status'),10);
-					}
-				    var list = $table.find(".sortable__row").get();
-				    list.sort(function(rowa, rowb) {
-				    		var vala = null;
-				    		var $ela = $($(rowa).find('td')[idx]);
-				    		if($ela.data('sort-value')){
-				    			vala = $ela.data('sort-value');
-				    		} else {
-				    			vala = $.trim($ela.text()).toLowerCase();
-				    		}
-				    		var valb = null;
-				    		var $elb = $($(rowb).find('td')[idx]);
-				    		if($elb.data('sort-value')){
-				    			valb = $elb.data('sort-value');
-				    		} else {
-				    			valb = $.trim($elb.text()).toLowerCase();
-				    		}
-				    		$h.data('sort-status', sortStatus * -1);
-				        return vala.localeCompare(valb, {
-				        	numeric: true
-				        }) * sortStatus;
-				    });
-				    for (var i = 0; i < list.length; i++) {
-				        list[i].parentNode.appendChild(list[i]);
-				    }
-				});
-			});
-		}
-	};
-
 	Sling.CMS.ext['draggable'] = {
 		decorate: function($ctx) {
 			var draggable = function(){
@@ -242,17 +182,23 @@ Sling.CMS = {
 		}
 	};
 	
-	Sling.CMS.ext['fetch-json'] = {
+	Sling.CMS.ext['load-versions'] = {
+		loaded: false,
 		decorate: function($ctx) {
-			$ctx.find('.fetch-json').each(function(){
-				$ctr = $(this);
-				$.getJSON($ctr.data('url'),function(res){
-					var source   = $('#'+$ctr.data('template')).html();
-					var template = Handlebars.compile(source);
-					$ctr.append(template(res));
-					Sling.CMS.decorate($ctr);
+			if(!Sling.CMS.ext['load-versions'].loaded){
+				$ctx.find('.load-versions').each(function(){
+					var $ctr = $(this);
+					var $table = $ctr.closest('.table');
+					$.getJSON($ctr.data('url'),function(res){
+						$table.dataTable().api().destroy();
+						var source   = $('#'+$ctr.data('template')).html();
+						var template = Handlebars.compile(source);
+						$ctr.append(template(res));
+						Sling.CMS.ext['load-versions'].loaded = true;
+						Sling.CMS.decorate($ctr.closest('.version-container'));
+					});
 				});
-			});
+			}
 		}
 	};
 
@@ -470,10 +416,10 @@ Sling.CMS = {
 	Sling.CMS.ext['table'] = {
 		decorate: function($ctx) {
 			$ctx.find('table tbody tr').click(function(el){
-				$('#Actions-Target > *').appendTo('tr.is-selected .cell-actions')
+				$('.actions-target > *').appendTo('tr.is-selected .cell-actions')
 				$('tr').removeClass('is-selected');
 				$(this).addClass('is-selected');
-				$(this).find('.cell-actions > *').appendTo('#Actions-Target')
+				$(this).find('.cell-actions > *').appendTo('.actions-target')
 			});
 
 			$ctx.find('table').each(function(){
@@ -536,9 +482,9 @@ Sling.CMS = {
 				var $tog = $(this);
 				$('input[name="'+$tog.data('toggle-source')+'"], select[name="'+$tog.data('toggle-source')+'"]').change(function(){
 					if($(this).val() !== $tog.data('toggle-value')){
-						$tog.addClass('hide');
+						$tog.addClass('is-hidden');
 					} else {
-						$tog.removeClass('hide');
+						$tog.removeClass('is-hidden');
 					}
 				});
 			})

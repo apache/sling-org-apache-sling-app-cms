@@ -17,12 +17,20 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<link rel="stylesheet" href="/static/clientlibs/sling-cms-editor/editor.css" />
+<link rel="stylesheet" href="/static/clientlibs/sling-cms-editor/css/editor.min.css" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-<div class="Sling-CMS__edit-bar">
-	<a href="/cms/start.html" target="_blank" class="Sling-CMS__component-title" target="Sling CMS">
-		<img src="/static/clientlibs/sling-cms/img/sling-logo.svg" class="Sling-CMS__logo" />
-	</a>
-	<sling:include path="actions" resourceType="sling-cms/components/cms/pageeditbar/actions" />
+<div class="sling-cms-editor">
+	<div class="level has-background-grey">
+		<div class="level-left">
+			<a href="/cms/start.html" target="_blank" title="Sling CMS" class="button">
+				<img src="/static/clientlibs/sling-cms/img/sling-logo.svg" class="sling-cms-logo" />
+			</a>
+		</div>
+		<div class="level-right">
+			<div class="field has-addons">
+				<sling:include path="actions" resourceType="sling-cms/components/cms/pageeditbar/actions" />
+			</div>
+		</div>
+	</div>
 </div>
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />

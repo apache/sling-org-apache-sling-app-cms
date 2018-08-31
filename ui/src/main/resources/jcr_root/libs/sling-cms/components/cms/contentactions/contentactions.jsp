@@ -16,12 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
- <%@include file="/libs/sling-cms/global.jsp"%>
- <div class="buttons has-addons">
-     <c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
-        <a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}">+ ${action.valueMap.label}</a>
-     </c:forEach>
-     <span id="Actions-Target">
-     </span>
- </div>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<nav class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<div class="buttons has-addons">
+				<c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
+					<a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}">+ ${action.valueMap.label}</a>
+				</c:forEach>
+			</div>
+		</div>
+		<div class="level-item">
+			<div class="buttons has-addons actions-target">
+			</div>
+		</div>
+	</div>
+</nav>

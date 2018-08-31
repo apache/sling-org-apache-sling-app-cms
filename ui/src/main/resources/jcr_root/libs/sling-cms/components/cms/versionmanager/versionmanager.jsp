@@ -47,20 +47,22 @@
 			</form>
  		</c:otherwise>
  	</c:choose>
-	<table class="table" data-sort="false" data-paginate="false">
-		<thead>
-			<tr>
-				<th>Version</th>
-				<th>Created</th>
-				<th>Successors</th>
-				<th>Predecessors</th>
-				<th>Restore</th>
-			</tr>
-		</thead>
-		<tbody class="fetch-json" data-url="${resource.path}.VI.json${slingRequest.requestPathInfo.suffix}" data-template="version-template">
-			
-		</tbody>
-	</table>
+ 	<div class="version-container">
+		<table class="table" data-sort="false" data-paginate="false">
+			<thead>
+				<tr>
+					<th>Version</th>
+					<th>Created</th>
+					<th>Successors</th>
+					<th>Predecessors</th>
+					<th>Restore</th>
+				</tr>
+			</thead>
+			<tbody class="load-versions" data-url="${resource.path}.VI.json${slingRequest.requestPathInfo.suffix}" data-template="version-template">
+				
+			</tbody>
+		</table>
+	</div>
 	<script id="version-template" type="text/x-handlebars-template">
 		{{#each versions }}
 			<tr>

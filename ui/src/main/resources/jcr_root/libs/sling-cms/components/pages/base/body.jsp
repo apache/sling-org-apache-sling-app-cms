@@ -18,6 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <body class="cms">
+	<div class="gradient"></div>
     <section class="container is-fluid">
     <sling:call script="nav.jsp" />
     </section>

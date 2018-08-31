@@ -68,7 +68,9 @@ public class UpdateReferencesPostOperation implements SlingPostProcessor {
 							values[i] = values[i].replace(find, destination);
 						}
 						properties.put(matchingKey, values);
+						if(log.isTraceEnabled()) {
 						log.trace("Updated values {}", Arrays.toString(values));
+						}
 					}
 					changes.add(Modification.onModified(resource.getPath()));
 				}

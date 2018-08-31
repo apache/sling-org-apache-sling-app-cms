@@ -45,6 +45,7 @@ public class LocaleFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		// Nothing required
 	}
 
 	@Override
@@ -53,14 +54,19 @@ public class LocaleFilter implements Filter {
 
 		if (request instanceof SlingHttpServletRequest) {
 			SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-			Site site = slingRequest.getResource().adaptTo(SiteManager.class).getSite();
-			if (site != null) {
-				log.debug("Setting bundle for {}", site.getLocaleString());
-				ResourceBundle bundle = slingRequest.getResourceBundle(site.getLocale());
-				Config.set(slingRequest, "javax.servlet.jsp.jstl.fmt.localizationContext",
-						new LocalizationContext(bundle, slingRequest.getLocale()));
+			SiteManager mgr = slingRequest.getResource().adaptTo(SiteManager.class);
+			if (mgr != null) {
+				Site site = mgr.getSite();
+				if (site != null) {
+					log.debug("Setting bundle for {}", site.getLocaleString());
+					ResourceBundle bundle = slingRequest.getResourceBundle(site.getLocale());
+					Config.set(slingRequest, "javax.servlet.jsp.jstl.fmt.localizationContext",
+							new LocalizationContext(bundle, slingRequest.getLocale()));
+				} else {
+					log.trace("No site for {}", slingRequest);
+				}
 			} else {
-				log.trace("No site for {}", slingRequest);
+				log.trace("No site manager found for {}", slingRequest);
 			}
 		}
 
@@ -69,6 +75,7 @@ public class LocaleFilter implements Filter {
 
 	@Override
 	public void destroy() {
+		// Nothing required
 	}
 
 }

@@ -17,4 +17,6 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<iframe class="Sling-CMS__page-wrapper-frame" src="/cms/page/pagewrapper.html${slingRequest.requestPathInfo.suffix}"></iframe>
+<div class="sling-cms-editor">
+	<iframe class="page-wrapper-frame" src="/cms/page/pagewrapper.html${slingRequest.requestPathInfo.suffix}"></iframe>
+</div>

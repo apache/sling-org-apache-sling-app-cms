@@ -37,13 +37,14 @@ import org.osgi.service.component.annotations.Component;
  * not set to publish=true
  */
 @Component(service = { Filter.class }, property = { "sling.filter.scope=request",
-		"service.ranking=" + Integer.MAX_VALUE,"sling.filter.pattern=/content/.+" })
+		"service.ranking=" + Integer.MAX_VALUE, "sling.filter.pattern=/content/.+" })
 public class PublishFilter implements Filter {
 
 	private static final String[] VALID_METHODS = new String[] { "GET", "HEAD" };
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		// Nothing required
 	}
 
 	@Override
@@ -64,6 +65,7 @@ public class PublishFilter implements Filter {
 
 	@Override
 	public void destroy() {
+		// Nothing required
 	}
 
 }

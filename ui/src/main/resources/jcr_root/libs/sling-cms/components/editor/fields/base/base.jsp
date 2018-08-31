@@ -41,7 +41,7 @@
 	<c:if test="${not empty properties.label}">
 		<label class="label" for="${properties.name}">
 			<sling:encode value="${properties.label}" mode="HTML" />
-			<c:if test="${properties.required}"><span class="error">*</span></c:if>
+			<c:if test="${properties.required}"><span class="has-text-danger">*</span></c:if>
 		</label>
 	</c:if>
 	<div class="control">

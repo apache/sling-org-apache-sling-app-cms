@@ -18,46 +18,48 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="rsrc" value="${sling:getResource(resourceResolver,slingRequest.requestPathInfo.suffix)}" />
-<div class="Field-Group">
+<div class="field">
 	<label for="limit">
 		Order
 	</label>
-	<div class="Field-Input">
-		<select name=":order">
-			<c:forEach var="sibling" items="${sling:listChildren(rsrc.parent)}" varStatus="status">
-				<c:choose>
-					<c:when test="${status.first}">
-						<c:choose>
-							<c:when test="${rsrc.path == sibling.path}">
-								<option value="${status.index}" selected="selected">Current Position</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${status.index}">First</option>
-							</c:otherwise>
-						</c:choose>
-					</c:when>
-					<c:when test="${status.last}">
-						<c:choose>
-							<c:when test="${rsrc.path == sibling.path}">
-								<option value="${status.index}" selected="selected">Current Position</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${status.index}">Last</option>
-							</c:otherwise>
-						</c:choose>
-					</c:when>
-					<c:otherwise>
-						<c:choose>
-							<c:when test="${rsrc.path == sibling.path}">
-								<option value="${status.index}" selected="selected">Current Position</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${status.index}">Before ${sibling.name}</option>
-							</c:otherwise>
-						</c:choose>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</select>
+	<div class="control">
+		<div class="select">
+			<select name=":order">
+				<c:forEach var="sibling" items="${sling:listChildren(rsrc.parent)}" varStatus="status">
+					<c:choose>
+						<c:when test="${status.first}">
+							<c:choose>
+								<c:when test="${rsrc.path == sibling.path}">
+									<option value="${status.index}" selected="selected">Current Position</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${status.index}">First</option>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.last}">
+							<c:choose>
+								<c:when test="${rsrc.path == sibling.path}">
+									<option value="${status.index}" selected="selected">Current Position</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${status.index}">Last</option>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${rsrc.path == sibling.path}">
+									<option value="${status.index}" selected="selected">Current Position</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${status.index}">Before ${sibling.name}</option>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
+		</div>
 	</div>
 </div>

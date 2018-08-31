@@ -21,16 +21,12 @@
 	<sling:getResource path="${slingRequest.requestPathInfo.suffix}" var="editedResource" />
 	<c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.resource.ValueMap')}" scope="request"/>
 </c:if>
-<div class="Field-Group ${properties.toggle ? 'hide toggle-value' : ''}" data-toggle-source=":operation" data-toggle-value="move">
-	<c:if test="${not empty properties.label}">
-		<label for="${properties.name}">
-			<sling:encode value="${properties.label}" mode="HTML" />
-		</label>
-	</c:if>
-	
+<div class="Field-Group ${properties.toggle ? 'is-hidden toggle-value' : ''}" data-toggle-source=":operation" data-toggle-value="move">
 	<div class="Field-Input">
-		<input type="checkbox" name="${properties.name}" value="true" />
-		
+		<label class="checkbox">
+			<sling:encode value="${properties.label}" mode="HTML" />
+			<input type="checkbox" name="${properties.name}" value="true" />
+		</label>
 		<c:if test="${properties.includeDestination}">
 			<div class="Field-Group">
 				<label for=":dest">
@@ -43,10 +39,12 @@
 		</c:if>
 		
 		<sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.References" />
-		<ul class="box">
-			<c:forEach var="ref" items="${references.references}">
-				<li>${ref}</li>
-			</c:forEach>
-		</ul>
+		<div class="is-padded">
+			<ul>
+				<c:forEach var="ref" items="${references.references}">
+					<li>${ref}</li>
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
 </div>

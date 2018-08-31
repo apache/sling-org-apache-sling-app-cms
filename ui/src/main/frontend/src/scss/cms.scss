@@ -17,8 +17,41 @@
  * under the License.
  */
 
+@import 'fonts';
+h1 {
+	font-size: 200%;
+}
+
+h2 {
+	font-size: 180%;
+}
+
+h3 {
+	font-size: 160%;
+}
+
+h4 {
+	font-size: 140%;
+}
+
+h5 {
+	font-size: 120%;
+}
+
+.gradient {
+	flex: 0 0 100%;
+	height: 16px;
+	background: url(../img/gradient.jpg) no-repeat;
+	background-size: auto auto;
+	background-size: cover;
+}
+
 .is-draggable {
 	position: relative;
+}
+
+.is-padded {
+	padding: 1em 0;
 }
 
 .menu-label {

@@ -30,9 +30,20 @@
 	<sling:include resource="${child}" />
 </c:forEach>
 <c:if test="${cmsEditEnabled == 'true'}">
-	<div class="Sling-CMS__edit-bar">
-		<button class="Sling-CMS__edit-button" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="Add">
-			&#43;
-		</button>
+	<div class="sling-cms-editor">
+		<div class="level has-background-grey">
+			<div class="level-left">
+				<div class="level-item">
+					<button class="button" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="Add">
+						&#43;
+					</button>
+				</div>
+			</div>
+			<div class="level-right">
+				<div class="level-item">
+					Add Components
+				</div>
+			</div>
+		</div>
 	</div>
 </c:if>

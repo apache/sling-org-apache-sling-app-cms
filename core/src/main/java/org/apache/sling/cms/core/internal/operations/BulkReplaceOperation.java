@@ -76,7 +76,7 @@ public class BulkReplaceOperation implements PostOperation {
 			String replace = request.getParameter(PN_REPLACE);
 			log.debug("Replacing with {}", replace);
 
-			final List<Modification> changes = new ArrayList<Modification>();
+			final List<Modification> changes = new ArrayList<>();
 			updateProperties(request.getResource(), updateProperties, rfind, find, replace, response, changes);
 
 			// invoke processors

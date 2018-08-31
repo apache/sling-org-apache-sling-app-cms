@@ -19,26 +19,32 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="repeating">
  	<div disabled="disabled" class="repeating__template is-hidden">
- 		<div class="repeating__item Grid">
- 			<div class="Cell Mobile-80">
-	 			<input type="${properties.type}" value="" name="${properties.name}" ${required} ${disabled} />
+ 		<div class="repeating__item field has-addons">
+ 			<div class="control">
+	 			<input type="${properties.type}" value="" class="input" name="${properties.name}" ${required} ${disabled} />
 	 		</div>
-	 		<div class="Cell Mobile-20">
-		 		<button class="repeating__remove">-</button>
+	 		<div class="control">
+		 		<button class="repeating__remove button">
+		 			<span class="jam jam-minus"></span>
+		 		</button>
 		 	</div>
 	 	</div>
  	</div>
  	<div class="repeating__container">
 	 	<c:forEach var="value" items="${editProperties[properties.name]}">
-	 		<div class="repeating__item Grid">
-	 			<div class="Cell Mobile-80">
-		 			<input type="${properties.type}" value="${value}" name="${properties.name}" ${required} ${disabled} />
+	 		<div class="repeating__item field has-addons">
+	 			<div class="control">
+		 			<input type="${properties.type}" value="${value}" class="input" name="${properties.name}" ${required} ${disabled} />
 		 		</div>
-		 		<div class="Cell Mobile-20">
-			 		<button class="repeating__remove">-</button>
+		 		<div class="control">
+			 		<button class="repeating__remove button">
+		 				<span class="jam jam-minus"></span>
+			 		</button>
 			 	</div>
 		 	</div>
 	 	</c:forEach>
  	</div>
- 	<button class="repeating__add">+</button>
+ 	<button class="repeating__add button">
+		 <span class="jam jam-plus"></span>
+ 	</button>
  </div>

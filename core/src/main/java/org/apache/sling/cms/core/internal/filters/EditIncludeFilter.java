@@ -51,6 +51,7 @@ public class EditIncludeFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		// Nothing required
 	}
 
 	@Override
@@ -81,34 +82,44 @@ public class EditIncludeFilter implements Filter {
 			}
 			boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
 			writer = response.getWriter();
-			Component component = resource.adaptTo(EditableResource.class).getComponent();
-			writer.write("<div class=\"Sling-CMS__component\" data-sling-cms-title=\""
+			Component component = null;
+			EditableResource er = resource.adaptTo(EditableResource.class);
+			if (er != null) {
+				component = er.getComponent();
+			}
+			writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
 					+ (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
 					+ resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
-					+ "\" data-sling-cms-edit=\"" + editPath + "\">");
-			writer.write("<div class=\"Sling-CMS__edit-bar\">");
+					+ "\" data-sling-cms-edit=\"" + editPath + "\"><div class=\"sling-cms-editor\">");
 			writer.write(
-					"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
+					"<div class=\"level has-background-grey\"><div class=\"level-left\"><div class=\"field has-addons\">");
+
+			writer.write(
+					"<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
 							+ resource.getPath() + "\" data-sling-cms-edit=\"" + editPath
-							+ "\" title=\"Edit\">&#x270f;</button>");
+							+ "\" title=\"Edit\"><span class=\"jam jam-pencil-f\"></span></button></div>");
 			if (!first || !last) {
 				writer.write(
-						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"reorder\" data-sling-cms-path=\""
-								+ resource.getPath() + "\" title=\"Reorder\">&#8597;</button>");
+						"<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"reorder\" data-sling-cms-path=\""
+								+ resource.getPath()
+								+ "\" title=\"Reorder\"><span class=\"jam jam-arrows-v\"></span></button></div>");
 			}
 			if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
 				writer.write(
-						"<button class=\"Sling-CMS__edit-button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
-								+ resource.getPath() + "\" title=\"Delete\">&times;</button>");
+						"<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
+								+ resource.getPath()
+								+ "\" title=\"Delete\"><span class=\"jam jam-trash\"></span></button></div>");
 			}
 
+			writer.write("</div></div>");
 			if (component != null) {
-				writer.write("<span class=\"Sling-CMS__component-title\">" + component.getTitle() + "</span>");
+				writer.write("<div class=\"level-right\"><div class=\"level-item has-text-light\">" + component.getTitle()
+						+ "</div></div>");
 			}
-			writer.write("</div>");
+			writer.write("</div></div>");
 		}
 		chain.doFilter(request, response);
-		if (enabled && StringUtils.isNotEmpty(editPath)) {
+		if (enabled && StringUtils.isNotEmpty(editPath) && writer != null) {
 			writer.write("</div>");
 		}
 	}
@@ -118,18 +129,18 @@ public class EditIncludeFilter implements Filter {
 		String editPath = null;
 		if (resource != null) {
 			EditableResource editResource = new EditableResource(resource);
-			if (editResource != null) {
-				Component component = editResource.getComponent();
-				if (component != null && !component.isType(CMSConstants.COMPONENT_TYPE_PAGE)) {
-					editPath = component.getEditPath();
-				}
+			Component component = editResource.getComponent();
+			if (component != null && !component.isType(CMSConstants.COMPONENT_TYPE_PAGE)) {
+				editPath = component.getEditPath();
 			}
+
 		}
 		return editPath;
 	}
 
 	@Override
 	public void destroy() {
+		// Nothing required
 	}
 
 }

@@ -19,23 +19,23 @@
 if(!window.CMSEditor){
 	window.CMSEditor = {
 		init: function(){
-			$(".Sling-CMS__edit-button[data-sling-cms-action=add]").click(function(){
+			$(".sling-cms-editor .button[data-sling-cms-action=add]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/add.html'+$(this).attr('data-sling-cms-path')+'?availableTypes='+$(this).data('sling-cms-available-types'));
 			});
-			$(".Sling-CMS__edit-button[data-sling-cms-action=delete]").click(function(){
+			$(".sling-cms-editor .button[data-sling-cms-action=delete]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/delete.html'+$(this).attr('data-sling-cms-path'));
 			});
-			$(".Sling-CMS__edit-button[data-sling-cms-action=edit]").click(function(){
+			$(".sling-cms-editor .button[data-sling-cms-action=edit]").click(function(){
 				CMSEditor.ui.showModal(
 					'/cms/editor/edit.html'+$(this).attr('data-sling-cms-path')+'?editor='+$(this).attr('data-sling-cms-edit'),
-					$(this).closest('.Sling-CMS__component').attr('data-sling-cms-title'));
+					$(this).closest('.sling-cms-component').attr('data-sling-cms-title'));
 			});
-			$(".Sling-CMS__edit-button[data-sling-cms-action=reorder]").click(function(){
+			$(".sling-cms-editor .button[data-sling-cms-action=reorder]").click(function(){
 				CMSEditor.ui.showModal('/cms/editor/reorder.html'+$(this).attr('data-sling-cms-path'));
 			});
 			
 			// closing the modal
-			$(".Sling-CMS__modal-close").click(function(){
+			$(".sling-cms-editor .delete").click(function(){
 				CMSEditor.ui.hideModal();
 			});
 			window.addEventListener('keypress',function(e){
@@ -84,14 +84,13 @@ if(!window.CMSEditor){
 				    return false;
 				});
 			}
-			draggable($(".Sling-CMS__modal-box")[0]);
+			draggable($(".sling-cms-editor .modal-card")[0]);
 		},
 		ui: {
 			modalDisplayed: false,
 			hideModal: function() {
 				if(CMSEditor.ui.modalDisplayed) {
-					$(".Sling-CMS__modal-background").hide();
-					$(".Sling-CMS__modal-box").hide();
+					$('.sling-cms-editor .modal').removeClass('is-active');
 					CMSEditor.ui.modalDisplayed = false;
 				}
 			},
@@ -101,14 +100,10 @@ if(!window.CMSEditor){
 					CMSEditor.ui.hideModal();
 				}
 				
-				mouseX = 0;
-				mouseY = 0;
-				
-				$(".Sling-CMS__modal-frame-title").text(title);
-				$('.Sling-CMS__modal-frame-container').html('<iframe class="Sling-CMS__modal-frame" src="'+url+'"></iframe>');
-				$(".Sling-CMS__modal-background").show();
-				$(".Sling-CMS__modal-box").show();
-				
+				$(".sling-cms-editor .modal-card-title").text(title);
+				$('.sling-cms-editor .modal-card-body').html('<iframe class="modal-frame" src="'+url+'"></iframe>');
+				$('.sling-cms-editor .modal').addClass('is-active');
+
 				CMSEditor.ui.modalDisplayed = true;
 			}
 		}

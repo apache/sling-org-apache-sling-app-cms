@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-	<link rel="stylesheet" href="/static/clientlibs/sling-cms-editor/editor.css" />
+	<link rel="stylesheet" href="/static/clientlibs/sling-cms-editor/css/editor.min.css" />
 	<c:if test="${not empty properties.availableTypes}">
 		<c:set var="availableTypes" value="${properties.availableTypes}" scope="request" />
 	</c:if>

@@ -23,10 +23,16 @@
 		<c:set var="firstChild" value="${language}" />
 	</c:if>
 </c:forEach>
-<a class="Button Fetch-Modal" data-title="Add Entry" data-path=".Main-Content form" href="/cms/i18n/entry/create.html${firstChild.path}">+ Entry</a>
+<nav class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<a class="Button Fetch-Modal" data-title="Add Entry" data-path=".Main-Content form" href="/cms/i18n/entry/create.html${firstChild.path}">+ Entry</a>
+		</div>
+	</div>
+</nav>
 <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
 	<input type="hidden" name="_charset_" value="utf-8" />
-	<table>
+	<table class="table is-fullwidth is-striped">
 		<thead>
 			<tr>
 				<th class="Column-key">
@@ -58,13 +64,13 @@
 								<c:forEach var="entry" items="${sling:listChildren(language)}">
 									<c:if test="${entry.valueMap['sling:key'] == key}">
 										<c:set var="keyfound" value="true" />
-										<input name="${language.name}/${entry.name}/sling:message" type="text" value="${sling:encode(entry.valueMap['sling:message'],'HTML_ATTR')}" />
+										<input name="${language.name}/${entry.name}/sling:message" class="input" type="text" value="${sling:encode(entry.valueMap['sling:message'],'HTML_ATTR')}" />
 										<input name="${language.name}/${entry.name}/sling:key" type="hidden" value="${key}" />
 									</c:if>
 								</c:forEach>
 								<c:if test="${keyfound == 'false'}">
 									<c:set var="rand" value="${helper.random}" />
-									<input name="${language.name}/entry_${rand}/sling:message" type="text" value="" />
+									<input name="${language.name}/entry_${rand}/sling:message" class="input" type="text" value="" />
 									<input name="${language.name}/entry_${rand}/sling:key" type="hidden" value="${key}" />
 									<input name="${language.name}/entry_${rand}/jcr:primaryType" type="hidden" value="sling:MessageEntry" />
 								</c:if>
@@ -75,5 +81,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<button>Save i18n Dictionary</button>
+	<button class="button is-primary">Save i18n Dictionary</button>
 </form>

@@ -53,7 +53,7 @@ public class PropertyHintNodeNameGenerator implements NodeNameGenerator {
 	 * the newly created node (value is ":nameParam").
 	 */
 	public static final String RP_NODE_NAME_PARAM = ":nameParam";
-	
+
 	private String allowedChars;
 
 	private char replacementChar;
@@ -104,17 +104,13 @@ public class PropertyHintNodeNameGenerator implements NodeNameGenerator {
 
 		// If the :nameParam parameter is specified use that parameter to generate the
 		// name
-		if (parameters != null) {
-			RequestParameter nameParam = null;
-			RequestParameter paramName = parameters.getValue(RP_NODE_NAME_PARAM);
-			if (paramName != null && StringUtils.isNotBlank(paramName.getString())) {
-				nameParam = parameters.getValue(paramName.getString());
-			}
-			if (nameParam != null) {
-				if (nameParam.getString() != null && StringUtils.isNotBlank(nameParam.getString())) {
-					name = filter(nameParam.getString());
-				}
-			}
+		RequestParameter nameParam = null;
+		RequestParameter paramName = parameters.getValue(RP_NODE_NAME_PARAM);
+		if (paramName != null && StringUtils.isNotBlank(paramName.getString())) {
+			nameParam = parameters.getValue(paramName.getString());
+		}
+		if (nameParam != null && StringUtils.isNotBlank(nameParam.getString())) {
+			name = filter(nameParam.getString());
 		}
 
 		return name;
