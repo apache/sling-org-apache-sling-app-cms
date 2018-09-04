@@ -28,23 +28,47 @@
 <div class="repeating">
  	<div disabled="disabled" class="repeating__template is-hidden">
  		<div class="repeating__item Grid">
- 			<div class="Cell Mobile-80">
-	 			<input type="file" name="${properties.name}" ${required} accept="${accepts}" />
-	 		</div>
-	 		<div class="Cell Mobile-20">
-		 		<button class="repeating__remove">-</button>
-		 	</div>
+            <div class="file has-name is-fullwidth">
+                <label class="file-label">
+                   <input type="file" class="file-input" name="${properties.name}" ${required} accept="${accepts}" />
+                   <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="jam jam-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        Browse
+                      </span>
+                   </span>
+                   <span class="file-name">
+                        No File Selected
+                    </span>
+                    <span class='control'>
+                        <span class="button repeating__remove button">-</span>
+                    </span>
+                </label>
+            </div>
 	 	</div>
  	</div>
  	<div class="repeating__container">
 	 	<div class="repeating__item Grid">
- 			<div class="Cell Mobile-80">
-	 			<input type="file" name="${properties.name}" ${required} accept="${accepts}" />
+ 			<div class="file has-name is-fullwidth">
+ 			    <label class="file-label">
+	 			   <input type="file" class="file-input" name="${properties.name}" ${required} accept="${accepts}" />
+	 			   <span class="file-cta">
+				      <span class="file-icon">
+				        <i class="jam jam-upload"></i>
+				      </span>
+				      <span class="file-label">
+				        Browse
+				      </span>
+                   </span>
+				   <span class="file-name">
+                        No File Selected
+                    </span>
+	                    <span class="button repeating__remove button">-</span>
+	 			</label>
 	 		</div>
-	 		<div class="Cell Mobile-20">
-		 		<button class="repeating__remove">-</button>
-		 	</div>
 	 	</div>
 	</div>
-	<button class="repeating__add">+</button>
+	<button class="repeating__add button">+</button>
 </div>
