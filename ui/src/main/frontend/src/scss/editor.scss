@@ -19,6 +19,7 @@
 
 .sling-cms-editor {
 	@import 'fonts';
+	@import 'overrides';
 	@import "../../node_modules/bulma/sass/utilities/_all.sass";
 	@import "../../node_modules/bulma/sass/base/_all.sass";
 	@import "../../node_modules/bulma/sass/elements/button.sass";

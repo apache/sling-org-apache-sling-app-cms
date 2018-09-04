@@ -18,6 +18,10 @@
  */
 
 @import 'fonts';
+@import 'overrides';
+@import "../../node_modules/bulma/bulma.sass";
+@import "../../node_modules/datatables-bulma/css/dataTables.bulma.css";
+
 body.cms {
 	background: url(../img/gradient.jpg) no-repeat;
 	background-attachment: fixed;
@@ -89,4 +93,9 @@ table.dataTable thead .sorting_asc:after {
 
 table.dataTable thead .sorting_desc:after {
 	content: "\e92a"
+}
+
+.table tr.is-selected {
+	background-color: lighten($gray, 50%);
+	color: $grey-darker;
 }

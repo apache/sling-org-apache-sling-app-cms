@@ -14,10 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
+
 @charset "utf-8";
+
+// Brand Colors
+$indigo: #282661;
+$violet: #662F8F;
+$magenta: #9E2165;
+$crimson: #CB2138;
+$orange: #EA7826;
+$goldenrod: #F79A25;
+$gray: #6D6E71;
+$gray-light: lighten($gray, 50%);
+$red: #D22128;
+
+// Bulma default style overrides
+$family-sans-serif: "Open Sans",sans-serif;
+$link: $indigo;
+$primary: $magenta;
+$warning: $orange;
+$danger: $crimson;
 $navbar-height: 5rem;
 $navbar-item-img-max-height: 4rem;
 $modal-z: 2000;
-
-@import "../../node_modules/bulma/bulma.sass";
-@import "../../node_modules/datatables-bulma/css/dataTables.bulma.css";

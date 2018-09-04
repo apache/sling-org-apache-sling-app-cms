@@ -43,7 +43,7 @@
 		</c:otherwise>
 	</c:choose>
 	<div class="Field-Group">
-		<button type="submit" class="btn btn-success">
+		<button type="submit" class="button is-primary">
 			<sling:encode value="Save File" mode="HTML" />
 		</button>
 	</div>

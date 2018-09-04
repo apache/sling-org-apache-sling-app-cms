@@ -133,7 +133,7 @@ gulp.task('editor-styles', function() {
 
 gulp.task('cms-styles', function() {
 	 return streamqueue ({objectMode: true},
-			gulp.src(['./src/scss/bulma.scss','./src/scss/cms.scss'])
+			gulp.src('./src/scss/cms.scss')
 				.pipe(sass().on('error', sass.logError))
 			    .pipe(sourcemaps.init())
 			    .pipe(cleanCSS())
@@ -157,7 +157,7 @@ gulp.task('starter-assets', function() {
 });
 
 gulp.task('starter-styles', function() {
-	 return gulp.src('./src/scss/bulma.scss')
+	 return gulp.src('./src/scss/starter.scss')
 				.pipe(sass().on('error', sass.logError))
 			    .pipe(sourcemaps.init())
 			    .pipe(cleanCSS())
