@@ -21,11 +21,14 @@
 @import 'overrides';
 @import "../../node_modules/bulma/bulma.sass";
 @import "../../node_modules/datatables-bulma/css/dataTables.bulma.css";
-
 body.cms {
-	background: url(../img/gradient.jpg) no-repeat;
-	background-attachment: fixed;
-	height: 100%;
+	min-height: 100vh;
+	@media screen and (min-width: $tablet), print {
+		background: url(../img/gradient.jpg) no-repeat;
+	}
+	@media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+		padding-left: 2em;
+	}
 }
 
 h1 {
