@@ -58,6 +58,9 @@
 		overflow: hidden;
 		z-index: 998;
 		padding-top: 8px;
+		@media screen and (max-width: $tablet) {
+			top: 104px;
+		}
 	}
 	.sling-cms-logo {
 		height: 25px;
