@@ -490,6 +490,15 @@ Sling.CMS = {
 			})
 		}
 	};
+	
+	Sling.CMS.ext['file-upload'] = {
+		decorate: function($ctx) {
+			$ctx.find('.file').on('change', "input", function(){
+				var node = $(this);
+				node.parent().find('.file-name').text(this.files[0].name);
+			});
+		}
+	};
 
 	$(document).ready(function() {
 		Sling.CMS.init();
