@@ -84,7 +84,7 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public void finalize(ResourceResolver resolver) {
+	public void closeResolver(ResourceResolver resolver) {
 		if (resolver != null && resolver.isLive() && StringUtils.isNotBlank(config.searchServiceUsername())
 				&& config.searchServiceUsername().equals(resolver.getUserID())) {
 			resolver.close();

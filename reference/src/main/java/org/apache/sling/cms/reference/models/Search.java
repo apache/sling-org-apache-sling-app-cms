@@ -109,7 +109,7 @@ public class Search {
 	@PostConstruct
 	public void init() {
 
-		Set<String> distinct = new HashSet<String>();
+		Set<String> distinct = new HashSet<>();
 
 		String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replaceAll("'", "''");
 
@@ -152,13 +152,15 @@ public class Search {
 		log.debug("Using end {}", end);
 		results = results.subList(start, end);
 
-		List<Integer> pgs = new ArrayList<Integer>();
+		List<Integer> pgs = new ArrayList<>();
 		int max = ((int) Math.ceil((double) count / limit)) + 1;
 		for (int i = 1; i < max; i++) {
 			pgs.add(i);
 		}
 		pages = pgs.toArray(new Integer[pgs.size()]);
-		log.debug("Loaded pages {}", Arrays.toString(pages));
+		if (log.isDebugEnabled()) {
+			log.debug("Loaded pages {}", Arrays.toString(pages));
+		}
 	}
 
 	/**
@@ -168,7 +170,7 @@ public class Search {
 	 * @return true, always
 	 */
 	public String getFinalize() {
-		searchService.finalize(resolver);
+		searchService.closeResolver(resolver);
 		return "";
 	}
 

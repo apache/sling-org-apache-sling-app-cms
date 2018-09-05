@@ -29,7 +29,7 @@ public interface SearchService {
 	 * 
 	 * @param resolver the resource resolver used in search
 	 */
-	void finalize(ResourceResolver resolver);
+	void closeResolver(ResourceResolver resolver);
 
 	/**
 	 * Gets either the service user resource resolver of the request resource

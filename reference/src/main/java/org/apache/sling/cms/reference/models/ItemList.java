@@ -56,7 +56,7 @@ public class ItemList {
 
 	private SlingHttpServletRequest request;
 
-	private List<Resource> items = new ArrayList<Resource>();
+	private List<Resource> items = new ArrayList<>();
 
 	private int start;
 
@@ -97,7 +97,7 @@ public class ItemList {
 
 		log.trace("init");
 
-		Set<String> distinct = new HashSet<String>();
+		Set<String> distinct = new HashSet<>();
 
 		if (request.getRequestPathInfo().getSuffix() != null) {
 			query = query.replace("{SUFFIX}", request.getRequestPathInfo().getSuffix());
@@ -123,29 +123,31 @@ public class ItemList {
 			log.debug("Page {} not specified or not valid", request.getParameter("page"));
 		}
 
-		int limit = Integer.parseInt(this.limit, 10);
-		if (page * limit >= count) {
+		int l = Integer.parseInt(this.limit, 10);
+		if (page * l >= count) {
 			start = count;
 		} else {
-			start = page * limit;
+			start = page * l;
 		}
 		log.debug("Using start {}", start);
 
-		if ((page * limit) + limit >= count) {
+		if ((page * l) + l >= count) {
 			end = count;
 		} else {
-			end = (page * limit) + limit;
+			end = (page * l) + l;
 		}
 		log.debug("Using end {}", end);
 		items = items.subList(start, end);
 
-		List<Integer> pgs = new ArrayList<Integer>();
-		int max = ((int) Math.ceil((double) count / limit)) + 1;
+		List<Integer> pgs = new ArrayList<>();
+		int max = ((int) Math.ceil((double) count / l)) + 1;
 		for (int i = 1; i < max; i++) {
 			pgs.add(i);
 		}
 		pages = pgs.toArray(new Integer[pgs.size()]);
-		log.debug("Loaded pages {}", Arrays.toString(pages));
+		if (log.isDebugEnabled()) {
+			log.debug("Loaded pages {}", Arrays.toString(pages));
+		}
 	}
 
 	public boolean isFirst() {
