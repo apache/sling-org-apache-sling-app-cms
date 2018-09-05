@@ -29,6 +29,25 @@
     
 [:repoinit]
 
+    # CMS root paths
+    create path (sling:OrderedFolder) /etc/i18n
+    set ACL for everyone
+        allow   jcr:read	on /etc/i18n
+    end
+    create path (sling:OrderedFolder) /etc/taxonomy
+    set ACL for everyone
+        allow   jcr:read	on /etc/taxonomy
+    end
+    create path (sling:OrderedFolder) /static
+    set ACL for everyone
+        allow   jcr:read	on /static
+    end
+    create path (sling:OrderedFolder) /conf
+    set ACL for everyone
+        allow   jcr:read	on /conf
+    end
+    create path (sling:OrderedFolder) /content
+
     # Service users
     create service user sling-rewriter
     set ACL for sling-rewriter
@@ -49,24 +68,6 @@
         allow   jcr:all    on /etc/usergenerated
     end
 
-    # CMS root paths
-    create path (sling:OrderedFolder) /etc/i18n
-    set ACL for everyone
-        allow   jcr:read	on /etc/i18n
-    end
-    create path (sling:OrderedFolder) /etc/taxonomy
-    set ACL for everyone
-        allow   jcr:read	on /etc/taxonomy
-    end
-    create path (sling:OrderedFolder) /static
-    set ACL for everyone
-        allow   jcr:read	on /static
-    end
-    create path (sling:OrderedFolder) /conf
-    set ACL for everyone
-        allow   jcr:read	on /conf
-    end
-    
 
 [configurations]
     org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.rewriter
