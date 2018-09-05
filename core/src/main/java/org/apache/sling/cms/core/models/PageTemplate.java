@@ -82,7 +82,7 @@ public class PageTemplate {
 	 * @return the componentConfigs
 	 */
 	public Map<String, Resource> getComponentConfigs() {
-		Map<String, Resource> configs = new HashMap<String, Resource>();
+		Map<String, Resource> configs = new HashMap<>();
 		if (componentConfigurations != null) {
 			for (Resource cfg : componentConfigurations) {
 				configs.put(cfg.getValueMap().get("type", String.class), cfg);

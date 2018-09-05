@@ -34,7 +34,7 @@ public class i18nHelper {
 
 	private Resource resource;
 
-	private Set<String> keys = new HashSet<String>();
+	private Set<String> keys = new HashSet<>();
 
 	private Random rand = new Random();
 

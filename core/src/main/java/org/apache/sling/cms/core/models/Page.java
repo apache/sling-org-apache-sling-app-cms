@@ -65,7 +65,7 @@ public class Page extends AbstractContentModel {
 	}
 
 	public String[] getKeywords() {
-		List<String> keywords = new ArrayList<String>();
+		List<String> keywords = new ArrayList<>();
 		if (taxonomy != null) {
 			for (String item : taxonomy) {
 				Resource resource = this.resource.getResourceResolver().getResource(item);
@@ -77,12 +77,8 @@ public class Page extends AbstractContentModel {
 		return keywords.toArray(new String[keywords.size()]);
 	}
 
-	public boolean isPublished() {
-		return published;
-	}
-
 	public String getPublishedPath() {
-		Site site = resource.adaptTo(SiteManager.class).getSite();
+		Site site = getSite();
 		if (site != null) {
 			return resource.getPath().replace(site.getPath(), "") + ".html";
 		} else {
@@ -91,12 +87,21 @@ public class Page extends AbstractContentModel {
 	}
 
 	public String getPublishedUrl() {
-		Site site = resource.adaptTo(SiteManager.class).getSite();
+		Site site = getSite();
 		if (site != null) {
 			return site.getUrl() + getPublishedPath();
 		} else {
 			return resource.getPath();
 		}
+	}
+
+	public Site getSite() {
+		SiteManager siteMgr = resource.adaptTo(SiteManager.class);
+		Site site = null;
+		if (siteMgr != null) {
+			site = siteMgr.getSite();
+		}
+		return site;
 	}
 
 	public PageTemplate getTemplate() {
@@ -110,5 +115,9 @@ public class Page extends AbstractContentModel {
 
 	public String getTemplatePath() {
 		return this.template;
+	}
+
+	public boolean isPublished() {
+		return published;
 	}
 }

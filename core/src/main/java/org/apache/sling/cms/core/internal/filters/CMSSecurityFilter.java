@@ -92,7 +92,7 @@ public class CMSSecurityFilter implements Filter {
 			boolean allowed = false;
 			for (Pattern p : this.patterns) {
 				if (p.matcher(uri).matches()) {
-					log.trace("Allowing request matching pattern {}", p.toString());
+					log.trace("Allowing request matching pattern {}", p);
 					allowed = true;
 					break;
 				}

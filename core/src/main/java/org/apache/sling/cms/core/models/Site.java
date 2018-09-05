@@ -89,18 +89,23 @@ public class Site {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Site other = (Site) obj;
 		if (resource == null) {
-			if (other.resource != null)
+			if (other.resource != null) {
 				return false;
-		} else if (!resource.getPath().equals(other.resource.getPath()))
+			}
+		} else if (!resource.getPath().equals(other.resource.getPath())) {
 			return false;
+		}
 		return true;
 	}
 
@@ -162,7 +167,7 @@ public class Site {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((resource.getPath() == null) ? 0 : resource.getPath().hashCode());
+		result = prime * result + resource.getPath().hashCode();
 		return result;
 	}
 

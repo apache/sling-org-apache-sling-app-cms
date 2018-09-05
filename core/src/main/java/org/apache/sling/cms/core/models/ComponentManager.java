@@ -52,14 +52,14 @@ public class ComponentManager {
 	 * @return a list of the components
 	 */
 	public List<Component> getAllComponents() {
-		Set<Component> allComponents = new HashSet<Component>();
+		Set<Component> allComponents = new HashSet<>();
 		if (componentCache == null) {
 			loadComponents();
 		}
 		for (List<Component> components : componentCache.values()) {
 			allComponents.addAll(components);
 		}
-		return new ArrayList<Component>(allComponents);
+		return new ArrayList<>(allComponents);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class ComponentManager {
 		if (componentCache == null) {
 			loadComponents();
 		}
-		List<String> types = new ArrayList<String>(componentCache.keySet());
+		List<String> types = new ArrayList<>(componentCache.keySet());
 		Collections.sort(types);
 		return types;
 	}

@@ -44,19 +44,19 @@ public class CMSPageServlet extends SlingSafeMethodsServlet {
 	private static final long serialVersionUID = -410942682163323725L;
 	private static final Logger log = LoggerFactory.getLogger(CMSPageServlet.class);
 
+	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 		Resource contentResource = request.getResourceResolver().getResource(request.getResource(),
 				JcrConstants.JCR_CONTENT);
 		if (contentResource == null) {
-			log.error("No countent for page {}", request.getResource());
+			log.error("No content for page {}", request.getResource());
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, "no content");
 			return;
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(contentResource);
 		if (requestDispatcher != null) {
 			requestDispatcher.include(request, response);
-			return;
 		} else {
 			log.error("Failed to get request dispatcher for content of {}", request.getResource());
 			throw new ServletException("No Content");

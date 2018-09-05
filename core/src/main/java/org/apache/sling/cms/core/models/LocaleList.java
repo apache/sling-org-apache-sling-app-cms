@@ -33,7 +33,7 @@ import org.apache.sling.models.annotations.Model;
 public class LocaleList {
 
 	public List<Locale> getLocales() {
-		List<Locale> locales = new ArrayList<Locale>();
+		List<Locale> locales = new ArrayList<>();
 		for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
 			locales.add(locale);
 		}

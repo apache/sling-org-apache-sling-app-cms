@@ -140,6 +140,7 @@ public class ReferenceMappingTransformer implements Transformer {
 
 	@Override
 	public void dispose() {
+		// Nothing required
 	}
 
 	@Override
@@ -158,7 +159,11 @@ public class ReferenceMappingTransformer implements Transformer {
 				}
 			}
 			Resource configResource = resolver.getResource(slingRequest.getResource(), "site", "rewrite");
-			attributes = configResource.getValueMap().get("attributes", String[].class);
+			if (configResource != null) {
+				attributes = configResource.getValueMap().get("attributes", String[].class);
+			} else {
+				log.warn("Unable to find configuration for {}", slingRequest.getResource());
+			}
 		}
 	}
 

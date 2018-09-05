@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -113,30 +114,30 @@ public class BulkReplaceOperation implements PostOperation {
 			String replace, PostResponse response, List<Modification> changes) {
 		ModifiableValueMap properties = resource.adaptTo(ModifiableValueMap.class);
 		boolean updated = false;
-		for (String key : properties.keySet()) {
+		for (Entry<String, Object> entry : properties.entrySet()) {
 
-			if (updateProperties.matcher(key).matches()) {
-				log.trace("Checking property {}@{}", resource.getPath(), key);
-				if (properties.get(key) instanceof String) {
-					String value = properties.get(key, String.class);
+			if (updateProperties.matcher(entry.getKey()).matches()) {
+				log.trace("Checking property {}@{}", resource.getPath(), entry.getKey());
+				if (properties.get(entry.getKey()) instanceof String) {
+					String value = (String) entry.getValue();
 					if (rfind == null && (value.contains(find) || value.equals(find))) {
 						value = value.replace(find, replace);
 						log.trace("Value after replacement: {}", value);
-						properties.put(key, value);
+						properties.put(entry.getKey(), value);
 						updated = true;
 					} else if (rfind != null) {
 						Matcher m = rfind.matcher(value);
 						if (m.find()) {
 							value = rfind.matcher(value).replaceAll(replace);
 							log.trace("Value after replacement: {}", value);
-							properties.put(key, value);
+							properties.put(entry.getKey(), value);
 							updated = true;
 						}
 					}
-				} else if (properties.get(key) instanceof String[]) {
+				} else if (properties.get(entry) instanceof String[]) {
 					log.trace("Found array value");
 					boolean arrUpdated = false;
-					String[] v = properties.get(key, String[].class);
+					String[] v = (String[]) entry.getValue();
 					for (int i = 0; i < v.length; i++) {
 						String value = v[i];
 						if (rfind == null && (value.contains(find) || value.equals(find))) {
@@ -151,8 +152,10 @@ public class BulkReplaceOperation implements PostOperation {
 						}
 					}
 					if (arrUpdated) {
-						log.trace("Value after replacement: {}", Arrays.toString(v));
-						properties.put(key, v);
+						if (log.isTraceEnabled()) {
+							log.trace("Value after replacement: {}", Arrays.toString(v));
+						}
+						properties.put(entry.getKey(), v);
 						updated = true;
 					}
 				}

@@ -50,7 +50,7 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 	private static final long serialVersionUID = -410942682163323725L;
 	private static final Logger log = LoggerFactory.getLogger(PathSuggestionServlet.class);
 
-	private static final Map<String, String[]> typeFilters = new HashMap<String, String[]>();
+	private static final Map<String, String[]> typeFilters = new HashMap<>();
 
 	@Activate
 	public void activate(PathSuggestionServletConfig config) {
@@ -64,6 +64,7 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 		log.info("Loaded type filters {}", typeFilters);
 	}
 
+	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getParameter("path");
@@ -83,7 +84,7 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 		Resource parent = request.getResourceResolver().getResource(path);
 
 		if (parent == null) {
-			path = StringUtils.left(path, path.lastIndexOf("/"));
+			path = StringUtils.left(path, path.lastIndexOf('/'));
 			if (StringUtils.isEmpty(path)) {
 				path = "/";
 			}
@@ -91,11 +92,12 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 			log.debug("Using stemmed path {}", path);
 			parent = request.getResourceResolver().getResource(path);
 		}
-		for (Resource child : parent.getChildren()) {
-			if (isIncluded(child, type)) {
-				arrBuilder.add(child.getPath());
+		if (parent != null) {
+			for (Resource child : parent.getChildren()) {
+				if (isIncluded(child, type)) {
+					arrBuilder.add(child.getPath());
+				}
 			}
-
 		}
 
 		response.setContentType("application/json");

@@ -54,18 +54,23 @@ public class Component {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Component other = (Component) obj;
 		if (resource == null) {
-			if (other.resource != null)
+			if (other.resource != null) {
 				return false;
-		} else if (!resource.getPath().equals(other.resource.getPath()))
+			}
+		} else if (!resource.getPath().equals(other.resource.getPath())) {
 			return false;
+		}
 		return true;
 	}
 
@@ -74,10 +79,12 @@ public class Component {
 			if (component.getChild("edit") != null) {
 				return component.getChild("edit");
 			} else {
-				component = component.getResourceResolver()
-						.getResource(component.getResourceResolver().getParentResourceType(component));
-				if (component != null) {
-					return getComponentEditPath(component);
+				String parentResourceType = component.getResourceResolver().getParentResourceType(component);
+				if (StringUtils.isNotBlank(parentResourceType)) {
+					component = component.getResourceResolver().getResource(parentResourceType);
+					if (component != null) {
+						return getComponentEditPath(component);
+					}
 				}
 			}
 		}
@@ -133,7 +140,7 @@ public class Component {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((resource.getPath() == null) ? 0 : resource.getPath().hashCode());
+		result = prime * result + resource.getPath().hashCode();
 		return result;
 	}
 

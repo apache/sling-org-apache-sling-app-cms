@@ -28,6 +28,9 @@ import org.apache.sling.api.resource.Resource;
  */
 public class CMSUtils {
 
+	private CMSUtils() {
+	}
+
 	public static final <T> List<T> adaptResources(List<Resource> resources, Class<T> type) {
 		List<T> values = new ArrayList<T>();
 		if (resources != null) {
@@ -39,7 +42,7 @@ public class CMSUtils {
 	}
 
 	public static final <T> List<T> adaptResources(Resource[] resources, Class<T> type) {
-		List<T> values = new ArrayList<T>();
+		List<T> values = new ArrayList<>();
 		if (resources != null) {
 			for (Resource resource : resources) {
 				values.add(resource.adaptTo(type));
@@ -72,8 +75,9 @@ public class CMSUtils {
 	public static final boolean isPublished(Resource resource) {
 		boolean published = true;
 		Resource publishable = findPublishableParent(resource);
-		if (publishable != null && publishable.getChild(JcrConstants.JCR_CONTENT) != null) {
-			if (!(publishable.getChild(JcrConstants.JCR_CONTENT).getValueMap().get(CMSConstants.PN_PUBLISHED, false))) {
+		if (publishable != null) {
+			Resource content = publishable.getChild(JcrConstants.JCR_CONTENT);
+			if (content != null && !(content.getValueMap().get(CMSConstants.PN_PUBLISHED, false))) {
 				published = false;
 			}
 		}

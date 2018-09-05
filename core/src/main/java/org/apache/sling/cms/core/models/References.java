@@ -28,7 +28,7 @@ import org.apache.sling.models.annotations.Model;
 @Model(adaptables = Resource.class)
 public class References extends ReferenceOperation {
 
-	private List<String> references = new ArrayList<String>();
+	private List<String> referenceList = new ArrayList<>();
 
 	public References(Resource resource) {
 		super(resource);
@@ -37,11 +37,11 @@ public class References extends ReferenceOperation {
 
 	public List<String> getReferences() {
 		init();
-		return references;
+		return referenceList;
 	}
 
 	@Override
 	public void doProcess(Resource r, String matchingKey) {
-		references.add(r.getPath() + "@" + matchingKey);
+		referenceList.add(r.getPath() + "@" + matchingKey);
 	}
 }

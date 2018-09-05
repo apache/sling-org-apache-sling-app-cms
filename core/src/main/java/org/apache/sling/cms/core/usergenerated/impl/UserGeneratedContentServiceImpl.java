@@ -58,7 +58,7 @@ public class UserGeneratedContentServiceImpl implements UserGeneratedContentServ
 		this.config = config;
 
 		log.debug("Connecting with service user");
-		Map<String, Object> serviceParams = new HashMap<String, Object>();
+		Map<String, Object> serviceParams = new HashMap<>();
 		serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-ugc");
 		serviceResolver = factory.getServiceResourceResolver(serviceParams);
 	}
@@ -78,9 +78,8 @@ public class UserGeneratedContentServiceImpl implements UserGeneratedContentServ
 
 		Resource resource = null;
 
-		log.debug("Creating content of type {} in bucket {}", bucketConfig.getContentType().toString(),
-				bucketConfig.getBucket());
-		Map<String, Object> resourceProperties = new HashMap<String, Object>();
+		log.debug("Creating content of type {} in bucket {}", bucketConfig.getContentType(), bucketConfig.getBucket());
+		Map<String, Object> resourceProperties = new HashMap<>();
 		resourceProperties.put(JcrConstants.JCR_PRIMARYTYPE, CMSConstants.NT_UGC);
 		resourceProperties.put("approveaction", bucketConfig.getAction().toString());
 		resourceProperties.put("contenttype", bucketConfig.getContentType().toString());

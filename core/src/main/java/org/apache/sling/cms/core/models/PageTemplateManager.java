@@ -33,14 +33,20 @@ public class PageTemplateManager {
 	private Resource resource;
 
 	public PageTemplateManager(Resource resource) {
-		Site site = resource.adaptTo(SiteManager.class).getSite();
-		this.siteConfig = site.getSiteConfig();
+		SiteManager siteMgr = resource.adaptTo(SiteManager.class);
+		Site site = null;
+		if (siteMgr != null) {
+			site = siteMgr.getSite();
+		}
+		if (site != null) {
+			this.siteConfig = site.getSiteConfig();
+		}
 		this.resource = resource;
 	}
 
 	public List<PageTemplate> getAvailableTemplates() {
 		String path = resource.getPath();
-		List<PageTemplate> availableTemplates = new ArrayList<PageTemplate>();
+		List<PageTemplate> availableTemplates = new ArrayList<>();
 		if (siteConfig != null && siteConfig.getPageTemplates() != null) {
 			for (PageTemplate template : siteConfig.getPageTemplates()) {
 				if (template != null && template.getAllowedPaths() != null) {

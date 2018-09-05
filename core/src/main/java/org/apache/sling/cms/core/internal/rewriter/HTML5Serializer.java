@@ -80,8 +80,7 @@ public class HTML5Serializer implements Serializer {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		// Nothing required
 	}
 
 	public void endDocument() throws SAXException {
@@ -97,9 +96,11 @@ public class HTML5Serializer implements Serializer {
 	}
 
 	public void endPrefixMapping(String s) throws SAXException {
+		// Nothing required
 	}
 
 	public void ignorableWhitespace(char ac[], int i, int j) throws SAXException {
+		// Nothing required
 	}
 
 	@Override
@@ -109,17 +110,19 @@ public class HTML5Serializer implements Serializer {
 		} else {
 			writer = context.getWriter();
 			rewriteConfig = resolver.getResource(context.getRequest().getResource(), "site", "rewrite");
-			return;
 		}
 	}
 
 	public void processingInstruction(String s, String s1) throws SAXException {
+		// Nothing required
 	}
 
 	public void setDocumentLocator(Locator locator1) {
+		// Nothing required
 	}
 
 	public void skippedEntity(String s) throws SAXException {
+		// Nothing required
 	}
 
 	public void startDocument() throws SAXException {
@@ -155,5 +158,6 @@ public class HTML5Serializer implements Serializer {
 	}
 
 	public void startPrefixMapping(String s, String s1) throws SAXException {
+		// Nothing required
 	}
 }

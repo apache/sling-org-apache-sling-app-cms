@@ -33,7 +33,7 @@ public class LocaleResource {
 
 	public LocaleResource(Resource resource) {
 		this.locale = Locale
-				.forLanguageTag(resource.getValueMap().get(JcrConstants.JCR_LANGUAGE, String.class).replace("_", "-"));
+				.forLanguageTag(resource.getValueMap().get(JcrConstants.JCR_LANGUAGE, "").replace("_", "-"));
 	}
 
 	public Locale getLocale() {

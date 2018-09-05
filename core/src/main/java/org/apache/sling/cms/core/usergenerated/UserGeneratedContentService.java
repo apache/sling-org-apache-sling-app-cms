@@ -31,7 +31,7 @@ public interface UserGeneratedContentService {
 
 	enum CONTENT_TYPE {
 		comment, forum_post, reply, blog_post, contact_form, signup, message, other
-	};
+	}
 
 	/**
 	 * Creates a new container for adding user generated content which should be

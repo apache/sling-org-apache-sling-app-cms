@@ -16,7 +16,6 @@
  */
 package org.apache.sling.cms.core.models;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
@@ -73,7 +72,7 @@ public class ErrorHandler {
 	}
 
 	@PostConstruct
-	public void init() throws IOException {
+	public void init() {
 
 		Resource resource = slingRequest.getResource();
 		ResourceResolver resolver = slingRequest.getResourceResolver();
@@ -81,34 +80,11 @@ public class ErrorHandler {
 		log.debug("Calculating error handling scripts for resource {} and error code {}", resource, errorCode);
 
 		if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
-			log.warn("Handing exception of type " + errorCode,
-					slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
+			log.warn("Handing exception of type {}", errorCode,
+					(Exception) slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
 		}
 
-		if (errorCode == 404) {
-			log.debug("Validating the resource does not exist for all users");
-			ResourceResolver adminResolver;
-			try {
-				adminResolver = factory.getServiceResourceResolver(new HashMap<String, Object>() {
-					private static final long serialVersionUID = 1L;
-					{
-						put(ResourceResolverFactory.SUBSERVICE, "sling-cms-error");
-					}
-				});
-				Resource pResource = adminResolver.resolve(slingRequest, slingRequest.getResource().getPath());
-				if (pResource != null) {
-					if (!CMSUtils.isPublished(pResource)) {
-						errorCode = 404;
-					} else if ("anonymous".equals(resolver.getUserID())) {
-						errorCode = 401;
-					} else {
-						errorCode = 403;
-					}
-				}
-			} catch (LoginException e) {
-				log.error("Exception retrieving service user", e);
-			}
-		}
+		calculateErrorCode(resolver);
 
 		try {
 			SiteManager siteMgr = resource.adaptTo(SiteManager.class);
@@ -144,6 +120,31 @@ public class ErrorHandler {
 		response.setStatus(errorCode);
 
 		log.debug("Error handler initialized successfully!");
+	}
+
+	private void calculateErrorCode(ResourceResolver resolver) {
+		if (errorCode == 404) {
+			log.debug("Validating the resource does not exist for all users");
+			ResourceResolver adminResolver;
+			try {
+				adminResolver = factory.getServiceResourceResolver(new HashMap<String, Object>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put(ResourceResolverFactory.SUBSERVICE, SERVICE_USER_NAME);
+					}
+				});
+				Resource pResource = adminResolver.resolve(slingRequest, slingRequest.getResource().getPath());
+				if (!CMSUtils.isPublished(pResource)) {
+					errorCode = 404;
+				} else if ("anonymous".equals(resolver.getUserID())) {
+					errorCode = 401;
+				} else {
+					errorCode = 403;
+				}
+			} catch (LoginException e) {
+				log.error("Exception retrieving service user", e);
+			}
+		}
 	}
 
 	public Resource getHandler() {

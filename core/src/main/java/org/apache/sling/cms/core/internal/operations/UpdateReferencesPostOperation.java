@@ -36,8 +36,7 @@ import org.slf4j.LoggerFactory;
  * references from a resource which is being moved or deleted to another
  * resource.
  */
-@Component(immediate = true, service = { SlingPostProcessor.class }, property = Constants.SERVICE_RANKING
-		+ "=-1")
+@Component(immediate = true, service = { SlingPostProcessor.class }, property = Constants.SERVICE_RANKING + "=-1")
 public class UpdateReferencesPostOperation implements SlingPostProcessor {
 
 	public static final String RP_UPDATE_REFERENCES = SlingPostConstants.RP_PREFIX + "updateReferences";
@@ -58,19 +57,23 @@ public class UpdateReferencesPostOperation implements SlingPostProcessor {
 				public void doProcess(Resource resource, String matchingKey) {
 					ModifiableValueMap properties = resource.adaptTo(ModifiableValueMap.class);
 					log.trace("Updating references in property {}@{}", resource.getPath(), matchingKey);
-					if (properties.get(matchingKey) instanceof String) {
-						String value = properties.get(matchingKey, String.class).replace(find, destination);
-						properties.put(matchingKey, value);
-						log.trace("Updated value {}", value);
-					} else if (properties.get(matchingKey) instanceof String[]) {
-						String[] values = properties.get(matchingKey, String[].class);
-						for (int i = 0; i < values.length; i++) {
-							values[i] = values[i].replace(find, destination);
+					if (properties != null) {
+						if (properties.get(matchingKey) instanceof String) {
+							String value = properties.get(matchingKey, "").replace(find, destination);
+							properties.put(matchingKey, value);
+							log.trace("Updated value {}", value);
+						} else if (properties.get(matchingKey) instanceof String[]) {
+							String[] values = properties.get(matchingKey, new String[0]);
+							for (int i = 0; i < values.length; i++) {
+								values[i] = values[i].replace(find, destination);
+							}
+							properties.put(matchingKey, values);
+							if (log.isTraceEnabled()) {
+								log.trace("Updated values {}", Arrays.toString(values));
+							}
 						}
-						properties.put(matchingKey, values);
-						if(log.isTraceEnabled()) {
-						log.trace("Updated values {}", Arrays.toString(values));
-						}
+					} else {
+						log.warn("Unable to update references in {}, unable to edit", resource);
 					}
 					changes.add(Modification.onModified(resource.getPath()));
 				}
