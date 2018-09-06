@@ -47,123 +47,125 @@ const apache2License = [
 ].join('\n');
 
 gulp.task('styles', function() {
-	 return streamqueue ({objectMode: true},
-			gulp.src('./src/scss/*.scss')
-				.pipe(sass().on('error', sass.logError))
-				.pipe(concat('scss-files.scss'))
-			    .pipe(sourcemaps.init())
-			    .pipe(cleanCSS())
-			    .pipe(header(apache2License)),
-			gulp.src('./node_modules/summernote/dist/summernote-lite.css')
-			    .pipe(cleanCSS()),
-			gulp.src([
-				'./node_modules/jam-icons/css/jam.min.css',
-				'./node_modules/js-autocomplete/auto-complete.css'
-			])
-	 	)
-     	.pipe(concat('styles.min.css'))
+     return streamqueue ({objectMode: true},
+            gulp.src('./src/scss/*.scss')
+                .pipe(sass().on('error', sass.logError))
+                .pipe(concat('scss-files.scss'))
+                .pipe(sourcemaps.init())
+                .pipe(cleanCSS())
+                .pipe(header(apache2License)),
+            gulp.src('./node_modules/summernote/dist/summernote-lite.css')
+                .pipe(cleanCSS()),
+            gulp.src([
+                './node_modules/jam-icons/css/jam.min.css',
+                './node_modules/js-autocomplete/auto-complete.css'
+            ])
+         )
+         .pipe(concat('styles.min.css'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'))
-	 	.pipe(rename('bundle.css'))
-	 	.pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
+         .pipe(rename('bundle.css'))
+         .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
 });
 
 
 gulp.task('cms-assets', function() {
-	gulp.src(['./src/img/*'])
-		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/img'));
-	gulp.src('./node_modules/summernote/dist/font/*')
-		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css/font'));
-	gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
-		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/fonts'));
+    gulp.src(['./src/img/*'])
+        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/img'));
+    gulp.src('./node_modules/summernote/dist/font/*')
+        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css/font'));
+    gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
+        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/fonts'));
 });
 
 gulp.task('cms-js', function() {
-	return gulp.src([
-			'./node_modules/jquery/dist/jquery.js',
-			'./node_modules/datatables/media/js/jquery.dataTables.js',
-			'./node_modules/datatables-bulma/js/dataTables.bulma.js',
-			'./node_modules/handlebars/dist/handlebars.js',
-			'./node_modules/summernote/dist/summernote-lite.js',
-			'./node_modules/js-autocomplete/auto-complete.js',
-			'./src/js/cms.js'
-		])
-		.pipe(uglify({
+    return gulp.src([
+            './node_modules/jquery/dist/jquery.js',
+            './node_modules/datatables/media/js/jquery.dataTables.js',
+            './node_modules/datatables-bulma/js/dataTables.bulma.js',
+            './node_modules/handlebars/dist/handlebars.js',
+            './node_modules/summernote/dist/summernote-lite.js',
+            './node_modules/js-autocomplete/auto-complete.js',
+            './src/js/cms.js'
+        ])
+        .pipe(uglify({
             output: {
                 comments: saveLicense
             }
         }))
- 		.pipe(concat('scripts-all.min.js'))
-		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
+         .pipe(concat('scripts-all.min.js'))
+        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
 });
 
 gulp.task('editor-assets', function() {
-	gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
-		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/fonts'));
+    gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
+        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/fonts'));
 });
 
 
 gulp.task('editor-js', function() {
-	return gulp.src([
-			'./node_modules/jquery/dist/jquery.js',
-			'./src/js/editor.js'
-		])
-		.pipe(uglify({
+    return gulp.src([
+            './node_modules/jquery/dist/jquery.js',
+            './src/js/editor.js'
+        ])
+        .pipe(uglify({
             output: {
                 comments: saveLicense
             }
         }))
- 		.pipe(concat('editor.min.js'))
-		.pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/js'));
+         .pipe(concat('editor.min.js'))
+        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/js'));
 });
 
 gulp.task('editor-styles', function() {
-	 return streamqueue ({objectMode: true},
-			gulp.src(['./src/scss/editor.scss'])
-				.pipe(sass().on('error', sass.logError))
-			    .pipe(sourcemaps.init())
-			    .pipe(cleanCSS())
-			    .pipe(header(apache2License)),
-			gulp.src([
-				'./node_modules/jam-icons/css/jam.min.css'
-			])
-	 	)
-     	.pipe(concat('editor.min.css'))
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/css'));
+     return streamqueue ({objectMode: true},
+            gulp.src(['./src/scss/editor.scss'])
+                .pipe(sass().on('error', sass.logError))
+                .pipe(sourcemaps.init())
+                .pipe(cleanCSS())
+                .pipe(header(apache2License)),
+            gulp.src([
+                './node_modules/jam-icons/css/jam.min.css'
+            ])
+         )
+         .pipe(concat('editor.min.css'))
+         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/css'));
 });
 
 gulp.task('cms-styles', function() {
-	 return streamqueue ({objectMode: true},
-			gulp.src('./src/scss/cms.scss')
-				.pipe(sass().on('error', sass.logError))
-			    .pipe(sourcemaps.init())
-			    .pipe(cleanCSS())
-			    .pipe(header(apache2License)),
-			gulp.src('./node_modules/summernote/dist/summernote-lite.css')
-			    .pipe(cleanCSS()),
-			gulp.src([
-				'./node_modules/jam-icons/css/jam.min.css',
-				'./node_modules/js-autocomplete/auto-complete.css'
-			])
-	 	)
-     	.pipe(concat('styles.min.css'))
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'));
+     return streamqueue ({objectMode: true},
+            gulp.src('./src/scss/cms.scss')
+                .pipe(sass().on('error', sass.logError))
+                .pipe(sourcemaps.init())
+                .pipe(cleanCSS())
+                .pipe(header(apache2License)),
+            gulp.src('./node_modules/summernote/dist/summernote-lite.css')
+                .pipe(cleanCSS()),
+            gulp.src([
+                './node_modules/jam-icons/css/jam.min.css',
+                './node_modules/js-autocomplete/auto-complete.css'
+            ])
+         )
+         .pipe(concat('styles.min.css'))
+         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'));
 });
 
 gulp.task('starter-assets', function() {
-	gulp.src(['./src/fonts/*'])
-		.pipe(gulp.dest('./dist/jcr_root/content/starter/fonts'));
-	gulp.src('./src/img/*')
-		.pipe(gulp.dest('./dist/jcr_root/content/starter/img'));
+    gulp.src(['./src/fonts/*'])
+        .pipe(gulp.dest('./dist/jcr_root/content/starter/fonts'));
+    gulp.src('./src/img/*')
+        .pipe(gulp.dest('./dist/jcr_root/content/starter/img'));
+    gulp.src('./src/img/sling-logo.svg')
+        .pipe(gulp.dest('./dist/jcr_root/content/starter'));
 });
 
 gulp.task('starter-styles', function() {
-	 return gulp.src('./src/scss/starter.scss')
-				.pipe(sass().on('error', sass.logError))
-			    .pipe(sourcemaps.init())
-			    .pipe(cleanCSS())
-			    .pipe(header(apache2License))
-	 	.pipe(rename('bundle.css'))
-	 	.pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
+     return gulp.src('./src/scss/starter.scss')
+                .pipe(sass().on('error', sass.logError))
+                .pipe(sourcemaps.init())
+                .pipe(cleanCSS())
+                .pipe(header(apache2License))
+         .pipe(rename('bundle.css'))
+         .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
 });
 
 gulp.task('cms', ['cms-styles', 'cms-js', 'cms-assets'], function() {});
