@@ -31,6 +31,18 @@ body.cms {
 	}
 }
 
+dl {
+	padding: 1em 0;
+}
+
+dd {
+	padding-left: 1em;
+}
+
+dt {
+	font-weight: bold;
+}
+
 h1 {
 	font-size: 200%;
 }
@@ -74,9 +86,9 @@ h5 {
 	overflow: auto;
 }
 
-.Preview {
+.preview {
 	max-width: 100%;
-	padding: .5em;
+	padding: 1em;
 }
 
 table.dataTable thead .sorting:after,

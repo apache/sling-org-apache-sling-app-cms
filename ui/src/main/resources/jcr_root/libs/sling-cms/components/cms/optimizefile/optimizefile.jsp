@@ -19,8 +19,8 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="optimizer" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.fileoptim.models.OptimizeResource" />
 <sling:adaptTo var="optimizedFile" adaptable="${sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,'jcr:content')}" adaptTo="org.apache.sling.fileoptim.models.OptimizedFile" />
-<div class="Grid Fit-Medium">
-	<div class="Cell Medium-50">
+<div class="columns">
+	<div class="column">
 		<h4>Info</h4>
 		<c:choose>
 			<c:when test="${optimizer.canOptimize && optimizer.result.optimized}">
@@ -52,7 +52,7 @@
 				</dl>
 				<form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
 					<input type="hidden" name=":operation" value="fileoptim:optimize" />
-					<input type="submit" value="Optimize" />
+					<input type="submit" value="Optimize" class="button is-primary" />
 				</form>
 			</c:when>
 			<c:when test="${optimizer.optimized}">
@@ -73,7 +73,7 @@
 				</dl>
 				<form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
 					<input type="hidden" name=":operation" value="fileoptim:restore" />
-					<input type="submit" value="Restore Original" />
+					<input type="submit" value="Restore Original" class="button is-primary" />
 				</form>
 			</c:when>
 			<c:otherwise>
@@ -81,8 +81,8 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div class="Cell Medium-50">
+	<div class="column">
 		<h4>Preview</h4>
-		<object data="/system/fileoptim/preview?path=${slingRequest.requestPathInfo.suffix}" class="Preview"></object>
+		<object data="/system/fileoptim/preview?path=${slingRequest.requestPathInfo.suffix}" class="preview"></object>
 	</div>
 </div>
