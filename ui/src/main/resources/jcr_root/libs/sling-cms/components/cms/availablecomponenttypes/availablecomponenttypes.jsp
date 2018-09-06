@@ -17,11 +17,11 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="field-container">
+<div class="field">
 	<label for="availableComponentTypes">
 		Available Component Types
 	</label>
-	<div class="field">
+	<div class="control">
 		<c:set var="currentTypes" value="|${fn:join(slingRequest.requestPathInfo.suffixResource.valueMap.availableComponentTypes, '|')}|"/>
 		<sling:adaptTo var="componentManager" adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.core.models.ComponentManager" />
 		<c:forEach var="type" items="${componentManager.componentTypes}">

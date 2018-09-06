@@ -17,5 +17,5 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="Sling-CMS__include-config" data-path="${resource.path}.html" data-source="select[name=type]">
+<div class="sling-cms-include-config field" data-path="${resource.path}.html" data-source="select[name=type]">
 </div>

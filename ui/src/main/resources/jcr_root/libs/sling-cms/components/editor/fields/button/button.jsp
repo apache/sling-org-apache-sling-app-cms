@@ -17,6 +17,6 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="control">
+<div class="field">
 	<button class="button" onclick="${properties.onclick}">${sling:encode(properties.label,'HTML')}</button>
 </div>

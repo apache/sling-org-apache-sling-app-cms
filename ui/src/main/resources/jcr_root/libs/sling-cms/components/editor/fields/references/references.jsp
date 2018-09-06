@@ -21,30 +21,33 @@
 	<sling:getResource path="${slingRequest.requestPathInfo.suffix}" var="editedResource" />
 	<c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.resource.ValueMap')}" scope="request"/>
 </c:if>
-<div class="Field-Group ${properties.toggle ? 'is-hidden toggle-value' : ''}" data-toggle-source=":operation" data-toggle-value="move">
-	<div class="Field-Input">
-		<label class="checkbox">
-			<sling:encode value="${properties.label}" mode="HTML" />
-			<input type="checkbox" name="${properties.name}" value="true" />
-		</label>
-		<c:if test="${properties.includeDestination}">
-			<div class="Field-Group">
-				<label for=":dest">
-					Replacement Path
-				</label>
-				<div class="Field-Input">
-					<input type="text" name=":dest" class="pathfield input" />
-				</div>
-			</div>
-		</c:if>
-		
-		<sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.References" />
-		<div class="is-padded">
+
+<sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.References" />
+<c:if test="${fn:length(references.references) gt 0}">
+	<div class="box field ${properties.toggle ? 'is-hidden toggle-value' : ''}" data-toggle-source=":operation" data-toggle-value="move">
+		<div class="field">
+			<label class="checkbox">
+				<input type="checkbox" name="${properties.name}" value="true" />
+				<sling:encode value="${properties.label}" mode="HTML" />
+			</label>
+		</div>
+		<div class="reference-list field">
 			<ul>
 				<c:forEach var="ref" items="${references.references}">
 					<li>${ref}</li>
 				</c:forEach>
 			</ul>
 		</div>
+		
+		<c:if test="${properties.includeDestination}">
+			<div class="field">
+				<label for=":dest">
+					Replacement Path
+				</label>
+				<div class="control">
+					<input type="text" name=":dest" class="pathfield input" />
+				</div>
+			</div>
+		</c:if>
 	</div>
-</div>
+</c:if>

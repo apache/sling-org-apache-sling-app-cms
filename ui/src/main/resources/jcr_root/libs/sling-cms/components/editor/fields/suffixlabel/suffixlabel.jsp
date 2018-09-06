@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="Field-Group">
+<div class="field">
 	<sling:encode value="${properties.label}" mode="HTML" /><br/>
 	<sling:encode value="${slingRequest.requestPathInfo.suffix}" mode="HTML" /><br/>
 </div>

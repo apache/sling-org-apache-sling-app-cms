@@ -234,7 +234,7 @@ Sling.CMS = {
 
 	Sling.CMS.ext['includeconfig'] = {
 		decorate: function($ctx){
-			$ctx.find('.Sling-CMS__include-config').each(function(){
+			$ctx.find('.sling-cms-include-config').each(function(){
 				var $ctr = $(this);
 				var load = function(){
 					var config = $($ctr.data('source')).find('option:selected').data('config');

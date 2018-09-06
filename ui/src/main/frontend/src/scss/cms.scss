@@ -55,10 +55,6 @@ h5 {
 	position: relative;
 }
 
-.is-padded {
-	padding: 1em 0;
-}
-
 .menu-label {
 	text-transform: none;
 	font-size: 1.25em;
@@ -71,6 +67,11 @@ h5 {
 
 .note-toolbar-wrapper {
 	height: auto !important;
+}
+
+.reference-list {
+	max-height: 200px;
+	overflow: auto;
 }
 
 .Preview {
