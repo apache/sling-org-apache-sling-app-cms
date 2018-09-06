@@ -17,15 +17,15 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="Field-Group">
+<div class="field-container">
 	<label for="availableComponentTypes">
 		Available Component Types
 	</label>
-	<div class="Field-Input">
+	<div class="field">
 		<c:set var="currentTypes" value="|${fn:join(slingRequest.requestPathInfo.suffixResource.valueMap.availableComponentTypes, '|')}|"/>
 		<sling:adaptTo var="componentManager" adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.core.models.ComponentManager" />
 		<c:forEach var="type" items="${componentManager.componentTypes}">
-			<label class="Checkbox-Label">
+			<label class="checkbox is-block">
 				<c:set var="search" value="|${type}|" />
 				<c:choose>
 					<c:when test="${fn:contains(currentTypes,search)}">

@@ -18,10 +18,11 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">Select Page Type</option>
-<sling:getCAConfigResources var="templates" resource="${slingRequest.requestPathInfo.suffixResource}" bucket="site" name="templates" />
-${templates}
-<c:forEach var="template" items="${templates}">
-	<option value="${template.path}">
-		<sling:encode value="${template.valueMap['jcr:title']}" mode="HTML" />
+<sling:adaptTo var="templateMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageTemplateManager" />
+templateMgr=${templateMgr}
+templates=${templateMgr.availableTemplates}
+<c:forEach var="template" items="${templateMgr.availableTemplates}">
+	<option value="${template.resource.path}">
+		<sling:encode value="${template.title}" mode="HTML" />
 	</option>
 </c:forEach>

@@ -68,6 +68,9 @@ public class PageTemplate {
 	 * @return the allowedPaths
 	 */
 	public String[] getAllowedPaths() {
+		if (allowedPaths == null) {
+			return new String[0];
+		}
 		return allowedPaths;
 	}
 

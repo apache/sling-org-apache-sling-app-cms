@@ -19,8 +19,15 @@ package org.apache.sling.cms.core.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
+import org.apache.sling.cms.core.CMSUtils;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A model for retrieving the available templates to create a page under the
@@ -29,33 +36,38 @@ import org.apache.sling.models.annotations.Model;
 @Model(adaptables = Resource.class)
 public class PageTemplateManager {
 
-	private SiteConfig siteConfig;
+	private static final Logger log = LoggerFactory.getLogger(PageTemplateManager.class);
+
 	private Resource resource;
 
+	private List<PageTemplate> siteTemplates;
+
+	@OSGiService
+	private ConfigurationResourceResolver configurationResourceResolver;
+
 	public PageTemplateManager(Resource resource) {
-		SiteManager siteMgr = resource.adaptTo(SiteManager.class);
-		Site site = null;
-		if (siteMgr != null) {
-			site = siteMgr.getSite();
-		}
-		if (site != null) {
-			this.siteConfig = site.getSiteConfig();
-		}
 		this.resource = resource;
+	}
+
+	@PostConstruct
+	public void init() {
+		siteTemplates = CMSUtils.adaptResources(
+				configurationResourceResolver.getResourceCollection(resource, "site", "templates"), PageTemplate.class);
 	}
 
 	public List<PageTemplate> getAvailableTemplates() {
 		String path = resource.getPath();
 		List<PageTemplate> availableTemplates = new ArrayList<>();
-		if (siteConfig != null && siteConfig.getPageTemplates() != null) {
-			for (PageTemplate template : siteConfig.getPageTemplates()) {
-				if (template != null && template.getAllowedPaths() != null) {
-					for (String allowedPath : template.getAllowedPaths()) {
-						if (path.matches(allowedPath)) {
-							availableTemplates.add(template);
-							break;
-						}
-					}
+
+		for (PageTemplate template : siteTemplates) {
+			log.debug("Checking to see if template {} is available for path {}", template.getResource().getPath(),
+					path);
+			for (String allowedPath : template.getAllowedPaths()) {
+				log.trace("Checking to see if path {} matches regex {}", path, allowedPath);
+				if (path.matches(allowedPath)) {
+					availableTemplates.add(template);
+					log.debug("Template {} is available for path {}", template.getResource().getPath(), path);
+					break;
 				}
 			}
 		}
@@ -69,6 +81,6 @@ public class PageTemplateManager {
 	 */
 	@Override
 	public String toString() {
-		return "PageTemplateManager [siteConfig=" + siteConfig + ", resource=" + resource + "]";
+		return "PageTemplateManager [siteTemplates=" + siteTemplates + ", resource=" + resource + "]";
 	}
 }

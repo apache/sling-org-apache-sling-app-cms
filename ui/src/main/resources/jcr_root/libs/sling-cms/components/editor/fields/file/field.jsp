@@ -26,7 +26,7 @@
 	</c:otherwise>
 </c:choose>
 <div class="repeating">
- 	<div disabled="disabled" class="repeating__template is-hidden">
+ 	<fieldset disabled="disabled" class="repeating__template is-hidden">
  		<div class="repeating__item Grid">
             <div class="file has-name is-fullwidth">
                 <label class="file-label">
@@ -48,7 +48,7 @@
                 </label>
             </div>
 	 	</div>
- 	</div>
+ 	</fieldset>
  	<div class="repeating__container">
 	 	<div class="repeating__item Grid">
  			<div class="file has-name is-fullwidth">

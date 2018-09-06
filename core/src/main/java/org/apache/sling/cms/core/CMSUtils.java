@@ -17,6 +17,7 @@
 package org.apache.sling.cms.core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -31,11 +32,14 @@ public class CMSUtils {
 	private CMSUtils() {
 	}
 
-	public static final <T> List<T> adaptResources(List<Resource> resources, Class<T> type) {
-		List<T> values = new ArrayList<T>();
+	public static final <T> List<T> adaptResources(Collection<Resource> resources, Class<T> type) {
+		List<T> values = new ArrayList<>();
 		if (resources != null) {
 			for (Resource resource : resources) {
-				values.add(resource.adaptTo(type));
+				T val = resource.adaptTo(type);
+				if (val != null) {
+					values.add(val);
+				}
 			}
 		}
 		return values;

@@ -55,11 +55,6 @@ public class Site {
 	}
 
 	@Inject
-	@Named(PN_CONFIG)
-	@Optional
-	private String config;
-
-	@Inject
 	@Named(CMSConstants.PN_DESCRIPTION)
 	@Optional
 	private String description;
@@ -135,18 +130,6 @@ public class Site {
 		return resource;
 	}
 
-	public SiteConfig getSiteConfig() {
-		Resource scr = resource.getResourceResolver().getResource(getSiteConfigPath());
-		if (scr != null) {
-			return scr.adaptTo(SiteConfig.class);
-		}
-		return null;
-	}
-
-	public String getSiteConfigPath() {
-		return config;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -178,8 +161,8 @@ public class Site {
 	 */
 	@Override
 	public String toString() {
-		return "Site [config=" + config + ", description=" + description + ", locale=" + locale + ", resource="
-				+ resource + ", title=" + title + ", url=" + url + "]";
+		return "Site [description=" + description + ", locale=" + locale + ", resource=" + resource + ", title=" + title
+				+ ", url=" + url + "]";
 	}
 
 }

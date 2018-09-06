@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="repeating">
- 	<div disabled="disabled" class="repeating__template is-hidden">
+ 	<fieldset disabled="disabled" class="repeating__template is-hidden">
  		<div class="repeating__item field has-addons">
  			<div class="control">
 	 			<input type="${properties.type}" value="" class="input" name="${properties.name}" ${required} ${disabled} />
@@ -29,7 +29,7 @@
 		 		</button>
 		 	</div>
 	 	</div>
- 	</div>
+ 	</fieldset>
  	<div class="repeating__container">
 	 	<c:forEach var="value" items="${editProperties[properties.name]}">
 	 		<div class="repeating__item field has-addons">
