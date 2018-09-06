@@ -68,13 +68,3 @@
         allow   jcr:all    on /etc/usergenerated
     end
 
-
-[configurations]
-    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.rewriter
-        user.mapping=[
-            "org.apache.sling.rewriter\=sling-rewriter"
-        ]
-    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-sling.ugc
-        user.mapping=[
-            "org.apache.sling.cms.core:sling-ugc\=sling-ugc"
-        ]

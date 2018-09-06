@@ -27,7 +27,7 @@ import org.osgi.service.metatype.annotations.AttributeType;
 public @interface UserGeneratedContentConfig {
 
 	@AttributeDefinition(name = "%ugcRoot.name", description = "%ugcRoot.description", defaultValue = "/etc/usergenerated")
-	String ugcRoot();
+	String ugcRoot() default"/etc/usergenerated";
 
 	@AttributeDefinition(name = "%defaultPathDepth.name", description = "%defaultPathDepth.description", type = AttributeType.INTEGER)
 	int defaultPathDepth() default 1;
