@@ -22,9 +22,10 @@
 @import "../../node_modules/bulma/bulma.sass";
 @import "../../node_modules/datatables-bulma/css/dataTables.bulma.css";
 body.cms {
-	min-height: 100vh;
+	min-height: 100vmin;
 	@media screen and (min-width: $tablet), print {
 		background: url(../img/gradient.jpg) no-repeat;
+		background-attachment: fixed;
 	}
 	@media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
 		padding-left: 2em;
