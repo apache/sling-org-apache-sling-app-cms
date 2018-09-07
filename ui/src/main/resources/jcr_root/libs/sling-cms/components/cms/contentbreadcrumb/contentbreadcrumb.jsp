@@ -16,30 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:getParent resource="${slingRequest.requestPathInfo.suffixResource}" var="root" level="${resource.valueMap.depth}" />
-<nav class="breadcrumb" aria-label="breadcrumbs">
+<%@page import="org.apache.sling.models.factory.ModelFactory"%>
+<%@page import="org.apache.sling.cms.core.models.components.Breadcrumbs"%>
+<%@include file="/libs/sling-cms/global.jsp"%><%
+
+%>
+
+<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.components.Breadcrumbs" var="model"/><nav class="breadcrumb" aria-label="breadcrumbs">
 <ul>
-    <li>
-        <a href="${resource.valueMap.prefix}${root.path}">
-            <sling:encode value="${root.valueMap['jcr:title'] != null ? root.valueMap['jcr:title'] : root.valueMap['jcr:content/jcr:title']}" default="${root.name}" mode="HTML" />
-        </a>
-    </li>
-    <c:if test="${site.path != slingRequest.requestPathInfo.suffix && site.path != slingRequest.requestPathInfo.suffixResource.parent.path}">
-        <c:forEach var="parent" items="${sling:getParents(slingRequest.requestPathInfo.suffixResource,(resource.valueMap.depth + 1))}">
-            <li>
-                <a href="${resource.valueMap.prefix}${parent.path}">
-                    <sling:encode value="${parent.valueMap['jcr:title'] != null ? parent.valueMap['jcr:title'] : parent.valueMap['jcr:content/jcr:title']}" default="${parent.name}" mode="HTML" />
-                </a>
-            </li>
-        </c:forEach>
-    </c:if>
-    <c:if test="${root.path != slingRequest.requestPathInfo.suffix}">
-        <li class="is-active">
-            <a href="#">
-            <sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:title'] != null ? slingRequest.requestPathInfo.suffixResource.valueMap['jcr:title'] : slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:title']}" default="${slingRequest.requestPathInfo.suffixResource.name}" mode="HTML" />
-            </a>
-        </li>
-    </c:if>
+   <c:forEach var="item" items="${model.pathData}">
+       <li>
+           <a href="${item.href}">
+               <sling:encode value="${item.title}" mode="HTML" />
+           </a>
+       </li>
+   </c:forEach>
+   <li>$WHY?
+   <li>${model.string}</li>
 </ul>
 </nav>
