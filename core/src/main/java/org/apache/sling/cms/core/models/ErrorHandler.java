@@ -28,13 +28,16 @@ import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
-import org.apache.sling.cms.core.CMSUtils;
+import org.apache.sling.cms.api.CMSUtils;
+import org.apache.sling.cms.api.Site;
+import org.apache.sling.cms.api.SiteManager;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.osgi.annotation.versioning.ProviderType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,114 +47,115 @@ import org.slf4j.LoggerFactory;
  * and if so, will display the error page found at
  * [site-root]/errors/[error-code] or [site-root]/errors/default
  */
+@ProviderType
 @Model(adaptables = SlingHttpServletRequest.class)
 public class ErrorHandler {
 
-	public static final String SERVICE_USER_NAME = "sling-cms-error";
+    public static final String SERVICE_USER_NAME = "sling-cms-error";
 
-	private static final Logger log = LoggerFactory.getLogger(ErrorHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(ErrorHandler.class);
 
-	@RequestAttribute
-	@Named(SlingConstants.ERROR_STATUS)
-	@Optional
-	@Default(intValues = 500)
-	private Integer errorCode;
+    @RequestAttribute
+    @Named(SlingConstants.ERROR_STATUS)
+    @Optional
+    @Default(intValues = 500)
+    private Integer errorCode;
 
-	private SlingHttpServletRequest slingRequest;
+    private SlingHttpServletRequest slingRequest;
 
-	private Resource handler;
+    private Resource handler;
 
-	@SlingObject
-	private HttpServletResponse response;
+    @SlingObject
+    private HttpServletResponse response;
 
-	@OSGiService
-	private ResourceResolverFactory factory;
+    @OSGiService
+    private ResourceResolverFactory factory;
 
-	public ErrorHandler(SlingHttpServletRequest slingRequest) {
-		this.slingRequest = slingRequest;
-	}
+    public ErrorHandler(SlingHttpServletRequest slingRequest) {
+        this.slingRequest = slingRequest;
+    }
 
-	@PostConstruct
-	public void init() {
+    @PostConstruct
+    public void init() {
 
-		Resource resource = slingRequest.getResource();
-		ResourceResolver resolver = slingRequest.getResourceResolver();
+        Resource resource = slingRequest.getResource();
+        ResourceResolver resolver = slingRequest.getResourceResolver();
 
-		log.debug("Calculating error handling scripts for resource {} and error code {}", resource, errorCode);
+        log.debug("Calculating error handling scripts for resource {} and error code {}", resource, errorCode);
 
-		if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
-			log.warn("Handing exception of type {}", errorCode,
-					(Exception) slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
-		}
+        if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
+            log.warn("Handing exception of type {}", errorCode,
+                    (Exception) slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
+        }
 
-		calculateErrorCode(resolver);
+        calculateErrorCode(resolver);
 
-		try {
-			SiteManager siteMgr = resource.adaptTo(SiteManager.class);
-			if (siteMgr != null && siteMgr.getSite() != null) {
-				Site site = siteMgr.getSite();
-				log.debug("Checking for error pages in the site {}", site.getPath());
+        try {
+            SiteManager siteMgr = resource.adaptTo(SiteManager.class);
+            if (siteMgr != null && siteMgr.getSite() != null) {
+                Site site = siteMgr.getSite();
+                log.debug("Checking for error pages in the site {}", site.getPath());
 
-				handler = site.getResource().getChild("errors/" + errorCode.toString());
-				if (handler == null) {
-					handler = site.getResource().getChild("errors/default");
-				}
+                handler = site.getResource().getChild("errors/" + errorCode.toString());
+                if (handler == null) {
+                    handler = site.getResource().getChild("errors/default");
+                }
 
-				if (handler != null) {
-					log.debug("Using error handler {}", handler);
-				} else {
-					log.debug("No error page defined for site {}", site.getPath());
-				}
-			}
-		} catch (Exception e) {
-			log.debug("Failed to retrieve current site, using default error handling");
-		}
+                if (handler != null) {
+                    log.debug("Using error handler {}", handler);
+                } else {
+                    log.debug("No error page defined for site {}", site.getPath());
+                }
+            }
+        } catch (Exception e) {
+            log.debug("Failed to retrieve current site, using default error handling");
+        }
 
-		if (handler == null) {
-			log.debug("Using Sling CMS default error pages");
-			handler = resolver.getResource("/content/sling-cms/errorhandling/" + errorCode.toString());
-			if (handler == null) {
-				handler = resolver.getResource("/content/sling-cms/errorhandling/default");
-			}
-			log.debug("Using Sling CMS error handler {}", handler);
-		}
+        if (handler == null) {
+            log.debug("Using Sling CMS default error pages");
+            handler = resolver.getResource("/content/sling-cms/errorhandling/" + errorCode.toString());
+            if (handler == null) {
+                handler = resolver.getResource("/content/sling-cms/errorhandling/default");
+            }
+            log.debug("Using Sling CMS error handler {}", handler);
+        }
 
-		log.debug("Sending error {}", errorCode);
-		response.setStatus(errorCode);
+        log.debug("Sending error {}", errorCode);
+        response.setStatus(errorCode);
 
-		log.debug("Error handler initialized successfully!");
-	}
+        log.debug("Error handler initialized successfully!");
+    }
 
-	private void calculateErrorCode(ResourceResolver resolver) {
-		if (errorCode == 404) {
-			log.debug("Validating the resource does not exist for all users");
-			ResourceResolver adminResolver;
-			try {
-				adminResolver = factory.getServiceResourceResolver(new HashMap<String, Object>() {
-					private static final long serialVersionUID = 1L;
-					{
-						put(ResourceResolverFactory.SUBSERVICE, SERVICE_USER_NAME);
-					}
-				});
-				Resource pResource = adminResolver.resolve(slingRequest, slingRequest.getResource().getPath());
-				if (!CMSUtils.isPublished(pResource)) {
-					errorCode = 404;
-				} else if ("anonymous".equals(resolver.getUserID())) {
-					errorCode = 401;
-				} else {
-					errorCode = 403;
-				}
-			} catch (LoginException e) {
-				log.error("Exception retrieving service user", e);
-			}
-		}
-	}
+    private void calculateErrorCode(ResourceResolver resolver) {
+        if (errorCode == 404) {
+            log.debug("Validating the resource does not exist for all users");
+            ResourceResolver adminResolver;
+            try {
+                adminResolver = factory.getServiceResourceResolver(new HashMap<String, Object>() {
+                    private static final long serialVersionUID = 1L;
+                    {
+                        put(ResourceResolverFactory.SUBSERVICE, SERVICE_USER_NAME);
+                    }
+                });
+                Resource pResource = adminResolver.resolve(slingRequest, slingRequest.getResource().getPath());
+                if (!CMSUtils.isPublished(pResource)) {
+                    errorCode = 404;
+                } else if ("anonymous".equals(resolver.getUserID())) {
+                    errorCode = 401;
+                } else {
+                    errorCode = 403;
+                }
+            } catch (LoginException e) {
+                log.error("Exception retrieving service user", e);
+            }
+        }
+    }
 
-	public Resource getHandler() {
-		return handler;
-	}
+    public Resource getHandler() {
+        return handler;
+    }
 
-	public int getErrorCode() {
-		return errorCode;
-	}
+    public int getErrorCode() {
+        return errorCode;
+    }
 }

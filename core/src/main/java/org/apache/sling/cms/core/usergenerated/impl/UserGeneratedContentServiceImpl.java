@@ -29,9 +29,9 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ResourceUtil;
-import org.apache.sling.cms.core.CMSConstants;
-import org.apache.sling.cms.core.usergenerated.UGCBucketConfig;
-import org.apache.sling.cms.core.usergenerated.UserGeneratedContentService;
+import org.apache.sling.cms.api.CMSConstants;
+import org.apache.sling.cms.api.usergenerated.UGCBucketConfig;
+import org.apache.sling.cms.api.usergenerated.UserGeneratedContentService;
 import org.apache.sling.jcr.resource.JcrResourceConstants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -45,78 +45,78 @@ import org.slf4j.LoggerFactory;
 @Designate(ocd = UserGeneratedContentConfig.class)
 public class UserGeneratedContentServiceImpl implements UserGeneratedContentService {
 
-	private static final Logger log = LoggerFactory.getLogger(UserGeneratedContentServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(UserGeneratedContentServiceImpl.class);
 
-	@Reference
-	private ResourceResolverFactory factory;
-	private UserGeneratedContentConfig config;
+    @Reference
+    private ResourceResolverFactory factory;
+    private UserGeneratedContentConfig config;
 
-	private ResourceResolver serviceResolver;
+    private ResourceResolver serviceResolver;
 
-	@Activate
-	public void activate(UserGeneratedContentConfig config) throws LoginException {
-		this.config = config;
+    @Activate
+    public void activate(UserGeneratedContentConfig config) throws LoginException {
+        this.config = config;
 
-		log.debug("Connecting with service user");
-		Map<String, Object> serviceParams = new HashMap<>();
-		serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-ugc");
-		serviceResolver = factory.getServiceResourceResolver(serviceParams);
-	}
+        log.debug("Connecting with service user");
+        Map<String, Object> serviceParams = new HashMap<>();
+        serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-ugc");
+        serviceResolver = factory.getServiceResourceResolver(serviceParams);
+    }
 
-	@Deactivate
-	public void deactivate() {
-		if (serviceResolver != null) {
-			serviceResolver.close();
-		}
-	}
+    @Deactivate
+    public void deactivate() {
+        if (serviceResolver != null) {
+            serviceResolver.close();
+        }
+    }
 
-	@Override
-	public Resource createUGCContainer(SlingHttpServletRequest request, UGCBucketConfig bucketConfig, String preview,
-			String targetPath) throws PersistenceException {
+    @Override
+    public Resource createUGCContainer(SlingHttpServletRequest request, UGCBucketConfig bucketConfig, String preview,
+            String targetPath) throws PersistenceException {
 
-		serviceResolver.refresh();
+        serviceResolver.refresh();
 
-		Resource resource = null;
+        Resource resource = null;
 
-		log.debug("Creating content of type {} in bucket {}", bucketConfig.getContentType(), bucketConfig.getBucket());
-		Map<String, Object> resourceProperties = new HashMap<>();
-		resourceProperties.put(JcrConstants.JCR_PRIMARYTYPE, CMSConstants.NT_UGC);
-		resourceProperties.put("approveaction", bucketConfig.getAction().toString());
-		resourceProperties.put("contenttype", bucketConfig.getContentType().toString());
-		resourceProperties.put("preview", preview);
-		resourceProperties.put("published", false);
-		resourceProperties.put("referrer", request.getHeader("referer"));
-		if (StringUtils.isNotBlank(targetPath)) {
-			resourceProperties.put("targetpath", targetPath);
-		}
-		resourceProperties.put("user", request.getResourceResolver().getUserID());
-		resourceProperties.put("useragent", request.getHeader("User-Agent"));
-		resourceProperties.put("userip", request.getRemoteAddr());
+        log.debug("Creating content of type {} in bucket {}", bucketConfig.getContentType(), bucketConfig.getBucket());
+        Map<String, Object> resourceProperties = new HashMap<>();
+        resourceProperties.put(JcrConstants.JCR_PRIMARYTYPE, CMSConstants.NT_UGC);
+        resourceProperties.put("approveaction", bucketConfig.getAction().toString());
+        resourceProperties.put("contenttype", bucketConfig.getContentType().toString());
+        resourceProperties.put("preview", preview);
+        resourceProperties.put("published", false);
+        resourceProperties.put("referrer", request.getHeader("referer"));
+        if (StringUtils.isNotBlank(targetPath)) {
+            resourceProperties.put("targetpath", targetPath);
+        }
+        resourceProperties.put("user", request.getResourceResolver().getUserID());
+        resourceProperties.put("useragent", request.getHeader("User-Agent"));
+        resourceProperties.put("userip", request.getRemoteAddr());
 
-		String contentPath = generatePath(bucketConfig);
-		log.debug("Creating article contents {}", contentPath);
-		resource = ResourceUtil.getOrCreateResource(serviceResolver, contentPath, resourceProperties,
-				JcrResourceConstants.NT_SLING_ORDERED_FOLDER, true);
+        String contentPath = generatePath(bucketConfig);
+        log.debug("Creating article contents {}", contentPath);
+        resource = ResourceUtil.getOrCreateResource(serviceResolver, contentPath, resourceProperties,
+                JcrResourceConstants.NT_SLING_ORDERED_FOLDER, true);
 
-		return resource;
-	}
+        return resource;
+    }
 
-	private String generatePath(UGCBucketConfig bucketConfig) {
-		String uuid = UUID.randomUUID().toString();
-		int depth = bucketConfig.getPathDepth();
-		if (depth == -1) {
-			depth = config.defaultPathDepth();
-		}
-		String[] pathSegments = new String[depth];
-		for (int i = 0; i < pathSegments.length; i++) {
-			pathSegments[i] = String.valueOf(uuid.charAt(i));
-		}
-		if (pathSegments.length > 0) {
-			return config.ugcRoot() + "/" + bucketConfig.getBucket() + "/" + StringUtils.join(pathSegments, "/") + "/"
-					+ uuid;
-		} else {
-			return config.ugcRoot() + "/" + bucketConfig.getBucket() + "/" + uuid;
-		}
-	}
+    private String generatePath(UGCBucketConfig bucketConfig) {
+        String uuid = UUID.randomUUID().toString();
+        int depth = bucketConfig.getPathDepth();
+        if (depth == -1) {
+            depth = config.defaultPathDepth();
+        }
+        String[] pathSegments = new String[depth];
+        for (int i = 0; i < pathSegments.length; i++) {
+            pathSegments[i] = String.valueOf(uuid.charAt(i));
+        }
+        if (pathSegments.length > 0) {
+            return config.ugcRoot() + "/" + bucketConfig.getBucket() + "/" + StringUtils.join(pathSegments, "/") + "/"
+                    + uuid;
+        } else {
+            return config.ugcRoot() + "/" + bucketConfig.getBucket() + "/" + uuid;
+        }
+    }
 
 }

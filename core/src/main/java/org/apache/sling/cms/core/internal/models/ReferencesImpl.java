@@ -14,34 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.models;
+package org.apache.sling.cms.core.internal.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.api.References;
 import org.apache.sling.models.annotations.Model;
 
 /**
  * Model for finding the references to a Resource
  */
-@Model(adaptables = Resource.class)
-public class References extends ReferenceOperation {
+@Model(adaptables = Resource.class, adapters = References.class)
+public class ReferencesImpl extends ReferenceOperation implements References {
 
-	private List<String> referenceList = new ArrayList<>();
+    private List<String> referenceList = new ArrayList<>();
 
-	public References(Resource resource) {
-		super(resource);
-	}
-	
+    public ReferencesImpl(Resource resource) {
+        super(resource);
+    }
 
-	public List<String> getReferences() {
-		init();
-		return referenceList;
-	}
+    public List<String> getReferences() {
+        init();
+        return referenceList;
+    }
 
-	@Override
-	public void doProcess(Resource r, String matchingKey) {
-		referenceList.add(r.getPath() + "@" + matchingKey);
-	}
+    @Override
+    public void doProcess(Resource r, String matchingKey) {
+        referenceList.add(r.getPath() + "@" + matchingKey);
+    }
 }

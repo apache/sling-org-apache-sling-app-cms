@@ -28,8 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.cms.core.CMSConstants;
-import org.apache.sling.cms.core.CMSUtils;
+import org.apache.sling.cms.api.CMSConstants;
+import org.apache.sling.cms.api.CMSUtils;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -37,35 +37,35 @@ import org.osgi.service.component.annotations.Component;
  * not set to publish=true
  */
 @Component(service = { Filter.class }, property = { "sling.filter.scope=request",
-		"service.ranking=" + Integer.MAX_VALUE, "sling.filter.pattern=/content/.+" })
+        "service.ranking=" + Integer.MAX_VALUE, "sling.filter.pattern=/content/.+" })
 public class PublishFilter implements Filter {
 
-	private static final String[] VALID_METHODS = new String[] { "GET", "HEAD" };
+    private static final String[] VALID_METHODS = new String[] { "GET", "HEAD" };
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// Nothing required
-	}
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Nothing required
+    }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		if (request instanceof SlingHttpServletRequest) {
-			SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-			if (ArrayUtils.contains(VALID_METHODS, slingRequest.getMethod())) {
-				Object editEnabled = slingRequest.getAttribute(CMSConstants.ATTR_EDIT_ENABLED);
-				if (!"true".equals(editEnabled) && !CMSUtils.isPublished(slingRequest.getResource())) {
-					((HttpServletResponse) response).sendError(404);
-					return;
-				}
-			}
-		}
-		chain.doFilter(request, response);
-	}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        if (request instanceof SlingHttpServletRequest) {
+            SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+            if (ArrayUtils.contains(VALID_METHODS, slingRequest.getMethod())) {
+                Object editEnabled = slingRequest.getAttribute(CMSConstants.ATTR_EDIT_ENABLED);
+                if (!"true".equals(editEnabled) && !CMSUtils.isPublished(slingRequest.getResource())) {
+                    ((HttpServletResponse) response).sendError(404);
+                    return;
+                }
+            }
+        }
+        chain.doFilter(request, response);
+    }
 
-	@Override
-	public void destroy() {
-		// Nothing required
-	}
+    @Override
+    public void destroy() {
+        // Nothing required
+    }
 
 }

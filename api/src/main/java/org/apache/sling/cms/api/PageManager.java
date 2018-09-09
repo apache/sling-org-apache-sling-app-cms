@@ -14,31 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.models;
+package org.apache.sling.cms.api;
 
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.core.CMSConstants;
-import org.apache.sling.cms.core.CMSUtils;
-import org.apache.sling.models.annotations.Model;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * A model used to retrieve pages.
+ * A interface used to retrieve sling:Page Resources. Adaptable from a child
+ * Resource of a sling:Page.
  */
-@Model(adaptables = Resource.class)
-public class PageManager {
+@ProviderType
+public interface PageManager {
 
-	private final Page page;
-
-	public PageManager(Resource containingResource) {
-		Resource pageResource = CMSUtils.findParentResourceofType(containingResource, CMSConstants.NT_PAGE);
-		if (pageResource != null) {
-			page = pageResource.adaptTo(Page.class);
-		} else {
-			page = null;
-		}
-	}
-
-	public Page getPage() {
-		return page;
-	}
+    /**
+     * Get the page containing the adapted resource
+     * 
+     * @return
+     */
+    Page getPage();
 }

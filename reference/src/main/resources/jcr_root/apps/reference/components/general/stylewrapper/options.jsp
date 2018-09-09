@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
+<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.api.PageManager" />
 <c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/stylewrapper']}" />
 <c:forEach var="style" items="${configRsrc.valueMap.styles}">
 	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.style == sling:encode(fn:split(style,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(style,'=')[1],'HTML_ATTR')}">

@@ -29,8 +29,8 @@ import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.jstl.fmt.LocalizationContext;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.cms.core.models.Site;
-import org.apache.sling.cms.core.models.SiteManager;
+import org.apache.sling.cms.api.Site;
+import org.apache.sling.cms.api.SiteManager;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

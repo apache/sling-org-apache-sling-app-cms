@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">Select Page Type</option>
-<sling:adaptTo var="templateMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageTemplateManager" />
+<sling:adaptTo var="templateMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.api.PageTemplateManager" />
 templateMgr=${templateMgr}
 templates=${templateMgr.availableTemplates}
 <c:forEach var="template" items="${templateMgr.availableTemplates}">

@@ -18,10 +18,11 @@
  */
 
 /**
- * Package with all of the common models used to access content in the Sling
- * reference CMS
+ * Package with all of the core models used to support the Sling reference CMS
  *
  * @version 0.9.0
  */
-@org.osgi.annotation.versioning.Version("1.0.0")
+@Version("1.0.0")
 package org.apache.sling.cms.core.models;
+
+import org.osgi.annotation.versioning.Version;

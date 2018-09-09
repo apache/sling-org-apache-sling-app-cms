@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
+<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.api.PageManager" />
 <c:set var="searchConfig" value="${pageMgr.page.template.componentConfigs['reference/components/general/searchform']}" scope="request" />
 <form action="${pageMgr.page.path}.html" method="GET" class="${searchConfig.valueMap.formClass}">
 	<input type="text" name="q" class="${searchConfig.valueMap.inputClass}" placeholder="<fmt:message key="slingcms.search"/>" />

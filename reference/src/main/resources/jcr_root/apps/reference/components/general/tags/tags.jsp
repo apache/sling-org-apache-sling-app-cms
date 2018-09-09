@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
+<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.api.PageManager" var="pageMgr" />
 <c:set var="config" value="${sling:adaptTo(pageMgr.page.template.componentConfigs['reference/components/general/tags'],'org.apache.sling.api.resource.ValueMap')}" scope="request" />
 <c:set var="contentResource" value="${sling:getRelativeResource(pageMgr.page.resource,'jcr:content')}" />
 <c:set var="listTag" value="${empty config.listTag ? 'div' : config.listTag}" />
