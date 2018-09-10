@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.api.References;
+import org.apache.sling.cms.References;
 import org.apache.sling.models.annotations.Model;
 
 /**
