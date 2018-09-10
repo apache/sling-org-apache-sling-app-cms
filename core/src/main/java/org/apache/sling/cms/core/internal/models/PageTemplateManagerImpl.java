@@ -23,9 +23,9 @@ import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
-import org.apache.sling.cms.api.CMSUtils;
-import org.apache.sling.cms.api.PageTemplate;
-import org.apache.sling.cms.api.PageTemplateManager;
+import org.apache.sling.cms.CMSUtils;
+import org.apache.sling.cms.PageTemplate;
+import org.apache.sling.cms.PageTemplateManager;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.slf4j.Logger;

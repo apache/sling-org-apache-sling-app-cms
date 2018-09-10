@@ -17,5 +17,5 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo adaptable="${sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,'jcr:content')}" adaptTo="org.apache.sling.cms.api.EditableResource" var="editable" />
+<sling:adaptTo adaptable="${sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,'jcr:content')}" adaptTo="org.apache.sling.cms.EditableResource" var="editable" />
 <sling:include path="${editable.editPath}" resourceType="sling-cms/components/editor/slingform" replaceSuffix="${editable.resource.path}" />

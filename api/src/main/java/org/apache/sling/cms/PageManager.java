@@ -14,24 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.api;
-
-import java.util.List;
+package org.apache.sling.cms;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * An interface for finding the references to a Resource. Adaptable from any
- * Resource.
+ * A interface used to retrieve sling:Page Resources. Adaptable from a child
+ * Resource of a sling:Page.
  */
 @ProviderType
-public interface References {
+public interface PageManager {
 
     /**
-     * Returns a list of the resources referencing the adapted resource
+     * Get the page containing the adapted resource
      * 
      * @return
      */
-    List<String> getReferences();
-
+    Page getPage();
 }

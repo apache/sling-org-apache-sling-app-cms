@@ -14,61 +14,66 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.api;
+package org.apache.sling.cms;
 
-import java.util.Map;
+import java.util.Locale;
 
 import org.apache.sling.api.resource.Resource;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * An interface for representing a page template. Adaptable from a
- * sling:Template Resource.
+ * A inteface representing a sling:Site. Adaptable from a sling:Site Resource.
  */
 @ProviderType
-public interface PageTemplate {
+public interface Site {
 
     /**
-     * Gets the paths under which pages for this template can be created.
+     * Gets the description of the site.
      * 
-     * @return the allowedPaths
+     * @return
      */
-    String[] getAllowedPaths();
+    String getDescription();
 
     /**
-     * Gets the list of Component Types which will be available for pages created
-     * with this template
+     * Gets the locale for the sites
      * 
-     * @return the availableComponentTypes
+     * @return
      */
-    String[] getAvailableComponentTypes();
+    Locale getLocale();
 
     /**
-     * Gets the Component Configurations for this template
+     * Gets the locale as it is stored in the Sling repository
      * 
-     * @return the componentConfigs
+     * @return
      */
-    Map<String, Resource> getComponentConfigs();
+    String getLocaleString();
 
     /**
-     * Gets the Resource backing this template
+     * Gets the path of the site
      * 
-     * @return the resource
+     * @return
+     */
+    String getPath();
+
+    /**
+     * Gets the resource backing the site
+     * 
+     * @return
      */
     Resource getResource();
 
     /**
-     * Gets the Handlebars template to use for creating the content of the page
+     * Gets the title of the site
      * 
-     * @return the template
-     */
-    String getTemplate();
-
-    /**
-     * Gets the title of the template
-     * 
-     * @return the title
+     * @return
      */
     String getTitle();
+
+    /**
+     * Gets the "primary" URL for the site as configured
+     * 
+     * @return
+     */
+    String getUrl();
 
 }

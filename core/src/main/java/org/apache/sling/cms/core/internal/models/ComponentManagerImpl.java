@@ -29,8 +29,8 @@ import javax.jcr.query.Query;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.cms.api.Component;
-import org.apache.sling.cms.api.ComponentManager;
+import org.apache.sling.cms.Component;
+import org.apache.sling.cms.ComponentManager;
 import org.apache.sling.models.annotations.Model;
 
 /**

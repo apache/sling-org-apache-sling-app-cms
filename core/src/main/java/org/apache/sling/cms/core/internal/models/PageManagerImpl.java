@@ -17,10 +17,10 @@
 package org.apache.sling.cms.core.internal.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.api.CMSConstants;
-import org.apache.sling.cms.api.CMSUtils;
-import org.apache.sling.cms.api.Page;
-import org.apache.sling.cms.api.PageManager;
+import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.CMSUtils;
+import org.apache.sling.cms.Page;
+import org.apache.sling.cms.PageManager;
 import org.apache.sling.models.annotations.Model;
 
 /**

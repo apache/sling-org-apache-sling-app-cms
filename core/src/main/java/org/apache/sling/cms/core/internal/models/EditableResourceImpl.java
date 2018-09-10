@@ -17,8 +17,8 @@
 package org.apache.sling.cms.core.internal.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.api.Component;
-import org.apache.sling.cms.api.EditableResource;
+import org.apache.sling.cms.Component;
+import org.apache.sling.cms.EditableResource;
 import org.apache.sling.models.annotations.Model;
 
 /**

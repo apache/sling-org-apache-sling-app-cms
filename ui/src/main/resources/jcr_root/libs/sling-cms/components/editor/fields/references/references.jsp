@@ -22,7 +22,7 @@
 	<c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.resource.ValueMap')}" scope="request"/>
 </c:if>
 
-<sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.api.References" />
+<sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.References" />
 <c:if test="${fn:length(references.references) gt 0}">
 	<div class="box field ${properties.toggle ? 'is-hidden toggle-value' : ''}" data-toggle-source=":operation" data-toggle-value="move">
 		<div class="field">

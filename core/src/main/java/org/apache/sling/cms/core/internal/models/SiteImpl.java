@@ -23,16 +23,14 @@ import javax.inject.Named;
 
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.api.CMSConstants;
-import org.apache.sling.cms.api.Site;
+import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.Site;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
-import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * A model for representing a site.
  */
-@ProviderType
 @Model(adaptables = Resource.class, adapters = Site.class)
 public class SiteImpl implements Site {
 

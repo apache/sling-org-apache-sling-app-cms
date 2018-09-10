@@ -14,66 +14,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.api;
-
-import java.util.Locale;
+package org.apache.sling.cms;
 
 import org.apache.sling.api.resource.Resource;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * A inteface representing a sling:Site. Adaptable from a sling:Site Resource.
+ * A interface for representing a resource that can be edited through the Sling
+ * CMS.
  */
 @ProviderType
-public interface Site {
+public interface EditableResource {
 
     /**
-     * Gets the description of the site.
+     * Get the component associated with this resource
      * 
      * @return
      */
-    String getDescription();
+    Component getComponent();
 
     /**
-     * Gets the locale for the sites
+     * Gets the resource backing the component for the specified resource.
      * 
-     * @return
+     * @return the component for the specified resource
      */
-    Locale getLocale();
+    Resource getComponentResource();
 
     /**
-     * Gets the locale as it is stored in the Sling repository
+     * Returns the path for the editor for this resource if available
      * 
-     * @return
+     * @return the editor path or null
      */
-    String getLocaleString();
+    String getEditPath();
 
     /**
-     * Gets the path of the site
+     * Returns the resource for the editor for this resource if available
      * 
-     * @return
+     * @return the editor resource or null
      */
-    String getPath();
+    Resource getEditResource();
 
     /**
-     * Gets the resource backing the site
+     * Gets the current resource.
      * 
-     * @return
+     * @return the current resource
      */
     Resource getResource();
-
-    /**
-     * Gets the title of the site
-     * 
-     * @return
-     */
-    String getTitle();
-
-    /**
-     * Gets the "primary" URL for the site as configured
-     * 
-     * @return
-     */
-    String getUrl();
-
 }

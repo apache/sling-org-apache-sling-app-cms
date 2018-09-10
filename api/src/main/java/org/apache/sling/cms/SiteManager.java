@@ -14,21 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.api;
+package org.apache.sling.cms;
 
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * A interface used to retrieve sling:Page Resources. Adaptable from a child
- * Resource of a sling:Page.
+ * A manager for retrieving the sling:Site containing the current resource.
+ * Adaptable from any Resource.
  */
 @ProviderType
-public interface PageManager {
+public interface SiteManager {
 
     /**
-     * Get the page containing the adapted resource
+     * Get the site containing the current resource.
      * 
      * @return
      */
-    Page getPage();
+    Site getSite();
+
 }

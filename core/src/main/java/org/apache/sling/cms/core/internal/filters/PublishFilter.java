@@ -28,8 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.cms.api.CMSConstants;
-import org.apache.sling.cms.api.CMSUtils;
+import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.CMSUtils;
 import org.osgi.service.component.annotations.Component;
 
 /**

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.api.PageManager" var="pageMgr" />
+ <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" var="pageMgr" />
 <c:set var="query" value="${properties.query}" scope="request" />
 <c:set var="limit" value="${properties.limit}" scope="request" />
 <c:set var="includePagination" value="${properties.includePagination}" scope="request" />

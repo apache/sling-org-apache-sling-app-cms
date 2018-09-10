@@ -21,6 +21,7 @@
     <artifactId>org.apache.sling.cms.core</artifactId>
     <packaging>bundle</packaging>
     <name>Apache Sling - CMS Core</name>
+    <description>The c for the Apache Sling Reference CMS Application</description>
 
     <build>
         <plugins>

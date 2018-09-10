@@ -22,7 +22,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
-import org.apache.sling.cms.api.CMSConstants;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.rewriter.ProcessingComponentConfiguration;
 import org.apache.sling.rewriter.ProcessingContext;
 import org.apache.sling.rewriter.Transformer;

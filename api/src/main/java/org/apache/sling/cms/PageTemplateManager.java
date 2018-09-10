@@ -14,26 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.internal.models;
+package org.apache.sling.cms;
 
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.Site;
-import org.apache.sling.cms.SiteManager;
-import org.apache.sling.models.annotations.Model;
+import java.util.List;
+
+import org.apache.sling.cms.PageTemplate;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * A model for retrieving sites.
+ * An interface for retrieving the available templates to create a page under
+ * the specified resource. Adaptable from any Resource.
  */
-@Model(adaptables = Resource.class, adapters = SiteManager.class)
-public class SiteManagerImpl implements SiteManager {
+@ProviderType
+public interface PageTemplateManager {
 
-    private final Site site;
-
-    public SiteManagerImpl(Resource containingResource) {
-        site = SiteImpl.getSite(containingResource);
-    }
-
-    public Site getSite() {
-        return site;
-    }
+    /**
+     * Gets the available templates for the current resource based on the templates
+     * in the repository and then limiting the templates by their allowed pathF
+     * 
+     * @return
+     */
+    List<PageTemplate> getAvailableTemplates();
 }

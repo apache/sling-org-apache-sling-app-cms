@@ -22,7 +22,7 @@ import javax.inject.Named;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.api.Component;
+import org.apache.sling.cms.Component;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="page" value="${sling:adaptTo(resource,'org.apache.sling.cms.api.PageManager').page}" />
+<c:set var="page" value="${sling:adaptTo(resource,'org.apache.sling.cms.PageManager').page}" />
 <c:choose>
 	<c:when test="${not empty properties.action}">
 		<c:set var="action" value="${properties.action}" />

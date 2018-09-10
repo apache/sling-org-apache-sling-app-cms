@@ -19,7 +19,7 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
  <c:choose>
  	<c:when test="${properties.container == true}">
- 		<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.api.PageManager" />
+ 		<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
 		<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
  		<div class="${configRsrc.valueMap.containerclass}">
  			<div class="row">

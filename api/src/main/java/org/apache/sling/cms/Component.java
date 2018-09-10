@@ -14,41 +14,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.api;
+package org.apache.sling.cms;
 
-import java.util.List;
-import java.util.Map;
-
+import org.apache.sling.api.resource.Resource;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * A interface for retrieving sling:Component resources and information about
- * the available sling:Components
+ * A interface to represent a sling:Component
  */
 @ProviderType
-public interface ComponentManager {
+public interface Component {
+
+    String[] getComponentType();
 
     /**
-     * Returns all of the components in Sling CMS with a component type specified.
+     * Returns the path for the editor for this resource if available
      * 
-     * @return a list of the components
+     * @return the editor path or null
      */
-    List<Component> getAllComponents();
+    String getEditPath();
 
     /**
-     * Returns a Map of the components with a component type specified with the key
-     * of the map being the component type and the value being the list of
-     * components for that type.
+     * Returns the resource for the editor for this resource if available
      * 
-     * @return the components organized by componentType
+     * @return the editor resource or null
      */
-    Map<String, List<Component>> getComponentsByType();
+    Resource getEditResource();
 
     /**
-     * Returns a list of all of the registered component types
+     * The underlying Sling Resource
      * 
-     * @return the list of component types
+     * @return the resource
      */
-    List<String> getComponentTypes();
+    Resource getResource();
+
+    /**
+     * Get the title of the component
+     * 
+     * @return the title
+     */
+    String getTitle();
+
+    /**
+     * Returns true if the only component type on the component is the specified
+     * type.
+     * 
+     * @param type the type of the resource to check
+     * @return true if the resource is of the specified type
+     */
+    boolean isType(String type);
 
 }

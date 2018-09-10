@@ -24,7 +24,7 @@ import javax.jcr.query.Query;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.cms.api.CMSConstants;
+import org.apache.sling.cms.CMSConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

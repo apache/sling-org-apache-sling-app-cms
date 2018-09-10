@@ -21,6 +21,7 @@
     <artifactId>org.apache.sling.cms.api</artifactId>
     <packaging>bundle</packaging>
     <name>Apache Sling - CMS API</name>
+    <description>An API for the Apache Sling Reference CMS Application</description>
 
     <build>
         <plugins>

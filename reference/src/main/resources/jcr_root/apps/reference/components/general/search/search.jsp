@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.api.PageManager" />
+<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
 <c:set var="searchConfig" value="${pageMgr.page.template.componentConfigs['reference/components/general/search']}" scope="request" />
 <c:if test="${not empty properties.limit && not empty param.q}">
 	<c:set var="search" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.Search')}" scope="request"  />

@@ -28,7 +28,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceUtil;
-import org.apache.sling.cms.api.usergenerated.UserGeneratedContentService.APPROVE_ACTION;
+import org.apache.sling.cms.usergenerated.UserGeneratedContentService.APPROVE_ACTION;
 import org.apache.sling.jcr.resource.JcrResourceConstants;
 import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.PostOperation;

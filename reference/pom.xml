@@ -21,6 +21,7 @@
 	<artifactId>org.apache.sling.cms.reference</artifactId>
 	<packaging>bundle</packaging>
 	<name>Apache Sling - CMS Reference Application</name>
+    <description>A reference application within the Apache Sling Reference CMS Application</description>
 
 	<build>
 		<plugins>

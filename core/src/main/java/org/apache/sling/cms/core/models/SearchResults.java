@@ -26,7 +26,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.api.CMSConstants;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.models.annotations.Model;
 import org.osgi.annotation.versioning.ProviderType;
 import org.slf4j.Logger;

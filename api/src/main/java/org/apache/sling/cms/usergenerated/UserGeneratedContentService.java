@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.api.usergenerated;
+package org.apache.sling.cms.usergenerated;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.PersistenceException;

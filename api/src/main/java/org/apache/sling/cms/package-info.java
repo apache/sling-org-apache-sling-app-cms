@@ -18,9 +18,10 @@
  */
 
 /**
- * Handling for User Generated Content
+ * Package with all of the common models used to access content in the Sling
+ * reference CMS
  *
  * @version 0.9.0
  */
-@org.osgi.annotation.versioning.Version("0.9.2")
-package org.apache.sling.cms.api.usergenerated;
+@org.osgi.annotation.versioning.Version("0.10.0")
+package org.apache.sling.cms;

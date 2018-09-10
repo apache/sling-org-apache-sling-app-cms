@@ -14,50 +14,61 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.api;
+package org.apache.sling.cms;
+
+import java.util.Map;
 
 import org.apache.sling.api.resource.Resource;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * A interface for representing a resource that can be edited through the Sling
- * CMS.
+ * An interface for representing a page template. Adaptable from a
+ * sling:Template Resource.
  */
 @ProviderType
-public interface EditableResource {
+public interface PageTemplate {
 
     /**
-     * Get the component associated with this resource
+     * Gets the paths under which pages for this template can be created.
      * 
-     * @return
+     * @return the allowedPaths
      */
-    Component getComponent();
+    String[] getAllowedPaths();
 
     /**
-     * Gets the component for the specified resource.
+     * Gets the list of Component Types which will be available for pages created
+     * with this template
      * 
-     * @return the component for the specified resource
+     * @return the availableComponentTypes
      */
-    Resource getComponentResource();
+    String[] getAvailableComponentTypes();
 
     /**
-     * Returns the path for the editor for this resource if available
+     * Gets the Component Configurations for this template
      * 
-     * @return the editor path or null
+     * @return the componentConfigs
      */
-    String getEditPath();
+    Map<String, Resource> getComponentConfigs();
 
     /**
-     * Returns the resource for the editor for this resource if available
+     * Gets the Resource backing this template
      * 
-     * @return the editor resource or null
-     */
-    Resource getEditResource();
-
-    /**
-     * Gets the current resource.
-     * 
-     * @return the current resource
+     * @return the resource
      */
     Resource getResource();
+
+    /**
+     * Gets the Handlebars template to use for creating the content of the page
+     * 
+     * @return the template
+     */
+    String getTemplate();
+
+    /**
+     * Gets the title of the template
+     * 
+     * @return the title
+     */
+    String getTitle();
+
 }
