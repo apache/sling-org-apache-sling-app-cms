@@ -39,7 +39,7 @@ Sling.CMS = {
 		},
 		ui: {
 			confirmMessage: function(title, message, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body">'+message+'</section><footer class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></footer></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p></header><section class="modal-card-body">'+message+'</section><footer class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></footer></div>');
 				$('body').append($modal);
 				Sling.CMS.decorate($modal);
 				$modal.addClass('is-active');
@@ -50,11 +50,16 @@ Sling.CMS = {
 				return $modal;
 			},
 			fetchModal: function(title, link, path, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"></section><footer class="modal-card-foot"></footer></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p></header><section class="modal-card-body"></section><footer class="modal-card-foot"><a class="close-modal is-warning button" aria-label="close">Cancel</a></footer></div>');
 				$('body').append($modal);
 				$modal.find('.modal-card-body').load(link + " " +path,function(){
+					var submitButton = $modal.find('button:submit');
+					$modal.find('.modal-card-foot').append(submitButton);
+					submitButton.on("click",function(){
+						$modal.find('form').submit();
+					})
 					$modal.addClass('is-active');
-					$modal.find('.delete,.close-modal').click(function(){
+					$modal.find('.close-modal').click(function(){
 						$modal.css('display','none').remove();
 						return false;
 					});

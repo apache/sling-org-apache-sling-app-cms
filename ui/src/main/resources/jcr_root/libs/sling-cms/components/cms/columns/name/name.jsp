@@ -21,7 +21,7 @@
 	<c:set var="colValue" value="${resource.name}" />
 	<c:choose>
 		<c:when test="${colConfig.valueMap.link}">
-			<a href="${colConfig.valueMap.prefix}${resource.path}">
+			<a class="button is-outlined" href="${colConfig.valueMap.prefix}${resource.path}">
 				<sling:encode value="${colValue}" mode="HTML" />
 			</a>
 		</c:when>

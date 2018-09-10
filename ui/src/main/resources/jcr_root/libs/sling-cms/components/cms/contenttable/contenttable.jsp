@@ -16,40 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
+ <%@page import="org.apache.sling.cms.core.models.components.Breadcrumbs"%>
  <%@include file="/libs/sling-cms/global.jsp"%>
+ <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.components.ContentTable" var="model"/>
+ <div class="container is-fullwidth">
 <table class="table is-fullwidth is-striped">
     <thead>
         <tr>
-            <th>
-                #
-            </th>
-            <c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">
-                <th class="${column.name == 'actions' ? 'is-hidden' : '' }" data-attribute="${column.name}">
-                    <sling:encode value="${column.valueMap.title}" mode="HTML" />
+            <c:forEach var="column" items="${model.columnData}">
+                <th class="${column.classString}" data-attribute="${column.name}">
+                    <sling:encode value="${column.title}" mode="HTML" />
                 </th>
             </c:forEach>
         </tr>
     </thead>
     <tbody>
-        <c:set var="parentPath" value="${slingRequest.requestPathInfo.suffix}${not empty properties.appendSuffix ? properties.appendSuffix : ''}" />
-        <c:set var="count" value="1" />
-        <c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}">
-            <sling:getResource var="typeConfig" base="${resource}" path="types/${child.valueMap['jcr:primaryType']}" />
-            <c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
-                <tr class="sortable__row" data-resource="${child.path}" data-type="${typeConfig.path}">
-                    <td class="Cell-Static" title="# ${status.index + 1}}" data-sort-value="<fmt:formatNumber pattern="0000" value="${count}" />">
-                        ${count}
-                    </td>
-                    <c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(typeConfig,'columns'))}">
-                        <c:set var="configPath" value="columns/${column.name}"/>
-                        <c:set var="colConfig" value="${sling:getRelativeResource(typeConfig,configPath)}" scope="request" />
-                        <c:if test="${colConfig != null}">
-                            <sling:include path="${child.path}" resourceType="${colConfig.valueMap['sling:resourceType']}" />
-                        </c:if>
+        <c:forEach var="child" items="${model.children}">
+                <tr class="sortable__row" data-resource="${child.path}" data-type="${child.dataType}">
+                    <c:forEach var="column" items="${model.columnData}">
+                            <c:set var="colConfig" value="${column.resource}" scope="request" />
+                            <sling:include path="${child.path}" resourceType="${column.fieldResourceType}" />
                     </c:forEach>
                 </tr>
-                <c:set var="count" value="${count + 1}" />
-            </c:if>
         </c:forEach> 
     </tbody>
 </table>
+</div>

@@ -18,20 +18,16 @@
  */ --%>
 <%@page import="org.apache.sling.models.factory.ModelFactory"%>
 <%@page import="org.apache.sling.cms.core.models.components.Breadcrumbs"%>
-<%@include file="/libs/sling-cms/global.jsp"%><%
-
-%>
-
-<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.components.Breadcrumbs" var="model"/><nav class="breadcrumb" aria-label="breadcrumbs">
+<%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.components.Breadcrumbs" var="model"/>
+<nav class="breadcrumb" aria-label="Breadcrumb">
 <ul>
    <c:forEach var="item" items="${model.pathData}">
        <li>
-           <a href="${item.href}">
+           <a href="${item.href}" ${item.aria} ${item.classAttr} >
                <sling:encode value="${item.title}" mode="HTML" />
            </a>
        </li>
    </c:forEach>
-   <li>$WHY?
-   <li>${model.string}</li>
 </ul>
 </nav>
