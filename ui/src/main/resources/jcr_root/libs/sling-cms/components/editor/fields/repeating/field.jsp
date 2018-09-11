@@ -24,9 +24,9 @@
 	 			<input type="${properties.type}" value="" class="input" name="${properties.name}" ${required} ${disabled} />
 	 		</div>
 	 		<div class="control">
-		 		<button class="repeating__remove button">
+		 		<a class="repeating__remove button">
 		 			<span class="jam jam-minus"></span>
-		 		</button>
+		 		</a>
 		 	</div>
 	 	</div>
  	</fieldset>
@@ -37,14 +37,14 @@
 		 			<input type="${properties.type}" value="${value}" class="input" name="${properties.name}" ${required} ${disabled} />
 		 		</div>
 		 		<div class="control">
-			 		<button class="repeating__remove button">
+			 		<a class="repeating__remove button">
 		 				<span class="jam jam-minus"></span>
-			 		</button>
+			 		</a>
 			 	</div>
 		 	</div>
 	 	</c:forEach>
  	</div>
- 	<button class="repeating__add button">
+ 	<a class="repeating__add button">
 		 <span class="jam jam-plus"></span>
- 	</button>
+ 	</a>
  </div>

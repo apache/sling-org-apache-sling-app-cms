@@ -16,29 +16,30 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@page import="org.apache.sling.cms.core.models.components.Breadcrumbs"%>
- <%@include file="/libs/sling-cms/global.jsp"%>
- <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.components.ContentTable" var="model"/>
- <div class="container is-fullwidth">
+<%@page import="org.apache.sling.cms.core.models.components.Breadcrumbs"%>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo adaptable="${slingRequest}"
+    adaptTo="org.apache.sling.cms.core.models.components.ContentTable"
+    var="model" />
 <table class="table is-fullwidth is-striped">
     <thead>
         <tr>
             <c:forEach var="column" items="${model.columnData}">
-                <th class="${column.classString}" data-attribute="${column.name}">
-                    <sling:encode value="${column.title}" mode="HTML" />
-                </th>
+                <th class="${column.classString}"
+                    data-attribute="${column.name}"><sling:encode
+                        value="${column.title}" mode="HTML" /></th>
             </c:forEach>
         </tr>
     </thead>
     <tbody>
         <c:forEach var="child" items="${model.children}">
-                <tr class="sortable__row" data-resource="${child.path}" data-type="${child.dataType}">
-                    <c:forEach var="column" items="${model.columnData}">
-                            <c:set var="colConfig" value="${column.resource}" scope="request" />
-                            <sling:include path="${child.path}" resourceType="${column.fieldResourceType}" />
-                    </c:forEach>
-                </tr>
-        </c:forEach> 
+            <tr class="sortable__row" data-resource="${child.path}"
+                data-type="${child.dataType}">
+                <c:forEach var="column" items="${model.columnData}">
+                    <c:set var="colConfig" value="${column.resource}" scope="request" />
+                    <sling:include path="${child.path}" resourceType="${column.fieldResourceType}" />
+                </c:forEach>
+            </tr>
+        </c:forEach>
     </tbody>
 </table>
-</div>

@@ -1,0 +1,31 @@
+ {
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"title": "Suffix BreadCrumb",
+	"button": "Save Suffix Breadcrumb",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"level": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Depth",
+			"name": "depth",
+			"required": true,
+			"type": "number"
+		},
+		"levelTypeHint": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
+			"name": "level@TypeHint",
+			"value": "Long"
+		},
+		"prefix": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Prefix",
+            "name": "prefix",
+            "required": true
+        }
+	}
+}

@@ -54,12 +54,13 @@ Sling.CMS = {
 				$('body').append($modal);
 				$modal.find('.modal-card-body').load(link + " " +path,function(){
 					var submitButton = $modal.find('button:submit');
-					$modal.find('.modal-card-foot').append(submitButton);
+					var closeButton = $modal.find('.close-modal');
+					submitButton.insertBefore(closeButton);
 					submitButton.on("click",function(){
 						$modal.find('form').submit();
 					})
 					$modal.addClass('is-active');
-					$modal.find('.close-modal').click(function(){
+					closeButton.click(function(){
 						$modal.css('display','none').remove();
 						return false;
 					});

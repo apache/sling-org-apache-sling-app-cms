@@ -17,16 +17,15 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td>
-	<c:set var="colValue" value="${resource.name}" />
-	<c:choose>
-		<c:when test="${colConfig.valueMap.link}">
-			<a class="button is-outlined" href="${colConfig.valueMap.prefix}${resource.path}">
-				<sling:encode value="${colValue}" mode="HTML" />
-			</a>
-		</c:when>
-		<c:otherwise>
-			<sling:encode value="${colValue}" mode="HTML" />
-		</c:otherwise>
-	</c:choose>
-</td>
+<td><c:set var="colValue" value="${resource.name}" /> <c:choose>
+        <c:when test="${colConfig.valueMap.link}">
+            <a class="has-text-primary"
+                href="${colConfig.valueMap.prefix}${resource.path}">
+                <span class="icon"><i class="jam jam-link"></i></span>&nbsp;
+                <sling:encode value="${colValue}" mode="HTML" />
+            </a>
+        </c:when>
+        <c:otherwise>
+            <sling:encode value="${colValue}" mode="HTML" />
+        </c:otherwise>
+    </c:choose></td>

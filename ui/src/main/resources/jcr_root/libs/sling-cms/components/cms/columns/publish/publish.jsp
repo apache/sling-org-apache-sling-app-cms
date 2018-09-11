@@ -25,7 +25,7 @@
 			</a>
 		</c:when>
 		<c:otherwise>
-			<a class="button is-warning Fetch-Modal" href="/cms/shared/publish.html${resource.path}" title="Click to Publish" data-title="Publish" data-path=".Main-Content form">
+			<a class="button is-danger Fetch-Modal" href="/cms/shared/publish.html${resource.path}" title="Click to Publish" data-title="Publish" data-path=".Main-Content form">
 				<i class="jam jam-upload"></i>
 			</a>
 		</c:otherwise>
