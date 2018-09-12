@@ -30,12 +30,18 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-
+/**
+ * Logic for the Suffix BreadCrumb Component
+ * 
+ * 
+ *
+ */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class Breadcrumbs {
 
     @Inject
     @Via("resource")
+    @Default(intValues=1)
     int depth;
 
     @Inject
@@ -43,6 +49,7 @@ public class Breadcrumbs {
 
     @Inject
     @Via("resource")
+    @Default(values="../..")
     String prefix;
 
     @Inject

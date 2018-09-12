@@ -50,9 +50,9 @@ Sling.CMS = {
 				return $modal;
 			},
 			fetchModal: function(title, link, path, complete){
-				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p></header><section class="modal-card-body"></section><footer class="modal-card-foot"><a class="close-modal is-warning button" aria-label="close">Cancel</a></footer></div>');
+				var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p></header><section class="modal-card-body"></section><footer class="modal-card-foot"><a class="close-modal is-danger button" aria-label="close">Cancel</a></footer></div>');
 				$('body').append($modal);
-				$modal.find('.modal-card-body').load(link + " " +path,function(){
+				$modal.find('.modal-card-body').load(link,function(){
 					var submitButton = $modal.find('button:submit');
 					var closeButton = $modal.find('.close-modal');
 					submitButton.insertBefore(closeButton);

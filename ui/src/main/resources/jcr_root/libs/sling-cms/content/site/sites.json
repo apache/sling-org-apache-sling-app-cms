@@ -1,67 +1,71 @@
 {
-	"jcr:primaryType": "sling:Page",
-	"jcr:content": {
-		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Site Content",
-		"jcr:primaryType": "nt:unstructured",
-		"container": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/general/container",
-			"contentactions": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentactions",
-				"actions": {
-					"page": {
-						"jcr:primaryType": "nt:unstructured",
-						"label": "Site",
-						"icon" : "jam jam-document",
-						"prefix": "/cms/site/create.html"
-					},
-					"folder": {
-						"jcr:primaryType": "nt:unstructured",
-						"label": "Site Group",
-						"icon" : "jam jam-document-f",
-						"prefix": "/cms/site/creategroup.html"
-					}
-				}
-			},
-			"contentbreadcrumb": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
-				"depth": 2,
-				"prefix": "/cms/site/sites.html",
-				"titleProp": "jcr:content/jcr:title"
-			},
-			"contenttable": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contenttable",
-				"columns": {
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Site Content",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "contentactions": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentactions",
+                "actions": {
+                    "page": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "Site",
+                        "icon": "jam jam-document",
+                        "prefix": "/cms/actions/create/site.html"
+                    },
+                    "folder": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "Site Group",
+                        "icon": "jam jam-document-f",
+                        "prefix": "/cms/actions/create/sitegroup.html"
+                    }
+                }
+            },
+            "contentbreadcrumb": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
+                "depth": 2,
+                "prefix": "/cms/site/sites.html",
+                "titleProp": "jcr:content/jcr:title"
+            },
+            "contenttable": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contenttable",
+                "defaultPath": "/content",
+                "columns": {
                     "jcr:primaryType": "nt:unstructured",
-                    "resourceTypes":["sling:Site","sling:OrderedFolder"],
+                    "resourceTypes": [
+                        "sling:Site",
+                        "sling:OrderedFolder"
+                    ],
                     "name": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/cms/columns/name",
                         "link": true,
-                        "jcr:title":"Name",
-                         "prefix": "/cms/site/content.html"
+                        "jcr:title": "Name",
+                        "prefix": "/cms/site/sites.html"
                     },
                     "title": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/cms/columns/text",
                         "property": "jcr:content/jcr:title",
-                        "jcr:title":"Title",
+                        "jcr:title": "Title",
                         "type": "String"
                     },
                     "lastModified": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
-                        "jcr:title":"Last Modified",
+                        "jcr:title": "Last Modified",
                         "subPath": "jcr:content/"
                     },
                     "actions": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/cms/columns/actions",
-                        "jcr:title":"Actions",
+                        "jcr:title": "Actions",
                         "edit": {
                             "jcr:primaryType": "nt:unstructured",
                             "modal": true,
@@ -84,8 +88,8 @@
                             "modal": true
                         }
                     }
-				}
-			}
-		}
-	}
+                }
+            }
+        }
+    }
 }

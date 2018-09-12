@@ -27,6 +27,7 @@ import javax.inject.Inject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
@@ -38,6 +39,11 @@ public class ContentTable {
     @Inject
     @Via("resource")
     private List<Resource> columns;
+    
+    @Inject
+    @Via("resource")
+    @Default(values="/")
+    private String defaultPath;
 
     private String[] types;
 
@@ -58,7 +64,10 @@ public class ContentTable {
     public List<ChildResourceData> getChildren() {
         Resource suffix = slingRequest.getRequestPathInfo().getSuffixResource();
         if (suffix == null) {
-            return Collections.emptyList();
+            suffix = slingRequest.getResourceResolver().getResource(defaultPath);
+            if (suffix == null) {
+                return Collections.emptyList();
+            }
         }
         List<ChildResourceData> response = new ArrayList<>();
         suffix.listChildren().forEachRemaining(child -> {
