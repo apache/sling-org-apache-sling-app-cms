@@ -17,6 +17,7 @@
 package org.apache.sling.cms;
 
 import org.apache.sling.api.resource.Resource;
+import org.jetbrains.annotations.NotNull;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -25,6 +26,12 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface Component {
 
+    /**
+     * Returns the type of the component. A component can belong to multiple types
+     * 
+     * @return the component type
+     */
+    @NotNull
     String[] getComponentType();
 
     /**

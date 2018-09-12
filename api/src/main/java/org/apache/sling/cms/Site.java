@@ -30,49 +30,49 @@ public interface Site {
     /**
      * Gets the description of the site.
      * 
-     * @return
+     * @return the description of the site
      */
     String getDescription();
 
     /**
      * Gets the locale for the sites
      * 
-     * @return
+     * @return the locale for the site
      */
     Locale getLocale();
 
     /**
      * Gets the locale as it is stored in the Sling repository
      * 
-     * @return
+     * @return the string form of the site locale
      */
     String getLocaleString();
 
     /**
      * Gets the path of the site
      * 
-     * @return
+     * @return the path of the site
      */
     String getPath();
 
     /**
      * Gets the resource backing the site
      * 
-     * @return
+     * @return the resource at the site path
      */
     Resource getResource();
 
     /**
      * Gets the title of the site
      * 
-     * @return
+     * @return the title of the site
      */
     String getTitle();
 
     /**
      * Gets the "primary" URL for the site as configured
      * 
-     * @return
+     * @return the primary url for the site
      */
     String getUrl();
 

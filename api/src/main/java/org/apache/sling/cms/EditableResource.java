@@ -29,7 +29,7 @@ public interface EditableResource {
     /**
      * Get the component associated with this resource
      * 
-     * @return
+     * @return the component associated with this resource
      */
     Component getComponent();
 

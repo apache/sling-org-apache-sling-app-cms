@@ -93,5 +93,9 @@
             <groupId>org.osgi</groupId>
             <artifactId>osgi.annotation</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
     </dependencies>
 </project>

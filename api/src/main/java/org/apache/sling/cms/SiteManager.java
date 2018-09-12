@@ -28,7 +28,7 @@ public interface SiteManager {
     /**
      * Get the site containing the current resource.
      * 
-     * @return
+     * @return the site
      */
     Site getSite();
 

@@ -30,7 +30,7 @@ public interface References {
     /**
      * Returns a list of the resources referencing the adapted resource
      * 
-     * @return
+     * @return the list of reference path / properties
      */
     List<String> getReferences();
 

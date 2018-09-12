@@ -32,7 +32,7 @@ public interface PageTemplateManager {
      * Gets the available templates for the current resource based on the templates
      * in the repository and then limiting the templates by their allowed pathF
      * 
-     * @return
+     * @return the list of available templates
      */
     List<PageTemplate> getAvailableTemplates();
 }

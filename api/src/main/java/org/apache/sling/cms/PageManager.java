@@ -28,7 +28,7 @@ public interface PageManager {
     /**
      * Get the page containing the adapted resource
      * 
-     * @return
+     * @return the page
      */
     Page getPage();
 }
