@@ -22,7 +22,7 @@
 		<c:set var="availableTypes" value="${requestScope.availableTypes}" />
 	</c:when>
 	<c:when test="${empty requestScope.availableTypes}">
-		<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
+		<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
 		<c:set var="availableTypes" value="${fn:join(pageMgr.page.template.availableComponentTypes,',')}" />
 	</c:when>
 </c:choose>

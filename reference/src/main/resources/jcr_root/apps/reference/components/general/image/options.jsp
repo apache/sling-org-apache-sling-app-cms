@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.core.models.PageManager" />
+<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PageManager" />
 <c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/image']}" />
 <c:forEach var="imageClass" items="${configRsrc.valueMap.imageClasses}">
 	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.imageClass == sling:encode(fn:split(imageClass,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(imageClass,'=')[1],'HTML_ATTR')}">

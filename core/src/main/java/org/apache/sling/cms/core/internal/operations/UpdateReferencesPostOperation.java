@@ -22,7 +22,7 @@ import java.util.List;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.core.models.ReferenceOperation;
+import org.apache.sling.cms.core.internal.models.ReferenceOperation;
 import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.SlingPostConstants;
 import org.apache.sling.servlets.post.SlingPostProcessor;

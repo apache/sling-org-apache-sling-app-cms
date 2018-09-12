@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.models;
+package org.apache.sling.cms.core.internal.models;
 
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -24,7 +24,7 @@ import javax.jcr.query.Query;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.cms.core.CMSConstants;
+import org.apache.sling.cms.CMSConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

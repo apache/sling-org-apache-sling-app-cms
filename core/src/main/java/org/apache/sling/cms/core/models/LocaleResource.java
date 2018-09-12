@@ -21,22 +21,24 @@ import java.util.Locale;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Model for retrieving the locale information from a resource with the
  * jcr:language property.
  */
+@ProviderType
 @Model(adaptables = Resource.class)
 public class LocaleResource {
 
-	private Locale locale;
+    private Locale locale;
 
-	public LocaleResource(Resource resource) {
-		this.locale = Locale
-				.forLanguageTag(resource.getValueMap().get(JcrConstants.JCR_LANGUAGE, "").replace("_", "-"));
-	}
+    public LocaleResource(Resource resource) {
+        this.locale = Locale
+                .forLanguageTag(resource.getValueMap().get(JcrConstants.JCR_LANGUAGE, "").replace("_", "-"));
+    }
 
-	public Locale getLocale() {
-		return locale;
-	}
+    public Locale getLocale() {
+        return locale;
+    }
 }

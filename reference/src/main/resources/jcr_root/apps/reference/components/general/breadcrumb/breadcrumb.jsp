@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.PageManager" var="pageMgr" />
+ <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" var="pageMgr" />
 <a href="/">
 	Home
 </a>&nbsp;»&nbsp;

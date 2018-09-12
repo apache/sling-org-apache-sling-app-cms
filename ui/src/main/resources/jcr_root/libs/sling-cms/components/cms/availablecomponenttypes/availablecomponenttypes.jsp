@@ -23,7 +23,7 @@
 	</label>
 	<div class="control">
 		<c:set var="currentTypes" value="|${fn:join(slingRequest.requestPathInfo.suffixResource.valueMap.availableComponentTypes, '|')}|"/>
-		<sling:adaptTo var="componentManager" adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.core.models.ComponentManager" />
+		<sling:adaptTo var="componentManager" adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.ComponentManager" />
 		<c:forEach var="type" items="${componentManager.componentTypes}">
 			<label class="checkbox is-block">
 				<c:set var="search" value="|${type}|" />

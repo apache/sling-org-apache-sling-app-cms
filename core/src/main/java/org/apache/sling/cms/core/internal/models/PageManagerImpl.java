@@ -14,25 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.models;
+package org.apache.sling.cms.core.internal.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.CMSUtils;
+import org.apache.sling.cms.Page;
+import org.apache.sling.cms.PageManager;
 import org.apache.sling.models.annotations.Model;
 
 /**
- * A model for retrieving sites.
+ * A model used to retrieve pages.
  */
-@Model(adaptables = Resource.class)
-public class SiteManager {
+@Model(adaptables = Resource.class, adapters = PageManager.class)
+public class PageManagerImpl implements PageManager {
 
-	private final Site site;
-	
+    private final Page page;
 
-	public SiteManager(Resource containingResource) {
-		site = Site.getSite(containingResource);
-	}
+    public PageManagerImpl(Resource containingResource) {
+        Resource pageResource = CMSUtils.findParentResourceofType(containingResource, CMSConstants.NT_PAGE);
+        if (pageResource != null) {
+            page = pageResource.adaptTo(Page.class);
+        } else {
+            page = null;
+        }
+    }
 
-	public Site getSite() {
-		return site;
-	}
+    @Override
+    public Page getPage() {
+        return page;
+    }
 }

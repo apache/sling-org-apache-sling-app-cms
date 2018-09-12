@@ -26,10 +26,10 @@ import org.osgi.service.metatype.annotations.AttributeType;
 @ObjectClassDefinition(name = "%ugc.name", description = "%ugc.description", localization = "OSGI-INF/l10n/bundle")
 public @interface UserGeneratedContentConfig {
 
-	@AttributeDefinition(name = "%ugcRoot.name", description = "%ugcRoot.description", defaultValue = "/etc/usergenerated")
-	String ugcRoot() default"/etc/usergenerated";
+    @AttributeDefinition(name = "%ugcRoot.name", description = "%ugcRoot.description", defaultValue = "/etc/usergenerated")
+    String ugcRoot() default "/etc/usergenerated";
 
-	@AttributeDefinition(name = "%defaultPathDepth.name", description = "%defaultPathDepth.description", type = AttributeType.INTEGER)
-	int defaultPathDepth() default 1;
+    @AttributeDefinition(name = "%defaultPathDepth.name", description = "%defaultPathDepth.description", type = AttributeType.INTEGER)
+    int defaultPathDepth() default 1;
 
 }

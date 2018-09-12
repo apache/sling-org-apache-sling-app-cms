@@ -14,34 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.models;
-
-import java.util.ArrayList;
-import java.util.List;
+package org.apache.sling.cms.core.internal.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.Site;
+import org.apache.sling.cms.SiteManager;
 import org.apache.sling.models.annotations.Model;
 
 /**
- * Model for finding the references to a Resource
+ * A model for retrieving sites.
  */
-@Model(adaptables = Resource.class)
-public class References extends ReferenceOperation {
+@Model(adaptables = Resource.class, adapters = SiteManager.class)
+public class SiteManagerImpl implements SiteManager {
 
-	private List<String> referenceList = new ArrayList<>();
+    private final Site site;
 
-	public References(Resource resource) {
-		super(resource);
-	}
-	
+    public SiteManagerImpl(Resource containingResource) {
+        site = SiteImpl.getSite(containingResource);
+    }
 
-	public List<String> getReferences() {
-		init();
-		return referenceList;
-	}
-
-	@Override
-	public void doProcess(Resource r, String matchingKey) {
-		referenceList.add(r.getPath() + "@" + matchingKey);
-	}
+    public Site getSite() {
+        return site;
+    }
 }

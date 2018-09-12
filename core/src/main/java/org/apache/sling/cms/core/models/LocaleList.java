@@ -25,24 +25,26 @@ import java.util.Locale;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Model;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * A model for representing a site.
  */
+@ProviderType
 @Model(adaptables = SlingHttpServletRequest.class)
 public class LocaleList {
 
-	public List<Locale> getLocales() {
-		List<Locale> locales = new ArrayList<>();
-		for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
-			locales.add(locale);
-		}
-		Collections.sort(locales, new Comparator<Locale>() {
-			public int compare(Locale o1, Locale o2) {
-				return o1.toString().compareTo(o2.toString());
-			}
-		});
-		return locales;
-	}
+    public List<Locale> getLocales() {
+        List<Locale> locales = new ArrayList<>();
+        for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
+            locales.add(locale);
+        }
+        Collections.sort(locales, new Comparator<Locale>() {
+            public int compare(Locale o1, Locale o2) {
+                return o1.toString().compareTo(o2.toString());
+            }
+        });
+        return locales;
+    }
 
 }

@@ -25,38 +25,40 @@ import javax.jcr.query.Query;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * A model retrieving all of the keys for a i18n dictionary
  */
+@ProviderType
 @Model(adaptables = Resource.class)
 public class i18nHelper {
 
-	private Resource resource;
+    private Resource resource;
 
-	private Set<String> keys = new HashSet<>();
+    private Set<String> keys = new HashSet<>();
 
-	private Random rand = new Random();
+    private Random rand = new Random();
 
-	public i18nHelper(Resource resource) {
-		this.resource = resource;
-	}
+    public i18nHelper(Resource resource) {
+        this.resource = resource;
+    }
 
-	public Set<String> getKeys() {
-		if (keys.isEmpty()) {
-			Iterator<Resource> messageEntries = resource.getResourceResolver().findResources(
-					"SELECT * FROM [sling:MessageEntry] AS s WHERE ISDESCENDANTNODE([" + resource.getPath() + "])",
-					Query.JCR_SQL2);
-			while (messageEntries.hasNext()) {
-				Resource entry = messageEntries.next();
-				keys.add(entry.getValueMap().get("sling:key", String.class));
-			}
-		}
-		return keys;
-	}
+    public Set<String> getKeys() {
+        if (keys.isEmpty()) {
+            Iterator<Resource> messageEntries = resource.getResourceResolver().findResources(
+                    "SELECT * FROM [sling:MessageEntry] AS s WHERE ISDESCENDANTNODE([" + resource.getPath() + "])",
+                    Query.JCR_SQL2);
+            while (messageEntries.hasNext()) {
+                Resource entry = messageEntries.next();
+                keys.add(entry.getValueMap().get("sling:key", String.class));
+            }
+        }
+        return keys;
+    }
 
-	public String getRandom() {
-		return String.valueOf(rand.nextInt());
-	}
+    public String getRandom() {
+        return String.valueOf(rand.nextInt());
+    }
 
 }

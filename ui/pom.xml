@@ -21,6 +21,7 @@
 	<artifactId>org.apache.sling.cms.ui</artifactId>
 	<packaging>bundle</packaging>
 	<name>Apache Sling - CMS UI</name>
+    <description>A bundle providing the User Interface for the Apache Sling Reference CMS Application</description>
 
 	<properties>
 		<frontend.target>target/frontend</frontend.target>

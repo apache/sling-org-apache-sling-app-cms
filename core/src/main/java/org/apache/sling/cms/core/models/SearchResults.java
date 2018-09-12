@@ -26,44 +26,46 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.core.CMSConstants;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.models.annotations.Model;
+import org.osgi.annotation.versioning.ProviderType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Model for retrieving the search results
  */
+@ProviderType
 @Model(adaptables = SlingHttpServletRequest.class)
 public class SearchResults {
 
-	private static final Logger log = LoggerFactory.getLogger(SearchResults.class);
+    private static final Logger log = LoggerFactory.getLogger(SearchResults.class);
 
-	private String type = CMSConstants.NT_PAGE;
-	private String path = null;
-	private String term = null;
-	private SlingHttpServletRequest request;
+    private String type = CMSConstants.NT_PAGE;
+    private String path = null;
+    private String term = null;
+    private SlingHttpServletRequest request;
 
-	public SearchResults(SlingHttpServletRequest request) {
-		if (StringUtils.isNotEmpty(request.getParameter("type"))) {
-			type = request.getParameter("type");
-		}
+    public SearchResults(SlingHttpServletRequest request) {
+        if (StringUtils.isNotEmpty(request.getParameter("type"))) {
+            type = request.getParameter("type");
+        }
 
-		if (StringUtils.isNotEmpty(request.getParameter("path"))) {
-			path = request.getParameter("path");
-		}
+        if (StringUtils.isNotEmpty(request.getParameter("path"))) {
+            path = request.getParameter("path");
+        }
 
-		term = Text.escapeIllegalXpathSearchChars(request.getParameter("term")).replaceAll("'", "''");
-		this.request = request;
-	}
+        term = Text.escapeIllegalXpathSearchChars(request.getParameter("term")).replaceAll("'", "''");
+        this.request = request;
+    }
 
-	public Iterator<Resource> getResults() {
-		String query = "SELECT * FROM [" + type + "] AS s WHERE CONTAINS(s.*, '" + term + "')";
-		if (StringUtils.isNotEmpty(path)) {
-			query += " AND ISDESCENDANTNODE([" + path + "])";
-		}
+    public Iterator<Resource> getResults() {
+        String query = "SELECT * FROM [" + type + "] AS s WHERE CONTAINS(s.*, '" + term + "')";
+        if (StringUtils.isNotEmpty(path)) {
+            query += " AND ISDESCENDANTNODE([" + path + "])";
+        }
 
-		log.debug("Searching for content with {}", query);
-		return request.getResourceResolver().findResources(query, Query.JCR_SQL2);
-	}
+        log.debug("Searching for content with {}", query);
+        return request.getResourceResolver().findResources(query, Query.JCR_SQL2);
+    }
 }
