@@ -2,30 +2,30 @@
     "jcr:primaryType": "sling:Page",
     "jcr:content": {
         "sling:resourceType": "sling-cms/components/pages/form",
-        "jcr:title": "Edit Folder",
+        "jcr:title": "Upload File",
         "jcr:primaryType": "nt:unstructured",
         "container": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/general/container",
-            "richtext": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h3>Edit Folder</h3>"
-            },
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/editor/slingform",
-                "button": "Edit Folder",
-                "successPrepend": "/libs/sling-cms/content/site/content.html",
+                "button": "Upload File",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/general/container",
-                    "title": {
+                    "file": {
                         "jcr:primaryType": "nt:unstructured",
-                        "sling:resourceType": "sling-cms/components/editor/fields/text",
-                        "label": "Title",
-                        "name": "jcr:content/jcr:title",
+                        "sling:resourceType": "sling-cms/components/editor/fields/file",
+                        "label": "File",
+                        "name": "*",
                         "required": true
+                    },
+                    "typeHint": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": "*@TypeHint",
+                        "value": "sling:File"
                     }
                 }
             }

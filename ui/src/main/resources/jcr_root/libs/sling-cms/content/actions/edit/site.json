@@ -1,7 +1,7 @@
 {
 	"jcr:primaryType": "sling:Page",
 	"jcr:content": {
-		"sling:resourceType": "sling-cms/components/pages/base",
+		"sling:resourceType": "sling-cms/components/pages/form",
 		"jcr:title": "Edit Site",
 		"jcr:primaryType": "nt:unstructured",
 		"container": {

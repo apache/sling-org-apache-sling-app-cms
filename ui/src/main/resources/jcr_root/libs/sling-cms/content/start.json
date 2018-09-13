@@ -40,11 +40,6 @@
                         "link": "/cms/taxonomy/list.html/etc/taxonomy",
                         "text": "Taxonomy"
                     },
-                    "templates": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/taxonomy/list.html/etc/taxonomy",
-                        "text": "Templates"
-                    },
                     "config": {
                         "jcr:primaryType": "nt:unstructured",
                         "link": "/cms/config/list.html/conf",

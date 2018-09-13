@@ -2,7 +2,7 @@
     "jcr:primaryType": "sling:Page",
     "jcr:content": {
         "sling:resourceType": "sling-cms/components/pages/form",
-        "jcr:title": "Create Folder",
+        "jcr:title": "Create Site Config",
         "jcr:primaryType": "nt:unstructured",
         "container": {
             "jcr:primaryType": "nt:unstructured",
@@ -10,13 +10,13 @@
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h3>Create Folder</h3>"
+                "text": "<h3>Create Site Config</h3>"
             },
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/editor/slingform",
                 "actionSuffix": "/*",
-                "button": "Create Folder",
+                "button": "Create Site Config",
                 "successPrepend": "/libs/sling-cms/content/site/content.html",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",
@@ -25,7 +25,7 @@
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/text",
                         "label": "Title",
-                        "name": "jcr:content/jcr:title",
+                        "name": "jcr:title",
                         "required": true
                     },
                     "name": {
@@ -38,19 +38,26 @@
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/hidden",
                         "name": ":nameParam",
-                        "value": "jcr:content/jcr:title"
+                        "value": "jcr:title"
                     },
                     "primaryType": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/hidden",
                         "name": "jcr:primaryType",
-                        "value": "sling:OrderedFolder"
+                        "value": "sling:Config"
                     },
-                    "contentPrimaryType": {
+                    "pageTemplatesPrimaryType": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/hidden",
-                        "name": "jcr:content/jcr:primaryType",
+                        "name": "pageTemplates/jcr:primaryType",
                         "value": "nt:unstructured"
+                    },
+                    "type": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                        "name": "sling:resourceType",
+                        "optionsScript": "/libs/sling-cms/components/editor/scripts/configResourceTypeOptions.jsp",
+                        "required": true
                     }
                 }
             }

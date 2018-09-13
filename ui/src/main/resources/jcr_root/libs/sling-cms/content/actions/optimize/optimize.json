@@ -1,8 +1,8 @@
 {
     "jcr:primaryType": "sling:Page",
     "jcr:content": {
-        "sling:resourceType": "sling-cms/components/pages/form",
-        "jcr:title": "Edit File",
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Optimize File",
         "jcr:primaryType": "nt:unstructured",
         "container": {
             "jcr:primaryType": "nt:unstructured",
@@ -10,11 +10,11 @@
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h3>Edit File</h3>"
+                "text": "<h3>Optimize File</h3>"
             },
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/fileeditorinclude"
+                "sling:resourceType": "sling-cms/components/cms/optimizefile"
             }
         }
     }

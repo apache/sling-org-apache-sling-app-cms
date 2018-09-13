@@ -1,8 +1,8 @@
 {
     "jcr:primaryType": "sling:Page",
     "jcr:content": {
-        "sling:resourceType": "sling-cms/components/pages/base",
-        "jcr:title": "Create Template",
+        "sling:resourceType": "sling-cms/components/pages/form",
+        "jcr:title": "Create Taxonomy",
         "jcr:primaryType": "nt:unstructured",
         "container": {
             "jcr:primaryType": "nt:unstructured",
@@ -10,14 +10,13 @@
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h3>Create Template</h3>"
+                "text": "<h3>Create Taxonomy</h3>"
             },
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/editor/slingform",
-                "actionSuffix": "/templates/",
-                "button": "Create Template",
-                "successPrepend": "/libs/sling-cms/content/site/content.html",
+                "actionSuffix": "/*",
+                "button": "Create Taxonomy",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/general/container",
@@ -44,13 +43,7 @@
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/hidden",
                         "name": "jcr:primaryType",
-                        "value": "nt:unstructured"
-                    },
-                    "resourceType": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
-                        "name": "sling:resourceType",
-                        "value": "sling-cms/components/cms/pagetemplate"
+                        "value": "sling:Taxonomy"
                     }
                 }
             }
