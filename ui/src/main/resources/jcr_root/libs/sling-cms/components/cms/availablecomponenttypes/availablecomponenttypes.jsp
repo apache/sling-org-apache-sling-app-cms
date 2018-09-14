@@ -18,7 +18,7 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="field">
-	<label for="availableComponentTypes">
+	<label class="label" for="availableComponentTypes">
 		Available Component Types
 	</label>
 	<div class="control">
