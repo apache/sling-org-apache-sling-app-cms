@@ -27,14 +27,14 @@ import javax.inject.Inject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.cms.core.models.BaseModel;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class ContentTable {
+public class ContentTable extends BaseModel {
 
     @Inject
     @Via("resource")
@@ -47,12 +47,9 @@ public class ContentTable {
 
     private String[] types;
 
-    @Self
-    SlingHttpServletRequest slingRequest;
 
     @PostConstruct
     public void init() {
-        Resource resource = slingRequest.getResource();
         ValueMap data = resource.getChild("columns").getValueMap();
         types = data.get("resourceTypes", new String[]{});
     }

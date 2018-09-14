@@ -17,24 +17,13 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<nav class="level">
-    <div class="level-left">
-        <div class="level-item">
-            <div class="buttons has-addons">
-                <c:forEach var="action"
-                    items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}"
-                    varStatus="status"
-                >
-                    <a class="button Fetch-Modal"
-                        data-title="Add ${action.valueMap.label}"
-                        data-path=".Main-Content form"
-                        href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}"
-                    >+ ${action.valueMap.label}</a>
-                </c:forEach>
-            </div>
-        </div>
-        <div class="level-item">
-            <div class="buttons has-addons actions-target"></div>
-        </div>
-    </div>
-</nav>
+<!-- modal -->
+<sling:adaptTo adaptable="${resource}"
+    adaptTo="org.apache.sling.cms.core.models.components.Action" var="model" />
+<a class="${model.classes}" data-title="${model.title}"
+    data-path="${model.dataPath}"
+    ${model.target}
+    href="${properties.prefix}${colResource.path}"
+    title="${model.title}">
+    <span class="jam jam-${model.icon}"> </span>
+</a>

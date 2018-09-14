@@ -185,6 +185,12 @@
             <artifactId>org.apache.sling.cms.api</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.xss</artifactId>
+            <scope>provided</scope>
+            <version>2.0.0</version>
+        </dependency>
     </dependencies>
     <properties>
         <sling.java.version>8</sling.java.version>

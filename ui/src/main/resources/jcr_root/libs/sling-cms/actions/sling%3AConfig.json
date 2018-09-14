@@ -3,21 +3,21 @@
     "edit": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
-        "title": "Edit Site",
+        "title": "Edit Site Config",
         "icon": "pencil-f",
-        "prefix": "/cms/actions/edit/site.html"
+        "prefix": "/cms/config/metadata.html"
     },
     "movecopy": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
-        "title": "Move / Copy Site",
+        "title": "Move / Copy Config",
         "icon": "move-alt",
         "prefix": "/cms/actions/shared/movecopy.html"
     },
     "delete": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
-        "title": "Delete the specified site",
+        "title": "Delete Site Config",
         "icon": "trash",
         "prefix": "/cms/actions/shared/delete.html"
     }

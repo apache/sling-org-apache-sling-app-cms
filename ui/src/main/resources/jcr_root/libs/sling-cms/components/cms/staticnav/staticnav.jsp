@@ -27,7 +27,11 @@
 </c:forEach>
 <ul id="${fn:replace(properties.title,' ','-')}-nav" class="menu-list ${hidden}">
     <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
-        <li class="${fn:startsWith(slingRequest.requestURI,item.valueMap.link) ? 'active' : ''}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
+        <li ><a href="${item.valueMap.link}"class="${fn:startsWith(slingRequest.requestURI,item.valueMap.link) ? 'is-active' : ''}">${item.valueMap.text}</a>
+        <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link) }" >
+            <sling:include path="bread" resourceType="sling-cms/components/cms/breadcrumbmenu" />
+        </c:if>
+        </li>
     </c:forEach>
 </ul>
 </div>

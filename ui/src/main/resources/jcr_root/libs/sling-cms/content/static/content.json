@@ -23,20 +23,13 @@
                     }
                 }
             },
-            "contentbreadcrumb": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
-                "depth": 2,
-                "prefix": "/cms/static/content.html",
-                "titleProp": "jcr:content/jcr:title"
-            },
             "contenttable": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/cms/contenttable",
                 "defaultPath": "/content",
                 "columns": {
                     "resourceTypes": [
-                        "sling:File",
+                        "sling:Conf",
                         "sling:OrderedFolder",
                         "sling:Folder",
                         "nt:file"

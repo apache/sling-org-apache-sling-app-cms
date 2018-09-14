@@ -3,21 +3,21 @@
     "edit": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
-        "title": "Edit Site",
+        "jcr:title": "Edit Taxonomy Item",
         "icon": "pencil-f",
-        "prefix": "/cms/actions/edit/site.html"
+        "prefix": "/cms/actions/edit/taxonomy.html"
     },
     "movecopy": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
-        "title": "Move / Copy Site",
+        "jcr:title": "Move / Copy Taxonomy Item",
         "icon": "move-alt",
         "prefix": "/cms/actions/shared/movecopy.html"
     },
     "delete": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
-        "title": "Delete the specified site",
+        "jcr:title": "Delete Taxonomy Item",
         "icon": "trash",
         "prefix": "/cms/actions/shared/delete.html"
     }

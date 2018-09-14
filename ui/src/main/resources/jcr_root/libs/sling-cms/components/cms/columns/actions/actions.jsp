@@ -17,29 +17,12 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td class="is-hidden cell-actions">
-<sling:adaptTo adaptable="${slingRequest}"
-    adaptTo="org.apache.sling.cms.core.models.components.AvailableActions" var="model" />
-<c:forEach var="child" items="${model.children}">
-        <c:choose>
-            <c:when test="${child.valueMap.modal}">
-                <a class="button Fetch-Modal"
-                    data-title="${sling:encode(child.valueMap.title,'HTML_ATTR')}"
-                    data-path="${child.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}"
-                    href="${child.valueMap.prefix}${resource.path}"
-                    title="${sling:encode(child.valueMap.title,'HTML_ATTR')}">
-                    <span class="jam jam-${child.valueMap.icon}">
-                </span>
-                </a>
-            </c:when>
-            <c:otherwise>
-                <a class="button"
-                    ${child.valueMap.new != false ? 'target="_blank"' : ''}
-                    href="${child.valueMap.prefix}${resource.path}"
-                    title="${sling:encode(child.valueMap.title,'HTML_ATTR')}">
-                    <span class="jam jam-${child.valueMap.icon}">
-                </span>
-                </a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach></td>
+<td class="is-hidden cell-actions"><sling:adaptTo
+        adaptable="${slingRequest}"
+        adaptTo="org.apache.sling.cms.core.models.components.Actions"
+        var="model"
+    /> <c:set var="colResource" value="${resource}" scope="request" />
+    <c:forEach var="child" items="${model.children}">
+        <sling:include resource="${child}" resourceType="sling-cms/components/cms/resource/action" />
+    </c:forEach>
+</td>

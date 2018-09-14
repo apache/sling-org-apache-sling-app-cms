@@ -16,25 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
+<%@page import="org.apache.sling.models.factory.ModelFactory"%>
+<%@page import="org.apache.sling.cms.core.models.components.Breadcrumbs"%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<nav class="level">
-    <div class="level-left">
-        <div class="level-item">
-            <div class="buttons has-addons">
-                <c:forEach var="action"
-                    items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}"
-                    varStatus="status"
-                >
-                    <a class="button Fetch-Modal"
-                        data-title="Add ${action.valueMap.label}"
-                        data-path=".Main-Content form"
-                        href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}"
-                    >+ ${action.valueMap.label}</a>
-                </c:forEach>
-            </div>
-        </div>
-        <div class="level-item">
-            <div class="buttons has-addons actions-target"></div>
-        </div>
-    </div>
-</nav>
+<sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.components.Breadcrumbs" var="model"/>
+<ul>
+   <c:forEach var="item" items="${model.pathData}">
+       <li>
+           <a href="${item.href}" ${item.aria} ${item.classAttr} >
+               <sling:encode value="${item.title}" mode="HTML" />
+           </a>
+       </li>
+   </c:forEach>
+</ul>

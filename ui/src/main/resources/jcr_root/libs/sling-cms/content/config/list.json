@@ -14,12 +14,12 @@
                     "folder": {
                         "jcr:primaryType": "nt:unstructured",
                         "label": "Folder",
-                        "prefix": "/cms/folder/create.html"
+                        "prefix": "/cms/actions/create/folder.html"
                     },
                     "config": {
                         "jcr:primaryType": "nt:unstructured",
                         "label": "Config",
-                        "prefix": "/cms/config/create.html"
+                        "prefix": "/cms/actions/create/config.html"
                     }
                 }
             },
@@ -34,11 +34,17 @@
                 "sling:resourceType": "sling-cms/components/cms/contenttable",
                 "columns": {
                     "jcr:primaryType": "nt:unstructured",
+                    "resourceTypes": [
+                        "sling:OrderedFolder",
+                        "sling:Folder",
+                        "sling:Conf",
+                        "nt:file"
+                    ],
                     "name": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/cms/columns/name",
                         "jcr:title": "Name",
-                        "prefix": "/cms/config/edit.html",
+                        "prefix": "/cms/config/list.html",
                         "link": true
                     },
                     "title": {

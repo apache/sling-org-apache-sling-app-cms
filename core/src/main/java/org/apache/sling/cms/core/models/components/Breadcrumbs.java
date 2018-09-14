@@ -25,11 +25,13 @@ import javax.inject.Inject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.cms.core.models.BaseModel;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+
 /**
  * Logic for the Suffix BreadCrumb Component
  * 
@@ -37,28 +39,18 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
  *
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class Breadcrumbs {
+public class Breadcrumbs extends BaseModel {
 
     @Inject
     @Via("resource")
-    @Default(intValues=1)
+    @Default(intValues = 2)
     int depth;
 
-    @Inject
-    Resource resource;
-
-    @Inject
-    @Via("resource")
-    @Default(values="../..")
-    String prefix;
 
     @Inject
     @Via("resource")
     @Default(values = "jcr:title")
     String titleProp;
-
-    @Self
-    SlingHttpServletRequest servletRequest;
 
     Resource suffixResource;
 
@@ -66,14 +58,15 @@ public class Breadcrumbs {
 
     @PostConstruct
     public void postConstruct() {
-        suffixResource = servletRequest.getRequestPathInfo().getSuffixResource();
+        suffixResource = slingRequest.getRequestPathInfo().getSuffixResource();
         if (suffixResource == null) {
             return;
         }
+        String prefix = slingRequest.getPathInfo();
         boolean first = true;
         while (suffixResource.getParent() != null) {
             String suffix = suffixResource.getPath();
-            pathData.add(0, new PathData(prefix + suffix, getTitle(suffixResource),first));
+            pathData.add(0, new PathData(suffix, prefix + getTitle(suffixResource), first));
             if (first) {
                 first = false;
             }
@@ -85,20 +78,15 @@ public class Breadcrumbs {
     }
 
     private String getTitle(Resource resource) {
-        ValueMap map = resource.getValueMap();
-        String title = map.get("jcr:title", String.class);
+        String title = get("jcr:title", String.class);
         if (title != null) {
             return title;
         }
-        title = map.get("jcr:content/jcr:title", String.class);
+        title = get("jcr:content/jcr:title", String.class);
         if (title != null) {
             return title;
         }
         return resource.getName();
-    }
-
-    public String getTitle() {
-        return null;
     }
 
     public List<PathData> getPathData() {
@@ -114,7 +102,7 @@ public class Breadcrumbs {
         public PathData(String href, String title, boolean first) {
             this.href = href;
             this.title = title;
-            this.first= first;
+            this.first = first;
         }
 
         public String getHref() {
@@ -126,21 +114,19 @@ public class Breadcrumbs {
         public String getTitle() {
             return title;
         }
-        
+
         public String getAria() {
             if (first) {
                 return "aria-current='page'";
             }
             return "";
         }
-        
+
         public String getClassAttr() {
             if (first) {
-                return "class='is-active'";
+                return "class='has-background-grey-lighter'";
             }
             return "";
         }
-
     }
-
 }

@@ -17,11 +17,14 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo adaptable="${resource}"
+        adaptTo="org.apache.sling.cms.core.models.components.column.Name"
+        var="model" />
 <td><c:set var="colValue" value="${resource.name}" /> <c:choose>
         <c:when test="${colConfig.valueMap.link}">
             <a class="has-text-primary"
                 href="${colConfig.valueMap.prefix}${resource.path}">
-                <span class="icon"><i class="jam jam-link"></i></span>&nbsp;
+                <span class="icon"><i class="jam jam-${model.icon}"></i></span>&nbsp;
                 <sling:encode value="${colValue}" mode="HTML" />
             </a>
         </c:when>

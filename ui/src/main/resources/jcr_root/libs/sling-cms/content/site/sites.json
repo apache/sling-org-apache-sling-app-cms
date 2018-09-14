@@ -25,13 +25,6 @@
                     }
                 }
             },
-            "contentbreadcrumb": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
-                "depth": 2,
-                "prefix": "/cms/site/sites.html",
-                "titleProp": "jcr:content/jcr:title"
-            },
             "contenttable": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/cms/contenttable",
@@ -39,17 +32,18 @@
                 "columns": {
                     "jcr:primaryType": "nt:unstructured",
                     "resourceTypes": [
-                        "sling:Page",
-                        "sling:File",
+                        "sling:Site",
                         "sling:OrderedFolder",
-                        "sling:Folder"
+                        "sling:Folder",
+                        "sling:Page",
+                        "nt:file"
                     ],
                     "name": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/cms/columns/name",
                         "link": true,
                         "jcr:title": "Name",
-                        "prefix": "/cms/site/content.html"
+                        "prefix": "/cms/site/sites.html"
                     },
                     "title": {
                         "jcr:primaryType": "nt:unstructured",
@@ -63,6 +57,11 @@
                         "sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
                         "jcr:title": "Last Modified",
                         "subPath": "jcr:content/"
+                    },
+                    "actions": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                        "jcr:title": "Actions"
                     }
                 }
             }

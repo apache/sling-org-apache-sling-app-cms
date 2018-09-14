@@ -1,18 +1,18 @@
 {
-	"jcr:primaryType": "sling:Page",
-	"jcr:content": {
-		"sling:resourceType": "sling-cms/components/pages/error",
-		"jcr:title": "Forbidden",
-		"jcr:primaryType": "nt:unstructured",
-		"center": true,
-		"container": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/general/container",
-			"richtext": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h3>Forbidden</h3><p>You cannot access the requested resource.</p><p><a href=\"/system/sling/form/login\">Login?</a>"
-			}
-		}
-	}
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/error",
+        "jcr:title": "Forbidden",
+        "jcr:primaryType": "nt:unstructured",
+        "center": true,
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "richtext": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/richtext",
+                "text": "<h3>Forbidden</h3><p>You cannot access the requested resource.</p><p><a href=\"/system/sling/form/login\">Login?</a>"
+            }
+        }
+    }
 }

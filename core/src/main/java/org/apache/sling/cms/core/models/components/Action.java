@@ -16,37 +16,53 @@
  */
 package org.apache.sling.cms.core.models.components;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.core.models.BaseModel;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class AvailableActions {
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+public class Action extends BaseModel {
 
     @Inject
-    @Self
-    SlingHttpServletRequest slingRequest;
-    
-    public List<Resource> getChildren() {
-        System.out.println(slingRequest.getContextPath());
-        System.out.println(slingRequest.getResource().getPath());
-        String type = slingRequest.getResource().getValueMap().get("jcr:primaryType", "sling:File");
-        System.out.println(type);
-        Resource resource = slingRequest.getResourceResolver().resolve("/libs/sling-cms/actions/"+type);
-        
-        List<Resource> list = new ArrayList<>();
-        resource.listChildren().forEachRemaining(list::add);
-        System.out.println(list.toString());
-        return list;
+    boolean modal;
+
+    @Inject
+    boolean target;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("here");
+    }
+
+    public String getClasses() {
+        String response = "button";
+        if (modal) {
+            response += "  Fetch-Modal";
+        }
+        return response;
+    }
+
+    public String getTitle() {
+        return xss.encodeForHTMLAttr(get("title"));
+    }
+
+    public String getDataPath() {
+        return get("ajaxPath", ".Main-Content form");
+    }
+
+    public String getIcon() {
+        return String.format("jam jam-%s", get("icon", "file"));
+    }
+
+    public String getTarget() {
+        if (target) {
+            return "target='_blank'";
+        }
+        return "";
     }
 
 }

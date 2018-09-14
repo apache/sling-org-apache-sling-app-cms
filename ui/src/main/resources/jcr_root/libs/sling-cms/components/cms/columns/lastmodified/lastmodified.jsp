@@ -17,11 +17,9 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="modifiedProperty" value="${colConfig.valueMap.subPath}jcr:lastModified" />
-<c:set var="modifiedByProperty" value="${colConfig.valueMap.subPath}jcr:lastModifiedBy" />
-<fmt:formatDate var="lastModified" type = "both"  dateStyle = "medium" timeStyle = "medium" value="${resource.valueMap[modifiedProperty].time}" />
+<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.components.column.LastModified" var="model" />
+
 <c:set var="colValue" value="${lastModified} - ${resource.valueMap[modifiedByProperty]}" />
-<td title="${sling:encode(colValue,'HTML_ATTR')}">
-	<sling:encode value="${lastModified}" mode="HTML" /><br/>
-	<sling:encode value="${resource.valueMap[modifiedByProperty]}" mode="HTML" />
+<td title="${model.title}">
+	${model.lastModified}<br/>${model.lastModifiedBy}
 </td>

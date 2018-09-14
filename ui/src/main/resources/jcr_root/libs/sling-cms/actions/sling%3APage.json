@@ -1,4 +1,5 @@
 {
+    "jcr:primaryType": "nt:unstructured",
     "edit": {
         "jcr:primaryType": "nt:unstructured",
         "modal": false,
@@ -31,7 +32,7 @@
     "delete": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
-        "title": "Delete the specified page",
+        "title": "Delete Page",
         "icon": "trash",
         "prefix": "/cms/shared/delete.html"
     }

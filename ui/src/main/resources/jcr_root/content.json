@@ -1,7 +1,0 @@
-{
-    "jcr:primaryType": "sling:Folder",
-    "allowedResourceTypes": [
-        "sling:Site",
-        "sling:OrderedFolder"
-    ]
-}

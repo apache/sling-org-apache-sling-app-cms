@@ -24,7 +24,6 @@
 </a>
 <a href="/cms/start.html" class="navbar-item" title="CMS Home"><span class="icon"><i class="jam jam-home-f"></i></span></a>
 <div class="navbar-item">
-<sling:include path="breadcrumb" resourceType="sling-cms/components/cms/contentbreadcrumb" />
 </div>
 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
   <span aria-hidden="true"></span>

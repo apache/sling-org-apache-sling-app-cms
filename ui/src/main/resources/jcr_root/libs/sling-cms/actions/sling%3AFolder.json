@@ -1,11 +1,11 @@
 {
     "jcr:primaryType": "nt:unstructured",
-    "sling:resourceType": "sling-cms/components/cms/columns/actions",
     "edit": {
         "jcr:primaryType": "nt:unstructured",
         "modal": true,
         "title": "Edit Folder",
         "icon": "pencil-f",
+        "sling:resourceType": "sling-cms/components/cms/resource/action",
         "prefix": "/cms/actions/edit/folder.html"
     },
     "movecopy": {
@@ -13,6 +13,7 @@
         "modal": true,
         "title": "Move / Copy Folder",
         "icon": "move-alt",
+        "sling:resourceType": "sling-cms/components/cms/resource/action",
         "prefix": "/cms/actions/shared/movecopy.html"
     },
     "delete": {
@@ -20,6 +21,7 @@
         "modal": true,
         "title": "Delete Folder",
         "icon": "trash",
+        "sling:resourceType": "sling-cms/components/cms/resource/action",
         "prefix": "/cms/actions/shared/delete.html"
     }
 }
