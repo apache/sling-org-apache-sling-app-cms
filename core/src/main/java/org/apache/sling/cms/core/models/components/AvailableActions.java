@@ -16,6 +16,37 @@
  */
 package org.apache.sling.cms.core.models.components;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+import javax.inject.Inject;
+
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
+
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AvailableActions {
+
+    @Inject
+    @Self
+    SlingHttpServletRequest slingRequest;
+    
+    public List<Resource> getChildren() {
+        System.out.println(slingRequest.getContextPath());
+        System.out.println(slingRequest.getResource().getPath());
+        String type = slingRequest.getResource().getValueMap().get("jcr:primaryType", "sling:File");
+        System.out.println(type);
+        Resource resource = slingRequest.getResourceResolver().resolve("/libs/sling-cms/actions/"+type);
+        
+        List<Resource> list = new ArrayList<>();
+        resource.listChildren().forEachRemaining(list::add);
+        System.out.println(list.toString());
+        return list;
+    }
 
 }

@@ -20,12 +20,12 @@
 <td class="has-text-centered" data-value="${sling:getRelativeResource(resource,'jcr:content').valueMap.published ? 0 : 1}">
 	<c:choose>
 		<c:when test="${sling:getRelativeResource(resource,'jcr:content').valueMap.published}">
-			<a class="button is-success is-centered  Fetch-Modal" href="/cms/shared/unpublish.html${resource.path}" title="Click to Unpublish" data-title="Unpublish" data-path=".Main-Content form">
+			<a class="button is-success is-centered  Fetch-Modal" href="/cms/actions/shared/unpublish.html${resource.path}" title="Click to Unpublish" data-title="Unpublish" data-path=".Main-Content form">
 				<i class="jam jam-download"></i>
 			</a>
 		</c:when>
 		<c:otherwise>
-			<a class="button is-danger Fetch-Modal" href="/cms/shared/publish.html${resource.path}" title="Click to Publish" data-title="Publish" data-path=".Main-Content form">
+			<a class="button is-danger Fetch-Modal" href="/cms/actions/shared/publish.html${resource.path}" title="Click to Publish" data-title="Publish" data-path=".Main-Content form">
 				<i class="jam jam-upload"></i>
 			</a>
 		</c:otherwise>

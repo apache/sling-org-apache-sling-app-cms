@@ -1,4 +1,4 @@
 {
     "jcr:primaryType": "nt:unstructured",
-    "sling:resourceType" : "sling-cms/components/cms/pagewrapper"
+    "sling:resourceType": "sling-cms/components/cms/pagewrapper"
 }

@@ -1,0 +1,24 @@
+{
+    "jcr:resourceType": "nt:unstructured",
+    "edit": {
+        "jcr:primaryType": "nt:unstructured",
+        "modal": true,
+        "title": "Edit Site",
+        "icon": "pencil-f",
+        "prefix": "/cms/action/edit/site.html"
+    },
+    "movecopy": {
+        "jcr:primaryType": "nt:unstructured",
+        "modal": true,
+        "title": "Move / Copy Site",
+        "icon": "move-alt",
+        "prefix": "/cms/actions/shared/movecopy.html"
+    },
+    "delete": {
+        "jcr:primaryType": "nt:unstructured",
+        "modal": true,
+        "title": "Delete the specified site",
+        "icon": "trash",
+        "prefix": "/cms/actions/shared/delete.html"
+    }
+}

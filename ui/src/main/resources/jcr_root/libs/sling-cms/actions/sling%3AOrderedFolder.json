@@ -1,0 +1,25 @@
+{
+    "jcr:primartyType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/cms/columns/actions",
+    "edit": {
+        "jcr:primaryType": "nt:unstructured",
+        "modal": true,
+        "title": "Edit Site Group",
+        "icon": "pencil-f",
+        "prefix": "/cms/actions/edit/sitegroup.html"
+    },
+    "movecopy": {
+        "jcr:primaryType": "nt:unstructured",
+        "modal": true,
+        "title": "Move / Copy Site Group",
+        "icon": "move-alt",
+        "prefix": "/cms/actions/shared/movecopy.html"
+    },
+    "delete": {
+        "jcr:primaryType": "nt:unstructured",
+        "title": "Delete Site Group",
+        "icon": "trash",
+        "prefix": "/cms/actions/shared/delete.html",
+        "modal": true
+    }
+}

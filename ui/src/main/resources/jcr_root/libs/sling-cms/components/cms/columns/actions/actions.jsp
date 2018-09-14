@@ -18,20 +18,28 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <td class="is-hidden cell-actions">
-	<c:forEach var="actionConfig" items="${sling:listChildren(colConfig)}">
-		<c:choose>
-			<c:when test="${actionConfig.valueMap.modal}">
-				<a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${resource.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-					<span class="jam jam-${actionConfig.valueMap.icon}">
-					</span>
-				</a>
-			</c:when>
-			<c:otherwise>
-				<a class="button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${actionConfig.valueMap.prefix}${resource.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-					<span class="jam jam-${actionConfig.valueMap.icon}">
-					</span>
-				</a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</td>
+<sling:adaptTo adaptable="${slingRequest}"
+    adaptTo="org.apache.sling.cms.core.models.components.AvailableActions" var="model" />
+<c:forEach var="child" items="${model.children}">
+        <c:choose>
+            <c:when test="${child.valueMap.modal}">
+                <a class="button Fetch-Modal"
+                    data-title="${sling:encode(child.valueMap.title,'HTML_ATTR')}"
+                    data-path="${child.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}"
+                    href="${child.valueMap.prefix}${resource.path}"
+                    title="${sling:encode(child.valueMap.title,'HTML_ATTR')}">
+                    <span class="jam jam-${child.valueMap.icon}">
+                </span>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a class="button"
+                    ${child.valueMap.new != false ? 'target="_blank"' : ''}
+                    href="${child.valueMap.prefix}${resource.path}"
+                    title="${sling:encode(child.valueMap.title,'HTML_ATTR')}">
+                    <span class="jam jam-${child.valueMap.icon}">
+                </span>
+                </a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach></td>
