@@ -36,12 +36,16 @@ import org.apache.sling.models.annotations.Model;
 /**
  * A model for managing sling:Components
  */
-@Model(adaptables = ResourceResolver.class, adapters = ComponentManager.class)
-public class ComponentManagerImpl {
+@Model(adaptables = { ResourceResolver.class }, adapters = ComponentManager.class)
+public class ComponentManagerImpl implements ComponentManager {
 
     private ResourceResolver resolver;
 
     private Map<String, List<Component>> componentCache = null;
+
+    public ComponentManagerImpl(Resource resource) {
+        this.resolver = resource.getResourceResolver();
+    }
 
     public ComponentManagerImpl(ResourceResolver resolver) {
         this.resolver = resolver;
