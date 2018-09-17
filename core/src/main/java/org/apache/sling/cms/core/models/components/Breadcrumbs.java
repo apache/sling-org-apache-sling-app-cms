@@ -25,7 +25,6 @@ import javax.inject.Inject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.cms.core.models.BaseModel;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -63,10 +62,11 @@ public class Breadcrumbs {
     @PostConstruct
     public void postConstruct() {
         suffixResource = slingRequest.getRequestPathInfo().getSuffixResource();
+        String prefix = slingRequest.getRequestURI();
+        prefix = prefix.split(suffixResource.getPath())[0];
         if (suffixResource == null) {
             return;
         }
-        String prefix = slingRequest.getPathInfo();
         boolean first = true;
         while (suffixResource.getParent() != null) {
             String suffix = suffixResource.getPath();
