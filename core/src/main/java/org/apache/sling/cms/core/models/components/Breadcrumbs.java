@@ -39,7 +39,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
  *
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class Breadcrumbs extends BaseModel {
+public class Breadcrumbs {
 
     @Inject
     @Via("resource")
@@ -51,6 +51,10 @@ public class Breadcrumbs extends BaseModel {
     @Via("resource")
     @Default(values = "jcr:title")
     String titleProp;
+    
+    @Inject
+    @Self
+    public SlingHttpServletRequest slingRequest;
 
     Resource suffixResource;
 
@@ -66,7 +70,7 @@ public class Breadcrumbs extends BaseModel {
         boolean first = true;
         while (suffixResource.getParent() != null) {
             String suffix = suffixResource.getPath();
-            pathData.add(0, new PathData(suffix, prefix + getTitle(suffixResource), first));
+            pathData.add(0, new PathData(prefix + suffix, getTitle(suffixResource), first));
             if (first) {
                 first = false;
             }
@@ -78,11 +82,12 @@ public class Breadcrumbs extends BaseModel {
     }
 
     private String getTitle(Resource resource) {
-        String title = get("jcr:title", String.class);
+        ValueMap map = resource.getValueMap();
+        String title = map.get("jcr:title", String.class);
         if (title != null) {
             return title;
         }
-        title = get("jcr:content/jcr:title", String.class);
+        title = map.get("jcr:content/jcr:title", String.class);
         if (title != null) {
             return title;
         }
@@ -109,8 +114,6 @@ public class Breadcrumbs extends BaseModel {
             return href; // prefix + resource path
         }
 
-        // ${parent.valueMap['jcr:title'] != null ? parent.valueMap['jcr:title'] :
-        // parent.valueMap['jcr:content/jcr:title']}" default="${parent.name}"
         public String getTitle() {
             return title;
         }
