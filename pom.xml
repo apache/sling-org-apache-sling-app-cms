@@ -21,7 +21,7 @@
     <artifactId>org.apache.sling.cms</artifactId>
     <name>Apache Sling - CMS</name>
     <description>An Apache Sling Reference CMS Application</description>
-    <version>0.10.1-SNAPSHOT</version>
+    <version>0.9.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
