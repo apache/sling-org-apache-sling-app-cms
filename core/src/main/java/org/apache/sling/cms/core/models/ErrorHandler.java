@@ -85,7 +85,7 @@ public class ErrorHandler {
 
         if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
             log.warn("Handing exception of type {}", errorCode,
-                    (Exception) slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
+                    (Throwable) slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
         }
 
         calculateErrorCode(resolver);
