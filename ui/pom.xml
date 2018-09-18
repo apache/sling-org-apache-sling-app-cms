@@ -14,7 +14,7 @@
 	<parent>
 		<artifactId>org.apache.sling.cms</artifactId>
 		<groupId>org.apache.sling</groupId>
-		<version>0.9.1-SNAPSHOT</version>
+		<version>0.10.0</version>
 	</parent>
 	<artifactId>org.apache.sling.cms.ui</artifactId>
 	<packaging>bundle</packaging>
