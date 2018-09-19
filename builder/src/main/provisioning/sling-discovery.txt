@@ -17,14 +17,14 @@
 #  under the License.
 #
 #
-[feature name=sling-event]
+[feature name=sling-discovery]
 
 [artifacts]
     org.apache.sling/org.apache.sling.discovery.api/1.0.4
     org.apache.sling/org.apache.sling.discovery.support/1.0.4
     org.apache.sling/org.apache.sling.discovery.commons/1.0.20
     org.apache.sling/org.apache.sling.discovery.base/2.0.8
-    org.apache.sling/org.apache.sling.discovery.oak/1.2.22
+    org.apache.sling/org.apache.sling.discovery.oak/1.2.28
 
 [:repoinit]
     create service user sling-discovery
