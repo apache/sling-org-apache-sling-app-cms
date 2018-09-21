@@ -21,12 +21,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.cms.core.models.BaseModel;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -39,23 +37,15 @@ public class ContentTable extends BaseModel {
     @Inject
     @Via("resource")
     private List<Resource> columns;
-    
+
     @Inject
     @Via("resource")
-    @Default(values="/")
+    @Default(values = "/")
     private String defaultPath;
 
-    private String[] types;
 
-
-    @PostConstruct
-    public void init() {
-        ValueMap data = resource.getChild("columns").getValueMap();
-        types = data.get("resourceTypes", new String[]{});
-    }
-    
     public List<ColumnData> getColumnData() {
-        return columns.stream().map(ColumnData::new).filter(ColumnData::isEligible).collect(Collectors.toList());
+        return columns.stream().map(ColumnData::new).collect(Collectors.toList());
     }
 
     public List<ChildResourceData> getChildren() {
@@ -68,10 +58,8 @@ public class ContentTable extends BaseModel {
         }
         List<ChildResourceData> response = new ArrayList<>();
         suffix.listChildren().forEachRemaining(child -> {
-            for (String type:types) {
-                if (child.getResourceType().equals(type)) {
-                    response.add(new ChildResourceData(child));
-                }
+            if (!child.getName().contains(":")) {
+                response.add(new ChildResourceData(child));
             }
         });
         return response;
@@ -86,7 +74,7 @@ public class ContentTable extends BaseModel {
         public ColumnData(Resource resource) {
             this.resource = resource;
             this.name = resource.getName();
-            
+
         }
 
         public String getClassString() {
@@ -113,7 +101,7 @@ public class ContentTable extends BaseModel {
         public String getFieldResourceType() {
             return resource.getValueMap().get("sling:resourceType", "foo");
         }
-        
+
         public Resource getResource() {
             return resource;
         }

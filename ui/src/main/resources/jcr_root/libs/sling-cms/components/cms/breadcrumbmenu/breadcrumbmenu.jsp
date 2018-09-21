@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@page import="org.apache.sling.models.factory.ModelFactory"%>
 <%@page import="org.apache.sling.cms.core.models.components.Breadcrumbs"%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.components.Breadcrumbs" var="model"/>

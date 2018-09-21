@@ -16,47 +16,11 @@
  */
 package org.apache.sling.cms.core.models.components;
 
-import javax.inject.Inject;
-
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.cms.core.models.BaseModel;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class Action extends BaseModel {
-
-    @Inject
-    boolean modal;
-
-    @Inject
-    boolean target;
-
-    public String getClasses() {
-        String response = "button";
-        if (modal) {
-            response += "  Fetch-Modal";
-        }
-        return response;
-    }
-
-    public String getTitle() {
-        return xss.encodeForHTMLAttr(get("title"));
-    }
-
-    public String getDataPath() {
-        return get("ajaxPath", ".Main-Content form");
-    }
-
-    public String getIcon() {
-        return String.format("jam jam-%s", get("icon", "file"));
-    }
-
-    public String getTarget() {
-        if (target) {
-            return "target='_blank'";
-        }
-        return "";
-    }
+public class ContentAction extends BaseModel {
 
 }

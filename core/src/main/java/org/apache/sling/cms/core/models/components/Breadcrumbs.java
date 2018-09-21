@@ -21,15 +21,17 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.request.RequestPathInfo;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.cms.core.models.BaseModel;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 
 /**
  * Logic for the Suffix BreadCrumb Component
@@ -38,22 +40,13 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
  *
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class Breadcrumbs {
-
-    @Inject
-    @Via("resource")
-    @Default(intValues = 2)
-    int depth;
+public class Breadcrumbs extends BaseModel {
 
 
     @Inject
     @Via("resource")
     @Default(values = "jcr:title")
     String titleProp;
-    
-    @Inject
-    @Self
-    public SlingHttpServletRequest slingRequest;
 
     Resource suffixResource;
 
@@ -63,10 +56,25 @@ public class Breadcrumbs {
     public void postConstruct() {
         suffixResource = slingRequest.getRequestPathInfo().getSuffixResource();
         String prefix = slingRequest.getRequestURI();
-        prefix = prefix.split(suffixResource.getPath())[0];
         if (suffixResource == null) {
             return;
         }
+        System.out.println("getContextPath "+slingRequest.getContextPath());
+        System.out.println("getServletPath "+slingRequest.getServletPath());
+        System.out.println("getPathInfo "+slingRequest.getPathInfo());
+        System.out.println("getPathTranslated "+slingRequest.getPathTranslated());
+        System.out.println("getContextPath "+((HttpServletRequest)slingRequest).getContextPath());
+        System.out.println("getServletPath "+((HttpServletRequest)slingRequest).getServletPath());
+        System.out.println("getResolutionPath "+ resource.getResourceMetadata().getResolutionPath());
+        System.out.println("getResolutionPathInfo "+ resource.getResourceMetadata().getResolutionPathInfo());
+        System.out.println("Request Path Info  ");
+        RequestPathInfo info = slingRequest.getRequestPathInfo();
+        System.out.println("RequestPath Info - resourcePath  " + info.getResourcePath());
+        System.out.println("RequestPath Info - resource Suffix  " + info.getSuffix());
+        System.out.println("RequestPath Info - resource Suffix  " + info.getSelectorString());
+        System.out.println("Request MetaData Info  ");
+
+        prefix = prefix.split(suffixResource.getPath())[0];
         boolean first = true;
         while (suffixResource.getParent() != null) {
             String suffix = suffixResource.getPath();
@@ -76,6 +84,7 @@ public class Breadcrumbs {
             }
             suffixResource = suffixResource.getParent();
         }
+        int depth = get("depth",2);
         while (--depth > 0) {
             pathData.remove(0);
         }

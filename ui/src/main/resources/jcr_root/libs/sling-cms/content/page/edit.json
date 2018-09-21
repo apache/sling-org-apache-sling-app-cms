@@ -27,21 +27,21 @@
                         "modal": true,
                         "title": "Manage Versions",
                         "icon": "history",
-                        "prefix": "/cms/shared/versions.html"
+                        "prefix": "/cms/actions/shared/versions.html"
                     },
                     "movecopy": {
                         "jcr:primaryType": "nt:unstructured",
                         "modal": true,
                         "title": "Move / Copy Page",
                         "icon": "move-alt",
-                        "prefix": "/cms/shared/movecopy.html"
+                        "prefix": "/cms/actions/shared/movecopy.html"
                     },
                     "delete": {
                         "jcr:primaryType": "nt:unstructured",
                         "modal": true,
                         "title": "Delete Page",
                         "icon": "trash",
-                        "prefix": "/cms/shared/delete.html"
+                        "prefix": "/cms/actions/shared/delete.html"
                     }
                 }
             },

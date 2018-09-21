@@ -1,4 +1,5 @@
 {
 	"jcr:primaryType": "nt:unstructured",
+	"tabledepth": 2,
 	"jcr:title": "Taxonomy"
 }
