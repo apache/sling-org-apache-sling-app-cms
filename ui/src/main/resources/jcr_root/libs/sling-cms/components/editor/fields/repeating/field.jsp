@@ -20,7 +20,7 @@
  <div class="repeating">
  	<fieldset disabled="disabled" class="repeating__template is-hidden">
  		<div class="repeating__item field has-addons">
- 			<div class="control">
+ 			<div class="control is-expanded">
 	 			<input type="${properties.type}" value="" class="input" name="${properties.name}" ${required} ${disabled} />
 	 		</div>
 	 		<div class="control">
