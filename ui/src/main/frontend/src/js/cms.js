@@ -412,6 +412,17 @@ Sling.CMS = {
 			});
 		}
 	}
+
+	Sling.CMS.ext['suffix-form'] = {
+		init: function() {
+			$('.suffix-form').submit(function(){
+				var suffix = $(this).find('input[name=suffix]').val();
+				var path = $(this).attr('action');
+				window.location = path + suffix;
+				return false;
+			});
+		}
+	}
 	
 	Sling.CMS.ext['table'] = {
 		decorate: function($ctx) {

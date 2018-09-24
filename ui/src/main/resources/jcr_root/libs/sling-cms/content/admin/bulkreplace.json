@@ -1,66 +1,77 @@
 {
-	"jcr:primaryType": "sling:Page",
-	"jcr:content": {
-		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Bulk Replace",
-		"jcr:primaryType": "nt:unstructured",
-		"container": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/general/container",
-			"richtext": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h3>Bulk Replace</h3>"
-			},
-			"slingform": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/editor/slingform",
-				"button": "Replace All",
-				"fields": {
-					"jcr:primaryType": "nt:unstructured",
-					"sling:resourceType": "sling-cms/components/general/container",
-					"operation": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": ":operation",
-						"value": "bulkreplace"
-					},
-					"updateProperties": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/text",
-						"label": "Update Properties",
-						"name": "updateProperties"
-					},
-					"mode": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/select",
-						"label": "Mode",
-						"name": "mode",
-						"options": {
-							"exact": {
-								"label": "Exact Match",
-								"value": "exact"
-							},
-							"regex": {
-								"label": "Regular Expression",
-								"value": "regex"
-							}
-						}
-					},
-					"find": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/text",
-						"label": "Find",
-						"name": "find"
-					},
-					"replace": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/text",
-						"label": "Replace",
-						"name": "replace"
-					}
-				}
-			}
-		}
-	}
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Bulk Replace",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "richtext": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/richtext",
+                "text": "<h3>Bulk Replace</h3>"
+            },
+            "suffixswitch": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/suffixswitch",
+                "base": "/content",
+                "button": "Go",
+                "label": "Path",
+                "target": "/cms/admin/bulkreplace.html",
+                "type": "nt:hierarchyNode",
+                "content": {
+                    "slingform": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/slingform",
+                        "button": "Replace All",
+                        "fields": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "sling:resourceType": "sling-cms/components/general/container",
+                            "operation": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                                "name": ":operation",
+                                "value": "bulkreplace"
+                            },
+                            "updateProperties": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/text",
+                                "label": "Update Properties",
+                                "name": "updateProperties"
+                            },
+                            "mode": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                "label": "Mode",
+                                "name": "mode",
+                                "options": {
+                                    "exact": {
+                                        "label": "Exact Match",
+                                        "value": "exact"
+                                    },
+                                    "regex": {
+                                        "label": "Regular Expression",
+                                        "value": "regex"
+                                    }
+                                }
+                            },
+                            "find": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/text",
+                                "label": "Find",
+                                "name": "find"
+                            },
+                            "replace": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/text",
+                                "label": "Replace",
+                                "name": "replace"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -73,6 +73,11 @@
 				"title": "Tools",
 				"links": {
 					"jcr:primaryType": "nt:unstructured",
+					"bulkreplace": {
+						"jcr:primaryType": "nt:unstructured",
+						"link": "/cms/admin/bulkreplace.html",
+						"text": "Bulk Replace"
+					},
 					"contentpackages": {
 						"jcr:primaryType": "nt:unstructured",
 						"link": "/bin/packages.html",
