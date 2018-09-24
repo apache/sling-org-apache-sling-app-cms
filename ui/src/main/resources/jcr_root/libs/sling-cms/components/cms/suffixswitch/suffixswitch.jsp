@@ -28,7 +28,7 @@
                 <span class="has-text-danger">*</span>
             </label>
             <div class="field has-addons">
-                <div class="control">
+                <div class="control is-expanded">
                     <input class="input pathfield" type="text" name="suffix" required="required" data-type="${properties.type}" data-base="${properties.base}" autocomplete="off" />
                 </div>
                 <div class="control">

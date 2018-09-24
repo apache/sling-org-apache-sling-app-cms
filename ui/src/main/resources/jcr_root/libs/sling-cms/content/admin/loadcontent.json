@@ -10,7 +10,7 @@
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h3>Load Content</h3>"
+                "text": "<h3>Load Content</h3><p>Loads content using the <a href=\"https://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#importing-content-structures\" target=\"_blank\">Sling Post Servlet Import</a>.</p>"
             },
             "suffixswitch": {
                 "jcr:primaryType": "nt:unstructured",
@@ -40,28 +40,103 @@
                                 "name": ":operation",
                                 "value": "import"
                             },
+                            "autoCheckout": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                "label": "Auto Checkout",
+                                "name": ":autoCheckout",
+                                "options": {
+                                    "no": {
+                                        "label": "No",
+                                        "value": "false"
+                                    },
+                                    "yes": {
+                                        "label": "Yes",
+                                        "value": "true"
+                                    }
+                                }
+                            },
+                            "checkin": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                "label": "Checkin",
+                                "name": ":checkin",
+                                "options": {
+                                    "no": {
+                                        "label": "No",
+                                        "value": "false"
+                                    },
+                                    "yes": {
+                                        "label": "Yes",
+                                        "value": "true"
+                                    }
+                                }
+                            },
+                            "replace": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                "label": "Replace",
+                                "name": ":replace",
+                                "options": {
+                                    "no": {
+                                        "label": "No",
+                                        "value": "false"
+                                    },
+                                    "yes": {
+                                        "label": "Yes",
+                                        "value": "true"
+                                    }
+                                }
+                            },
                             "replaceProperties": {
                                 "jcr:primaryType": "nt:unstructured",
-                                "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                                "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                "label": "Replace Properties",
                                 "name": ":replaceProperties",
-                                "value": "true"
+                                "options": {
+                                    "yes": {
+                                        "label": "Yes",
+                                        "value": "true"
+                                    },
+                                    "no": {
+                                        "label": "No",
+                                        "value": "false"
+                                    }
+                                }
                             },
                             "contentType": {
                                 "jcr:primaryType": "nt:unstructured",
-                                "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                                "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                "label": "Content Type",
                                 "name": ":contentType",
-                                "value": "json"
+                                "options": {
+                                    "json": {
+                                        "label": "JSON",
+                                        "value": "json"
+                                    },
+                                    "jar": {
+                                        "label": "JAR",
+                                        "value": "jar"
+                                    },
+                                    "jcr.xml": {
+                                        "label": "JCR XML",
+                                        "value": "jcr.xml"
+                                    },
+                                    "xml": {
+                                        "label": "XML",
+                                        "value": "xml"
+                                    },
+                                    "zip": {
+                                        "label": "ZIP",
+                                        "value": "zip"
+                                    }
+                                }
                             },
                             "content": {
                                 "jcr:primaryType": "nt:unstructured",
                                 "sling:resourceType": "sling-cms/components/editor/fields/textarea",
+                                "label": "Content",
                                 "name": ":content"
-                            },
-                            "format": {
-                                "jcr:primaryType": "nt:unstructured",
-                                "sling:resourceType": "sling-cms/components/editor/fields/button",
-                                "label": "Format",
-                                "onclick": "javascript:try {$('textarea').val(JSON.stringify(JSON.parse($('textarea').val()), null, 2));} catch (e) { alert('Unable to parse Content JSON'); };return false;"
                             }
                         }
                     }

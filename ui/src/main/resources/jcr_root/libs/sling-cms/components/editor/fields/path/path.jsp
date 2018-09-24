@@ -46,7 +46,7 @@
 <c:choose>
     <c:when test="${properties.hidesearch != true}">
     	<div class="field has-addons">
-          <div class="control">
+          <div class="control is-expanded">
               <input class="input pathfield" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
           </div>
           <div class="control">
