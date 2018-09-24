@@ -40,70 +40,6 @@
                                 "name": ":operation",
                                 "value": "import"
                             },
-                            "autoCheckout": {
-                                "jcr:primaryType": "nt:unstructured",
-                                "sling:resourceType": "sling-cms/components/editor/fields/select",
-                                "label": "Auto Checkout",
-                                "name": ":autoCheckout",
-                                "options": {
-                                    "no": {
-                                        "label": "No",
-                                        "value": "false"
-                                    },
-                                    "yes": {
-                                        "label": "Yes",
-                                        "value": "true"
-                                    }
-                                }
-                            },
-                            "checkin": {
-                                "jcr:primaryType": "nt:unstructured",
-                                "sling:resourceType": "sling-cms/components/editor/fields/select",
-                                "label": "Checkin",
-                                "name": ":checkin",
-                                "options": {
-                                    "no": {
-                                        "label": "No",
-                                        "value": "false"
-                                    },
-                                    "yes": {
-                                        "label": "Yes",
-                                        "value": "true"
-                                    }
-                                }
-                            },
-                            "replace": {
-                                "jcr:primaryType": "nt:unstructured",
-                                "sling:resourceType": "sling-cms/components/editor/fields/select",
-                                "label": "Replace",
-                                "name": ":replace",
-                                "options": {
-                                    "no": {
-                                        "label": "No",
-                                        "value": "false"
-                                    },
-                                    "yes": {
-                                        "label": "Yes",
-                                        "value": "true"
-                                    }
-                                }
-                            },
-                            "replaceProperties": {
-                                "jcr:primaryType": "nt:unstructured",
-                                "sling:resourceType": "sling-cms/components/editor/fields/select",
-                                "label": "Replace Properties",
-                                "name": ":replaceProperties",
-                                "options": {
-                                    "yes": {
-                                        "label": "Yes",
-                                        "value": "true"
-                                    },
-                                    "no": {
-                                        "label": "No",
-                                        "value": "false"
-                                    }
-                                }
-                            },
                             "contentType": {
                                 "jcr:primaryType": "nt:unstructured",
                                 "sling:resourceType": "sling-cms/components/editor/fields/select",
@@ -137,6 +73,79 @@
                                 "sling:resourceType": "sling-cms/components/editor/fields/textarea",
                                 "label": "Content",
                                 "name": ":content"
+                            },
+                            "advanced": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/editor/fields/well",
+                                "collapse": true,
+                                "title": "Advanced",
+                                "content": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "autoCheckout": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                        "label": "Auto Checkout",
+                                        "name": ":autoCheckout",
+                                        "options": {
+                                            "no": {
+                                                "label": "No",
+                                                "value": "false"
+                                            },
+                                            "yes": {
+                                                "label": "Yes",
+                                                "value": "true"
+                                            }
+                                        }
+                                    },
+                                    "checkin": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                        "label": "Checkin",
+                                        "name": ":checkin",
+                                        "options": {
+                                            "no": {
+                                                "label": "No",
+                                                "value": "false"
+                                            },
+                                            "yes": {
+                                                "label": "Yes",
+                                                "value": "true"
+                                            }
+                                        }
+                                    },
+                                    "replace": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                        "label": "Replace",
+                                        "name": ":replace",
+                                        "options": {
+                                            "no": {
+                                                "label": "No",
+                                                "value": "false"
+                                            },
+                                            "yes": {
+                                                "label": "Yes",
+                                                "value": "true"
+                                            }
+                                        }
+                                    },
+                                    "replaceProperties": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                                        "label": "Replace Properties",
+                                        "name": ":replaceProperties",
+                                        "options": {
+                                            "yes": {
+                                                "label": "Yes",
+                                                "value": "true"
+                                            },
+                                            "no": {
+                                                "label": "No",
+                                                "value": "false"
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
