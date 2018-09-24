@@ -22,7 +22,7 @@
  *
  * @version 0.9.0
  */
-@Version("1.0.0")
+@Version("1.1.0")
 package org.apache.sling.cms.core.models;
 
 import org.osgi.annotation.versioning.Version;
