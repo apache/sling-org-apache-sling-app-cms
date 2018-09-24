@@ -1,115 +1,120 @@
 {
-	"jcr:primaryType": "sling:Page",
-	"jcr:content": {
-		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Start",
-		"jcr:primaryType": "nt:unstructured",
-		"sling:vanityPath": "/cms",
-		"sling:redirect": true,
-		"center": true,
-		"container": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/general/container",
-			"richtext": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h2>Welcome to the Apache Sling CMS!<\/h2><p>This is a full-featured Content Management System built using the Apache Sling Framework! To begin, select Site on the left to add your first website.<\/p>"
-			}
-		},
-		"nav": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/general/container",
-			"sitenav": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentnav",
-				"createPath": "/cms/site/creategroup.html/content",
-				"createTitle": "Site Group",
-				"prefix": "/cms/site",
-				"itemPrefix": "/cms/site/sites.html",
-				"query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/content') ORDER BY NAME()",
-				"title": "Sites"
-			},
-			"staticnav": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentnav",
-				"createPath": "/cms/folder/create.html/static",
-				"createTitle": "Folder",
-				"prefix": "/cms/static",
-				"itemPrefix": "/cms/static/content.html",
-				"query": "SELECT * FROM [sling:Folder] AS s WHERE ISCHILDNODE(s,'/static') ORDER BY NAME()",
-				"title": "Static Content"
-			},
-			"taxonomynav": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentnav",
-				"createPath": "/cms/taxonomy/create.html/etc/taxonomy",
-				"prefix": "/cms/taxonomy",
-				"itemPrefix": "/cms/taxonomy/list.html",
-				"query": "SELECT * FROM [sling:Taxonomy] AS s WHERE ISCHILDNODE(s,'/etc/taxonomy') ORDER BY NAME()",
-				"title": "Taxonomy"
-			},
-			"configurationnav": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentnav",
-				"createPath": "/cms/folder/create.html/conf",
-				"prefix": "/cms/config",
-				"itemPrefix": "/cms/config/list.html",
-				"query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/conf') ORDER BY NAME()",
-				"title": "Configuration"
-			},
-			"usergeneratednav": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentnav",
-				"createPath": "/cms/folder/create.html/etc/usergenerated",
-				"createFolder": "Bucket",
-				"prefix": "/cms/usergenerated",
-				"itemPrefix": "/cms/usergenerated/content.html",
-				"query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/etc/usergenerated') ORDER BY NAME()",
-				"title": "User Generated"
-			},
-			"toolsnav": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/staticnav",
-				"title": "Tools",
-				"links": {
-					"jcr:primaryType": "nt:unstructured",
-					"bulkreplace": {
-						"jcr:primaryType": "nt:unstructured",
-						"link": "/cms/admin/bulkreplace.html",
-						"text": "Bulk Replace"
-					},
-					"contentpackages": {
-						"jcr:primaryType": "nt:unstructured",
-						"link": "/bin/packages.html",
-						"text": "Content Packages"
-					},
-					"i18n": {
-						"jcr:primaryType": "nt:unstructured",
-						"link": "/cms/i18n/dictionaries.html/etc/i18n",
-						"text": "Internationalization (i18n)"
-					},
-					"mappings": {
-						"jcr:primaryType": "nt:unstructured",
-						"link": "/cms/mappings/list.html/etc/map",
-						"text": "Mappings"
-					},
-					"nodebrowser": {
-						"jcr:primaryType": "nt:unstructured",
-						"link": "/bin/browser.html",
-						"text": "Node Browser"
-					},
-					"systemconsole": {
-						"jcr:primaryType": "nt:unstructured",
-						"link": "/system/console",
-						"text": "System Console"
-					},
-					"usersgroups": {
-						"jcr:primaryType": "nt:unstructured",
-						"link": "/bin/users.html",
-						"text": "Users &amp; Groups"
-					}
-				}
-			}
-		}
-	}
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Start",
+        "jcr:primaryType": "nt:unstructured",
+        "sling:vanityPath": "/cms",
+        "sling:redirect": true,
+        "center": true,
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "richtext": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/richtext",
+                "text": "<h2>Welcome to the Apache Sling CMS!<\/h2><p>This is a full-featured Content Management System built using the Apache Sling Framework! To begin, select Site on the left to add your first website.<\/p>"
+            }
+        },
+        "nav": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "sitenav": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentnav",
+                "createPath": "/cms/site/creategroup.html/content",
+                "createTitle": "Site Group",
+                "prefix": "/cms/site",
+                "itemPrefix": "/cms/site/sites.html",
+                "query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/content') ORDER BY NAME()",
+                "title": "Sites"
+            },
+            "staticnav": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentnav",
+                "createPath": "/cms/folder/create.html/static",
+                "createTitle": "Folder",
+                "prefix": "/cms/static",
+                "itemPrefix": "/cms/static/content.html",
+                "query": "SELECT * FROM [sling:Folder] AS s WHERE ISCHILDNODE(s,'/static') ORDER BY NAME()",
+                "title": "Static Content"
+            },
+            "taxonomynav": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentnav",
+                "createPath": "/cms/taxonomy/create.html/etc/taxonomy",
+                "prefix": "/cms/taxonomy",
+                "itemPrefix": "/cms/taxonomy/list.html",
+                "query": "SELECT * FROM [sling:Taxonomy] AS s WHERE ISCHILDNODE(s,'/etc/taxonomy') ORDER BY NAME()",
+                "title": "Taxonomy"
+            },
+            "configurationnav": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentnav",
+                "createPath": "/cms/folder/create.html/conf",
+                "prefix": "/cms/config",
+                "itemPrefix": "/cms/config/list.html",
+                "query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/conf') ORDER BY NAME()",
+                "title": "Configuration"
+            },
+            "usergeneratednav": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentnav",
+                "createPath": "/cms/folder/create.html/etc/usergenerated",
+                "createFolder": "Bucket",
+                "prefix": "/cms/usergenerated",
+                "itemPrefix": "/cms/usergenerated/content.html",
+                "query": "SELECT * FROM [sling:OrderedFolder] AS s WHERE ISCHILDNODE(s,'/etc/usergenerated') ORDER BY NAME()",
+                "title": "User Generated"
+            },
+            "toolsnav": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/staticnav",
+                "title": "Tools",
+                "links": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "bulkreplace": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/cms/admin/bulkreplace.html",
+                        "text": "Bulk Replace"
+                    },
+                    "contentpackages": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/bin/packages.html",
+                        "text": "Content Packages"
+                    },
+                    "i18n": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/cms/i18n/dictionaries.html/etc/i18n",
+                        "text": "Internationalization (i18n)"
+                    },
+                    "loadcontent": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/cms/admin/loadcontent.html",
+                        "text": "Load Content"
+                    },
+                    "mappings": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/cms/mappings/list.html/etc/map",
+                        "text": "Mappings"
+                    },
+                    "nodebrowser": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/bin/browser.html",
+                        "text": "Node Browser"
+                    },
+                    "systemconsole": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/system/console",
+                        "text": "System Console"
+                    },
+                    "usersgroups": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/bin/users.html",
+                        "text": "Users &amp; Groups"
+                    }
+                }
+            }
+        }
+    }
 }
