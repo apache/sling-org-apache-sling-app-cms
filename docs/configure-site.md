@@ -14,7 +14,7 @@
 
 Sites are the basis of Sling CMS' content structure. Each site belongs in a Site Group, which can be considered a tenant or simply a group of sites. This allows you to easily assign permissions and organize related sites.
 
-## Creating a Site Grupe
+## Creating a Site Group
 
 To create a Site Group, expand *Sites* in the left navigation and select *+Site Group*, this will open a new modal window for you to create the new Site Group. 
 
