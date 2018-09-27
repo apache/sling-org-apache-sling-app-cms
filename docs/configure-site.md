@@ -42,7 +42,7 @@ Finally, you can specify a config, but by default, the site will inherit from th
 
 Sling CMS uses Context Aware configuration to configure the sites. By default, you can use the configuration at */conf/global*, but you will probably want to create a custom configuration for real-world uses.
 
-To create a configuration, open the *Configuration* left nav and select *+Configuration*. This will open a new modal window to create the new configuration. Specify a title, then select the type *Sling CMS - Site Configuration* from the dropdown.
+To create a configuration, open the *Configuration* left nav and select *+Configuration*. This will open a new modal window to create the new configuration. Specify a title, set the name to "site", then select the type *Sling CMS - Site Configuration* from the dropdown.
 
 ![Site Configuration](img/create-site-configuration.png)
 
