@@ -27,7 +27,7 @@
 		</a>
  	</fieldset>
 	<div class="taxonomy__field field has-addons">
-		<div class="control">
+		<div class="control is-expanded">
  			<input class="input" type="text" ${required} ${disabled} list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
  		</div>
  		<div class="control">

@@ -98,7 +98,7 @@
                     "General"
                 ],
                 "allowedPaths": [
-                    "/content/apache/apache-sling-org.*"
+                    "/content/apache/sling-apache-org.*"
                 ],
                 "sling:resourceType": "sling-cms/components/cms/pagetemplate",
                 "fields": {
