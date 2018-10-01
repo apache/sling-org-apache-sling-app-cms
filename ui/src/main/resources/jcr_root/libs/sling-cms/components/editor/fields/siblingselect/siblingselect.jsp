@@ -23,7 +23,7 @@
 		Order
 	</label>
 	<div class="control">
-		<div class="select">
+		<div class="select is-fullwidth">
 			<select name=":order">
 				<c:forEach var="sibling" items="${sling:listChildren(rsrc.parent)}" varStatus="status">
 					<c:choose>

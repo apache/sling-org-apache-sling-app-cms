@@ -60,6 +60,8 @@ public class ApproveUGCOperation implements PostOperation {
 
             log.debug("Approving UGC {}", path);
 
+            response.setParentLocation(request.getResource().getParent().getPath());
+
             final List<Modification> changes = new ArrayList<>();
             // perform the approval
             String targetPath = request.getResource().getValueMap().get("targetpath", String.class);
@@ -106,6 +108,7 @@ public class ApproveUGCOperation implements PostOperation {
                     }
                 }
             }
+
             request.getResourceResolver().commit();
 
         } catch (

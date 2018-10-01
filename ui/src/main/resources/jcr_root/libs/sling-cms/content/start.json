@@ -58,6 +58,13 @@
                 "title": "Tools",
                 "links": {
                     "jcr:primaryType": "nt:unstructured",
+                "links": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "bulkreplace": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/cms/admin/bulkreplace.html",
+                        "text": "Bulk Replace"
+                    },
                     "contentpackages": {
                         "jcr:primaryType": "nt:unstructured",
                         "link": "/bin/packages.html",
@@ -67,6 +74,11 @@
                         "jcr:primaryType": "nt:unstructured",
                         "link": "/cms/i18n/dictionaries.html/etc/i18n",
                         "text": "Internationalization (i18n)"
+                    },
+                    "loadcontent": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/cms/admin/loadcontent.html",
+                        "text": "Load Content"
                     },
                     "mappings": {
                         "jcr:primaryType": "nt:unstructured",
