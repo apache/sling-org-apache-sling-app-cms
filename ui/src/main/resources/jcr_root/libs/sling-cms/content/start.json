@@ -58,47 +58,48 @@
                 "title": "Tools",
                 "links": {
                     "jcr:primaryType": "nt:unstructured",
-                "links": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "bulkreplace": {
+                    "links": {
                         "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/admin/bulkreplace.html",
-                        "text": "Bulk Replace"
-                    },
-                    "contentpackages": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/bin/packages.html",
-                        "text": "Content Packages"
-                    },
-                    "i18n": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/i18n/dictionaries.html/etc/i18n",
-                        "text": "Internationalization (i18n)"
-                    },
-                    "loadcontent": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/admin/loadcontent.html",
-                        "text": "Load Content"
-                    },
-                    "mappings": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/mappings/list.html/etc/map",
-                        "text": "Mappings"
-                    },
-                    "nodebrowser": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/bin/browser.html",
-                        "text": "Node Browser"
-                    },
-                    "systemconsole": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/system/console",
-                        "text": "System Console"
-                    },
-                    "usersgroups": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/bin/users.html",
-                        "text": "Users &amp; Groups"
+                        "bulkreplace": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/cms/admin/bulkreplace.html",
+                            "text": "Bulk Replace"
+                        },
+                        "contentpackages": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/bin/packages.html",
+                            "text": "Content Packages"
+                        },
+                        "i18n": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/cms/i18n/dictionaries.html/etc/i18n",
+                            "text": "Internationalization (i18n)"
+                        },
+                        "loadcontent": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/cms/admin/loadcontent.html",
+                            "text": "Load Content"
+                        },
+                        "mappings": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/cms/mappings/list.html/etc/map",
+                            "text": "Mappings"
+                        },
+                        "nodebrowser": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/bin/browser.html",
+                            "text": "Node Browser"
+                        },
+                        "systemconsole": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/system/console",
+                            "text": "System Console"
+                        },
+                        "usersgroups": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "link": "/bin/users.html",
+                            "text": "Users &amp; Groups"
+                        }
                     }
                 }
             }
