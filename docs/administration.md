@@ -20,3 +20,4 @@
  - [Error Pages](error-pages.md)
  - [MongoDB Support](mongodb.md)
  - [Securing Sling CMS](securing.md)
+ - [User Generated Content](user-generated-content.md)

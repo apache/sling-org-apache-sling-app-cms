@@ -11,4 +11,7 @@ A reference implementation of a simple Content Management System built in Apache
  * [Quickstart](docs/quickstart.md)
  * [Administration](docs/administration.md)
  * [Developers](docs/developers.md)
+ * [Report an Issue](https://issues.apache.org/jira)
  * [Users](docs/users.md)
+ * [Versions](docs/versions.md)
+ 
