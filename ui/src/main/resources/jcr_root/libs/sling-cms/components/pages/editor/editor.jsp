@@ -17,23 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<c:if test="${cmsEditEnabled == 'true'}">
-	<script src="/static/clientlibs/sling-cms-editor/js/editor.min.js"></script>
-	<div class="sling-cms-editor">
-		<div class="modal">
-			<div class="modal-background"></div>
-			<div class="modal-card">
-				<div class="modal-card">
-					<header class="modal-card-head">
-						<p class="modal-card-title"></p>
-						<button class="button close-modal is-small" aria-label="close">
-							<span class="jam jam-close"></span>
-						</button>
-					</header>
-					<section class="modal-card-body">
-					</section>
-				</div>
-			</div>
-		</div>
-	</div>
-</c:if>
+<html lang="en" class="editor-page">
+	<sling:call script="head.jsp" />
+	<sling:call script="body.jsp" />
+</html>

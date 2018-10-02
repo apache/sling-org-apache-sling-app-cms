@@ -28,6 +28,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -88,6 +89,14 @@ public class EditIncludeFilter implements Filter {
             if (er != null) {
                 component = er.getComponent();
             }
+            String componentTitle = "";
+            if (component != null) {
+                componentTitle = component.getTitle();
+            }
+            if (StringUtils.isEmpty(componentTitle)) {
+                String componentName = StringUtils.substringAfterLast(resource.getResourceType(), "/");
+                WordUtils.capitalizeFully(componentName.replace('-', ' '));
+            }
             writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
                     + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
                     + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
@@ -98,18 +107,18 @@ public class EditIncludeFilter implements Filter {
             writer.write(
                     "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
                             + resource.getPath() + "\" data-sling-cms-edit=\"" + editPath
-                            + "\" title=\"Edit\"><span class=\"jam jam-pencil-f\"></span></button></div>");
+                            + "\" title=\"Edit Component\"><span class=\"jam jam-pencil-f\"></span></button></div>");
             if (!first || !last) {
                 writer.write(
                         "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"reorder\" data-sling-cms-path=\""
                                 + resource.getPath()
-                                + "\" title=\"Reorder\"><span class=\"jam jam-arrows-v\"></span></button></div>");
+                                + "\" title=\"Reorder Component\"><span class=\"jam jam-arrows-v\"></span></button></div>");
             }
             if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
                 writer.write(
                         "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
                                 + resource.getPath()
-                                + "\" title=\"Delete\"><span class=\"jam jam-trash\"></span></button></div>");
+                                + "\" title=\"Delete Component\"><span class=\"jam jam-trash\"></span></button></div>");
             }
 
             writer.write("</div></div>");

@@ -145,7 +145,7 @@ Sling.CMS = {
 
                   // mouse button down over the element
                 element.addEventListener('mousedown', function(evt){
-                    if(document.querySelector('.modal-card-body').contains(evt.target)){
+                    if(evt.target.matches('.modal-card-body *')){
                         return;
                     }
                     mouseX = evt.clientX;

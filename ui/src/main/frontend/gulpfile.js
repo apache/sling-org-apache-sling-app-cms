@@ -104,7 +104,6 @@ gulp.task('editor-assets', function() {
 
 gulp.task('editor-js', function() {
     return gulp.src([
-            './node_modules/jquery/dist/jquery.js',
             './src/js/editor.js'
         ])
         .pipe(uglify({
