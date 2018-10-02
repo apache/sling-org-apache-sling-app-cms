@@ -50,7 +50,7 @@
               <input class="input pathfield" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
           </div>
           <div class="control">
-              <a href="/cms/shared/search.html" class="button Fetch-Modal Search-Button" data-title="Search" data-path=".Main-Content > *">
+              <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
                   <span class="jam jam-search"></span>
               </a>
           </div>

@@ -401,11 +401,11 @@ Sling.CMS = {
     
     Sling.CMS.ext['searchselect'] = {
         decorate: function($ctx) {
-            $ctx.find('.Search-Select-Button').click(function(evt){
+            $ctx.find('.search-select-button').click(function(evt){
                 var $btn = $(evt.target);
                 var $active = Sling.CMS.ext['searchbutton'].active;
                 $active.val($btn.data('path'));
-                $btn.closest('.Modal').remove();
+                $btn.closest('.modal').remove();
             });
         }
     }
@@ -413,8 +413,8 @@ Sling.CMS = {
     Sling.CMS.ext['searchbutton'] = {
         active: null,
         decorate: function($ctx) {
-            $ctx.find('.Search-Button').click(function(evt){
-                Sling.CMS.ext['searchbutton'].active = $(evt.target).closest('.Field-Input').find('.Field-Path');
+            $ctx.find('.search-button').click(function(evt){
+                Sling.CMS.ext['searchbutton'].active = $(evt.target).closest('.field').find('.pathfield');
             });
         }
     }
