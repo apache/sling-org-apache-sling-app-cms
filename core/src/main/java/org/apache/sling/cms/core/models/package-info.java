@@ -19,10 +19,8 @@
 
 /**
  * Package with all of the core models used to support the Sling reference CMS
- *
- * @version 0.9.0
  */
-@Version("1.0.0")
+@Version("2.0.0")
 package org.apache.sling.cms.core.models;
 
 import org.osgi.annotation.versioning.Version;
