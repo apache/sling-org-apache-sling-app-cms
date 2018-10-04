@@ -26,7 +26,7 @@
 				<div class="modal-card">
 					<header class="modal-card-head">
 						<p class="modal-card-title"></p>
-						<button class="button delete is-small" aria-label="close">
+						<button class="button close-modal is-small" aria-label="close">
 							<span class="jam jam-close"></span>
 						</button>
 					</header>

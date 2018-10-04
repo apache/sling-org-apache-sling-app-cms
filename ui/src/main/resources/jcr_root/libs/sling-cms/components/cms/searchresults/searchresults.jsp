@@ -18,47 +18,47 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div id="search-results">
-	<div class="Grid">
-	<sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.SearchResults" var="results" />
-		<c:forEach var="result" items="${results.results}" begin="0" end="20" varStatus="status">
-			<div class="Cell Search-Result Small-50">
-				<div class="Search-Result__Container">
-					<c:choose>
-						<c:when test="${not empty result.valueMap['jcr:content/jcr:title']}">
-							<c:set var="title" value="${result.valueMap['jcr:content/jcr:title']}" />
-						</c:when>
-						<c:when test="${not empty result.valueMap['jcr:title']}">
-							<c:set var="title" value="${result.valueMap['jcr:title']}" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="title" value="${result.name}" />
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${result.valueMap['jcr:primaryType'] == 'sling:Page'}">
-							<c:set var="icon" value="document" />
-						</c:when>
-						<c:when test="${result.valueMap['jcr:primaryType'] == 'nt:file' || result.valueMap['jcr:primaryType'] == 'sling:File'}">
-							<c:set var="icon" value="file" />
-						</c:when>
-						<c:when test="${result.valueMap['jcr:primaryType'] == 'nt:folder' || result.valueMap['jcr:primaryType'] == 'sling:Folder' || result.valueMap['jcr:primaryType'] == 'sling:OrderedFolder'}">
-							<c:set var="icon" value="folder" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="icon" value="sitemap" />
-						</c:otherwise>
-					</c:choose>
-					<h4>
-						<span class="jam jam-${icon}"></span>
-						${sling:encode(title,'HTML')}
-					</h4>
-					<small>
-						<em>${result.path}</em>
-					</small><br/>
-					<br />
-					<a href="#" class="Button Search-Select-Button" data-path="${result.path}">Select</a>
-				</div>
-			</div>
-		</c:forEach>
-	</div>
+    <div class="tile is-ancestor">
+    <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.SearchResults" var="results" />
+        <c:forEach var="result" items="${results.results}" begin="0" end="20" varStatus="status">
+            <div class="tile is-6 is-child">
+                <div class="box">
+                    <c:choose>
+                        <c:when test="${not empty result.valueMap['jcr:content/jcr:title']}">
+                            <c:set var="title" value="${result.valueMap['jcr:content/jcr:title']}" />
+                        </c:when>
+                        <c:when test="${not empty result.valueMap['jcr:title']}">
+                            <c:set var="title" value="${result.valueMap['jcr:title']}" />
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="title" value="${result.name}" />
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${result.valueMap['jcr:primaryType'] == 'sling:Page'}">
+                            <c:set var="icon" value="document" />
+                        </c:when>
+                        <c:when test="${result.valueMap['jcr:primaryType'] == 'nt:file' || result.valueMap['jcr:primaryType'] == 'sling:File'}">
+                            <c:set var="icon" value="file" />
+                        </c:when>
+                        <c:when test="${result.valueMap['jcr:primaryType'] == 'nt:folder' || result.valueMap['jcr:primaryType'] == 'sling:Folder' || result.valueMap['jcr:primaryType'] == 'sling:OrderedFolder'}">
+                            <c:set var="icon" value="folder" />
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="icon" value="sitemap" />
+                        </c:otherwise>
+                    </c:choose>
+                    <h4>
+                        <span class="jam jam-${icon}"></span>
+                        ${sling:encode(title,'HTML')}
+                    </h4>
+                    <small>
+                        <em>${result.path}</em>
+                    </small><br/>
+                    <br />
+                    <a href="#" class="button search-select-button" data-path="${result.path}">Select</a>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 </div>

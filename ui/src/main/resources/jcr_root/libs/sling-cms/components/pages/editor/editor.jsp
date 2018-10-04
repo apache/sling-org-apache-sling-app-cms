@@ -1,4 +1,4 @@
-/*
+<%-- /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,12 +15,9 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-
-/**
- * Package with all of the core models used to support the Sling reference CMS
- */
-@Version("1.1.0")
-package org.apache.sling.cms.core.models;
-
-import org.osgi.annotation.versioning.Version;
+ */ --%>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<html lang="en" class="editor-page">
+	<sling:call script="head.jsp" />
+	<sling:call script="body.jsp" />
+</html>

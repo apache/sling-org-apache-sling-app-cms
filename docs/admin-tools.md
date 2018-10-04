@@ -18,7 +18,7 @@ There are a number of administrative tools to help make administering Sling CMS 
 
 ![Bulk Replace](img/bulk-replace.png)
 
-This tool can be accessed at [http://localhost:8080/cms/admin/bulkreplace.html{SUFFIX}](http://localhost:8080/cms/admin/bulkreplace.html{SUFFIX}), with the *{SUFFIX}* being the path under which you want the replacement to take place. This will find and replace the target term with the replacement term in all matching properties.
+This tool can be accessed  from *Tools > Content Import* or at [http://localhost:8080/cms/admin/bulkreplace.html](http://localhost:8080/cms/admin/bulkreplace.html). First, select the path under which to perform the bulk replacement, then specify replacement configuration. This will find and replace the target term with the replacement term in all matching properties.
 
 ## Content Packages
 
@@ -30,7 +30,7 @@ This is accessible from *Tools > Content Packages* or at [http://localhost:8080/
 
 ![Load Content](img/load-content.png)
 
-This tool can be accessed at [http://localhost:8080/cms/admin/loadcontent.html{SUFFIX}](http://localhost:8080/cms/admin/loadcontent.html{SUFFIX}), with the *{SUFFIX}* being the path under which you want load the content. This will load a JSON string of content into the Sling CMS repository.
+This tool can be accessed from *Tools > Load Content* or at [http://localhost:8080/cms/admin/loadcontent.html](http://localhost:8080/cms/admin/loadcontent.html). First specify the path under which to load the content, then the import configuration This will load a string of content into the Sling CMS repository.
 
 ## Internationalization
 

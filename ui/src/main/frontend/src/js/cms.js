@@ -169,7 +169,7 @@ Sling.CMS.ext['draggable'] = {
 
       // mouse button down over the element
       element.addEventListener('mousedown', function(evt) {
-        if (document.querySelector('.modal-card-body').contains(evt.target)) {
+        if (evt.target.matches('.modal-card-body *')) {
           return;
         }
         mouseX = evt.clientX;
@@ -326,6 +326,19 @@ Sling.CMS.ext['namehint'] = {
   }
 };
 
+
+    Sling.CMS.ext['navbar'] = {
+        init: function() {
+            document.querySelectorAll('.navbar-burger').forEach(function(burger){
+                burger.addEventListener('click', function(){
+                    var target = document.querySelector(burger.dataset.target);
+                    target.classList.toggle('is-active');
+                    burger.classList.toggle('is-active');
+                });
+            });
+        }
+    };
+
 Sling.CMS.ext['pageproperties'] = {
   decorate : function($ctx) {
     $ctx.find('.Sling-CMS__page-properties').each(function() {
@@ -444,26 +457,25 @@ Sling.CMS.ext['richtext'] = {
   }
 };
 
-Sling.CMS.ext['searchselect'] = {
-  decorate : function($ctx) {
-    $ctx.find('.Search-Select-Button').click(function(evt) {
-      var $btn = $(evt.target);
-      var $active = Sling.CMS.ext['searchbutton'].active;
-      $active.val($btn.data('path'));
-      $btn.closest('.Modal').remove();
-    });
-  }
-}
 
-Sling.CMS.ext['searchbutton'] = {
-  active : null,
-  decorate : function($ctx) {
-    $ctx.find('.Search-Button').click(
-        function(evt) {
-          Sling.CMS.ext['searchbutton'].active = $(evt.target).closest(
-              '.Field-Input').find('.Field-Path');
-        });
-  }
+    Sling.CMS.ext['searchselect'] = {
+        decorate: function($ctx) {
+            $ctx.find('.search-select-button').click(function(evt){
+                var $btn = $(evt.target);
+                var $active = Sling.CMS.ext['searchbutton'].active;
+                $active.val($btn.data('path'));
+                $btn.closest('.modal').remove();
+            });
+        }
+    }
+    
+    Sling.CMS.ext['searchbutton'] = {
+        active: null,
+        decorate: function($ctx) {
+            $ctx.find('.search-button').click(function(evt){
+                Sling.CMS.ext['searchbutton'].active = $(evt.target).closest('.field').find('.pathfield');
+            });
+        }
 }
 
 Sling.CMS.ext['suffix-form'] = {

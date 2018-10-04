@@ -1,0 +1,53 @@
+{
+	"jcr:primaryType": "sling:Page",
+	"jcr:content": {
+		"sling:resourceType": "sling-cms/components/pages/base",
+		"jcr:title": "Search",
+		"jcr:primaryType": "nt:unstructured",
+		"container": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/general/container",
+			"searchform": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/getform",
+				"button": "Search",
+				"load": "#search-results .is-ancestor",
+				"target": "#search-results",
+				"fields": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "sling-cms/components/general/container",
+					"term": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/text",
+						"label": "Term",
+						"name": "term",
+						"required": "required"
+					},
+					"type": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/select",
+						"name": "type",
+						"label": "Content Type",
+						"options": [
+							"Page=sling:Page",
+							"File=sling:File",
+							"Folder=sling:Folder",
+							"Everything=nt:base"
+						]
+					},
+					"path": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "sling-cms/components/editor/fields/path",
+						"label": "Path",
+						"name": "path",
+						"hidesearch": true
+					}
+				}
+			},
+			"searchresults": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "sling-cms/components/cms/searchresults"
+			}
+		}
+	}
+}

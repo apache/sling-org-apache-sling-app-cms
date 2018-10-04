@@ -64,6 +64,10 @@ h5 {
 	font-size: 120%;
 }
 
+.editor-page {
+	overflow-y: auto;
+}
+
 .is-draggable {
 	position: relative;
 }
@@ -90,6 +94,11 @@ h5 {
 .preview {
 	max-width: 100%;
 	padding: 1em;
+}
+
+#search-results .tile {
+    flex-wrap: wrap;
+    padding: .5em;
 }
 
 table.dataTable thead .sorting:after,

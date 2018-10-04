@@ -34,7 +34,7 @@
 		<div class="level has-background-grey">
 			<div class="level-left">
 				<div class="level-item">
-					<button class="button" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="Add">
+					<button class="button" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="Add Component">
 						&#43;
 					</button>
 				</div>

@@ -16,12 +16,25 @@ This page will give you an introduction of the structure of the Sling CMS projec
 
 ## Project Structure
 
-The Sling CMS project has three main modules:
+The Sling CMS project has five main modules:
 
  - builder - this is a Sling Starer builder, it contains the repoinit text files which define the dependencies and requirements to build Sling CMS. This will ultimately build the Sling CMS Jar.
+ - api - this is your API for interacting with Sling CMS
  - core - this is the Java code behind Sling CMS. This includes the Sling Models, Filters, Servlets, Post Operations and Rewriter code.
  - reference - this is a reference application for developers to use to extend Sling CMS, this includes both Java code and content loaded by the Sling Content Loader
  - ui - this is a bulk of the content and scripts for the Sling CMS. Most of this is located under */libs/sling-cms* although there are some other directories for configurations
+ 
+## Using the API
+
+The API can be imported into your Maven project with the following dependency include in your pom.xml in the `dependencies` element:
+	
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.cms.api</artifactId>
+			<version>CURRENT_VERSION</version>
+			<scope>provided</scope>
+		</dependency>
+		
  
 ## Front End Code
 

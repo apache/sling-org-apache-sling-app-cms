@@ -24,6 +24,8 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var streamqueue = require('streamqueue');
 var saveLicense = require('uglify-save-license');
+var log = require('fancy-log');
+
 
 
 const apache2License = [
@@ -91,8 +93,8 @@ gulp.task('cms-js', function() {
             output: {
                 comments: saveLicense
             }
-        }))
-         .pipe(concat('scripts-all.min.js'))
+        }).on('error', function (err) { log('[Error]' +  err.toString()); exit(1); }))
+        .pipe(concat('scripts-all.min.js'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
 });
 
@@ -104,7 +106,6 @@ gulp.task('editor-assets', function() {
 
 gulp.task('editor-js', function() {
     return gulp.src([
-            './node_modules/jquery/dist/jquery.js',
             './src/js/editor.js'
         ])
         .pipe(uglify({
