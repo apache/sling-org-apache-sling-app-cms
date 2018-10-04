@@ -216,6 +216,15 @@ Sling.CMS = {
         }
     };
     
+    Sling.CMS.ext['file-upload'] = {
+        decorate: function($ctx) {
+            $ctx.find('.file').on('change', "input", function(){
+                var node = $(this);
+                node.parent().find('.file-name').text(this.files[0].name);
+            });
+        }
+    };
+    
     Sling.CMS.ext['getform'] = {
         decorate: function($ctx){
             $ctx.find('.Get-Form').submit(function(){
@@ -285,6 +294,18 @@ Sling.CMS = {
                 $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
                     var resourceType = $(this).val().split("\/");
                     $nh.val(resourceType[resourceType.length - 1]);
+                });
+            });
+        }
+    };
+
+    Sling.CMS.ext['navbar'] = {
+        init: function() {
+            document.querySelectorAll('.navbar-burger').forEach(function(burger){
+                burger.addEventListener('click', function(){
+                    var target = document.querySelector(burger.dataset.target);
+                    target.classList.toggle('is-active');
+                    burger.classList.toggle('is-active');
                 });
             });
         }
@@ -408,7 +429,7 @@ Sling.CMS = {
                 $btn.closest('.modal').remove();
             });
         }
-    }
+    };
     
     Sling.CMS.ext['searchbutton'] = {
         active: null,
@@ -417,7 +438,7 @@ Sling.CMS = {
                 Sling.CMS.ext['searchbutton'].active = $(evt.target).closest('.field').find('.pathfield');
             });
         }
-    }
+    };
 
     Sling.CMS.ext['suffix-form'] = {
         init: function() {
@@ -505,15 +526,6 @@ Sling.CMS = {
                     }
                 });
             })
-        }
-    };
-    
-    Sling.CMS.ext['file-upload'] = {
-        decorate: function($ctx) {
-            $ctx.find('.file').on('change', "input", function(){
-                var node = $(this);
-                node.parent().find('.file-name').text(this.files[0].name);
-            });
         }
     };
 
