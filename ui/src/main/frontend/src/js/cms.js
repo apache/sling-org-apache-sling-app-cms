@@ -132,56 +132,6 @@ Sling.CMS = {
             });
         }
     };
-
-    Sling.CMS.ext['draggable'] = {
-        decorate: function($ctx) {
-            var draggable = function(){
-                var element = this;
-                var mouseX;
-                var mouseY;
-                var mouseDown = false;
-                var elementX = 0;
-                var elementY = 0;
-
-                  // mouse button down over the element
-                element.addEventListener('mousedown', function(evt){
-                    if(evt.target.matches('.modal-card-body *')){
-                        return;
-                    }
-                    mouseX = evt.clientX;
-                    mouseY = evt.clientY;
-                    mouseDown = true;
-                });
-                
-                var moveComplete = function(){
-                    mouseDown = false;
-                    elementX = parseInt(element.style.left) || 0;
-                    elementY = parseInt(element.style.top) || 0;
-                    return false;
-                }
-                
-                element.addEventListener('mouseup', moveComplete);
-                document.addEventListener('mouseout', moveComplete);
-                
-                document.addEventListener('mousemove', function(event) {
-                    if (!mouseDown) {
-                        return;
-                    }
-                    var deltaX = event.clientX - mouseX;
-                    var deltaY = event.clientY - mouseY;
-                    element.style.left = elementX + deltaX + 'px';
-                    element.style.top = elementY + deltaY + 'px';
-                    return false;
-                });
-                
-            };
-            if($ctx.is('.is-draggable')){
-                $ctx.each(draggable)
-            }
-            $ctx.find('.is-draggable').each(draggable);
-        }
-    };
-    
     Sling.CMS.ext['load-versions'] = {
         loaded: false,
         decorate: function($ctx) {
@@ -202,29 +152,6 @@ Sling.CMS = {
         }
     };
 
-    //support links which fetch HTML and display a modal
-    Sling.CMS.ext['fetch-modal'] = {
-        decorate : function($ctx){
-            $ctx.find('a.Fetch-Modal').click(function(){
-                var $link = $(this);
-                $link.attr('disabled', 'disabled');
-                Sling.CMS.ui.fetchModal($link.attr('data-title'), encodeURI($link.attr('href')), $link.attr('data-path'), function(){
-                    $link.removeAttr('disabled');
-                });
-                return false;
-            });
-        }
-    };
-    
-    Sling.CMS.ext['file-upload'] = {
-        decorate: function($ctx) {
-            $ctx.find('.file').on('change', "input", function(){
-                var node = $(this);
-                node.parent().find('.file-name').text(this.files[0].name);
-            });
-        }
-    };
-    
     Sling.CMS.ext['getform'] = {
         decorate: function($ctx){
             $ctx.find('.Get-Form').submit(function(){
@@ -294,18 +221,6 @@ Sling.CMS = {
                 $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
                     var resourceType = $(this).val().split("\/");
                     $nh.val(resourceType[resourceType.length - 1]);
-                });
-            });
-        }
-    };
-
-    Sling.CMS.ext['navbar'] = {
-        init: function() {
-            document.querySelectorAll('.navbar-burger').forEach(function(burger){
-                burger.addEventListener('click', function(){
-                    var target = document.querySelector(burger.dataset.target);
-                    target.classList.toggle('is-active');
-                    burger.classList.toggle('is-active');
                 });
             });
         }
