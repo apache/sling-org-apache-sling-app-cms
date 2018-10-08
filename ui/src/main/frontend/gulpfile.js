@@ -92,6 +92,8 @@ gulp.task('cms-js', function() {
             './src/js/cms.form.js',
             './src/js/cms.modal.js',
             './src/js/cms.upload.js',
+            './src/js/cms.toggle.js',
+            './src/js/cms.suggest.js',
             './src/js/cms.draggable.js',
             './src/js/cms.js'
         ])

@@ -48,21 +48,8 @@ Sling.CMS = {
                     complete();
                 });
                 return $modal;
-            },
-            fetchModal: function(title, link, path, complete){
-                var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"></section><footer class="modal-card-foot"></footer></div>');
-                $('body').append($modal);
-                $modal.find('.modal-card-body').load(link + " " +path,function(){
-                    $modal.addClass('is-active');
-                    $modal.find('.delete,.close-modal').click(function(){
-                        $modal.css('display','none').remove();
-                        return false;
-                    });
-                    Sling.CMS.decorate($modal);
-                    complete();
-                });
-                return $modal;
             }
+
         },
         utils: {
             form2Obj: function ($form){
@@ -156,34 +143,6 @@ Sling.CMS = {
                         Sling.CMS.decorate($ctr.children());
                     });
                 });
-            });
-        }
-    };
-
-    Sling.CMS.ext['pathfield'] = {
-        suggest: function(field, type, base) {
-            var xhr;
-            new autoComplete({
-                minChars: 1,
-                selector: field,
-                source: function(term, response){
-                    try {
-                        xhr.abort();
-                    } catch(e){}
-                    if(term === '/'){
-                        term = base;
-                    }
-                    xhr = $.getJSON('/bin/cms/paths', { path: term, type: type }, function(data){
-                        response(data);
-                    });
-                }
-            });
-        },
-        decorate: function($ctx){
-            $ctx.find('input.pathfield').each(function(){
-                var type = $(this).data('type');
-                var base = $(this).data('base');
-                Sling.CMS.ext.pathfield.suggest(this, type, base);
             });
         }
     };
@@ -349,28 +308,7 @@ Sling.CMS = {
         }
     };
     
-    Sling.CMS.ext['toggle-hidden'] = {
-        decorate: function($ctx){
-            $ctx.find('.toggle-hidden').click(function(){
-                $($(this).data('target')).toggleClass('is-hidden');
-            });
-        }
-    };
-    
-    Sling.CMS.ext['toggle-value'] = {
-        decorate: function($ctx) {
-            $ctx.find('.toggle-value').each(function(){
-                var $tog = $(this);
-                $('input[name="'+$tog.data('toggle-source')+'"], select[name="'+$tog.data('toggle-source')+'"]').change(function(){
-                    if($(this).val() !== $tog.data('toggle-value')){
-                        $tog.addClass('is-hidden');
-                    } else {
-                        $tog.removeClass('is-hidden');
-                    }
-                });
-            })
-        }
-    };
+
 
     $(document).ready(function() {
         Sling.CMS.init();

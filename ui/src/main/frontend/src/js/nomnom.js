@@ -31,8 +31,8 @@
     };
 
     var tagSelectors = {};
-
     var debug = false;
+    var elementMap = new WeakMap();
 
     new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
@@ -51,6 +51,17 @@
         if (debug) {
             console.log("decorating element " + node + node.name);
         }
+        var configSet;
+        if (elementMap.has(node)){
+            configSet = elementMap.get(node);
+        } else {
+            configSet = new Set();
+            elementMap.set(node,configSet);
+        }
+        if (configSet.has(config)){
+            return;
+        }
+        configSet.add(config);
         var names = Object.getOwnPropertyNames(config.prototype);
         names.forEach(function(name) {
             if (debug) {
