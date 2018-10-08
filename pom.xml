@@ -170,6 +170,12 @@
                 <version>1.6.8</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <artifactId>jsoup</artifactId>
+                <version>1.11.3</version>
+                <groupId>org.jsoup</groupId>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

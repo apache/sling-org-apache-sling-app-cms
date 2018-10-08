@@ -186,5 +186,9 @@
             <groupId>org.apache.jackrabbit</groupId>
             <artifactId>oak-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+        </dependency>
     </dependencies>
 </project>
