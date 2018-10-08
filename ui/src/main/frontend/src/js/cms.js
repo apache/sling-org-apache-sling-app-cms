@@ -177,25 +177,7 @@ Sling.CMS = {
             });
         }
     };
-    Sling.CMS.ext['load-versions'] = {
-            loaded: false,
-            decorate: function($ctx) {
-                if(!Sling.CMS.ext['load-versions'].loaded){
-                    $ctx.find('.load-versions').each(function(){
-                        var $ctr = $(this);
-                        var $table = $ctr.closest('.table');
-                        $.getJSON($ctr.data('url'),function(res){
-                            $table.dataTable().api().destroy();
-                            var source   = $('#'+$ctr.data('template')).html();
-                            var template = Handlebars.compile(source);
-                            $ctr.append(template(res));
-                            Sling.CMS.ext['load-versions'].loaded = true;
-                            Sling.CMS.decorate($ctr.closest('.version-container'));
-                        });
-                    });
-                }
-            }
-        };
+
 
     Sling.CMS.ext['richtext'] = {
         decorate: function($ctx){
@@ -222,25 +204,9 @@ Sling.CMS = {
         }
     };
     
-    Sling.CMS.ext['searchselect'] = {
-        decorate: function($ctx) {
-            $ctx.find('.search-select-button').click(function(evt){
-                var $btn = $(evt.target);
-                var $active = Sling.CMS.ext['searchbutton'].active;
-                $active.val($btn.data('path'));
-                $btn.closest('.modal').remove();
-            });
-        }
-    };
+
     
-    Sling.CMS.ext['searchbutton'] = {
-        active: null,
-        decorate: function($ctx) {
-            $ctx.find('.search-button').click(function(evt){
-                Sling.CMS.ext['searchbutton'].active = $(evt.target).closest('.field').find('.pathfield');
-            });
-        }
-    };
+
 
     Sling.CMS.ext['suffix-form'] = {
         init: function() {
@@ -273,43 +239,83 @@ Sling.CMS = {
         }
     };
 
-    Sling.CMS.ext['taxonomy'] = {
-        decorate: function($ctx){
-            $ctx.find('.taxonomy').each(function(){
-                var $rep = $(this);
-                $rep.find('.taxonomy__add').click(function(){
-                    var $span = $('<span/>').html($rep.find('.taxonomy__template').html());
-                    var val = $ctx.find('.taxonomy__field input').val();
-                    var found = false;
-                    $rep.find('.taxonomy__item input').each(function(idx, el){
-                        if($(el).val() === val){
-                            found = true;
-                        }
-                    });
-                    if(found){
-                        return false;
-                    }
-                    $span.find('input').val(val);
-                    var title = $ctx.find('option[value="'+val+'"]').text();
-                    
-                    if(title !== ''){
-                        $span.find('.taxonomy__title').text(title);
-                        Sling.CMS.decorate($span);
-                        $('.taxonomy__container').append($span);
-                        $ctx.find('.taxonomy__field input').val('');
-                    }
-                    return false;
-                });
-            });
-            $ctx.find('.taxonomy__item').click(function(){
-                $(this).remove();
-                return false;
-            });
-        }
-    };
+
     
 
 
     $(document).ready(function() {
         Sling.CMS.init();
     });
+
+nomnom.decorate(".table .load-versions", class {
+   
+    init(){
+        var $ctr = $(this);
+        var $table = $ctr.closest('.table');
+        $.getJSON($ctr.data('url'),function(res){
+            $table.dataTable().api().destroy();
+            var source   = $('#'+$ctr.data('template')).html();
+            var template = Handlebars.compile(source);
+            $ctr.append(template(res));
+        });
+    }
+    
+});
+
+nomnom.decorate('.search-button', class {
+    
+    "click::this"(event) {
+        Sling.CMS.ext['searchbutton'] =  Sling.CMS.ext['searchbutton'] || {};
+        var searchbutton = Sling.CMS.ext['searchbutton'];
+        searchbutton.active = $(event.target).closest('.field').find('.pathfield');
+    }
+    
+});
+
+nomnom.decorate('.search-select-button', class {
+   
+    "click::this"(event) {
+        var $btn = $(evt.target);
+        var $active = Sling.CMS.ext['searchbutton'].active;
+        $active.val($btn.data('path'));
+        $btn.closest('.modal').remove();
+    }
+    
+});
+
+nomnom.decorate('.taxonomy', class {
+    "click::this"(){
+        var $rep = $(this);
+        $rep.find('.taxonomy__add').click(function(){
+            var $span = $('<span/>').html($rep.find('.taxonomy__template').html());
+            var val = $ctx.find('.taxonomy__field input').val();
+            var found = false;
+            $rep.find('.taxonomy__item input').each(function(idx, el){
+                if($(el).val() === val){
+                    found = true;
+                }
+            });
+            if(found){
+                return false;
+            }
+            $span.find('input').val(val);
+            var title = $ctx.find('option[value="'+val+'"]').text();
+            
+            if(title !== ''){
+                $span.find('.taxonomy__title').text(title);
+                Sling.CMS.decorate($span);
+                $('.taxonomy__container').append($span);
+                $ctx.find('.taxonomy__field input').val('');
+            }
+            return false;
+        });
+    }
+});
+        
+nomnom.decorate('.taxonomy__item', class {
+    "click::this"(){
+        $(this).remove();
+        return false;
+    }
+});
+
