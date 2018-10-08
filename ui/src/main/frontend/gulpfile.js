@@ -89,6 +89,7 @@ gulp.task('cms-js', function() {
             './node_modules/js-autocomplete/auto-complete.js',
             './src/js/nomnom.js',
             './src/js/cms.nav.js',
+            './src/js/cms.form.js',
             './src/js/cms.modal.js',
             './src/js/cms.upload.js',
             './src/js/cms.draggable.js',

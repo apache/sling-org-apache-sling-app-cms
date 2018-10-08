@@ -18,22 +18,21 @@
  */
 (function(nomnom) {
 
-    var debug = false;
-    
     // public
-    nomnom.decorate = function(matchType, config) {
-        if (debug){
-            console.log("storing selector"+ matchType);
+    nomnom.decorate = function(selector, config) {
+        if (debug) {
+            console.log("storing selector" + selector);
         }
-        tagSelectors[matchType] = config;
-        var nodes = document.querySelectorAll(matchType);
+        tagSelectors[selector] = config;
+        var nodes = document.querySelectorAll(selector);
         for (var index = 0; index < nodes.length; ++index) {
             wrap(nodes[index], config);
         }
     };
 
-    // private
     var tagSelectors = {};
+
+    var debug = false;
 
     new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
@@ -44,18 +43,18 @@
     }).observe(document.body, {
         attributes : false,
         childList : true,
-        subtree:true,
+        subtree : true,
         characterData : false
     });
 
     var wrap = function(node, config) {
-        if (debug){
-            console.log("decorating element "+ node + node.name);
+        if (debug) {
+            console.log("decorating element " + node + node.name);
         }
         var names = Object.getOwnPropertyNames(config.prototype);
         names.forEach(function(name) {
-            if (debug){
-                console.log("   decorating "+ name);
+            if (debug) {
+                console.log("   decorating " + name);
             }
             if (name.indexOf("::") !== -1) {
                 registerEventHandler(node, name, config.prototype[name]);
@@ -75,17 +74,12 @@
                 propertyName.length);
         var childSelector = eventName.split(':');
         if (childSelector[1]) {
-            console.log("capture bubbling events for "
-                    + childSelector[1]);
+            console.log("capture bubbling events for " + childSelector[1]);
             eventName = childSelector[0];
         }
         if (selector === "this") {
             node.addEventListener(eventName, function(event) {
                 if (childSelector[1]) {
-                    console.log(" looking for "
-                            + childSelector[1]);
-                    console.log(" target is "
-                            + event.target);
                     if (!event.target.matches(childSelector[1])) {
                         return;
                     }
@@ -123,16 +117,20 @@
         if (node.querySelectorAll) {
             for ( var selector in tagSelectors) {
                 if (debug) {
-                    console.log("checking new nodes for "+selector);
+                    console.log("checking new nodes for " + selector);
                 }
-                var found = node.querySelectorAll(selector);
-                if (found) {
-                    found.forEach(function(item) {
-                        if (debug) {
-                            console.log("html node found for "+selector);
-                        }
-                        wrap(item, tagSelectors[selector])
-                    });
+                if (node.matches(selector)) {
+                    wrap(node, tagSelectors[selector]);
+                } else {
+                    var found = node.querySelectorAll(":scope " + selector);
+                    if (found) {
+                        found.forEach(function(item) {
+                            if (debug) {
+                                console.log("html node found for " + selector);
+                            }
+                            wrap(item, tagSelectors[selector])
+                        });
+                    }
                 }
             }
         }

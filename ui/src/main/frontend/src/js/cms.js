@@ -75,98 +75,7 @@ Sling.CMS = {
         }
     };
 
-    Sling.CMS.ext['ajaxform'] = {
-        decorate: function($ctx){
-            $ctx.find('.Form-Ajax').submit(function(){
-                
-                var $form = $(this);
-                var jcrcontent = false;
-                $form.find('input,select,textarea').each(function(idx,inp){
-                    if(inp.name.indexOf('jcr:content') != -1){
-                        jcrcontent = true;
-                    }
-                });
-                if($form.data('addDate') && $form.find('input[name="jcr:content/jcr:lastModified"]').length == 0){
-                    if(jcrcontent){
-                        $form.append('<input type="hidden" name="jcr:content/jcr:lastModified" />');
-                        $form.append('<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />');
-                        $form.append('<input type="hidden" name="jcr:content/jcr:created" />');
-                        $form.append('<input type="hidden" name="jcr:content/jcr:createdBy" />');
-                    } else {
-                        $form.append('<input type="hidden" name="jcr:lastModified" />');
-                        $form.append('<input type="hidden" name="jcr:lastModifiedBy" />');
-                        $form.append('<input type="hidden" name="jcr:created" />');
-                        $form.append('<input type="hidden" name="jcr:createdBy" />');
-                    }
-                }
-                var callback = $form.data('callback');
-                var data = new FormData(this);
-                $form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
-                $.ajax({
-                    url: $form.attr('action'),
-                    type: 'POST',
-                    data: data,
-                    processData: false,
-                    contentType: false,
-                    dataType: 'json',
-                    success: function(res,msg){
-                        if (callback && Sling.CMS.ext[callback]){
-                            Sling.CMS.ext[callback](res, msg);
-                        } else {
-                            Sling.CMS.ext.reload(res, msg);
-                        }
-                    },
-                    error: function(xhr, msg, err){
-                        if(window.self !== window.top){
-                            window.top.Sling.CMS.ui.confirmMessage(msg, err,function(){
-                                $form.find('.Form-Ajax__wrapper').removeAttr('disabled');
-                            });
-                        } else {
-                            Sling.CMS.ui.confirmMessage(msg, err,function(){
-                                $form.find('.Form-Ajax__wrapper').removeAttr('disabled');
-                            });
-                        }
-                    }
-                });
-                return false;
-            });
-        }
-    };
-    Sling.CMS.ext['load-versions'] = {
-        loaded: false,
-        decorate: function($ctx) {
-            if(!Sling.CMS.ext['load-versions'].loaded){
-                $ctx.find('.load-versions').each(function(){
-                    var $ctr = $(this);
-                    var $table = $ctr.closest('.table');
-                    $.getJSON($ctr.data('url'),function(res){
-                        $table.dataTable().api().destroy();
-                        var source   = $('#'+$ctr.data('template')).html();
-                        var template = Handlebars.compile(source);
-                        $ctr.append(template(res));
-                        Sling.CMS.ext['load-versions'].loaded = true;
-                        Sling.CMS.decorate($ctr.closest('.version-container'));
-                    });
-                });
-            }
-        }
-    };
 
-    Sling.CMS.ext['getform'] = {
-        decorate: function($ctx){
-            $ctx.find('.Get-Form').submit(function(){
-                var $form = $(this);
-                var params = $form.serialize();
-                $form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
-                
-                $($form.data('target')).load($form.attr('action') + '?' + params +'  ' + $form.data('load'), function(){
-                    $form.find('.Form-Ajax__wrapper').removeAttr('disabled');
-                    Sling.CMS.decorate($($form.data('target')));
-                });
-                return false;
-            });
-        }
-    };
 
     Sling.CMS.ext['includeconfig'] = {
         decorate: function($ctx){
@@ -209,9 +118,9 @@ Sling.CMS = {
     }
 
     Sling.CMS.ext['handleugc'] = function(res, msg){
-		Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-			window.location = '/cms/usergenerated/content.html'+res.parentLocation;
-		});
+        Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+            window.location = '/cms/usergenerated/content.html'+res.parentLocation;
+        });
     }
 
     Sling.CMS.ext['namehint'] = {
@@ -309,7 +218,26 @@ Sling.CMS = {
             });
         }
     };
-    
+    Sling.CMS.ext['load-versions'] = {
+            loaded: false,
+            decorate: function($ctx) {
+                if(!Sling.CMS.ext['load-versions'].loaded){
+                    $ctx.find('.load-versions').each(function(){
+                        var $ctr = $(this);
+                        var $table = $ctr.closest('.table');
+                        $.getJSON($ctr.data('url'),function(res){
+                            $table.dataTable().api().destroy();
+                            var source   = $('#'+$ctr.data('template')).html();
+                            var template = Handlebars.compile(source);
+                            $ctr.append(template(res));
+                            Sling.CMS.ext['load-versions'].loaded = true;
+                            Sling.CMS.decorate($ctr.closest('.version-container'));
+                        });
+                    });
+                }
+            }
+        };
+
     Sling.CMS.ext['richtext'] = {
         decorate: function($ctx){
             $ctx.find('.richtext').summernote({
