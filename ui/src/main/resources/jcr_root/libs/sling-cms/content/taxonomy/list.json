@@ -1,102 +1,102 @@
 {
-	"jcr:primaryType": "sling:Page",
-	"jcr:content": {
-		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Taxonomy",
-		"jcr:primaryType": "nt:unstructured",
-		"container": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/general/container",
-			"contentactions": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentactions",
-				"actions": {
-					"taxonomy": {
-						"jcr:primaryType": "nt:unstructured",
-						"label": "Taxonomy Item",
-						"prefix": "/cms/taxonomy/create.html"
-					}
-				}
-			},
-			"contentbreadcrumb": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
-				"depth": 2,
-				"prefix": "/cms/taxonomy/list.html"
-			},
-			"contenttable": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/contenttable",
-				"columns": {
-					"jcr:primaryType": "nt:unstructured",
-					"name": {
-						"jcr:primaryType": "nt:unstructured",
-						"title": "Name"
-					},
-					"title": {
-						"jcr:primaryType": "nt:unstructured",
-						"title": "Title"
-					},
-					"lastModified": {
-						"jcr:primaryType": "nt:unstructured",
-						"title": "Last Modified"
-					},
-					"actions": {
-						"jcr:primaryType": "nt:unstructured",
-						"title": "Actions"
-					}
-				},
-				"types": {
-					"jcr:primaryType": "nt:unstructured",
-					"sling:Taxonomy":{
-						"jcr:primaryType": "nt:unstructured",
-						"columns": {
-							"jcr:primaryType": "nt:unstructured",
-							"name": {
-								"jcr:primaryType": "nt:unstructured",
-								"sling:resourceType": "sling-cms/components/cms/columns/name",
-								"link": true,
-								"prefix": "/cms/taxonomy/list.html"
-							},
-							"title": {
-								"jcr:primaryType": "nt:unstructured",
-								"sling:resourceType": "sling-cms/components/cms/columns/text",
-								"property": "jcr:title"
-							},
-							"lastModified": {
-								"jcr:primaryType": "nt:unstructured",
-								"sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
-								"subPath": ""
-							},
-							"actions": {
-								"jcr:primaryType": "nt:unstructured",
-								"sling:resourceType": "sling-cms/components/cms/columns/actions",
-								"edit": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"title": "Edit Taxonomy Item",
-									"icon": "pencil-f",
-									"prefix": "/cms/taxonomy/edit.html"
-								},
-								"movecopy": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"title": "Move / Copy Taxonomy Item",
-									"icon": "move-alt",
-									"prefix": "/cms/shared/movecopy.html"
-								},
-								"delete": {
-									"jcr:primaryType": "nt:unstructured",
-									"modal": true,
-									"title": "Delete Taxonomy Item",
-									"icon": "trash",
-									"prefix": "/cms/shared/delete.html"
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Taxonomy",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "contentactions": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentactions",
+                "actions": {
+                    "taxonomy": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "Taxonomy Item",
+                        "prefix": "/cms/taxonomy/create.html"
+                    }
+                }
+            },
+            "contentbreadcrumb": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
+                "depth": 2,
+                "prefix": "/cms/taxonomy/list.html"
+            },
+            "contenttable": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contenttable",
+                "columns": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "name": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Name"
+                    },
+                    "title": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Title"
+                    },
+                    "lastModified": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Last Modified"
+                    },
+                    "actions": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Actions"
+                    }
+                },
+                "types": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:Taxonomy": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "columns": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "name": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/name",
+                                "link": true,
+                                "prefix": "/cms/taxonomy/list.html"
+                            },
+                            "title": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/text",
+                                "property": "jcr:title"
+                            },
+                            "lastModified": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
+                                "subPath": ""
+                            },
+                            "actions": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                                "edit": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Edit Taxonomy Item",
+                                    "icon": "pencil-f",
+                                    "prefix": "/cms/taxonomy/edit.html"
+                                },
+                                "movecopy": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Move / Copy Taxonomy Item",
+                                    "icon": "move-alt",
+                                    "prefix": "/cms/shared/movecopy.html"
+                                },
+                                "delete": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Delete Taxonomy Item",
+                                    "icon": "trash",
+                                    "prefix": "/cms/shared/delete.html"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
