@@ -52,30 +52,59 @@
             console.log("decorating element " + node + node.name);
         }
         var configSet;
-        if (elementMap.has(node)){
+        if (elementMap.has(node)) {
             configSet = elementMap.get(node);
         } else {
             configSet = new Set();
-            elementMap.set(node,configSet);
+            elementMap.set(node, configSet);
         }
-        if (configSet.has(config)){
+        if (configSet.has(config)) {
             return;
         }
         configSet.add(config);
+        var configInstance = new config();
         var names = Object.getOwnPropertyNames(config.prototype);
+        var keys = Object.keys(configInstance);
         names.forEach(function(name) {
-            if (debug) {
-                console.log("   decorating " + name);
-            }
-            if (name.indexOf("::") !== -1) {
-                registerEventHandler(node, name, config.prototype[name]);
-            } else {
-                node[name] = config.prototype[name];
+            if (name !== "constructor") {
+                if (debug) {
+                    console.log("   decorating " + name);
+                }
+                if (name.indexOf("::") !== -1) {
+                    registerEventHandler(node, name, configInstance[name]);
+                } else {
+                    node[name] = configInstance[name];
+                }
             }
         });
-        if (node['init']) {
-            node['init'].call(node);
+        keys.forEach(function(key) {
+            if (debug) {
+                console.log("   decorating " + key);
+            }
+            node[key] = configInstance[key];
+        });
+        if (node['nomnomCallback']) {
+            node['nomnomCallback'].call(node);
         }
+    };
+
+    // generic function to wrap the event handler in the case that
+    // we only want it to fire for a specific child event
+    var targetedEventHandler = function(fn, correctTarget) {
+        return function(event) {
+            if (!event.target.matches(correctTarget)) {
+                return;
+            }
+            fn.apply(this, arguments);
+        };
+    };
+
+    // generic function to disable default event bubbling
+    var disableEventDefault = function(fn) {
+        return function(event) {
+            event.preventDefault();
+            fn.apply(this, arguments);
+        };
     };
 
     var registerEventHandler = function(node, propertyName, func) {
@@ -87,37 +116,19 @@
         if (childSelector[1]) {
             console.log("capture bubbling events for " + childSelector[1]);
             eventName = childSelector[0];
+            func = targetedEventHandler(func, childSelector[1]);
         }
-        if (selector === "this") {
-            node.addEventListener(eventName, function(event) {
-                if (childSelector[1]) {
-                    if (!event.target.matches(childSelector[1])) {
-                        return;
-                    }
-                }
-                func.call(node, event);
-            });
-            return;
+        if (selector === "handle") {
+            func = disableEventDefault(func);
         }
-        if (selector === "handler") {
+        if (selector === "listen" || selector === "handle") {
             node.addEventListener(eventName, function(event) {
-                event.preventDefault();
-                if (childSelector[1]) {
-                    if (!event.target.matches(childSelector[1])) {
-                        return;
-                    }
-                }
                 func.call(node, event);
             });
             return;
         }
         if (selector === "document") {
             document.addEventListener(eventName, function(event) {
-                if (childSelector[1]) {
-                    if (!event.target.matches(childSelector[1])) {
-                        return;
-                    }
-                }
                 func.call(node, event);
             });
             return;
@@ -137,7 +148,7 @@
                     if (found) {
                         found.forEach(function(item) {
                             if (debug) {
-                                console.log("html node found for " + selector);
+                                console.log("node found for " + selector);
                             }
                             wrap(item, tagSelectors[selector])
                         });

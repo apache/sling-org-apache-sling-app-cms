@@ -18,7 +18,7 @@
  */
 
 nomnom.decorate(".navbar-burger", class {
-  "click::this"() {
+  "click::listen"() {
     var target = document.querySelector(this.dataset.target);
     target.classList.toggle('is-active');
     this.classList.toggle('is-active');

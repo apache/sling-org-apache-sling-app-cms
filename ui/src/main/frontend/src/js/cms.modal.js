@@ -18,7 +18,7 @@
  */
 nomnom.decorate("a.Fetch-Modal", class {
     
-    "click::handler"() {
+    "click::handle"() {
         this.setAttribute("disabled",'disabled');
         this.getModal(this.getAttribute('data-title'), encodeURI(this.getAttribute('href')), this.getAttribute('data-path'));
     }

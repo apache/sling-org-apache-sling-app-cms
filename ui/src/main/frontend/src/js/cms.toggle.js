@@ -18,13 +18,13 @@
  */
 
 nomnom.decorate('.toggle-hidden' , class {
-    "click::this"(){
+    "click::listen"(){
         $($(this).data('target')).toggleClass('is-hidden');
     }
 });
     
 nomnom.decorate('.toggle-value', class {
-    init(){
+    nomnomCallback(){
         var source = this.getAttribute('data-toggle-source');
         var selector = 'input[name="'+ source +'"], select[name="'+ selector +'"]';
         var $tog = $(this);

@@ -18,7 +18,7 @@
  */
 
 nomnom.decorate(".file",class {
-    "change:input::this"(event){
+    "change:input::listen"(event){
         var nameField = this.querySelector('.file-name');
         if (nameField){
             nameField.textContent = event.target.files[0].name;

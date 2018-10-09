@@ -62,8 +62,6 @@ Sling.CMS = {
         }
     };
 
-
-
     Sling.CMS.ext['includeconfig'] = {
         decorate: function($ctx){
             $ctx.find('.sling-cms-include-config').each(function(){
@@ -204,10 +202,6 @@ Sling.CMS = {
         }
     };
     
-
-    
-
-
     Sling.CMS.ext['suffix-form'] = {
         init: function() {
             $('.suffix-form').submit(function(){
@@ -239,17 +233,13 @@ Sling.CMS = {
         }
     };
 
-
-    
-
-
     $(document).ready(function() {
         Sling.CMS.init();
     });
 
 nomnom.decorate(".table .load-versions", class {
    
-    init(){
+    nomnomCallback(){
         var $ctr = $(this);
         var $table = $ctr.closest('.table');
         $.getJSON($ctr.data('url'),function(res){
@@ -264,7 +254,7 @@ nomnom.decorate(".table .load-versions", class {
 
 nomnom.decorate('.search-button', class {
     
-    "click::this"(event) {
+    "click::listen"(event) {
         Sling.CMS.ext['searchbutton'] =  Sling.CMS.ext['searchbutton'] || {};
         var searchbutton = Sling.CMS.ext['searchbutton'];
         searchbutton.active = $(event.target).closest('.field').find('.pathfield');
@@ -274,7 +264,7 @@ nomnom.decorate('.search-button', class {
 
 nomnom.decorate('.search-select-button', class {
    
-    "click::this"(event) {
+    "click::listen"(event) {
         var $btn = $(evt.target);
         var $active = Sling.CMS.ext['searchbutton'].active;
         $active.val($btn.data('path'));
@@ -284,7 +274,7 @@ nomnom.decorate('.search-select-button', class {
 });
 
 nomnom.decorate('.taxonomy', class {
-    "click::this"(){
+    "click::listen"(){
         var $rep = $(this);
         $rep.find('.taxonomy__add').click(function(){
             var $span = $('<span/>').html($rep.find('.taxonomy__template').html());
@@ -313,7 +303,7 @@ nomnom.decorate('.taxonomy', class {
 });
         
 nomnom.decorate('.taxonomy__item', class {
-    "click::this"(){
+    "click::listen"(){
         $(this).remove();
         return false;
     }

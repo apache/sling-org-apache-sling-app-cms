@@ -19,7 +19,7 @@
 
 
 nomnom.decorate(".Form-Ajax", class {
-    "submit::handler"(){
+    "submit::handle"(){
         var $form = $(this);
         var jcrcontent = false;
         $form.find('input,select,textarea').each(function(idx,inp){
@@ -75,7 +75,7 @@ nomnom.decorate(".Form-Ajax", class {
 
 
 nomnom.decorate('.Get-Form', class {
-    "submit::handler"(){
+    "submit::handle"(){
         var $form = $(this);
         var params = $form.serialize();
         $form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');

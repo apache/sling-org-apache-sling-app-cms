@@ -19,17 +19,17 @@
 
 nomnom.decorate(".is-draggable", class {
   
-  init() {
-    this.dragData = {
-        mouseX : 0,
-        mouseY : 0,
-        mouseDown : false,
-        elementX : 0,
-        elementY : 0
-      };
-  }
+    nomnomCallback() {
+        this.dragData = {
+            mouseX : 0,
+            mouseY : 0,
+            mouseDown : false,
+            elementX : 0,
+            elementY : 0
+          };
+    }
   
-  "mousedown::this"(event) {
+  "mousedown::listen"(event) {
     if(event.target.matches('.modal-card-body *')){
       return;
     }
