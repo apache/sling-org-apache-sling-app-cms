@@ -19,7 +19,7 @@
 
 nomnom.decorate(".is-draggable", class {
   
-    nomnomCallback() {
+    initCallback() {
         this.dragData = {
             mouseX : 0,
             mouseY : 0,
@@ -28,6 +28,15 @@ nomnom.decorate(".is-draggable", class {
             elementY : 0
           };
     }
+    
+    
+    moveComplete(){
+      this.dragData.mouseDown = false;
+      this.dragData.elementX = parseInt(this.style.left) || 0;
+      this.dragData.elementY = parseInt(this.style.top) || 0;
+      return false;
+    }
+    
   
   "mousedown::listen"(event) {
     if(event.target.matches('.modal-card-body *')){
@@ -43,14 +52,6 @@ nomnom.decorate(".is-draggable", class {
       this.moveComplete();
     }
   }
-  
-  moveComplete(){
-    this.dragData.mouseDown = false;
-    this.dragData.elementX = parseInt(this.style.left) || 0;
-    this.dragData.elementY = parseInt(this.style.top) || 0;
-    return false;
-  }
-  
 
   "mousemove::document"(event){
       if (this.dragData.mouseDown === false) {

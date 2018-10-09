@@ -24,10 +24,9 @@
             console.log("storing selector" + selector);
         }
         tagSelectors[selector] = config;
-        var nodes = document.querySelectorAll(selector);
-        for (var index = 0; index < nodes.length; ++index) {
-            wrap(nodes[index], config);
-        }
+        document.querySelectorAll(selector).forEach(function(node){
+            wrap(node, config);
+        });
     };
 
     var tagSelectors = {};
@@ -66,15 +65,16 @@
         var names = Object.getOwnPropertyNames(config.prototype);
         var keys = Object.keys(configInstance);
         names.forEach(function(name) {
-            if (name !== "constructor") {
-                if (debug) {
-                    console.log("   decorating " + name);
-                }
-                if (name.indexOf("::") !== -1) {
-                    registerEventHandler(node, name, configInstance[name]);
-                } else {
-                    node[name] = configInstance[name];
-                }
+            if (name === "constructor") {
+                return;
+            }
+            if (debug) {
+                console.log("   decorating " + name);
+            }
+            if (name.indexOf("::") !== -1) {
+                registerEventHandler(node, name, configInstance[name]);
+            } else {
+                node[name] = configInstance[name];
             }
         });
         keys.forEach(function(key) {
@@ -83,8 +83,8 @@
             }
             node[key] = configInstance[key];
         });
-        if (node['nomnomCallback']) {
-            node['nomnomCallback'].call(node);
+        if (node['initCallback']) {
+            node['initCallback'].call(node);
         }
     };
 
@@ -136,25 +136,27 @@
     }
 
     var check = function(node) {
-        if (node.querySelectorAll) {
-            for ( var selector in tagSelectors) {
-                if (debug) {
-                    console.log("checking new nodes for " + selector);
-                }
-                if (node.matches(selector)) {
-                    wrap(node, tagSelectors[selector]);
-                } else {
-                    var found = node.querySelectorAll(":scope " + selector);
-                    if (found) {
-                        found.forEach(function(item) {
-                            if (debug) {
-                                console.log("node found for " + selector);
-                            }
-                            wrap(item, tagSelectors[selector])
-                        });
-                    }
-                }
+        if (!node.querySelectorAll) {
+            return;
+        }
+        for ( var selector in tagSelectors) {
+            if (debug) {
+                console.log("checking new nodes for " + selector);
             }
+            if (node.matches(selector)) {
+                wrap(node, tagSelectors[selector]);
+                return;
+            }
+            var found = node.querySelectorAll(":scope " + selector);
+            if (!found) {
+                return;
+            }
+            found.forEach(function(item) {
+                if (debug) {
+                    console.log("node found for " + selector);
+                }
+                wrap(item, tagSelectors[selector])
+            });
         }
     };
 

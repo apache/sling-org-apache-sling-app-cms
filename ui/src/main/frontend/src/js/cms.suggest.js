@@ -18,7 +18,7 @@
  */
 
 nomnom.decorate("input.pathfield", class {
-    nomnomCallback(){
+    initCallback(){
         var type = $(this).data('type');
         var base = $(this).data('base');
         var xhr;
