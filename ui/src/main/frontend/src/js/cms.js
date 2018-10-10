@@ -47,9 +47,20 @@ Sling.CMS = {
                     $modal.css('display','none').remove();
                     complete();
                 });
+                $modal.find('.delete,.close-modal').focus();
                 return $modal;
+            },
+            confirmReload: function(res, msg) {
+                if(window.self !== window.top){
+                    window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                        window.top.location.reload();
+                    });
+                } else {
+                    Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                        location.reload();
+                    });
+                }
             }
-
         },
         utils: {
             form2Obj: function ($form){
@@ -62,8 +73,6 @@ Sling.CMS = {
         }
     };
 
-
-
     Sling.CMS.ext['handlemove'] = function(res, msg){
         var changes = res.changes[0];
         if(changes.type === 'moved' && window.location.pathname.indexOf(changes.argument[0]) !== -1){
@@ -71,7 +80,7 @@ Sling.CMS = {
                 window.location = window.location.href.replace(changes.argument[0], changes.argument[1]);
             });
         } else {
-            Sling.CMS.ext.reload(res, msg);
+            Sling.CMS.ui.confirmReload(res, msg);
         }
     }
 
@@ -117,18 +126,6 @@ Sling.CMS = {
             });
         }
     };
-
-    Sling.CMS.ext['reload'] = function(res, msg) {
-        if(window.self !== window.top){
-            window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                window.top.location.reload();
-            });
-        } else {
-            Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                location.reload();
-            });
-        }
-    }
  
     Sling.CMS.ext['handledelete'] = function(res, msg){
         if(window.location.pathname.indexOf(res.path) !== -1){
@@ -136,10 +133,9 @@ Sling.CMS = {
                 window.location = '/cms';
             });
         } else {
-            Sling.CMS.ext.reload(res, msg);
+            Sling.CMS.ui.confirmReload(res, msg);
         }
     }
-
 
     Sling.CMS.ext['richtext'] = {
         decorate: function($ctx){

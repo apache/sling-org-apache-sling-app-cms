@@ -55,7 +55,7 @@ nomnom.decorate(".Form-Ajax", class {
                 if (callback && Sling.CMS.ext[callback]){
                     Sling.CMS.ext[callback](res, msg);
                 } else {
-                    Sling.CMS.ext.reload(res, msg);
+                    Sling.CMS.ui.confirmReload(res, msg);
                 }
             },
             error: function(xhr, msg, err){
