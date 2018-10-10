@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="${properties.addDate != false}" data-callback="${properties.callback}">
-	<div class="Form-Ajax__wrapper field">
+	<fieldset class="form-wrapper field">
 		<input type="hidden" name="_charset_" value="utf-8" />
 		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
 		<div class="Field-Group">
@@ -26,5 +26,5 @@
 				<sling:encode value="${properties.button}" mode="HTML" />
 			</button>
 		</div>
-	</div>
+	</fieldset>
 </form>

@@ -97,7 +97,7 @@ Sling.CMS = {
         decorate: function($ctx){
             $ctx.find('.Sling-CMS__page-properties').each(function(){
                 var $ctr = $(this);
-                var $wrapper = $ctr.closest('.Form-Ajax__wrapper');
+                var $wrapper = $ctr.closest('.form-wrapper');
                 $($ctr.data('source')).change(function(){
                     var config = $(this).val();
                     $ctr.load($ctr.data('path')+config, function(){

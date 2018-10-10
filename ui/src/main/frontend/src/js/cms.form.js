@@ -43,7 +43,7 @@ nomnom.decorate(".Form-Ajax", class {
         }
         var callback = $form.data('callback');
         var data = new FormData(this);
-        $form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
+        $form.find('.form-wrapper').attr('disabled', 'disabled');
         $.ajax({
             url: $form.attr('action'),
             type: 'POST',
@@ -61,11 +61,11 @@ nomnom.decorate(".Form-Ajax", class {
             error: function(xhr, msg, err){
                 if(window.self !== window.top){
                     window.top.Sling.CMS.ui.confirmMessage(msg, err,function(){
-                        $form.find('.Form-Ajax__wrapper').removeAttr('disabled');
+                        $form.find('.form-wrapper').removeAttr('disabled');
                     });
                 } else {
                     Sling.CMS.ui.confirmMessage(msg, err,function(){
-                        $form.find('.Form-Ajax__wrapper').removeAttr('disabled');
+                        $form.find('.form-wrapper').removeAttr('disabled');
                     });
                 }
             }
@@ -79,9 +79,9 @@ nomnom.decorate('.Get-Form', class {
     "submit::"(){
         var $form = $(this);
         var params = $form.serialize();
-        $form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
+        $form.find('.form-wrapper').attr('disabled', 'disabled');
         $($form.data('target')).load($form.attr('action') + '?' + params +'  ' + $form.data('load'), function(){
-            $form.find('.Form-Ajax__wrapper').removeAttr('disabled');
+            $form.find('.form-wrapper').removeAttr('disabled');
         });
         return false;
     }

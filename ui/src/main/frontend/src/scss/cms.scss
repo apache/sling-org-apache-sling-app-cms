@@ -22,78 +22,93 @@
 @import "../../node_modules/bulma/bulma.sass";
 @import "../../node_modules/datatables-bulma/css/dataTables.bulma.css";
 body.cms {
-	min-height: 100vh;
-	@media screen and (min-width: $tablet), print {
-		background: url(../img/gradient.jpg) no-repeat;
-		background-attachment: fixed;
-	}
-	@media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
-		padding-left: 2em;
-	}
+    min-height: 100vh;
+    @media screen and (min-width: $tablet), print {
+        background: url(../img/gradient.jpg) no-repeat;
+        background-attachment: fixed;
+    }
+    @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+        padding-left: 2em;
+    }
 }
 
 dl {
-	padding: 1em 0;
+    padding: 1em 0;
 }
 
 dd {
-	padding-left: 1em;
+    padding-left: 1em;
 }
 
 dt {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 h1 {
-	font-size: 200%;
+    font-size: 200%;
 }
 
 h2 {
-	font-size: 180%;
+    font-size: 180%;
 }
 
 h3 {
-	font-size: 160%;
+    font-size: 160%;
 }
 
 h4 {
-	font-size: 140%;
+    font-size: 140%;
 }
 
 h5 {
-	font-size: 120%;
+    font-size: 120%;
 }
 
 .editor-page {
-	overflow-y: auto;
+    overflow-y: auto;
+}
+
+.form-wrapper {
+    border: none;
+}
+
+.form-wrapper[disabled] .button,
+.form-wrapper[disabled] .input,
+.form-wrapper[disabled] select,
+.form-wrapper[disabled] .textarea {
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    box-shadow: none;
+    color: #7a7a7a;
+    cursor: not-allowed;
 }
 
 .is-draggable {
-	position: relative;
+    position: relative;
 }
 
 .menu-label {
-	text-transform: none;
-	font-size: 1.25em;
-	letter-spacing: normal;
+    text-transform: none;
+    font-size: 1.25em;
+    letter-spacing: normal;
 }
 
 .note-group-select-from-files {
-	display: none;
+    display: none;
 }
 
 .note-toolbar-wrapper {
-	height: auto !important;
+    height: auto !important;
 }
 
 .reference-list {
-	max-height: 200px;
-	overflow: auto;
+    max-height: 200px;
+    overflow: auto;
 }
 
 .preview {
-	max-width: 100%;
-	padding: 1em;
+    max-width: 100%;
+    padding: 1em;
 }
 
 #search-results .tile {
@@ -106,22 +121,22 @@ table.dataTable thead .sorting_asc:after,
 table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:after {
-	font-family: 'jam-icons';
+    font-family: 'jam-icons';
 }
 
 table.dataTable thead .sorting:after {
-	content: "\e943"
+    content: "\e943"
 }
 
 table.dataTable thead .sorting_asc:after {
-	content: "\e93f"
+    content: "\e93f"
 }
 
 table.dataTable thead .sorting_desc:after {
-	content: "\e92a"
+    content: "\e92a"
 }
 
 .table tr.is-selected {
-	background-color: lighten($gray, 50%);
-	color: $grey-darker;
+    background-color: lighten($gray, 50%);
+    color: $grey-darker;
 }
