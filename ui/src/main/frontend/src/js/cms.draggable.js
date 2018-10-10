@@ -38,7 +38,7 @@ nomnom.decorate(".is-draggable", class {
     }
     
   
-  "mousedown::listen"(event) {
+  "mousedown::"(event) {
     if(event.target.matches('.modal-card-body *')){
       return;
     }

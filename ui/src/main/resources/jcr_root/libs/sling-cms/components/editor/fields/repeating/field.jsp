@@ -44,7 +44,7 @@
 		 	</div>
 	 	</c:forEach>
  	</div>
- 	<button class="repeating__add button">
+ 	<button type="button" class="repeating__add button">
 		 <span class="jam jam-plus"></span>
  	</button>
  </div>

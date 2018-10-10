@@ -62,34 +62,7 @@ Sling.CMS = {
         }
     };
 
-    Sling.CMS.ext['includeconfig'] = {
-        decorate: function($ctx){
-            $ctx.find('.sling-cms-include-config').each(function(){
-                var $ctr = $(this);
-                var load = function(){
-                    var config = $($ctr.data('source')).find('option:selected').data('config');
-                    
-                    if(config){
-                        $ctr.load(config + $ctr.parents('form').attr('action'), function(){
-                            Sling.CMS.decorate($ctr.children());
-                        });
-                    }
-                };
-                $($ctr.data('source')).change(load);
-                load();
-            });
-        }
-    };
 
-    Sling.CMS.ext['handledelete'] = function(res, msg){
-        if(window.location.pathname.indexOf(res.path) !== -1){
-            window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                window.location = '/cms';
-            });
-        } else {
-            Sling.CMS.ext.reload(res, msg);
-        }
-    }
 
     Sling.CMS.ext['handlemove'] = function(res, msg){
         var changes = res.changes[0];
@@ -157,24 +130,15 @@ Sling.CMS = {
         }
     }
  
-    Sling.CMS.ext['repeating'] = {
-        decorate: function($ctx){
-            $ctx.find('.repeating').each(function(){
-                var $rep = $(this);
-                $rep.find('.repeating__add').click(function(){
-                    var $div = $('<div/>').html($rep.find('.repeating__template').html());
-                    Sling.CMS.decorate($div);
-                    $rep.find('.repeating__container').append($div);
-                    return false;
-                });
+    Sling.CMS.ext['handledelete'] = function(res, msg){
+        if(window.location.pathname.indexOf(res.path) !== -1){
+            window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                window.location = '/cms';
             });
-            $ctx.find('.repeating__remove').click(function(){
-                var $rem = $(this);
-                $rem.parents('.repeating__item').remove();
-                return false;
-            });
+        } else {
+            Sling.CMS.ext.reload(res, msg);
         }
-    };
+    }
 
 
     Sling.CMS.ext['richtext'] = {
@@ -212,26 +176,6 @@ Sling.CMS = {
             });
         }
     }
-    
-    Sling.CMS.ext['table'] = {
-        decorate: function($ctx) {
-            $ctx.find('table tbody tr').click(function(el){
-                $('.actions-target > *').appendTo('tr.is-selected .cell-actions')
-                $('tr').removeClass('is-selected');
-                $(this).addClass('is-selected');
-                $(this).find('.cell-actions > *').appendTo('.actions-target')
-            });
-
-            $ctx.find('table').each(function(){
-                var sort = $(this).data('sort') !== 'false';
-                var paginate = $(this).data('paginate') !== 'false';
-                $(this).DataTable({
-                    sort: sort,
-                    paginate: paginate
-                });
-            });
-        }
-    };
 
     $(document).ready(function() {
         Sling.CMS.init();
@@ -239,7 +183,7 @@ Sling.CMS = {
 
 nomnom.decorate(".table .load-versions", class {
    
-    nomnomCallback(){
+    initCallback(){
         var $ctr = $(this);
         var $table = $ctr.closest('.table');
         $.getJSON($ctr.data('url'),function(res){
@@ -306,6 +250,45 @@ nomnom.decorate('.taxonomy__item', class {
     "click::listen"(){
         $(this).remove();
         return false;
+    }
+});
+
+nomnom.decorate(".table", class {
+   
+    initCallback(){
+        var $table = $(this);
+        var sort = $table.data('sort') !== 'false';
+        var paginate = $table.data('paginate') !== 'false';
+        $table.DataTable({
+            sort: sort,
+            paginate: paginate
+        });
+    }
+    
+    "click::tbody tr > *"(event) {
+        $('.actions-target > *').appendTo('tr.is-selected .cell-actions');
+        $(this).find('tr').removeClass('is-selected');
+        var $target = $(event.target).closest("tr");
+        $target.addClass('is-selected');
+        $target.find('.cell-actions > *').appendTo('.actions-target')
+    }
+    
+});
+
+nomnom.decorate('.sling-cms-include-config', class {
+    initCallback() {
+        var $ctr = $(this);
+        var load = function(){
+            var config = $($ctr.data('source')).find('option:selected').data('config');
+            
+            if(config){
+                $ctr.load(config + $ctr.parents('form').attr('action'), function(){
+                    Sling.CMS.decorate($ctr.children());
+                });
+            }
+        };
+        $($ctr.data('source')).change(load);
+        load();
     }
 });
 

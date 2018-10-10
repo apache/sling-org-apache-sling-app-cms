@@ -18,8 +18,8 @@
  */
 
 nomnom.decorate(".file",class {
-    "change:input::listen"(event){
-        var nameField = this.querySelector('.file-name');
+    "change::input"(event){
+        var nameField = this.querySelector(':scope .file-name');
         if (nameField){
             nameField.textContent = event.target.files[0].name;
         }

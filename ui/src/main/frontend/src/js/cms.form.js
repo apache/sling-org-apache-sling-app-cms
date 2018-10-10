@@ -19,7 +19,8 @@
 
 
 nomnom.decorate(".Form-Ajax", class {
-    "submit::handle"(){
+    "submit::"(event){
+        event.preventDefault();
         var $form = $(this);
         var jcrcontent = false;
         $form.find('input,select,textarea').each(function(idx,inp){
@@ -75,11 +76,10 @@ nomnom.decorate(".Form-Ajax", class {
 
 
 nomnom.decorate('.Get-Form', class {
-    "submit::handle"(){
+    "submit::"(){
         var $form = $(this);
         var params = $form.serialize();
         $form.find('.Form-Ajax__wrapper').attr('disabled', 'disabled');
-        
         $($form.data('target')).load($form.attr('action') + '?' + params +'  ' + $form.data('load'), function(){
             $form.find('.Form-Ajax__wrapper').removeAttr('disabled');
         });
@@ -88,3 +88,17 @@ nomnom.decorate('.Get-Form', class {
     
 });
 
+nomnom.decorate(".repeating", class {
+
+    "click::.repeating__add"() {
+        var $rep = $(this);
+        var $div = $("<div/>").html($rep.find(".repeating__template").html());
+        $rep.find(".repeating__container").append($div);
+    }
+
+    "click::.repeating__remove"(event) {
+        event.preventDefault();
+        var $rem = $(event.target);
+        $rem.parents(".repeating__item").remove();
+    }
+});

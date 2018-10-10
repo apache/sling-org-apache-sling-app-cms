@@ -18,7 +18,7 @@
  */
 
 nomnom.decorate('.toggle-hidden' , class {
-    "click::listen"(){
+    "click::"(){
         $($(this).data('target')).toggleClass('is-hidden');
     }
 });

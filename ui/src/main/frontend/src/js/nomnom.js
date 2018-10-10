@@ -24,7 +24,7 @@
             console.log("storing selector" + selector);
         }
         tagSelectors[selector] = config;
-        document.querySelectorAll(selector).forEach(function(node){
+        document.querySelectorAll(selector).forEach(function(node) {
             wrap(node, config);
         });
     };
@@ -83,8 +83,8 @@
             }
             node[key] = configInstance[key];
         });
-        if (node['initCallback']) {
-            node['initCallback'].call(node);
+        if (node.initCallback) {
+            node.initCallback.call(node);
         }
     };
 
@@ -93,70 +93,54 @@
     var targetedEventHandler = function(fn, correctTarget) {
         return function(event) {
             if (!event.target.matches(correctTarget)) {
+                console.log("ignoring "+ event.target.nodeName);
                 return;
             }
             fn.apply(this, arguments);
         };
     };
 
-    // generic function to disable default event bubbling
-    var disableEventDefault = function(fn) {
-        return function(event) {
-            event.preventDefault();
-            fn.apply(this, arguments);
-        };
-    };
-
     var registerEventHandler = function(node, propertyName, func) {
-        var elementIndex = propertyName.indexOf("::");
-        var eventName = propertyName.substring(0, elementIndex);
-        var selector = propertyName.substring(elementIndex + 2,
-                propertyName.length);
-        var childSelector = eventName.split(':');
-        if (childSelector[1]) {
-            console.log("capture bubbling events for " + childSelector[1]);
-            eventName = childSelector[0];
-            func = targetedEventHandler(func, childSelector[1]);
+        var values = propertyName.split("::");
+        var eventName = values[0];
+        var childSelector = values[1];
+
+        if (childSelector) {
+            if (childSelector !== "document") {
+                func = targetedEventHandler(func, childSelector);
+            }
         }
-        if (selector === "handle") {
-            func = disableEventDefault(func);
-        }
-        if (selector === "listen" || selector === "handle") {
-            node.addEventListener(eventName, function(event) {
-                func.call(node, event);
-            });
-            return;
-        }
-        if (selector === "document") {
+        if (childSelector === "document") {
             document.addEventListener(eventName, function(event) {
                 func.call(node, event);
             });
             return;
         }
-    }
+        node.addEventListener(eventName, function(event) {
+            func.call(node, event);
+        });
+    };
 
     var check = function(node) {
         if (!node.querySelectorAll) {
             return;
         }
         for ( var selector in tagSelectors) {
+            let found = false;
             if (debug) {
-                console.log("checking new nodes for " + selector);
+                console.log("checking nodes for " + selector);
             }
             if (node.matches(selector)) {
+                found = true;
                 wrap(node, tagSelectors[selector]);
-                return;
             }
-            var found = node.querySelectorAll(":scope " + selector);
-            if (!found) {
-                return;
-            }
-            found.forEach(function(item) {
-                if (debug) {
-                    console.log("node found for " + selector);
-                }
+            node.querySelectorAll(":scope " + selector).forEach(function(item) {
+                found = true;
                 wrap(item, tagSelectors[selector])
             });
+            if (found && debug) {
+                console.log("node found for " + selector);
+            }
         }
     };
 
