@@ -92,7 +92,6 @@
     var targetedEventHandler = function(fn, correctTarget) {
         return function(event) {
             if (!event.target.matches(correctTarget)) {
-                console.log("ignoring " + event.target.nodeName);
                 return;
             }
             fn.apply(this, arguments);
