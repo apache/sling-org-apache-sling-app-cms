@@ -17,8 +17,8 @@
  * under the License.
  */
 
-nomnom.decorate("input.pathfield", class {
-    initCallback(){
+nomnom.decorate("input.pathfield", {
+    initCallback: function(){
         var type = $(this).data('type');
         var base = $(this).data('base');
         Sling.CMS.ui.suggest(this, type, base);

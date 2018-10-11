@@ -17,13 +17,16 @@
  * under the License.
  */
 
-nomnom.decorate('.toggle-hidden' , class {
-    "click::"(){
-        $($(this).data('target')).toggleClass('is-hidden');
+nomnom.decorate('.toggle-hidden' , {
+    events : {
+        click: function() {
+            $($(this).data('target')).toggleClass('is-hidden');
+        }
     }
 });
-nomnom.decorate('.toggle-value', class {
-    initCallback(){
+    
+nomnom.decorate('.toggle-value', {
+    initCallback: function(){
         var source = this.getAttribute('data-toggle-source');
         var selector = 'input[name="'+ source +'"], select[name="'+ selector +'"]';
         var $tog = $(this);

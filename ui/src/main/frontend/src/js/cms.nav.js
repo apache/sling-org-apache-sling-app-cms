@@ -17,11 +17,13 @@
  * under the License.
  */
 
-nomnom.decorate(".navbar-burger", class {
-  "click::"() {
-    var target = document.querySelector(this.dataset.target);
-    target.classList.toggle('is-active');
-    this.classList.toggle('is-active');
-  }
+nomnom.decorate(".navbar-burger", {
+    events :{
+        click: function(){
+            var target = document.querySelector(this.dataset.target);
+            target.classList.toggle('is-active');
+            this.classList.toggle('is-active');
+        }
+    }
 });
 

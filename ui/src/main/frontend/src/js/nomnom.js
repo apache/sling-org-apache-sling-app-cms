@@ -61,9 +61,8 @@
             return;
         }
         configSet.add(config);
-        var configInstance = new config();
-        var names = Object.getOwnPropertyNames(config.prototype);
-        var keys = Object.keys(configInstance);
+        var names = Object.getOwnPropertyNames(config);
+        var keys = Object.keys(config);
         names.forEach(function(name) {
             if (name === "constructor") {
                 return;
@@ -71,17 +70,17 @@
             if (debug) {
                 console.log("   decorating " + name);
             }
-            if (name.indexOf("::") !== -1) {
-                registerEventHandler(node, name, configInstance[name]);
+            if (name === "events") {
+                registerEventHandlers(node, name, config[name]);
             } else {
-                node[name] = configInstance[name];
+                node[name] = config[name];
             }
         });
         keys.forEach(function(key) {
             if (debug) {
                 console.log("   decorating " + key);
             }
-            node[key] = configInstance[key];
+            node[key] = config[key];
         });
         if (node.initCallback) {
             node.initCallback.call(node);
@@ -93,32 +92,36 @@
     var targetedEventHandler = function(fn, correctTarget) {
         return function(event) {
             if (!event.target.matches(correctTarget)) {
-                console.log("ignoring "+ event.target.nodeName);
+                console.log("ignoring " + event.target.nodeName);
                 return;
             }
             fn.apply(this, arguments);
         };
     };
 
-    var registerEventHandler = function(node, propertyName, func) {
-        var values = propertyName.split("::");
-        var eventName = values[0];
-        var childSelector = values[1];
-
-        if (childSelector) {
-            if (childSelector !== "document") {
-                func = targetedEventHandler(func, childSelector);
+    var registerEventHandlers = function(node, propertyName, events) {
+        for ( var eventName in events) {
+            let possibleFunc = events[eventName];
+            if (typeof possibleFunc === "function") {
+                node.addEventListener(eventName, function(event) {
+                    possibleFunc.call(node, event);
+                });
+            } else {
+                let selector = eventName;
+                let targetNode = node;
+                for ( var childEventName in possibleFunc) {
+                    let func = targetedEventHandler(
+                            possibleFunc[childEventName], selector);
+                    if (selector == "document") {
+                        targetNode = document;
+                    }
+                    targetNode.addEventListener(childEventName,
+                            function(event) {
+                                func.call(node, event);
+                            });
+                }
             }
         }
-        if (childSelector === "document") {
-            document.addEventListener(eventName, function(event) {
-                func.call(node, event);
-            });
-            return;
-        }
-        node.addEventListener(eventName, function(event) {
-            func.call(node, event);
-        });
     };
 
     var check = function(node) {

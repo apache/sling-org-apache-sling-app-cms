@@ -16,15 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-nomnom.decorate("a.Fetch-Modal", class {
+nomnom.decorate("a.Fetch-Modal", {
     
-    "click::"(event) {
-        event.preventDefault();
-        this.setAttribute("disabled",'disabled');
-        this.getModal(this.getAttribute('data-title'), encodeURI(this.getAttribute('href')), this.getAttribute('data-path'));
-    }
-  
-    getModal(title, link, path, complete) {
+    events :{
+        click: function(event){
+            event.preventDefault();
+            this.setAttribute("disabled",'disabled');
+            this.getModal(this.getAttribute('data-title'), encodeURI(this.getAttribute('href')), this.getAttribute('data-path'));
+        }
+    },
+    
+    getModal: function(title, link, path, complete) {
         var button = this;
         var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"></section><footer class="modal-card-foot"></footer></div>');
         $('body').append($modal);

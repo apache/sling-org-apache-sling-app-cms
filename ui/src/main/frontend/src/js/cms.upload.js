@@ -17,11 +17,15 @@
  * under the License.
  */
 
-nomnom.decorate(".file",class {
-    "change::input"(event){
-        var nameField = this.querySelector(':scope .file-name');
-        if (nameField){
-            nameField.textContent = event.target.files[0].name;
+nomnom.decorate(".file", {
+    events:{
+        input:{
+            change : function(event) {
+                var nameField = this.querySelector(':scope .file-name');
+                if (nameField){
+                    nameField.textContent = event.target.files[0].name;
+                }
+            }
         }
-     }
+    }
 });

@@ -18,89 +18,97 @@
  */
 
 
-nomnom.decorate(".Form-Ajax", class {
-    "submit::"(event){
-        event.preventDefault();
-        var $form = $(this);
-        var jcrcontent = false;
-        $form.find('input,select,textarea').each(function(idx,inp){
-            if(inp.name.indexOf('jcr:content') != -1){
-                jcrcontent = true;
+nomnom.decorate(".Form-Ajax", {
+    events :{
+        submit : function(event){
+            event.preventDefault();
+            var $form = $(this);
+            var jcrcontent = false;
+            $form.find('input,select,textarea').each(function(idx,inp){
+                if(inp.name.indexOf('jcr:content') != -1){
+                    jcrcontent = true;
+                }
+            });
+            if($form.data('addDate') && $form.find('input[name="jcr:content/jcr:lastModified"]').length == 0){
+                if(jcrcontent){
+                    $form.append('<input type="hidden" name="jcr:content/jcr:lastModified" />');
+                    $form.append('<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />');
+                    $form.append('<input type="hidden" name="jcr:content/jcr:created" />');
+                    $form.append('<input type="hidden" name="jcr:content/jcr:createdBy" />');
+                } else {
+                    $form.append('<input type="hidden" name="jcr:lastModified" />');
+                    $form.append('<input type="hidden" name="jcr:lastModifiedBy" />');
+                    $form.append('<input type="hidden" name="jcr:created" />');
+                    $form.append('<input type="hidden" name="jcr:createdBy" />');
+                }
             }
-        });
-        if($form.data('addDate') && $form.find('input[name="jcr:content/jcr:lastModified"]').length == 0){
-            if(jcrcontent){
-                $form.append('<input type="hidden" name="jcr:content/jcr:lastModified" />');
-                $form.append('<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />');
-                $form.append('<input type="hidden" name="jcr:content/jcr:created" />');
-                $form.append('<input type="hidden" name="jcr:content/jcr:createdBy" />');
-            } else {
-                $form.append('<input type="hidden" name="jcr:lastModified" />');
-                $form.append('<input type="hidden" name="jcr:lastModifiedBy" />');
-                $form.append('<input type="hidden" name="jcr:created" />');
-                $form.append('<input type="hidden" name="jcr:createdBy" />');
+            var callback = $form.data('callback');
+            var data = new FormData(this);
+            $form.find('.form-wrapper').attr('disabled', 'disabled');
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(res,msg){
+                    if (callback && Sling.CMS.handlers[callback]){
+                        Sling.CMS.handlers[callback](res, msg);
+                    } else {
+                        Sling.CMS.ui.confirmReload(res, msg);
+                    }
+                },
+                error: function(xhr, msg, err){
+                    if(window.self !== window.top){
+                        window.top.Sling.CMS.ui.confirmMessage(msg, err,function(){
+                            $form.find('.form-wrapper').removeAttr('disabled');
+                        });
+                    } else {
+                        Sling.CMS.ui.confirmMessage(msg, err,function(){
+                            $form.find('.form-wrapper').removeAttr('disabled');
+                        });
+                    }
+                }
+            });
+            return false;
+        }
+    }
+});
+
+
+nomnom.decorate('.Get-Form', {
+    events : {
+        submit : function () {
+            event.preventDefault();
+            event.stopPropagation();
+            var $form = $(this);
+            var params = $form.serialize();
+            $form.find('.form-wrapper').attr('disabled', 'disabled');
+            $($form.data('target')).load($form.attr('action') + '?' + params +'  ' + $form.data('load'), function(){
+                $form.find('.form-wrapper').removeAttr('disabled');
+            });
+            return false;
+        }
+    }
+});
+
+nomnom.decorate(".repeating", {
+    events : {
+        ".repeating__add" : {
+            click : function(){
+                event.preventDefault();
+                var $rep = $(this);
+                var $div = $("<div/>").html($rep.find(".repeating__template").html());
+                $rep.find(".repeating__container").append($div);
+            }
+        },
+        ".repeating__remove" : {
+            click : function() {
+                event.preventDefault();
+                var $rem = $(event.target);
+                $rem.parents(".repeating__item").remove();
             }
         }
-        var callback = $form.data('callback');
-        var data = new FormData(this);
-        $form.find('.form-wrapper').attr('disabled', 'disabled');
-        $.ajax({
-            url: $form.attr('action'),
-            type: 'POST',
-            data: data,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function(res,msg){
-                if (callback && Sling.CMS.handlers[callback]){
-                    Sling.CMS.handlers[callback](res, msg);
-                } else {
-                    Sling.CMS.ui.confirmReload(res, msg);
-                }
-            },
-            error: function(xhr, msg, err){
-                if(window.self !== window.top){
-                    window.top.Sling.CMS.ui.confirmMessage(msg, err,function(){
-                        $form.find('.form-wrapper').removeAttr('disabled');
-                    });
-                } else {
-                    Sling.CMS.ui.confirmMessage(msg, err,function(){
-                        $form.find('.form-wrapper').removeAttr('disabled');
-                    });
-                }
-            }
-        });
-        return false;
-    }
-});
-
-
-nomnom.decorate('.Get-Form', class {
-    "submit::"(event){
-        event.preventDefault();
-        event.stopPropagation();
-        var $form = $(this);
-        var params = $form.serialize();
-        $form.find('.form-wrapper').attr('disabled', 'disabled');
-        $($form.data('target')).load($form.attr('action') + '?' + params +'  ' + $form.data('load'), function(){
-            $form.find('.form-wrapper').removeAttr('disabled');
-        });
-        return false;
-    }
-    
-});
-
-nomnom.decorate(".repeating", class {
-    "click::.repeating__add"(event) {
-        event.preventDefault();
-        var $rep = $(this);
-        var $div = $("<div/>").html($rep.find(".repeating__template").html());
-        $rep.find(".repeating__container").append($div);
-    }
-
-    "click::.repeating__remove"(event) {
-        event.preventDefault();
-        var $rem = $(event.target);
-        $rem.parents(".repeating__item").remove();
     }
 });

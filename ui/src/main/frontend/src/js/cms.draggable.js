@@ -17,9 +17,9 @@
  * under the License.
  */
 
-nomnom.decorate(".is-draggable", class {
-  
-    initCallback() {
+nomnom.decorate(".is-draggable", {
+
+    initCallback: function() {
         this.dragData = {
             mouseX : 0,
             mouseY : 0,
@@ -27,41 +27,40 @@ nomnom.decorate(".is-draggable", class {
             elementX : 0,
             elementY : 0
           };
-    }
-    
-    
-    moveComplete(){
+    },
+
+    moveComplete: function(){
       this.dragData.mouseDown = false;
       this.dragData.elementX = parseInt(this.style.left) || 0;
       this.dragData.elementY = parseInt(this.style.top) || 0;
       return false;
-    }
-    
-  
-  "mousedown::"(event) {
-    if(event.target.matches('.modal-card-body *')){
-      return;
-    }
-    this.dragData.mouseX = event.clientX;
-    this.dragData.mouseY = event.clientY;
-    this.dragData.mouseDown = true;
-  }
-  
-  "mouseup::document"() {
-    if (this.dragData.mouseDown === true){
-      this.moveComplete();
-    }
-  }
+    },
 
-  "mousemove::document"(event){
-      if (this.dragData.mouseDown === false) {
-         return false;
-      }
-      var deltaX = event.clientX - this.dragData.mouseX;
-      var deltaY = event.clientY - this.dragData.mouseY;
-      this.style.left = this.dragData.elementX + deltaX + 'px';
-      this.style.top = this.dragData.elementY + deltaY + 'px';
-      return false;
-  }
-  
+    events : {
+        mousedown:function(event) {
+            if(event.target.matches('.modal-card-body *')){
+                return;
+              }
+              this.dragData.mouseX = event.clientX;
+              this.dragData.mouseY = event.clientY;
+              this.dragData.mouseDown = true;
+        },
+        document : {
+            mouseup : function(){
+                if (this.dragData.mouseDown === true){
+                    this.moveComplete();
+                  }
+            },
+            mousemove: function(event) {
+                if (this.dragData.mouseDown === false) {
+                    return false;
+                 }
+                 var deltaX = event.clientX - this.dragData.mouseX;
+                 var deltaY = event.clientY - this.dragData.mouseY;
+                 this.style.left = this.dragData.elementX + deltaX + 'px';
+                 this.style.top = this.dragData.elementY + deltaY + 'px';
+                 return false;
+              }
+        }
+    }
 });

@@ -167,9 +167,9 @@ nomnom.decorate(".namehint",class {
      }
 });
 
-nomnom.decorate(".table .load-versions", class {
+nomnom.decorate(".table .load-versions", {
    
-    initCallback(){
+    initCallback: function() {
         var $ctr = $(this);
         var $table = $ctr.closest('.table');
         $.getJSON($ctr.data('url'),function(res){
@@ -182,28 +182,34 @@ nomnom.decorate(".table .load-versions", class {
     
 });
 
-nomnom.decorate('.search-button', class {
-    "click::"(event) {
-        Sling.CMS.searchfield = $($(event.target).closest('.field').find('.pathfield'));
-    }
-});
 
-nomnom.decorate('.search-select-button', class {
-    "click::"(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        var $btn = $(event.target);
-        var $active = Sling.CMS.searchfield;
-        $active.val($btn.data('path'));
-        $btn.closest('.modal').remove();
+nomnom.decorate('.search-button', {
+    events :{
+        click : function(){
+            Sling.CMS.ext['searchbutton'] =  Sling.CMS.ext['searchbutton'] || {};
+            var searchbutton = Sling.CMS.ext['searchbutton'];
+            searchbutton.active = $(event.target).closest('.field').find('.pathfield');
+        }
     }
 });
 
 
+nomnom.decorate('.search-select-button', {
+    events :{
+        click : function(event){
+            var $btn = $(evt.target);
+            var $active = Sling.CMS.ext['searchbutton'].active;
+            $active.val($btn.data('path'));
+            $btn.closest('.modal').remove();
+        }
+    }
+});
 
-nomnom.decorate(".table", class {
+
+
+nomnom.decorate(".table", {
    
-    initCallback(){
+    initCallback: function(){
         var $table = $(this);
         var sort = $table.data('sort') !== 'false';
         var paginate = $table.data('paginate') !== 'false';
@@ -211,20 +217,24 @@ nomnom.decorate(".table", class {
             sort: sort,
             paginate: paginate
         });
-    }
+    },
     
-    "click::tbody tr > *"(event) {
-        $('.actions-target > *').appendTo('tr.is-selected .cell-actions');
-        $(this).find('tr').removeClass('is-selected');
-        var $target = $(event.target).closest("tr");
-        $target.addClass('is-selected');
-        $target.find('.cell-actions > *').appendTo('.actions-target')
+    events :{
+        "tbody tr > *" : {
+            click: function(event){
+                $('.actions-target > *').appendTo('tr.is-selected .cell-actions');
+                $(this).find('tr').removeClass('is-selected');
+                var $target = $(event.target).closest("tr");
+                $target.addClass('is-selected');
+                $target.find('.cell-actions > *').appendTo('.actions-target')
+            }
+        }
     }
-    
+
 });
 
-nomnom.decorate('.sling-cms-include-config', class {
-    initCallback() {
+nomnom.decorate('.sling-cms-include-config', {
+    initCallback: function() {
         var $ctr = $(this);
         var load = function(){
             var config = $($ctr.data('source')).find('option:selected').data('config');
