@@ -19,126 +19,121 @@
 
 var Sling = {};
 Sling.CMS = {
-        ext: {},
-        decorate: function($ctx){
-            for (var key in Sling.CMS.ext) {
-                if(typeof Sling.CMS.ext[key].decorate == 'function'){
-                    console.log('Invoking decorate for '+key);
-                    Sling.CMS.ext[key].decorate($ctx);
-                }
+    handlers: {
+        handledelete: function(res, msg){
+            if(window.location.pathname.indexOf(res.path) !== -1){
+                window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                    window.location = '/cms';
+                });
+            } else {
+                Sling.CMS.ui.confirmReload(res, msg);
             }
         },
-        handlers: {
-            handledelete: function(res, msg){
-                if(window.location.pathname.indexOf(res.path) !== -1){
-                    window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                        window.location = '/cms';
-                    });
-                } else {
-                    Sling.CMS.ui.confirmReload(res, msg);
-                }
-            },
-            handlemove: function(res, msg){
-                var changes = res.changes[0];
-                if(changes.type === 'moved' && window.location.pathname.indexOf(changes.argument[0]) !== -1){
-                    window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                        window.location = window.location.href.replace(changes.argument[0], changes.argument[1]);
-                    });
-                } else {
-                    Sling.CMS.ui.confirmReload(res, msg);
-                }
-            },
-            handleugc: function(res, msg){
+        handlemove: function(res, msg){
+            var changes = res.changes[0];
+            if(changes.type === 'moved' && window.location.pathname.indexOf(changes.argument[0]) !== -1){
+                window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                    window.location = window.location.href.replace(changes.argument[0], changes.argument[1]);
+                });
+            } else {
+                Sling.CMS.ui.confirmReload(res, msg);
+            }
+        },
+        handleugc: function(res, msg){
+            Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                window.location = '/cms/usergenerated/content.html'+res.parentLocation;
+            });
+        }
+    },
+    ui: {
+        confirmMessage: function(title, message, complete){
+            var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body">'+message+'</section><footer class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></footer></div>');
+            $('body').append($modal);
+            $modal.addClass('is-active');
+            $modal.find('.delete,.close-modal').click(function(){
+                $modal.css('display','none').remove();
+                complete();
+            });
+            $modal.find('.delete,.close-modal').focus();
+            return $modal;
+        },
+        confirmReload: function(res, msg) {
+            if(window.self !== window.top){
+                window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                    window.top.location.reload();
+                });
+            } else {
                 Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                    window.location = '/cms/usergenerated/content.html'+res.parentLocation;
+                    location.reload();
                 });
             }
         },
-        init: function(){
-            for (var key in Sling.CMS.ext) {
-                if(typeof Sling.CMS.ext[key].init == 'function'){
-                    console.log('Invoking init for '+key);
-                    Sling.CMS.ext[key].init();
-                }
-            }
-            Sling.CMS.decorate($(document));
-        },
-        ui: {
-            confirmMessage: function(title, message, complete){
-                var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body">'+message+'</section><footer class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></footer></div>');
-                $('body').append($modal);
-                Sling.CMS.decorate($modal);
-                $modal.addClass('is-active');
-                $modal.find('.delete,.close-modal').click(function(){
-                    $modal.css('display','none').remove();
-                    complete();
-                });
-                $modal.find('.delete,.close-modal').focus();
-                return $modal;
-            },
-            confirmReload: function(res, msg) {
-                if(window.self !== window.top){
-                    window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                        window.top.location.reload();
-                    });
-                } else {
-                    Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                        location.reload();
-                    });
-                }
-            }
-        },
-        utils: {
-            form2Obj: function ($form){
-                var data = {};
-                $.map($form.serializeArray(), function(n, i){
-                    data[n['name']] = n['value'];
-                });
-                return data;
-            }
-        }
-    };
-    
-
-    Sling.CMS.ext['richtext'] = {
-        decorate: function($ctx){
-            $ctx.find('.richtext').summernote({
-                toolbar: [
-                    ['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
-                    ['insert', ['picture', 'link', 'table', 'hr']],
-                    ['para', ['style','ul', 'ol', 'paragraph']],
-                    ['misc', ['codeview', 'undo','redo','help']]
-                ],
-                followingToolbar: false,
-                dialogsInBody: true,
-                height: 200,
-                onCreateLink: function (url) {
-                    return url;
-                },
-                callbacks: {
-                    onDialogShown: function(){
-                        Sling.CMS.ext.pathfield.suggest($('.note-link-url')[0], 'content', '/content');
-                        Sling.CMS.ext.pathfield.suggest($('.note-image-url')[0], 'content', '/content');
+        suggest: function(selector, type, base){
+            var xhr;
+            new autoComplete({
+                minChars: 1,
+                selector: selector,
+                source: function(term, response){
+                    try {
+                        xhr.abort();
+                    } catch(e){}
+                    if(term === '/'){
+                        term = base;
                     }
+                    xhr = $.getJSON('/bin/cms/paths', { path: term, type: type }, function(data){
+                        response(data);
+                    });
                 }
             });
         }
-    };
-    
-    Sling.CMS.ext['suffix-form'] = {
-        init: function() {
-            $('.suffix-form').submit(function(){
-                var suffix = $(this).find('input[name=suffix]').val();
-                var path = $(this).attr('action');
-                window.location = path + suffix;
-                return false;
+    },
+    utils: {
+        form2Obj: function ($form){
+            var data = {};
+            $.map($form.serializeArray(), function(n, i){
+                data[n['name']] = n['value'];
             });
+            return data;
         }
     }
+};
+    
 
-    $(document).ready(function() {
-        Sling.CMS.init();
-    });
+
+nomnom.decorate('.suffix-form', class{
+    "submit::"(event) {
+        event.preventDefault();
+        var suffix = $(this).find('input[name=suffix]').val();
+        var path = $(this).attr('action');
+        window.location = path + suffix;
+        return false;
+    }
+});
+    
+nomnom.decorate('.richtext', class{
+    initCallback(){
+        $(this).summernote({
+            toolbar: [
+                ['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
+                ['insert', ['picture', 'link', 'table', 'hr']],
+                ['para', ['style','ul', 'ol', 'paragraph']],
+                ['misc', ['codeview', 'undo','redo','help']]
+            ],
+            followingToolbar: false,
+            dialogsInBody: true,
+            height: 200,
+            onCreateLink: function (url) {
+                return url;
+            },
+            callbacks: {
+                onDialogShown: function(){
+                    Sling.CMS.ui.suggest($('.note-link-url')[0], 'content', '/content');
+                    Sling.CMS.ui.suggest($('.note-image-url')[0], 'content', '/content');
+                }
+            }
+        });
+    }
+});
     
 nomnom.decorate('.page-properties-container', class{
     initCallback(){
@@ -157,7 +152,6 @@ nomnom.decorate('.page-properties-container', class{
                 }
                 $ctr.find('input,textarea,select').change(updateContent);
                 $ctr.parents('form').submit(updateContent);
-                Sling.CMS.decorate($ctr.children());
             });
         });
     }
@@ -236,9 +230,7 @@ nomnom.decorate('.sling-cms-include-config', class {
             var config = $($ctr.data('source')).find('option:selected').data('config');
             
             if(config){
-                $ctr.load(config + $ctr.parents('form').attr('action'), function(){
-                    Sling.CMS.decorate($ctr.children());
-                });
+                $ctr.load(config + $ctr.parents('form').attr('action'));
             }
         };
         $($ctr.data('source')).change(load);

@@ -37,7 +37,6 @@ nomnom.decorate('.taxonomy', class {
 
         if(title !== ''){
             $span.find('.taxonomy__title').text(title);
-            Sling.CMS.decorate($span);
             $('.taxonomy__container').append($span);
             $ctx.find('.taxonomy__field input').val('');
         }

@@ -21,21 +21,6 @@ nomnom.decorate("input.pathfield", class {
     initCallback(){
         var type = $(this).data('type');
         var base = $(this).data('base');
-        var xhr;
-        new autoComplete({
-            minChars: 1,
-            selector: this,
-            source: function(term, response){
-                try {
-                    xhr.abort();
-                } catch(e){}
-                if(term === '/'){
-                    term = base;
-                }
-                xhr = $.getJSON('/bin/cms/paths', { path: term, type: type }, function(data){
-                    response(data);
-                });
-            }
-        });
+        Sling.CMS.ui.suggest(this, type, base);
     } 
 });
