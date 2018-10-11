@@ -88,20 +88,16 @@ gulp.task('cms-js', function() {
             './node_modules/summernote/dist/summernote-lite.js',
             './node_modules/js-autocomplete/auto-complete.js',
             './src/js/nomnom.js',
-            './src/js/cms.nav.js',
-            './src/js/cms.form.js',
-            './src/js/cms.modal.js',
-            './src/js/cms.upload.js',
-            './src/js/cms.toggle.js',
-            './src/js/cms.suggest.js',
-            './src/js/cms.draggable.js',
-            './src/js/cms.js'
+            './src/js/cms.js',
+            './src/js/cms.*.js'
         ])
         .pipe(uglify({
             output: {
                 comments: saveLicense
             }
-        }).on('error', function (err) { log('[Error]' +  err.toString()); exit(1); }))
+        }).on('error', function (err) { 
+            log('[Error] ' +  err.toString()); 
+        }))
         .pipe(concat('scripts-all.min.js'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
 });

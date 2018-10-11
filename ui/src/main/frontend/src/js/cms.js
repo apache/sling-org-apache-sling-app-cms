@@ -28,6 +28,32 @@ Sling.CMS = {
                 }
             }
         },
+        handlers: {
+            handledelete: function(res, msg){
+                if(window.location.pathname.indexOf(res.path) !== -1){
+                    window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                        window.location = '/cms';
+                    });
+                } else {
+                    Sling.CMS.ui.confirmReload(res, msg);
+                }
+            },
+            handlemove: function(res, msg){
+                var changes = res.changes[0];
+                if(changes.type === 'moved' && window.location.pathname.indexOf(changes.argument[0]) !== -1){
+                    window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                        window.location = window.location.href.replace(changes.argument[0], changes.argument[1]);
+                    });
+                } else {
+                    Sling.CMS.ui.confirmReload(res, msg);
+                }
+            },
+            handleugc: function(res, msg){
+                Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                    window.location = '/cms/usergenerated/content.html'+res.parentLocation;
+                });
+            }
+        },
         init: function(){
             for (var key in Sling.CMS.ext) {
                 if(typeof Sling.CMS.ext[key].init == 'function'){
@@ -72,70 +98,7 @@ Sling.CMS = {
             }
         }
     };
-
-    Sling.CMS.ext['handlemove'] = function(res, msg){
-        var changes = res.changes[0];
-        if(changes.type === 'moved' && window.location.pathname.indexOf(changes.argument[0]) !== -1){
-            window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                window.location = window.location.href.replace(changes.argument[0], changes.argument[1]);
-            });
-        } else {
-            Sling.CMS.ui.confirmReload(res, msg);
-        }
-    }
-
-    Sling.CMS.ext['handleugc'] = function(res, msg){
-        Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-            window.location = '/cms/usergenerated/content.html'+res.parentLocation;
-        });
-    }
-
-    Sling.CMS.ext['namehint'] = {
-        decorate: function($ctx){
-            $ctx.find('.namehint').each(function(){
-                var $nh = $(this);
-                $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
-                    var resourceType = $(this).val().split("\/");
-                    $nh.val(resourceType[resourceType.length - 1]);
-                });
-            });
-        }
-    };
     
-    Sling.CMS.ext['pageproperties'] = {
-        decorate: function($ctx){
-            $ctx.find('.Sling-CMS__page-properties').each(function(){
-                var $ctr = $(this);
-                var $wrapper = $ctr.closest('.form-wrapper');
-                $($ctr.data('source')).change(function(){
-                    var config = $(this).val();
-                    $ctr.load($ctr.data('path')+config, function(){
-                        var source   = $('#content-template').html();
-                        var template = Handlebars.compile(source);
-                        var updateContent = function(){
-                            if(!$wrapper.is(':disabled')){
-                                var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
-                                $('input[name=":content"]').val(template(data));
-                            }
-                        }
-                        $ctr.find('input,textarea,select').change(updateContent);
-                        $ctr.parents('form').submit(updateContent);
-                        Sling.CMS.decorate($ctr.children());
-                    });
-                });
-            });
-        }
-    };
- 
-    Sling.CMS.ext['handledelete'] = function(res, msg){
-        if(window.location.pathname.indexOf(res.path) !== -1){
-            window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                window.location = '/cms';
-            });
-        } else {
-            Sling.CMS.ui.confirmReload(res, msg);
-        }
-    }
 
     Sling.CMS.ext['richtext'] = {
         decorate: function($ctx){
@@ -176,6 +139,39 @@ Sling.CMS = {
     $(document).ready(function() {
         Sling.CMS.init();
     });
+    
+nomnom.decorate('.page-properties-container', class{
+    initCallback(){
+        var $ctr = $(this);
+        var $wrapper = $ctr.closest('.form-wrapper');
+        $($ctr.data('source')).change(function(){
+            var config = $(this).val();
+            $ctr.load($ctr.data('path')+config, function(){
+                var source   = $('#content-template').html();
+                var template = Handlebars.compile(source);
+                var updateContent = function(){
+                    if(!$wrapper.is(':disabled')){
+                        var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
+                        $('input[name=":content"]').val(template(data));
+                    }
+                }
+                $ctr.find('input,textarea,select').change(updateContent);
+                $ctr.parents('form').submit(updateContent);
+                Sling.CMS.decorate($ctr.children());
+            });
+        });
+    }
+});
+    
+nomnom.decorate(".namehint",class {
+    initCallback(){
+        var $nh = $(this);
+        $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
+            var resourceType = $(this).val().split("\/");
+            $nh.val(resourceType[resourceType.length - 1]);
+        });
+     }
+});
 
 nomnom.decorate(".table .load-versions", class {
    
@@ -193,61 +189,23 @@ nomnom.decorate(".table .load-versions", class {
 });
 
 nomnom.decorate('.search-button', class {
-    
-    "click::listen"(event) {
-        Sling.CMS.ext['searchbutton'] =  Sling.CMS.ext['searchbutton'] || {};
-        var searchbutton = Sling.CMS.ext['searchbutton'];
-        searchbutton.active = $(event.target).closest('.field').find('.pathfield');
+    "click::"(event) {
+        Sling.CMS.searchfield = $($(event.target).closest('.field').find('.pathfield'));
     }
-    
 });
 
 nomnom.decorate('.search-select-button', class {
-   
-    "click::listen"(event) {
-        var $btn = $(evt.target);
-        var $active = Sling.CMS.ext['searchbutton'].active;
+    "click::"(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        var $btn = $(event.target);
+        var $active = Sling.CMS.searchfield;
         $active.val($btn.data('path'));
         $btn.closest('.modal').remove();
     }
-    
 });
 
-nomnom.decorate('.taxonomy', class {
-    "click::listen"(){
-        var $rep = $(this);
-        $rep.find('.taxonomy__add').click(function(){
-            var $span = $('<span/>').html($rep.find('.taxonomy__template').html());
-            var val = $ctx.find('.taxonomy__field input').val();
-            var found = false;
-            $rep.find('.taxonomy__item input').each(function(idx, el){
-                if($(el).val() === val){
-                    found = true;
-                }
-            });
-            if(found){
-                return false;
-            }
-            $span.find('input').val(val);
-            var title = $ctx.find('option[value="'+val+'"]').text();
-            
-            if(title !== ''){
-                $span.find('.taxonomy__title').text(title);
-                Sling.CMS.decorate($span);
-                $('.taxonomy__container').append($span);
-                $ctx.find('.taxonomy__field input').val('');
-            }
-            return false;
-        });
-    }
-});
-        
-nomnom.decorate('.taxonomy__item', class {
-    "click::listen"(){
-        $(this).remove();
-        return false;
-    }
-});
+
 
 nomnom.decorate(".table", class {
    

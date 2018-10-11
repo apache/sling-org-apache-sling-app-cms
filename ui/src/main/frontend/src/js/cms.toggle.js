@@ -22,7 +22,6 @@ nomnom.decorate('.toggle-hidden' , class {
         $($(this).data('target')).toggleClass('is-hidden');
     }
 });
-    
 nomnom.decorate('.toggle-value', class {
     initCallback(){
         var source = this.getAttribute('data-toggle-source');

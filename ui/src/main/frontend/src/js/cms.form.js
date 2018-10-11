@@ -52,8 +52,8 @@ nomnom.decorate(".Form-Ajax", class {
             contentType: false,
             dataType: 'json',
             success: function(res,msg){
-                if (callback && Sling.CMS.ext[callback]){
-                    Sling.CMS.ext[callback](res, msg);
+                if (callback && Sling.CMS.handlers[callback]){
+                    Sling.CMS.handlers[callback](res, msg);
                 } else {
                     Sling.CMS.ui.confirmReload(res, msg);
                 }
@@ -76,7 +76,9 @@ nomnom.decorate(".Form-Ajax", class {
 
 
 nomnom.decorate('.Get-Form', class {
-    "submit::"(){
+    "submit::"(event){
+        event.preventDefault();
+        event.stopPropagation();
         var $form = $(this);
         var params = $form.serialize();
         $form.find('.form-wrapper').attr('disabled', 'disabled');
@@ -89,8 +91,8 @@ nomnom.decorate('.Get-Form', class {
 });
 
 nomnom.decorate(".repeating", class {
-
-    "click::.repeating__add"() {
+    "click::.repeating__add"(event) {
+        event.preventDefault();
         var $rep = $(this);
         var $div = $("<div/>").html($rep.find(".repeating__template").html());
         $rep.find(".repeating__container").append($div);
