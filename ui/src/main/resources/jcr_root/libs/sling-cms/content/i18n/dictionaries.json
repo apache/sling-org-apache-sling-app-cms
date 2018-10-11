@@ -70,8 +70,8 @@
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,
                                     "new": false,
-                                    "title": "Edit Dictionary",
-                                    "icon": "pencil-f",
+                                    "title": "Edit Dictionary Properties",
+                                    "icon": "cog",
                                     "prefix": "/cms/folder/edit.html"
                                 },
                                 "delete": {

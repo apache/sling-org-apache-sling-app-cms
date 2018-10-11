@@ -18,8 +18,8 @@
                         "ajaxPath": ".Form-Ajax",
                         "modal": true,
                         "prefix": "/cms/page/editproperties.html",
-                        "title": "Edit Page",
-                        "icon": "pencil-f"
+                        "title": "Edit Page Properties",
+                        "icon": "cog"
                     },
                     "version": {
                         "jcr:primaryType": "nt:unstructured",

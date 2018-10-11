@@ -125,8 +125,8 @@
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,
-                                    "title": "Edit Folder",
-                                    "icon": "pencil-f",
+                                    "title": "Edit Folder Properties",
+                                    "icon": "cog",
                                     "prefix": "/cms/folder/edit.html"
                                 },
                                 "movecopy": {

@@ -16,35 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
- <div class="repeating">
- 	<fieldset disabled="disabled" class="repeating__template is-hidden">
- 		<div class="repeating__item field has-addons">
- 			<div class="control is-expanded">
-	 			<input type="${properties.type}" value="" class="input" name="${properties.name}" ${required} ${disabled} />
-	 		</div>
-	 		<div class="control">
-		 		<button class="repeating__remove button">
-		 			<span class="jam jam-minus"></span>
-		 		</button>
-		 	</div>
-	 	</div>
- 	</fieldset>
- 	<div class="repeating__container">
-	 	<c:forEach var="value" items="${editProperties[properties.name]}">
-	 		<div class="repeating__item field has-addons">
-	 			<div class="control">
-		 			<input type="${properties.type}" value="${value}" class="input" name="${properties.name}" ${required} ${disabled} />
-		 		</div>
-		 		<div class="control">
-			 		<button class="repeating__remove button">
-		 				<span class="jam jam-minus"></span>
-			 		</button>
-			 	</div>
-		 	</div>
-	 	</c:forEach>
- 	</div>
- 	<button type="button" class="repeating__add button">
-		 <span class="jam jam-plus"></span>
- 	</button>
- </div>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<div class="repeating">
+    <fieldset disabled="disabled" class="repeating__template is-hidden">
+        <div class="repeating__item field has-addons">
+            <div class="control is-expanded">
+                <input type="${properties.type}" value="" class="input" name="${properties.name}" ${required} ${disabled} />
+            </div>
+            <div class="control">
+                <button class="repeating__remove button">
+                    <span class="jam jam-minus"></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+    <div class="repeating__container">
+        <c:forEach var="value" items="${editProperties[properties.name]}">
+            <div class="repeating__item field has-addons">
+                <div class="control is-expanded">
+                    <input type="${properties.type}" value="${value}" class="input" name="${properties.name}" ${required} ${disabled} />
+                </div>
+                <div class="control">
+                    <button class="repeating__remove button">
+                        <span class="jam jam-minus"></span>
+                    </button>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    <button type="button" class="repeating__add button">
+        <span class="jam jam-plus"></span>
+    </button>
+</div>

@@ -82,8 +82,8 @@
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,
-                                    "title": "Edit Site",
-                                    "icon": "pencil-f",
+                                    "title": "Edit Site Properties",
+                                    "icon": "cog",
                                     "prefix": "/cms/site/edit.html"
                                 },
                                 "movecopy": {
@@ -130,8 +130,8 @@
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,
-                                    "title": "Edit Site Group",
-                                    "icon": "pencil-f",
+                                    "title": "Edit Site Group Properties",
+                                    "icon": "cog",
                                     "prefix": "/cms/site/editgroup.html"
                                 },
                                 "movecopy": {
