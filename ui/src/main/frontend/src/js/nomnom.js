@@ -36,7 +36,7 @@
     new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             mutation.addedNodes.forEach(function(node) {
-                check(node);
+                checkAll(node);
             });
         });
     }).observe(document.body, {
@@ -94,7 +94,7 @@
             if (!event.target.matches(correctTarget)) {
                 return;
             }
-            fn.apply(this, arguments);
+            fn.call(this, event);
         };
     };
 
@@ -123,10 +123,25 @@
         }
     };
 
-    var check = function(node) {
+    var checkAll = function(node) {
         if (!node.querySelectorAll) {
             return;
         }
+        var checkSet = new Set([node]);
+        checkSet.forEach(function(node){
+            let elements = node.children;
+            for (let i = 0; i < elements.length; i++) {
+                let element = elements[i];
+                if (element.querySelectorAll) {
+                    check(element);
+                    checkSet.add(element);
+                }
+            }
+            checkSet.delete(node);
+        });
+    }
+    
+    var check = function(node) {
         for ( var selector in tagSelectors) {
             let found = false;
             if (debug) {
@@ -136,10 +151,6 @@
                 found = true;
                 wrap(node, tagSelectors[selector]);
             }
-            node.querySelectorAll(":scope " + selector).forEach(function(item) {
-                found = true;
-                wrap(item, tagSelectors[selector])
-            });
             if (found && debug) {
                 console.log("node found for " + selector);
             }
