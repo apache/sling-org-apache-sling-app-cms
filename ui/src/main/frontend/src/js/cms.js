@@ -100,18 +100,20 @@ Sling.CMS = {
     
 
 
-nomnom.decorate('.suffix-form', class{
-    "submit::"(event) {
-        event.preventDefault();
-        var suffix = $(this).find('input[name=suffix]').val();
-        var path = $(this).attr('action');
-        window.location = path + suffix;
-        return false;
+nomnom.decorate('.suffix-form', {
+    events :{
+        submit : function(event){
+            event.preventDefault();
+            var suffix = $(this).find('input[name=suffix]').val();
+            var path = $(this).attr('action');
+            window.location = path + suffix;
+            return false;
+        }
     }
 });
     
-nomnom.decorate('.richtext', class{
-    initCallback(){
+nomnom.decorate('.richtext', {
+    initCallback: function(){
         $(this).summernote({
             toolbar: [
                 ['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
@@ -135,8 +137,8 @@ nomnom.decorate('.richtext', class{
     }
 });
     
-nomnom.decorate('.page-properties-container', class{
-    initCallback(){
+nomnom.decorate('.page-properties-container', {
+    initCallback: function(){
         var $ctr = $(this);
         var $wrapper = $ctr.closest('.form-wrapper');
         $($ctr.data('source')).change(function(){
@@ -157,8 +159,8 @@ nomnom.decorate('.page-properties-container', class{
     }
 });
     
-nomnom.decorate(".namehint",class {
-    initCallback(){
+nomnom.decorate(".namehint", {
+    initCallback: function(){
         var $nh = $(this);
         $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
             var resourceType = $(this).val().split("\/");

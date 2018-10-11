@@ -96,7 +96,7 @@ nomnom.decorate('.Get-Form', {
 nomnom.decorate(".repeating", {
     events : {
         ".repeating__add" : {
-            click : function(){
+            click : function(event){
                 event.preventDefault();
                 var $rep = $(this);
                 var $div = $("<div/>").html($rep.find(".repeating__template").html());
@@ -104,7 +104,7 @@ nomnom.decorate(".repeating", {
             }
         },
         ".repeating__remove" : {
-            click : function() {
+            click : function(event) {
                 event.preventDefault();
                 var $rem = $(event.target);
                 $rem.parents(".repeating__item").remove();
