@@ -99,17 +99,17 @@
     };
 
     var registerEventHandlers = function(node, propertyName, events) {
-        for ( var eventName in events) {
-            let possibleFunc = events[eventName];
+        for (  eventName in events) {
+            var possibleFunc = events[eventName];
             if (typeof possibleFunc === "function") {
                 node.addEventListener(eventName, function(event) {
                     possibleFunc.call(node, event);
                 });
             } else {
-                let selector = eventName;
-                let targetNode = node;
-                for ( var childEventName in possibleFunc) {
-                    let func = targetedEventHandler(
+                var selector = eventName;
+                var targetNode = node;
+                for (  childEventName in possibleFunc) {
+                    var func = targetedEventHandler(
                             possibleFunc[childEventName], selector);
                     if (selector == "document") {
                         targetNode = document;

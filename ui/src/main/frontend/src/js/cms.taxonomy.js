@@ -16,37 +16,47 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-nomnom.decorate('.taxonomy', class {
-    "click::.taxonomy__add"(event){
-        event.preventDefault();
-        event.stopPropagation();
-        var $ctx = $(this);
-        var $span = $('<span/>').html($ctx.find('.taxonomy__template').html());
-        var val = $ctx.find('.taxonomy__field input').val();
-        var found = false;
-        $ctx.find('.taxonomy__item input').each(function(idx, el){
-            if($(el).val() === val){
-                found = true;
+/* eslint-env browser, es6 */
+(function (nomnom, $) {
+    'use strict';
+    nomnom.decorate('.taxonomy', {
+        events: {
+            '.taxonomy__add': {
+                click: function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    var $ctx = $(this),
+                        $span = $('<span/>').html($ctx.find('.taxonomy__template').html()),
+                        val = $ctx.find('.taxonomy__field input').val(),
+                        found = false,
+                        title = $ctx.find('option[value="' + val + '"]').text();
+                    $ctx.find('.taxonomy__item input').each(function (idx, el) {
+                        if ($(el).val() === val) {
+                            found = true;
+                        }
+                    });
+                    if (found) {
+                        return false;
+                    }
+                    $span.find('input').val(val);
+
+                    if (title !== '') {
+                        $span.find('.taxonomy__title').text(title);
+                        $('.taxonomy__container').append($span);
+                        $ctx.find('.taxonomy__field input').val('');
+                    }
+                }
             }
-        });
-        if(found){
-            return false;
         }
-        $span.find('input').val(val);
-        var title = $ctx.find('option[value="'+val+'"]').text();
+    });
 
-        if(title !== ''){
-            $span.find('.taxonomy__title').text(title);
-            $('.taxonomy__container').append($span);
-            $ctx.find('.taxonomy__field input').val('');
+    nomnom.decorate('.taxonomy__item', {
+        events: {
+            click: function () {
+                $(this).remove();
+                return false;
+            }
         }
-        return false;
-    }
-});
+    });
 
-nomnom.decorate('.taxonomy__item', class {
-    "click::"(){
-        $(this).remove();
-        return false;
-    }
-});
+}(window.nomnom = window.nomnom || {}, window.jQuery || {}));

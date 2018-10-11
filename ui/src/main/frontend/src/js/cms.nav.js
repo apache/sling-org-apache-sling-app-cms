@@ -16,14 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-nomnom.decorate(".navbar-burger", {
-    events :{
-        click: function(){
-            var target = document.querySelector(this.dataset.target);
-            target.classList.toggle('is-active');
-            this.classList.toggle('is-active');
+/* eslint-env browser, es6 */
+(function (nomnom) {
+    'use strict';
+    nomnom.decorate(".navbar-burger", {
+        events: {
+            click: function () {
+                var target = document.querySelector(this.dataset.target);
+                target.classList.toggle('is-active');
+                this.classList.toggle('is-active');
+            }
         }
-    }
-});
-
+    });
+}(window.nomnom = window.nomnom || {}));
