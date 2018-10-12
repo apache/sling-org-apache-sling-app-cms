@@ -28,8 +28,8 @@
                 resourceType="sling-cms/components/general/container" />
         </div>
         <div class="column">
-            <main class="Main-Content"> <sling:call
-                script="content.jsp" /> </main>
+            <div class="Main-Content"> <sling:call
+                script="content.jsp" /> </div>
         </div>
     </div>
     </div>

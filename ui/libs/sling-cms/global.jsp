@@ -16,11 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@include file="/libs/sling-cms/global.jsp"%>
-<c:if test="${not empty properties.src}">
-    <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
-    <c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/iframe']}" />
-    <div class="${properties.wrapperClass}">
-        <iframe src="${properties.src}" class="${configRsrc.valueMap.iframeClass}" ${properties.allowFullscreen}></iframe>
-    </div>
-</c:if>
+<%@page session="false" %><%@taglib prefix="sling" uri="http://sling.apache.org/taglibs/sling" %><%
+%><%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%
+%><%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><%
+%><%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %><%
+%><sling:defineObjects /><sling:adaptTo var="properties" adaptable="${resource}" adaptTo="org.apache.sling.api.resource.ValueMap" />
