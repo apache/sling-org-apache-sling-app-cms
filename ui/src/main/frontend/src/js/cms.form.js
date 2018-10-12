@@ -79,7 +79,7 @@ nomnom.decorate(".Form-Ajax", {
 
 nomnom.decorate('.Get-Form', {
     events : {
-        submit : function () {
+        submit : function (event) {
             event.preventDefault();
             event.stopPropagation();
             var $form = $(this);

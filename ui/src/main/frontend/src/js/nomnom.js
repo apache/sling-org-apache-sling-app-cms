@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+/* eslint-env es6, browser */
 (function(nomnom) {
 
     // public
@@ -99,17 +100,17 @@
     };
 
     var registerEventHandlers = function(node, propertyName, events) {
-        for (  eventName in events) {
-            var possibleFunc = events[eventName];
+        for ( var eventName in events) {
+            let possibleFunc = events[eventName];
             if (typeof possibleFunc === "function") {
                 node.addEventListener(eventName, function(event) {
                     possibleFunc.call(node, event);
                 });
             } else {
-                var selector = eventName;
-                var targetNode = node;
-                for (  childEventName in possibleFunc) {
-                    var func = targetedEventHandler(
+                let selector = eventName;
+                let targetNode = node;
+                for ( var childEventName in possibleFunc) {
+                    let func = targetedEventHandler(
                             possibleFunc[childEventName], selector);
                     if (selector == "document") {
                         targetNode = document;

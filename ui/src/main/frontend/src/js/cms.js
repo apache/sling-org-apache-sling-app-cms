@@ -169,70 +169,25 @@ nomnom.decorate(".namehint", {
      }
 });
 
-nomnom.decorate(".table .load-versions", {
-   
-    initCallback: function() {
-        var $ctr = $(this);
-        var $table = $ctr.closest('.table');
-        $.getJSON($ctr.data('url'),function(res){
-            $table.dataTable().api().destroy();
-            var source   = $('#'+$ctr.data('template')).html();
-            var template = Handlebars.compile(source);
-            $ctr.append(template(res));
-        });
-    }
-    
-});
-
-
 nomnom.decorate('.search-button', {
     events :{
         click : function(){
             Sling.CMS.ext['searchbutton'] =  Sling.CMS.ext['searchbutton'] || {};
             var searchbutton = Sling.CMS.ext['searchbutton'];
-            searchbutton.active = $(event.target).closest('.field').find('.pathfield');
+            searchbutton.active = $(this).closest('.field').find('.pathfield');
         }
     }
 });
 
-
 nomnom.decorate('.search-select-button', {
     events :{
         click : function(event){
-            var $btn = $(evt.target);
+            var $btn = $(this);
             var $active = Sling.CMS.ext['searchbutton'].active;
             $active.val($btn.data('path'));
             $btn.closest('.modal').remove();
         }
     }
-});
-
-
-
-nomnom.decorate(".table", {
-   
-    initCallback: function(){
-        var $table = $(this);
-        var sort = $table.data('sort') !== 'false';
-        var paginate = $table.data('paginate') !== 'false';
-        $table.DataTable({
-            sort: sort,
-            paginate: paginate
-        });
-    },
-    
-    events :{
-        "tbody tr > *" : {
-            click: function(event){
-                $('.actions-target > *').appendTo('tr.is-selected .cell-actions');
-                $(this).find('tr').removeClass('is-selected');
-                var $target = $(event.target).closest("tr");
-                $target.addClass('is-selected');
-                $target.find('.cell-actions > *').appendTo('.actions-target')
-            }
-        }
-    }
-
 });
 
 nomnom.decorate('.sling-cms-include-config', {
