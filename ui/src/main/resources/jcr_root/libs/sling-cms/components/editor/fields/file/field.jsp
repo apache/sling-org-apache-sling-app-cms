@@ -70,5 +70,5 @@
 	 		</div>
 	 	</div>
 	</div>
-	<button class="repeating__add button">+</button>
+	<button type="button" class="repeating__add button">+</button>
 </div>

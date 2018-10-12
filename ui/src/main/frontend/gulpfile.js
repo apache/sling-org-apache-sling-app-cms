@@ -20,7 +20,7 @@ var header      = require('gulp-header');
 var cleanCSS   = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-terser');
 var sourcemaps = require('gulp-sourcemaps');
 var streamqueue = require('streamqueue');
 var saveLicense = require('uglify-save-license');
@@ -87,13 +87,10 @@ gulp.task('cms-js', function() {
             './node_modules/handlebars/dist/handlebars.js',
             './node_modules/summernote/dist/summernote-lite.js',
             './node_modules/js-autocomplete/auto-complete.js',
-            './src/js/cms.js'
+            './src/js/nomnom.js',
+            './src/js/cms.js',
+            './src/js/cms.*.js'
         ])
-        .pipe(uglify({
-            output: {
-                comments: saveLicense
-            }
-        }).on('error', function (err) { log('[Error]' +  err.toString()); exit(1); }))
         .pipe(concat('scripts-all.min.js'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
 });

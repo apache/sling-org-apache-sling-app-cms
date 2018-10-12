@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
+<%@include file="/libs/sling-cms/global.jsp"%>
 <div id="search-results">
     <div class="tile is-ancestor">
     <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.SearchResults" var="results" />

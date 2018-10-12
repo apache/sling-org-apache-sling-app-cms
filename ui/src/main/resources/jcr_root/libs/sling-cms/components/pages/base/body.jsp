@@ -16,23 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
+<%@include file="/libs/sling-cms/global.jsp"%>
 <body class="cms">
-	<div class="gradient"></div>
-    <section class="container is-fluid">
+    <div class="gradient"></div>
+    <div class="container is-fluid">
     <sling:call script="nav.jsp" />
-    </section>
-    <section class="container is-fluid">
     <div class="columns">
-    <div class="column is-one-fifth">
-        <sling:include path="/mnt/overlay/sling-cms/content/start/jcr:content/nav" resourceType="sling-cms/components/general/container" />
+        <div class="column is-2">
+            <sling:include
+                path="/mnt/overlay/sling-cms/content/start/jcr:content/nav"
+                resourceType="sling-cms/components/general/container" />
+        </div>
+        <div class="column">
+            <div class="Main-Content"> <sling:call
+                script="content.jsp" /> </div>
+        </div>
     </div>
-    <div class="column">
-        <main class="Main-Content">
-            <sling:call script="content.jsp" />
-        </main>
     </div>
-    </div>
-    </section>
     <sling:call script="scripts.jsp" />
 </body>
