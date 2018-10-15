@@ -31,7 +31,7 @@
     };
 
     var tagSelectors = {};
-    var debug = false;
+    var debug = true;
     var elementMap = new WeakMap();
 
     new MutationObserver(function(mutations) {
@@ -125,20 +125,18 @@
     };
 
     var checkAll = function(node) {
-        if (!node.querySelectorAll) {
-            return;
-        }
         var checkSet = new Set([node]);
-        checkSet.forEach(function(node){
-            let elements = node.children;
-            for (let i = 0; i < elements.length; i++) {
-                let element = elements[i];
-                if (element.querySelectorAll) {
-                    check(element);
-                    checkSet.add(element);
+        checkSet.forEach(function(element){
+            if (element.querySelectorAll) {
+                check(element);
+            }
+            let elements = element.children;
+            if (elements){
+                for (let i = 0; i < elements.length; i++) {
+                    checkSet.add(elements[i]);
                 }
             }
-            checkSet.delete(node);
+            checkSet.delete(element);
         });
     }
     

@@ -31,9 +31,6 @@ nomnom.decorate(".table .load-versions", {
     
 });
 
-
-
-
 nomnom.decorate(".table", {
     initCallback: function(){
         var $table = $(this);
@@ -46,7 +43,7 @@ nomnom.decorate(".table", {
     }
 });
 
-nomnom.decorate("table tbody tr",{
+nomnom.decorate(".table tbody tr",{
     events :{
         click: function(event){
             var $current = $(this);
