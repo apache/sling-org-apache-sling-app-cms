@@ -18,10 +18,11 @@
  */
 
 /**
- * Package with all of the common models used to access content in the Sling
- * reference CMS
+ * Support for Content Insights
  *
- * @since 0.10.0
+ * @version 0.10.2
  */
-@org.osgi.annotation.versioning.Version("0.11.0")
-package org.apache.sling.cms;
+@Version("0.10.2")
+package org.apache.sling.cms.readability;
+
+import org.osgi.annotation.versioning.Version;

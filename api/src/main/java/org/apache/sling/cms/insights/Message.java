@@ -24,7 +24,23 @@ package org.apache.sling.cms.insights;
 public class Message {
 
     public enum STYLE {
-        DEFAULT, DANGER, WARN, SUCCESS
+        DANGER, DEFAULT, SUCCESS, WARN
+    }
+
+    public static Message danger(String text) {
+        return new Message(text, STYLE.DANGER);
+    }
+
+    public static Message defaultMsg(String text) {
+        return new Message(text, STYLE.DEFAULT);
+    }
+
+    public static Message success(String text) {
+        return new Message(text, STYLE.SUCCESS);
+    }
+
+    public static Message warn(String text) {
+        return new Message(text, STYLE.WARN);
     }
 
     private STYLE style;

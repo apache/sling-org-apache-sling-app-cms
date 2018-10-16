@@ -41,6 +41,10 @@ public class Insight {
         this.provider = provider;
     }
 
+    public void addMessage(Message message) {
+        scoreDetails.add(message);
+    }
+
     /**
      * @return the data
      */

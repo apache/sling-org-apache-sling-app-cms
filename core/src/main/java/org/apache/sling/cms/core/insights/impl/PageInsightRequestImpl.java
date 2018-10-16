@@ -36,6 +36,7 @@ import org.apache.sling.cms.insights.PageInsightRequest;
 import org.apache.sling.engine.SlingRequestProcessor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,6 +83,11 @@ public class PageInsightRequestImpl implements PageInsightRequest {
     @Override
     public Page getPage() {
         return this.page;
+    }
+
+    @Override
+    public Element getPageBodyElement() throws IOException {
+        return Jsoup.parseBodyFragment(getPageBodyHtml()).body();
     }
 
     @Override

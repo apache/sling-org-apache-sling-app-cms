@@ -22,6 +22,7 @@ import java.io.IOException;
 
 import org.apache.sling.cms.Page;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 /**
  * Represents an insight request
@@ -34,6 +35,15 @@ public interface PageInsightRequest extends InsightRequest {
      * @return the page
      */
     public Page getPage();
+
+    /**
+     * Gets a JSoup Element of the body of the page, not the full page (e.g. no
+     * header).
+     * 
+     * @return the HTML of the body
+     * @throws IOException an exception occurs retrieving the content
+     */
+    public Element getPageBodyElement() throws IOException;
 
     /**
      * Gets the HTML of the body of the page, not the full page (e.g. no header).

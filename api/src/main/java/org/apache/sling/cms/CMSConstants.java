@@ -37,6 +37,11 @@ public class CMSConstants {
      * Content path.
      */
     public static final String CONTENT_PATH = "/content";
+    
+    /**
+     * The bucket for the Insights CA Configs
+     */
+    public static final String INSIGHTS_CA_CONFIG_BUCKET="insights";
 
     /**
      * Node type base.
@@ -69,6 +74,11 @@ public class CMSConstants {
     public static final String NT_UGC = NAMESPACE + ":UGC";
 
     /**
+     * Constant for the CA Config Reference
+     */
+    public static final String PN_CONFIG_REF = CMSConstants.NAMESPACE + ":configRef";
+
+    /**
      * Description attribute name
      */
     public static final String PN_DESCRIPTION = "jcr:description";
@@ -84,6 +94,11 @@ public class CMSConstants {
     public static final String PN_PUBLISHED = "published";
 
     /**
+     * Constant for the Site URL
+     */
+    public static final String PN_SITE_URL = CMSConstants.NAMESPACE + ":url";
+
+    /**
      * Taxonomy attribute name
      */
     public static final String PN_TAXONOMY = NAMESPACE + ":taxonomy";
@@ -92,16 +107,6 @@ public class CMSConstants {
      * Title attribute name
      */
     public static final String PN_TITLE = "jcr:title";
-
-    /**
-     * Constant for the CA Config Reference
-     */
-    public static final String PN_CONFIG_REF = CMSConstants.NAMESPACE + ":configRef";
-
-    /**
-     * Constant for the Site URL
-     */
-    public static final String PN_SITE_URL = CMSConstants.NAMESPACE + ":url";
 
     /**
      * The resource types which can be published
