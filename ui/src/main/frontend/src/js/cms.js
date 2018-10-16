@@ -97,8 +97,6 @@ Sling.CMS = {
         }
     }
 };
-    
-
 
 nomnom.decorate('.suffix-form', {
     events: {
@@ -169,26 +167,6 @@ nomnom.decorate(".namehint", {
      }
 });
 
-nomnom.decorate('.search-button', {
-    events :{
-        click : function(){
-            Sling.CMS.ext['searchbutton'] =  Sling.CMS.ext['searchbutton'] || {};
-            var searchbutton = Sling.CMS.ext['searchbutton'];
-            searchbutton.active = $(this).closest('.field').find('.pathfield');
-        }
-    }
-});
-
-nomnom.decorate('.search-select-button', {
-    events :{
-        click : function(event){
-            var $btn = $(this);
-            var $active = Sling.CMS.ext['searchbutton'].active;
-            $active.val($btn.data('path'));
-            $btn.closest('.modal').remove();
-        }
-    }
-});
 
 nomnom.decorate('.sling-cms-include-config', {
     initCallback: function() {
