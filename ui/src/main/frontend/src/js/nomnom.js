@@ -31,7 +31,7 @@
     };
 
     var tagSelectors = {};
-    var debug = true;
+    var debug = false;
     var elementMap = new WeakMap();
 
     new MutationObserver(function(mutations) {
@@ -64,6 +64,7 @@
         configSet.add(config);
         var names = Object.getOwnPropertyNames(config);
         var keys = Object.keys(config);
+        var data = config.data;
         names.forEach(function(name) {
             if (name === "constructor") {
                 return;
@@ -72,7 +73,7 @@
                 console.log("   decorating " + name);
             }
             if (name === "events") {
-                registerEventHandlers(node, name, config[name]);
+                registerEventHandlers(node, data, config[name]);
             } else {
                 node[name] = config[name];
             }
@@ -90,34 +91,38 @@
 
     // generic function to wrap the event handler in the case that
     // we only want it to fire for a specific child event
-    var targetedEventHandler = function(fn, correctTarget) {
+    var targetedEventHandler = function(fn, correctTarget, data) {
         return function(event) {
             if (!event.target.matches(correctTarget)) {
                 return;
             }
-            fn.call(this, event);
+            fn.call(this, event, data);
         };
     };
 
-    var registerEventHandlers = function(node, propertyName, events) {
+    var registerEventHandlers = function(node, data, events) {
         for ( var eventName in events) {
             let possibleFunc = events[eventName];
-            if (typeof possibleFunc === "function") {
+            if (typeof possibleFunc !== "object") {
+                console.log("adding event listener for " + eventName);
                 node.addEventListener(eventName, function(event) {
-                    possibleFunc.call(node, event);
+                    possibleFunc.call(node, event, data);
                 });
             } else {
                 let selector = eventName;
+                console.log("selector is now "+ selector);
                 let targetNode = node;
+                if (selector === "document") {
+                    targetNode = document;
+                }
                 for ( var childEventName in possibleFunc) {
-                    let func = targetedEventHandler(
-                            possibleFunc[childEventName], selector);
-                    if (selector == "document") {
-                        targetNode = document;
+                    let func = possibleFunc[childEventName];
+                    if (selector !== "document"){
+                        func = targetedEventHandler(func, selector, data);
                     }
                     targetNode.addEventListener(childEventName,
                             function(event) {
-                                func.call(node, event);
+                                func.call(node, event, data);
                             });
                 }
             }
