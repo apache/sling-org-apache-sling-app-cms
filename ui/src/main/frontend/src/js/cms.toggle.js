@@ -28,7 +28,7 @@ nomnom.decorate('.toggle-hidden' , {
 nomnom.decorate('.toggle-value', {
     initCallback: function(){
         var source = this.getAttribute('data-toggle-source');
-        var selector = 'input[name="'+ source +'"], select[name="'+ selector +'"]';
+        var selector = 'input[name="'+ source +'"], select[name="'+ source +'"]';
         var $tog = $(this);
         $(selector).change(function(){
             if($(this).val() !== $tog.data('toggle-value')){
