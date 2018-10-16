@@ -21,7 +21,7 @@
     'use strict';
     nomnom.decorate('.taxonomy', {
         events: {
-            '.taxonomy__add': {
+            '.taxonomy__add, .taxonomy__add *': {
                 click: function (event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -50,7 +50,7 @@
         }
     });
 
-    nomnom.decorate('.taxonomy__item', {
+    nomnom.decorate('.taxonomy__item, .taxonomy__item *', {
         events: {
             click: function () {
                 $(this).remove();
