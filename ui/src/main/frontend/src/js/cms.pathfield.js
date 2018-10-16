@@ -20,6 +20,13 @@
 (function (nomnom) {
     'use strict';
     var pathfield = null;
+    nomnom.decorate("input.pathfield", {
+        initCallback: function(){
+            var type = this.dataset.type;
+            var base = this.dataset.base;
+            Sling.CMS.ui.suggest(this, type, base);
+        } 
+    });
     nomnom.decorate('.search-button', {
         events: {
             click: function () {
@@ -35,4 +42,5 @@
             }
         }
     });
+    
 }(window.nomnom = window.nomnom || {}));
