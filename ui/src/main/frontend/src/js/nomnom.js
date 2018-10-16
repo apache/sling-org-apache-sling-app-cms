@@ -103,15 +103,13 @@
     var registerEventHandlers = function(node, data, events) {
         for ( var eventName in events) {
             let possibleFunc = events[eventName];
+            let targetNode = node;
             if (typeof possibleFunc !== "object") {
-                console.log("adding event listener for " + eventName);
-                node.addEventListener(eventName, function(event) {
+                targetNode.addEventListener(eventName, function(event) {
                     possibleFunc.call(node, event, data);
                 });
             } else {
                 let selector = eventName;
-                console.log("selector is now "+ selector);
-                let targetNode = node;
                 if (selector === "document") {
                     targetNode = document;
                 }
