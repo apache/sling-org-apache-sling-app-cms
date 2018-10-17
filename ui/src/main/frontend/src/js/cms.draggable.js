@@ -28,12 +28,15 @@
             elementX : 0,
             elementY : 0
         },
-        moveComplete: function (data) {
-            data.mouseDown = false;
-            data.elementX = parseInt(this.style.left, 10) || 0;
-            data.elementY = parseInt(this.style.top, 10) || 0;
-            return false;
+        methods : {
+            moveComplete: function (data) {
+                data.mouseDown = false;
+                data.elementX = parseInt(this.style.left, 10) || 0;
+                data.elementY = parseInt(this.style.top, 10) || 0;
+                return false;
+            }
         },
+
         events : {
             mousedown: function (event, data) {
                 if (event.target.matches('.modal-card-body *')) {

@@ -111,75 +111,83 @@ nomnom.decorate('.suffix-form', {
 });
     
 nomnom.decorate('.richtext', {
-    initCallback: function(){
-        $(this).summernote({
-            toolbar: [
-                ['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
-                ['insert', ['picture', 'link', 'table', 'hr']],
-                ['para', ['style','ul', 'ol', 'paragraph']],
-                ['misc', ['codeview', 'undo','redo','help']]
-            ],
-            followingToolbar: false,
-            dialogsInBody: true,
-            height: 200,
-            onCreateLink: function (url) {
-                return url;
-            },
-            callbacks: {
-                onDialogShown: function(){
-                    Sling.CMS.ui.suggest($('.note-link-url')[0], 'content', '/content');
-                    Sling.CMS.ui.suggest($('.note-image-url')[0], 'content', '/content');
+    callbacks : {
+        created : function(){
+            $(this).summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
+                    ['insert', ['picture', 'link', 'table', 'hr']],
+                    ['para', ['style','ul', 'ol', 'paragraph']],
+                    ['misc', ['codeview', 'undo','redo','help']]
+                ],
+                followingToolbar: false,
+                dialogsInBody: true,
+                height: 200,
+                onCreateLink: function (url) {
+                    return url;
+                },
+                callbacks: {
+                    onDialogShown: function(){
+                        Sling.CMS.ui.suggest($('.note-link-url')[0], 'content', '/content');
+                        Sling.CMS.ui.suggest($('.note-image-url')[0], 'content', '/content');
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 });
     
 nomnom.decorate('.page-properties-container', {
-    initCallback: function(){
-        var $ctr = $(this);
-        var $wrapper = $ctr.closest('.form-wrapper');
-        $($ctr.data('source')).change(function(){
-            var config = $(this).val();
-            $ctr.load($ctr.data('path')+config, function(){
-                var source   = $('#content-template').html();
-                var template = Handlebars.compile(source);
-                var updateContent = function(){
-                    if(!$wrapper.is(':disabled')){
-                        var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
-                        $('input[name=":content"]').val(template(data));
+    callbacks : {
+        created :  function(){
+            var $ctr = $(this);
+            var $wrapper = $ctr.closest('.form-wrapper');
+            $($ctr.data('source')).change(function(){
+                var config = $(this).val();
+                $ctr.load($ctr.data('path')+config, function(){
+                    var source   = $('#content-template').html();
+                    var template = Handlebars.compile(source);
+                    var updateContent = function(){
+                        if(!$wrapper.is(':disabled')){
+                            var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
+                            $('input[name=":content"]').val(template(data));
+                        }
                     }
-                }
-                $ctr.find('input,textarea,select').change(updateContent);
-                $ctr.parents('form').submit(updateContent);
+                    $ctr.find('input,textarea,select').change(updateContent);
+                    $ctr.parents('form').submit(updateContent);
+                });
             });
-        });
+        }
     }
 });
     
 nomnom.decorate(".namehint", {
-    initCallback: function(){
-        var $nh = $(this);
-        $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
-            var resourceType = $(this).val().split("\/");
-            $nh.val(resourceType[resourceType.length - 1]);
-        });
-     }
+    callbacks : {
+        created : function(){
+            var $nh = $(this);
+            $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
+                var resourceType = $(this).val().split("\/");
+                $nh.val(resourceType[resourceType.length - 1]);
+            });
+         }
+    }
 });
 
 
 nomnom.decorate('.sling-cms-include-config', {
-    initCallback: function() {
-        var $ctr = $(this);
-        var load = function(){
-            var config = $($ctr.data('source')).find('option:selected').data('config');
-            
-            if(config){
-                $ctr.load(config + $ctr.parents('form').attr('action'));
-            }
-        };
-        $($ctr.data('source')).change(load);
-        load();
+    callbacks : {
+        created :  function() {
+            var $ctr = $(this);
+            var load = function(){
+                var config = $($ctr.data('source')).find('option:selected').data('config');
+                
+                if(config){
+                    $ctr.load(config + $ctr.parents('form').attr('action'));
+                }
+            };
+            $($ctr.data('source')).change(load);
+            load();
+        }
     }
 });
 

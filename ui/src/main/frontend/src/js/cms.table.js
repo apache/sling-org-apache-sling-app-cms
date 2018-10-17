@@ -17,29 +17,31 @@
  * under the License.
  */ 
 nomnom.decorate(".table .load-versions", {
-   
-    initCallback: function() {
-        var $ctr = $(this);
-        var $table = $ctr.closest('.table');
-        $.getJSON($ctr.data('url'),function(res){
-            $table.dataTable().api().destroy();
-            var source   = $('#'+$ctr.data('template')).html();
-            var template = Handlebars.compile(source);
-            $ctr.append(template(res));
-        });
+    callbacks : {
+        created : function() {
+            var $ctr = $(this);
+            var $table = $ctr.closest('.table');
+            $.getJSON($ctr.data('url'),function(res){
+                $table.dataTable().api().destroy();
+                var source   = $('#'+$ctr.data('template')).html();
+                var template = Handlebars.compile(source);
+                $ctr.append(template(res));
+            });
+        }
     }
-    
 });
 
 nomnom.decorate(".table", {
-    initCallback: function(){
-        var $table = $(this);
-        var sort = $table.data('sort') !== 'false';
-        var paginate = $table.data('paginate') !== 'false';
-        $table.DataTable({
-            sort: sort,
-            paginate: paginate
-        });
+    callbacks : {
+        created :function(){
+            var $table = $(this);
+            var sort = $table.data('sort') !== 'false';
+            var paginate = $table.data('paginate') !== 'false';
+            $table.DataTable({
+                sort: sort,
+                paginate: paginate
+            });
+        }
     }
 });
 
