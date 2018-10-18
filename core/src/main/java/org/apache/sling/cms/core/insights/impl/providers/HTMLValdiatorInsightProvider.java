@@ -20,6 +20,8 @@ package org.apache.sling.cms.core.insights.impl.providers;
 
 import java.io.StringReader;
 import java.net.URLEncoder;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -102,13 +104,24 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
             JsonArray messages = json.getJsonArray("messages");
             int errors = 0;
             int warnings = 0;
+            Set<String> msgSet = new HashSet<String>();
             for (int i = 0; i < messages.size(); i++) {
                 JsonObject message = messages.getJsonObject(i);
                 if ("error".equals(message.getString("type"))) {
                     errors++;
+                    String messageStr = message.getString("message");
+                    if (!msgSet.contains(messageStr)) {
+                        insight.addMessage(Message.danger(messageStr));
+                        msgSet.add(messageStr);
+                    }
                 } else if ("info".equals(message.getString("type")) && message.containsKey("subtype")
                         && "warning".equals(message.getString("subtype"))) {
                     warnings++;
+                    String messageStr = message.getString("message");
+                    if (!msgSet.contains(messageStr)) {
+                        insight.addMessage(Message.warn(messageStr));
+                        msgSet.add(messageStr);
+                    }
                 }
             }
             double score = 0.0;
@@ -133,8 +146,8 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
                 score = 1.0;
             }
             insight.setScore(score);
-            insight.addMessage(Message.defaultMsg("https://validator.w3.org/nu/?doc="
-                    + URLEncoder.encode(pageRequest.getPage().getPublishedUrl(), Charsets.UTF_8.toString())));
+            insight.setMoreDetailsLink("https://validator.w3.org/nu/?doc="
+                    + URLEncoder.encode(pageRequest.getPage().getPublishedUrl(), Charsets.UTF_8.toString()));
         }
 
         return insight;

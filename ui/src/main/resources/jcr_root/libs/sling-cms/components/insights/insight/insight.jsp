@@ -22,9 +22,16 @@
         <p>
             <sling:encode value="${insight.provider.title}" mode="HTML" />
             <c:if test="${insight.scored}">
-                <fmt:formatNumber type="percent" maxFractionDigits="2" value="${insight.score}" />
+                <span class="score" data-score="${insight.score}">
+                    <fmt:formatNumber type="percent" maxFractionDigits="2" value="${insight.score}" />
+                </span>
             </c:if>
         </p>
+        <c:if test="${not empty insight.moreDetailsLink}">
+            <a class="button ${insight.primaryMessage.styleClass}" href="${insight.moreDetailsLink}" target="_blank">
+                <em class="jam jam-info icon"></em>
+            </a>
+        </c:if>
     </div>
     <div class="message-body is-hidden" id="${insight.provider.id}-body">
         <strong><sling:encode value="${insight.primaryMessage.text}" mode="HTML" /></strong>

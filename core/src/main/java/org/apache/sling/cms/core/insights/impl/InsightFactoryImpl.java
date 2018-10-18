@@ -20,6 +20,7 @@ package org.apache.sling.cms.core.insights.impl;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,7 +107,12 @@ public class InsightFactoryImpl implements InsightFactory, ServiceListener {
     private List<Insight> getInsights(InsightRequest request) {
         List<Insight> insights = insightProviders.values().stream().filter(ip -> ip.isEnabled(request))
                 .map(ip -> ip.evaluateRequest(request)).collect(Collectors.toList());
-        Collections.sort(insights);
+        Collections.sort(insights, new Comparator<Insight>() {
+            @Override
+            public int compare(Insight o1, Insight o2) {
+                return o1.getProvider().getTitle().compareTo(o2.getProvider().getTitle());
+            }
+        });
         return insights;
     }
 

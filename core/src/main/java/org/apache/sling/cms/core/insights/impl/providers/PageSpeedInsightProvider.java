@@ -114,7 +114,7 @@ public class PageSpeedInsightProvider extends BaseInsightProvider {
             } else {
                 insight.setPrimaryMessage(Message.success(dictionary.get(I18N_KEY_READABILITY_RESULT_SUCCESS)));
             }
-            insight.addMessage(Message.defaultMsg(String.format(PAGESPEED_FORMAT, URLEncoder.encode(publishedUrl, "UTF-8"))));
+            insight.setMoreDetailsLink(String.format(PAGESPEED_FORMAT, URLEncoder.encode(publishedUrl, "UTF-8")));
 
             log.debug("Response parsed successfully");
 

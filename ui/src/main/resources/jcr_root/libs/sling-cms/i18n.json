@@ -10,17 +10,22 @@
         ],
         "jcr:language": "en",
         "sling:resourceType": "sling-cms/components/cms/blank",
-        "slingcms-htmlvalidator-danger":{
+        "slingcms-insights-moredetails": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "More Details",
+            "sling:key": "slingcms.insights.moredetails"
+        },
+        "slingcms-htmlvalidator-danger": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "There were {0} validation errors and {1} warnings",
             "sling:key": "slingcms.htmlvalidator.danger"
         },
-        "slingcms-htmlvalidator-success":{
+        "slingcms-htmlvalidator-success": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "HTML Validation successful!",
             "sling:key": "slingcms.htmlvalidator.success"
         },
-        "slingcms-htmlvalidator-warn":{
+        "slingcms-htmlvalidator-warn": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "There were {0} validation warnings",
             "sling:key": "slingcms.htmlvalidator.warn"

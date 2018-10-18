@@ -24,9 +24,9 @@ import java.util.List;
 /**
  * Simple POJO Model for holding an insight provider's results.
  */
-public class Insight implements Comparable<Insight> {
+public class Insight {
 
-    private boolean display = true;
+    private String moreDetailsLink;
     private Message primaryMessage;
     private InsightProvider provider;
     private InsightRequest request;
@@ -46,17 +46,11 @@ public class Insight implements Comparable<Insight> {
         scoreDetails.add(message);
     }
 
-    @Override
-    public int compareTo(Insight o) {
-        if (o.scored && !scored) {
-            return 1;
-        } else if (!o.scored && scored) {
-            return -1;
-        } else if (o.scored && scored) {
-            return (int) (score - o.score);
-        } else {
-            return provider.getTitle().compareTo(o.getProvider().getTitle());
-        }
+    /**
+     * @return the moreDetailsLink
+     */
+    public String getMoreDetailsLink() {
+        return moreDetailsLink;
     }
 
     public Message getPrimaryMessage() {
@@ -91,13 +85,6 @@ public class Insight implements Comparable<Insight> {
         return scoreDetails;
     }
 
-    /**
-     * @return the display
-     */
-    public boolean isDisplay() {
-        return display;
-    }
-
     public boolean isScored() {
         return scored;
     }
@@ -117,10 +104,10 @@ public class Insight implements Comparable<Insight> {
     }
 
     /**
-     * @param display the display to set
+     * @param moreDetailsLink the moreDetailsLink to set
      */
-    public void setDisplay(boolean display) {
-        this.display = display;
+    public void setMoreDetailsLink(String moreDetailsLink) {
+        this.moreDetailsLink = moreDetailsLink;
     }
 
     public void setPrimaryMessage(Message primaryMessage) {
@@ -180,9 +167,9 @@ public class Insight implements Comparable<Insight> {
      */
     @Override
     public String toString() {
-        return "Insight [display=" + display + ", primaryMessage=" + primaryMessage + ", provider=" + provider
-                + ", request=" + request + ", score=" + score + ", scored=" + scored + ", scoreDetails=" + scoreDetails
-                + ", skip=" + skip + ", succeeded=" + succeeded + "]";
+        return "Insight [primaryMessage=" + primaryMessage + ", provider=" + provider + ", request=" + request
+                + ", score=" + score + ", scored=" + scored + ", scoreDetails=" + scoreDetails + ", skip=" + skip
+                + ", moreDetailsLink=" + moreDetailsLink + ", succeeded=" + succeeded + "]";
     }
 
 }
