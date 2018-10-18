@@ -64,7 +64,7 @@ gulp.task('styles', function() {
             ])
          )
          .pipe(concat('styles.min.css'))
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'))
+         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'))
          .pipe(rename('bundle.css'))
          .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
 });

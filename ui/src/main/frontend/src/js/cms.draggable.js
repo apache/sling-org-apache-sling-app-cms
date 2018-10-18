@@ -17,50 +17,52 @@
  * under the License.
  */
 
-nomnom.decorate(".is-draggable", {
-
-    initCallback: function() {
-        this.dragData = {
+/* eslint-env browser, es6 */
+(function (nomnom) {
+    'use strict';
+    nomnom.decorate(".is-draggable", {
+        data: {
             mouseX : 0,
             mouseY : 0,
             mouseDown : false,
             elementX : 0,
             elementY : 0
-          };
-    },
-
-    moveComplete: function(){
-      this.dragData.mouseDown = false;
-      this.dragData.elementX = parseInt(this.style.left) || 0;
-      this.dragData.elementY = parseInt(this.style.top) || 0;
-      return false;
-    },
-
-    events : {
-        mousedown:function(event) {
-            if(event.target.matches('.modal-card-body *')){
-                return;
-              }
-              this.dragData.mouseX = event.clientX;
-              this.dragData.mouseY = event.clientY;
-              this.dragData.mouseDown = true;
         },
-        document : {
-            mouseup : function(){
-                if (this.dragData.mouseDown === true){
-                    this.moveComplete();
-                  }
+        methods : {
+            moveComplete: function (data) {
+                data.mouseDown = false;
+                data.elementX = parseInt(this.style.left, 10) || 0;
+                data.elementY = parseInt(this.style.top, 10) || 0;
+                return false;
+            }
+        },
+
+        events : {
+            mousedown: function (event, data) {
+                if (event.target.matches('.modal-card-body *')) {
+                    return;
+                }
+                data.mouseX = event.clientX;
+                data.mouseY = event.clientY;
+                data.mouseDown = true;
             },
-            mousemove: function(event) {
-                if (this.dragData.mouseDown === false) {
+            document : {
+                mouseup : function (event, data) {
+                    if (data.mouseDown === true) {
+                        this.moveComplete(data);
+                    }
+                },
+                mousemove: function (event, data) {
+                    if (data.mouseDown === false) {
+                        return false;
+                    }
+                    var deltaX = event.clientX - data.mouseX,
+                        deltaY = event.clientY - data.mouseY;
+                    this.style.left = data.elementX + deltaX + 'px';
+                    this.style.top = data.elementY + deltaY + 'px';
                     return false;
-                 }
-                 var deltaX = event.clientX - this.dragData.mouseX;
-                 var deltaY = event.clientY - this.dragData.mouseY;
-                 this.style.left = this.dragData.elementX + deltaX + 'px';
-                 this.style.top = this.dragData.elementY + deltaY + 'px';
-                 return false;
-              }
+                }
+            }
         }
-    }
-});
+    });
+}(window.nomnom = window.nomnom || {}));

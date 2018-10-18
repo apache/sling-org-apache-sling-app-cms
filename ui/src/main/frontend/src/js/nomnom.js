@@ -19,145 +19,160 @@
 /* eslint-env es6, browser */
 (function(nomnom) {
 
-    // public
-    nomnom.decorate = function(selector, config) {
-        if (debug) {
-            console.log("storing selector" + selector);
-        }
-        tagSelectors[selector] = config;
-        document.querySelectorAll(selector).forEach(function(node) {
-            wrap(node, config);
-        });
-    };
+  // public
+  nomnom.decorate = function(selector, config) {
+      if (debug) {
+          console.log("storing selector" + selector);
+      }
+      tagSelectors[selector] = config;
+      document.querySelectorAll(selector).forEach(function(node) {
+          wrap(node, config);
+      });
+  };
 
-    var tagSelectors = {};
-    var debug = false;
-    var elementMap = new WeakMap();
-
-    new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            mutation.addedNodes.forEach(function(node) {
-                checkAll(node);
-            });
-        });
-    }).observe(document.body, {
-        attributes : false,
-        childList : true,
-        subtree : true,
-        characterData : false
-    });
-
-    var wrap = function(node, config) {
-        if (debug) {
-            console.log("decorating element " + node + node.name);
-        }
-        var configSet;
-        if (elementMap.has(node)) {
-            configSet = elementMap.get(node);
-        } else {
-            configSet = new Set();
-            elementMap.set(node, configSet);
-        }
-        if (configSet.has(config)) {
-            return;
-        }
-        configSet.add(config);
-        var names = Object.getOwnPropertyNames(config);
-        var keys = Object.keys(config);
-        names.forEach(function(name) {
-            if (name === "constructor") {
-                return;
-            }
-            if (debug) {
-                console.log("   decorating " + name);
-            }
-            if (name === "events") {
-                registerEventHandlers(node, name, config[name]);
-            } else {
-                node[name] = config[name];
-            }
-        });
-        keys.forEach(function(key) {
-            if (debug) {
-                console.log("   decorating " + key);
-            }
-            node[key] = config[key];
-        });
-        if (node.initCallback) {
-            node.initCallback.call(node);
-        }
-    };
-
-    // generic function to wrap the event handler in the case that
-    // we only want it to fire for a specific child event
-    var targetedEventHandler = function(fn, correctTarget) {
-        return function(event) {
-            if (!event.target.matches(correctTarget)) {
-                return;
-            }
-            fn.call(this, event);
-        };
-    };
-
-    var registerEventHandlers = function(node, propertyName, events) {
-        for ( var eventName in events) {
-            let possibleFunc = events[eventName];
-            if (typeof possibleFunc === "function") {
-                node.addEventListener(eventName, function(event) {
-                    possibleFunc.call(node, event);
-                });
-            } else {
-                let selector = eventName;
-                let targetNode = node;
-                for ( var childEventName in possibleFunc) {
-                    let func = targetedEventHandler(
-                            possibleFunc[childEventName], selector);
-                    if (selector == "document") {
-                        targetNode = document;
-                    }
-                    targetNode.addEventListener(childEventName,
-                            function(event) {
-                                func.call(node, event);
-                            });
-                }
-            }
-        }
-    };
-
-    var checkAll = function(node) {
-        if (!node.querySelectorAll) {
-            return;
-        }
-        var checkSet = new Set([node]);
-        checkSet.forEach(function(node){
-            let elements = node.children;
-            for (let i = 0; i < elements.length; i++) {
-                let element = elements[i];
-                if (element.querySelectorAll) {
-                    check(element);
-                    checkSet.add(element);
-                }
-            }
-            checkSet.delete(node);
-        });
+	nomnom.enhancecalm = function(event){
+        event.preventDefault();
+        event.stopPropagation();
     }
-    
-    var check = function(node) {
-        for ( var selector in tagSelectors) {
-            let found = false;
-            if (debug) {
-                console.log("checking nodes for " + selector);
-            }
-            if (node.matches(selector)) {
-                found = true;
-                wrap(node, tagSelectors[selector]);
-            }
-            if (found && debug) {
-                console.log("node found for " + selector);
-            }
-        }
-    };
 
-    return nomnom;
+  var tagSelectors = {};
+  var debug = false;
+  var elementMap = new WeakMap();
+
+  new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+              checkAll(node);
+          });
+      });
+  }).observe(document.body, {
+      attributes : false,
+      childList : true,
+      subtree : true,
+      characterData : false
+  });
+
+  var wrap = function(node, config) {
+      if (debug) {
+          console.log("decorating element " + node + node.name);
+      }
+      var configSet;
+      if (elementMap.has(node)) {
+          configSet = elementMap.get(node);
+      } else {
+          configSet = new Set();
+          elementMap.set(node, configSet);
+      }
+      if (configSet.has(config)) {
+          return;
+      }
+      configSet.add(config);
+      var names = Object.getOwnPropertyNames(config);
+      var keys = Object.keys(config);
+      var data = config.data;
+      names.forEach(function(name) {
+          if (name === "constructor") {
+              return;
+          }
+          if (debug) {
+              console.log("   decorating " + name);
+          }
+          if (name === "events") {
+              registerEventHandlers(node, data, config[name]);
+          }
+          if (name === "methods") {
+              handleMethods(node, config[name]);
+          }
+      });
+      keys.forEach(function(key) {
+          if (debug) {
+              console.log("   decorating " + key);
+          }
+          node[key] = config[key];
+      });
+      if (config.callbacks) {
+          if (config.callbacks.created){
+              config.callbacks.created.call(node);
+          }
+      }
+  };
+
+  // generic function to wrap the event handler in the case that
+  // we only want it to fire for a specific child event
+  var targetedEventHandler = function(fn, correctTarget, data) {
+      return function(event) {
+          if (!event.target.matches(correctTarget)) {
+              return;
+          }
+          fn.call(this, event, data);
+      };
+  };
+  
+  var handleMethods = function(node, funcs) {
+      for ( var funcName in funcs) {
+          node[funcName] = funcs[funcName];
+      }
+  };
+
+  var registerEventHandlers = function(node, data, events) {
+      for ( var eventName in events) {
+          let possibleFunc = events[eventName];
+          let targetNode = node;
+          if (typeof possibleFunc !== "object") {
+              targetNode.addEventListener(eventName, function(event) {
+                  possibleFunc.call(node, event, data);
+              });
+          } else {
+              let selector = eventName;
+              if (selector === "document") {
+                  targetNode = document;
+              }
+              for ( var childEventName in possibleFunc) {
+                  let func = possibleFunc[childEventName];
+                  if (selector !== "document"){
+                      func = targetedEventHandler(func, selector, data);
+                  }
+                  targetNode.addEventListener(childEventName,
+                          function(event) {
+                              func.call(node, event, data);
+                          });
+              }
+          }
+      }
+  };
+
+  var checkAll = function(node) {
+      var checkSet = new Set([node]);
+      checkSet.forEach(function(element){
+          if (element.querySelectorAll) {
+              check(element);
+          }
+          let elements = element.children;
+          if (elements){
+              for (let i = 0; i < elements.length; i++) {
+                  checkSet.add(elements[i]);
+              }
+          }
+          checkSet.delete(element);
+      });
+  }
+  
+  var check = function(node) {
+      for ( var selector in tagSelectors) {
+          let found = false;
+          if (debug) {
+              console.log("checking nodes for " + selector);
+          }
+          if (node.matches(selector)) {
+              found = true;
+              wrap(node, tagSelectors[selector]);
+          }
+          if (found && debug) {
+              console.log("node found for " + selector);
+          }
+      }
+  };
+
+  return nomnom;
 
 })(window.nomnom = window.nomnom || {});
