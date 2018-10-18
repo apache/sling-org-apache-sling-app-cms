@@ -160,19 +160,6 @@ nomnom.decorate('.page-properties-container', {
         }
     }
 });
-    
-nomnom.decorate(".namehint", {
-    callbacks : {
-        created : function(){
-            var $nh = $(this);
-            $nh.parents('.Form-Ajax').find('select[name="sling:resourceType"]').change(function(){
-                var resourceType = $(this).val().split("\/");
-                $nh.val(resourceType[resourceType.length - 1]);
-            });
-         }
-    }
-});
-
 
 nomnom.decorate('.sling-cms-include-config', {
     callbacks : {

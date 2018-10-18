@@ -30,6 +30,11 @@
       });
   };
 
+	nomnom.enhancecalm = function(event){
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
   var tagSelectors = {};
   var debug = false;
   var elementMap = new WeakMap();
