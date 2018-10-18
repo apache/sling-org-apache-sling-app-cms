@@ -10,6 +10,36 @@
         ],
         "jcr:language": "en",
         "sling:resourceType": "sling-cms/components/cms/blank",
+        "slingcms-htmlvalidator-danger":{
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "There were {0} validation errors and {1} warnings",
+            "sling:key": "slingcms.htmlvalidator.danger"
+        },
+        "slingcms-htmlvalidator-success":{
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "HTML Validation successful!",
+            "sling:key": "slingcms.htmlvalidator.success"
+        },
+        "slingcms-htmlvalidator-warn":{
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "There were {0} validation warnings",
+            "sling:key": "slingcms.htmlvalidator.warn"
+        },
+        "slingcms-pagespeed-danger": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "This website is much slower than average, page performance must be optimized",
+            "sling:key": "slingcms.pagespeed.danger"
+        },
+        "slingcms-pagespeed-warn": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "This website is slower than average, page performance should be optimized",
+            "sling:key": "slingcms.pagespeed.warn"
+        },
+        "slingcms-pagespeed-success": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "This website has acceptable performance",
+            "sling:key": "slingcms.pagespeed.success"
+        },
         "slingcms-readability-danger": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Failed to calculate readability for {1}",

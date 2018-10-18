@@ -14,10 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.readability.impl;
+package org.apache.sling.cms.core.insights.impl.providers;
 
 import java.text.DecimalFormat;
 
+import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.apache.sling.cms.CMSConstants;
@@ -44,7 +45,6 @@ import org.slf4j.LoggerFactory;
 public class ReadabilityInsightProvider extends BaseInsightProvider {
 
     public static final String I18N_KEY_READABILITY_DETAIL = "slingcms.readability.detail";
-
     public static final String I18N_KEY_READABILITY_RESULT_DANGER = "slingcms.readability.danger";
     public static final String I18N_KEY_READABILITY_RESULT_SUCCESS = "slingcms.readability.success";
     public static final String I18N_KEY_READABILITY_RESULT_WARN = "slingcms.readability.warn";
@@ -109,7 +109,21 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
             if (score > config.getMaxGradeLevel() || score < config.getMinGradeLevel()) {
                 log.debug("Retrieved out of bounds readability {} based on range {}-{}", score,
                         config.getMinGradeLevel(), config.getMaxGradeLevel());
-                insight.setScore(0.5);
+
+                StandardDeviation sd = new StandardDeviation(false);
+                double stddev = sd.evaluate(new double[] { config.getMinGradeLevel(), config.getMaxGradeLevel() });
+                double dev = 0.0;
+                if (score > config.getMaxGradeLevel()) {
+                    dev = score - config.getMaxGradeLevel();
+                } else {
+                    dev = config.getMinGradeLevel() - score;
+                }
+                double calcScore = 1 - (dev / stddev) * .5;
+                if (calcScore > 0) {
+                    insight.setScore(calcScore);
+                } else {
+                    insight.setScore(0.0);
+                }
                 insight.setPrimaryMessage(Message.warn(dictionary.get(I18N_KEY_READABILITY_RESULT_WARN,
                         new Object[] { config.getMinGradeLevel(), config.getMaxGradeLevel(), scoreStr })));
             } else {
