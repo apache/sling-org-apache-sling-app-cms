@@ -114,6 +114,13 @@
                                     "icon": "cog",
                                     "prefix": "/cms/page/siteeditproperties.html"
                                 },
+                                "insights": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Insights",
+                                    "icon": "info",
+                                    "prefix": "/cms/shared/insights.html"
+                                },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,

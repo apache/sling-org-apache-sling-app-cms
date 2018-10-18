@@ -1,23 +1,12 @@
 {
     "jcr:primaryType": "sling:Page",
     "jcr:content": {
-        "sling:resourceType": "sling-cms/components/pages/base",
+        "sling:resourceType": "sling-cms/components/pages/modal",
         "jcr:title": "View Insights",
         "jcr:primaryType": "nt:unstructured",
         "container": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/general/container",
-            "richtext": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h2>Content Insights</h2>"
-            },
-            "contentbreadcrumb": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
-                "depth": 3,
-                "prefix": "/cms/site/content.html"
-            },
             "siteconfig": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/insights/insightlist"

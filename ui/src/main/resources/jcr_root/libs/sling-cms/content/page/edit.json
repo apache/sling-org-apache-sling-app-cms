@@ -21,6 +21,13 @@
                         "title": "Edit Page Properties",
                         "icon": "cog"
                     },
+                    "insights": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "modal": true,
+                        "title": "Insights",
+                        "icon": "info",
+                        "prefix": "/cms/shared/insights.html"
+                    },
                     "version": {
                         "jcr:primaryType": "nt:unstructured",
                         "ajaxPath": ".versionmanager",
