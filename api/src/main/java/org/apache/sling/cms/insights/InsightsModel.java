@@ -16,41 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.sling.cms.core.insights.impl;
+package org.apache.sling.cms.insights;
 
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.File;
-import org.apache.sling.cms.insights.FileInsightRequest;
+import java.util.List;
 
 /**
- * Implementation of the FileInsightRequest interface
+ * A model interface for retrieving insights for the current resource
  */
-public class FileInsightRequestImpl implements FileInsightRequest {
+public interface InsightsModel {
 
-    private File file;
-
-    public FileInsightRequestImpl(File file) {
-        this.file = file;
-    }
-
-    @Override
-    public File getFile() {
-        return file;
-    }
-
-    @Override
-    public Resource getResource() {
-        return file.getResource();
-    }
-
-    /*
-     * (non-Javadoc)
+    /**
+     * Retrieve the insights for the current resource.
      * 
-     * @see java.lang.Object#toString()
+     * @return the insights for the resource
      */
-    @Override
-    public String toString() {
-        return "FileInsightRequestImpl [file=" + file + "]";
-    }
+    List<Insight> getInsights();
 
 }

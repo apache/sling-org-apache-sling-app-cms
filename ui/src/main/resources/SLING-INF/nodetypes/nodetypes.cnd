@@ -18,70 +18,75 @@
 //  You can find out more documentation on this topic 
 //  by following these links:
 //
-//	-  http://sling.apache.org/site/content-loading.html
-//	-  http://jackrabbit.apache.org/node-type-notation.html
+//    -  http://sling.apache.org/site/content-loading.html
+//    -  http://jackrabbit.apache.org/node-type-notation.html
 
 <sling = 'http://www.sling.apache.org/sling/1.0'>
-	
+    
 
 [sling:Component] > nt:unstructured
-	- componentType (string)
-	- jcr:title (string)
-	
+    - componentType (string)
+    - jcr:title (string)
+    
 [sling:Config] > nt:hierarchyNode
-	orderable
-	- sling:created (date)
-	- sling:createdBy (string)
-	- sling:resourceType (string)
-	- jcr:lastModified (date)
-	- jcr:lastModifiedBy (string)
-	- jcr:title (string)
-	+ * (nt:unstructured) = nt:unstructured version
-	
+    orderable
+    - sling:created (date)
+    - sling:createdBy (string)
+    - sling:resourceType (string)
+    - jcr:lastModified (date)
+    - jcr:lastModifiedBy (string)
+    - jcr:title (string)
+    + * (nt:unstructured) = nt:unstructured version
+    - * (UNDEFINED) multiple
+    - * (UNDEFINED)
+    
 [sling:File] > nt:file
-	 - * (undefined) copy
-	 + jcr:content (sling:FileContent) = sling:FileContent copy primary autocreated
-	
+     - * (undefined) copy
+     + jcr:content (sling:FileContent) = sling:FileContent copy primary autocreated
+    
 [sling:FileContent] > nt:resource
-	- * (undefined) copy
-	- * (undefined) copy multiple
+    - * (undefined) copy
+    - * (undefined) copy multiple
 
 [sling:Page] > nt:hierarchyNode
-	orderable
-	- published (boolean)
-	+ jcr:content (nt:unstructured) = nt:unstructured copy primary
-	+ * (nt:base) = nt:base version
+    orderable
+    - published (boolean)
+    + jcr:content (nt:unstructured) = nt:unstructured copy primary
+    + * (nt:base) = nt:base version
 
 [sling:Site] > nt:hierarchyNode
-	orderable
-	- sling:configRef (string)
-	- sling:created (date)
-	- sling:createdBy (string)
-	- sling:url (string)
-	- jcr:language (string)
-	- jcr:lastModified (date)
-	- jcr:lastModifiedBy (string)
-	- jcr:title (string)
-	- jcr:description (string)
-	+ * (nt:base) = nt:base version
+    orderable
+    - sling:configRef (string)
+    - sling:created (date)
+    - sling:createdBy (string)
+    - sling:url (string)
+    - jcr:language (string)
+    - jcr:lastModified (date)
+    - jcr:lastModifiedBy (string)
+    - jcr:title (string)
+    - jcr:description (string)
+    + * (nt:base) = nt:base version
 
 [sling:Taxonomy] > nt:hierarchyNode
-	orderable
-	- sling:related (string)
-	- sling:created (date)
-	- sling:createdBy (string)
-	- jcr:lastModified (date)
-	- jcr:lastModifiedBy (string)
-	- jcr:title (string)
-	+ * (sling:Taxonomy) = sling:Taxonomy version
+    orderable
+    - sling:related (string)
+    - sling:created (date)
+    - sling:createdBy (string)
+    - jcr:lastModified (date)
+    - jcr:lastModifiedBy (string)
+    - jcr:title (string)
+    + * (sling:Taxonomy) = sling:Taxonomy version
 
 [sling:UGC] > nt:unstructured
     - approveaction (string)
-	- contenttype (string)
-	- finalpath (string)
-	- preview (string)
-	- published (boolean)
-	- referrer (string)
-	- user (string)
-	- useragent (string)
-	- userip (string)
+    - contenttype (string)
+    - finalpath (string)
+    - preview (string)
+    - published (boolean)
+    - referrer (string)
+    - user (string)
+    - useragent (string)
+    - userip (string)
+    - * (UNDEFINED) multiple
+    - * (UNDEFINED)
+    

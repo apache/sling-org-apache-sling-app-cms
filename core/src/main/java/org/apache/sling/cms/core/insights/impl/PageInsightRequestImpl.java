@@ -24,7 +24,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,13 +50,13 @@ public class PageInsightRequestImpl implements PageInsightRequest {
 
     private final Page page;
 
-    @Inject
-    private SlingRequestProcessor requestProcessor;
+    private final SlingRequestProcessor requestProcessor;
 
     private final ResourceResolver resourceResolver;
 
-    public PageInsightRequestImpl(Page page) {
+    public PageInsightRequestImpl(Page page, SlingRequestProcessor requestProcessor) {
         this.page = page;
+        this.requestProcessor = requestProcessor;
         this.resourceResolver = page.getResource().getResourceResolver();
     }
 
@@ -108,6 +107,17 @@ public class PageInsightRequestImpl implements PageInsightRequest {
     @Override
     public Resource getResource() {
         return page.getResource();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "PageInsightRequestImpl [markupCache=" + markupCache + ", page=" + page + ", requestProcessor="
+                + requestProcessor + ", resourceResolver=" + resourceResolver + "]";
     }
 
 }

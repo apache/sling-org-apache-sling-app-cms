@@ -18,6 +18,10 @@
     <name>Apache Sling - CMS API</name>
     <description>An API for the Apache Sling Reference CMS Application</description>
 
+    <properties>
+        <sling.java.version>8</sling.java.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>

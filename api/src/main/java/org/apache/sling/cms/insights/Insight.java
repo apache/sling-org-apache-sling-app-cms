@@ -24,16 +24,17 @@ import java.util.List;
 /**
  * Simple POJO Model for holding an insight provider's results.
  */
-public class Insight {
+public class Insight implements Comparable<Insight> {
 
-    private Object data;
     private boolean display = true;
+    private Message primaryMessage;
     private InsightProvider provider;
     private InsightRequest request;
     private double score;
     private boolean scored = false;
     private List<Message> scoreDetails = new ArrayList<>();
     private boolean skip = false;
+
     private boolean succeeded = true;
 
     public Insight(InsightProvider provider, InsightRequest request) {
@@ -45,11 +46,21 @@ public class Insight {
         scoreDetails.add(message);
     }
 
-    /**
-     * @return the data
-     */
-    public Object getData() {
-        return data;
+    @Override
+    public int compareTo(Insight o) {
+        if (o.scored && !scored) {
+            return 1;
+        } else if (!o.scored && scored) {
+            return -1;
+        } else if (o.scored && scored) {
+            return (int) (score - o.score);
+        } else {
+            return provider.getTitle().compareTo(o.getProvider().getTitle());
+        }
+    }
+
+    public Message getPrimaryMessage() {
+        return primaryMessage;
     }
 
     /**
@@ -106,17 +117,14 @@ public class Insight {
     }
 
     /**
-     * @param data the data to set
-     */
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    /**
      * @param display the display to set
      */
     public void setDisplay(boolean display) {
         this.display = display;
+    }
+
+    public void setPrimaryMessage(Message primaryMessage) {
+        this.primaryMessage = primaryMessage;
     }
 
     /**
@@ -163,6 +171,18 @@ public class Insight {
      */
     public void setSucceeded(boolean succeeded) {
         this.succeeded = succeeded;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Insight [display=" + display + ", primaryMessage=" + primaryMessage + ", provider=" + provider
+                + ", request=" + request + ", score=" + score + ", scored=" + scored + ", scoreDetails=" + scoreDetails
+                + ", skip=" + skip + ", succeeded=" + succeeded + "]";
     }
 
 }

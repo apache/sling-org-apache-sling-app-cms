@@ -17,13 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-
-<c:set var="oldAvailableTypes" value="${availableTypes}" />
-<c:set var="availableTypes" value="SlingCMS-FileEditor" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/cms/fileeditorconfig/config" />
-<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
-
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
-<c:set var="cmsEditEnabled" value="false" scope="request" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/caconfig/readability/config" />

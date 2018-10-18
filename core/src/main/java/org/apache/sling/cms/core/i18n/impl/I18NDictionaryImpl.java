@@ -40,13 +40,15 @@ public class I18NDictionaryImpl implements I18NDictionary {
     public String get(String key, Object[] args) {
         String localized = get(key);
 
-        if (localized == null || args == null) {
+        if (localized == null) {
             return key;
         }
-        for (int i = 0; i < args.length; i++) {
-            Object o = args[i];
-            if (o != null) {
-                localized = localized.replace("{" + i + "}", o.toString());
+        if (args != null) {
+            for (int i = 0; i < args.length; i++) {
+                Object o = args[i];
+                if (o != null) {
+                    localized = localized.replace("{" + i + "}", o.toString());
+                }
             }
         }
         return localized;

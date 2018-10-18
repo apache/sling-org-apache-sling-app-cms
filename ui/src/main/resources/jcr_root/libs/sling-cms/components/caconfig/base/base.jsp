@@ -1,4 +1,4 @@
-/*
+<%-- /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,42 +15,14 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-package org.apache.sling.cms.core.insights.impl;
+ */ --%>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="cmsEditEnabled" value="true" scope="request" />
+<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.File;
-import org.apache.sling.cms.insights.FileInsightRequest;
+<c:set var="oldAvailableTypes" value="${availableTypes}" />
+<sling:call script="include.jsp" />
+<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 
-/**
- * Implementation of the FileInsightRequest interface
- */
-public class FileInsightRequestImpl implements FileInsightRequest {
-
-    private File file;
-
-    public FileInsightRequestImpl(File file) {
-        this.file = file;
-    }
-
-    @Override
-    public File getFile() {
-        return file;
-    }
-
-    @Override
-    public Resource getResource() {
-        return file.getResource();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "FileInsightRequestImpl [file=" + file + "]";
-    }
-
-}
+<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
+<c:set var="cmsEditEnabled" value="false" scope="request" />

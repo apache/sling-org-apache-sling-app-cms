@@ -1,4 +1,4 @@
-/*
+<%-- /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,42 +15,12 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-package org.apache.sling.cms.core.insights.impl;
-
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.cms.File;
-import org.apache.sling.cms.insights.FileInsightRequest;
-
-/**
- * Implementation of the FileInsightRequest interface
- */
-public class FileInsightRequestImpl implements FileInsightRequest {
-
-    private File file;
-
-    public FileInsightRequestImpl(File file) {
-        this.file = file;
-    }
-
-    @Override
-    public File getFile() {
-        return file;
-    }
-
-    @Override
-    public Resource getResource() {
-        return file.getResource();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "FileInsightRequestImpl [file=" + file + "]";
-    }
-
-}
+ */ --%>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo var="insights" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.insights.InsightsModel" />
+<c:forEach var="in" items="${insights.insights}" varStatus="status">
+    <c:if test="${!in.skip}">
+        <c:set var="insight" value="${in}" scope="request" />
+        <sling:include path="insight-${status.index}" resourceType="sling-cms/components/insights/insight" />
+    </c:if>
+</c:forEach>

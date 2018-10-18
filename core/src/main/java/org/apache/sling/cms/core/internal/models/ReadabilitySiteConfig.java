@@ -16,6 +16,8 @@
  */
 package org.apache.sling.cms.core.internal.models;
 
+import javax.inject.Inject;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 
@@ -26,8 +28,10 @@ import org.apache.sling.models.annotations.Model;
 @Model(adaptables = Resource.class)
 public interface ReadabilitySiteConfig {
 
-    double minGradeLevel();
+    @Inject
+    double getMinGradeLevel();
 
-    double maxGradeLevel();
+    @Inject
+    double getMaxGradeLevel();
 
 }

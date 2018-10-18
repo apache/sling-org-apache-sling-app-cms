@@ -24,7 +24,7 @@ package org.apache.sling.cms.insights;
 public class Message {
 
     public enum STYLE {
-        DANGER, DEFAULT, SUCCESS, WARN
+        DANGER, DEFAULT, SUCCESS, WARNING
     }
 
     public static Message danger(String text) {
@@ -40,7 +40,7 @@ public class Message {
     }
 
     public static Message warn(String text) {
-        return new Message(text, STYLE.WARN);
+        return new Message(text, STYLE.WARNING);
     }
 
     private STYLE style;
@@ -55,11 +55,11 @@ public class Message {
     public STYLE getStyle() {
         return style;
     }
-
+    
     public String getStyleClass() {
         String styleClass = "";
         if (style != STYLE.DEFAULT) {
-            styleClass = "text-" + style.toString().toLowerCase();
+            styleClass = "is-" + style.toString().toLowerCase();
         }
         return styleClass;
     }

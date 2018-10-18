@@ -37,20 +37,95 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("deprecation")
 @Component(service = I18NProvider.class)
 public class I18NProviderImpl implements I18NProvider {
+    /**
+     * Provider that goes through a list of registered providers and takes the first
+     * non-null responses
+     */
+    private class CombinedBundleProvider implements ResourceBundleProvider {
+
+        @Override
+        public Locale getDefaultLocale() {
+            // ask all registered providers, use the first one that returns
+            final ResourceBundleProvider[] sp = sortedProviders;
+            for (int i = sp.length - 1; i >= 0; i--) {
+                final ResourceBundleProvider provider = sp[i];
+                final Locale locale = provider.getDefaultLocale();
+                if (locale != null) {
+                    log.trace("Found default locale {}", locale);
+                    return locale;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public ResourceBundle getResourceBundle(final Locale locale) {
+            return getResourceBundle(null, locale);
+        }
+
+        @Override
+        public ResourceBundle getResourceBundle(final String baseName, final Locale locale) {
+            log.debug("Retrieving resource bundle for {}", locale);
+            // ask all registered providers, use the first one that returns
+            final ResourceBundleProvider[] sp = sortedProviders;
+            for (int i = sp.length - 1; i >= 0; i--) {
+                final ResourceBundleProvider provider = sp[i];
+                final ResourceBundle bundle = baseName != null ? provider.getResourceBundle(baseName, locale)
+                        : provider.getResourceBundle(locale);
+                if (bundle != null) {
+                    log.trace("Using bundle {}", bundle);
+                    return bundle;
+                }
+            }
+            return null;
+        }
+    }
+
+    private static final Logger log = LoggerFactory.getLogger(I18NProviderImpl.class);
 
     private final DefaultLocaleResolver defaultLocaleResolver = new DefaultLocaleResolver();
 
     private volatile LocaleResolver localeResolver = defaultLocaleResolver;
 
-    private volatile RequestLocaleResolver requestLocaleResolver = defaultLocaleResolver;
-
     private final Map<Object, ResourceBundleProvider> providers = new TreeMap<>();
 
+    private volatile RequestLocaleResolver requestLocaleResolver = defaultLocaleResolver;
+
     private volatile ResourceBundleProvider[] sortedProviders = new ResourceBundleProvider[0];
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
+    protected void bindLocaleResolver(final LocaleResolver resolver) {
+        this.localeResolver = resolver;
+    }
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
+    protected void bindRequestLocaleResolver(final RequestLocaleResolver resolver) {
+        this.requestLocaleResolver = resolver;
+    }
+
+    @Reference(service = ResourceBundleProvider.class, cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
+    protected void bindResourceBundleProvider(final ResourceBundleProvider provider, final Map<String, Object> props) {
+        synchronized (this.providers) {
+            this.providers.put(ServiceUtil.getComparableForServiceRanking(props, Order.ASCENDING), provider);
+            this.sortedProviders = this.providers.values().toArray(new ResourceBundleProvider[this.providers.size()]);
+        }
+    }
+
+    @Override
+    public I18NDictionary getDictionary(ResourceResolver resolver) {
+
+        // TODO: make the locale a user field
+        Locale locale = Locale.ENGLISH;
+
+        CombinedBundleProvider cbp = new CombinedBundleProvider();
+        return new I18NDictionaryImpl(cbp.getResourceBundle(locale));
+    }
 
     @Override
     public I18NDictionary getDictionary(SlingHttpServletRequest request) {
@@ -67,30 +142,10 @@ public class I18NProviderImpl implements I18NProvider {
         return new I18NDictionaryImpl(bundle);
     }
 
-    @Override
-    public I18NDictionary getDictionary(ResourceResolver resolver) {
-
-        // TODO: make the locale a user field
-        Locale locale = Locale.ENGLISH;
-
-        CombinedBundleProvider cbp = new CombinedBundleProvider();
-        return new I18NDictionaryImpl(cbp.getResourceBundle(locale));
-    }
-
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
-    protected void bindLocaleResolver(final LocaleResolver resolver) {
-        this.localeResolver = resolver;
-    }
-
     protected void unbindLocaleResolver(final LocaleResolver resolver) {
         if (this.localeResolver == resolver) {
             this.localeResolver = defaultLocaleResolver;
         }
-    }
-
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
-    protected void bindRequestLocaleResolver(final RequestLocaleResolver resolver) {
-        this.requestLocaleResolver = resolver;
     }
 
     protected void unbindRequestLocaleResolver(final RequestLocaleResolver resolver) {
@@ -99,70 +154,13 @@ public class I18NProviderImpl implements I18NProvider {
         }
     }
 
-    @Reference(service = ResourceBundleProvider.class, cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
-    protected void bindResourceBundleProvider(final ResourceBundleProvider provider, final Map<String, Object> props) {
-        synchronized (this.providers) {
-            this.providers.put(ServiceUtil.getComparableForServiceRanking(props, Order.ASCENDING), provider);
-            this.sortedProviders = this.providers.values().toArray(new ResourceBundleProvider[this.providers.size()]);
-        }
-    }
+    // ---------- internal -----------------------------------------------------
 
     protected void unbindResourceBundleProvider(final ResourceBundleProvider provider,
             final Map<String, Object> props) {
         synchronized (this.providers) {
             this.providers.remove(ServiceUtil.getComparableForServiceRanking(props, Order.ASCENDING));
             this.sortedProviders = this.providers.values().toArray(new ResourceBundleProvider[this.providers.size()]);
-        }
-    }
-
-    // ---------- internal -----------------------------------------------------
-
-    /**
-     * Provider that goes through a list of registered providers and takes the first
-     * non-null responses
-     */
-    private class CombinedBundleProvider implements ResourceBundleProvider {
-
-        @Override
-        public Locale getDefaultLocale() {
-            // ask all registered providers, use the first one that returns
-            final ResourceBundleProvider[] sp = sortedProviders;
-            for (int i = sp.length - 1; i >= 0; i--) {
-                final ResourceBundleProvider provider = sp[i];
-                final Locale locale = provider.getDefaultLocale();
-                if (locale != null) {
-                    return locale;
-                }
-            }
-            return null;
-        }
-
-        @Override
-        public ResourceBundle getResourceBundle(final Locale locale) {
-            // ask all registered providers, use the first one that returns
-            final ResourceBundleProvider[] sp = sortedProviders;
-            for (int i = sp.length - 1; i >= 0; i--) {
-                final ResourceBundleProvider provider = sp[i];
-                final ResourceBundle bundle = provider.getResourceBundle(locale);
-                if (bundle != null) {
-                    return bundle;
-                }
-            }
-            return null;
-        }
-
-        @Override
-        public ResourceBundle getResourceBundle(final String baseName, final Locale locale) {
-            // ask all registered providers, use the first one that returns
-            final ResourceBundleProvider[] sp = sortedProviders;
-            for (int i = sp.length - 1; i >= 0; i--) {
-                final ResourceBundleProvider provider = sp[i];
-                final ResourceBundle bundle = provider.getResourceBundle(baseName, locale);
-                if (bundle != null) {
-                    return bundle;
-                }
-            }
-            return null;
         }
     }
 

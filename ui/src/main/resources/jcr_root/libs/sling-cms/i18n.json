@@ -1,0 +1,34 @@
+{
+    "jcr:primaryType": "sling:OrderedFolder",
+    "jcr:content": {
+        "jcr:title": "Sling CMS"
+    },
+    "en_US": {
+        "jcr:primaryType": "sling:Folder",
+        "jcr:mixinTypes": [
+            "mix:language"
+        ],
+        "jcr:language": "en",
+        "sling:resourceType": "sling-cms/components/cms/blank",
+        "slingcms-readability-danger": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Failed to calculate readability for {1}",
+            "sling:key": "slingcms.readability.danger"
+        },
+        "slingcms-readability-stats": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Found {0} sentences with {1} words and {2} complex words",
+            "sling:key": "slingcms.readability.stats"
+        },
+        "slingcms-readability-success": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Readability grade {2} is between expected range: ({0}-{1})",
+            "sling:key": "slingcms.readability.success"
+        },
+        "slingcms-readability-warn": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Readability grade {2} is outside expected range: ({0}-{1})",
+            "sling:key": "slingcms.readability.warn"
+        }
+    }
+}

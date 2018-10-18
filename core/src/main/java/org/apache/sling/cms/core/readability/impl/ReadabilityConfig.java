@@ -20,27 +20,27 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 /**
- * An interface for configuring the readability services for a particular
+ * An interface for configuring the %readability services for a particular
  * language
  */
-@ObjectClassDefinition(name = "%config.name", description = "%config.description", localization = "OSGI-INF/l10n/bundle")
+@ObjectClassDefinition(name = "%readability.config.name", description = "%readability.config.description", localization = "OSGI-INF/l10n/bundle")
 public @interface ReadabilityConfig {
 
-    @AttributeDefinition(name = "%param.locale.name", description = "%param.locale.description")
+    @AttributeDefinition(name = "%readability.param.locale.name", description = "%readability.param.locale.description")
     String locale();
 
-    @AttributeDefinition(name = "%param.vowelexp.name", description = "%param.vowelexp.description")
+    @AttributeDefinition(name = "%readability.param.vowelexp.name", description = "%readability.param.vowelexp.description")
     String vowelExpression();
 
-    @AttributeDefinition(name = "%param.extravowelexp.name", description = "%param.extravowelexp.description")
+    @AttributeDefinition(name = "%readability.param.extravowelexp.name", description = "%readability.param.extravowelexp.description")
     String extraVowelExpression();
 
-    @AttributeDefinition(name = "%param.wordstems.name", description = "%param.wordstems.description")
+    @AttributeDefinition(name = "%readability.param.wordstems.name", description = "%readability.param.wordstems.description")
     String[] wordstems();
 
-    @AttributeDefinition(name = "%param.complexitymin.name", description = "%param.complexitymin.description")
+    @AttributeDefinition(name = "%readability.param.complexitymin.name", description = "%readability.param.complexitymin.description")
     int complexityMin();
 
-    @AttributeDefinition(name = "%param.iswordexp.name", description = "%param.iswordexp.description")
+    @AttributeDefinition(name = "%readability.param.iswordexp.name", description = "%readability.param.iswordexp.description")
     String isWordExpression();
 }

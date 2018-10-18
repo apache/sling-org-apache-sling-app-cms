@@ -16,6 +16,8 @@
  */
 package org.apache.sling.cms.core.readability.impl;
 
+import java.text.DecimalFormat;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.apache.sling.cms.CMSConstants;
@@ -32,15 +34,23 @@ import org.apache.sling.cms.insights.Message;
 import org.apache.sling.cms.insights.PageInsightRequest;
 import org.apache.sling.cms.readability.ReadabilityService;
 import org.apache.sling.cms.readability.ReadabilityServiceFactory;
+import org.apache.sling.cms.readability.Text;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component(service = InsightProvider.class)
 public class ReadabilityInsightProvider extends BaseInsightProvider {
 
-    public static final String I18N_KEY_READABILITY_RESULT_DANGER = "sling.cms.readability.danger";
-    public static final String I18N_KEY_READABILITY_RESULT_SUCCESS = "sling.cms.readability.success";
-    public static final String I18N_KEY_READABILITY_RESULT_WARN = "sling.cms.readability.warn";
+    public static final String I18N_KEY_READABILITY_DETAIL = "slingcms.readability.detail";
+
+    public static final String I18N_KEY_READABILITY_RESULT_DANGER = "slingcms.readability.danger";
+    public static final String I18N_KEY_READABILITY_RESULT_SUCCESS = "slingcms.readability.success";
+    public static final String I18N_KEY_READABILITY_RESULT_WARN = "slingcms.readability.warn";
+    public static final String I18N_KEY_READABILITY_STATS = "slingcms.readability.stats";
+
+    private static final Logger log = LoggerFactory.getLogger(ReadabilityInsightProvider.class);
 
     public static final String READABILITY_CA_CONFIG = "readability";
 
@@ -52,6 +62,10 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
 
     @Reference
     private I18NProvider i18nProvider;
+
+    private void addDetail(Insight insight, I18NDictionary dictionary, double score, String title) {
+        insight.getScoreDetails().add(Message.defaultMsg(title + ": " + new DecimalFormat("##0.00").format(score)));
+    }
 
     /**
      * Method for the extending classes to implement, this can safely throw
@@ -77,6 +91,7 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
                 CMSConstants.INSIGHTS_CA_CONFIG_BUCKET, READABILITY_CA_CONFIG);
         ReadabilitySiteConfig config = null;
         if (readabilityResource != null) {
+            log.debug("Using readability configuration {}", readabilityResource);
             config = readabilityResource.adaptTo(ReadabilitySiteConfig.class);
         }
 
@@ -85,22 +100,42 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
             ReadabilityService svc = factory.getReadabilityService(site.getLocale());
 
             double score = svc.calculateAverageGradeLevel(text);
+            String scoreStr = new DecimalFormat("##0.00").format(score);
 
             insight.setScored(true);
 
-            if (score > config.maxGradeLevel() || score < config.minGradeLevel()) {
+            log.debug("Calculating readability of page {}", pageRequest.getPage());
+
+            if (score > config.getMaxGradeLevel() || score < config.getMinGradeLevel()) {
+                log.debug("Retrieved out of bounds readability {} based on range {}-{}", score,
+                        config.getMinGradeLevel(), config.getMaxGradeLevel());
                 insight.setScore(0.5);
-                insight.addMessage(Message.success(dictionary.get(I18N_KEY_READABILITY_RESULT_WARN,
-                        new Object[] { config.minGradeLevel(), config.maxGradeLevel(), score })));
+                insight.setPrimaryMessage(Message.warn(dictionary.get(I18N_KEY_READABILITY_RESULT_WARN,
+                        new Object[] { config.getMinGradeLevel(), config.getMaxGradeLevel(), scoreStr })));
             } else {
+                log.debug("Retrieved in bounds readability {} based on range {}-{}", score, config.getMinGradeLevel(),
+                        config.getMaxGradeLevel());
                 insight.setScore(1.0);
-                insight.addMessage(Message.success(dictionary.get(I18N_KEY_READABILITY_RESULT_SUCCESS,
-                        new Object[] { config.minGradeLevel(), config.maxGradeLevel(), score })));
+                insight.setPrimaryMessage(Message.success(dictionary.get(I18N_KEY_READABILITY_RESULT_SUCCESS,
+                        new Object[] { config.getMinGradeLevel(), config.getMaxGradeLevel(), scoreStr })));
             }
+            Text t = svc.extractSentences(text);
+
+            insight.getScoreDetails().add(Message.defaultMsg(dictionary.get(I18N_KEY_READABILITY_STATS,
+                    new Object[] { t.getSentences().size(), t.getWordCount(), t.getComplexWordCount() })));
+            addDetail(insight, dictionary, svc.calculateARI(t), "ARI");
+            addDetail(insight, dictionary, svc.calculateColemanLiauIndex(t), "Coleman-Liau Index");
+            addDetail(insight, dictionary, svc.calculateFleschKincaidGradeLevel(t), "Flesch-Kincaid Grade Level");
+            addDetail(insight, dictionary, svc.calculateFleschReadingEase(t), "Flesch-Kincaid Reading Ease");
+            addDetail(insight, dictionary, svc.calculateGunningFog(t), "Gunning Fog");
+            addDetail(insight, dictionary, svc.calculateSMOG(t), "SMOG");
+
         } else {
+            log.warn("Failed to get readability for resource {} site or config were null",
+                    pageRequest.getPage().getResource());
             insight.setScored(false);
             insight.setSucceeded(false);
-            insight.addMessage(Message.danger(dictionary.get(I18N_KEY_READABILITY_RESULT_DANGER,
+            insight.setPrimaryMessage(Message.danger(dictionary.get(I18N_KEY_READABILITY_RESULT_DANGER,
                     new Object[] { pageRequest.getPage().getPath() })));
         }
 
@@ -124,7 +159,18 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
         if (smgr != null) {
             site = smgr.getSite();
         }
-        return request.getType() == InsightRequest.TYPE.PAGE && site != null && site.getLocale() != null
-                && factory.getReadabilityService(site.getLocale()) != null;
+        if (request.getType() != InsightRequest.TYPE.PAGE) {
+            log.debug("Insight is not of page type");
+            return false;
+        }
+        if (site == null || site.getLocale() == null) {
+            log.debug("Did not find site or locale");
+            return false;
+        }
+        if (factory.getReadabilityService(site.getLocale()) == null) {
+            log.debug("Unable to get readability service for locale {}", site.getLocale());
+            return false;
+        }
+        return true;
     }
 }

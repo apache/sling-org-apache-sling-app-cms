@@ -19,7 +19,9 @@
 package org.apache.sling.cms.core.insights.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,6 +32,7 @@ import org.apache.sling.cms.insights.Insight;
 import org.apache.sling.cms.insights.InsightFactory;
 import org.apache.sling.cms.insights.InsightProvider;
 import org.apache.sling.cms.insights.InsightRequest;
+import org.apache.sling.engine.SlingRequestProcessor;
 import org.osgi.framework.Constants;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceEvent;
@@ -38,14 +41,21 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Implementation of the InsightFactory service interface
+ */
 @Component(immediate = true, service = { InsightFactory.class, ServiceListener.class })
 public class InsightFactoryImpl implements InsightFactory, ServiceListener {
 
     private static final Logger log = LoggerFactory.getLogger(InsightFactoryImpl.class);
     private static final Map<String, InsightProvider> insightProviders = new HashMap<>();
+
+    @Reference
+    private SlingRequestProcessor requestProcessor;
 
     @Activate
     public void activate(ComponentContext context) throws InvalidSyntaxException {
@@ -80,19 +90,24 @@ public class InsightFactoryImpl implements InsightFactory, ServiceListener {
     }
 
     @Override
-    public Collection<Insight> getInsights(File file) {
+    public List<Insight> getInsights(File file) {
         return getInsights(new FileInsightRequestImpl(file));
     }
 
     @Override
-    public Collection<Insight> getInsights(Page page) {
-        return getInsights(new PageInsightRequestImpl(page));
+    public List<Insight> getInsights(Page page) {
+        return getInsights(new PageInsightRequestImpl(page, requestProcessor));
     }
 
-    private Collection<Insight> getInsights(InsightRequest request) {
-        return insightProviders.values().stream().filter(ip -> ip.isEnabled(request))
-                .map(ip -> ip.evaluateRequest(request)).collect(Collectors.toList());
+    public Collection<InsightProvider> getProviders() {
+        return insightProviders.values();
+    }
 
+    private List<Insight> getInsights(InsightRequest request) {
+        List<Insight> insights = insightProviders.values().stream().filter(ip -> ip.isEnabled(request))
+                .map(ip -> ip.evaluateRequest(request)).collect(Collectors.toList());
+        Collections.sort(insights);
+        return insights;
     }
 
 }

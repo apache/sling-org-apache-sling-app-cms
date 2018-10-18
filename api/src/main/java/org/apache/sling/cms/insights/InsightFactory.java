@@ -18,7 +18,7 @@
  */
 package org.apache.sling.cms.insights;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.Page;
@@ -34,7 +34,7 @@ public interface InsightFactory {
      * @param file the file for which to retrieve the insights
      * @return the insights
      */
-    Collection<Insight> getInsights(File file);
+    List<Insight> getInsights(File file);
     
 
     /**
@@ -43,6 +43,6 @@ public interface InsightFactory {
      * @param page the page for which to retrieve the insights
      * @return the insights
      */
-    Collection<Insight> getInsights(Page page);
+    List<Insight> getInsights(Page page);
 
 }
