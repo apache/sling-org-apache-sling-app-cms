@@ -143,8 +143,12 @@ nomnom.decorate('.page-properties-container', {
             var $ctr = $(this);
             var $wrapper = $ctr.closest('.form-wrapper');
             $($ctr.data('source')).change(function(){
+                var $source = $(this);
+                $source.attr('disabled', 'disabled');
+                $ctr.html('');
                 var config = $(this).val();
                 $ctr.load($ctr.data('path')+config, function(){
+                    $source.removeAttr('disabled');
                     var source   = $('#content-template').html();
                     var template = Handlebars.compile(source);
                     var updateContent = function(){

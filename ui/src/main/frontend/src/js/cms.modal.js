@@ -29,9 +29,9 @@ nomnom.decorate("a.Fetch-Modal", {
     methods : {
         getModal: function(title, link, path, complete) {
             var button = this;
-            var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"></section><footer class="modal-card-foot"></footer></div>');
+            var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"><div class="loader is-loading"></div></section><footer class="modal-card-foot"></footer></div>');
             $('body').append($modal);
-                $modal.find('.modal-card-body').load(link,function(){
+            $modal.find('.modal-card-body').load(link,function(){
                 $modal.addClass('is-active');
                 $modal.find('.delete,.close-modal').click(function(){
                     $modal.css('display','none').remove();
@@ -39,6 +39,8 @@ nomnom.decorate("a.Fetch-Modal", {
                 });
                 button.removeAttribute("disabled");
             });
+            
+            $modal.addClass('is-active');
             return $modal;
         }
     }
