@@ -16,33 +16,44 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-nomnom.decorate("a.Fetch-Modal", {
-    
-    events :{
-        click: function(event){
-            event.preventDefault();
-            this.setAttribute("disabled",'disabled');
-            this.getModal(this.getAttribute('data-title'), encodeURI(this.getAttribute('href')), this.getAttribute('data-path'));
-        }
-    },
-    
-    methods : {
-        getModal: function(title, link, path, complete) {
-            var button = this;
-            var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"><div class="loader is-loading"></div></section><footer class="modal-card-foot"></footer></div>');
-            $('body').append($modal);
-            $modal.find('.modal-card-body').load(link,function(){
-                $modal.addClass('is-active');
-                $modal.find('.delete,.close-modal').click(function(){
-                    $modal.css('display','none').remove();
+
+/* eslint-env browser, es6 */
+(function (nomnom) {
+    'use strict';
+    nomnom.decorate("a.Fetch-Modal", {
+        events: {
+            click: function (event) {
+                event.preventDefault();
+                this.setAttribute("disabled", "disabled");
+                this.getModal(this.getAttribute('data-title'), encodeURI(this.getAttribute('href')), this);
+            }
+        },
+        methods: {
+            getModal: function (title, link, button) {
+                var modal = document.createElement('div');
+                modal.classList.add('modal');
+                modal.innerHTML = '<div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">' + title + '</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"><div class="loader is-loading"></div></section><footer class="modal-card-foot"></footer>';
+                document.querySelector('body').appendChild(modal);
+                
+                var request = new XMLHttpRequest();
+                request.open('GET', link, true);
+                request.onload = function() {
+                    button.removeAttribute("disabled");
+                    if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
+                        window.location.reload();
+                    } else {
+                        modal.querySelector('.modal-card-body').innerHTML = request.responseText;
+                    }
+                };
+                request.send();
+                
+                modal.querySelector('.delete,.close-modal').addEventListener("click", function(){
+                    modal.remove();
                     return false;
                 });
-                button.removeAttribute("disabled");
-            });
-            
-            $modal.addClass('is-active');
-            return $modal;
+                modal.classList.add('is-active');
+            }
         }
-    }
+    });
 
-});
+}(window.nomnom = window.nomnom || {}));
