@@ -19,25 +19,31 @@
 /* eslint-env es6, browser */
 (function(nomnom) {
 
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+    
+    if (typeof NodeList.prototype.forEach !== "function" && typeof Array.prototype.forEach === "function")  {
+        NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+
+    var tagSelectors = {};
+    var debug = false;
+    var elementMap = new WeakMap();
+    
   // public
   nomnom.decorate = function(selector, config) {
-      if (debug) {
+    if (debug) {
           console.log("storing selector" + selector);
       }
       tagSelectors[selector] = config;
-      document.querySelectorAll(selector).forEach(function(node) {
-          wrap(node, config);
-      });
+      let foundItems = document.querySelectorAll(selector);
+      if (foundItems) {
+          foundItems.forEach(function(node) {
+              wrap(node, config);
+          });
+      }
   };
-
-	nomnom.enhancecalm = function(event){
-        event.preventDefault();
-        event.stopPropagation();
-    }
-
-  var tagSelectors = {};
-  var debug = false;
-  var elementMap = new WeakMap();
 
   new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
@@ -56,10 +62,8 @@
       if (debug) {
           console.log("decorating element " + node + node.name);
       }
-      var configSet;
-      if (elementMap.has(node)) {
-          configSet = elementMap.get(node);
-      } else {
+      var configSet = elementMap.get(node);
+      if (!configSet) {
           configSet = new Set();
           elementMap.set(node, configSet);
       }
@@ -142,7 +146,8 @@
   };
 
   var checkAll = function(node) {
-      var checkSet = new Set([node]);
+      var checkSet = new Set();
+      checkSet.add(node);
       checkSet.forEach(function(element){
           if (element.querySelectorAll) {
               check(element);
@@ -156,7 +161,7 @@
           checkSet.delete(element);
       });
   }
-  
+
   var check = function(node) {
       for ( var selector in tagSelectors) {
           let found = false;
