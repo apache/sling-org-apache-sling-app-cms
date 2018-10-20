@@ -17,27 +17,36 @@
  * under the License.
  */
 
-nomnom.decorate('.toggle-hidden' , {
-    events : {
-        click: function() {
-            $($(this).data('target')).toggleClass('is-hidden');
-        }
-    }
-});
+/* eslint-env browser, es6 */
+(function (nomnom) {
+    'use strict';
     
-nomnom.decorate('.toggle-value', {
-    callbacks : {
-        created :function(){
-            var source = this.getAttribute('data-toggle-source');
-            var selector = 'input[name="'+ source +'"], select[name="'+ source +'"]';
-            var $tog = $(this);
-            $(selector).change(function(){
-                if($(this).val() !== $tog.data('toggle-value')){
-                    $tog.addClass('is-hidden');
-                } else {
-                    $tog.removeClass('is-hidden');
-                }
-            });
+    nomnom.decorate('.toggle-hidden', {
+        events : {
+            click: function () {
+                var target = document.querySelectorAll(this.dataset.target);
+                target.forEach(function (el) {
+                    el.classList.toggle('is-hidden');
+                });
+            }
         }
-    }
-});
+    });
+
+    nomnom.decorate('.toggle-value', {
+        callbacks: {
+            created: function () {
+                var source = this.getAttribute('data-toggle-source'),
+                    selector = 'input[name="' + source + '"], select[name="' + source + '"]',
+                    toggle = this;
+                document.querySelector(selector).on('change', function () {
+                    if (this.value !== toggle.dataset.toggleValue) {
+                        toggle.classList.add('is-hidden');
+                    } else {
+                        toggle.classList.remove('is-hidden');
+                    }
+                });
+            }
+        }
+    });
+
+}(window.nomnom = window.nomnom || {}));

@@ -17,14 +17,14 @@
  * under the License.
  */
 /* eslint-env browser, es6 */
-(function (nomnom) {
+(function (nomnom, Sling) {
     'use strict';
     var pathfield = null;
     nomnom.decorate("input.pathfield", {
-        callbacks :{
-            created : function(){
-                var type = this.dataset.type;
-                var base = this.dataset.base;
+        callbacks: {
+            created : function () {
+                var type = this.dataset.type,
+                    base = this.dataset.base;
                 Sling.CMS.ui.suggest(this, type, base);
             }
         }
@@ -45,4 +45,4 @@
         }
     });
     
-}(window.nomnom = window.nomnom || {}));
+}(window.nomnom = window.nomnom || {}, window.Sling = window.Sling || {}));

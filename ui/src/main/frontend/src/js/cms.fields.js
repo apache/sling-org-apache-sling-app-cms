@@ -23,16 +23,30 @@
 /* eslint-env browser, es6 */
 (function (nomnom) {
     'use strict';
+    
+    /* Update the name on file selection */
+    nomnom.decorate(".file", {
+        events: {
+            input: {
+                change : function (event) {
+                    var nameField = this.querySelector('.file-name');
+                    if (nameField) {
+                        nameField.textContent = event.target.files[0].name;
+                    }
+                }
+            }
+        }
+    });
 
     /* Support for updating the namehint when creating a component */
     nomnom.decorate(".namehint", {
-        initCallback: function(){
+        initCallback: function () {
             var field = this;
-            this.closest('.Form-Ajax').querySelector('select[name="sling:resourceType"]').addEventListener('change',function(evt){
+            this.closest('.Form-Ajax').querySelector('select[name="sling:resourceType"]').addEventListener('change', function (evt) {
                 var resourceType = evt.target.value.split("\/");
                 field.value = resourceType[resourceType.length - 1];
             });
-         }
+        }
     });
     
     /* Support for repeating form fields */
@@ -51,6 +65,35 @@
                     nomnom.enhancecalm(event);
                     event.target.closest('.repeating__item').remove();
                 }
+            }
+        }
+    });
+    
+    
+    
+    nomnom.decorate('.richtext', {
+        callbacks : {
+            created : function(){
+                $(this).summernote({
+                    toolbar: [
+                        ['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
+                        ['insert', ['picture', 'link', 'table', 'hr']],
+                        ['para', ['style','ul', 'ol', 'paragraph']],
+                        ['misc', ['codeview', 'undo','redo','help']]
+                    ],
+                    followingToolbar: false,
+                    dialogsInBody: true,
+                    height: 200,
+                    onCreateLink: function (url) {
+                        return url;
+                    },
+                    callbacks: {
+                        onDialogShown: function(){
+                            Sling.CMS.ui.suggest($('.note-link-url')[0], 'content', '/content');
+                            Sling.CMS.ui.suggest($('.note-image-url')[0], 'content', '/content');
+                        }
+                    }
+                });
             }
         }
     });

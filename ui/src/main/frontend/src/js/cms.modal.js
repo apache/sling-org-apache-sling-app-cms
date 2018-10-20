@@ -37,7 +37,7 @@
                 
                 var request = new XMLHttpRequest();
                 request.open('GET', link, true);
-                request.onload = function() {
+                request.onload = function () {
                     button.removeAttribute("disabled");
                     if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
                         window.location.reload();
@@ -47,7 +47,7 @@
                 };
                 request.send();
                 
-                modal.querySelector('.delete,.close-modal').addEventListener("click", function(){
+                modal.querySelector('.delete,.close-modal').addEventListener("click", function () {
                     modal.remove();
                     return false;
                 });
