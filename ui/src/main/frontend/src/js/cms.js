@@ -110,33 +110,6 @@ nomnom.decorate('.suffix-form', {
     }
 });
     
-nomnom.decorate('.richtext', {
-    callbacks : {
-        created : function(){
-            $(this).summernote({
-                toolbar: [
-                    ['style', ['bold', 'italic', 'clear','strikethrough', 'superscript', 'subscript']],
-                    ['insert', ['picture', 'link', 'table', 'hr']],
-                    ['para', ['style','ul', 'ol', 'paragraph']],
-                    ['misc', ['codeview', 'undo','redo','help']]
-                ],
-                followingToolbar: false,
-                dialogsInBody: true,
-                height: 200,
-                onCreateLink: function (url) {
-                    return url;
-                },
-                callbacks: {
-                    onDialogShown: function(){
-                        Sling.CMS.ui.suggest($('.note-link-url')[0], 'content', '/content');
-                        Sling.CMS.ui.suggest($('.note-image-url')[0], 'content', '/content');
-                    }
-                }
-            });
-        }
-    }
-});
-    
 nomnom.decorate('.page-properties-container', {
     callbacks : {
         created :  function(){

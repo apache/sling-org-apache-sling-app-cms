@@ -64,6 +64,10 @@ h5 {
     font-size: 120%;
 }
 
+.has-padding-1 {
+	padding: .5em;
+}
+
 .editor-page {
     overflow-y: auto;
 }
@@ -120,6 +124,22 @@ h5 {
     padding: 1em;
 }
 
+.rte-form {
+	margin: .5em 0;
+}
+
+.rte-form .buttons {
+	margin: .5em 0;
+}
+
+.rte-toolbar .jam:before {
+	font-size: x-large;
+}
+
+.rte-toolbar .level {
+    margin-bottom: .5em;
+}
+
 #search-results .tile {
     flex-wrap: wrap;
     padding: .5em;
@@ -148,4 +168,10 @@ table.dataTable thead .sorting_desc:after {
 .table tr.is-selected {
     background-color: lighten($gray, 50%);
     color: $grey-darker;
+}
+
+.wysihtml-sandbox {
+	width: 100% !important;
+	max-height: 600px !important;
+    min-height: 300px !important;
 }

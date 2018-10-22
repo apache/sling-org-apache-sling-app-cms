@@ -17,15 +17,16 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="rte">
-    <c:choose>
-        <c:when test="${not empty properties.toolbar}">
-            <c:set var="toolbar" value="${sling:getResource(resourceResolver,properties.toolbar)}" />
-        </c:when>
-        <c:otherwise>
-            <c:set var="toolbar" value="${sling:getResource(resourceResolver,'/libs/sling-cms/components/editor/fields/richtext/toolbar/default')}" />
-        </c:otherwise>
-    </c:choose>
-    <sling:include resource="${toolbar}" />
-    <textarea class="rte-editor textarea" name="${properties.name}" ${required} ${disabled}>${editProperties[properties.name]}</textarea>
+<div class="text-options is-hidden">
+    <div class="level is-mobile has-padding-1 has-background-white-ter">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="buttons has-addons">
+                    <c:forEach var="child" items="${sling:listChildren(resource)}">
+                        <sling:include resource="${child}" />
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
