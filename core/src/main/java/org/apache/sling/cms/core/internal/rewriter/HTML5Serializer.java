@@ -32,132 +32,141 @@ import org.xml.sax.SAXException;
 
 /**
  * Serializer for writing HTML5 compliant markup
- *
  */
 public class HTML5Serializer implements Serializer {
 
-	private static final int CHAR_EQ = 61;
+    private static final int CHAR_EQ = 61;
 
-	private static final int CHAR_GT = 62;
+    private static final int CHAR_GT = 62;
 
-	private static final int CHAR_SP = 32;
+    private static final int CHAR_SP = 32;
 
-	private static final int CHAR_LT = 60;
+    private static final int CHAR_LT = 60;
 
-	private final Set<String> emptyTags = new HashSet<String>() {
-		private static final long serialVersionUID = 1L;
-		{
-			add("br");
-			add("area");
-			add("link");
-			add("img");
-			add("param");
-			add("hr");
-			add("input");
-			add("col");
-			add("base");
-			add("meta");
-		}
-	};
+    private final Set<String> emptyTags = new HashSet<String>() {
+        private static final long serialVersionUID = 1L;
+        {
+            add("br");
+            add("area");
+            add("link");
+            add("img");
+            add("param");
+            add("hr");
+            add("input");
+            add("col");
+            add("base");
+            add("meta");
+        }
+    };
 
-	private PrintWriter writer;
+    private PrintWriter writer;
 
-	private ConfigurationResourceResolver resolver;
+    private ConfigurationResourceResolver resolver;
 
-	private Resource rewriteConfig;
+    private Resource rewriteConfig;
 
-	public HTML5Serializer(ConfigurationResourceResolver resolver) {
-		this.resolver = resolver;
-	}
+    public HTML5Serializer(ConfigurationResourceResolver resolver) {
+        this.resolver = resolver;
+    }
 
-	public void characters(char buffer[], int offset, int length) throws SAXException {
-		if (length == 0) {
-			writer.flush();
-		} else {
-			writer.write(buffer, offset, length);
-		}
-	}
+    public void characters(char buffer[], int offset, int length) throws SAXException {
+        if (length == 0) {
+            writer.flush();
+        } else {
+            writer.write(buffer, offset, length);
+        }
+    }
 
-	@Override
-	public void dispose() {
-		// Nothing required
-	}
+    @Override
+    public void dispose() {
+        // Nothing required
+    }
 
-	public void endDocument() throws SAXException {
-		writer.flush();
-	}
+    public void endDocument() throws SAXException {
+        writer.flush();
+    }
 
-	public void endElement(String uri, String localName, String name) throws SAXException {
-		if (!emptyTags.contains(localName)) {
-			writer.write("</");
-			writer.write(localName);
-			writer.write(CHAR_GT);
-		}
-	}
+    public void endElement(String uri, String localName, String name) throws SAXException {
+        if (!emptyTags.contains(localName)) {
+            writer.write("</");
+            writer.write(localName);
+            writer.write(CHAR_GT);
+        }
+    }
 
-	public void endPrefixMapping(String s) throws SAXException {
-		// Nothing required
-	}
+    public void endPrefixMapping(String s) throws SAXException {
+        // Nothing required
+    }
 
-	public void ignorableWhitespace(char ac[], int i, int j) throws SAXException {
-		// Nothing required
-	}
+    public void ignorableWhitespace(char ac[], int i, int j) throws SAXException {
+        // Nothing required
+    }
 
-	@Override
-	public void init(ProcessingContext context, ProcessingComponentConfiguration config) throws IOException {
-		if (context.getWriter() == null) {
-			throw new IllegalArgumentException("Failed to initialize HTML5Serializer, null writer specified!");
-		} else {
-			writer = context.getWriter();
-			rewriteConfig = resolver.getResource(context.getRequest().getResource(), "site", "rewrite");
-		}
-	}
+    @Override
+    public void init(ProcessingContext context, ProcessingComponentConfiguration config) throws IOException {
+        if (context.getWriter() == null) {
+            throw new IllegalArgumentException("Failed to initialize HTML5Serializer, null writer specified!");
+        } else {
+            writer = context.getWriter();
+            rewriteConfig = resolver.getResource(context.getRequest().getResource(), "site", "rewrite");
+        }
+    }
 
-	public void processingInstruction(String s, String s1) throws SAXException {
-		// Nothing required
-	}
+    public void processingInstruction(String s, String s1) throws SAXException {
+        // Nothing required
+    }
 
-	public void setDocumentLocator(Locator locator1) {
-		// Nothing required
-	}
+    public void setDocumentLocator(Locator locator1) {
+        // Nothing required
+    }
 
-	public void skippedEntity(String s) throws SAXException {
-		// Nothing required
-	}
+    public void skippedEntity(String s) throws SAXException {
+        // Nothing required
+    }
 
-	public void startDocument() throws SAXException {
-		writer.println(rewriteConfig.getValueMap().get("doctype", String.class));
-	}
+    public void startDocument() throws SAXException {
+        writer.println(rewriteConfig.getValueMap().get("doctype", String.class));
+    }
 
-	public void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {
-		boolean endSlash = false;
-		writer.write(CHAR_LT);
-		writer.write(localName);
+    public void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {
+        boolean endSlash = false;
+        writer.write(CHAR_LT);
+        writer.write(localName);
 
-		for (int i = 0; i < atts.getLength(); i++) {
-			if ("endSlash".equals(atts.getQName(i))) {
-				endSlash = true;
-				continue;
-			}
-			writer.write(CHAR_SP);
-			writer.write(atts.getLocalName(i));
-			String value = atts.getValue(i);
-			if (value == null) {
-				continue;
-			}
-			writer.write(CHAR_EQ);
-			writer.write('"');
-			writer.write(value);
-			writer.write('"');
-		}
+        for (int i = 0; i < atts.getLength(); i++) {
+            if ("endSlash".equals(atts.getQName(i))) {
+                endSlash = true;
+                continue;
+            }
+            if ("a".equals(localName) && "shape".equals(atts.getLocalName(i))) {
+                continue;
+            }
+            if ("iframe".equals(localName)
+                    && ("frameborder".equals(atts.getLocalName(i)) || "scrolling".equals(atts.getLocalName(i)))) {
+                continue;
+            }
+            if ("br".equals(localName) && ("clear".equals(atts.getLocalName(i)))) {
+                continue;
+            }
+            writer.write(CHAR_SP);
+            writer.write(atts.getLocalName(i));
+            String value = atts.getValue(i);
+            if (value == null) {
+                continue;
+            }
+            writer.write(CHAR_EQ);
+            writer.write('"');
+            writer.write(value);
+            writer.write('"');
+        }
 
-		if (endSlash) {
-			writer.write("/");
-		}
-		writer.write(CHAR_GT);
-	}
+        if (endSlash) {
+            writer.write("/");
+        }
+        writer.write(CHAR_GT);
+    }
 
-	public void startPrefixMapping(String s, String s1) throws SAXException {
-		// Nothing required
-	}
+    public void startPrefixMapping(String s, String s1) throws SAXException {
+        // Nothing required
+    }
 }
