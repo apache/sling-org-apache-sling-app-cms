@@ -98,17 +98,6 @@ Sling.CMS = {
     }
 };
 
-nomnom.decorate('.suffix-form', {
-    events: {
-        submit: function (event) {
-            event.preventDefault();
-            var suffix = $(this).find('input[name=suffix]').val();
-            var path = $(this).attr('action');
-            window.location = path + suffix;
-            return false;
-        }
-    }
-});
     
 nomnom.decorate('.page-properties-container', {
     callbacks : {
