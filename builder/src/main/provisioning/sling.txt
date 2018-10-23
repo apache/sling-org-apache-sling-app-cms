@@ -20,47 +20,47 @@
 [feature name=sling]
 
 [variables]
-    jackrabbit.version=2.14.4
+    jackrabbit.version=2.16.3
 
 [artifacts]
     commons-collections/commons-collections/3.2.2
-    org.apache.commons/commons-collections4/4.1
+    org.apache.commons/commons-collections4/4.2
     commons-codec/commons-codec/1.11
     commons-lang/commons-lang/2.6
-    org.apache.commons/commons-lang3/3.7
+    org.apache.commons/commons-lang3/3.8.1
     org.apache.commons/commons-math/2.2
     org.apache.geronimo.bundles/commons-httpclient/3.1_2
-    org.apache.httpcomponents/httpcore-osgi/4.4.9
-    org.apache.httpcomponents/httpclient-osgi/4.5.5
+    org.apache.httpcomponents/httpcore-osgi/4.4.10
+    org.apache.httpcomponents/httpclient-osgi/4.5.6
     org.apache.sling/org.apache.sling.adapter/2.1.10
     org.apache.sling/org.apache.sling.api/2.18.4
     org.apache.sling/org.apache.sling.auth.core/1.4.2
-    org.apache.sling/org.apache.sling.auth.form/1.0.10
+    org.apache.sling/org.apache.sling.auth.form/1.0.12
     org.apache.sling/org.apache.sling.bundleresource.impl/2.3.2
     org.apache.sling/org.apache.sling.commons.classloader/1.4.2
     org.apache.sling/org.apache.sling.commons.compiler/2.3.6
     org.apache.sling/org.apache.sling.commons.fsclassloader/1.0.8
-    org.apache.sling/org.apache.sling.commons.mime/2.1.10
+    org.apache.sling/org.apache.sling.commons.mime/2.2.0
     org.apache.sling/org.apache.sling.commons.osgi/2.4.0
     org.apache.sling/org.apache.sling.commons.scheduler/2.7.2
     org.apache.sling/org.apache.sling.commons.threads/3.2.18
     org.apache.sling/org.apache.sling.engine/2.6.14
-    org.apache.sling/org.apache.sling.fsresource/2.1.12
+    org.apache.sling/org.apache.sling.fsresource/2.1.14
     org.apache.sling/org.apache.sling.hc.api/1.0.2
     org.apache.sling/org.apache.sling.hc.core/1.2.10
     org.apache.sling/org.apache.sling.hc.webconsole/1.1.2
-    org.apache.sling/org.apache.sling.i18n/2.5.12
+    org.apache.sling/org.apache.sling.i18n/2.5.14
     org.apache.sling/org.apache.sling.installer.console/1.0.2
     org.apache.sling/org.apache.sling.installer.provider.jcr/3.1.26
     org.apache.sling/org.apache.sling.installer.hc/2.0.0
-    org.apache.sling/org.apache.sling.jcr.contentloader/2.2.4
+    org.apache.sling/org.apache.sling.jcr.contentloader/2.2.6
     org.apache.sling/org.apache.sling.jcr.resource/3.0.16
     org.apache.sling/org.apache.sling.models.api/1.3.6
     org.apache.sling/org.apache.sling.models.impl/1.4.8
     org.apache.sling/org.apache.sling.resourceresolver/1.6.6
-    org.apache.sling/org.apache.sling.serviceusermapper/1.4.0
+    org.apache.sling/org.apache.sling.serviceusermapper/1.4.2
     org.apache.sling/org.apache.sling.serviceuser.webconsole/1.0.0
-    org.apache.sling/org.apache.sling.servlets.get/2.1.30
+    org.apache.sling/org.apache.sling.servlets.get/2.1.36
     org.apache.sling/org.apache.sling.servlets.post/2.3.26
     org.apache.sling/org.apache.sling.servlets.resolver/2.4.22
     org.apache.sling/org.apache.sling.xss/2.0.12
@@ -71,16 +71,16 @@
 [artifacts startLevel=5]
     org.apache.sling/org.apache.sling.starter.startup/1.0.6
     org.apache.sling/org.apache.sling.extensions.webconsolebranding/1.0.2
-    org.apache.sling/org.apache.sling.extensions.webconsolesecurityprovider/1.0.0
+    org.apache.sling/org.apache.sling.extensions.webconsolesecurityprovider/1.2.0
     org.apache.felix/org.apache.felix.inventory/1.0.6
     org.apache.felix/org.apache.felix.prefs/1.1.0
     org.apache.felix/org.apache.felix.webconsole/4.3.8
-    org.apache.felix/org.apache.felix.webconsole.plugins.ds/2.0.8
+    org.apache.felix/org.apache.felix.webconsole.plugins.ds/2.1.0
     org.apache.felix/org.apache.felix.webconsole.plugins.obr/1.0.4
     org.apache.felix/org.apache.felix.webconsole.plugins.packageadmin/1.0.4
     org.apache.felix/org.apache.felix.webconsole.plugins.event/1.1.8
     org.apache.felix/org.apache.felix.webconsole.plugins.memoryusage/1.0.8
-    org.apache.sling/org.apache.sling.commons.johnzon/1.1.0
+    org.apache.sling/org.apache.sling.commons.johnzon/1.1.2
     org.apache.felix/org.apache.felix.bundlerepository/2.0.10
     org.apache.sling/org.apache.sling.extensions.threaddump/0.2.2
     org.apache.aries.jmx/org.apache.aries.jmx.api/1.1.5
@@ -91,14 +91,14 @@
     org.apache.sling/org.apache.sling.commons.log.webconsole/1.0.0
 
 [artifacts startLevel=10]
-    org.apache.felix/org.apache.felix.http.sslfilter/1.2.4
-    org.apache.felix/org.apache.felix.scr/2.1.2
-    org.apache.felix/org.apache.felix.metatype/1.2.0
-    org.apache.pdfbox/pdfbox/2.0.9
-    org.apache.pdfbox/fontbox/2.0.9
-    org.apache.pdfbox/jempbox/1.8.14
-    org.apache.tika/tika-core/1.18
-    org.apache.tika/tika-parsers/1.18
+    org.apache.felix/org.apache.felix.http.sslfilter/1.2.6
+    org.apache.felix/org.apache.felix.scr/2.1.12
+    org.apache.felix/org.apache.felix.metatype/1.2.2
+    org.apache.pdfbox/pdfbox/2.0.12
+    org.apache.pdfbox/fontbox/2.0.12
+    org.apache.pdfbox/jempbox/1.8.16
+    org.apache.tika/tika-core/1.19.1
+    org.apache.tika/tika-parsers/1.19.1
 
 [artifacts startLevel=15]
     org.apache.sling/org.apache.sling.jcr.jcr-wrapper/2.0.0
@@ -118,7 +118,7 @@
     org.apache.sling/org.apache.sling.jcr.jackrabbit.accessmanager/3.0.2
     org.apache.sling/org.apache.sling.jcr.webconsole/1.0.2
     io.dropwizard.metrics/metrics-core/3.2.6
-    org.apache.sling/org.apache.sling.commons.metrics/1.2.4
+    org.apache.sling/org.apache.sling.commons.metrics/1.2.6
     com.google.guava/guava/15.0
 
 [configurations]

@@ -20,30 +20,40 @@
 [feature name=oak]
 
 [variables]
-    oak.version=1.6.8
+    oak.version=1.8.8
 
 # The segment node store is used via a configuration
 [artifacts startLevel=10]
     org.apache.felix/org.apache.felix.jaas/1.0.2
 
 [artifacts startLevel=15]
-    org.apache.jackrabbit/oak-core/${oak.version}
-    org.apache.jackrabbit/oak-commons/${oak.version}
-    org.apache.jackrabbit/oak-lucene/${oak.version}
+    org.apache.jackrabbit/oak-api/${oak.version}
     org.apache.jackrabbit/oak-blob/${oak.version}
+    org.apache.jackrabbit/oak-blob-plugins/${oak.version}
+    org.apache.jackrabbit/oak-commons/${oak.version}
+    org.apache.jackrabbit/oak-core/${oak.version}
+    org.apache.jackrabbit/oak-core-spi/${oak.version}
+    org.apache.jackrabbit/oak-lucene/${oak.version}
     org.apache.jackrabbit/oak-jcr/${oak.version}
+    org.apache.jackrabbit/oak-query-spi/${oak.version}
+    org.apache.jackrabbit/oak-security-spi/${oak.version}
+    # TODO - Sling does not come up without oak-store-composite
+    org.apache.jackrabbit/oak-store-composite/${oak.version}
+    # OAK-7263 - oak-store-document should be in oak_mongo runmode
+    org.apache.jackrabbit/oak-store-document/${oak.version}
+    org.apache.jackrabbit/oak-store-spi/${oak.version}
 
 [artifacts startLevel=15 runModes=oak_tar]
     org.apache.jackrabbit/oak-segment-tar/${oak.version}
 
 [artifacts startLevel=15 runModes=oak_mongo]
-    org.mongodb/mongo-java-driver/3.4.1
-    com.h2database/h2-mvstore/1.4.196
+    org.mongodb/mongo-java-driver/3.6.4
+    com.h2database/h2-mvstore/1.4.194
 
 # start the Oak server instance after all components have been configured
 # and started to avoid restarting that component ( see SLING-4556 )
 [artifacts startLevel=16]
-    org.apache.sling/org.apache.sling.jcr.oak.server/1.1.4
+    org.apache.sling/org.apache.sling.jcr.oak.server/1.2.0
 
 [configurations]
   org.apache.felix.jaas.Configuration.factory-GuestLoginModule
