@@ -21,7 +21,7 @@
  * Utility scripts for decorating form fields
  */
 /* eslint-env browser, es6 */
-(function (nomnom) {
+(function (nomnom, wysihtml) {
     'use strict';
     
     /* Update the name on file selection */
@@ -79,4 +79,4 @@
             }
         }
     });
-}(window.nomnom = window.nomnom || {}));
+}(window.nomnom = window.nomnom || {}, window.wysihtml = window.wysihtml || {}));
