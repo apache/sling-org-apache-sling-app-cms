@@ -111,6 +111,7 @@ public class ReadabilityServiceImplTest {
         log.debug("ARI {}", ari);
 
         assertTrue(ari > 16 && ari < 18);
+       
 
         ari = readabilityService.calculateARI(source2);
 
@@ -122,7 +123,7 @@ public class ReadabilityServiceImplTest {
 
         log.debug("ARI {}", ari);
 
-        assertTrue(ari > 5 && ari < 6);
+        assertTrue(ari > 6 && ari < 7);
 
         log.info("Tests successful!");
     }
@@ -147,7 +148,7 @@ public class ReadabilityServiceImplTest {
 
         log.debug("Average Grade Level {}", averageGradeLevel);
 
-        assertTrue(averageGradeLevel > 5 && averageGradeLevel < 6);
+        assertTrue(averageGradeLevel > 6 && averageGradeLevel < 7);
 
         log.info("Tests successful!");
     }
@@ -205,7 +206,7 @@ public class ReadabilityServiceImplTest {
 
         assertNotNull(text);
         assertEquals(11, text.getSentences().size());
-        assertEquals(159, text.getWordCount());
+        assertEquals(157, text.getWordCount());
         assertEquals(7, text.getComplexWordCount());
 
         log.info("Tests successful!");
