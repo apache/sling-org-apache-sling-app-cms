@@ -18,51 +18,54 @@
  */
 
 .sling-cms-editor {
-	@import 'fonts';
-	@import 'overrides';
-	@import "../../node_modules/bulma/sass/utilities/_all.sass";
-	@import "../../node_modules/bulma/sass/base/_all.sass";
-	@import "../../node_modules/bulma/sass/elements/button.sass";
-	@import "../../node_modules/bulma/sass/elements/form.sass";
-	@import "../../node_modules/bulma/sass/elements/icon.sass";
-	@import "../../node_modules/bulma/sass/components/card.sass";
-	@import "../../node_modules/bulma/sass/components/level.sass";
-	@import "../../node_modules/bulma/sass/components/modal.sass";
-	.is-draggable {
-		position: relative;
-	}
-	.level {
-		padding: .5em;
-	}
-	.modal-card-body {
-		padding: .5em;
-		height: 500px;
-	}
-	.modal-frame {
-		width: 100%;
-		height: 100%;
-		border: none;
-	}
-	.page-wrapper-frame {
-		position: fixed;
-		top: 44px;
-		left: 0px;
-		bottom: 0px;
-		right: 0px;
-		width: 100%;
-		height: 100%;
-		border: none;
-		margin: 0;
-		padding: 0;
-		padding-top: 0px;
-		overflow: hidden;
-		z-index: 998;
-		padding-top: 8px;
-		@media screen and (max-width: $tablet) {
-			top: 104px;
-		}
-	}
-	.sling-cms-logo {
-		height: 25px;
-	}
+    @import 'fonts';
+    @import 'overrides';
+    @import "../../node_modules/bulma/sass/utilities/_all.sass";
+    @import "../../node_modules/bulma/sass/base/_all.sass";
+    @import "../../node_modules/bulma/sass/elements/button.sass";
+    @import "../../node_modules/bulma/sass/elements/form.sass";
+    @import "../../node_modules/bulma/sass/elements/icon.sass";
+    @import "../../node_modules/bulma/sass/components/card.sass";
+    @import "../../node_modules/bulma/sass/components/level.sass";
+    @import "../../node_modules/bulma/sass/components/modal.sass";
+    .is-draggable {
+        position: relative;
+    }
+    .level {
+        padding: .5em;
+    }
+    .modal-card {
+        margin: 0;
+    }
+    .modal-card-body {
+        padding: .5em;
+        height: 500px;
+    }
+    .modal-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .page-wrapper-frame {
+        position: fixed;
+        top: 44px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        width: 100%;
+        height: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        padding-top: 0px;
+        overflow: hidden;
+        z-index: 998;
+        padding-top: 8px;
+        @media screen and (max-width: $tablet) {
+            top: 104px;
+        }
+    }
+    .sling-cms-logo {
+        height: 25px;
+    }
 }
