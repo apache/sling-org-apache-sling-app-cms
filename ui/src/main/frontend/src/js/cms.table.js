@@ -40,6 +40,9 @@ nomnom.decorate(".table", {
             $table.DataTable({
                 sort: sort,
                 paginate: paginate
+            }).on( 'page.dt', function () {
+                $table.find('tr').removeClass('is-selected');
+                $('.actions-target').html('');
             });
         }
     }
@@ -49,10 +52,9 @@ nomnom.decorate(".table tbody tr",{
     events :{
         click: function(event){
             var $current = $(this);
-            $('.actions-target > *').appendTo('tr.is-selected .cell-actions');
             $current.parent().find('tr').removeClass('is-selected');
             $current.addClass('is-selected');
-            $current.find('.cell-actions > *').appendTo('.actions-target')
+            $('.actions-target').html($current.find('.cell-actions').html());
         }
     }
 });
