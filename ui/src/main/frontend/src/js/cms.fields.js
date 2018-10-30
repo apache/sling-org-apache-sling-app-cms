@@ -54,15 +54,16 @@
         events : {
             ".repeating__add, .repeating__add *" : {
                 click: function (event) {
-                    nomnom.enhancecalm(event);
-                    var div = document.createElement("div");
-                    div.innerHTML = this.querySelector('.repeating__template').innerHTML;
-                    this.querySelector('.repeating__container').appendChild(div);
+                    event.stopPropagation();
+                    event.preventDefault();
+                    var node = this.querySelector('.repeating__template').cloneNode(true);
+                    this.querySelector('.repeating__container').appendChild(node);
                 }
             },
             ".repeating__remove, .repeating__remove *" : {
                 click: function (event) {
-                    nomnom.enhancecalm(event);
+                    event.stopPropagation();
+                    event.preventDefault();
                     event.target.closest('.repeating__item').remove();
                 }
             }
