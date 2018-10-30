@@ -27,6 +27,10 @@
                     "jcr:primaryType": "nt:unstructured",
                     "sitenav": {
                         "jcr:primaryType": "nt:unstructured",
+                        "alternatives": [
+                            "/cms/site/content.html/content",
+                            "/cms/file/optimize.html"
+                        ],
                         "link": "/cms/site/sites.html/content",
                         "text": "Sites"
                     },
@@ -42,11 +46,18 @@
                     },
                     "config": {
                         "jcr:primaryType": "nt:unstructured",
+                        "alternatives": [
+                            "/cms/template/edit.html",
+                            "/cms/config/edit.html"
+                        ],
                         "link": "/cms/config/list.html/conf",
                         "text": "Configuration"
                     },
                     "usergenerated": {
                         "jcr:primaryType": "nt:unstructured",
+                        "alternatives": [
+                            "/cms/usergenerated/review.html"
+                        ],
                         "link": "/cms/usergenerated/content.html/etc/usergenerated",
                         "text": "User Generated"
                     }
@@ -70,6 +81,10 @@
                     },
                     "i18n": {
                         "jcr:primaryType": "nt:unstructured",
+                        "alternatives": [
+                            "/cms/i18n/dictionaries.html",
+                            "/cms/i18n/dictionary.html"
+                        ],
                         "link": "/cms/i18n/dictionaries.html/etc/i18n",
                         "text": "Internationalization (i18n)"
                     },

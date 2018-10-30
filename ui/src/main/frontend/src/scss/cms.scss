@@ -165,7 +165,7 @@ table.dataTable thead .sorting_desc:after {
     content: "\e92a"
 }
 
-.table tr.is-selected {
+.table tr.is-selected, .menu .is-selected {
     background-color: lighten($gray, 50%);
     color: $grey-darker;
 }

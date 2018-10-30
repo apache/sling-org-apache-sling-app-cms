@@ -18,16 +18,32 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="menu">
-<a class="menu-label toggle-hidden" data-target="#${fn:replace(properties.title,' ','-')}-nav">${properties.title}</a>
-<c:set var="hidden" value="is-hidden" />
-<c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
-    <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
-        <c:set var="hidden" value="" />
-    </c:if>
-</c:forEach>
-<ul id="${fn:replace(properties.title,' ','-')}-nav" class="menu-list ${hidden}">
+    <a class="menu-label toggle-hidden" data-target="#${fn:replace(properties.title,' ','-')}-nav">
+        <sling:encode value="${properties.title}" mode="HTML" />
+    </a>
+    <c:set var="hidden" value="is-hidden" />
     <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
-        <li class="${fn:startsWith(slingRequest.requestURI,item.valueMap.link) ? 'active' : ''}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
+        <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
+            <c:set var="hidden" value="" />
+        </c:if>
+        <c:forEach var="alternative" items="${item.valueMap.alternatives}">
+            <c:if test="${fn:startsWith(slingRequest.requestURI,alternative)}">
+                <c:set var="hidden" value="" />
+            </c:if>
+        </c:forEach>
     </c:forEach>
-</ul>
+    <ul id="${fn:replace(properties.title,' ','-')}-nav" class="menu-list ${hidden}">
+        <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
+            <c:set var="selected" value="" />
+            <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
+                <c:set var="selected" value="is-selected" />
+            </c:if>
+            <c:forEach var="alternative" items="${item.valueMap.alternatives}">
+                <c:if test="${fn:startsWith(slingRequest.requestURI,alternative)}">
+                    <c:set var="selected" value="is-selected" />
+                </c:if>
+            </c:forEach>
+            <li class="${selected}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
+        </c:forEach>
+    </ul>
 </div>
