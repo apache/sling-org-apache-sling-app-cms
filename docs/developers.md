@@ -12,10 +12,10 @@
 
 # Developers
 
+* [Project Introduction](intro.md)
 * [Building Sling CMS](building.md)
 * [Custom Components](custom-components.md)
 * [Editor Field Types](editor-field-types.md)
 * [Extending Sling CMS](extending.md)
-* [Project Intro](intro.md)
 * [Reference Project](reference.md)
 * [User Generated Content](user-generated-content.md)
