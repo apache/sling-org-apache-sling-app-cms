@@ -84,7 +84,6 @@ gulp.task('cms-js', function() {
             './node_modules/jquery/dist/jquery.js',
             './node_modules/datatables/media/js/jquery.dataTables.js',
             './node_modules/datatables-bulma/js/dataTables.bulma.js',
-            './node_modules/handlebars/dist/handlebars.js',
             './node_modules/wysihtml/dist/minified/wysihtml.min.js',
             './node_modules/wysihtml/dist/minified/wysihtml.all-commands.min.js',
             './node_modules/wysihtml/dist/minified/wysihtml.table_editing.min.js',

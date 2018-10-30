@@ -16,20 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */ 
-nomnom.decorate(".table .load-versions", {
-    callbacks : {
-        created : function() {
-            var $ctr = $(this);
-            var $table = $ctr.closest('.table');
-            $.getJSON($ctr.data('url'),function(res){
-                $table.dataTable().api().destroy();
-                var source   = $('#'+$ctr.data('template')).html();
-                var template = Handlebars.compile(source);
-                $ctr.append(template(res));
-            });
-        }
-    }
-});
+
 
 nomnom.decorate(".table", {
     callbacks : {

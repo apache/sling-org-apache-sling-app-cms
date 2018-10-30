@@ -18,83 +18,82 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="versionmanager">
- 	<c:set var="versionable" value="false" />
- 	<c:if test="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:mixinTypes'] != null && fn:contains(fn:join(slingRequest.requestPathInfo.suffixResource.valueMap['jcr:mixinTypes'],','),'mix:versionable')}">
- 		<c:set var="versionable" value="true" />
- 	</c:if>
- 	<c:choose>
- 		<c:when test="${versionable == 'true'}">
- 			<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-				<input type="hidden" name=":operation" value="checkpoint" />
-				<div class="Field-Group">
-					<button type="submit" class="button is-primary" title="Create a new version for the content">
-						Create Version
-					</button>
-				</div>
-			</form>
- 		</c:when>
- 		<c:otherwise>
- 			<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-				<input type="hidden" name=":autoCheckout" value="true">
-				<input type="hidden" name=":autoCheckin" value="true">
-				<input type="hidden" name="jcr:mixinTypes@TypeHint" value="Type[]">
-			    <input type="hidden" name="jcr:mixinTypes" value="mix:versionable">
-				<div class="Field-Group">
-					<button type="submit" class="button is-primary" title="Make the content versionable">
-						Make Versionable
-					</button>
-				</div>
-			</form>
- 		</c:otherwise>
- 	</c:choose>
- 	<div class="version-container">
-		<table class="table" data-sort="false" data-paginate="false">
-			<thead>
-				<tr>
-					<th>Version</th>
-					<th>Created</th>
-					<th>Successors</th>
-					<th>Predecessors</th>
-					<th>Restore</th>
-				</tr>
-			</thead>
-			<tbody class="load-versions" data-url="${resource.path}.VI.json${slingRequest.requestPathInfo.suffix}" data-template="version-template">
-				
-			</tbody>
-		</table>
-	</div>
-	<script id="version-template" type="text/x-handlebars-template">
-		{{#each versions }}
-			<tr>
-				<td>
-					{{@key}}
-				</td>
-				<td>
-					{{created}}
-				</td>
-				<td>
-					{{#each successors }}
-						{{this}}<br/>
-					{{/each}}
-				</td>
-				<td>
-					{{#each predecessors }}
-						{{this}}<br/>
-					{{/each}}
-				</td>
-				<td>
- 					<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-						<input type="hidden" name=":operation" value="restore" />
-						<input type="hidden" name=":version" value="{{@key}}" />
-						<div class="Field-Group">
-							<button type="submit" class="button" title="Restore the content to {{@key}}">
-								Restore Version
-							</button>
-						</div>
-					</form>
-				</td>
-			</tr>
-		{{/each}}
-	</script>
+     <c:set var="versionable" value="false" />
+     <c:if test="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:mixinTypes'] != null && fn:contains(fn:join(slingRequest.requestPathInfo.suffixResource.valueMap['jcr:mixinTypes'],','),'mix:versionable')}">
+         <c:set var="versionable" value="true" />
+     </c:if>
+     <c:choose>
+         <c:when test="${versionable == 'true'}">
+             <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+                <input type="hidden" name=":operation" value="checkpoint" />
+                <div class="Field-Group">
+                    <button type="submit" class="button is-primary" title="Create a new version for the content">
+                        Create Version
+                    </button>
+                </div>
+            </form>
+         </c:when>
+         <c:otherwise>
+             <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+                <input type="hidden" name=":autoCheckout" value="true">
+                <input type="hidden" name=":autoCheckin" value="true">
+                <input type="hidden" name="jcr:mixinTypes@TypeHint" value="Type[]">
+                <input type="hidden" name="jcr:mixinTypes" value="mix:versionable">
+                <div class="Field-Group">
+                    <button type="submit" class="button is-primary" title="Make the content versionable">
+                        Make Versionable
+                    </button>
+                </div>
+            </form>
+         </c:otherwise>
+     </c:choose>
+     <div class="version-container">
+        <table class="table" data-sort="false" data-paginate="false">
+            <thead>
+                <tr>
+                    <th>Version</th>
+                    <th>Created</th>
+                    <th>Successors</th>
+                    <th>Predecessors</th>
+                    <th>Restore</th>
+                </tr>
+            </thead>
+            <tbody class="load-versions">
+                <c:forEach var="version" items="${sling:adaptTo(slingRequest.requestPathInfo.suffixResource,'org.apache.sling.cms.core.models.VersionInfo').versions}" varStatus="status">
+                    <tr>
+                        <td>
+                            ${version.name}
+                        </td>
+                        <td>
+                            <fmt:formatDate value="${version.created.time}" type="both"  dateStyle="long" timeStyle="long" />
+                        </td>
+                        <td>
+                            <c:forEach var="successor" items="${version.successors}">
+                                ${successor.name}<br/>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="predecessor" items="${version.predecessors}">
+                                ${predecessor.name}<br/>
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:if test="${!status.first}">
+                                <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+                                    <input type="hidden" name=":operation" value="restore" />
+                                    <input type="hidden" name=":version" value="${version.name}" />
+                                    <div class="Field-Group">
+                                        <button type="submit" class="button" title="Restore the content to ${version.name}">
+                                            Restore Version
+                                        </button>
+                                    </div>
+                                </form>
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
  </div>
  

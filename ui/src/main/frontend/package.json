@@ -7,12 +7,11 @@
     "url": "https://github.com/npm/npm.git"
   },
   "dependencies": {
-  	"jquery": "^3.3.1",
-  	"handlebars": "^4.0.11",
-  	"wysihtml": "^0.6.0-beta1",
-  	"jam-icons": "^2.0.0",
-  	"js-autocomplete": "^1.0.4",
-  	"datatables": "^1.10.18",
+    "jquery": "^3.3.1",
+    "wysihtml": "^0.6.0-beta1",
+    "jam-icons": "^2.0.0",
+    "js-autocomplete": "^1.0.4",
+    "datatables": "^1.10.18",
     "bulma": "^0.7.1",
     "datatables-bulma": "^1.0.1"
   },
