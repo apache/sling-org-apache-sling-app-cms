@@ -66,8 +66,7 @@ public interface PageInsightRequest extends InsightRequest {
      * bit but others will be quick.
      * 
      * @return a string representation of the HTML for a page
-     * @throws ServletException
-     * @throws IOException
+     * @throws IOException an exception occurs retrieving the content
      */
     public String getPageHtml() throws IOException;
 

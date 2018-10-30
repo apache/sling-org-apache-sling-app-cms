@@ -32,7 +32,7 @@ public interface InsightRequest {
     /**
      * Gets the resource used to create this request.
      * 
-     * @return
+     * @return the resource used to create the request
      */
     Resource getResource();
 
