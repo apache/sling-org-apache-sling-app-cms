@@ -18,8 +18,6 @@ Major UI update to use Bulma framework. Significant enhancements and updates. Up
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/tag/org.apache.sling.cms-0.10.0)
 
-
-
 ## 0.9.0
 
 Initial release of Sling CMS, focus on core functionality.
