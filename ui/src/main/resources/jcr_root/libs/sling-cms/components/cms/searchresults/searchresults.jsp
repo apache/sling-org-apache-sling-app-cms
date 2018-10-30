@@ -17,6 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
+<hr/>
 <div id="search-results">
     <div class="tile is-ancestor">
     <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.SearchResults" var="results" />
@@ -48,15 +49,15 @@
                             <c:set var="icon" value="sitemap" />
                         </c:otherwise>
                     </c:choose>
-                    <h4>
+                    <h5>
                         <span class="jam jam-${icon}"></span>
                         ${sling:encode(title,'HTML')}
-                    </h4>
-                    <small>
+                    </h5>
+                    <small class="is-size-7">
                         <em>${result.path}</em>
                     </small><br/>
-                    <br />
-                    <a href="#" class="button search-select-button" data-path="${result.path}">Select</a>
+                    <a href="#" class="button search-select-button is-pulled-right" data-path="${result.path}">Select</a>
+                    <br class="clearfix" />
                 </div>
             </div>
         </c:forEach>
