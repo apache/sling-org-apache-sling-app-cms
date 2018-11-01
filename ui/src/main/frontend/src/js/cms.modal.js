@@ -32,7 +32,7 @@
             getModal: function (title, link, button) {
                 var modal = document.createElement('div');
                 modal.classList.add('modal');
-                modal.innerHTML = '<div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">' + title + '</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body"><div class="loader is-loading"></div></section><footer class="modal-card-foot"></footer>';
+                modal.innerHTML = '<div class="loader is-loading"></div>';
                 document.querySelector('body').appendChild(modal);
                 
                 var request = new XMLHttpRequest();
@@ -42,18 +42,23 @@
                     if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
                         window.location.reload();
                     } else {
-                        modal.querySelector('.modal-card-body').innerHTML = request.responseText;
+                        modal.innerHTML = request.responseText;
+                        modal.classList.add('is-active');
                     }
                 };
                 request.send();
-                
-                modal.querySelector('.delete,.close-modal').addEventListener("click", function () {
-                    modal.remove();
-                    return false;
-                });
-                modal.classList.add('is-active');
+            }
+        }
+    });
+    
+    nomnom.decorate(".modal",{
+        events:{
+            ".close,.modal-close" :{
+                click: function (event) {
+                    this.remove();
+                }
             }
         }
     });
 
-}(window.nomnom = window.nomnom || {}));
+}(window.nomnom = window.nomnom || {}, window.jQuery || {}));

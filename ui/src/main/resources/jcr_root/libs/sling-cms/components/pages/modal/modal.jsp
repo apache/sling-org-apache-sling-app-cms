@@ -16,5 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<div class="modal-background"></div>
+<div class="modal-content">
+<div class="box">
 <sling:include path="container" resourceType="sling-cms/components/general/container" />
+</div>
+</div>
+<button class="modal-close is-large" aria-label="close"></button>

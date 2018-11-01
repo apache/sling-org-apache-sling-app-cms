@@ -56,7 +56,7 @@
                 click: function (event) {
                     event.stopPropagation();
                     event.preventDefault();
-                    var node = this.querySelector('.repeating__template').cloneNode(true);
+                    var node = this.querySelector('.repeating__template > .repeating__item').cloneNode(true);
                     this.querySelector('.repeating__container').appendChild(node);
                 }
             },

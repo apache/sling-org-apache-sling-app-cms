@@ -12,6 +12,7 @@
                 "sling:resourceType": "sling-cms/components/editor/slingform",
                 "addDate": false,
                 "actionSuffix": "/*",
+                "title": "Add Mapping",
                 "button": "Create Mapping",
                 "successPrepend": "/libs/sling-cms/content/site/content.html",
                 "fields": {

@@ -16,15 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<form method="post" action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="${properties.addDate != false}" data-callback="${properties.callback}">
-	<fieldset class="form-wrapper field">
-		<input type="hidden" name="_charset_" value="utf-8" />
-		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
-		<div class="Field-Group">
-			<button type="submit" class="button is-primary" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
-				<sling:encode value="${properties.button}" mode="HTML" />
-			</button>
-		</div>
-	</fieldset>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<h1 class="title">${properties.title}</h1>
+<form method="post"
+    action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}"
+    enctype="multipart/form-data" class="Form-Ajax"
+    data-add-date="${properties.addDate != false}"
+    data-callback="${properties.callback}">
+    <fieldset class="form-wrapper field">
+        <input type="hidden" name="_charset_" value="utf-8" />
+        <sling:include path="fields"
+            resourceType="sling-cms/components/general/container" />
+    </fieldset>
+    <button type="submit" class="button is-primary">
+        <sling:encode value="${properties.button}" mode="HTML" />
+    </button>
+    <button type="button" class="button close">Cancel</button>
 </form>
