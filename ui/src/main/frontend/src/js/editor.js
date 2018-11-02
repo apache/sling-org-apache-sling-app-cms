@@ -39,7 +39,7 @@
                 });
 
                 // closing the modal
-                CMSEditor.util.attachClick('.sling-cms-editor .close-modal', function () {
+                CMSEditor.util.attachClick('.sling-cms-editor .modal-close, .sling-cms-editor .modal-background', function () {
                     CMSEditor.ui.hideModal();
                 });
                 window.addEventListener('keypress', function (e) {
@@ -55,7 +55,7 @@
 
                       // mouse button down over the element
                     element.addEventListener('mousedown', function (evt) {
-                        if (evt.target.matches('.modal-card-body *')) {
+                        if (!evt.target.matches('.modal-title, .modal-title *')) {
                             return;
                         }
                         mouseX = evt.clientX;
@@ -83,7 +83,7 @@
                         return false;
                     });
                 }
-                draggable(document.querySelector('.sling-cms-editor .modal-card'));
+                draggable(document.querySelector('.sling-cms-editor .modal-content'));
             },
             ui: {
                 modalDisplayed: false,
@@ -98,8 +98,8 @@
                     if (CMSEditor.ui.modalDisplayed) {
                         CMSEditor.ui.hideModal();
                     }
-                    document.querySelector('.sling-cms-editor .modal-card-title').innerText = title;
-                    document.querySelector('.sling-cms-editor .modal-card-body').innerHTML = '<iframe class="modal-frame" src="' + url + '"></iframe>';
+                    document.querySelector('.sling-cms-editor .modal-title').innerText = title;
+                    document.querySelector('.sling-cms-editor .modal-body').innerHTML = '<iframe class="modal-frame" src="' + url + '"></iframe>';
                     document.querySelector('.sling-cms-editor .modal').classList.add('is-active');
 
                     CMSEditor.ui.modalDisplayed = true;

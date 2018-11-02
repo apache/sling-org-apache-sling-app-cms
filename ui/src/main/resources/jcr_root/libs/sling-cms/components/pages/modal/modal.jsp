@@ -18,9 +18,9 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="modal-background"></div>
-<div class="modal-content">
+<div class="modal-content is-draggable">
     <div class="box">
-        <h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /></h3>
+        <h3 class="modal-title"><sling:encode value="${properties['jcr:title']}" mode="HTML" /></h3>
         <sling:include path="container" resourceType="sling-cms/components/general/container" />
     </div>
 </div>

@@ -19,6 +19,15 @@ w * Licensed to the Apache Software Foundation (ASF) under one
 
 
 nomnom.decorate(".Form-Ajax", {
+    callbacks: {
+        created : function () {
+            this.querySelector('.close').addEventListener('click', function(){
+                if(window.parent && window.parent.window && window.parent.window.CMSEditor) {
+                    window.parent.window.CMSEditor.ui.hideModal();
+                }
+            });
+        }
+    },
     events :{
         submit : function(event){
             event.preventDefault();

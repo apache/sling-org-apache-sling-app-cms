@@ -22,10 +22,10 @@
     @import 'overrides';
     @import "../../node_modules/bulma/sass/utilities/_all.sass";
     @import "../../node_modules/bulma/sass/base/_all.sass";
+    @import "../../node_modules/bulma/sass/elements/box.sass";
     @import "../../node_modules/bulma/sass/elements/button.sass";
     @import "../../node_modules/bulma/sass/elements/form.sass";
     @import "../../node_modules/bulma/sass/elements/icon.sass";
-    @import "../../node_modules/bulma/sass/components/card.sass";
     @import "../../node_modules/bulma/sass/components/level.sass";
     @import "../../node_modules/bulma/sass/components/modal.sass";
     .is-draggable {
@@ -34,10 +34,7 @@
     .level {
         padding: .5em;
     }
-    .modal-card {
-        margin: 0;
-    }
-    .modal-card-body {
+    .modal-body {
         padding: .5em;
         height: 500px;
     }
@@ -45,6 +42,10 @@
         width: 100%;
         height: 100%;
         border: none;
+    }
+    .modal-title {
+        font-size: 180%;
+        cursor: move;
     }
     .page-wrapper-frame {
         position: fixed;

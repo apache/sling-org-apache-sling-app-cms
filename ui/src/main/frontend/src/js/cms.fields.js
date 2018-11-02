@@ -40,12 +40,14 @@
 
     /* Support for updating the namehint when creating a component */
     nomnom.decorate(".namehint", {
-        initCallback: function () {
-            var field = this;
-            this.closest('.Form-Ajax').querySelector('select[name="sling:resourceType"]').addEventListener('change', function (evt) {
-                var resourceType = evt.target.value.split("\/");
-                field.value = resourceType[resourceType.length - 1];
-            });
+        callbacks: {
+            created : function () {
+                var field = this;
+                this.closest('.Form-Ajax').querySelector('select[name="sling:resourceType"]').addEventListener('change', function (evt) {
+                    var resourceType = evt.target.value.split("\/");
+                    field.value = resourceType[resourceType.length - 1];
+                });
+            }
         }
     });
     

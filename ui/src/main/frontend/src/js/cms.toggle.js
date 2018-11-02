@@ -37,14 +37,17 @@
             created: function () {
                 var source = this.getAttribute('data-toggle-source'),
                     selector = 'input[name="' + source + '"], select[name="' + source + '"]',
-                    toggle = this;
-                document.querySelector(selector).on('change', function () {
-                    if (this.value !== toggle.dataset.toggleValue) {
-                        toggle.classList.add('is-hidden');
-                    } else {
-                        toggle.classList.remove('is-hidden');
-                    }
-                });
+                    toggle = this,
+                    sourceEl = document.querySelector(selector);
+                if(sourceEl){
+                    sourceEl.on('change', function () {
+                        if (this.value !== toggle.dataset.toggleValue) {
+                            toggle.classList.add('is-hidden');
+                        } else {
+                            toggle.classList.remove('is-hidden');
+                        }
+                    });
+                }
             }
         }
     });

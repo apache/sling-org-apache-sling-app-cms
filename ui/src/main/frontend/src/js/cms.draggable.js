@@ -20,48 +20,50 @@
 /* eslint-env browser, es6 */
 (function (nomnom) {
     'use strict';
+    var data = {
+        mouseX : 0,
+        mouseY : 0,
+        mouseDown : false,
+        elementX : 0,
+        elementY : 0
+    };
     nomnom.decorate(".is-draggable", {
-        data: {
-            mouseX : 0,
-            mouseY : 0,
-            mouseDown : false,
-            elementX : 0,
-            elementY : 0
+        callbacks: {
+            created : function () {
+                var draggable = this;
+                document.addEventListener('mouseup',function (event) {
+                    if (data.mouseDown === true) {
+                        draggable.moveComplete();
+                    }
+                });
+                document.addEventListener('mousemove',function (event) {
+                    if (data.mouseDown === false) {
+                        return false;
+                    }
+                    var deltaX = event.clientX - data.mouseX,
+                        deltaY = event.clientY - data.mouseY;
+                    draggable.style.left = data.elementX + deltaX + 'px';
+                    draggable.style.top = data.elementY + deltaY + 'px';
+                    return false;
+                })
+            }
         },
         methods : {
-            moveComplete: function (data) {
+            moveComplete: function () {
                 data.mouseDown = false;
                 data.elementX = parseInt(this.style.left, 10) || 0;
                 data.elementY = parseInt(this.style.top, 10) || 0;
                 return false;
             }
         },
-
         events : {
-            mousedown: function (event, data) {
-                if (event.target.matches('.modal-card-body *')) {
+            mousedown: function (event) {
+                if (!event.target.matches('.modal-title, .modal-title *')) {
                     return;
                 }
                 data.mouseX = event.clientX;
                 data.mouseY = event.clientY;
                 data.mouseDown = true;
-            },
-            document : {
-                mouseup : function (event, data) {
-                    if (data.mouseDown === true) {
-                        this.moveComplete(data);
-                    }
-                },
-                mousemove: function (event, data) {
-                    if (data.mouseDown === false) {
-                        return false;
-                    }
-                    var deltaX = event.clientX - data.mouseX,
-                        deltaY = event.clientY - data.mouseY;
-                    this.style.left = data.elementX + deltaX + 'px';
-                    this.style.top = data.elementY + deltaY + 'px';
-                    return false;
-                }
             }
         }
     });

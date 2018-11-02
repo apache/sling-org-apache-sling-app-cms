@@ -18,22 +18,19 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-	<script src="/static/clientlibs/sling-cms-editor/js/editor.min.js"></script>
-	<div class="sling-cms-editor">
-		<div class="modal">
-			<div class="modal-background"></div>
-			<div class="modal-card">
-				<div class="modal-card">
-					<header class="modal-card-head">
-						<p class="modal-card-title"></p>
-						<button class="button close-modal is-small" aria-label="close">
-							<span class="jam jam-close"></span>
-						</button>
-					</header>
-					<section class="modal-card-body">
-					</section>
-				</div>
-			</div>
-		</div>
-	</div>
+    <script src="/static/clientlibs/sling-cms-editor/js/editor.min.js"></script>
+    <div class="sling-cms-editor">
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <h3 class="modal-title">
+                    </h3>
+                    <section class="modal-body">
+                    </section>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    </div>
 </c:if>
