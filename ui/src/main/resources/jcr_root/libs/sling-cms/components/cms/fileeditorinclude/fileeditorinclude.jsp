@@ -20,31 +20,32 @@
  <sling:getCAConfigResources var="editors" resource="${slingRequest.requestPathInfo.suffixResource}" bucket="files" name="editors" />
 <c:set var="mimetype" value="|${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType']}|" />
 <c:forEach var="editor" items="${editors}">
-	<c:set var="mimetypes" value="|${fn:join(sling:getRelativeResource(editor,'jcr:content').valueMap.mimetypes,'|')}|" />
-	<c:choose>
-		<c:when test="${fn:length(mimetypes) == 2}">
-			<c:set var="general" value="${editor}" />
-		</c:when>
-		<c:when test="${fn:contains(mimetypes,mimetype)}">
-			<c:set var="matches" value="${editor}" />
-		</c:when>
-	</c:choose>
+    <c:set var="mimetypes" value="|${fn:join(sling:getRelativeResource(editor,'jcr:content').valueMap.mimetypes,'|')}|" />
+    <c:choose>
+        <c:when test="${fn:length(mimetypes) == 2}">
+            <c:set var="general" value="${editor}" />
+        </c:when>
+        <c:when test="${fn:contains(mimetypes,mimetype)}">
+            <c:set var="matches" value="${editor}" />
+        </c:when>
+    </c:choose>
 </c:forEach>
 <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax">
-	<c:choose>
-		<c:when test="${matches != null}">
-			<sling:include path="${matches.path}/fields" resourceType="sling-cms/components/general/container" />
-		</c:when>
-		<c:when test="${general != null}">
-			<sling:include path="${general.path}/fields" resourceType="sling-cms/components/general/container" />
-		</c:when>
-		<c:otherwise>
-			No editor configured for <sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType']}" mode="HTML" />!
-		</c:otherwise>
-	</c:choose>
-	<div class="Field-Group">
-		<button type="submit" class="button is-primary">
-			<sling:encode value="Save File" mode="HTML" />
-		</button>
-	</div>
+    <c:choose>
+        <c:when test="${matches != null}">
+            <sling:include path="${matches.path}/fields" resourceType="sling-cms/components/general/container" />
+        </c:when>
+        <c:when test="${general != null}">
+            <sling:include path="${general.path}/fields" resourceType="sling-cms/components/general/container" />
+        </c:when>
+        <c:otherwise>
+            No editor configured for <sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType']}" mode="HTML" />!
+        </c:otherwise>
+    </c:choose>
+    <div class="Field-Group">
+        <button type="submit" class="button is-primary">
+            Save File
+        </button>
+        <button type="button" class="button close">Cancel</button>
+    </div>
 </form>

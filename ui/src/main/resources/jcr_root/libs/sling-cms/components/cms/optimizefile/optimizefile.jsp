@@ -20,69 +20,80 @@
 <sling:adaptTo var="optimizer" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.fileoptim.models.OptimizeResource" />
 <sling:adaptTo var="optimizedFile" adaptable="${sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,'jcr:content')}" adaptTo="org.apache.sling.fileoptim.models.OptimizedFile" />
 <div class="columns">
-	<div class="column">
-		<h4>Info</h4>
-		<c:choose>
-			<c:when test="${optimizer.canOptimize && optimizer.result.optimized}">
-				<dl>
-					<dt>
-						Algorithm
-					</dt>
-					<dd>
-						${optimizer.result.algorithm}
-					</dd>
-					<dt>
-						Original Size
-					</dt>
-					<dd>
-						${optimizer.result.originalSize}
-					</dd>
-					<dt>
-						Optimized Size
-					</dt>
-					<dd>
-						${optimizer.result.optimizedSize}
-					</dd>
-					<dt>
-						Savings
-					</dt>
-					<dd>
-						<fmt:formatNumber value="${optimizer.result.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
-					</dd>
-				</dl>
-				<form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
-					<input type="hidden" name=":operation" value="fileoptim:optimize" />
-					<input type="submit" value="Optimize" class="button is-primary" />
-				</form>
-			</c:when>
-			<c:when test="${optimizer.optimized}">
-				<strong>Already Optimized</strong>
-				<dl>
-					<dt>
-						Algorithm
-					</dt>
-					<dd>
-						${optimizedFile.algorithm}
-					</dd>
-					<dt>
-						Savings
-					</dt>
-					<dd>
-						<fmt:formatNumber value="${optimizedFile.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
-					</dd>
-				</dl>
-				<form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
-					<input type="hidden" name=":operation" value="fileoptim:restore" />
-					<input type="submit" value="Restore Original" class="button is-primary" />
-				</form>
-			</c:when>
-			<c:otherwise>
-				<strong>File Cannot be Optimized</strong>
-			</c:otherwise>
-		</c:choose>
-	</div>
-	<div class="column">
-		<h4>Preview</h4>
-		<object data="/system/fileoptim/preview?path=${slingRequest.requestPathInfo.suffix}" class="preview"></object>
-	</div>
+    <div class="column">
+        <h4>Info</h4>
+        <c:choose>
+            <c:when test="${optimizer.canOptimize && optimizer.result.optimized}">
+                <dl>
+                    <dt>
+                        Algorithm
+                    </dt>
+                    <dd>
+                        ${optimizer.result.algorithm}
+                    </dd>
+                    <dt>
+                        Original Size
+                    </dt>
+                    <dd>
+                        ${optimizer.result.originalSize}
+                    </dd>
+                    <dt>
+                        Optimized Size
+                    </dt>
+                    <dd>
+                        ${optimizer.result.optimizedSize}
+                    </dd>
+                    <dt>
+                        Savings
+                    </dt>
+                    <dd>
+                        <fmt:formatNumber value="${optimizer.result.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
+                    </dd>
+                </dl>
+                <form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
+                    <input type="hidden" name=":operation" value="fileoptim:optimize" />
+                    <button type="submit" class="button is-primary">
+                        Optimize
+                    </button>
+                    <button type="button" class="button close">Cancel</button>
+                </form>
+            </c:when>
+            <c:when test="${optimizer.optimized}">
+                <strong>Already Optimized</strong>
+                <dl>
+                    <dt>
+                        Algorithm
+                    </dt>
+                    <dd>
+                        ${optimizedFile.algorithm}
+                    </dd>
+                    <dt>
+                        Savings
+                    </dt>
+                    <dd>
+                        <fmt:formatNumber value="${optimizedFile.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
+                    </dd>
+                </dl>
+                <form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
+                    <input type="hidden" name=":operation" value="fileoptim:restore" />
+                    <button type="submit" class="button is-primary">
+                        Restore Original
+                    </button>
+                    <button type="button" class="button close">Cancel</button>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <strong>File Cannot be Optimized</strong>
+                <div>
+                    <button type="button" class="button close">Close</button>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </div>
+    <div class="column">
+        <c:if test="${optimizer.canOptimize && optimizer.result.optimized}">
+            <h4>Preview</h4>
+            <img src="/system/fileoptim/preview?path=${slingRequest.requestPathInfo.suffix}" class="preview" />
+        </c:if>
+    </div>
 </div>

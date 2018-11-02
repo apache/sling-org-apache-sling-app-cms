@@ -53,7 +53,7 @@
     
     nomnom.decorate(".modal",{
         events:{
-            ".close,.modal-close,.modal-background" :{
+            ".close,.modal-close,.close-modal,.modal-background" :{
                 click: function (event) {
                     this.remove();
                 }
