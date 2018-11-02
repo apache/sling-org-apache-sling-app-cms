@@ -20,7 +20,7 @@
 <sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PageManager" />
 <c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
 <c:forEach var="layout" items="${configRsrc.valueMap.columns}">
-	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.layout == sling:encode(fn:split(layout,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(layout,'=')[1],'HTML_ATTR')}">
-		${sling:encode(fn:split(layout,'=')[0],'HTML')}
-	</option>
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.layout == fn:split(layout,'=')[1] ? 'selected' : ''} value="${sling:encode(fn:split(layout,'=')[1],'HTML_ATTR')}">
+        ${sling:encode(fn:split(layout,'=')[0],'HTML')}
+    </option>
 </c:forEach>

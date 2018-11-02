@@ -20,7 +20,7 @@
 <sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PageManager" />
 <c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/stylewrapper']}" />
 <c:forEach var="style" items="${configRsrc.valueMap.styles}">
-	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.style == sling:encode(fn:split(style,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(style,'=')[1],'HTML_ATTR')}">
-		${sling:encode(fn:split(style,'=')[0],'HTML')}
-	</option>
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.style == fn:split(style,'=')[1] ? 'selected' : ''} value="${sling:encode(fn:split(style,'=')[1],'HTML_ATTR')}">
+        ${sling:encode(fn:split(style,'=')[0],'HTML')}
+    </option>
 </c:forEach>
