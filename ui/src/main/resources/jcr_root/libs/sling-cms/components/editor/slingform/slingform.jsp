@@ -29,7 +29,7 @@
             resourceType="sling-cms/components/general/container" />
     </fieldset>
     <button type="submit" class="button is-primary">
-        <sling:encode value="${properties.button}" mode="HTML" />
+        <sling:encode value="${properties.button}" default="Save" mode="HTML" />
     </button>
     <button type="button" class="button close">Cancel</button>
 </form>

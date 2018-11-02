@@ -112,7 +112,7 @@
                                     "modal": true,
                                     "title": "Edit Page Properties",
                                     "icon": "cog",
-                                    "prefix": "/cms/page/siteeditproperties.html"
+                                    "prefix": "/cms/page/editproperties.html"
                                 },
                                 "insights": {
                                     "jcr:primaryType": "nt:unstructured",

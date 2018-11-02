@@ -19,8 +19,9 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="modal-background"></div>
 <div class="modal-content">
-<div class="box">
-<sling:include path="container" resourceType="sling-cms/components/general/container" />
-</div>
+    <div class="box">
+        <h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /></h3>
+        <sling:include path="container" resourceType="sling-cms/components/general/container" />
+    </div>
 </div>
 <button class="modal-close is-large" aria-label="close"></button>

@@ -32,7 +32,7 @@
             getModal: function (title, link, button) {
                 var modal = document.createElement('div');
                 modal.classList.add('modal');
-                modal.innerHTML = '<div class="loader is-loading"></div>';
+                modal.innerHTML = '<div class="box"><h3>Loading...</h3><div class="loader is-loading"></div></div>';
                 document.querySelector('body').appendChild(modal);
                 
                 var request = new XMLHttpRequest();
@@ -43,9 +43,9 @@
                         window.location.reload();
                     } else {
                         modal.innerHTML = request.responseText;
-                        modal.classList.add('is-active');
                     }
                 };
+                modal.classList.add('is-active');
                 request.send();
             }
         }
@@ -53,7 +53,7 @@
     
     nomnom.decorate(".modal",{
         events:{
-            ".close,.modal-close" :{
+            ".close,.modal-close,.modal-background" :{
                 click: function (event) {
                     this.remove();
                 }
@@ -61,4 +61,4 @@
         }
     });
 
-}(window.nomnom = window.nomnom || {}, window.jQuery || {}));
+}(window.nomnom = window.nomnom || {}));

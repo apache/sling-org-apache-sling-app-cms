@@ -47,11 +47,10 @@ Sling.CMS = {
     },
     ui: {
         confirmMessage: function(title, message, complete){
-            var $modal = $('<div class="modal"><div class="modal-background"></div><div class="modal-card is-draggable"><header class="modal-card-head"><p class="modal-card-title">'+title+'</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body">'+message+'</section><footer class="modal-card-foot"><button type="button" class="close-modal button is-primary">OK</button></footer></div>');
+            var $modal = $('<div class="modal"><div class="modal-background"></div><div class="is-draggable modal-content"><div class="box"><h3 class="modal-title">'+title+'</h3><p>'+message+'</p><br/><button type="button" class="close-modal button is-primary">OK</button></div></div><button class="modal-close is-large" aria-label="close"></button>');
             $('body').append($modal);
             $modal.addClass('is-active');
-            $modal.find('.delete,.close-modal').click(function(){
-                $modal.css('display','none').remove();
+            $modal.find('.modal-close,.close-modal,.modal-background').click(function(){
                 complete();
             });
             $modal.find('.delete,.close-modal').focus();
