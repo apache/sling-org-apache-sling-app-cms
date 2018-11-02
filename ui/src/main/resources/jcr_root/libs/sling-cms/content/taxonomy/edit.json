@@ -3,7 +3,6 @@
     "jcr:content": {
         "sling:resourceType": "sling-cms/components/pages/modal",
         "jcr:title": "Edit Taxonomy Item",
-        "modalText": "Update Taxonomy",
         "jcr:primaryType": "nt:unstructured",
         "container": {
             "jcr:primaryType": "nt:unstructured",
@@ -11,6 +10,8 @@
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/editor/slingform",
+                "title": "Edit Taxonomy",
+                "button": "Update Taxonomy",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/general/container",
