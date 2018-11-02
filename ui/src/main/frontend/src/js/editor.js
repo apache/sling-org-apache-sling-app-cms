@@ -20,7 +20,9 @@
 (function () {
     'use strict';
     if (!window.CMSEditor) {
+        var mouseX, mouseY;
         var CMSEditor = {
+            draggable: null,
             init: function () {
                 CMSEditor.util.attachClick('.sling-cms-editor .button[data-sling-cms-action=add]', function () {
                     CMSEditor.ui.showModal('/cms/editor/add.html' + this.dataset.slingCmsPath + '?availableTypes=' + this.dataset.slingCmsAvailableTypes, this.title);
@@ -47,14 +49,14 @@
                         CMSEditor.ui.hideModal();
                     }
                 });
-
-                var mouseX, mouseY;
-
-                function draggable(element) {
+            },
+            ui: {
+                draggable: function(element) {
+                    CMSEditor.draggable = element;
                     var mouseDown = false, elementX = 0, elementY = 0;
 
                       // mouse button down over the element
-                    element.addEventListener('mousedown', function (evt) {
+                    CMSEditor.draggable.addEventListener('mousedown', function (evt) {
                         if (!evt.target.matches('.modal-title, .modal-title *')) {
                             return;
                         }
@@ -62,34 +64,30 @@
                         mouseY = evt.clientY;
                         mouseDown = true;
                     });
-
                     var moveComplete = function () {
                         mouseDown = false;
-                        elementX = parseInt(element.style.left, 10) || 0;
-                        elementY = parseInt(element.style.top, 10) || 0;
+                        elementX = parseInt(CMSEditor.draggable.style.left, 10) || 0;
+                        elementY = parseInt(CMSEditor.draggable.style.top, 10) || 0;
                         return false;
                     };
-
-                    element.addEventListener('mouseup', moveComplete);
+                    CMSEditor.draggable.addEventListener('mouseup', moveComplete);
                     document.addEventListener('mouseout', moveComplete);
-
                     document.addEventListener('mousemove', function (event) {
                         if (!mouseDown) {
                             return;
                         }
                         var deltaX = event.clientX - mouseX, deltaY = event.clientY - mouseY;
-                        element.style.left = elementX + deltaX + 'px';
-                        element.style.top = elementY + deltaY + 'px';
+                        CMSEditor.draggable.style.left = elementX + deltaX + 'px';
+                        CMSEditor.draggable.style.top = elementY + deltaY + 'px';
                         return false;
                     });
-                }
-                draggable(document.querySelector('.sling-cms-editor .modal-content'));
-            },
-            ui: {
+                },
                 modalDisplayed: false,
                 hideModal: function () {
                     if (CMSEditor.ui.modalDisplayed) {
-                        document.querySelector('.sling-cms-editor .modal').classList.remove('is-active');
+                        if(document.querySelector('.sling-cms-editor .modal')){
+                            document.querySelector('.sling-cms-editor .modal').remove();
+                        }
                         CMSEditor.ui.modalDisplayed = false;
                     }
                 },
@@ -98,10 +96,11 @@
                     if (CMSEditor.ui.modalDisplayed) {
                         CMSEditor.ui.hideModal();
                     }
+                    document.querySelector('.sling-cms-editor-final').innerHTML = '<div class="modal"><div class="modal-background"></div><div class="modal-content"><div class="box"><h3 class="modal-title"></h3><section class="modal-body"></section></div></div><button class="modal-close is-large" aria-label="close"></button>'
                     document.querySelector('.sling-cms-editor .modal-title').innerText = title;
                     document.querySelector('.sling-cms-editor .modal-body').innerHTML = '<iframe class="modal-frame" src="' + url + '"></iframe>';
                     document.querySelector('.sling-cms-editor .modal').classList.add('is-active');
-
+                    CMSEditor.ui.draggable(document.querySelector('.sling-cms-editor .modal-content'));
                     CMSEditor.ui.modalDisplayed = true;
                 }
             },

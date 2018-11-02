@@ -31,5 +31,7 @@
     <button type="submit" class="button is-primary">
         <sling:encode value="${properties.button}" default="Save" mode="HTML" />
     </button>
-    <button type="button" class="button close">Cancel</button>
+    <c:if test="${properties.skipcancel != true}">
+        <button type="button" class="button close">Cancel</button>
+    </c:if>
 </form>

@@ -53,21 +53,26 @@
     
     /* Support for repeating form fields */
     nomnom.decorate(".repeating", {
-        events : {
-            ".repeating__add, .repeating__add *" : {
-                click: function (event) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    var node = this.querySelector('.repeating__template > .repeating__item').cloneNode(true);
-                    this.querySelector('.repeating__container').appendChild(node);
-                }
-            },
-            ".repeating__remove, .repeating__remove *" : {
-                click: function (event) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    event.target.closest('.repeating__item').remove();
-                }
+        callbacks: {
+            created : function () {
+                var ctr = this;
+                this.querySelectorAll(".repeating__add").forEach(function(el){
+                    el.addEventListener('click', function (event) {
+                        event.stopPropagation();
+                        event.preventDefault();
+                        var node = ctr.querySelector('.repeating__template > .repeating__item').cloneNode(true);
+                        ctr.querySelector('.repeating__container').appendChild(node);
+                    });
+                });
+            }
+        }
+    });
+    nomnom.decorate(".repeating__remove", {
+        events: {
+            click: function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                event.target.closest('.repeating__item').remove();
             }
         }
     });

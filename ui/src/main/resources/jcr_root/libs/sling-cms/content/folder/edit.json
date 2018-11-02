@@ -10,7 +10,6 @@
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/editor/slingform",
-                "title":"Edit Folder",
                 "button": "Update Folder",
                 "successPrepend": "/libs/sling-cms/content/site/content.html",
                 "fields": {

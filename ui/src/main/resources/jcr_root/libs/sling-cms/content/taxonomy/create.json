@@ -11,7 +11,6 @@
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/editor/slingform",
                 "actionSuffix": "/*",
-                "title": "Add Taxonomy",
                 "button": "Create Taxonomy",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",

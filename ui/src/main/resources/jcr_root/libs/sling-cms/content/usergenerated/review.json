@@ -1,85 +1,87 @@
 {
-	"jcr:primaryType": "sling:Page",
-	"jcr:content": {
-		"sling:resourceType": "sling-cms/components/pages/base",
-		"jcr:title": "Review User Generated Content",
-		"jcr:primaryType": "nt:unstructured",
-		"container": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/general/container",
-			"richtext": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/general/richtext",
-				"text": "<h3>Review User Generated Content</h3>"
-			},
-			"preview": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/suffixproperty",
-				"label": "Preview",
-				"property": "preview"
-			},
-			"contenttype": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/suffixproperty",
-				"label": "Content Type",
-				"property": "contenttype"
-			},
-			"referrer": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/suffixproperty",
-				"label": "Referrer",
-				"property": "referrer"
-			},
-			"user": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/suffixproperty",
-				"label": "User",
-				"property": "user"
-			},
-			"useragent": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/suffixproperty",
-				"label": "User Agent",
-				"property": "useragent"
-			},
-			"userip": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/cms/suffixproperty",
-				"label": "User IP",
-				"property": "userip"
-			},
-			"slingform": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/editor/slingform",
-				"button": "Approve Content",
-				"callback": "handleugc",
-				"fields": {
-					"jcr:primaryType": "nt:unstructured",
-					"sling:resourceType": "sling-cms/components/general/container",
-					"title": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": ":operation",
-						"value": "ugcapprove"
-					}
-				}
-			},
-			"deleteform": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "sling-cms/components/editor/slingform",
-				"button": "Delete Content",
-				"callback": "handleugc",
-				"fields": {
-					"jcr:primaryType": "nt:unstructured",
-					"sling:resourceType": "sling-cms/components/general/container",
-					"title": {
-						"jcr:primaryType": "nt:unstructured",
-						"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-						"name": ":operation",
-						"value": "delete"
-					}
-				}
-			}
-		}
-	}
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Review User Generated Content",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "richtext": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/richtext",
+                "text": "<h3>Review User Generated Content</h3>"
+            },
+            "preview": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/suffixproperty",
+                "label": "Preview",
+                "property": "preview"
+            },
+            "contenttype": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/suffixproperty",
+                "label": "Content Type",
+                "property": "contenttype"
+            },
+            "referrer": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/suffixproperty",
+                "label": "Referrer",
+                "property": "referrer"
+            },
+            "user": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/suffixproperty",
+                "label": "User",
+                "property": "user"
+            },
+            "useragent": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/suffixproperty",
+                "label": "User Agent",
+                "property": "useragent"
+            },
+            "userip": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/suffixproperty",
+                "label": "User IP",
+                "property": "userip"
+            },
+            "slingform": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/slingform",
+                "button": "Approve Content",
+                "callback": "handleugc",
+                "skipcancel": true,
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/general/container",
+                    "title": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": ":operation",
+                        "value": "ugcapprove"
+                    }
+                }
+            },
+            "deleteform": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/slingform",
+                "button": "Delete Content",
+                "callback": "handleugc",
+                "skipcancel": true,
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/general/container",
+                    "title": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": ":operation",
+                        "value": "delete"
+                    }
+                }
+            }
+        }
+    }
 }
