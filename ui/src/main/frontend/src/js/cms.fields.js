@@ -21,11 +21,11 @@
  * Utility scripts for decorating form fields
  */
 /* eslint-env browser, es6 */
-(function (nomnom, wysihtml) {
+(function (rava, wysihtml) {
     'use strict';
     
     /* Update the name on file selection */
-    nomnom.decorate(".file", {
+    rava.decorate(".file", {
         events: {
             input: {
                 change : function (event) {
@@ -39,7 +39,7 @@
     });
 
     /* Support for updating the namehint when creating a component */
-    nomnom.decorate(".namehint", {
+    rava.decorate(".namehint", {
         callbacks: {
             created : function () {
                 var field = this;
@@ -52,7 +52,7 @@
     });
     
     /* Support for repeating form fields */
-    nomnom.decorate(".repeating", {
+    rava.decorate(".repeating", {
         callbacks: {
             created : function () {
                 var ctr = this;
@@ -67,7 +67,7 @@
             }
         }
     });
-    nomnom.decorate(".repeating__remove", {
+    rava.decorate(".repeating__remove", {
         events: {
             click: function (event) {
                 event.stopPropagation();
@@ -77,7 +77,7 @@
         }
     });
     
-    nomnom.decorate('.rte', {
+    rava.decorate('.rte', {
         callbacks : {
             created : function(){
                 new wysihtml.Editor(this.querySelector('.rte-editor'), {
@@ -87,4 +87,4 @@
             }
         }
     });
-}(window.nomnom = window.nomnom || {}, window.wysihtml = window.wysihtml || {}));
+}(window.rava = window.rava || {}, window.wysihtml = window.wysihtml || {}));

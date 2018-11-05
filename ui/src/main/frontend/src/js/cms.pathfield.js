@@ -17,10 +17,10 @@
  * under the License.
  */
 /* eslint-env browser, es6 */
-(function (nomnom, Sling) {
+(function (rava, Sling) {
     'use strict';
     var pathfield = null;
-    nomnom.decorate("input.pathfield", {
+    rava.decorate("input.pathfield", {
         callbacks: {
             created : function () {
                 var type = this.dataset.type,
@@ -29,14 +29,14 @@
             }
         }
     });
-    nomnom.decorate('.search-button', {
+    rava.decorate('.search-button', {
         events: {
             click: function () {
                 pathfield =  this.closest('.field').querySelector('.pathfield');
             }
         }
     });
-    nomnom.decorate('.search-select-button', {
+    rava.decorate('.search-select-button', {
         events: {
             click : function () {
                 pathfield.value = this.dataset.path;
@@ -45,4 +45,4 @@
         }
     });
     
-}(window.nomnom = window.nomnom || {}, window.Sling = window.Sling || {}));
+}(window.rava = window.rava || {}, window.Sling = window.Sling || {}));

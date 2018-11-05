@@ -18,10 +18,10 @@
  */
 
 /* eslint-env browser, es6 */
-(function (nomnom) {
+(function (rava) {
     'use strict';
     
-    nomnom.decorate('.toggle-hidden', {
+    rava.decorate('.toggle-hidden', {
         events : {
             click: function () {
                 var target = document.querySelectorAll(this.dataset.target);
@@ -32,7 +32,7 @@
         }
     });
 
-    nomnom.decorate('.toggle-value', {
+    rava.decorate('.toggle-value', {
         callbacks: {
             created: function () {
                 var source = this.getAttribute('data-toggle-source'),
@@ -52,4 +52,4 @@
         }
     });
 
-}(window.nomnom = window.nomnom || {}));
+}(window.rava = window.rava || {}));

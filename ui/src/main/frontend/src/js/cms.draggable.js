@@ -18,7 +18,7 @@
  */
 
 /* eslint-env browser, es6 */
-(function (nomnom) {
+(function (rava) {
     'use strict';
     var data = {
         mouseX : 0,
@@ -27,7 +27,7 @@
         elementX : 0,
         elementY : 0
     };
-    nomnom.decorate(".is-draggable", {
+    rava.decorate(".is-draggable", {
         callbacks: {
             created : function () {
                 var draggable = this;
@@ -67,4 +67,4 @@
             }
         }
     });
-}(window.nomnom = window.nomnom || {}));
+}(window.rava = window.rava || {}));

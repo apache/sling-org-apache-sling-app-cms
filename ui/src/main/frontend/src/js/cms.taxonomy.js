@@ -17,9 +17,9 @@
  * under the License.
  */
 /* eslint-env browser, es6 */
-(function (nomnom, $) {
+(function (rava, $) {
     'use strict';
-    nomnom.decorate('.taxonomy', {
+    rava.decorate('.taxonomy', {
         events: {
             '.taxonomy__add, .taxonomy__add *': {
                 click: function (event) {
@@ -50,7 +50,7 @@
         }
     });
 
-    nomnom.decorate('.taxonomy__item, .taxonomy__item *', {
+    rava.decorate('.taxonomy__item, .taxonomy__item *', {
         events: {
             click: function () {
                 $(this).remove();
@@ -59,4 +59,4 @@
         }
     });
 
-}(window.nomnom = window.nomnom || {}, window.jQuery || {}));
+}(window.rava = window.rava || {}, window.jQuery || {}));

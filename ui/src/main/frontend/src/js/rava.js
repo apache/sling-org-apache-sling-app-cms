@@ -17,7 +17,7 @@
  * under the License.
  */
 /* eslint-env es6, browser */
-(function(nomnom) {
+(function(rava) {
 
     if (!Element.prototype.matches) {
         Element.prototype.matches = Element.prototype.msMatchesSelector;
@@ -32,7 +32,7 @@
     var elementMap = new WeakMap();
     
   // public
-  nomnom.decorate = function(selector, config) {
+  rava.decorate = function(selector, config) {
     if (debug) {
           console.log("storing selector" + selector);
       }
@@ -185,6 +185,6 @@
       }
   };
 
-  return nomnom;
+  return rava;
 
-})(window.nomnom = window.nomnom || {});
+})(window.rava = window.rava || {});

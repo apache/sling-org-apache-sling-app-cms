@@ -98,7 +98,7 @@ Sling.CMS = {
 };
 
     
-nomnom.decorate('.page-properties-container', {
+rava.decorate('.page-properties-container', {
     callbacks : {
         created :  function(){
             var $ctr = $(this);
@@ -126,7 +126,7 @@ nomnom.decorate('.page-properties-container', {
     }
 });
 
-nomnom.decorate('.sling-cms-include-config', {
+rava.decorate('.sling-cms-include-config', {
     callbacks : {
         created :  function() {
             var $ctr = $(this);

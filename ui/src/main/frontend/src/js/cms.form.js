@@ -18,7 +18,7 @@ w * Licensed to the Apache Software Foundation (ASF) under one
  */
 
 
-nomnom.decorate(".Form-Ajax", {
+rava.decorate(".Form-Ajax", {
     callbacks: {
         created : function () {
             var close = this.querySelector('.close');
@@ -89,7 +89,7 @@ nomnom.decorate(".Form-Ajax", {
 });
 
 
-nomnom.decorate('.Get-Form', {
+rava.decorate('.Get-Form', {
     events : {
         submit : function (event) {
             event.preventDefault();
@@ -106,7 +106,7 @@ nomnom.decorate('.Get-Form', {
 });
 
 
-nomnom.decorate('.suffix-form', {
+rava.decorate('.suffix-form', {
     events: {
         submit: function (event) {
             event.preventDefault();

@@ -18,7 +18,7 @@
  */ 
 
 
-nomnom.decorate(".table", {
+rava.decorate(".table", {
     callbacks : {
         created :function(){
             var $table = $(this);
@@ -35,7 +35,7 @@ nomnom.decorate(".table", {
     }
 });
 
-nomnom.decorate(".table tbody tr",{
+rava.decorate(".table tbody tr",{
     events :{
         click: function(event){
             var $current = $(this);

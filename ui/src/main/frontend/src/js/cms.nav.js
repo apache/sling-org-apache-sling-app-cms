@@ -17,9 +17,9 @@
  * under the License.
  */
 /* eslint-env browser, es6 */
-(function (nomnom) {
+(function (rava) {
     'use strict';
-    nomnom.decorate(".navbar-burger", {
+    rava.decorate(".navbar-burger", {
         events: {
             click: function () {
                 var target = document.querySelector(this.dataset.target);
@@ -28,4 +28,4 @@
             }
         }
     });
-}(window.nomnom = window.nomnom || {}));
+}(window.rava = window.rava || {}));

@@ -18,9 +18,9 @@
  */
 
 /* eslint-env browser, es6 */
-(function (nomnom) {
+(function (rava) {
     'use strict';
-    nomnom.decorate("a.Fetch-Modal", {
+    rava.decorate("a.Fetch-Modal", {
         events: {
             click: function (event) {
                 event.preventDefault();
@@ -34,7 +34,7 @@
                 modal.classList.add('modal');
                 modal.innerHTML = '<div class="box"><h3>Loading...</h3><div class="loader is-loading"></div></div>';
                 document.querySelector('body').appendChild(modal);
-                
+
                 var request = new XMLHttpRequest();
                 request.open('GET', link, true);
                 request.onload = function () {
@@ -51,7 +51,7 @@
         }
     });
     
-    nomnom.decorate(".modal",{
+    rava.decorate(".modal",{
         events:{
             ".close,.modal-close,.close-modal,.modal-background" :{
                 click: function (event) {
@@ -61,4 +61,4 @@
         }
     });
 
-}(window.nomnom = window.nomnom || {}));
+}(window.rava = window.rava || {}));
