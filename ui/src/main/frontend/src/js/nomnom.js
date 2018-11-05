@@ -28,7 +28,7 @@
     }
 
     var tagSelectors = {};
-    var debug = false;
+    var debug = true;
     var elementMap = new WeakMap();
     
   // public
@@ -137,13 +137,20 @@
                       func = targetedEventHandler(func, selector, data);
                   }
                   targetNode.addEventListener(childEventName,
-                          function(event) {
+                      (function(func,node,data) {
+                          return function(event){
                               func.call(node, event, data);
-                          });
+                          }
+                      })(func,node,data)
+                  );
               }
           }
       }
   };
+  
+  var createTargetedCallback = function(func){
+      
+  }
 
   var checkAll = function(node) {
       var checkSet = new Set();
