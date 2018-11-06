@@ -261,6 +261,13 @@
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
+                                },
                                 "version": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "ajaxPath": ".versionmanager",

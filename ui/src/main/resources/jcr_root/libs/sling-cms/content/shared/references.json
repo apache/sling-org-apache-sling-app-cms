@@ -1,0 +1,17 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/modal",
+        "jcr:title": "View References",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "references": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/fields/references",
+                "label": "References"
+            }
+        }
+    }
+}
