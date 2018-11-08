@@ -82,6 +82,7 @@ gulp.task('cms-assets', function() {
 gulp.task('cms-js', function() {
     return gulp.src([
             './node_modules/jquery/dist/jquery.js',
+            './node_modules/rava/dist/rava.js',
             './node_modules/datatables/media/js/jquery.dataTables.js',
             './node_modules/datatables-bulma/js/dataTables.bulma.js',
             './node_modules/wysihtml/dist/minified/wysihtml.min.js',
@@ -90,7 +91,6 @@ gulp.task('cms-js', function() {
             './node_modules/wysihtml/dist/minified/wysihtml.toolbar.min.js',
             './node_modules/wysihtml/parser_rules/advanced_and_extended.js',
             './node_modules/js-autocomplete/auto-complete.js',
-            './src/js/rava.js',
             './src/js/cms.js',
             './src/js/cms.*.js'
         ])
