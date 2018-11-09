@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "jquery": "^3.3.1",
+  	"handlebars": "^4.0.11",
     "wysihtml": "^0.6.0-beta1",
     "rava": "^1.0.0",
     "jam-icons": "^2.0.0",

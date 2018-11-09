@@ -90,6 +90,7 @@ gulp.task('cms-js', function() {
             './node_modules/wysihtml/dist/minified/wysihtml.table_editing.min.js',
             './node_modules/wysihtml/dist/minified/wysihtml.toolbar.min.js',
             './node_modules/wysihtml/parser_rules/advanced_and_extended.js',
+            './node_modules/handlebars/dist/handlebars.js',
             './node_modules/js-autocomplete/auto-complete.js',
             './src/js/cms.js',
             './src/js/cms.*.js'
