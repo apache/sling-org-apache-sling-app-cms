@@ -12,11 +12,21 @@
 
 # Releases
 
-## 0.10.0 - CURRENT VERSION
+
+## 0.11.0 - CURRENT VERSION
+
+Adding API for content insights. Switching to a more flexible WYSIWYG library. Significant enhancements and bug fixes to the overall user experience.
+
+ * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/tag/org.apache.sling.cms-0.11.0)
+ * [JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.core/0.11.0)
+ 
+## 0.10.0
 
 Major UI update to use Bulma framework. Significant enhancements and updates. Update to separate out API from core code.
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/tag/org.apache.sling.cms-0.10.0)
+ * [JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.10.0)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/96879b7e912d9831f2f4e27811bb51bdd7bf4ff0)
 
 ## 0.9.0
 
