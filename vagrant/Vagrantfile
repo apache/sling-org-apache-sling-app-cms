@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
      echo "SELinux Disabled..."
 
      mkdir -p /opt/sling
-     wget https://repository.apache.org/content/repositories/releases/org/apache/sling/org.apache.sling.cms.builder/0.10.0/org.apache.sling.cms.builder-0.10.0.jar -O /opt/sling/org.apache.sling.cms.jar
+     wget https://repository.apache.org/content/repositories/releases/org/apache/sling/org.apache.sling.cms.builder/0.11.0/org.apache.sling.cms.builder-0.11.0.jar -O /opt/sling/org.apache.sling.cms.jar
      cp /vagrant_data/start.sh /opt/sling
      cp /vagrant_data/stop.sh /opt/sling
      chmod +x /opt/sling/*.sh
