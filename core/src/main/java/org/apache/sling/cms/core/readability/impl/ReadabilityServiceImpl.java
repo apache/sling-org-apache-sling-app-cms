@@ -30,12 +30,13 @@ import org.apache.sling.cms.readability.Text;
 import org.apache.sling.cms.readability.Word;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
 
 /**
  * Implementation of the ReadabilityService service
  */
-@Component(service = ReadabilityService.class)
+@Component(service = ReadabilityService.class, configurationPolicy = ConfigurationPolicy.REQUIRE, immediate = true)
 @Designate(ocd = ReadabilityConfig.class, factory = true)
 public class ReadabilityServiceImpl implements ReadabilityService {
 
