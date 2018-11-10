@@ -12,6 +12,7 @@
 
 # Users
 
+* [Content Insights](content-insights.md)
 * [Editing a Page](page-editing.md)
 * [Managing Content](managing-content.md)
 * [Managing Taxonomy](managing-taxonomy.md)
