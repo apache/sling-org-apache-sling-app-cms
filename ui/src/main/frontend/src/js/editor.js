@@ -100,6 +100,9 @@
                     document.querySelector('.sling-cms-editor .modal-title').innerText = title;
                     document.querySelector('.sling-cms-editor .modal-body').innerHTML = '<iframe class="modal-frame" src="' + url + '"></iframe>';
                     document.querySelector('.sling-cms-editor .modal').classList.add('is-active');
+                    CMSEditor.util.attachClick('.sling-cms-editor .modal-background, .sling-cms-editor .modal-close', function(){
+                        CMSEditor.ui.hideModal();
+                    });
                     CMSEditor.ui.draggable(document.querySelector('.sling-cms-editor .modal-content'));
                     CMSEditor.ui.modalDisplayed = true;
                 }
