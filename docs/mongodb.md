@@ -14,7 +14,7 @@
 
 By default, Sling CMS stores it's content in a local Tar-backed Apache Oak repository. 
 
-When you setup your Sling CMS instance, you can configure Sling CMS to use a local MongoDB instance by adding the following paramter to the start script:
+When you setup your Sling CMS instance, you can configure Sling CMS to use a local MongoDB instance by adding the following parameter to the start script:
 
     -Dsling.run.modes=oak_mongo
     
