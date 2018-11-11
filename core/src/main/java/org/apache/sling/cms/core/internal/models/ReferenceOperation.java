@@ -16,7 +16,9 @@
  */
 package org.apache.sling.cms.core.internal.models;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,61 +35,68 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class ReferenceOperation {
 
-	private static final Logger log = LoggerFactory.getLogger(ReferenceOperation.class);
+    private static final Logger log = LoggerFactory.getLogger(ReferenceOperation.class);
 
-	private Pattern regex = null;
+    private Pattern regex = null;
 
-	private Resource resource = null;
+    private Resource resource = null;
 
-	public ReferenceOperation(Resource resource) {
-		String path = resource.getPath().replace("/", "\\/");
-		if (CMSConstants.NT_PAGE.equals(resource.getResourceType())) {
-			regex = Pattern.compile(
-					"(^" + path + "($|\\/)|(\\'|\\\")" + path + "(\\.html|\\'|\\\"|\\/))");
-		} else {
-			regex = Pattern.compile("(^" + path + "($|\\/)|(\\'|\\\")" + path + "(\\'|\\\"|\\/))");
-		}
-		this.resource = resource;
-	}
+    public ReferenceOperation(Resource resource) {
+        String path = resource.getPath().replace("/", "\\/");
+        if (CMSConstants.NT_PAGE.equals(resource.getResourceType())) {
+            regex = Pattern.compile("(^" + path + "($|\\/)|(\\'|\\\")" + path + "(\\.html|\\'|\\\"|\\/))");
+        } else {
+            regex = Pattern.compile("(^" + path + "($|\\/)|(\\'|\\\")" + path + "(\\'|\\\"|\\/))");
+        }
+        this.resource = resource;
+    }
 
-	public void init() {
-		log.debug("Finding references to {}", resource.getPath());
+    private void checkReferences(Resource resource) {
+        log.debug("Checking for references in resource {}", resource);
+        ValueMap properties = resource.getValueMap();
+        properties.keySet().forEach(k -> {
+            if (properties.get(k) instanceof String) {
+                if (matches(properties.get(k, String.class))) {
+                    log.trace("Found reference in property {}@{}", resource.getPath(), k);
+                    doProcess(resource, k);
+                }
+            } else if (properties.get(k) instanceof String[]) {
+                for (String v : properties.get(k, String[].class)) {
+                    if (matches(v)) {
+                        log.trace("Found reference in property {}@{}", resource.getPath(), k);
+                        doProcess(resource, k);
+                        break;
+                    }
+                }
+            }
 
-		String query = "SELECT * FROM [nt:base] AS s WHERE CONTAINS(s.*, '" + resource.getPath() + "')";
-		Iterator<Resource> resources = resource.getResourceResolver().findResources(query, Query.JCR_SQL2);
-		log.debug("Checking for references with: {}", query);
-		while (resources.hasNext()) {
-			Resource r = resources.next();
-			log.debug("Checking for references in resource {}", r);
-			ValueMap properties = r.getValueMap();
-			for (String k : properties.keySet()) {
-				if (properties.get(k) instanceof String) {
-					Matcher matcher = regex.matcher(properties.get(k, String.class));
-					if (matcher.find()) {
-						log.trace("Found reference in property {}@{}", r.getPath(), k);
-						doProcess(r, k);
-					}
-				} else if (properties.get(k) instanceof String[]) {
-					boolean matches = false;
-					for (String v : properties.get(k, String[].class)) {
-						Matcher matcher = regex.matcher(v);
-						if (matcher.find()) {
-							matches = true;
-							break;
-						}
-					}
-					if (matches) {
-						log.trace("Found reference in property {}@{}", r.getPath(), k);
-						doProcess(r, k);
-					}
-				}
-			}
-		}
-	}
+        });
+    }
 
-	public abstract void doProcess(Resource resource, String matchingKey);
+    public abstract void doProcess(Resource resource, String matchingKey);
 
-	public Pattern getRegex() {
-		return regex;
-	}
+    public Pattern getRegex() {
+        return regex;
+    }
+
+    public void init() {
+        log.debug("Finding references to {}", resource.getPath());
+        String query = "SELECT * FROM [nt:base] AS s WHERE NOT ISDESCENDANTNODE([/jcr:system/jcr:versionStorage]) AND CONTAINS(s.*, '"
+                + resource.getPath() + "')";
+        Set<String> paths = new HashSet<>();
+        Iterator<Resource> resources = resource.getResourceResolver().findResources(query, Query.JCR_SQL2);
+        log.debug("Checking for references with: {}", query);
+        while (resources.hasNext()) {
+            Resource r = resources.next();
+            if (!paths.contains(r.getPath())) {
+                checkReferences(r);
+                paths.add(r.getPath());
+            }
+        }
+    }
+
+    private boolean matches(String value) {
+        Matcher matcher = regex.matcher(value);
+        return matcher.find();
+    }
 }
