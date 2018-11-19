@@ -25,13 +25,12 @@
     data-callback="${properties.callback}">
     <fieldset class="form-wrapper field">
         <input type="hidden" name="_charset_" value="utf-8" />
-        <sling:include path="fields"
-            resourceType="sling-cms/components/general/container" />
+        <sling:include path="fields" resourceType="sling-cms/components/general/container" />
+        <button type="submit" class="button is-primary">
+            <sling:encode value="${properties.button}" default="Save" mode="HTML" />
+        </button>
+        <c:if test="${properties.skipcancel != true}">
+            <button type="button" class="button close">Cancel</button>
+        </c:if>
     </fieldset>
-    <button type="submit" class="button is-primary">
-        <sling:encode value="${properties.button}" default="Save" mode="HTML" />
-    </button>
-    <c:if test="${properties.skipcancel != true}">
-        <button type="button" class="button close">Cancel</button>
-    </c:if>
 </form>

@@ -25,25 +25,29 @@
      <c:choose>
          <c:when test="${versionable == 'true'}">
              <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-                <input type="hidden" name=":operation" value="checkpoint" />
-                <div class="Field-Group">
-                    <button type="submit" class="button is-primary" title="Create a new version for the content">
-                        Create Version
-                    </button>
-                </div>
+                <fieldset class="form-wrapper field">
+                    <input type="hidden" name=":operation" value="checkpoint" />
+                    <div class="Field-Group">
+                        <button type="submit" class="button is-primary" title="Create a new version for the content">
+                            Create Version
+                        </button>
+                    </div>
+                </fieldset>
             </form>
          </c:when>
          <c:otherwise>
              <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-                <input type="hidden" name=":autoCheckout" value="true">
-                <input type="hidden" name=":autoCheckin" value="true">
-                <input type="hidden" name="jcr:mixinTypes@TypeHint" value="Type[]">
-                <input type="hidden" name="jcr:mixinTypes" value="mix:versionable">
-                <div class="Field-Group">
-                    <button type="submit" class="button is-primary" title="Make the content versionable">
-                        Make Versionable
-                    </button>
-                </div>
+                <fieldset class="form-wrapper field">
+                    <input type="hidden" name=":autoCheckout" value="true">
+                    <input type="hidden" name=":autoCheckin" value="true">
+                    <input type="hidden" name="jcr:mixinTypes@TypeHint" value="Type[]">
+                    <input type="hidden" name="jcr:mixinTypes" value="mix:versionable">
+                    <div class="Field-Group">
+                        <button type="submit" class="button is-primary" title="Make the content versionable">
+                            Make Versionable
+                        </button>
+                    </div>
+                </fieldset>
             </form>
          </c:otherwise>
      </c:choose>
@@ -80,13 +84,15 @@
                         <td>
                             <c:if test="${!status.first}">
                                 <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
-                                    <input type="hidden" name=":operation" value="restore" />
-                                    <input type="hidden" name=":version" value="${version.name}" />
-                                    <div class="Field-Group">
-                                        <button type="submit" class="button" title="Restore the content to ${version.name}">
-                                            Restore Version
-                                        </button>
-                                    </div>
+                                    <fieldset class="form-wrapper field">
+                                        <input type="hidden" name=":operation" value="restore" />
+                                        <input type="hidden" name=":version" value="${version.name}" />
+                                        <div class="Field-Group">
+                                            <button type="submit" class="button" title="Restore the content to ${version.name}">
+                                                Restore Version
+                                            </button>
+                                        </div>
+                                    </fieldset>
                                 </form>
                             </c:if>
                         </td>
