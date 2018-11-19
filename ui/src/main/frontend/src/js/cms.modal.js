@@ -32,7 +32,7 @@
             getModal: function (title, link, button) {
                 var modal = document.createElement('div');
                 modal.classList.add('modal');
-                modal.innerHTML = '<div class="box"><h3>Loading...</h3><div class="loader is-loading"></div></div>';
+                modal.innerHTML = '<div class="modal-background"></div><div class="modal-content"><div class="box"><h3>Loading...</h3><div class="loader is-loading"></div></div></div>';
                 document.querySelector('body').appendChild(modal);
 
                 var request = new XMLHttpRequest();
@@ -45,6 +45,10 @@
                         modal.innerHTML = request.responseText;
                     }
                 };
+                modal.querySelector('.modal-background').addEventListener('click', function(){
+                   request.abort(); 
+                   button.removeAttribute('disabled');
+                });
                 modal.classList.add('is-active');
                 request.send();
             }
