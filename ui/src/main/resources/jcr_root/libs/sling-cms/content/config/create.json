@@ -50,6 +50,7 @@
                     "type": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/select",
+                        "label": "Configuration Type",
                         "name": "sling:resourceType",
                         "optionsScript": "/libs/sling-cms/components/editor/scripts/configResourceTypeOptions.jsp",
                         "required": true
