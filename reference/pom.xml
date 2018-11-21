@@ -9,7 +9,7 @@
     <parent>
         <artifactId>org.apache.sling.cms</artifactId>
         <groupId>org.apache.sling</groupId>
-        <version>0.11.1-SNAPSHOT</version>
+        <version>0.11.2</version>
     </parent>
     <artifactId>org.apache.sling.cms.reference</artifactId>
     <packaging>bundle</packaging>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.cms.core</artifactId>
-            <version>0.11.1-SNAPSHOT</version>
+            <version>0.11.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
