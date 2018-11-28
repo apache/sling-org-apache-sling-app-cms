@@ -27,6 +27,7 @@ Adding API for content insights. Switching to a more flexible WYSIWYG library. S
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/tag/org.apache.sling.cms-0.11.0)
  * [JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.core/0.11.0)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/f2c7c37bf99401aef192db1ac1467c799b3a3b95)
  
 ## 0.10.0
 
