@@ -13,7 +13,15 @@
 # Releases
 
 
-## 0.11.0 - CURRENT VERSION
+## 0.11.2 - CURRENT VERSION
+
+Fixes issues in 0.11.0
+
+ * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.11.2)
+ * [JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.core/0.11.2)
+
+
+## 0.11.0
 
 Adding API for content insights. Switching to a more flexible WYSIWYG library. Significant enhancements and bug fixes to the overall user experience.
 
