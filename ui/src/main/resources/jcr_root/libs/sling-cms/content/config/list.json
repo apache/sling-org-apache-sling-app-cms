@@ -83,6 +83,13 @@
                                     "icon": "cog",
                                     "prefix": "/cms/config/metadata.html"
                                 },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
+                                },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,
@@ -129,6 +136,13 @@
                                     "title": "Edit Folder Properties",
                                     "icon": "cog",
                                     "prefix": "/cms/folder/edit.html"
+                                },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",

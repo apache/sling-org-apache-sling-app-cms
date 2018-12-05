@@ -78,6 +78,13 @@
                                     "icon": "pencil-f",
                                     "prefix": "/cms/taxonomy/edit.html"
                                 },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
+                                },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,

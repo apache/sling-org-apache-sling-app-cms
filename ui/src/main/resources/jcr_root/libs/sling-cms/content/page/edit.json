@@ -28,13 +28,12 @@
                         "icon": "info",
                         "prefix": "/cms/shared/insights.html"
                     },
-                    "version": {
+                    "references": {
                         "jcr:primaryType": "nt:unstructured",
-                        "ajaxPath": ".versionmanager",
                         "modal": true,
-                        "title": "Manage Versions",
-                        "icon": "history",
-                        "prefix": "/cms/shared/versions.html"
+                        "title": "References",
+                        "icon": "directions",
+                        "prefix": "/cms/shared/references.html"
                     },
                     "movecopy": {
                         "jcr:primaryType": "nt:unstructured",
@@ -42,6 +41,14 @@
                         "title": "Move / Copy Page",
                         "icon": "move-alt",
                         "prefix": "/cms/shared/movecopy.html"
+                    },
+                    "version": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "ajaxPath": ".versionmanager",
+                        "modal": true,
+                        "title": "Manage Versions",
+                        "icon": "history",
+                        "prefix": "/cms/shared/versions.html"
                     },
                     "delete": {
                         "jcr:primaryType": "nt:unstructured",

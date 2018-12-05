@@ -121,6 +121,13 @@
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
+                                },
                                 "version": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "ajaxPath": ".versionmanager",
@@ -177,6 +184,13 @@
                                     "modal": false,
                                     "title": "Download file",
                                     "icon": "download"
+                                },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
@@ -235,6 +249,13 @@
                                     "icon": "cog",
                                     "prefix": "/cms/folder/edit.html"
                                 },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
+                                },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": true,
@@ -291,6 +312,13 @@
                                     "title": "Edit Folder Properties",
                                     "icon": "cog",
                                     "prefix": "/cms/folder/edit.html"
+                                },
+                                "references": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "References",
+                                    "icon": "directions",
+                                    "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",

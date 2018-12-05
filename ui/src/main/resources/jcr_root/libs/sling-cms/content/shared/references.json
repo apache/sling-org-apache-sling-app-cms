@@ -9,7 +9,7 @@
             "sling:resourceType": "sling-cms/components/general/container",
             "references": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/editor/fields/references",
+                "sling:resourceType": "sling-cms/components/cms/references",
                 "label": "References"
             }
         }

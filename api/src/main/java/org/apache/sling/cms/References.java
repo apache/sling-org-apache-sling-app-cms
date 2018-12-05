@@ -32,6 +32,6 @@ public interface References {
      * 
      * @return the list of reference path / properties
      */
-    List<String> getReferences();
+    List<Reference> getReferences();
 
 }

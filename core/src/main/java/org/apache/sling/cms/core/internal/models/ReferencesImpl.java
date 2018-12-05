@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.Reference;
 import org.apache.sling.cms.References;
 import org.apache.sling.models.annotations.Model;
 
@@ -29,19 +30,19 @@ import org.apache.sling.models.annotations.Model;
 @Model(adaptables = Resource.class, adapters = References.class)
 public class ReferencesImpl extends ReferenceOperation implements References {
 
-    private List<String> referenceList = new ArrayList<>();
+    private List<Reference> referenceList = new ArrayList<>();
 
     public ReferencesImpl(Resource resource) {
         super(resource);
     }
 
-    public List<String> getReferences() {
+    public List<Reference> getReferences() {
         init();
         return referenceList;
     }
 
     @Override
     public void doProcess(Resource r, String matchingKey) {
-        referenceList.add(r.getPath() + "@" + matchingKey);
+        referenceList.add(new Reference(r, matchingKey));
     }
 }
