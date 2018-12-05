@@ -15,33 +15,39 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */ 
+ */
 
-
-rava.decorate(".table", {
-    callbacks : {
-        created :function(){
-            var $table = $(this);
-            var sort = $table.data('sort') !== 'false';
-            var paginate = $table.data('paginate') !== 'false';
-            $table.DataTable({
-                sort: sort,
-                paginate: paginate
-            }).on( 'page.dt', function () {
-                $table.find('tr').removeClass('is-selected');
-                $('.actions-target').html('');
-            });
+/* eslint-env browser, es6 */
+(function (rava, $) {
+    'use strict';
+    rava.decorate(".table", {
+        callbacks : {
+            created: function () {
+                var table = this,
+                    sort = this.dataset.sort !== 'false',
+                    paginate = this.dataset.paginate !== 'false';
+                $(this).DataTable({
+                    sort: sort,
+                    paginate: paginate
+                }).on('page.dt', function () {
+                    table.querySelectorAll('tr.is-selected').forEach(function (tr) {
+                        tr.classList.remove('is-selected');
+                    });
+                    document.querySelector('.actions-target').innerHTML = '';
+                });
+            }
         }
-    }
-});
+    });
 
-rava.decorate(".table tbody tr",{
-    events :{
-        click: function(event){
-            var $current = $(this);
-            $current.parent().find('tr').removeClass('is-selected');
-            $current.addClass('is-selected');
-            $('.actions-target').html($current.find('.cell-actions').html());
+    rava.decorate(".table tbody tr", {
+        events: {
+            click: function () {
+                this.closest('.table').querySelectorAll('tr.is-selected').forEach(function (tr) {
+                    tr.classList.remove('is-selected');
+                });
+                this.classList.add('is-selected');
+                document.querySelector('.actions-target').innerHTML = this.querySelector('.cell-actions').innerHTML;
+            }
         }
-    }
-});
+    });
+}(window.rava = window.rava || {}, window.jQuery = window.jQuery || {}));

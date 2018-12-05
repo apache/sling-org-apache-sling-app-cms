@@ -39,7 +39,7 @@
                     selector = 'input[name="' + source + '"], select[name="' + source + '"]',
                     toggle = this,
                     sourceEl = document.querySelector(selector);
-                if(sourceEl){
+                if (sourceEl) {
                     sourceEl.addEventListener('change', function () {
                         if (this.value !== toggle.dataset.toggleValue) {
                             toggle.classList.add('is-hidden');

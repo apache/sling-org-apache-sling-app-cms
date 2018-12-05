@@ -18,5 +18,12 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:include resource="${sling:getResource(resourceResolver,slingRequest.requestPathInfo.suffix)}"  />
+<c:choose>
+    <c:when test="${not empty param.forceResourceType}">
+        <sling:include resource="${sling:getResource(resourceResolver,slingRequest.requestPathInfo.suffix)}" resourceType="${param.forceResourceType}" />
+    </c:when>
+    <c:otherwise>
+        <sling:include resource="${sling:getResource(resourceResolver,slingRequest.requestPathInfo.suffix)}"  />
+    </c:otherwise>
+</c:choose>
 <c:set var="cmsEditEnabled" value="false" scope="request" />

@@ -67,6 +67,8 @@ rava.decorate(".Form-Ajax", {
                 success: function(res,msg){
                     if (callback && Sling.CMS.handlers[callback]){
                         Sling.CMS.handlers[callback](res, msg);
+                    } else if (window.parent.window.CMSEditor) {
+                        Sling.CMS.ui.confirmReloadComponent(res, msg, $form.attr('action'));
                     } else {
                         Sling.CMS.ui.confirmReload(res, msg);
                     }

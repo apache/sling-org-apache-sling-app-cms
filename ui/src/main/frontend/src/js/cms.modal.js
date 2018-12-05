@@ -18,7 +18,7 @@
  */
 
 /* eslint-env browser, es6 */
-(function (rava) {
+(function (rava, Sling) {
     'use strict';
     rava.decorate("a.Fetch-Modal", {
         events: {
@@ -30,12 +30,8 @@
         },
         methods: {
             getModal: function (title, link, button) {
-                var modal = document.createElement('div');
-                modal.classList.add('modal');
-                modal.innerHTML = '<div class="modal-background"></div><div class="modal-content"><div class="box"><h3>Loading...</h3><div class="loader is-loading"></div></div></div>';
-                document.querySelector('body').appendChild(modal);
-
-                var request = new XMLHttpRequest();
+                var modal = Sling.CMS.ui.loaderModal(),
+                    request = new XMLHttpRequest();
                 request.open('GET', link, true);
                 request.onload = function () {
                     button.removeAttribute("disabled");
@@ -45,24 +41,23 @@
                         modal.innerHTML = request.responseText;
                     }
                 };
-                modal.querySelector('.modal-background').addEventListener('click', function(){
-                   request.abort(); 
-                   button.removeAttribute('disabled');
+                modal.querySelector('.modal-background').addEventListener('click', function () {
+                    request.abort();
+                    button.removeAttribute('disabled');
                 });
-                modal.classList.add('is-active');
                 request.send();
             }
         }
     });
     
-    rava.decorate(".modal",{
-        events:{
-            ".close,.modal-close,.close-modal,.modal-background" :{
-                click: function (event) {
+    rava.decorate(".modal", {
+        events: {
+            ".close,.modal-close,.close-modal,.modal-background": {
+                click: function () {
                     this.remove();
                 }
             }
         }
     });
 
-}(window.rava = window.rava || {}));
+}(window.rava = window.rava || {}, window.Sling = window.Sling || {}));
