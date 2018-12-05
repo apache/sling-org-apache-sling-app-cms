@@ -63,8 +63,54 @@ Sling.CMS = {
                 });
             } else {
                 Sling.CMS.ui.confirmMessage(msg, res.title,function(){
-                    location.reload();
+                    Sling.CMS.ui.reloadContext();
                 });
+            }
+        },
+        confirmReloadComponent: function(res, msg, path) {
+            window.top.Sling.CMS.ui.confirmMessage(msg, res.title,function(){
+                var modal = window.top.Sling.CMS.ui.loaderModal('Refreshing...');
+                window.parent.window.CMSEditor.ui.reloadComponent(path, function(){
+                    modal.remove();
+                });
+            });
+        },
+        loaderModal: function(message){
+            message = message || 'Loading...';
+            var modal = document.createElement('div');
+            modal.classList.add('modal');
+            modal.innerHTML = '<div class="modal-background"></div><div class="modal-content"><div class="box"><h3>'+message+'</h3><div class="loader is-loading"></div></div></div>';
+            document.querySelector('body').appendChild(modal);
+            modal.classList.add('is-active');
+            return modal;
+        },
+        reloadContext: function(){
+            //close all existing modals
+            document.querySelectorAll('.modal').forEach(function(modal){
+                modal.remove();
+            });
+            var containers = document.querySelectorAll('.reload-container');
+            var modal = Sling.CMS.ui.loaderModal('Refreshing...');
+            var count = containers.length;
+            if(count !== 0){
+                containers.forEach(function(container){
+                    var request = new XMLHttpRequest();
+                    var link = container.dataset.path;
+                    request.open('GET', link, true);
+                    request.onload = function () {
+                        var tmp = document.createElement('div');
+                        tmp.innerHTML = request.responseText;
+                        container.replaceWith(tmp.querySelector('.reload-container'));
+                        tmp.remove();
+                        count--;
+                        if(count === 0){
+                            modal.remove();
+                        }
+                    };
+                    request.send();
+                });
+            } else {
+                location.reload();
             }
         },
         suggest: function(selector, type, base){

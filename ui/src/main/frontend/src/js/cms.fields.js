@@ -21,7 +21,7 @@
  * Utility scripts for decorating form fields
  */
 /* eslint-env browser, es6 */
-(function (rava, wysihtml) {
+(function (rava, wysihtml, wysihtmlParserRules) {
     'use strict';
     
     /* Update the name on file selection */
@@ -56,7 +56,7 @@
         callbacks: {
             created : function () {
                 var ctr = this;
-                this.querySelectorAll(".repeating__add").forEach(function(el){
+                this.querySelectorAll(".repeating__add").forEach(function (el) {
                     el.addEventListener('click', function (event) {
                         event.stopPropagation();
                         event.preventDefault();
@@ -79,7 +79,7 @@
     
     rava.decorate('.rte', {
         callbacks : {
-            created : function(){
+            created : function () {
                 new wysihtml.Editor(this.querySelector('.rte-editor'), {
                     toolbar: this.querySelector('.rte-toolbar'),
                     parserRules:  wysihtmlParserRules
@@ -87,4 +87,4 @@
             }
         }
     });
-}(window.rava = window.rava || {}, window.wysihtml = window.wysihtml || {}));
+}(window.rava = window.rava || {}, window.wysihtml = window.wysihtml || {}, window.wysihtmlParserRules = window.wysihtmlParserRules || {}));

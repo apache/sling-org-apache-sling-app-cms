@@ -16,7 +16,9 @@
  */
 package org.apache.sling.cms.core.internal.models;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,11 +83,16 @@ public abstract class ReferenceOperation {
         log.debug("Finding references to {}", resource.getPath());
         String query = "SELECT * FROM [nt:base] AS s WHERE NOT ISDESCENDANTNODE([/jcr:system/jcr:versionStorage]) AND CONTAINS(s.*, '"
                 + resource.getPath() + "')";
+        Set<String> paths = new HashSet<>();
+
         Iterator<Resource> resources = resource.getResourceResolver().findResources(query, Query.JCR_SQL2);
         log.debug("Checking for references with: {}", query);
         while (resources.hasNext()) {
             Resource r = resources.next();
-            checkReferences(r);
+            if (!paths.contains(r.getPath())) {
+                checkReferences(r);
+                paths.add(r.getPath());
+            }
         }
     }
 

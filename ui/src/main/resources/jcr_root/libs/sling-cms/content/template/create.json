@@ -13,7 +13,6 @@
                 "sling:resourceType": "sling-cms/components/editor/slingform",
                 "actionSuffix": "/templates/",
                 "successPrepend": "/libs/sling-cms/content/site/content.html",
-                "title": "Add Template",
                 "button": "Create Taxonomy",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",

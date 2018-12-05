@@ -17,6 +17,6 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="sling-cms-editor">
+<div class="sling-cms-editor reload-container" data-path="${resource.path}.html${slingRequest.requestPathInfo.suffix}">
 	<iframe class="page-wrapper-frame" src="/cms/page/pagewrapper.html${slingRequest.requestPathInfo.suffix}"></iframe>
 </div>

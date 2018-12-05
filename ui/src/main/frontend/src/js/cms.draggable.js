@@ -31,12 +31,12 @@
         callbacks: {
             created : function () {
                 var draggable = this;
-                document.addEventListener('mouseup',function (event) {
+                document.addEventListener('mouseup', function () {
                     if (data.mouseDown === true) {
                         draggable.moveComplete();
                     }
                 });
-                document.addEventListener('mousemove',function (event) {
+                document.addEventListener('mousemove', function (event) {
                     if (data.mouseDown === false) {
                         return false;
                     }
@@ -45,7 +45,7 @@
                     draggable.style.left = data.elementX + deltaX + 'px';
                     draggable.style.top = data.elementY + deltaY + 'px';
                     return false;
-                })
+                });
             }
         },
         methods : {

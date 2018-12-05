@@ -51,11 +51,13 @@
                     </dd>
                 </dl>
                 <form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
-                    <input type="hidden" name=":operation" value="fileoptim:optimize" />
-                    <button type="submit" class="button is-primary">
-                        Optimize
-                    </button>
-                    <button type="button" class="button close">Cancel</button>
+                    <fieldset class="form-wrapper field">
+                        <input type="hidden" name=":operation" value="fileoptim:optimize" />
+                        <button type="submit" class="button is-primary">
+                            Optimize
+                        </button>
+                        <button type="button" class="button close">Cancel</button>
+                    </fieldset>
                 </form>
             </c:when>
             <c:when test="${optimizer.optimized}">
@@ -75,11 +77,13 @@
                     </dd>
                 </dl>
                 <form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
-                    <input type="hidden" name=":operation" value="fileoptim:restore" />
-                    <button type="submit" class="button is-primary">
-                        Restore Original
-                    </button>
-                    <button type="button" class="button close">Cancel</button>
+                    <fieldset class="form-wrapper field">
+                        <input type="hidden" name=":operation" value="fileoptim:restore" />
+                        <button type="submit" class="button is-primary">
+                            Restore Original
+                        </button>
+                        <button type="button" class="button close">Cancel</button>
+                    </fieldset>
                 </form>
             </c:when>
             <c:otherwise>
