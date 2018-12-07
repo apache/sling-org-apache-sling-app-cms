@@ -68,7 +68,19 @@ rava.decorate(".Form-Ajax", {
                     if (callback && Sling.CMS.handlers[callback]){
                         Sling.CMS.handlers[callback](res, msg);
                     } else if (window.parent.window.CMSEditor) {
-                        Sling.CMS.ui.confirmReloadComponent(res, msg, $form.attr('action'));
+                        var reloadParent = false;
+                        res.changes.forEach(change => {
+                           if (change.type !== 'modified') {
+                               reloadParent = true;
+                           } 
+                        });
+                        var path = $form.attr('action');
+                        if (reloadParent) {
+                            var pathArr = path.split('\/');
+                            pathArr.pop();
+                            path = pathArr.join('/');
+                        }
+                        Sling.CMS.ui.confirmReloadComponent(res, msg, path);
                     } else {
                         Sling.CMS.ui.confirmReload(res, msg);
                     }

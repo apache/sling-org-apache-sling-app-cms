@@ -78,6 +78,15 @@
                 },
                 reloadComponent: function (path, cb) {
                     var component = document.querySelector('.sling-cms-component[data-sling-cms-resource-path="' + path + '"]');
+                    while(!component && path.length > 1) {
+                        var pathArr = path.split('\/');
+                        pathArr.pop();
+                        path = pathArr.join('/');
+                        component = document.querySelector('.sling-cms-component[data-sling-cms-resource-path="' + path + '"]');
+                    }
+                    if(!component){
+                        window.top.location.reload();
+                    }
                     var request = new XMLHttpRequest();
                     request.open('GET', '/cms/page/pagewrapper.html' + path + '?forceResourceType=' + component.dataset.slingCmsResourceType, true);
                     request.onload = function () {
