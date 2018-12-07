@@ -85,10 +85,10 @@ Sling.CMS = {
             return modal;
         },
         reloadContext: function(){
-            //close all existing modals
-            document.querySelectorAll('.modal').forEach(function(modal){
-                modal.remove();
-            });
+            // close all existing modals
+            document.querySelectorAll('.modal').forEach(modal => modal.remove());
+            // reset the actions
+            document.querySelectorAll('.actions-target *').forEach(child => child.remove());
             var containers = document.querySelectorAll('.reload-container');
             var modal = Sling.CMS.ui.loaderModal('Refreshing...');
             var count = containers.length;
