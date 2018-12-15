@@ -18,39 +18,41 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="taxonomy">
- 	<fieldset disabled="disabled" class="taxonomy__template is-hidden">
- 		<a class="button taxonomy__item">
-			<input type="hidden" name="${properties.name}" value="" />
-			<span class="taxonomy__title">
-			</span>
-			<span class="jam jam-close"></span>
-		</a>
- 	</fieldset>
-	<div class="taxonomy__field field has-addons">
-		<div class="control is-expanded">
- 			<input class="input" type="text" ${required} ${disabled} list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
- 		</div>
- 		<div class="control">
-	 		<button class="taxonomy__add button">
-	 			<span class="jam jam-plus"></span>
-	 		</button>
-	 	</div>
- 	</div>
- 	<div class="taxonomy__container">
- 		<c:forEach var="item" items="${editProperties[properties.name]}">
- 			<a class="button taxonomy__item">
- 				<input type="hidden" name="${properties.name}" value="${item}" />
- 				<span class="taxonomy__title">
- 					${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}
- 				</span>
- 				<span class="jam jam-close"></span>
- 			</a>
- 		</c:forEach>
- 	</div>
-	<datalist id="taxonomy-${fn:replace(resource.name,':','-')}">
-		<c:set var="query" value="SELECT * FROM [sling:Taxonomy] WHERE ISDESCENDANTNODE([${not empty properties.basePath ? properties.basePath : '/etc/taxonomy'}])" />
-		<c:forEach var="taxonomy" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
-			<option value="${taxonomy.path}">${taxonomy.valueMap['jcr:title']}</option>
-		</c:forEach>
-	</datalist>
+     <fieldset disabled="disabled" class="taxonomy__template is-hidden">
+         <a class="button taxonomy__item">
+            <input type="hidden" name="${properties.name}" value="" />
+            <span class="taxonomy__title">
+            </span>
+            <span class="jam jam-close"></span>
+        </a>
+     </fieldset>
+    <div class="taxonomy__field field has-addons">
+        <div class="control is-expanded">
+             <input class="input" type="text" ${required} ${disabled} list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
+         </div>
+         <div class="control">
+             <button class="taxonomy__add button">
+                 <span class="jam jam-plus"></span>
+             </button>
+         </div>
+     </div>
+     <div class="taxonomy__container">
+         <c:forEach var="item" items="${editProperties[properties.name]}">
+             <a class="button taxonomy__item">
+                 <input type="hidden" name="${properties.name}" value="${item}" />
+                 <span class="taxonomy__title">
+                     ${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}
+                 </span>
+                 <span class="jam jam-close"></span>
+             </a>
+         </c:forEach>
+     </div>
+     
+    <sling:getCAConfigResource resource="${slingRequest.requestPathInfo.suffixResource}" bucket="site" name="settings" var="sitesettings" />
+    <datalist id="taxonomy-${fn:replace(resource.name,':','-')}">
+        <c:set var="query" value="SELECT * FROM [sling:Taxonomy] WHERE ISDESCENDANTNODE([${not empty properties.basePath ? properties.basePath : sitesettings.valueMap.taxonomyroot}])" />
+        <c:forEach var="taxonomy" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
+            <option value="${taxonomy.path}">${taxonomy.valueMap['jcr:title']}</option>
+        </c:forEach>
+    </datalist>
 </div>

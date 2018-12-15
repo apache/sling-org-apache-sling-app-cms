@@ -17,13 +17,10 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-
- <c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-
-<sling:include path="${slingRequest.requestPathInfo.suffix}/rewrite" resourceType="sling-cms/components/cms/rewriterconfig" />
-
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
-<c:set var="cmsEditEnabled" value="false" scope="request" />
-
-<sling:include path="/mnt/overlay/sling-cms/content/siteconfig/editor" resourceType="sling-cms/components/general/container" replaceSuffix="${slingRequest.requestPathInfo.suffix}" />
+<h3>Site Settings</h3>
+<dl>
+    <dt>Taxonomy Root</dt>
+    <dd>
+        ${properties.taxonomyroot}
+    </dd>
+</dl>
