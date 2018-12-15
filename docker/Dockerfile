@@ -22,13 +22,16 @@ VOLUME /opt/sling/sling
 
 # Setup Sling CMS
 RUN mkdir -p /opt/sling
-RUN wget https://repository.apache.org/content/repositories/snapshots/org/apache/sling/org.apache.sling.cms.builder/1.0.0-SNAPSHOT/org.apache.sling.cms.builder-1.0.0-20180512.031838-12.jar
+RUN wget -O org.apache.sling.cms.jar https://repository.apache.org/content/repositories/snapshots/org/apache/sling/org.apache.sling.cms.builder/0.11.3-SNAPSHOT/org.apache.sling.cms.builder-0.11.3-20181207.040617-10.jar
 ENV JAVA_OPTS -Xmx512m
 ENV SLING_OPTS ''
 
 # Install Apache
 RUN apt-get update 
 RUN apt-get install apache2 -y
+
+# Configure mod_rewrite
+RUN a2enmod rewrite
 
 # Configure mod_proxy
 RUN a2enmod proxy
