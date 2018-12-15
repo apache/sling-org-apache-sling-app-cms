@@ -19,15 +19,15 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">Select Component</option>
 <c:forEach var="component" items="${sling:findResources(resourceResolver,'SELECT * FROM [sling:Component] WHERE [componentType] IS NOT NULL','JCR-SQL2')}">
-	<c:if test="${sling:getRelativeResource(component,'config') != null}">
-		<c:choose>
-			<c:when test="${fn:startsWith(component.path,'/apps/')}">
-				<c:set var="rt" value="${fn:substringAfter(component.path,'/apps/')}" />
-			</c:when>
-			<c:otherwise>
-				<c:set var="rt" value="${fn:substringAfter(component.path,'/libs/')}" />
-			</c:otherwise>
-		</c:choose>
-		<option value="${rt}" ${rt == editProperties.type ? 'selected' : ''} data-config="${component.path}/config.html"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
-	</c:if>
+    <c:if test="${sling:getRelativeResource(component,'config') != null && sling:getRelativeResource(component,'config').resourceType != 'sling:Folder'}">
+        <c:choose>
+            <c:when test="${fn:startsWith(component.path,'/apps/')}">
+                <c:set var="rt" value="${fn:substringAfter(component.path,'/apps/')}" />
+            </c:when>
+            <c:otherwise>
+                <c:set var="rt" value="${fn:substringAfter(component.path,'/libs/')}" />
+            </c:otherwise>
+        </c:choose>
+        <option value="${rt}" ${rt == editProperties.type ? 'selected' : ''} data-config="${component.path}/config.html"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
+    </c:if>
 </c:forEach>
