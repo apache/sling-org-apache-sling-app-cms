@@ -155,7 +155,11 @@
             }
         };
         window.CMSEditor = CMSEditor;
-
+        window.onbeforeunload = function() {
+            if (CMSEditor.ui.modalDisplayed) {
+                return "Are you sure you want to leave this page?";
+            }
+        }
         if (document.readyState === 'complete') {
             window.CMSEditor.init();
         } else {

@@ -143,6 +143,11 @@ Sling.CMS = {
     }
 };
 
+window.onbeforeunload = function() {
+    if (document.querySelector('.modal')) {
+        return "Are you sure you want to leave this page?";
+    }
+}
     
 rava.decorate('.page-properties-container', {
     callbacks : {
