@@ -149,7 +149,7 @@ window.onbeforeunload = function() {
     }
 }
     
-rava.decorate('.page-properties-container', {
+rava.bind('.page-properties-container', {
     callbacks : {
         created :  function(){
             var $ctr = $(this);
@@ -177,7 +177,7 @@ rava.decorate('.page-properties-container', {
     }
 });
 
-rava.decorate('.sling-cms-include-config', {
+rava.bind('.sling-cms-include-config', {
     callbacks : {
         created :  function() {
             var $ctr = $(this);

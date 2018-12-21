@@ -20,7 +20,7 @@
 /* eslint-env browser, es6 */
 (function (rava, $) {
     'use strict';
-    rava.decorate(".table", {
+    rava.bind(".table", {
         callbacks : {
             created: function () {
                 var table = this,
@@ -30,7 +30,7 @@
                     sort: sort,
                     paginate: paginate
                 }).on('page.dt', function () {
-                    table.querySelectorAll('tr.is-selected').forEach(function (tr) {
+                    rava.findAll('tr.is-selected').forEach(function (tr) {
                         tr.classList.remove('is-selected');
                     });
                     document.querySelector('.actions-target').innerHTML = '';
@@ -39,7 +39,7 @@
         }
     });
 
-    rava.decorate(".table tbody tr", {
+    rava.bind(".table tbody tr", {
         events: {
             click: function () {
                 this.closest('.table').querySelectorAll('tr.is-selected').forEach(function (tr) {

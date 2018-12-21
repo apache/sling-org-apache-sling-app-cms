@@ -19,7 +19,7 @@
 /* eslint-env browser, es6 */
 (function (rava) {
     'use strict';
-    rava.decorate(".navbar-burger", {
+    rava.bind(".navbar-burger", {
         events: {
             click: function () {
                 var target = document.querySelector(this.dataset.target);
