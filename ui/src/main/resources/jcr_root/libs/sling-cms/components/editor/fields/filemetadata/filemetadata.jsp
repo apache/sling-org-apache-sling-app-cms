@@ -16,14 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-
-<c:set var="oldAvailableTypes" value="${availableTypes}" />
-<c:set var="availableTypes" value="SlingCMS-FileEditor" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/caconfig/fileeditor/config" />
-<c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
-
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
-<c:set var="cmsEditEnabled" value="false" scope="request" />
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="file" value="${sling:adaptTo(slingRequest.requestPathInfo.suffixResource,'org.apache.sling.cms.File')}" />
+<div class="field">
+    <c:if test="${not empty properties.label}">
+        <label class="label">
+            <sling:encode value="${properties.label}" mode="HTML" />
+        </label>
+    </c:if>
+    <div class="control">
+        <dl class="reference-list">
+        <c:forEach var="element" items="${file.metadata}">
+            <dt><sling:encode value="${element.key}" mode="HTML" /></dt>
+            <dd><sling:encode value="${element.value}" mode="HTML" /></dd>
+        </c:forEach>
+        </dl>
+    </div>
+</div>

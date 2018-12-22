@@ -227,5 +227,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency>
+        <dependency>
+            <artifactId>tika-core</artifactId>
+            <version>1.19.1</version>
+            <groupId>org.apache.tika</groupId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

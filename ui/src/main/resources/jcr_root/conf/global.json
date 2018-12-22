@@ -70,6 +70,12 @@
                         "name": "jcr:content/published@TypeHint",
                         "value": "Boolean",
                         "sling:resourceType": "sling-cms/components/editor/fields/hidden"
+                    },
+                    "filemetadata": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "name": "jcr:content/filemetadata",
+                        "label": "File Metadata",
+                        "sling:resourceType": "sling-cms/components/editor/fields/filemetadata"
                     }
                 }
             }

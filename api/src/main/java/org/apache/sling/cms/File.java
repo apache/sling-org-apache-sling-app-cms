@@ -88,6 +88,13 @@ public interface File {
     String getLastModifiedBy();
 
     /**
+     * Retrieves the metadata extracted from the file.
+     * 
+     * @return the metadata extracted from the file
+     */
+    ValueMap getMetadata();
+
+    /**
      * Gets the name of the Sling Resource backing the file
      * 
      * @return the name of the file resource
