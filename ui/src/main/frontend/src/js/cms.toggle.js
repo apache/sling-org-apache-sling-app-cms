@@ -21,7 +21,7 @@
 (function (rava) {
     'use strict';
     
-    rava.decorate('.toggle-hidden', {
+    rava.bind('.toggle-hidden', {
         events : {
             click: function () {
                 var target = document.querySelectorAll(this.dataset.target);
@@ -32,7 +32,7 @@
         }
     });
 
-    rava.decorate('.toggle-value', {
+    rava.bind('.toggle-value', {
         callbacks: {
             created: function () {
                 var source = this.getAttribute('data-toggle-source'),

@@ -20,7 +20,7 @@
 (function (rava, Sling) {
     'use strict';
     var pathfield = null;
-    rava.decorate("input.pathfield", {
+    rava.bind("input.pathfield", {
         callbacks: {
             created : function () {
                 var type = this.dataset.type,
@@ -29,14 +29,14 @@
             }
         }
     });
-    rava.decorate('.search-button', {
+    rava.bind('.search-button', {
         events: {
             click: function () {
                 pathfield =  this.closest('.field').querySelector('.pathfield');
             }
         }
     });
-    rava.decorate('.search-select-button', {
+    rava.bind('.search-select-button', {
         events: {
             click : function () {
                 pathfield.value = this.dataset.path;

@@ -20,7 +20,7 @@
             },
             "editconfig": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/editconfig"
+                "sling:resourceType": "sling-cms/components/caconfig/edit"
             }
         }
     }

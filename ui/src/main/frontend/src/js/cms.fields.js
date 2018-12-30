@@ -25,7 +25,7 @@
     'use strict';
     
     /* Update the name on file selection */
-    rava.decorate(".file", {
+    rava.bind(".file", {
         events: {
             input: {
                 change : function (event) {
@@ -39,7 +39,7 @@
     });
 
     /* Support for updating the namehint when creating a component */
-    rava.decorate(".namehint", {
+    rava.bind(".namehint", {
         callbacks: {
             created : function () {
                 var field = this;
@@ -52,7 +52,7 @@
     });
     
     /* Support for repeating form fields */
-    rava.decorate(".repeating", {
+    rava.bind(".repeating", {
         callbacks: {
             created : function () {
                 var ctr = this;
@@ -67,17 +67,19 @@
             }
         }
     });
-    rava.decorate(".repeating__remove", {
+    rava.bind(".repeating__item", {
         events: {
-            click: function (event) {
-                event.stopPropagation();
-                event.preventDefault();
-                event.target.closest('.repeating__item').remove();
+            ":scope .repeating__remove" : {
+                click: function (event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    this.remove();
+                }
             }
         }
     });
     
-    rava.decorate('.rte', {
+    rava.bind('.rte', {
         callbacks : {
             created : function () {
                 new wysihtml.Editor(this.querySelector('.rte-editor'), {

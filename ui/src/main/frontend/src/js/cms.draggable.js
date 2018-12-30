@@ -27,27 +27,7 @@
         elementX : 0,
         elementY : 0
     };
-    rava.decorate(".is-draggable", {
-        callbacks: {
-            created : function () {
-                var draggable = this;
-                document.addEventListener('mouseup', function () {
-                    if (data.mouseDown === true) {
-                        draggable.moveComplete();
-                    }
-                });
-                document.addEventListener('mousemove', function (event) {
-                    if (data.mouseDown === false) {
-                        return false;
-                    }
-                    var deltaX = event.clientX - data.mouseX,
-                        deltaY = event.clientY - data.mouseY;
-                    draggable.style.left = data.elementX + deltaX + 'px';
-                    draggable.style.top = data.elementY + deltaY + 'px';
-                    return false;
-                });
-            }
-        },
+    rava.bind(".is-draggable", {
         methods : {
             moveComplete: function () {
                 data.mouseDown = false;
@@ -57,6 +37,23 @@
             }
         },
         events : {
+            ":root" : {
+                mouseup : function(){
+                    if (data.mouseDown === true) {
+                        this.moveComplete();
+                    }
+                },
+                mousemove : function(event){
+                    if (data.mouseDown === false) {
+                        return false;
+                    }
+                    var deltaX = event.clientX - data.mouseX,
+                        deltaY = event.clientY - data.mouseY;
+                    this.style.left = data.elementX + deltaX + 'px';
+                    this.style.top = data.elementY + deltaY + 'px';
+                    return false;
+                }
+            },
             mousedown: function (event) {
                 if (!event.target.matches('.modal-title, .modal-title *')) {
                     return;

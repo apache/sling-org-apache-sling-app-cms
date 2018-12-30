@@ -85,10 +85,10 @@ Sling.CMS = {
             return modal;
         },
         reloadContext: function(){
-            //close all existing modals
-            document.querySelectorAll('.modal').forEach(function(modal){
-                modal.remove();
-            });
+            // close all existing modals
+            document.querySelectorAll('.modal').forEach(modal => modal.remove());
+            // reset the actions
+            document.querySelectorAll('.actions-target *').forEach(child => child.remove());
             var containers = document.querySelectorAll('.reload-container');
             var modal = Sling.CMS.ui.loaderModal('Refreshing...');
             var count = containers.length;
@@ -143,8 +143,13 @@ Sling.CMS = {
     }
 };
 
+window.onbeforeunload = function() {
+    if (document.querySelector('.modal')) {
+        return "Are you sure you want to leave this page?";
+    }
+}
     
-rava.decorate('.page-properties-container', {
+rava.bind('.page-properties-container', {
     callbacks : {
         created :  function(){
             var $ctr = $(this);
@@ -172,7 +177,7 @@ rava.decorate('.page-properties-container', {
     }
 });
 
-rava.decorate('.sling-cms-include-config', {
+rava.bind('.sling-cms-include-config', {
     callbacks : {
         created :  function() {
             var $ctr = $(this);

@@ -18,20 +18,15 @@ w * Licensed to the Apache Software Foundation (ASF) under one
  */
 
 
-rava.decorate(".Form-Ajax", {
-    callbacks: {
-        created : function () {
-            var close = this.querySelector('.close');
-            if(close){
-                close.addEventListener('click', function(){
-                    if(window.parent && window.parent.window && window.parent.window.CMSEditor) {
-                        window.parent.window.CMSEditor.ui.hideModal();
-                    }
-                });
-            }
-        }
-    },
+rava.bind(".Form-Ajax", {
     events :{
+        ":scope .close" : {
+            click : function() {
+                if(window.parent && window.parent.window && window.parent.window.CMSEditor) {
+                    window.parent.window.CMSEditor.ui.hideModal();
+                }
+            }
+        },
         submit : function(event){
             event.preventDefault();
             var $form = $(this);
@@ -103,7 +98,7 @@ rava.decorate(".Form-Ajax", {
 });
 
 
-rava.decorate('.Get-Form', {
+rava.bind('.Get-Form', {
     events : {
         submit : function (event) {
             event.preventDefault();
@@ -120,7 +115,7 @@ rava.decorate('.Get-Form', {
 });
 
 
-rava.decorate('.suffix-form', {
+rava.bind('.suffix-form', {
     events: {
         submit: function (event) {
             event.preventDefault();

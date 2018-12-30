@@ -20,7 +20,7 @@
 /* eslint-env browser, es6 */
 (function (rava, Sling) {
     'use strict';
-    rava.decorate("a.Fetch-Modal", {
+    rava.bind("a.Fetch-Modal", {
         events: {
             click: function (event) {
                 event.preventDefault();
@@ -50,7 +50,7 @@
         }
     });
     
-    rava.decorate(".modal", {
+    rava.bind(".modal", {
         events: {
             ".close,.modal-close,.close-modal,.modal-background": {
                 click: function () {

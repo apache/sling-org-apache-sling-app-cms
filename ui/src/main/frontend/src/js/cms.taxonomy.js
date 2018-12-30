@@ -19,7 +19,7 @@
 /* eslint-env browser, es6 */
 (function (rava, $) {
     'use strict';
-    rava.decorate('.taxonomy', {
+    rava.bind('.taxonomy', {
         events: {
             '.taxonomy__add, .taxonomy__add *': {
                 click: function (event) {
@@ -50,7 +50,7 @@
         }
     });
 
-    rava.decorate('.taxonomy__item, .taxonomy__item *', {
+    rava.bind('.taxonomy__item, .taxonomy__item *', {
         events: {
             click: function () {
                 $(this).remove();
