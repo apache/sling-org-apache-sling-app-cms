@@ -19,10 +19,8 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">Select Page Type</option>
 <sling:adaptTo var="templateMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PageTemplateManager" />
-templateMgr=${templateMgr}
-templates=${templateMgr.availableTemplates}
 <c:forEach var="template" items="${templateMgr.availableTemplates}">
-	<option value="${template.resource.path}">
-		<sling:encode value="${template.title}" mode="HTML" />
-	</option>
+    <option value="${template.resource.path}">
+        <sling:encode value="${template.title}" mode="HTML" />
+    </option>
 </c:forEach>
