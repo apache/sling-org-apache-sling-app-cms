@@ -15,6 +15,11 @@
             "sling:message": "More Details",
             "sling:key": "slingcms.insights.moredetails"
         },
+        "slingcms-filemetadata-title": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Extract File Metadata",
+            "sling:key": "slingcms.filemetadata.title"
+        },
         "slingcms-htmlvalidator-danger": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "There were {0} validation errors and {1} warnings",
@@ -29,6 +34,16 @@
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "There were {0} validation warnings",
             "sling:key": "slingcms.htmlvalidator.warn"
+        },
+        "slingcms-jobs-badrequest": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Invalid Job Request",
+            "sling:key": "slingcms.jobs.badrequest"
+        },
+        "slingcms-jobs-jobstarted": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Job Started",
+            "sling:key": "slingcms.jobs.jobstarted"
         },
         "slingcms-pagespeed-danger": {
             "jcr:primaryType": "sling:MessageEntry",

@@ -88,6 +88,14 @@
                         "link": "/cms/i18n/dictionaries.html/etc/i18n",
                         "text": "Internationalization (i18n)"
                     },
+                    "jobs": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "link": "/cms/jobs/list.html",
+                        "alternatives": [
+                            "/cms/jobs"
+                        ],
+                        "text": "Jobs"
+                    },
                     "loadcontent": {
                         "jcr:primaryType": "nt:unstructured",
                         "link": "/cms/admin/loadcontent.html",

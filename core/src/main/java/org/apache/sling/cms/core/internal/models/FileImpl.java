@@ -35,7 +35,6 @@ import org.apache.sling.cms.core.internal.listeners.FileMetadataExtractor;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  * A model representing a file
@@ -61,9 +60,6 @@ public class FileImpl implements File {
     @Optional
     @Named("jcr:content/jcr:createdBy")
     private String createdBy;
-
-    @OSGiService
-    private FileMetadataExtractor extractor;
 
     @Inject
     @Optional
@@ -123,10 +119,6 @@ public class FileImpl implements File {
     @Override
     public ValueMap getMetadata() {
         Resource metadata = this.getContentResource().getChild(FileMetadataExtractor.NN_METADATA);
-        if (metadata == null || !metadata.getValueMap().containsKey(FileMetadataExtractor.PN_X_PARSED_BY)) {
-            extractor.extractMetadata(this);
-            metadata = this.getContentResource().getChild(FileMetadataExtractor.NN_METADATA);
-        }
         Map<String, Object> data = new HashMap<>();
         if (metadata != null) {
             metadata.getValueMap().entrySet()

@@ -16,7 +16,6 @@
  */
 package org.apache.sling.cms.core.internal.listeners;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -34,7 +33,6 @@ import org.apache.sling.api.resource.observation.ExternalResourceChangeListener;
 import org.apache.sling.api.resource.observation.ResourceChange;
 import org.apache.sling.api.resource.observation.ResourceChangeListener;
 import org.apache.sling.cms.File;
-import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.metadata.Property;
 import org.apache.tika.parser.AutoDetectParser;
@@ -45,7 +43,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
 
 /**
  * A Resource Change Listener which extracts the metadata from sling:Files when
@@ -99,7 +96,7 @@ public class FileMetadataExtractor implements ResourceChangeListener, ExternalRe
             }
             resolver.commit();
             log.info("Metadata extracted from {}", resource.getPath());
-        } catch (Throwable e) { // Sonar, I don't care if the Pope raises the exception, don't throw it
+        } catch (Exception e) {
             log.warn("Exception extracting metadata from: " + resource.getPath(), e);
         }
     }
