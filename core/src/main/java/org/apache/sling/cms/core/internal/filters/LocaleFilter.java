@@ -17,8 +17,13 @@
 package org.apache.sling.cms.core.internal.filters;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.Locale.Category;
 import java.util.ResourceBundle;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.jcr.Value;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -28,6 +33,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.jsp.jstl.core.Config;
 import javax.servlet.jsp.jstl.fmt.LocalizationContext;
 
+import org.apache.jackrabbit.api.JackrabbitSession;
+import org.apache.jackrabbit.api.security.user.User;
+import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.cms.Site;
 import org.apache.sling.cms.SiteManager;
@@ -41,41 +49,76 @@ import org.slf4j.LoggerFactory;
 @Component(service = { Filter.class }, immediate = true, property = { "sling.filter.scope=request" })
 public class LocaleFilter implements Filter {
 
-	private static final Logger log = LoggerFactory.getLogger(LocaleFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(LocaleFilter.class);
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// Nothing required
-	}
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Nothing required
+    }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-		if (request instanceof SlingHttpServletRequest) {
-			SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-			SiteManager mgr = slingRequest.getResource().adaptTo(SiteManager.class);
-			if (mgr != null) {
-				Site site = mgr.getSite();
-				if (site != null) {
-					log.debug("Setting bundle for {}", site.getLocaleString());
-					ResourceBundle bundle = slingRequest.getResourceBundle(site.getLocale());
-					Config.set(slingRequest, "javax.servlet.jsp.jstl.fmt.localizationContext",
-							new LocalizationContext(bundle, slingRequest.getLocale()));
-				} else {
-					log.trace("No site for {}", slingRequest);
-				}
-			} else {
-				log.trace("No site manager found for {}", slingRequest);
-			}
-		}
+        if (request instanceof SlingHttpServletRequest) {
+            Locale locale = null;
+            SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+            SiteManager mgr = slingRequest.getResource().adaptTo(SiteManager.class);
+            if (mgr != null) {
+                Site site = mgr.getSite();
+                if (site != null) {
+                    log.debug("Setting bundle for {}", site.getLocaleString());
+                    locale = site.getLocale();
+                } else {
+                    log.trace("No site for {}", slingRequest);
 
-		chain.doFilter(request, response);
-	}
+                }
+            } else {
+                log.trace("No site manager found for {}", slingRequest);
+            }
 
-	@Override
-	public void destroy() {
-		// Nothing required
-	}
+            if (locale == null) {
+                locale = loadUserLocale(locale, slingRequest);
+            }
+            if (locale == null) {
+                locale = Locale.getDefault(Category.DISPLAY);
+            }
+            setLocale(locale, slingRequest);
+        }
+
+        chain.doFilter(request, response);
+    }
+
+    private Locale loadUserLocale(Locale locale, SlingHttpServletRequest slingRequest) {
+        try {
+            JackrabbitSession session = (JackrabbitSession) slingRequest.getResourceResolver()
+                    .adaptTo(Session.class);
+            if (session != null) {
+                final UserManager userManager = session.getUserManager();
+                if (userManager.getAuthorizable(slingRequest.getResourceResolver().getUserID()) != null) {
+                    User user = (User) userManager
+                            .getAuthorizable(slingRequest.getResourceResolver().getUserID());
+                    Value[] value = user.getProperty("profile/locale");
+                    if (value != null && value.length > 0) {
+                        locale = Locale.forLanguageTag(value[0].getString());
+                    }
+                }
+            }
+        } catch (RepositoryException e) {
+            log.warn("Failed to load locale from current user", e);
+        }
+        return locale;
+    }
+
+    private void setLocale(Locale locale, SlingHttpServletRequest slingRequest) {
+        ResourceBundle bundle = slingRequest.getResourceBundle(locale);
+        Config.set(slingRequest, "javax.servlet.jsp.jstl.fmt.localizationContext",
+                new LocalizationContext(bundle, slingRequest.getLocale()));
+    }
+
+    @Override
+    public void destroy() {
+        // Nothing required
+    }
 
 }
