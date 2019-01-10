@@ -12,6 +12,6 @@
         "jcr:primaryType": "nt:unstructured",
         "sling:resourceType": "sling-cms/components/editor/fields/hidden",
         "name": "job.topics",
-        "value": "org/apache/sling/cms/file/ExtractMetadata"
+        "value": "cmsjob/org/apache/sling/cms/file/ExtractMetadata"
     }
 }

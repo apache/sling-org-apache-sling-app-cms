@@ -25,16 +25,16 @@
                     #
                 </th>
                 <th>
-                    Job Name
+                    <fmt:message key="slingcms.jobs.name" />
                 </th>
                 <th>
-                    Started
+                    <fmt:message key="slingcms.started" />
                 </th>
                 <th>
-                    Finished
+                    <fmt:message key="slingcms.finished" />
                 </th>
                 <th>
-                    State
+                    <fmt:message key="slingcms.state" />
                 </th>
             </tr>
         </thead>
@@ -42,12 +42,16 @@
             <sling:adaptTo var="jobManager" adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.CMSJobManager" />
             <c:set var="count" value="1" />
             <c:forEach var="job" items="${jobManager.jobs}">
+                
                 <tr class="sortable__row">
                     <td class="Cell-Static" title="# ${status.index + 1}" data-sort-value="<fmt:formatNumber pattern="0000" value="${count}" />">
                         ${count}
                     </td>
                     <td>
-                        ${job.topic}
+                        <a href="/cms/jobs/view.html/${job.id}">
+                            <fmt:message key="${job.properties._titleKey}" />
+                        </a><br/>
+                        <small>${job.topic}</small>
                     </td>
                     <td>
                         <fmt:formatDate value="${job.created.time}" type="both" dateStyle="long" timeStyle="long" />
@@ -62,7 +66,7 @@
                     </td>
                 </tr>
                 <c:set var="count" value="${count + 1}" />
-            </c:forEach> 
+            </c:forEach>
         </tbody>
     </table>
 </div>

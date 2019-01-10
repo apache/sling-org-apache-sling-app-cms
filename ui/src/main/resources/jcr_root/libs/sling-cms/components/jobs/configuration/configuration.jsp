@@ -17,5 +17,5 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="page-properties-container field" data-path="${resource.path}.include.html" data-source="select[name=job]">
+<div class="page-properties-container field" data-path="${resource.path}.include.html" data-source="select[name=_job]">
 </div>

@@ -17,7 +17,9 @@
 package org.apache.sling.cms.core.internal.jobs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.LoginException;
@@ -48,7 +50,7 @@ public class FileMetadataExtractorJob implements ConfigurableJobExecutor {
 
     public static final Logger log = LoggerFactory.getLogger(FileMetadataExtractorJob.class);
 
-    public static final String TOPIC = "org/apache/sling/cms/file/ExtractMetadata";
+    public static final String TOPIC = "cmsjob/org/apache/sling/cms/file/ExtractMetadata";
 
     public static final String PN_RECURSIVE = "recursive";
 
@@ -85,7 +87,9 @@ public class FileMetadataExtractorJob implements ConfigurableJobExecutor {
         ResourceResolver resolver = null;
 
         try {
-            resolver = factory.getServiceResourceResolver(null);
+            Map<String, Object> serviceParams = new HashMap<>();
+            serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-cms-metadata");
+            resolver = factory.getServiceResourceResolver(serviceParams);
 
             Resource root = resolver.getResource(path);
             if (root != null) {
@@ -95,15 +99,22 @@ public class FileMetadataExtractorJob implements ConfigurableJobExecutor {
                 } else {
                     collectFiles(root, files);
                 }
-                context.log("Found {} files to extract metadata", files.size());
+                context.log("Found {0} files to extract metadata", files.size());
 
                 context.initProgress(files.size(), -1);
 
                 int processed = 1;
                 for (File file : files) {
-                    extractor.extractMetadata(file);
-                    context.incrementProgressCount(processed++);
-                    context.log("Extracted metadata for {}", file.getPath());
+                    try {
+                        extractor.extractMetadata(file);
+                        context.incrementProgressCount(processed++);
+                        context.log("Extracted metadata for {0}", file.getPath());
+                    } catch (Throwable t) {
+                        context.log("Failed to extract matadata for {0}", file.getPath());
+                        context.incrementProgressCount(processed++);
+                        context.log("Exception {0}", t.getMessage());
+                        log.warn("Failed to extract metadata for " + file.getPath(), t);
+                    }
                 }
 
                 return context.result().message("Metadata Extracted").succeeded();

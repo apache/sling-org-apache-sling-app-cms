@@ -18,7 +18,7 @@
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/select",
                         "label": "Job",
-                        "name": "job",
+                        "name": "_job",
                         "optionsScript": "/libs/sling-cms/components/jobs/jobOptions.jsp"
                     },
                     "jobconfiguration": {

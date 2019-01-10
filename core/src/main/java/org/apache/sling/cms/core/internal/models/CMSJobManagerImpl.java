@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,8 +49,9 @@ public class CMSJobManagerImpl implements CMSJobManager {
 
     private static final Logger log = LoggerFactory.getLogger(CMSJobManagerImpl.class);
 
-    private static final String PN_INITIATOR = "initiator";
-    private static final String PN_USER_ID = "userId";
+    private static final String PN_INITIATOR = "_initiator";
+    private static final String PN_JOB_TITLE_KEY = "_titleKey";
+    private static final String PN_USER_ID = "_userId";
     private static final String VALUE_SLING_CMS = "SlingCMS";
 
     @OSGiService
@@ -83,6 +85,26 @@ public class CMSJobManagerImpl implements CMSJobManager {
                 jobManager.findJobs(QueryType.HISTORY, null, 0, search).stream()).collect(Collectors.toList());
     }
 
+    private String getJobTitleKey(String jobTopic) {
+        BundleContext bundleContext = FrameworkUtil.getBundle(CMSJobManager.class).getBundleContext();
+        try {
+            Optional<String> op = bundleContext
+                    .getServiceReferences(ConfigurableJobExecutor.class,
+                            "(" + JobConsumer.PROPERTY_TOPICS + "=" + jobTopic + ")")
+                    .stream().map(bundleContext::getService).map(ConfigurableJobExecutor::getTitleKey).findFirst();
+            return op.orElse(null);
+        } catch (InvalidSyntaxException e) {
+            log.warn("Failed to get available jobs", e);
+        }
+        return null;
+    }
+
+    @Override
+    public Job getSuffixJob() {
+        return jobManager
+                .getJobById(Optional.ofNullable(request.getRequestPathInfo().getSuffix()).orElse(" ").substring(1));
+    }
+
     @Override
     public Job startJob() {
         Map<String, Object> properties = new HashMap<>();
@@ -98,10 +120,16 @@ public class CMSJobManagerImpl implements CMSJobManager {
             }
         });
         properties.remove(JobConsumer.PROPERTY_TOPICS);
+
+        String jobTopic = request.getParameter(JobConsumer.PROPERTY_TOPICS);
+        String titleKey = getJobTitleKey(jobTopic);
+        if (titleKey != null) {
+            properties.put(PN_JOB_TITLE_KEY, titleKey);
+        }
         properties.put(PN_USER_ID, request.getResourceResolver().getUserID());
         properties.put(PN_INITIATOR, VALUE_SLING_CMS);
 
-        return jobManager.addJob(request.getParameter(JobConsumer.PROPERTY_TOPICS), properties);
+        return jobManager.addJob(jobTopic, properties);
     }
 
 }

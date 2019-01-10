@@ -41,6 +41,13 @@ public interface CMSJobManager {
     Collection<Job> getJobs();
 
     /**
+     * Gets the job by id as passed in the Sling suffix.
+     * 
+     * @return the job
+     */
+    Job getSuffixJob();
+
+    /**
      * Starts a new job based on the request.
      * 
      * @return the job

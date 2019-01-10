@@ -20,7 +20,7 @@
             },
             "contenttable": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/jobs/jobtable"
+                "sling:resourceType": "sling-cms/components/jobs/list"
             }
         }
     }
