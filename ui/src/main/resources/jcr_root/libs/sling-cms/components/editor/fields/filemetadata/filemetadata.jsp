@@ -25,7 +25,7 @@
         </label>
     </c:if>
     <div class="control">
-        <dl class="reference-list">
+        <dl class="reference-list box">
         <c:forEach var="element" items="${file.metadata}">
             <dt><sling:encode value="${element.key}" mode="HTML" /></dt>
             <dd><sling:encode value="${element.value}" mode="HTML" /></dd>

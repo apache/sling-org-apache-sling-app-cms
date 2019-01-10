@@ -19,6 +19,7 @@ package org.apache.sling.cms.core.internal.models;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -119,7 +120,7 @@ public class FileImpl implements File {
     @Override
     public ValueMap getMetadata() {
         Resource metadata = this.getContentResource().getChild(FileMetadataExtractor.NN_METADATA);
-        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> data = new TreeMap<>();
         if (metadata != null) {
             metadata.getValueMap().entrySet()
                     .forEach(e -> data.put(Text.unescapeIllegalJcrChars(e.getKey()), e.getValue()));
