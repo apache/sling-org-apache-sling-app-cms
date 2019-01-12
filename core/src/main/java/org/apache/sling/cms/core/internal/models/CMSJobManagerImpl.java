@@ -16,7 +16,6 @@
  */
 package org.apache.sling.cms.core.internal.models;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -35,11 +34,6 @@ import org.apache.sling.event.jobs.JobManager.QueryType;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.InvalidSyntaxException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Default implementation of the CMS Job Manager.
@@ -47,12 +41,13 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = SlingHttpServletRequest.class, adapters = CMSJobManager.class)
 public class CMSJobManagerImpl implements CMSJobManager {
 
-    private static final Logger log = LoggerFactory.getLogger(CMSJobManagerImpl.class);
-
     private static final String PN_INITIATOR = "_initiator";
     private static final String PN_JOB_TITLE_KEY = "_titleKey";
     private static final String PN_USER_ID = "_userId";
     private static final String VALUE_SLING_CMS = "SlingCMS";
+
+    @OSGiService
+    private InternalCMSJobManager cmsJobManager;
 
     @OSGiService
     private JobManager jobManager;
@@ -65,14 +60,7 @@ public class CMSJobManagerImpl implements CMSJobManager {
 
     @Override
     public Collection<ConfigurableJobExecutor> getAvailableJobs() {
-        BundleContext bundleContext = FrameworkUtil.getBundle(CMSJobManager.class).getBundleContext();
-        try {
-            return bundleContext.getServiceReferences(ConfigurableJobExecutor.class, null).stream()
-                    .map(bundleContext::getService).collect(Collectors.toList());
-        } catch (InvalidSyntaxException e) {
-            log.warn("Failed to get available jobs", e);
-            return new ArrayList<>();
-        }
+        return cmsJobManager.getJobs();
     }
 
     @SuppressWarnings("unchecked")
@@ -86,17 +74,8 @@ public class CMSJobManagerImpl implements CMSJobManager {
     }
 
     private String getJobTitleKey(String jobTopic) {
-        BundleContext bundleContext = FrameworkUtil.getBundle(CMSJobManager.class).getBundleContext();
-        try {
-            Optional<String> op = bundleContext
-                    .getServiceReferences(ConfigurableJobExecutor.class,
-                            "(" + JobConsumer.PROPERTY_TOPICS + "=" + jobTopic + ")")
-                    .stream().map(bundleContext::getService).map(ConfigurableJobExecutor::getTitleKey).findFirst();
-            return op.orElse(null);
-        } catch (InvalidSyntaxException e) {
-            log.warn("Failed to get available jobs", e);
-        }
-        return null;
+        return cmsJobManager.getJobs().stream().filter(j -> jobTopic.equals(j.getTopic()))
+                .map(ConfigurableJobExecutor::getTitleKey).findFirst().orElse(null);
     }
 
     @Override

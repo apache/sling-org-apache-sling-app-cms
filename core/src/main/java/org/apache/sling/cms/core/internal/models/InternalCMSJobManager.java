@@ -14,34 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.readability.impl;
+package org.apache.sling.cms.core.internal.models;
 
 import java.util.List;
-import java.util.Locale;
 
-import org.apache.sling.cms.readability.ReadabilityService;
-import org.apache.sling.cms.readability.ReadabilityServiceFactory;
+import org.apache.sling.cms.ConfigurableJobExecutor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/**
- * Implementation of the ReadabilityServiceFactory service
- */
-@Component(service = ReadabilityServiceFactory.class)
-public class ReadabilityServiceFactoryImpl implements ReadabilityServiceFactory {
-
-    private static final Logger log = LoggerFactory.getLogger(ReadabilityServiceFactoryImpl.class);
+@Component(service = InternalCMSJobManager.class)
+public class InternalCMSJobManager {
 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE)
-    private volatile List<ReadabilityService> services;
+    private volatile List<ConfigurableJobExecutor> jobs;
 
-    public ReadabilityService getReadabilityService(Locale locale) {
-        log.debug("Locating readability service for {}", locale);
-        return services.stream().filter(svc -> locale.equals(svc.getLocale())).findFirst().orElse(services.stream()
-                .filter(svc -> locale.getLanguage().equals(svc.getLocale().getLanguage())).findFirst().orElse(null));
+    public List<ConfigurableJobExecutor> getJobs() {
+        return jobs;
     }
-
 }

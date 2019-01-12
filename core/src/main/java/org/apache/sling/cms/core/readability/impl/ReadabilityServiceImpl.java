@@ -200,6 +200,11 @@ public class ReadabilityServiceImpl implements ReadabilityService {
         return words;
     }
 
+    @Override
+    public Locale getLocale() {
+        return locale;
+    }
+
     private boolean isVowel(char ch) {
         return vowelExpression.matcher(String.valueOf(ch)).matches();
     }
