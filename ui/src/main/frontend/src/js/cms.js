@@ -149,33 +149,6 @@ window.onbeforeunload = function() {
     }
 }
     
-rava.bind('.page-properties-container', {
-    callbacks : {
-        created :  function(){
-            var $ctr = $(this);
-            var $wrapper = $ctr.closest('.form-wrapper');
-            $($ctr.data('source')).change(function(){
-                var $source = $(this);
-                $source.attr('disabled', 'disabled');
-                $ctr.html('');
-                var config = $(this).val();
-                $ctr.load($ctr.data('path')+config, function(){
-                    $source.removeAttr('disabled');
-                    var source   = $('#content-template').html();
-                    var template = Handlebars.compile(source);
-                    var updateContent = function(){
-                        if(!$wrapper.is(':disabled')){
-                            var data = Sling.CMS.utils.form2Obj($ctr.parents('form'));
-                            $('input[name=":content"]').val(template(data));
-                        }
-                    }
-                    $ctr.find('input,textarea,select').change(updateContent);
-                    $ctr.parents('form').submit(updateContent);
-                });
-            });
-        }
-    }
-});
 
 rava.bind('.sling-cms-include-config', {
     callbacks : {
