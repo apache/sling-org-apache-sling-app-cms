@@ -20,6 +20,3 @@
 <c:forEach var="field" items="${sling:listChildren(sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,'fields'))}">
 	<sling:include resource="${field}" />
 </c:forEach>
-<script id="content-template" type="text/x-handlebars-template">
-	${slingRequest.requestPathInfo.suffixResource.valueMap.template}
-</script>
