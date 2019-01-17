@@ -17,7 +17,6 @@
 package org.apache.sling.cms.core.internal.models;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
