@@ -48,6 +48,15 @@
         allow   jcr:read	on /conf
     end
     create path (sling:OrderedFolder) /content
+    create path (sling:OrderedFolder) /etc/usergenerated
+    set ACL for everyone
+        allow   jcr:read    on /etc/usergenerated
+    end
+    create service user sling-ugc
+    set ACL for sling-ugc
+        allow   jcr:write    on /etc/usergenerated
+    end
+    
     
     # Groups
     create path (rep:AuthorizableFolder) /home/groups
@@ -82,13 +91,3 @@
     	allow	jcr:read	on /content
     end
     
-    # UGC Support
-    create path (sling:OrderedFolder) /etc/usergenerated
-    set ACL for everyone
-        allow   jcr:read	on /etc/usergenerated
-    end
-    create service user sling-ugc
-    set ACL for sling-ugc
-        allow   jcr:write    on /etc/usergenerated
-    end
-
