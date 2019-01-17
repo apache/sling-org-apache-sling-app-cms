@@ -37,11 +37,21 @@ public class CMSConstants {
      * Content path.
      */
     public static final String CONTENT_PATH = "/content";
-    
+
+    /**
+     * The name of the group for super users
+     */
+    public static final String GROUP_ADMINISTRATORS = "administrators";
+
+    /**
+     * The name of the group for the users who can execute jobs
+     */
+    public static final String GROUP_JOB_USERS = "job-users";
+
     /**
      * The bucket for the Insights CA Configs
      */
-    public static final String INSIGHTS_CA_CONFIG_BUCKET="insights";
+    public static final String INSIGHTS_CA_CONFIG_BUCKET = "insights";
 
     /**
      * Node type base.
@@ -113,6 +123,11 @@ public class CMSConstants {
      */
     public static final String[] PUBLISHABLE_TYPES = new String[] { CMSConstants.NT_FILE, CMSConstants.NT_PAGE,
             JcrResourceConstants.NT_SLING_FOLDER, JcrResourceConstants.NT_SLING_ORDERED_FOLDER };
+
+    /**
+     * The name of the admin user
+     */
+    public static final String USER_ADMIN = "admin";
 
     /**
      * Private constructor to prevent instantiation of class.
