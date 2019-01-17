@@ -94,6 +94,9 @@
                 "src"
             ]
         },
+        "settings": {
+            "taxonomyroot": "/etc/taxonomy"
+        },
         "templates": {
             "jcr:primaryType": "nt:unstructured",
             "base-page": {
