@@ -76,6 +76,9 @@
                     },
                     "contentpackages": {
                         "jcr:primaryType": "nt:unstructured",
+                        "enabledGroups": [
+                            "administrators"
+                        ],
                         "link": "/bin/packages.html",
                         "text": "Content Packages"
                     },
@@ -84,6 +87,9 @@
                         "alternatives": [
                             "/cms/i18n/dictionaries.html",
                             "/cms/i18n/dictionary.html"
+                        ],
+                        "enabledGroups": [
+                            "administrators"
                         ],
                         "link": "/cms/i18n/dictionaries.html/etc/i18n",
                         "text": "Internationalization (i18n)"
@@ -94,6 +100,10 @@
                         "alternatives": [
                             "/cms/jobs"
                         ],
+                        "enabledGroups": [
+                            "job-users",
+                            "administrators"
+                        ],
                         "text": "Jobs"
                     },
                     "loadcontent": {
@@ -103,16 +113,25 @@
                     },
                     "mappings": {
                         "jcr:primaryType": "nt:unstructured",
+                        "enabledGroups": [
+                            "administrators"
+                        ],
                         "link": "/cms/mappings/list.html/etc/map",
                         "text": "Mappings"
                     },
                     "nodebrowser": {
                         "jcr:primaryType": "nt:unstructured",
+                        "enabledGroups": [
+                            "administrators"
+                        ],
                         "link": "/bin/browser.html",
                         "text": "Node Browser"
                     },
                     "systemconsole": {
                         "jcr:primaryType": "nt:unstructured",
+                        "enabledGroups": [
+                            "administrators"
+                        ],
                         "link": "/system/console",
                         "text": "System Console"
                     },

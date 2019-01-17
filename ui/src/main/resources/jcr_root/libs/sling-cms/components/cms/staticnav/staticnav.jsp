@@ -32,6 +32,7 @@
             </c:if>
         </c:forEach>
     </c:forEach>
+    <sling:adaptTo var="currentUser" adaptable="${slingRequest.resourceResolver}" adaptTo="org.apache.sling.cms.CurrentUser" />
     <ul id="${fn:replace(properties.title,' ','-')}-nav" class="menu-list ${hidden}">
         <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
             <c:set var="selected" value="" />
@@ -43,7 +44,20 @@
                     <c:set var="selected" value="is-selected" />
                 </c:if>
             </c:forEach>
-            <li class="${selected}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
+            <c:set var="enabled" value="${true}" />
+            <c:if test="${not empty item.valueMap.enabledGroups && currentUser.id != 'admin'}">
+                <c:set var="enabled" value="${false}" />
+                <c:forEach var="group" items="${item.valueMap.enabledGroups}">
+                    <c:forEach var="userGroup" items="${currentUser.groups}">
+                        <c:if test="${group == userGroup}">
+                            <c:set var="enabled" value="${true}" />
+                        </c:if>
+                    </c:forEach>
+                </c:forEach>
+            </c:if>
+            <c:if test="${enabled}">
+                <li class="${selected}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
+            </c:if>
         </c:forEach>
     </ul>
 </div>
