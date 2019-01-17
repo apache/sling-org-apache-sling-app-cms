@@ -19,7 +19,7 @@ package org.apache.sling.cms;
 import org.apache.sling.event.jobs.consumer.JobExecutor;
 
 /**
- * A Configureable Job Executor is a Sling Job which can be manually triggered
+ * A Configurable Job Executor is a Sling Job which can be manually triggered
  * by Sling CMS users.
  */
 public interface ConfigurableJobExecutor extends JobExecutor {
