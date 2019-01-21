@@ -48,6 +48,38 @@
         allow   jcr:read	on /conf
     end
     create path (sling:OrderedFolder) /content
+    create path (sling:OrderedFolder) /etc/usergenerated
+    set ACL for everyone
+        allow   jcr:read    on /etc/usergenerated
+    end
+    create service user sling-ugc
+    set ACL for sling-ugc
+        allow   jcr:write    on /etc/usergenerated
+    end
+    
+    
+    # Groups
+    create path (rep:AuthorizableFolder) /home/groups
+    create path (rep:AuthorizableFolder) /home/groups/sling-cms
+    create group administrators with path sling-cms
+    set ACL for administrators
+        allow   jcr:all    on /
+    end
+    create group authors with path sling-cms
+    set ACL for authors
+        allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /content
+        allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /static
+        allow   jcr:read    on /
+    end
+    create group job-users with path sling-cms
+    create group taxonomy-users with path sling-cms
+    set ACL for taxonomy-users
+        allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /etc/taxonomy
+    end
+    create group ugc-users with path sling-cms
+    set ACL for ugc-users
+        allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /etc/usergenerated
+    end
 
     # Service users
     create service user sling-rewriter
@@ -59,13 +91,3 @@
     	allow	jcr:read	on /content
     end
     
-    # UGC Support
-    create path (sling:OrderedFolder) /etc/usergenerated
-    set ACL for everyone
-        allow   jcr:read	on /etc/usergenerated
-    end
-    create service user sling-ugc
-    set ACL for sling-ugc
-        allow   jcr:all    on /etc/usergenerated
-    end
-

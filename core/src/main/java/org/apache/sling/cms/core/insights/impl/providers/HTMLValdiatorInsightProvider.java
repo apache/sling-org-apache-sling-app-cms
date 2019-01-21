@@ -100,11 +100,11 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
             response = client.execute(httpPost);
             HttpEntity entity = response.getEntity();
             JsonObject json = Json.createReader(new StringReader(EntityUtils.toString(entity))).readObject();
-            log.debug("Loaded response: {}", json.toString(), 2);
+            log.debug("Loaded response: {}", json);
             JsonArray messages = json.getJsonArray("messages");
             int errors = 0;
             int warnings = 0;
-            Set<String> msgSet = new HashSet<String>();
+            Set<String> msgSet = new HashSet<>();
             for (int i = 0; i < messages.size(); i++) {
                 JsonObject message = messages.getJsonObject(i);
                 if ("error".equals(message.getString("type"))) {

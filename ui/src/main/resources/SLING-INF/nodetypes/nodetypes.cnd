@@ -47,6 +47,7 @@
 [sling:FileContent] > nt:resource
     - * (undefined) copy
     - * (undefined) copy multiple
+    + metadata (nt:unstructured) = nt:unstructured copy primary
 
 [sling:Page] > nt:hierarchyNode
     orderable

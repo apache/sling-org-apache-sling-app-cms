@@ -43,9 +43,9 @@ Vagrant.configure("2") do |config|
      cp /vagrant_data/site.conf /etc/httpd/conf.d
      mkdir -p /var/www/vhosts/sling-cms
      mkdir -p /var/www/vhosts/sling
-     mkdir -p /var/cache/httpd/danklco-com
-     chown apache:apache -R /var/www/vhosts/
-     chown -R apache:apache /var/cache/httpd/danklco-com/
+     mkdir -p /var/cache/httpd/sling
+     chown apache:apache -R /var/www/vhosts
+     chown -R apache:apache /var/cache/httpd/sling
      service httpd start
      echo "Apache Web Server installed and started..."
   SHELL

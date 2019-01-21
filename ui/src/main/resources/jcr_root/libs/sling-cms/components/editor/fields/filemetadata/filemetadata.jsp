@@ -16,11 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<option value="">Select Page Type</option>
-<sling:adaptTo var="templateMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PageTemplateManager" />
-<c:forEach var="template" items="${templateMgr.availableTemplates}">
-    <option value="${template.resource.path}">
-        <sling:encode value="${template.title}" mode="HTML" />
-    </option>
-</c:forEach>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="file" value="${sling:adaptTo(slingRequest.requestPathInfo.suffixResource,'org.apache.sling.cms.File')}" />
+<div class="field">
+    <c:if test="${not empty properties.label}">
+        <label class="label">
+            <sling:encode value="${properties.label}" mode="HTML" />
+        </label>
+    </c:if>
+    <div class="control">
+        <dl class="reference-list box">
+        <c:forEach var="element" items="${file.metadata}">
+            <dt><sling:encode value="${element.key}" mode="HTML" /></dt>
+            <dd><sling:encode value="${element.value}" mode="HTML" /></dd>
+        </c:forEach>
+        </dl>
+    </div>
+</div>

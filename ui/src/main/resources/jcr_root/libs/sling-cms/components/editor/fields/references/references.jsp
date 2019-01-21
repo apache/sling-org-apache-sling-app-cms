@@ -46,12 +46,12 @@
                             <c:choose>
                                 <c:when test="${ref.page}">
                                     <td>
-                                        <span class="icon">
+                                        <span class="icon" title="Page">
                                             <span class="jam jam-document"></span>
                                         </span>
                                     </td>
                                     <td title="${ref.containingPage.path}">
-                                        <a href="/cms/site/content.html${ref.containingPage.parent.path}">
+                                        <a href="/cms/site/content.html${ref.containingPage.parent.path}" target="_blank">
                                             ${sling:encode(ref.containingPage.title,'HTML')}
                                         </a>
                                     </td>
@@ -64,7 +64,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                        <span class="icon">
+                                        <span class="icon"  title="Other">
                                             <span class="jam jam-file"></span>
                                         </span>
                                     </td>

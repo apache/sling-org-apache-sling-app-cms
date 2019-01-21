@@ -10,10 +10,20 @@
         ],
         "jcr:language": "en",
         "sling:resourceType": "sling-cms/components/cms/blank",
+        "slingcms-finished": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Finished",
+            "sling:key": "slingcms.finished"
+        },
         "slingcms-insights-moredetails": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "More Details",
             "sling:key": "slingcms.insights.moredetails"
+        },
+        "slingcms-filemetadata-title": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Extract File Metadata",
+            "sling:key": "slingcms.filemetadata.title"
         },
         "slingcms-htmlvalidator-danger": {
             "jcr:primaryType": "sling:MessageEntry",
@@ -29,6 +39,46 @@
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "There were {0} validation warnings",
             "sling:key": "slingcms.htmlvalidator.warn"
+        },
+        "slingcms-jobs": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Jobs",
+            "sling:key": "slingcms.jobs"
+        },
+        "slingcms-jobs-badrequest": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Invalid Job Request",
+            "sling:key": "slingcms.jobs.badrequest"
+        },
+        "slingcms-jobs-jobstarted": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Job Started",
+            "sling:key": "slingcms.jobs.jobstarted"
+        },
+        "slingcms-jobs-progress": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Job Progress",
+            "sling:key": "slingcms.jobs.progress"
+        },
+        "slingcms-jobs-progresslog": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Job Progress Logs",
+            "sling:key": "slingcms.jobs.progresslog"
+        },
+        "slingcms-jobs-name": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Job Name",
+            "sling:key": "slingcms.jobs.name"
+        },
+        "slingcms-jobs-properties": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Job Properties",
+            "sling:key": "slingcms.jobs.properties"
+        },
+        "slingcms-jobs-resultmessage": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Result Message",
+            "sling:key": "slingcms.jobs.resultmessage"
         },
         "slingcms-pagespeed-danger": {
             "jcr:primaryType": "sling:MessageEntry",
@@ -64,6 +114,16 @@
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Readability grade {2} is outside expected range: ({0}-{1})",
             "sling:key": "slingcms.readability.warn"
+        },
+        "slingcms-started": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Started",
+            "sling:key": "slingcms.started"
+        },
+        "slingcms-state": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "State",
+            "sling:key": "slingcms.state"
         }
     }
 }

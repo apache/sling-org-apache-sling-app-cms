@@ -16,6 +16,8 @@
  */
 package org.apache.sling.cms.readability;
 
+import java.util.Locale;
+
 /**
  * Service for calculating the readability of text
  */
@@ -140,4 +142,11 @@ public interface ReadabilityService {
      * @return the analyzied text
      */
     Text extractSentences(String text);
+
+    /**
+     * Gets the locale for this configuration.
+     * 
+     * @return the locale
+     */
+    Locale getLocale();
 }

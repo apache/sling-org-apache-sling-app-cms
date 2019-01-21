@@ -1,0 +1,27 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:title": "List Jobs",
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "contentactions": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentactions",
+                "actions": {
+                    "job": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "Start Job",
+                        "prefix": "/cms/jobs/start.html/bin/cms/startjob"
+                    }
+                }
+            },
+            "contenttable": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/jobs/list"
+            }
+        }
+    }
+}

@@ -14,7 +14,7 @@
     "jam-icons": "^2.0.0",
     "js-autocomplete": "^1.0.4",
     "datatables": "^1.10.18",
-    "bulma": "^0.7.1",
+    "bulma": "^0.7.2",
     "datatables-bulma": "^1.0.1"
   },
   "devDependencies": {

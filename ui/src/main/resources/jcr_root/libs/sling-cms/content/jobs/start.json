@@ -1,0 +1,32 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/modal",
+        "jcr:title": "Start Job",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "slingform": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/slingform",
+                "button": "Start Job",
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/general/container",
+                    "job": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                        "label": "Job",
+                        "name": "_job",
+                        "optionsScript": "/libs/sling-cms/components/jobs/jobOptions.jsp"
+                    },
+                    "jobconfiguration": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/jobs/configuration"
+                    }
+                }
+            }
+        }
+    }
+}

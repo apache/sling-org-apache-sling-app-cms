@@ -1,0 +1,16 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:title": "View Job",
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "contenttable": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/jobs/view"
+            }
+        }
+    }
+}
