@@ -23,8 +23,7 @@
     rava.bind(".table", {
         callbacks : {
             created: function () {
-                var table = this,
-                    sort = this.dataset.sort !== 'false',
+                var sort = this.dataset.sort !== 'false',
                     paginate = this.dataset.paginate !== 'false';
                 $(this).DataTable({
                     sort: sort,
