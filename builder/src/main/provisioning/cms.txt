@@ -20,6 +20,7 @@
 [artifacts startLevel=20]
     org.apache.cocoon/cocoon-serializers-charsets/1.0.0
     org.jsoup/jsoup/1.11.3
+    org.jsoup/jsoup/1.11.3
     com.vladsch.flexmark/flexmark-osgi/0.34.22
     org.apache.sling/org.apache.sling.fileoptim/0.9.2
     org.apache.sling/org.apache.sling.resourcemerger/1.3.6
@@ -27,6 +28,7 @@
     org.apache.sling/org.apache.sling.cms.core/${cms.version}
     org.apache.sling/org.apache.sling.cms.ui/${cms.version}
     org.apache.sling/org.apache.sling.cms.reference/${cms.version}
+    org.apache.tika/tika-bundle/1.19.1
     
 [:repoinit]
 
@@ -84,7 +86,7 @@
     end
     create service user sling-cms-error
     set ACL for sling-cms-error
-    	allow	jcr:read	on /content
+    	allow	jcr:read	on /
     end
     create service user sling-ugc
     set ACL for sling-ugc
@@ -92,7 +94,7 @@
     end
     create service user sling-cms-metadata
     set ACL for sling-cms-metadata
-        allow   jcr:write    on /content
-        allow   jcr:write    on /static
+        allow   jcr:all    on /content
+        allow   jcr:all    on /static
     end
     
