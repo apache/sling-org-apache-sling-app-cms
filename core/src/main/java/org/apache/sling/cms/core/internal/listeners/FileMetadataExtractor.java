@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms.core.internal.listeners;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -33,6 +34,7 @@ import org.apache.sling.api.resource.observation.ExternalResourceChangeListener;
 import org.apache.sling.api.resource.observation.ResourceChange;
 import org.apache.sling.api.resource.observation.ResourceChangeListener;
 import org.apache.sling.cms.File;
+import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.metadata.Property;
 import org.apache.tika.parser.AutoDetectParser;
@@ -43,6 +45,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 
 /**
  * A Resource Change Listener which extracts the metadata from sling:Files when
@@ -62,43 +65,41 @@ public class FileMetadataExtractor implements ResourceChangeListener, ExternalRe
 
     private static final Logger log = LoggerFactory.getLogger(FileMetadataExtractor.class);
 
-    public void extractMetadata(File file) {
+    public void extractMetadata(File file) throws IOException, SAXException, TikaException {
         extractMetadata(file.getResource());
     }
 
-    public void extractMetadata(Resource resource) {
-        try {
-            log.info("Extracting metadata from {}", resource.getPath());
-            ResourceResolver resolver = resource.getResourceResolver();
-            InputStream is = resource.adaptTo(InputStream.class);
-            Resource content = resource.getChild(JcrConstants.JCR_CONTENT);
-            if (content == null) {
-                log.warn("Content resource is null");
-                return;
-            }
-            Map<String, Object> properties = new HashMap<>();
-            Resource metadata = content.getChild(NN_METADATA);
-            if (metadata != null) {
-                properties = metadata.adaptTo(ModifiableValueMap.class);
-            } else {
-                properties.put(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
-            }
-            Parser parser = new AutoDetectParser();
-            BodyContentHandler handler = new BodyContentHandler();
-            Metadata md = new Metadata();
-            ParseContext context = new ParseContext();
-            parser.parse(is, handler, md, context);
-            for (String name : md.names()) {
-                updateProperty(properties, name, md);
-            }
-            if (metadata == null) {
-                resolver.create(content, NN_METADATA, properties);
-            }
-            resolver.commit();
-            log.info("Metadata extracted from {}", resource.getPath());
-        } catch (Exception e) {
-            log.warn("Exception extracting metadata from: " + resource.getPath(), e);
+    public void extractMetadata(Resource resource) throws IOException, SAXException, TikaException {
+
+        log.info("Extracting metadata from {}", resource.getPath());
+        ResourceResolver resolver = resource.getResourceResolver();
+        InputStream is = resource.adaptTo(InputStream.class);
+        Resource content = resource.getChild(JcrConstants.JCR_CONTENT);
+        if (content == null) {
+            log.warn("Content resource is null");
+            return;
         }
+        Map<String, Object> properties = new HashMap<>();
+        Resource metadata = content.getChild(NN_METADATA);
+        if (metadata != null) {
+            properties = metadata.adaptTo(ModifiableValueMap.class);
+        } else {
+            properties.put(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
+        }
+        Parser parser = new AutoDetectParser();
+        BodyContentHandler handler = new BodyContentHandler();
+        Metadata md = new Metadata();
+        ParseContext context = new ParseContext();
+        parser.parse(is, handler, md, context);
+        for (String name : md.names()) {
+            updateProperty(properties, name, md);
+        }
+        if (metadata == null) {
+            resolver.create(content, NN_METADATA, properties);
+        }
+        resolver.commit();
+        log.info("Metadata extracted from {}", resource.getPath());
+
     }
 
     private void updateProperty(Map<String, Object> properties, String name, Metadata metadata) {
@@ -131,7 +132,11 @@ public class FileMetadataExtractor implements ResourceChangeListener, ExternalRe
             serviceResolver = factory.getServiceResourceResolver(serviceParams);
             for (ResourceChange rc : changes) {
                 Resource changed = serviceResolver.getResource(rc.getPath());
-                extractMetadata(changed);
+                try {
+                    extractMetadata(changed);
+                } catch (Throwable t) {
+                    log.warn("Failed to extract metadata due to exception", t);
+                }
             }
         } catch (LoginException e) {
             log.error("Exception getting service user", e);
