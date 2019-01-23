@@ -25,10 +25,17 @@
         </label>
     </c:if>
     <div class="control">
-        <dl class="reference-list box">
+        <dl class="fixed-box box">
         <c:forEach var="element" items="${file.metadata}">
             <dt><sling:encode value="${element.key}" mode="HTML" /></dt>
-            <dd><sling:encode value="${element.value}" mode="HTML" /></dd>
+            <dd>
+                <c:catch var="ce">
+                    <fmt:formatDate value="${element.value.time}" type="both" timeStyle="long" dateStyle="long" />
+                </c:catch>
+                <c:if test="${ce != null}">
+                    <sling:encode value="${element.value}" mode="HTML" />
+                </c:if>
+            </dd>
         </c:forEach>
         </dl>
     </div>
