@@ -34,11 +34,17 @@
                     request = new XMLHttpRequest();
                 request.open('GET', link, true);
                 request.onload = function () {
-                    button.removeAttribute("disabled");
-                    if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
-                        window.location.reload();
+                    if (this.status === 500 || this.status === 404) {
+                        Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function(){
+                            Sling.CMS.ui.reloadContext();
+                        });
                     } else {
-                        modal.innerHTML = request.responseText;
+                        button.removeAttribute("disabled");
+                        if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
+                            window.location.reload();
+                        } else {
+                            modal.innerHTML = request.responseText;
+                        }
                     }
                 };
                 modal.querySelector('.modal-background').addEventListener('click', function () {
