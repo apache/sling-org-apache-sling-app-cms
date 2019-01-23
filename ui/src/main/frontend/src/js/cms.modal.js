@@ -25,7 +25,7 @@
             click: function (event) {
                 event.preventDefault();
                 this.setAttribute("disabled", "disabled");
-                this.getModal(this.getAttribute('data-title'), encodeURI(this.getAttribute('href')), this);
+                this.getModal(this.getAttribute('data-title'), this.getAttribute('href'), this);
             }
         },
         methods: {
