@@ -52,10 +52,6 @@
     set ACL for everyone
         allow   jcr:read    on /etc/usergenerated
     end
-    create service user sling-ugc
-    set ACL for sling-ugc
-        allow   jcr:write    on /etc/usergenerated
-    end
     
     
     # Groups
@@ -89,5 +85,14 @@
     create service user sling-cms-error
     set ACL for sling-cms-error
     	allow	jcr:read	on /content
+    end
+    create service user sling-ugc
+    set ACL for sling-ugc
+        allow   jcr:write    on /etc/usergenerated
+    end
+    create service user sling-cms-metadata
+    set ACL for sling-cms-metadata
+        allow   jcr:write    on /content
+        allow   jcr:write    on /static
     end
     
