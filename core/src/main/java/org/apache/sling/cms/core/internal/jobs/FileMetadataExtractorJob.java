@@ -17,12 +17,9 @@
 package org.apache.sling.cms.core.internal.jobs;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.sling.api.SlingConstants;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -46,90 +43,19 @@ import org.slf4j.LoggerFactory;
  */
 @Component(service = { JobExecutor.class, ConfigurableJobExecutor.class }, property = {
         JobConsumer.PROPERTY_TOPICS + "=" + FileMetadataExtractorJob.TOPIC })
-public class FileMetadataExtractorJob implements ConfigurableJobExecutor {
+public class FileMetadataExtractorJob extends ConfigurableJobExecutor {
 
     public static final Logger log = LoggerFactory.getLogger(FileMetadataExtractorJob.class);
 
-    public static final String TOPIC = "cmsjob/org/apache/sling/cms/file/ExtractMetadata";
-
     public static final String PN_RECURSIVE = "recursive";
+
+    public static final String TOPIC = "cmsjob/org/apache/sling/cms/file/ExtractMetadata";
 
     @Reference
     private FileMetadataExtractor extractor;
 
     @Reference
     private ResourceResolverFactory factory;
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.apache.sling.cms.ConfigurableJobExecutor#getConfigurationPath()
-     */
-    @Override
-    public String getConfigurationPath() {
-        return "/mnt/overlay/sling-cms/content/jobs/filemetadataextractor";
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.apache.sling.cms.ConfigurableJobExecutor#getTopic()
-     */
-    @Override
-    public String getTopic() {
-        return TOPIC;
-    }
-
-    @Override
-    public JobExecutionResult process(Job job, JobExecutionContext context) {
-        String path = job.getProperty(SlingConstants.PROPERTY_PATH, "");
-
-        ResourceResolver resolver = null;
-
-        try {
-            Map<String, Object> serviceParams = new HashMap<>();
-            serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-cms-metadata");
-            resolver = factory.getServiceResourceResolver(serviceParams);
-
-            Resource root = resolver.getResource(path);
-            if (root != null) {
-                List<File> files = new ArrayList<>();
-                if (CMSConstants.NT_FILE.equals(root.getResourceType())) {
-                    files.add(root.adaptTo(File.class));
-                } else {
-                    collectFiles(root, files);
-                }
-                context.log("Found {0} files to extract metadata", files.size());
-
-                context.initProgress(files.size(), -1);
-
-                int processed = 1;
-                for (File file : files) {
-                    try {
-                        extractor.extractMetadata(file);
-                        context.incrementProgressCount(processed++);
-                        context.log("Extracted metadata for {0}", file.getPath());
-                    } catch (Throwable t) {
-                        context.log("Failed to extract matadata for {0}", file.getPath());
-                        context.incrementProgressCount(processed++);
-                        context.log("Exception {0}", t.getMessage());
-                        log.warn("Failed to extract metadata for " + file.getPath(), t);
-                    }
-                }
-
-                return context.result().message("Metadata Extracted").succeeded();
-            } else {
-                return context.result().message("No file found at " + path).failed();
-            }
-        } catch (LoginException e) {
-            log.warn("Unable to get service user", e);
-            return context.result().message("Unable to get service user").failed();
-        } finally {
-            if (resolver != null) {
-                resolver.close();
-            }
-        }
-    }
 
     private void collectFiles(Resource root, List<File> files) {
         for (Resource child : root.getChildren()) {
@@ -142,8 +68,69 @@ public class FileMetadataExtractorJob implements ConfigurableJobExecutor {
     }
 
     @Override
+    public JobExecutionResult doProcess(Job job, JobExecutionContext context, ResourceResolver resolver) {
+        String path = job.getProperty(SlingConstants.PROPERTY_PATH, "");
+
+        Resource root = resolver.getResource(path);
+        if (root != null) {
+            List<File> files = new ArrayList<>();
+            if (CMSConstants.NT_FILE.equals(root.getResourceType())) {
+                files.add(root.adaptTo(File.class));
+            } else {
+                collectFiles(root, files);
+            }
+            context.log("Found {0} files to extract metadata", files.size());
+
+            context.initProgress(files.size(), -1);
+
+            int processed = 1;
+            for (File file : files) {
+                try {
+                    extractor.extractMetadata(file);
+                    context.incrementProgressCount(processed++);
+                    context.log("Extracted metadata for {0}", file.getPath());
+                } catch (Throwable t) {
+                    context.log("Failed to extract matadata for {0}", file.getPath());
+                    context.incrementProgressCount(processed++);
+                    context.log("Exception {0}", t.getMessage());
+                    log.warn("Failed to extract metadata for " + file.getPath(), t);
+                }
+            }
+
+            return context.result().message("Metadata Extracted").succeeded();
+        } else {
+            return context.result().message("No file found at " + path).failed();
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.sling.cms.ConfigurableJobExecutor#getConfigurationPath()
+     */
+    @Override
+    public String getConfigurationPath() {
+        return "/mnt/overlay/sling-cms/content/jobs/filemetadataextractor";
+    }
+
+    @Override
+    public ResourceResolverFactory getResolverFactory() {
+        return this.factory;
+    }
+
+    @Override
     public String getTitleKey() {
         return "slingcms.filemetadata.title";
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.sling.cms.ConfigurableJobExecutor#getTopic()
+     */
+    @Override
+    public String getTopic() {
+        return TOPIC;
     }
 
 }

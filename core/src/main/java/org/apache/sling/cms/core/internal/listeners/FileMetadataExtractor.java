@@ -86,19 +86,23 @@ public class FileMetadataExtractor implements ResourceChangeListener, ExternalRe
         } else {
             properties.put(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
         }
-        Parser parser = new AutoDetectParser();
-        BodyContentHandler handler = new BodyContentHandler();
-        Metadata md = new Metadata();
-        ParseContext context = new ParseContext();
-        parser.parse(is, handler, md, context);
-        for (String name : md.names()) {
-            updateProperty(properties, name, md);
+        if (properties != null) {
+            Parser parser = new AutoDetectParser();
+            BodyContentHandler handler = new BodyContentHandler();
+            Metadata md = new Metadata();
+            ParseContext context = new ParseContext();
+            parser.parse(is, handler, md, context);
+            for (String name : md.names()) {
+                updateProperty(properties, name, md);
+            }
+            if (metadata == null) {
+                resolver.create(content, NN_METADATA, properties);
+            }
+            resolver.commit();
+            log.info("Metadata extracted from {}", resource.getPath());
+        } else {
+            log.warn("Failed to update metadata for {}", resource.getPath());
         }
-        if (metadata == null) {
-            resolver.create(content, NN_METADATA, properties);
-        }
-        resolver.commit();
-        log.info("Metadata extracted from {}", resource.getPath());
 
     }
 

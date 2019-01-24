@@ -36,6 +36,8 @@
                 <th>
                     <fmt:message key="slingcms.state" />
                 </th>
+                <th class="is-hidden">
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -64,7 +66,14 @@
                     <td>
                         <sling:encode value="${job.jobState}" mode="HTML" />
                     </td>
+                    <td class="is-hidden cell-actions">
+                        <a class="button Fetch-Modal" data-title="<fmt:message key="slingcms.jobs.remove" />" data-path=".Main-Content form" href="/cms/jobs/delete.html/bin/cms/removejob?id=${job.id}" title="<fmt:message key="slingcms.jobs.remove" />">
+                            <span class="jam jam-trash">
+                            </span>
+                        </a>
+                    </td>
                 </tr>
+                
                 <c:set var="count" value="${count + 1}" />
             </c:forEach>
         </tbody>

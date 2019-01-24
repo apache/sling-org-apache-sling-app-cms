@@ -54,4 +54,11 @@ public interface CMSJobManager {
      */
     Job startJob();
 
+    /**
+     * Deletes the specified job.
+     * 
+     * @param id the id of the job to delete
+     */
+    void deleteJob(String id);
+
 }

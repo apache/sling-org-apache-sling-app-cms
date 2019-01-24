@@ -50,6 +50,11 @@
             "sling:message": "Invalid Job Request",
             "sling:key": "slingcms.jobs.badrequest"
         },
+        "slingcms-jobs-jobremoved": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Job Removed",
+            "sling:key": "slingcms.jobs.jobremoved"
+        },
         "slingcms-jobs-jobstarted": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Job Started",
@@ -74,6 +79,11 @@
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Job Properties",
             "sling:key": "slingcms.jobs.properties"
+        },
+        "slingcms-jobs-remove": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Remove Job",
+            "sling:key": "slingcms.jobs.remove"
         },
         "slingcms-jobs-resultmessage": {
             "jcr:primaryType": "sling:MessageEntry",

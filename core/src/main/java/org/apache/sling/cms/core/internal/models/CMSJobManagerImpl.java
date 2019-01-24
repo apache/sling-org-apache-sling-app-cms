@@ -67,6 +67,11 @@ public class CMSJobManagerImpl implements CMSJobManager {
     }
 
     @Override
+    public void deleteJob(String id) {
+        jobManager.removeJobById(id);
+    }
+
+    @Override
     public Collection<ConfigurableJobExecutor> getAvailableJobs() {
         return cmsJobManager.getJobs();
     }
