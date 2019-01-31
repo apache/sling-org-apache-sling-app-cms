@@ -30,6 +30,8 @@ import javax.jcr.version.VersionIterator;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Returns all of the versions for a Resource. At the moment only JCR nodes are
@@ -38,22 +40,28 @@ import org.apache.sling.models.annotations.Model;
 @Model(adaptables = { Resource.class })
 public class VersionInfo {
 
+    private static final Logger log = LoggerFactory.getLogger(VersionInfo.class);
+
     private Resource resource;
 
     public VersionInfo(Resource resource) {
         this.resource = resource;
     }
 
-    @SuppressWarnings("deprecation")
-    public List<Version> getVersions() throws RepositoryException {
+    public List<Version> getVersions() {
         List<Version> versions = new ArrayList<>();
         final Node node = resource.adaptTo(Node.class);
-        if (node != null && node.isNodeType(JcrConstants.MIX_VERSIONABLE)) {
-            final VersionHistory history = node.getVersionHistory();
-            for (final VersionIterator it = history.getAllVersions(); it.hasNext();) {
-                final Version v = it.nextVersion();
-                versions.add(v);
+        try {
+            if (node != null && node.isNodeType(JcrConstants.MIX_VERSIONABLE)) {
+                final VersionHistory history = node.getSession().getWorkspace().getVersionManager()
+                        .getVersionHistory(node.getPath());
+                for (final VersionIterator it = history.getAllVersions(); it.hasNext();) {
+                    final Version v = it.nextVersion();
+                    versions.add(v);
+                }
             }
+        } catch (RepositoryException e) {
+            log.warn("Exception retrieving version history for: " + resource, e);
         }
         return versions;
     }

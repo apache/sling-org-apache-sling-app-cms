@@ -41,7 +41,7 @@ public class CMSUtils {
      * 
      * @param resources the collection of resources to adapt
      * @param type      the type to which to adapt the resources
-     * @param <T>         the type to which the resources are adapted
+     * @param           <T> the type to which the resources are adapted
      * @return the list of adapted classes
      */
     @NotNull
@@ -64,7 +64,7 @@ public class CMSUtils {
      * 
      * @param resources the array of resources to adapt
      * @param type      the type to which to adapt the resources
-     * @param <T>         the type to which the resources are adapted
+     * @param           <T> the type to which the resources are adapted
      * @return the list of adapted classes
      */
     @NotNull
@@ -100,11 +100,13 @@ public class CMSUtils {
      */
     @Nullable
     public static final Resource findPublishableParent(Resource resource) {
-        String type = resource.getValueMap().get(JcrConstants.JCR_PRIMARYTYPE, String.class);
-        if (ArrayUtils.contains(CMSConstants.PUBLISHABLE_TYPES, type)) {
-            return resource;
-        } else if (resource.getParent() != null) {
-            return findPublishableParent(resource.getParent());
+        if (resource != null) {
+            String type = resource.getValueMap().get(JcrConstants.JCR_PRIMARYTYPE, String.class);
+            if (ArrayUtils.contains(CMSConstants.PUBLISHABLE_TYPES, type)) {
+                return resource;
+            } else if (resource.getParent() != null) {
+                return findPublishableParent(resource.getParent());
+            }
         }
         return null;
     }

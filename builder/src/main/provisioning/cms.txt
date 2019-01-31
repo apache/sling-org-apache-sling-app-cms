@@ -92,9 +92,8 @@
     set ACL for sling-ugc
         allow   jcr:write    on /etc/usergenerated
     end
-    create service user sling-cms-metadata
-    set ACL for sling-cms-metadata
-        allow   jcr:all    on /content
-        allow   jcr:all    on /static
+    create service user sling-cms-versionmgr
+    set ACL for sling-cms-versionmgr
+        allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /content
     end
     
