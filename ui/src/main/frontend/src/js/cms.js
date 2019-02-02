@@ -143,6 +143,10 @@ Sling.CMS = {
     }
 };
 
+if (window.performance && window.performance.navigation.type == window.performance.navigation.TYPE_BACK_FORWARD) {
+    Sling.CMS.ui.reloadContext();
+}
+
 window.onbeforeunload = function() {
     if (document.querySelector('.modal')) {
         return "Are you sure you want to leave this page?";
