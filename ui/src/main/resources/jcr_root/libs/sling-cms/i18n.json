@@ -90,6 +90,11 @@
             "sling:message": "Result Message",
             "sling:key": "slingcms.jobs.resultmessage"
         },
+        "slingcms-optimizefiles-title":{
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Optimize Files",
+            "sling:key": "slingcms.optimizefiles.title"
+        },
         "slingcms-pagespeed-danger": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "This website is much slower than average, page performance must be optimized",

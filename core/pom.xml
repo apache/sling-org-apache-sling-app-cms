@@ -223,10 +223,8 @@
             <artifactId>httpclient</artifactId>
         </dependency>
         <dependency>
-            <artifactId>tika-core</artifactId>
-            <version>1.19.1</version>
             <groupId>org.apache.tika</groupId>
-            <scope>provided</scope>
+            <artifactId>tika-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
@@ -235,6 +233,10 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.scripting.api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.fileoptim</artifactId>
         </dependency>
     </dependencies>
 </project>
