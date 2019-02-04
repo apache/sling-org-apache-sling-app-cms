@@ -22,7 +22,8 @@
                         "sling:resourceType": "sling-cms/components/editor/fields/text",
                         "label": "Key",
                         "name": "sling:key",
-                        "required": true
+                        "required": true,
+                        "skipload":true
                     },
                     "value": {
                         "jcr:primaryType": "nt:unstructured",

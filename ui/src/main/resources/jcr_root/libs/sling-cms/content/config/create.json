@@ -21,6 +21,7 @@
                         "sling:resourceType": "sling-cms/components/editor/fields/text",
                         "label": "Title",
                         "name": "jcr:title",
+                        "skipload":true,
                         "required": true
                     },
                     "name": {
@@ -53,7 +54,8 @@
                         "label": "Configuration Type",
                         "name": "sling:resourceType",
                         "optionsScript": "/libs/sling-cms/components/editor/scripts/configResourceTypeOptions.jsp",
-                        "required": true
+                        "required": true,
+                        "skipload":true
                     }
                 }
             }

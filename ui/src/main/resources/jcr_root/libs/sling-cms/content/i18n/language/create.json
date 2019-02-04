@@ -22,7 +22,8 @@
                         "label": "Language",
                         "name": "jcr:language",
                         "optionsScript": "/libs/sling-cms/components/editor/scripts/localeOptions.jsp",
-                        "required": true
+                        "required": true,
+                        "skipload":true
                     },
                     "name": {
                         "jcr:primaryType": "nt:unstructured",

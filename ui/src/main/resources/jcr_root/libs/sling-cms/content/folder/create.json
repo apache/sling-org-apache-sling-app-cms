@@ -21,6 +21,7 @@
                         "sling:resourceType": "sling-cms/components/editor/fields/text",
                         "label": "Title",
                         "name": "jcr:content/jcr:title",
+                        "skipload":true,
                         "required": true
                     },
                     "name": {

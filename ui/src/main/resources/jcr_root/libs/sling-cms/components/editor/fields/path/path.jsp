@@ -37,6 +37,17 @@
         <c:set var="disabled" value="" scope="request" />
     </c:otherwise>
 </c:choose>
+<c:choose>
+    <c:when test="${properties.skipload}">
+        <c:set var="value" value="" scope="request" />
+    </c:when>
+    <c:when test="${empty editProperties[properties.name] && properties.defaultValue}">
+        <c:set var="value" value="${properties.defaultValue}" scope="request" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="value" value="${editProperties[properties.name]}" scope="request" />
+    </c:otherwise>
+</c:choose>
 <c:if test="${not empty properties.label}">
     <label class="label" for="${properties.name}">
         <sling:encode value="${properties.label}" mode="HTML" />
@@ -47,7 +58,7 @@
     <c:when test="${properties.hidesearch != true}">
     	<div class="field has-addons">
           <div class="control is-expanded">
-              <input class="input pathfield" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+              <input class="input pathfield" type="text" name="${properties.name}" value="${value}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
           </div>
           <div class="control">
               <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
@@ -59,7 +70,7 @@
     <c:otherwise>
     	<div class="field">
 	        <div class="control">
-	        	<input class="input pathfield" type="text" name="${properties.name}" value="${editProperties[properties.name]}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+	        	<input class="input pathfield" type="text" name="${properties.name}" value="${value}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
 	        </div>
         </div>
     </c:otherwise>

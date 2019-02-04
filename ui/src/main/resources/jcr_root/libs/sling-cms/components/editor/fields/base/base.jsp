@@ -18,33 +18,44 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${slingRequest.requestPathInfo.suffix != null}">
-	<sling:getResource path="${slingRequest.requestPathInfo.suffix}" var="editedResource" />
-	<c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.resource.ValueMap')}" scope="request"/>
+    <sling:getResource path="${slingRequest.requestPathInfo.suffix}" var="editedResource" />
+    <c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.resource.ValueMap')}" scope="request"/>
 </c:if>
 <c:choose>
-	<c:when test="${properties.required}">
-		<c:set var="required" value="required='required'" scope="request" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="required" value="" scope="request" />
-	</c:otherwise>
+    <c:when test="${properties.required}">
+        <c:set var="required" value="required='required'" scope="request" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="required" value="" scope="request" />
+    </c:otherwise>
 </c:choose>
 <c:choose>
-	<c:when test="${properties.disabled}">
-		<c:set var="disabled" value="disabled='disabled'" scope="request" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="disabled" value="" scope="request" />
-	</c:otherwise>
+    <c:when test="${properties.disabled}">
+        <c:set var="disabled" value="disabled='disabled'" scope="request" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="disabled" value="" scope="request" />
+    </c:otherwise>
+</c:choose>
+<c:choose>
+    <c:when test="${properties.skipload}">
+        <c:set var="value" value="" scope="request" />
+    </c:when>
+    <c:when test="${empty editProperties[properties.name] && properties.defaultValue}">
+        <c:set var="value" value="${properties.defaultValue}" scope="request" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="value" value="${editProperties[properties.name]}" scope="request" />
+    </c:otherwise>
 </c:choose>
 <div class="field">
-	<c:if test="${not empty properties.label}">
-		<label class="label" for="${properties.name}">
-			<sling:encode value="${properties.label}" mode="HTML" />
-			<c:if test="${properties.required}"><span class="has-text-danger">*</span></c:if>
-		</label>
-	</c:if>
-	<div class="control">
+    <c:if test="${not empty properties.label}">
+        <label class="label" for="${properties.name}">
+            <sling:encode value="${properties.label}" mode="HTML" />
+            <c:if test="${properties.required}"><span class="has-text-danger">*</span></c:if>
+        </label>
+    </c:if>
+    <div class="control">
     <sling:call script="field.jsp" />
     </div>
 </div>

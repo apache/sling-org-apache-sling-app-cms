@@ -31,7 +31,7 @@
         </div>
     </fieldset>
     <div class="repeating__container">
-        <c:forEach var="value" items="${editProperties[properties.name]}">
+        <c:forEach var="value" items="${value}">
             <div class="repeating__item field has-addons">
                 <div class="control is-expanded">
                     <input type="${properties.type}" value="${value}" class="input" name="${properties.name}" ${required} ${disabled} />

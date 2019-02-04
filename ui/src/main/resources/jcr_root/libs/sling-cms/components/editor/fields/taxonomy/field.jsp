@@ -37,7 +37,7 @@
          </div>
      </div>
      <div class="taxonomy__container">
-         <c:forEach var="item" items="${editProperties[properties.name]}">
+         <c:forEach var="item" items="${value}">
              <a class="button taxonomy__item">
                  <input type="hidden" name="${properties.name}" value="${item}" />
                  <span class="taxonomy__title">

@@ -21,7 +21,8 @@
                         "sling:resourceType": "sling-cms/components/editor/fields/text",
                         "label": "Title",
                         "name": "jcr:title",
-                        "required": true
+                        "required": true,
+                        "skipload":true
                     },
                     "name": {
                         "jcr:primaryType": "nt:unstructured",
@@ -40,7 +41,8 @@
                         "sling:resourceType": "sling-cms/components/editor/fields/text",
                         "label": "Primary URL",
                         "name": "sling:url",
-                        "required": true
+                        "required": true,
+                        "skipload":true
                     },
                     "locale": {
                         "jcr:primaryType": "nt:unstructured",
@@ -48,7 +50,8 @@
                         "label": "Language",
                         "name": "jcr:language",
                         "optionsScript": "/libs/sling-cms/components/editor/scripts/localeOptions.jsp",
-                        "required": true
+                        "required": true,
+                        "skipload":true
                     },
                     "config": {
                         "jcr:primaryType": "nt:unstructured",
@@ -57,7 +60,8 @@
                         "label": "Config",
                         "name": "sling:configRef",
                         "required": false,
-                        "type": "config"
+                        "type": "config",
+                        "skipload":true
                     },
                     "primaryType": {
                         "jcr:primaryType": "nt:unstructured",

@@ -26,9 +26,9 @@
             <c:when test="${not empty properties.options}">
                 <c:forEach var="option" items="${properties.options}">
                     <c:set var="label" value="${fn:split(option,'=')[0]}" />
-                    <c:set var="value" value="${fn:split(option,'=')[1]}" />
+                    <c:set var="val" value="${fn:split(option,'=')[1]}" />
                     <c:choose>
-                        <c:when test="${value eq editProperties[properties.name]}">
+                        <c:when test="${val eq value}">
                             <c:set var="selected" value="selected=\"selected\"" />
                         </c:when>
                         <c:otherwise>
