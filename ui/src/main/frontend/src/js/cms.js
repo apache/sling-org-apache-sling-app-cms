@@ -152,7 +152,13 @@ window.onbeforeunload = function() {
         return "Are you sure you want to leave this page?";
     }
 }
-    
+
+if(document.querySelector('.breadcrumb .is-active') != null){
+    var itemTitle = document.querySelector('.breadcrumb .is-active').textContent.trim();
+    if(itemTitle.length > 0){
+        document.title = itemTitle + ' :: ' + document.title;
+    }
+}
 
 rava.bind('.sling-cms-include-config', {
     callbacks : {
