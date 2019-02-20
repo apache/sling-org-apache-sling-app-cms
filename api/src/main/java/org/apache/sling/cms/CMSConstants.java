@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms;
 
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.jcr.resource.JcrResourceConstants;
 
 /**
@@ -97,6 +98,11 @@ public class CMSConstants {
      * i18n Locale property
      */
     public static final String PN_LANGUAGE = "jcr:language";
+
+    /**
+     * Constant for the last modified by user
+     */
+    public static final String PN_LAST_MODIFIED_BY = JcrConstants.JCR_LASTMODIFIED + "By";
 
     /**
      * Published flag property

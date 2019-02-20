@@ -96,7 +96,7 @@ public class AutoVersioningListener implements ResourceChangeListener, ExternalR
                     if (changed != null && page != null && CMSConstants.NT_PAGE.equals(page.getResourceType())
                             && !pages.contains(page.getPath())) {
                         log.debug("Evaluating the changes to {}", page.getPath());
-                        String user = changed.getValueMap().get(JcrConstants.JCR_LASTMODIFIED + "By", String.class);
+                        String user = changed.getValueMap().get(CMSConstants.PN_LAST_MODIFIED_BY, String.class);
                         if (pastLastModified(page)) {
                             log.debug("Page {} needs to be versioned", page.getPath());
                             versionPage(page, user);
@@ -163,7 +163,7 @@ public class AutoVersioningListener implements ResourceChangeListener, ExternalR
 
         if (mvm != null && node != null) {
             try {
-                mvm.put(JcrConstants.JCR_LASTMODIFIED + "By", user);
+                mvm.put(CMSConstants.PN_LAST_MODIFIED_BY, user);
                 mvm.put(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance());
                 node.addMixin(JcrConstants.MIX_VERSIONABLE);
                 page.getResourceResolver().commit();
