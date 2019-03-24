@@ -109,12 +109,7 @@ gulp.task('editor-js', function() {
     return gulp.src([
             './src/js/editor.js'
         ])
-        .pipe(uglify({
-            output: {
-                comments: saveLicense
-            }
-        }))
-         .pipe(concat('editor.min.js'))
+        .pipe(concat('editor.min.js'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/js'));
 });
 

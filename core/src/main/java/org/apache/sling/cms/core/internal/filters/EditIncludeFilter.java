@@ -19,6 +19,7 @@ package org.apache.sling.cms.core.internal.filters;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
+import java.util.Optional;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -28,7 +29,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -36,8 +36,6 @@ import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.Component;
 import org.apache.sling.cms.EditableResource;
 import org.apache.sling.cms.core.internal.models.EditableResourceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Filter for injecting the request attributes and markup to enable the Sling
@@ -46,8 +44,6 @@ import org.slf4j.LoggerFactory;
 @org.osgi.service.component.annotations.Component(service = { Filter.class }, property = {
         "sling.filter.scope=component" })
 public class EditIncludeFilter implements Filter {
-
-    private static final Logger log = LoggerFactory.getLogger(EditIncludeFilter.class);
 
     public static final String ENABLED_ATTR_NAME = "cmsEditEnabled";
 
@@ -59,93 +55,102 @@ public class EditIncludeFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        Resource resource = ((SlingHttpServletRequest) request).getResource();
         boolean enabled = "true".equals(request.getAttribute(ENABLED_ATTR_NAME));
-        String editPath = getEditPath(resource);
         PrintWriter writer = null;
+        boolean includeEnd = false;
 
-        if (enabled && StringUtils.isNotEmpty(editPath)) {
-            boolean last = false;
-            boolean first = false;
-            if (resource != null && resource.getParent() != null) {
-                Iterator<Resource> children = resource.getParent().listChildren();
-                if (!children.hasNext() || children.next().getPath().equals(resource.getPath())) {
-                    first = true;
-                }
-                if (children.hasNext()) {
-                    while (children.hasNext()) {
-                        if (children.next().getPath().equals(resource.getPath()) && !children.hasNext()) {
-                            last = true;
-                        }
-                    }
-                } else {
-                    last = true;
-                }
-            }
-            boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
-            writer = response.getWriter();
-            Component component = null;
-            EditableResource er = resource.adaptTo(EditableResource.class);
-            if (er != null) {
-                component = er.getComponent();
-            }
-            String componentTitle = "";
-            if (component != null) {
-                componentTitle = component.getTitle();
-            }
-            if (StringUtils.isEmpty(componentTitle)) {
-                String componentName = StringUtils.substringAfterLast(resource.getResourceType(), "/");
-                WordUtils.capitalizeFully(componentName.replace('-', ' '));
-            }
-            writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
-                    + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
-                    + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
-                    + "\" data-sling-cms-edit=\"" + editPath + "\"><div class=\"sling-cms-editor\">");
-            writer.write(
-                    "<div class=\"level has-background-grey\"><div class=\"level-left\"><div class=\"field has-addons\">");
+        if (enabled) {
 
-            writer.write(
-                    "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
-                            + resource.getPath() + "\" data-sling-cms-edit=\"" + editPath
-                            + "\" title=\"Edit Component\"><span class=\"jam jam-pencil-f\"></span></button></div>");
-            if (!first || !last) {
-                writer.write(
-                        "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"reorder\" data-sling-cms-path=\""
-                                + resource.getPath()
-                                + "\" title=\"Reorder Component\"><span class=\"jam jam-arrows-v\"></span></button></div>");
-            }
-            if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
-                writer.write(
-                        "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
-                                + resource.getPath()
-                                + "\" title=\"Delete Component\"><span class=\"jam jam-trash\"></span></button></div>");
-            }
+            String editPath = null;
+            Resource resource = ((SlingHttpServletRequest) request).getResource();
 
-            writer.write("</div></div>");
-            if (component != null) {
-                writer.write("<div class=\"level-right\"><div class=\"level-item has-text-light\">"
-                        + component.getTitle() + "</div></div>");
-            }
-            writer.write("</div></div>");
-        }
-        chain.doFilter(request, response);
-        if (enabled && StringUtils.isNotEmpty(editPath) && writer != null) {
-            writer.write("</div>");
-        }
-    }
-
-    private String getEditPath(Resource resource) {
-        log.trace("getEditPage resource={}", resource);
-        String editPath = null;
-        if (resource != null) {
-            EditableResource editResource = new EditableResourceImpl(resource);
-            Component component = editResource.getComponent();
+            EditableResource editableResource = new EditableResourceImpl(resource);
+            Component component = editableResource.getComponent();
             if (component != null && !component.isType(CMSConstants.COMPONENT_TYPE_PAGE)) {
                 editPath = component.getEditPath();
             }
 
+            writer = response.getWriter();
+
+            if (StringUtils.isNotEmpty(editPath)) {
+                includeEnd = true;
+                writeEditorMarkup(resource, writer);
+            } else if (component != null && !component.isEditable()) {
+                includeEnd = true;
+                EditableResource er = resource.adaptTo(EditableResource.class);
+                if (er != null) {
+                    component = er.getComponent();
+                }
+                writer = response.getWriter();
+                writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
+                        + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
+                        + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
+                        + "\">");
+            }
         }
-        return editPath;
+        chain.doFilter(request, response);
+        if (enabled && writer != null && includeEnd) {
+            writer.write("</div>");
+        }
+    }
+
+    private void writeEditorMarkup(Resource resource, PrintWriter writer) {
+
+        boolean last = false;
+        boolean first = false;
+        if (resource != null && resource.getParent() != null) {
+            Iterator<Resource> children = resource.getParent().listChildren();
+            if (!children.hasNext() || children.next().getPath().equals(resource.getPath())) {
+                first = true;
+            }
+            if (children.hasNext()) {
+                while (children.hasNext()) {
+                    if (children.next().getPath().equals(resource.getPath()) && !children.hasNext()) {
+                        last = true;
+                    }
+                }
+            } else {
+                last = true;
+            }
+        }
+        boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
+
+        Component component = null;
+        EditableResource er = resource.adaptTo(EditableResource.class);
+        if (er != null) {
+            component = er.getComponent();
+        }
+        String editPath = Optional.ofNullable(er).map(EditableResource::getEditPath).orElse("");
+        writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
+                + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
+                + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
+                + "\" data-sling-cms-edit=\"" + editPath + "\"><div class=\"sling-cms-editor\">");
+        writer.write(
+                "<div class=\"level has-background-grey\"><div class=\"level-left\"><div class=\"field has-addons\">");
+
+        writer.write(
+                "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
+                        + resource.getPath() + "\" data-sling-cms-edit=\"" + editPath
+                        + "\" title=\"Edit Component\"><span class=\"jam jam-pencil-f\"></span></button></div>");
+        if (!first || !last) {
+            writer.write(
+                    "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"reorder\" data-sling-cms-path=\""
+                            + resource.getPath()
+                            + "\" title=\"Reorder Component\"><span class=\"jam jam-arrows-v\"></span></button></div>");
+        }
+        if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
+            writer.write(
+                    "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
+                            + resource.getPath()
+                            + "\" title=\"Delete Component\"><span class=\"jam jam-trash\"></span></button></div>");
+        }
+
+        writer.write("</div></div>");
+        if (component != null) {
+            writer.write("<div class=\"level-right\"><div class=\"level-item has-text-light\">" + component.getTitle()
+                    + "</div></div>");
+        }
+        writer.write("</div></div>");
     }
 
     @Override

@@ -18,32 +18,32 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <c:choose>
-	<c:when test="${not empty requestScope.availableTypes}">
-		<c:set var="availableTypes" value="${requestScope.availableTypes}" />
-	</c:when>
-	<c:when test="${empty requestScope.availableTypes}">
-		<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
-		<c:set var="availableTypes" value="${fn:join(pageMgr.page.template.availableComponentTypes,',')}" />
-	</c:when>
+    <c:when test="${not empty requestScope.availableTypes}">
+        <c:set var="availableTypes" value="${requestScope.availableTypes}" />
+    </c:when>
+    <c:when test="${empty requestScope.availableTypes}">
+        <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
+        <c:set var="availableTypes" value="${fn:join(pageMgr.page.template.availableComponentTypes,',')}" />
+    </c:when>
 </c:choose>
 <c:forEach var="child" items="${sling:listChildren(resource)}">
-	<sling:include resource="${child}" />
+    <sling:include resource="${child}" />
 </c:forEach>
 <c:if test="${cmsEditEnabled == 'true'}">
-	<div class="sling-cms-editor">
-		<div class="level has-background-grey">
-			<div class="level-left">
-				<div class="level-item">
-					<button class="button" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="Add Component">
-						&#43;
-					</button>
-				</div>
-			</div>
-			<div class="level-right">
-				<div class="level-item">
-					Add Components
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="sling-cms-editor">
+        <div class="level has-background-grey">
+            <div class="level-left">
+                <div class="level-item">
+                    <button class="button" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="Add Component">
+                        &#43;
+                    </button>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    Add Components
+                </div>
+            </div>
+        </div>
+    </div>
 </c:if>

@@ -85,6 +85,7 @@
                         component = document.querySelector('.sling-cms-component[data-sling-cms-resource-path="' + path + '"]');
                     }
                     if(!component){
+                        CMSEditor.ui.hideModal();
                         window.top.location.reload();
                     }
                     var request = new XMLHttpRequest();
@@ -99,6 +100,7 @@
                             CMSEditor.ui.hideModal();
                             cb();
                         } else {
+                            CMSEditor.ui.hideModal();
                             window.top.location.reload();
                         }
                     };

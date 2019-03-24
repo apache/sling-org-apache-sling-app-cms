@@ -51,6 +51,7 @@ Sling.CMS = {
             $('body').append($modal);
             $modal.addClass('is-active');
             $modal.find('.modal-close,.close-modal,.modal-background').click(function(){
+                $('.model').remove();
                 complete();
             });
             $modal.find('.delete,.close-modal').focus();
@@ -148,7 +149,7 @@ if (window.performance && window.performance.navigation.type == window.performan
 }
 
 window.onbeforeunload = function() {
-    if (document.querySelector('.modal')) {
+    if (document.querySelector('.modal form')) {
         return "Are you sure you want to leave this page?";
     }
 }

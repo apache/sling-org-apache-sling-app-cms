@@ -23,6 +23,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.Component;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 
@@ -36,6 +37,11 @@ public class ComponentImpl implements Component {
     @Optional
     @Named("componentType")
     private String[] componentType;
+
+    @Inject
+    @Optional
+    @Default(booleanValues = true)
+    private boolean editable;
 
     private Resource resource;
 
@@ -143,6 +149,11 @@ public class ComponentImpl implements Component {
         int result = 1;
         result = prime * result + resource.getPath().hashCode();
         return result;
+    }
+
+    @Override
+    public boolean isEditable() {
+        return editable;
     }
 
     /**
