@@ -1,0 +1,61 @@
+{
+    "jcr:primaryType": "oak:QueryIndexDefinition",
+    "compatVersion": 2,
+    "type": "lucene",
+    "async": "async",
+    "evaluatePathRestrictions": true,
+    "reindex": false,
+    "reindexCount": 1,
+    "excludedPaths": [
+        "/var",
+        "/jcr:system"
+    ],
+    "aggregates": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:Asset": {
+            "jcr:primaryType": "nt:unstructured",
+            "include0": {
+                "jcr:primaryType": "nt:unstructured",
+                "path": "jcr:content"
+            },
+            "include1": {
+                "jcr:primaryType": "nt:unstructured",
+                "path": "jcr:content/metadata"
+            }
+        }
+    },
+    "indexRules": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:File": {
+            "jcr:primaryType": "nt:unstructured",
+            "properties": {
+                "jcr:primaryType": "nt:unstructured",
+                "slingTaxonomy": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "nodeScopeIndex": true,
+                    "useInSuggest": true,
+                    "propertyIndex": true,
+                    "useInSpellcheck": true,
+                    "name": "jcr:content/sling:taxonomy"
+                },
+                "jcrTitle": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "nodeScopeIndex": true,
+                    "useInSuggest": true,
+                    "propertyIndex": true,
+                    "useInSpellcheck": true,
+                    "name": "jcr:content/jcr:title",
+                    "boost": 2
+                },
+                "jcrDescription": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "nodeScopeIndex": true,
+                    "useInSuggest": true,
+                    "propertyIndex": true,
+                    "useInSpellcheck": true,
+                    "name": "jcr:content/jcr:description"
+                }
+            }
+        }
+    }
+}

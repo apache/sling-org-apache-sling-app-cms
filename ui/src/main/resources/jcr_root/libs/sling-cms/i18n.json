@@ -10,6 +10,21 @@
         ],
         "jcr:language": "en",
         "sling:resourceType": "sling-cms/components/cms/blank",
+        "slingcms-download": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Download",
+            "sling:key": "slingcms.download"
+        },
+        "slingcms-edit": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Edit",
+            "sling:key": "slingcms.edit"
+        },
+        "slingcms-findcontent": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Find Content",
+            "sling:key": "slingcms.findcontent"
+        },
         "slingcms-finished": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Finished",
@@ -80,6 +95,11 @@
             "sling:message": "Job Properties",
             "sling:key": "slingcms.jobs.properties"
         },
+        "slingcms-recentcontent": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Recent Content",
+            "sling:key": "slingcms.recentcontent"
+        },
         "slingcms-jobs-remove": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Remove Job",
@@ -89,6 +109,11 @@
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Result Message",
             "sling:key": "slingcms.jobs.resultmessage"
+        },
+        "slingcms-noresults": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "No Results Found",
+            "sling:key": "slingcms.noresults"
         },
         "slingcms-optimizefiles-title":{
             "jcr:primaryType": "sling:MessageEntry",
@@ -139,6 +164,11 @@
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "State",
             "sling:key": "slingcms.state"
+        },
+        "slingcms-view": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "View",
+            "sling:key": "slingcms.view"
         }
     }
 }
