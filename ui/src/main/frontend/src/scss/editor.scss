@@ -16,9 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+@import 'fonts';
 .sling-cms-editor {
-    @import 'fonts';
     @import 'overrides';
     @import "../../node_modules/bulma/sass/utilities/_all.sass";
     @import "../../node_modules/bulma/sass/base/_all.sass";
@@ -28,6 +27,10 @@
     @import "../../node_modules/bulma/sass/elements/icon.sass";
     @import "../../node_modules/bulma/sass/components/level.sass";
     @import "../../node_modules/bulma/sass/components/modal.sass";
+    font-family: "Open Sans",sans-serif;
+    * {
+        box-sizing: border-box;
+    }
     .is-draggable {
         position: relative;
     }
