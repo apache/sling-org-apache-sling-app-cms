@@ -17,17 +17,14 @@
 package org.apache.sling.cms.reference.impl;
 
 import java.util.Collections;
-import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.cms.reference.SearchService;
 import org.apache.sling.cms.reference.impl.SearchServiceImpl.Config;
-import org.apache.sling.jcr.resource.JcrResourceConstants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
