@@ -33,6 +33,7 @@ public class SiteManagerImpl implements SiteManager {
         site = SiteImpl.getSite(containingResource);
     }
 
+    @Override
     public Site getSite() {
         return site;
     }

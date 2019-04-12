@@ -36,6 +36,7 @@ public class ReferencesImpl extends ReferenceOperation implements References {
         super(resource);
     }
 
+    @Override
     public List<Reference> getReferences() {
         init();
         return referenceList;

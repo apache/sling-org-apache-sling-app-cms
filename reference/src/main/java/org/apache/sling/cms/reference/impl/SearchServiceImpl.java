@@ -16,15 +16,18 @@
  */
 package org.apache.sling.cms.reference.impl;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.cms.reference.SearchService;
 import org.apache.sling.cms.reference.impl.SearchServiceImpl.Config;
+import org.apache.sling.jcr.resource.JcrResourceConstants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -41,54 +44,49 @@ import org.slf4j.LoggerFactory;
 @Designate(ocd = Config.class)
 public class SearchServiceImpl implements SearchService {
 
-	private static final Logger log = LoggerFactory.getLogger(SearchServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(SearchServiceImpl.class);
 
-	@Reference
-	private ResourceResolverFactory factory;
+    @Reference
+    private ResourceResolverFactory factory;
 
-	private Config config;
+    private Config config;
 
-	@ObjectClassDefinition(name = "%cms.reference.search.name", description = "%cms.reference.search.description", localization = "OSGI-INF/l10n/bundle")
-	public @interface Config {
+    @ObjectClassDefinition(name = "%cms.reference.search.name", description = "%cms.reference.search.description", localization = "OSGI-INF/l10n/bundle")
+    public @interface Config {
 
-		@AttributeDefinition(name = "%searchServiceUsername.name", description = "%searchServiceUsername.description")
-		String searchServiceUsername();
-	}
+        @AttributeDefinition(name = "%searchServiceUsername.name", description = "%searchServiceUsername.description")
+        String searchServiceUsername();
+    }
 
-	@Activate
-	public void init(Config config) {
-		this.config = config;
-	}
+    @Activate
+    public void init(Config config) {
+        this.config = config;
+    }
 
-	@Override
-	public ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
-		if (config != null && StringUtils.isNotBlank(config.searchServiceUsername())) {
-			try {
-				log.debug("Retrieving Service User {}", config.searchServiceUsername());
-				return factory.getServiceResourceResolver(new HashMap<String, Object>() {
-					private static final long serialVersionUID = 1L;
+    @Override
+    public ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
+        if (config != null && StringUtils.isNotBlank(config.searchServiceUsername())) {
+            try {
+                log.debug("Retrieving Service User {}", config.searchServiceUsername());
+                return factory.getServiceResourceResolver(Collections.singletonMap(ResourceResolverFactory.SUBSERVICE,
+                        (Object) config.searchServiceUsername()));
+            } catch (LoginException e) {
+                log.warn("Failed to retrieve Service User {}, falling back to request user",
+                        config.searchServiceUsername(), e);
+                return request.getResourceResolver();
+            }
+        } else {
+            log.debug("Using request user");
+            return request.getResourceResolver();
+        }
+    }
 
-					{
-						put(ResourceResolverFactory.SUBSERVICE, config.searchServiceUsername());
-					}
-				});
-			} catch (LoginException e) {
-				log.warn("Failed to retrieve Service User {}, falling back to request user",
-						config.searchServiceUsername());
-				return request.getResourceResolver();
-			}
-		} else {
-			log.debug("Using request user");
-			return request.getResourceResolver();
-		}
-	}
-
-	@Override
-	public void closeResolver(ResourceResolver resolver) {
-		if (resolver != null && resolver.isLive() && StringUtils.isNotBlank(config.searchServiceUsername())
-				&& config.searchServiceUsername().equals(resolver.getUserID())) {
-			resolver.close();
-		}
-	}
+    @Override
+    public void closeResolver(ResourceResolver resolver) {
+        if (resolver != null && resolver.isLive() && StringUtils.isNotBlank(config.searchServiceUsername())
+                && config.searchServiceUsername().equals(resolver.getUserID())) {
+            resolver.close();
+        }
+    }
 
 }

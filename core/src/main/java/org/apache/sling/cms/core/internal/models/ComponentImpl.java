@@ -101,6 +101,7 @@ public class ComponentImpl implements Component {
     /**
      * @return the componentType
      */
+    @Override
     public String[] getComponentType() {
         return componentType;
     }
@@ -110,6 +111,7 @@ public class ComponentImpl implements Component {
      * 
      * @return the editor path or null
      */
+    @Override
     public String getEditPath() {
         Resource editResource = getEditResource();
         return editResource != null ? editResource.getPath() : null;
@@ -120,6 +122,7 @@ public class ComponentImpl implements Component {
      * 
      * @return the editor resource or null
      */
+    @Override
     public Resource getEditResource() {
         return getComponentEditPath(resource);
     }
@@ -127,6 +130,7 @@ public class ComponentImpl implements Component {
     /**
      * @return the resource
      */
+    @Override
     public Resource getResource() {
         return resource;
     }
@@ -134,6 +138,7 @@ public class ComponentImpl implements Component {
     /**
      * @return the title
      */
+    @Override
     public String getTitle() {
         return title;
     }
@@ -163,6 +168,7 @@ public class ComponentImpl implements Component {
      * @param type the type of the resource to check
      * @return true if the resource is of the specified type
      */
+    @Override
     public boolean isType(String type) {
         boolean isType = false;
         if (this.getComponentType() != null && ArrayUtils.contains(this.getComponentType(), type)) {

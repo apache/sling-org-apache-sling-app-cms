@@ -69,6 +69,7 @@ public class HTML5Serializer implements Serializer {
         this.resolver = resolver;
     }
 
+    @Override
     public void characters(char[] buffer, int offset, int length) throws SAXException {
         if (length == 0) {
             writer.flush();
@@ -82,10 +83,12 @@ public class HTML5Serializer implements Serializer {
         // Nothing required
     }
 
+    @Override
     public void endDocument() throws SAXException {
         writer.flush();
     }
 
+    @Override
     public void endElement(String uri, String localName, String name) throws SAXException {
         if (!emptyTags.contains(localName)) {
             writer.write("</");
@@ -94,10 +97,12 @@ public class HTML5Serializer implements Serializer {
         }
     }
 
+    @Override
     public void endPrefixMapping(String s) throws SAXException {
         // Nothing required
     }
 
+    @Override
     public void ignorableWhitespace(char[] ac, int i, int j) throws SAXException {
         // Nothing required
     }
@@ -112,22 +117,27 @@ public class HTML5Serializer implements Serializer {
         }
     }
 
+    @Override
     public void processingInstruction(String s, String s1) throws SAXException {
         // Nothing required
     }
 
+    @Override
     public void setDocumentLocator(Locator locator1) {
         // Nothing required
     }
 
+    @Override
     public void skippedEntity(String s) throws SAXException {
         // Nothing required
     }
 
+    @Override
     public void startDocument() throws SAXException {
         writer.println(rewriteConfig.getValueMap().get("doctype", String.class));
     }
 
+    @Override
     public void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {
         boolean endSlash = false;
         writer.write(CHAR_LT);
@@ -166,6 +176,7 @@ public class HTML5Serializer implements Serializer {
         writer.write(CHAR_GT);
     }
 
+    @Override
     public void startPrefixMapping(String s, String s1) throws SAXException {
         // Nothing required
     }

@@ -164,6 +164,7 @@ public class ReadabilityServiceImpl implements ReadabilityService {
         return word;
     }
 
+    @Override
     public Text extractSentences(String input) {
         BreakIterator breakIterator = BreakIterator.getSentenceInstance(locale);
         breakIterator.setText(input);

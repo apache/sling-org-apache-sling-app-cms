@@ -38,6 +38,7 @@ public class ReadabilityServiceFactoryImpl implements ReadabilityServiceFactory 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE)
     private List<ReadabilityService> services;
 
+    @Override
     public ReadabilityService getReadabilityService(Locale locale) {
         log.debug("Locating readability service for {}", locale);
         return services.stream().filter(svc -> locale.equals(svc.getLocale())).findFirst().orElse(services.stream()

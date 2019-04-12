@@ -68,6 +68,7 @@ public class PageTemplateImpl implements PageTemplate {
     /**
      * @return the allowedPaths
      */
+    @Override
     public String[] getAllowedPaths() {
         if (allowedPaths == null) {
             return new String[0];
@@ -78,6 +79,7 @@ public class PageTemplateImpl implements PageTemplate {
     /**
      * @return the availableComponentTypes
      */
+    @Override
     public String[] getAvailableComponentTypes() {
         return availableComponentTypes;
     }
@@ -85,6 +87,7 @@ public class PageTemplateImpl implements PageTemplate {
     /**
      * @return the componentConfigs
      */
+    @Override
     public Map<String, Resource> getComponentConfigs() {
         Map<String, Resource> configs = new HashMap<>();
         if (componentConfigurations != null) {
@@ -105,6 +108,7 @@ public class PageTemplateImpl implements PageTemplate {
     /**
      * @return the resource
      */
+    @Override
     public Resource getResource() {
         return resource;
     }
@@ -112,6 +116,7 @@ public class PageTemplateImpl implements PageTemplate {
     /**
      * @return the template
      */
+    @Override
     public String getTemplate() {
         return template;
     }
@@ -119,6 +124,7 @@ public class PageTemplateImpl implements PageTemplate {
     /**
      * @return the title
      */
+    @Override
     public String getTitle() {
         return title;
     }

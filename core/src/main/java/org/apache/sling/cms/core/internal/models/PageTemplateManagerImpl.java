@@ -57,6 +57,7 @@ public class PageTemplateManagerImpl implements PageTemplateManager {
                 configurationResourceResolver.getResourceCollection(resource, "site", "templates"), PageTemplate.class);
     }
 
+    @Override
     public List<PageTemplate> getAvailableTemplates() {
         String path = resource.getPath();
         List<PageTemplate> availableTemplates = new ArrayList<>();

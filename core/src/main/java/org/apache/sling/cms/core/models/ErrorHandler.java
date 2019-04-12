@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms.core.models;
 
+import java.util.Collections;
 import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
@@ -162,12 +163,9 @@ public class ErrorHandler {
             log.debug("Validating the resource does not exist for all users");
             ResourceResolver adminResolver = null;
             try {
-                adminResolver = factory.getServiceResourceResolver(new HashMap<String, Object>() {
-                    private static final long serialVersionUID = 1L;
-                    {
-                        put(ResourceResolverFactory.SUBSERVICE, SERVICE_USER_NAME);
-                    }
-                });
+
+                adminResolver = factory.getServiceResourceResolver(
+                        Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, SERVICE_USER_NAME));
                 Resource pResource = adminResolver.resolve(slingRequest, slingRequest.getResource().getPath());
                 if (!CMSUtils.isPublished(pResource) || pResource.isResourceType(Resource.RESOURCE_TYPE_NON_EXISTING)) {
                     errorCode = HttpServletResponse.SC_NOT_FOUND;
@@ -221,7 +219,7 @@ public class ErrorHandler {
 
         if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
             log.warn("Handing exception of type {}", errorCode,
-                    (Throwable) slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
+                    slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
         }
 
         calculateErrorCode(resolver);

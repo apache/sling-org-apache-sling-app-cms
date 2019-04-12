@@ -64,6 +64,7 @@ public class Reference {
         return null;
     }
 
+    @Override
     public String toString() {
         return resource.getPath() + "@" + property;
     }

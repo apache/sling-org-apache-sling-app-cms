@@ -105,10 +105,12 @@ public class SiteImpl implements Site {
         return true;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public Locale getLocale() {
         String[] segments = locale.split("_");
         if (segments.length == 3) {
@@ -119,34 +121,31 @@ public class SiteImpl implements Site {
         return new Locale(segments[0]);
     }
 
+    @Override
     public String getLocaleString() {
         return locale;
     }
 
+    @Override
     public String getPath() {
         return resource.getPath();
     }
 
+    @Override
     public Resource getResource() {
         return resource;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
-    /**
-     * @return the url
-     */
+    @Override
     public String getUrl() {
         return url;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -155,11 +154,6 @@ public class SiteImpl implements Site {
         return result;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
         return "Site [description=" + description + ", locale=" + locale + ", resource=" + resource + ", title=" + title

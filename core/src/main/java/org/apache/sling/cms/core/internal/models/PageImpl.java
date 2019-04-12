@@ -107,18 +107,22 @@ public class PageImpl implements Page {
         this.resource = resource;
     }
 
+    @Override
     public Resource getContentResource() {
         return contentResource;
     }
 
+    @Override
     public Calendar getCreated() {
         return created;
     }
 
+    @Override
     public String getCreatedBy() {
         return createdBy;
     }
 
+    @Override
     public String[] getKeywords() {
         List<String> keywords = new ArrayList<>();
         if (taxonomy != null) {
@@ -132,30 +136,37 @@ public class PageImpl implements Page {
         return keywords.toArray(new String[keywords.size()]);
     }
 
+    @Override
     public Calendar getLastModified() {
         return lastModified != null ? lastModified : created;
     }
 
+    @Override
     public String getLastModifiedBy() {
         return lastModifiedBy != null ? lastModifiedBy : createdBy;
     }
 
+    @Override
     public String getName() {
         return resource.getName();
     }
 
+    @Override
     public Resource getParent() {
         return resource.getParent();
     }
 
+    @Override
     public String getPath() {
         return resource.getPath();
     }
 
+    @Override
     public ValueMap getProperties() {
         return getContentResource().getValueMap();
     }
 
+    @Override
     public String getPublishedPath() {
         Site site = getSite();
         if (site != null) {
@@ -165,6 +176,7 @@ public class PageImpl implements Page {
         }
     }
 
+    @Override
     public String getPublishedUrl() {
         Site site = getSite();
         if (site != null) {
@@ -174,10 +186,12 @@ public class PageImpl implements Page {
         }
     }
 
+    @Override
     public Resource getResource() {
         return resource;
     }
 
+    @Override
     public Site getSite() { 
         SiteManager siteMgr = resource.adaptTo(SiteManager.class);
         Site site = null;
@@ -187,6 +201,7 @@ public class PageImpl implements Page {
         return site;
     }
 
+    @Override
     public PageTemplate getTemplate() {
         Resource templateResource = this.resource.getResourceResolver().getResource(template);
         if (templateResource != null) {
@@ -196,10 +211,12 @@ public class PageImpl implements Page {
         }
     }
 
+    @Override
     public String getTemplatePath() {
         return this.template;
     }
 
+    @Override
     public String getTitle() {
         if (StringUtils.isNotEmpty(title)) {
             return title;
@@ -208,6 +225,7 @@ public class PageImpl implements Page {
         }
     }
 
+    @Override
     public boolean isPublished() {
         return published;
     }

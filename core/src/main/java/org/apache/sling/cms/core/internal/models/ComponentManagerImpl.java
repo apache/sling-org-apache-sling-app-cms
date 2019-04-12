@@ -56,6 +56,7 @@ public class ComponentManagerImpl implements ComponentManager {
      * 
      * @return a list of the components
      */
+    @Override
     public List<Component> getAllComponents() {
         Set<Component> allComponents = new HashSet<>();
         if (componentCache == null) {
@@ -74,6 +75,7 @@ public class ComponentManagerImpl implements ComponentManager {
      * 
      * @return the components organized by componentType
      */
+    @Override
     public Map<String, List<Component>> getComponentsByType() {
         if (componentCache == null) {
             loadComponents();
@@ -86,6 +88,7 @@ public class ComponentManagerImpl implements ComponentManager {
      * 
      * @return the list of component types
      */
+    @Override
     public List<String> getComponentTypes() {
         if (componentCache == null) {
             loadComponents();

@@ -49,7 +49,8 @@ public class CheckpointOperation implements PostOperation {
 
 	private static final Logger log = LoggerFactory.getLogger(CheckpointOperation.class);
 
-	public void run(final SlingHttpServletRequest request, final PostResponse response,
+	@Override
+    public void run(final SlingHttpServletRequest request, final PostResponse response,
 			final SlingPostProcessor[] processors) {
 
 		try {

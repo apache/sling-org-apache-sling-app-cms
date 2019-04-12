@@ -17,6 +17,7 @@
 package org.apache.sling.cms.core.usergenerated.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,12 +70,8 @@ public class ApproveUGCOperation implements PostOperation {
                     .valueOf(request.getResource().getValueMap().get("approveaction", String.class));
             if (action == APPROVE_ACTION.MOVE) {
                 ResourceUtil.getOrCreateResource(request.getResourceResolver(), targetPath,
-                        new HashMap<String, Object>() {
-                            private static final long serialVersionUID = 1L;
-                            {
-                                put(JcrConstants.JCR_PRIMARYTYPE, JcrResourceConstants.NT_SLING_FOLDER);
-                            }
-                        }, JcrResourceConstants.NT_SLING_FOLDER, false);
+                        Collections.singletonMap(JcrConstants.JCR_PRIMARYTYPE, JcrResourceConstants.NT_SLING_FOLDER),
+                        JcrResourceConstants.NT_SLING_FOLDER, false);
                 for (Resource resource : request.getResource().getChildren()) {
                     log.debug("Moving {} to {}", resource.getPath(), targetPath);
                     changes.add(Modification.onMoved(resource.getPath(), targetPath));

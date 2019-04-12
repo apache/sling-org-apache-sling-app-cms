@@ -33,6 +33,7 @@ public class EditableResourceImpl implements EditableResource {
         this.resource = resource;
     }
 
+    @Override
     public Component getComponent() {
         if (getComponentResource() != null) {
             return getComponentResource().adaptTo(Component.class);
@@ -45,6 +46,7 @@ public class EditableResourceImpl implements EditableResource {
      * 
      * @return the component for the specified resource
      */
+    @Override
     public Resource getComponentResource() {
         String resourceType = resource.getResourceType();
         return resource.getResourceResolver().getResource(resourceType);
@@ -55,6 +57,7 @@ public class EditableResourceImpl implements EditableResource {
      * 
      * @return the editor path or null
      */
+    @Override
     public String getEditPath() {
         if (getComponent() != null) {
             return getComponent().getEditPath();
@@ -67,6 +70,7 @@ public class EditableResourceImpl implements EditableResource {
      * 
      * @return the editor resource or null
      */
+    @Override
     public Resource getEditResource() {
         if (getComponent() != null) {
             return getComponent().getEditResource();
@@ -79,6 +83,7 @@ public class EditableResourceImpl implements EditableResource {
      * 
      * @return the current resource
      */
+    @Override
     public Resource getResource() {
         return resource;
     }
