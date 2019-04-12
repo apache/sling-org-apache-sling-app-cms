@@ -54,8 +54,6 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Charsets;
-
 @Component(service = InsightProvider.class)
 @Designate(ocd = Config.class)
 public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
@@ -151,7 +149,7 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
             }
             insight.setScore(score);
             insight.setMoreDetailsLink("https://validator.w3.org/nu/?doc="
-                    + URLEncoder.encode(pageRequest.getPage().getPublishedUrl(), Charsets.UTF_8.toString()));
+                    + URLEncoder.encode(pageRequest.getPage().getPublishedUrl(), StandardCharsets.UTF_8.toString()));
         } finally {
             if (reader != null) {
                 reader.close();

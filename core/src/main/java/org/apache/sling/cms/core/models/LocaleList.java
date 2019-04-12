@@ -19,7 +19,6 @@ package org.apache.sling.cms.core.models;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,11 +38,7 @@ public class LocaleList {
         for (Locale locale : SimpleDateFormat.getAvailableLocales()) {
             locales.add(locale);
         }
-        Collections.sort(locales, new Comparator<Locale>() {
-            public int compare(Locale o1, Locale o2) {
-                return o1.toString().compareTo(o2.toString());
-            }
-        });
+        Collections.sort(locales, (o1,o2) ->  o1.toString().compareTo(o2.toString()));
         return locales;
     }
 

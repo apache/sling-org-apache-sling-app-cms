@@ -84,11 +84,8 @@ public class CurrentUserImpl implements CurrentUser {
 
     @Override
     public boolean isMember(String groupName) {
-        if (CMSConstants.USER_ADMIN.equals(getId()) || getGroups().contains(CMSConstants.GROUP_ADMINISTRATORS)
-                || getGroups().contains(groupName)) {
-            return true;
-        }
-        return false;
+        return CMSConstants.USER_ADMIN.equals(getId()) || getGroups().contains(CMSConstants.GROUP_ADMINISTRATORS)
+                || getGroups().contains(groupName);
     }
 
 }

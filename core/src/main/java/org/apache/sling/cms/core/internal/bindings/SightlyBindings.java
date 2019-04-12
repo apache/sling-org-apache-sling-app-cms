@@ -22,18 +22,13 @@ import org.osgi.service.component.annotations.Component;
 
 import javax.script.Bindings;
 
-@Component(
-        property = {"javax.script.name=sightly"}
-)
+@Component(property = { "javax.script.name=sightly" })
 public class SightlyBindings implements BindingsValuesProvider {
-    public SightlyBindings(){
-
-    }
 
     @Override
     public void addBindings(Bindings bindings) {
-        if (!bindings.containsKey("isEditor") && bindings.containsKey("request")){
-            SlingHttpServletRequest request = ((SlingHttpServletRequest)bindings.get("request"));
+        if (!bindings.containsKey("isEditor") && bindings.containsKey("request")) {
+            SlingHttpServletRequest request = ((SlingHttpServletRequest) bindings.get("request"));
             Object cmsEditEnabled = request.getAttribute("cmsEditEnabled");
             bindings.put("isEditor", cmsEditEnabled);
         }

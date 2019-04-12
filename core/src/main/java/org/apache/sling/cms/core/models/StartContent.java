@@ -103,26 +103,27 @@ public class StartContent {
 
     private Stream<Row> get10Related(ResourceResolver resolver, String type, String term) {
         Session session = resolver.adaptTo(Session.class);
-        Stream<Row> stream = new ArrayList<Row>().stream();
-        try {
-            Query query = session.getWorkspace().getQueryManager().createQuery("SELECT * FROM [" + type
-                    + "] AS s WHERE ISDESCENDANTNODE([/content]) AND CONTAINS(s.*,'" + term.replace("'", "''") + "')",
-                    Query.JCR_SQL2);
-
-            QueryResult result = query.execute();
-            @SuppressWarnings("unchecked")
-            Iterable<Row> iterable = () -> {
-                try {
-                    return result.getRows();
-                } catch (RepositoryException e) {
-                    log.warn("Failed to get iterator", e);
-                }
-                return null;
-            };
-            stream = StreamSupport.stream(iterable.spliterator(), false).limit(10);
-        } catch (RepositoryException e) {
-            log.warn("Exception searching for related content", e);
+        if (session != null) {
+            try {
+                Query query = session.getWorkspace().getQueryManager()
+                        .createQuery("SELECT * FROM [" + type
+                                + "] AS s WHERE ISDESCENDANTNODE([/content]) AND CONTAINS(s.*,'"
+                                + term.replace("'", "''") + "')", Query.JCR_SQL2);
+                QueryResult result = query.execute();
+                @SuppressWarnings("unchecked")
+                Iterable<Row> iterable = () -> {
+                    try {
+                        return result.getRows();
+                    } catch (RepositoryException e) {
+                        log.warn("Failed to get iterator", e);
+                    }
+                    return null;
+                };
+                return StreamSupport.stream(iterable.spliterator(), false).limit(10);
+            } catch (RepositoryException e) {
+                log.warn("Exception searching for related content", e);
+            }
         }
-        return stream;
+        return new ArrayList<Row>().stream();
     }
 }

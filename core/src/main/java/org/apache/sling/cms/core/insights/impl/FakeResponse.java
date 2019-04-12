@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
@@ -151,7 +153,7 @@ public class FakeResponse implements HttpServletResponse {
     @Override
     public PrintWriter getWriter() throws IOException {
         if (printWriter == null) {
-            java.io.Writer osWriter = new OutputStreamWriter(getOutputStream(), "UTF-8");
+            Writer osWriter = new OutputStreamWriter(getOutputStream(), StandardCharsets.UTF_8);
             printWriter = new PrintWriter(osWriter, true);
         }
         return printWriter;

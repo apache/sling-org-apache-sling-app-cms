@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 public class InternalCMSJobManager {
 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE)
-    private volatile List<ConfigurableJobExecutor> jobs;
+    private List<ConfigurableJobExecutor> jobs;
 
     public List<ConfigurableJobExecutor> getJobs() {
         return jobs;

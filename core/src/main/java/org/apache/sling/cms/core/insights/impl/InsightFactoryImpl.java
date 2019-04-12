@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 public class InsightFactoryImpl implements InsightFactory {
 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE)
-    private volatile List<InsightProvider> providers;
+    private List<InsightProvider> providers;
 
     @Reference
     private SlingRequestProcessor requestProcessor;
