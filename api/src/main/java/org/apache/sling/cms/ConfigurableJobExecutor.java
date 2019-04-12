@@ -79,6 +79,7 @@ public abstract class ConfigurableJobExecutor implements JobExecutor {
      */
     public abstract String getTopic();
 
+    @Override
     @SuppressWarnings("deprecation")
     public final JobExecutionResult process(Job job, JobExecutionContext context) {
         ResourceResolver resolver = null;

@@ -249,7 +249,7 @@ public class FakeRequest implements HttpServletRequest {
     }
 
     public String getServletPath() {
-        return path;
+        return this.getRequestURI();
     }
 
     public HttpSession getSession() {

@@ -36,7 +36,7 @@ public class ReadabilityServiceFactoryImpl implements ReadabilityServiceFactory 
     private static final Logger log = LoggerFactory.getLogger(ReadabilityServiceFactoryImpl.class);
 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE)
-    private volatile List<ReadabilityService> services;
+    private List<ReadabilityService> services;
 
     public ReadabilityService getReadabilityService(Locale locale) {
         log.debug("Locating readability service for {}", locale);

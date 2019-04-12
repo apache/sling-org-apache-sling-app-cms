@@ -23,6 +23,7 @@ import java.net.URLEncoder;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -90,6 +91,7 @@ public class PageSpeedInsightProvider extends BaseInsightProvider {
         HttpGet httpGet = new HttpGet(checkUrl);
 
         CloseableHttpResponse response = null;
+        JsonReader reader = null;
         try (CloseableHttpClient client = HttpClients.createDefault()) {
 
             I18NDictionary dictionary = i18nProvider.getDictionary(request.getResource().getResourceResolver());
@@ -97,9 +99,10 @@ public class PageSpeedInsightProvider extends BaseInsightProvider {
             log.debug("Requesting page speed via: {}", checkUrl);
             response = client.execute(httpGet);
             HttpEntity entity = response.getEntity();
-            JsonObject resp = Json.createReader(new StringReader(EntityUtils.toString(entity))).readObject();
+            reader = Json.createReader(new StringReader(EntityUtils.toString(entity)));
+            JsonObject resp = reader.readObject();
 
-            log.debug("Retrieved response: {}", resp.toString());
+            log.debug("Retrieved response: {}", resp);
 
             insight.setScored(true);
             double score = resp.getJsonObject("ruleGroups").getJsonObject("SPEED").getJsonNumber("score").doubleValue()
@@ -118,6 +121,10 @@ public class PageSpeedInsightProvider extends BaseInsightProvider {
 
             log.debug("Response parsed successfully");
 
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
         return insight;
     }

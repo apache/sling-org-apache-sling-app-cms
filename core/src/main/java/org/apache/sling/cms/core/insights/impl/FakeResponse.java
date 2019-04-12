@@ -69,53 +69,72 @@ public class FakeResponse implements HttpServletResponse {
         };
     }
 
+    @Override
     public void addCookie(Cookie cookie1) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void addDateHeader(String s, long l) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void addHeader(String s, String s1) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void addIntHeader(String s, int i) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public boolean containsHeader(String name) {
         return false;
     }
 
+    @Override
     public String encodeRedirectUrl(String url) {
         return null;
     }
 
+    @Override
     public String encodeRedirectURL(String url) {
         return null;
     }
 
+    @Override
     public String encodeUrl(String url) {
         return null;
     }
 
+    @Override
     public String encodeURL(String url) {
         return null;
     }
 
+    @Override
     public void flushBuffer() throws IOException {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public int getBufferSize() {
         return 0;
     }
 
+    @Override
     public String getCharacterEncoding() {
         return charset;
     }
 
+    @Override
     public String getContentType() {
         return contentType;
     }
 
+    @Override
     public Locale getLocale() {
         return null;
     }
@@ -124,10 +143,12 @@ public class FakeResponse implements HttpServletResponse {
         return new String(md.digest());
     }
 
+    @Override
     public ServletOutputStream getOutputStream() throws IOException {
         return outputStream;
     }
 
+    @Override
     public PrintWriter getWriter() throws IOException {
         if (printWriter == null) {
             java.io.Writer osWriter = new OutputStreamWriter(getOutputStream(), "UTF-8");
@@ -136,54 +157,83 @@ public class FakeResponse implements HttpServletResponse {
         return printWriter;
     }
 
+    @Override
     public boolean isCommitted() {
         return false;
     }
 
+    @Override
     public void reset() {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void resetBuffer() {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void sendError(int i) throws IOException {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void sendError(int i, String s) throws IOException {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void sendRedirect(String s) throws IOException {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setBufferSize(int i) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setCharacterEncoding(String charset) {
         this.charset = charset;
     }
 
+    @Override
     public void setContentLength(int i) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setContentType(String type) {
         contentType = type;
     }
 
+    @Override
     public void setDateHeader(String s, long l) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setHeader(String s, String s1) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setIntHeader(String s, int i) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setLocale(Locale locale) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setStatus(int i) {
+        throw new UnsupportedOperationException();
     }
 
+    @Override
     public void setStatus(int i, String s) {
+        throw new UnsupportedOperationException();
     }
 }

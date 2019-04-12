@@ -27,6 +27,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.sling.api.SlingException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
@@ -65,7 +66,9 @@ public class BulkReplaceOperation implements PostOperation {
 
             // perform the bulk replacement
             Pattern updateProperties = Pattern.compile(request.getParameter(PN_UPDATE_PROPERTIES));
-            log.debug("Updating properties matching: {}", updateProperties.pattern());
+            if (log.isDebugEnabled()) {
+                log.debug("Updating properties matching: {}", updateProperties.pattern());
+            }
             Pattern rfind = null;
             String find = request.getParameter(PN_FIND);
             if (MODE_REGEX.equals(request.getParameter(PN_MODE))) {
@@ -114,6 +117,11 @@ public class BulkReplaceOperation implements PostOperation {
             String replace, PostResponse response, List<Modification> changes) {
         ModifiableValueMap properties = resource.adaptTo(ModifiableValueMap.class);
         boolean updated = false;
+
+        if (properties == null) {
+            throw new SlingException("Failed to retrieve modifiable value map, cannot update properties", null);
+        }
+
         for (Entry<String, Object> entry : properties.entrySet()) {
 
             if (updateProperties.matcher(entry.getKey()).matches()) {

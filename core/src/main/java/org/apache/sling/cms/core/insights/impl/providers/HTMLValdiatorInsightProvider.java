@@ -20,12 +20,14 @@ package org.apache.sling.cms.core.insights.impl.providers;
 
 import java.io.StringReader;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -90,16 +92,18 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
 
         HttpPost httpPost = new HttpPost("http://validator.w3.org/nu/?out=json&showsource=no&level=all");
         httpPost.addHeader("Content-type", "text/html; charset=utf-8");
-        HttpEntity htmlEntity = new ByteArrayEntity(html.getBytes("UTF-8"));
+        HttpEntity htmlEntity = new ByteArrayEntity(html.getBytes(StandardCharsets.UTF_8));
         httpPost.setEntity(htmlEntity);
 
         I18NDictionary dictionary = i18nProvider.getDictionary(request.getResource().getResourceResolver());
 
         CloseableHttpResponse response = null;
+        JsonReader reader = null;
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             response = client.execute(httpPost);
             HttpEntity entity = response.getEntity();
-            JsonObject json = Json.createReader(new StringReader(EntityUtils.toString(entity))).readObject();
+            reader = Json.createReader(new StringReader(EntityUtils.toString(entity)));
+            JsonObject json = reader.readObject();
             log.debug("Loaded response: {}", json);
             JsonArray messages = json.getJsonArray("messages");
             int errors = 0;
@@ -148,6 +152,10 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
             insight.setScore(score);
             insight.setMoreDetailsLink("https://validator.w3.org/nu/?doc="
                     + URLEncoder.encode(pageRequest.getPage().getPublishedUrl(), Charsets.UTF_8.toString()));
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
 
         return insight;

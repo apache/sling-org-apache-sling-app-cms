@@ -69,7 +69,7 @@ public class HTML5Serializer implements Serializer {
         this.resolver = resolver;
     }
 
-    public void characters(char buffer[], int offset, int length) throws SAXException {
+    public void characters(char[] buffer, int offset, int length) throws SAXException {
         if (length == 0) {
             writer.flush();
         } else {
@@ -98,7 +98,7 @@ public class HTML5Serializer implements Serializer {
         // Nothing required
     }
 
-    public void ignorableWhitespace(char ac[], int i, int j) throws SAXException {
+    public void ignorableWhitespace(char[] ac, int i, int j) throws SAXException {
         // Nothing required
     }
 

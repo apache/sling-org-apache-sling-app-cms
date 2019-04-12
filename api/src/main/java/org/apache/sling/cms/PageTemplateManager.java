@@ -18,7 +18,6 @@ package org.apache.sling.cms;
 
 import java.util.List;
 
-import org.apache.sling.cms.PageTemplate;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**

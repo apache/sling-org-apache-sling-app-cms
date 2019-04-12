@@ -63,7 +63,7 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
     @Reference
     private I18NProvider i18nProvider;
 
-    private void addDetail(Insight insight, I18NDictionary dictionary, double score, String title) {
+    private void addDetail(Insight insight, double score, String title) {
         insight.getScoreDetails().add(Message.defaultMsg(title + ": " + new DecimalFormat("##0.00").format(score)));
     }
 
@@ -112,7 +112,7 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
 
                 StandardDeviation sd = new StandardDeviation(false);
                 double stddev = sd.evaluate(new double[] { config.getMinGradeLevel(), config.getMaxGradeLevel() });
-                double dev = 0.0;
+                double dev;
                 if (score > config.getMaxGradeLevel()) {
                     dev = score - config.getMaxGradeLevel();
                 } else {
@@ -137,12 +137,12 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
 
             insight.getScoreDetails().add(Message.defaultMsg(dictionary.get(I18N_KEY_READABILITY_STATS,
                     new Object[] { t.getSentences().size(), t.getWordCount(), t.getComplexWordCount() })));
-            addDetail(insight, dictionary, svc.calculateARI(t), "ARI");
-            addDetail(insight, dictionary, svc.calculateColemanLiauIndex(t), "Coleman-Liau Index");
-            addDetail(insight, dictionary, svc.calculateFleschKincaidGradeLevel(t), "Flesch-Kincaid Grade Level");
-            addDetail(insight, dictionary, svc.calculateFleschReadingEase(t), "Flesch-Kincaid Reading Ease");
-            addDetail(insight, dictionary, svc.calculateGunningFog(t), "Gunning Fog");
-            addDetail(insight, dictionary, svc.calculateSMOG(t), "SMOG");
+            addDetail(insight, svc.calculateARI(t), "ARI");
+            addDetail(insight, svc.calculateColemanLiauIndex(t), "Coleman-Liau Index");
+            addDetail(insight, svc.calculateFleschKincaidGradeLevel(t), "Flesch-Kincaid Grade Level");
+            addDetail(insight, svc.calculateFleschReadingEase(t), "Flesch-Kincaid Reading Ease");
+            addDetail(insight, svc.calculateGunningFog(t), "Gunning Fog");
+            addDetail(insight, svc.calculateSMOG(t), "SMOG");
 
         } else {
             log.warn("Failed to get readability for resource {} site or config were null",

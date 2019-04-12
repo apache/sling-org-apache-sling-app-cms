@@ -55,101 +55,103 @@ import org.slf4j.LoggerFactory;
 @Designate(ocd = CMSSecurityFilterConfig.class)
 public class CMSSecurityFilter implements Filter {
 
-	private static final Logger log = LoggerFactory.getLogger(CMSSecurityFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(CMSSecurityFilter.class);
 
-	private CMSSecurityFilterConfig config;
+    private CMSSecurityFilterConfig config;
 
-	private List<Pattern> patterns = new ArrayList<>();
+    private List<Pattern> patterns = new ArrayList<>();
 
-	@Modified
-	@Activate
-	public void activate(CMSSecurityFilterConfig config) {
-		if (config.hostDomains() != null && config.hostDomains().length > 0) {
-			log.info("Applying CMS Security Filter for domains {}", Arrays.toString(config.hostDomains()));
-			this.config = config;
-			for (String p : config.allowedPatterns()) {
-				patterns.add(Pattern.compile(p));
-			}
-		} else {
-			this.config = null;
-			log.info("No host domains supplied, CMS Security Filter not enabled");
-		}
-	}
+    @Modified
+    @Activate
+    public void activate(CMSSecurityFilterConfig config) {
+        if (config.hostDomains() != null && config.hostDomains().length > 0) {
+            if (log.isInfoEnabled()) {
+                log.info("Applying CMS Security Filter for domains {}", Arrays.toString(config.hostDomains()));
+            }
+            this.config = config;
+            for (String p : config.allowedPatterns()) {
+                patterns.add(Pattern.compile(p));
+            }
+        } else {
+            this.config = null;
+            log.info("No host domains supplied, CMS Security Filter not enabled");
+        }
+    }
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// Nothing required
-	}
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Nothing required
+    }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-		SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-		if (config != null && ArrayUtils.contains(config.hostDomains(), request.getServerName())) {
-			log.trace("Filtering requests to host {}", request.getServerName());
-			String uri = slingRequest.getRequestURI();
-			boolean allowed = false;
-			for (Pattern p : this.patterns) {
-				if (p.matcher(uri).matches()) {
-					log.trace("Allowing request matching pattern {}", p);
-					allowed = true;
-					break;
-				}
-			}
+        SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+        if (config != null && ArrayUtils.contains(config.hostDomains(), request.getServerName())) {
+            log.trace("Filtering requests to host {}", request.getServerName());
+            String uri = slingRequest.getRequestURI();
+            boolean allowed = false;
+            for (Pattern p : this.patterns) {
+                if (p.matcher(uri).matches()) {
+                    log.trace("Allowing request matching pattern {}", p);
+                    allowed = true;
+                    break;
+                }
+            }
 
-			// the uri isn't allowed automatically, so check user permissions
-			if (!allowed) {
+            // the uri isn't allowed automatically, so check user permissions
+            if (!allowed) {
 
-				// check to see if the user is a member of the specified group
-				if (StringUtils.isNotBlank(config.group())) {
-					Authorizable auth;
-					try {
-						Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
-						UserManager userManager = AccessControlUtil.getUserManager(session);
-						log.trace("Retrieved user manager {} with session {}", userManager, session);
-						auth = userManager.getAuthorizable(slingRequest.getUserPrincipal());
-						if (auth != null) {
-							log.trace("Checking to see if user {} is in required group {}", auth.getID(),
-									config.group());
-							Iterator<Group> groups = ((User) auth).memberOf();
-							while (groups.hasNext()) {
-								if (groups.next().getID().equals(config.group())) {
-									allowed = true;
-									break;
-								}
-							}
-						}
-					} catch (Exception e) {
-						log.error("Exception determing group membership", e);
-					}
+                // check to see if the user is a member of the specified group
+                if (StringUtils.isNotBlank(config.group())) {
+                    Authorizable auth;
+                    try {
+                        Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
+                        UserManager userManager = AccessControlUtil.getUserManager(session);
+                        log.trace("Retrieved user manager {} with session {}", userManager, session);
+                        auth = userManager.getAuthorizable(slingRequest.getUserPrincipal());
+                        if (auth != null) {
+                            log.trace("Checking to see if user {} is in required group {}", auth.getID(),
+                                    config.group());
+                            Iterator<Group> groups = ((User) auth).memberOf();
+                            while (groups.hasNext()) {
+                                if (groups.next().getID().equals(config.group())) {
+                                    allowed = true;
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        log.error("Exception determing group membership", e);
+                    }
 
-					// just check to make sure the user is logged in
-				} else {
-					if (!"anonymous".equals(slingRequest.getResourceResolver().getUserID())) {
-						allowed = true;
-					}
-				}
+                    // just check to make sure the user is logged in
+                } else {
+                    if (!"anonymous".equals(slingRequest.getResourceResolver().getUserID())) {
+                        allowed = true;
+                    }
+                }
 
-			}
+            }
 
-			// permission checked failed, so return an unauthorized error
-			if (!allowed) {
-				log.trace("Request to {} not allowed for user {}", slingRequest.getRequestURI(),
-						slingRequest.getResourceResolver().getUserID());
-				((HttpServletResponse) response).sendError(401);
-				return;
-			}
-		} else {
-			log.trace("Not filtering request to host {}", request.getServerName());
-		}
+            // permission checked failed, so return an unauthorized error
+            if (!allowed) {
+                log.trace("Request to {} not allowed for user {}", slingRequest.getRequestURI(),
+                        slingRequest.getResourceResolver().getUserID());
+                ((HttpServletResponse) response).sendError(401);
+                return;
+            }
+        } else {
+            log.trace("Not filtering request to host {}", request.getServerName());
+        }
 
-		chain.doFilter(request, response);
-	}
+        chain.doFilter(request, response);
+    }
 
-	@Override
-	public void destroy() {
-		// Nothing required
-	}
+    @Override
+    public void destroy() {
+        // Nothing required
+    }
 
 }

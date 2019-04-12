@@ -91,13 +91,13 @@ public class I18NProviderImpl implements I18NProvider {
 
     private final DefaultLocaleResolver defaultLocaleResolver = new DefaultLocaleResolver();
 
-    private volatile LocaleResolver localeResolver = defaultLocaleResolver;
+    private LocaleResolver localeResolver = defaultLocaleResolver;
 
     private final Map<Object, ResourceBundleProvider> providers = new TreeMap<>();
 
-    private volatile RequestLocaleResolver requestLocaleResolver = defaultLocaleResolver;
+    private RequestLocaleResolver requestLocaleResolver = defaultLocaleResolver;
 
-    private volatile ResourceBundleProvider[] sortedProviders = new ResourceBundleProvider[0];
+    private ResourceBundleProvider[] sortedProviders = new ResourceBundleProvider[0];
 
     @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
     protected void bindLocaleResolver(final LocaleResolver resolver) {
