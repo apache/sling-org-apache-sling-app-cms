@@ -19,7 +19,7 @@
 /* eslint-env browser, es6 */
 (function (rava, Sling) {
     'use strict';
-    var pathfield = null;
+    Sling.CMS.pathfield = null;
     rava.bind("input.pathfield", {
         callbacks: {
             created : function () {
@@ -32,17 +32,32 @@
     rava.bind('.search-button', {
         events: {
             click: function () {
-                pathfield =  this.closest('.field').querySelector('.pathfield');
+                Sling.CMS.pathfield =  this.closest('.field').querySelector('.pathfield');
             }
         }
     });
     rava.bind('.search-select-button', {
         events: {
             click : function () {
-                pathfield.value = this.dataset.path;
+                var path = this.dataset.path;
+                if(Sling.CMS.pathfield instanceof HTMLInputElement){
+                    Sling.CMS.pathfield.value = this.dataset.path;
+                } else {
+                    Sling.CMS.pathfield.postMessage({
+                        "action": "slingcms.setpath",
+                        "path": path
+                    }, window.location.origin);
+                }
                 this.closest('.modal').remove();
             }
         }
     });
+    
+
+    window.addEventListener("message", function(event){
+        if(event.data.action === 'slingcms.setpath'){
+            Sling.CMS.pathfield.value = event.data.path;
+        }
+    }, false);
     
 }(window.rava = window.rava || {}, window.Sling = window.Sling || {}));

@@ -30,28 +30,37 @@
         },
         methods: {
             getModal: function (title, link, button) {
-                var modal = Sling.CMS.ui.loaderModal(),
-                    request = new XMLHttpRequest();
-                request.open('GET', link, true);
-                request.onload = function () {
-                    if (this.status === 500 || this.status === 404) {
-                        Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function(){
-                            Sling.CMS.ui.reloadContext();
-                        });
-                    } else {
-                        button.removeAttribute("disabled");
-                        if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
-                            window.location.reload();
-                        } else {
-                            modal.innerHTML = request.responseText;
-                        }
-                    }
-                };
-                modal.querySelector('.modal-background').addEventListener('click', function () {
-                    request.abort();
+                if(window.parent && window.parent.parent) {
+                    window.parent.parent.postMessage({
+                        "action": "slingcms.openmodal",
+                        "url": link,
+                        "title": title
+                    }, window.location.origin);
                     button.removeAttribute('disabled');
-                });
-                request.send();
+                } else {
+                    var modal = Sling.CMS.ui.loaderModal(),
+                        request = new XMLHttpRequest();
+                    request.open('GET', link, true);
+                    request.onload = function () {
+                        if (this.status === 500 || this.status === 404) {
+                            Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function(){
+                                Sling.CMS.ui.reloadContext();
+                            });
+                        } else {
+                            button.removeAttribute("disabled");
+                            if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
+                                window.location.reload();
+                            } else {
+                                modal.innerHTML = request.responseText;
+                            }
+                        }
+                    };
+                    modal.querySelector('.modal-background').addEventListener('click', function () {
+                        request.abort();
+                        button.removeAttribute('disabled');
+                    });
+                    request.send();
+                }
             }
         }
     });
@@ -65,5 +74,32 @@
             }
         }
     });
+    
+    window.addEventListener("message", function(event){
+        if(event.data.action === 'slingcms.openmodal'){
+            Sling.CMS.pathfield = event.source;
+            var modal = Sling.CMS.ui.loaderModal(),
+                request = new XMLHttpRequest();
+            request.open('GET', event.data.url, true);
+            request.onload = function () {
+                if (this.status === 500 || this.status === 404) {
+                    Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function(){
+                        Sling.CMS.ui.reloadContext();
+                    });
+                } else {
+                    if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
+                        window.location.reload();
+                    } else {
+                        modal.innerHTML = request.responseText;
+                    }
+                }
+            };
+            modal.querySelector('.modal-background').addEventListener('click', function () {
+                request.abort();
+            });
+            request.send();
+        }
+        
+    }, false);
 
 }(window.rava = window.rava || {}, window.Sling = window.Sling || {}));

@@ -40,7 +40,7 @@
                     CMSEditor.draggable = element;
                     var mouseDown = false, elementX = 0, elementY = 0;
 
-                      // mouse button down over the element
+                    // mouse button down over the element
                     CMSEditor.draggable.addEventListener('mousedown', function (evt) {
                         if (!evt.target.matches('.modal-title, .modal-title *')) {
                             return;
