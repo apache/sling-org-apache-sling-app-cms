@@ -22,7 +22,7 @@ The Sling CMS project has five main modules:
  - api - this is your API for interacting with Sling CMS
  - core - this is the Java code behind Sling CMS. This includes the Sling Models, Filters, Servlets, Post Operations and Rewriter code.
  - reference - this is a reference application for developers to use to extend Sling CMS, this includes both Java code and content loaded by the Sling Content Loader
- - ui - this is a bulk of the content and scripts for the Sling CMS. Most of this is located under */libs/sling-cms* although there are some other directories for configurations
+ - ui - this is a bulk of the content and scripts for the Sling CMS. Most of this is located under `/libs/sling-cms` although there are some other directories for configurations
  
 ## Using the API
 
@@ -42,8 +42,8 @@ Sling CMS uses Gulp to build the front end code which is them packaged by Maven 
 
 ## Important Directories
 
-Most of the scripts are installed under the directory */libs/sling-cms/components* and the contet is under */libs/sling-cms/content* 
+Most of the scripts are installed under the directory `/libs/sling-cms/components` and the content is under `/libs/sling-cms/content`
 
 ## CMS Content
 
-The Sling CMS uses Sling Resource Merge to allow developers to overlay content provided in the base CMS. THis means that although the default content is stored in */libs/sling-cms/content* it is actually used from */mnt/overlay/sling-cms/content* a default Resource Rsolver Factory configuration them maps this path to */cms* for shorter URLs.
+The Sling CMS uses [Sling Resource Merger](https://sling.apache.org/documentation/bundles/resource-merger.html) to allow developers to overlay content provided in the base CMS. This means that although the default content is stored in `/libs/sling-cms/content` it is actually referenced under `/mnt/overlay/sling-cms/content` which is merged with `/apps/sling-cms/content` using Sling Resource Merger, finally a default Resource Resolver Factory configuration them maps this path to `/cms` for shorter URLs.

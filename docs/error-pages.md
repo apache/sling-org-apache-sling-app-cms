@@ -44,14 +44,19 @@ Instead, you can configure these pages to be ignored by mod_proxy and served dir
 This takes a few steps:
 
 1. Add the following directive into your mod_proxy configuration:
+    
         ProxyPass /ERROR !
-    This instructs mod_proxy to ignore the directory /ERROR
+    
+This instructs mod_proxy to ignore the directory /ERROR
+    
 2. Add the following directive into your conf file:
+
         # Configure Error Documents if Down
-       ErrorDocument 502 /ERROR/502.html
-       ErrorDocument 503 /ERROR/503.html
-       ErrorDocument 504 /ERROR/504.html
-       Alias /ERROR /var/www/vhosts/site
+        ErrorDocument 502 /ERROR/502.html
+        ErrorDocument 503 /ERROR/503.html
+        ErrorDocument 504 /ERROR/504.html
+        Alias /ERROR /var/www/vhosts/site
+    
 3. Create the relevant pages under /var/www/vhosts/site
 
 The error pages should be static HTML, ideally with all CSS, images, etc inlined. You don't necessarily need to provide separate error pages for each status code.
