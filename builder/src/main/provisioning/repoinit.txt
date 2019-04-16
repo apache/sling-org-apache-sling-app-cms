@@ -47,12 +47,10 @@
     # sling-xss
     create service user sling-xss
 
-    create path (sling:Folder) /libs/sling/xss
     create path (sling:Folder) /apps/sling/xss
 
     set ACL for sling-xss
-        deny    jcr:all     on /
-        allow   jcr:read    on /libs/sling/xss,/apps/sling/xss
+        allow   jcr:read    on /apps/sling/xss
     end
 
     # sling-i18n

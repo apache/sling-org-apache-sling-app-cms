@@ -33,6 +33,8 @@
     slf4j.version=1.7.25
 
 [artifacts]
+    org.osgi/org.osgi.util.function/1.1.0
+    org.osgi/org.osgi.util.promise/1.1.0
     org.apache.sling/org.apache.sling.javax.activation/0.1.0
     org.apache.geronimo.specs/geronimo-annotation_1.3_spec/1.1
     org.apache.servicemix.specs/org.apache.servicemix.specs.jaxws-api-2.2/2.9.0
@@ -51,8 +53,8 @@
     org.apache.sling/org.apache.sling.launchpad.installer/1.2.2
     org.apache.sling/org.apache.sling.installer.core/3.9.0
     org.apache.sling/org.apache.sling.installer.provider.file/1.1.0
-    org.apache.sling/org.apache.sling.installer.factory.configuration/1.2.0
-    org.apache.felix/org.apache.felix.configadmin/1.9.10
+    org.apache.sling/org.apache.sling.installer.factory.configuration/1.2.2
+    org.apache.felix/org.apache.felix.configadmin/1.9.14
     org.apache.felix/org.apache.felix.eventadmin/1.5.0
     org.apache.aries/org.apache.aries.util/1.1.3
     # dependency with javax.inject - required for Sling Models (SLING-4710)
