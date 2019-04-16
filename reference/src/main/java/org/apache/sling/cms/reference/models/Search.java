@@ -1,5 +1,5 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
+d * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
@@ -45,143 +45,143 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = SlingHttpServletRequest.class)
 public class Search {
 
-	private static final Logger log = LoggerFactory.getLogger(Search.class);
+    private static final Logger log = LoggerFactory.getLogger(Search.class);
 
-	public static final String TERM_PARAMETER = "q";
+    public static final String TERM_PARAMETER = "q";
 
-	@ValueMapValue
-	private String basePath;
+    @ValueMapValue
+    private String basePath;
 
-	private int count;
+    private int count;
 
-	private int end;
+    private int end;
 
-	@ValueMapValue
-	private int limit;
+    @ValueMapValue
+    private int limit;
 
-	private int page;
+    private int page;
 
-	private Integer[] pages;
+    private Integer[] pages;
 
-	private SlingHttpServletRequest request;
+    private SlingHttpServletRequest request;
 
-	private List<Resource> results = new ArrayList<Resource>();
+    private List<Resource> results = new ArrayList<>();
 
-	@OSGiService
-	private SearchService searchService;
+    @OSGiService
+    private SearchService searchService;
 
-	private int start;
+    private int start;
 
-	private ResourceResolver resolver;
+    private ResourceResolver resolver;
 
-	public Search(SlingHttpServletRequest request) {
-		this.request = request;
-	}
+    public Search(SlingHttpServletRequest request) {
+        this.request = request;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	public int getCurrentPage() {
-		return page + 1;
-	}
+    public int getCurrentPage() {
+        return page + 1;
+    }
 
-	public int getEnd() {
-		return end;
-	}
+    public int getEnd() {
+        return end;
+    }
 
-	public Integer[] getPages() {
-		return pages;
-	}
+    public Integer[] getPages() {
+        return pages;
+    }
 
-	public List<Resource> getResults() {
-		return results;
-	}
+    public List<Resource> getResults() {
+        return results;
+    }
 
-	public int getStart() {
-		return start;
-	}
+    public int getStart() {
+        return start;
+    }
 
-	public String getTerm() {
-		return request.getParameter(TERM_PARAMETER);
-	}
+    public String getTerm() {
+        return request.getParameter(TERM_PARAMETER);
+    }
 
-	@PostConstruct
-	public void init() {
+    @PostConstruct
+    public void init() {
 
-		Set<String> distinct = new HashSet<>();
+        Set<String> distinct = new HashSet<>();
 
-		String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replaceAll("'", "''");
+        String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replaceAll("'", "''");
 
-		resolver = searchService.getResourceResolver(request);
+        resolver = searchService.getResourceResolver(request);
 
-		String query = "SELECT * FROM [sling:Page] AS p WHERE [jcr:content/published]=true AND (p.[jcr:content/hideInSitemap] IS NULL OR p.[jcr:content/hideInSitemap] <> true) AND ISDESCENDANTNODE(p, '"
-				+ basePath + "') AND CONTAINS(p.*, '" + term + "') ORDER BY [jcr:score]";
-		log.debug("Searching for pages with {} under {} with query: {}", term, basePath, query);
-		Iterator<Resource> res = resolver.findResources(query, Query.JCR_SQL2);
-		while (res.hasNext()) {
-			Resource result = res.next();
-			if (!distinct.contains(result.getPath())) {
-				results.add(result);
-				distinct.add(result.getPath());
-			}
-		}
-		count = results.size();
-		log.debug("Found {} results", count);
+        String query = "SELECT * FROM [sling:Page] AS p WHERE [jcr:content/published]=true AND (p.[jcr:content/hideInSitemap] IS NULL OR p.[jcr:content/hideInSitemap] <> true) AND ISDESCENDANTNODE(p, '"
+                + basePath + "') AND CONTAINS(p.*, '" + term + "') ORDER BY [jcr:score]";
+        log.debug("Searching for pages with {} under {} with query: {}", term, basePath, query);
+        Iterator<Resource> res = resolver.findResources(query, Query.JCR_SQL2);
+        while (res.hasNext()) {
+            Resource result = res.next();
+            if (!distinct.contains(result.getPath())) {
+                results.add(result);
+                distinct.add(result.getPath());
+            }
+        }
+        count = results.size();
+        log.debug("Found {} results", count);
 
-		if (StringUtils.isNotBlank(request.getParameter("page")) && request.getParameter("page").matches("\\d+")) {
-			page = Integer.parseInt(request.getParameter("page"), 10) - 1;
-			log.debug("Using page {}", page);
-		} else {
-			page = 0;
-			log.debug("Page {} not specified or not valid", request.getParameter("page"));
-		}
+        if (StringUtils.isNotBlank(request.getParameter("page")) && request.getParameter("page").matches("\\d+")) {
+            page = Integer.parseInt(request.getParameter("page"), 10) - 1;
+            log.debug("Using page {}", page);
+        } else {
+            page = 0;
+            log.debug("Page {} not specified or not valid", request.getParameter("page"));
+        }
 
-		if (page * limit >= count) {
-			start = count;
-		} else {
-			start = page * limit;
-		}
-		log.debug("Using start {}", start);
+        if (page * limit >= count) {
+            start = count;
+        } else {
+            start = page * limit;
+        }
+        log.debug("Using start {}", start);
 
-		if ((page * limit) + limit >= count) {
-			end = count;
-		} else {
-			end = (page * limit) + limit;
-		}
-		log.debug("Using end {}", end);
-		results = results.subList(start, end);
+        if ((page * limit) + limit >= count) {
+            end = count;
+        } else {
+            end = (page * limit) + limit;
+        }
+        log.debug("Using end {}", end);
+        results = results.subList(start, end);
 
-		List<Integer> pgs = new ArrayList<>();
-		int max = ((int) Math.ceil((double) count / limit)) + 1;
-		for (int i = 1; i < max; i++) {
-			pgs.add(i);
-		}
-		pages = pgs.toArray(new Integer[pgs.size()]);
-		if (log.isDebugEnabled()) {
-			log.debug("Loaded pages {}", Arrays.toString(pages));
-		}
-	}
+        List<Integer> pgs = new ArrayList<>();
+        int max = ((int) Math.ceil((double) count / limit)) + 1;
+        for (int i = 1; i < max; i++) {
+            pgs.add(i);
+        }
+        pages = pgs.toArray(new Integer[pgs.size()]);
+        if (log.isDebugEnabled()) {
+            log.debug("Loaded pages {}", Arrays.toString(pages));
+        }
+    }
 
-	/**
-	 * This is a horrible hack to close the resource resolver used for retrieving
-	 * the search results
-	 * 
-	 * @return true, always
-	 */
-	public String getFinalize() {
-		searchService.closeResolver(resolver);
-		return "";
-	}
+    /**
+     * This is a horrible hack to close the resource resolver used for retrieving
+     * the search results
+     * 
+     * @return true, always
+     */
+    public String getFinalize() {
+        searchService.closeResolver(resolver);
+        return "";
+    }
 
-	public boolean isFirst() {
-		return page == 0;
-	}
+    public boolean isFirst() {
+        return page == 0;
+    }
 
-	public boolean isLast() {
-		if (pages.length > 0) {
-			return page + 1 == pages[pages.length - 1];
-		}
-		return true;
-	}
+    public boolean isLast() {
+        if (pages.length > 0) {
+            return page + 1 == pages[pages.length - 1];
+        }
+        return true;
+    }
 }

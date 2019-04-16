@@ -17,7 +17,6 @@
 package org.apache.sling.cms.core.models;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

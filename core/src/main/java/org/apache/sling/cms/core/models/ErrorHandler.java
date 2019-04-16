@@ -17,7 +17,6 @@
 package org.apache.sling.cms.core.models;
 
 import java.util.Collections;
-import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -218,7 +217,7 @@ public class ErrorHandler {
         log.debug("Calculating error handling scripts for resource {} and error code {}", resource, errorCode);
 
         if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
-            log.warn("Handing exception of type {}", errorCode,
+            log.warn("Handing exception of type {} {}", errorCode,
                     slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
         }
 
