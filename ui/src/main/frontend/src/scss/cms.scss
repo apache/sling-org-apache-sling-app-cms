@@ -20,7 +20,6 @@
 @import 'fonts';
 @import 'overrides';
 @import "../../node_modules/bulma/bulma.sass";
-@import "../../node_modules/datatables-bulma/css/dataTables.bulma.css";
 body.cms {
     min-height: 100vh;
     @media screen and (min-width: $tablet), print {
@@ -100,10 +99,21 @@ h5 {
     border-top-color: transparent;
 }
 
+.menu {
+    overflow: auto;
+}
+
 .menu-label {
     text-transform: none;
     font-size: 1.25em;
     letter-spacing: normal;
+    display: block;
+    padding: .25em 0;
+    color: #363636;
+}
+
+.menu-label:not(:last-child) {
+    margin: 0;
 }
 
 .note-group-select-from-files {
@@ -145,23 +155,32 @@ h5 {
     padding: .5em;
 }
 
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:after {
+.table__filter {
+    display: inline-block;
+    float: right;
+}
+
+.table__wrapper {
+    overflow: auto;
+}
+
+table thead .sorting:after,
+table thead .sorting_asc:after,
+table thead .sorting_desc:after,
+table thead .sorting_asc_disabled:after,
+table thead .sorting_desc_disabled:after {
     font-family: 'jam-icons';
 }
 
-table.dataTable thead .sorting:after {
+table thead .sorting:after {
     content: "\e943"
 }
 
-table.dataTable thead .sorting_asc:after {
+table thead .sorting_asc:after {
     content: "\e93f"
 }
 
-table.dataTable thead .sorting_desc:after {
+table thead .sorting_desc:after {
     content: "\e92a"
 }
 
