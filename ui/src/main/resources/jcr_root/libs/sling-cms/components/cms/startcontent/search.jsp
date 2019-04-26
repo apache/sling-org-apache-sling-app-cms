@@ -22,7 +22,7 @@
     <c:set var="results" value="${false}" />
     <c:forEach var="item" items="${startContent.relatedContent}">
         <c:set var="results" value="${true}" />
-        <a class="panel-block" title="${item.path}" href="/cms/site/content.html${item.parent.path}">
+        <a class="panel-block" title="${item.path}" href="/cms/site/content.html${item.parent.path}?resource=${item.path}">
             <span class="panel-icon">
                 <c:choose>
                     <c:when test="${item.resourceType == 'sling:Page'}">
