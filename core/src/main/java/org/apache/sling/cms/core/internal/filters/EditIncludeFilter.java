@@ -19,7 +19,6 @@ package org.apache.sling.cms.core.internal.filters;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
-import java.util.Optional;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -116,12 +115,13 @@ public class EditIncludeFilter implements Filter {
         boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
 
         Component component = null;
-        EditableResource er = resource.adaptTo(EditableResource.class);
+        EditableResource er = new EditableResourceImpl(resource);
+        String editPath = "";
         if (er != null) {
             component = er.getComponent();
+            editPath = component.getEditPath();
         }
-        String editPath = Optional.ofNullable(er).map(EditableResource::getEditPath).orElse("");
-        writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
+        writer.write("<div class=\"sling-cms-component\" data-component=\""+component+"\" data-sling-cms-title=\""
                 + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
                 + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
                 + "\" data-sling-cms-edit=\"" + editPath + "\"><div class=\"sling-cms-editor\">");
