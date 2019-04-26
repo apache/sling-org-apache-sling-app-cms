@@ -53,7 +53,7 @@
      </c:choose>
      <div class="version-container">
         <div class="table-container">
-            <table class="table" data-sort="false" data-paginate="false">
+            <table class="table is-fullwidth" data-sort="false" data-paginate="false">
                 <thead>
                     <tr>
                         <th>Version</th>
