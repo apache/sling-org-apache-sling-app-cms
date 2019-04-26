@@ -24,13 +24,13 @@
         events: {
             click: function (event) {
                 event.preventDefault();
-                this.setAttribute("disabled", "disabled");
+                this.disabled = true;
                 this.getModal(this.getAttribute('data-title'), this.getAttribute('href'), this);
             }
         },
         methods: {
             getModal: function (title, link, button) {
-                if(window.parent && window.parent.parent) {
+                if (window.parent && window.parent.parent) {
                     window.parent.parent.postMessage({
                         "action": "slingcms.openmodal",
                         "url": link,
@@ -43,7 +43,7 @@
                     request.open('GET', link, true);
                     request.onload = function () {
                         if (this.status === 500 || this.status === 404) {
-                            Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function(){
+                            Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function () {
                                 Sling.CMS.ui.reloadContext();
                             });
                         } else {
@@ -75,15 +75,15 @@
         }
     });
     
-    window.addEventListener("message", function(event){
-        if(event.data.action === 'slingcms.openmodal'){
+    window.addEventListener("message", function (event) {
+        if (event.data.action === 'slingcms.openmodal') {
             Sling.CMS.pathfield = event.source;
             var modal = Sling.CMS.ui.loaderModal(),
                 request = new XMLHttpRequest();
             request.open('GET', event.data.url, true);
             request.onload = function () {
                 if (this.status === 500 || this.status === 404) {
-                    Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function(){
+                    Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function () {
                         Sling.CMS.ui.reloadContext();
                     });
                 } else {

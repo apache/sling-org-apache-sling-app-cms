@@ -18,22 +18,33 @@
  */
 
 /* eslint-env browser, es6 */
-(function (rava, $) {
+(function (rava) {
     'use strict';
+    
+    var table = null,
+        urlParams = new URLSearchParams(window.location.search),
+        resourceParam = urlParams.get('resource');
     rava.bind(".table", {
         callbacks : {
             created: function () {
-                var sort = this.dataset.sort !== 'false',
-                    paginate = this.dataset.paginate !== 'false';
-                $(this).DataTable({
-                    sort: sort,
-                    paginate: paginate
-                }).on('page.dt', function () {
-                    rava.findAll('tr.is-selected').forEach(function (tr) {
-                        tr.classList.remove('is-selected');
-                    });
-                    document.querySelector('.actions-target').innerHTML = '';
-                });
+                var table = this;
+                if (table.closest('.table__wrapper')) {
+                    var search = table.closest('.table__wrapper').querySelector('input[name=search]'),
+                        filter = function (event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            var value = this.value;
+                            table.querySelectorAll('tbody tr').forEach(function (row) {
+                                if (row.innerText.indexOf(value) === -1) {
+                                    row.classList.add('is-hidden');
+                                } else {
+                                    row.classList.remove('is-hidden');
+                                }
+                            });
+                        };
+                    search.addEventListener('keyup', filter);
+                    search.addEventListener('change', filter);
+                }
             }
         }
     });
@@ -49,4 +60,12 @@
             }
         }
     });
-}(window.rava = window.rava || {}, window.jQuery = window.jQuery || {}));
+
+    if (table && resourceParam) {
+        table.search(resourceParam.split(/\//).slice(-1)).draw();
+        if (document.querySelector('.table tr[data-resource=\'' + resourceParam + '\']')) {
+            document.querySelector('.table tr[data-resource=\'' + resourceParam + '\']').click();
+        }
+    }
+    
+}(window.rava = window.rava || {}));

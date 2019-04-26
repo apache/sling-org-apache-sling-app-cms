@@ -17,18 +17,37 @@
  * under the License.
  */
 /* eslint-env browser, es6 */
-(function (rava, Sling) {
+(function (rava, Sling, autoComplete) {
     'use strict';
+    
     Sling.CMS.pathfield = null;
+    
     rava.bind("input.pathfield", {
         callbacks: {
             created : function () {
                 var type = this.dataset.type,
                     base = this.dataset.base;
-                Sling.CMS.ui.suggest(this, type, base);
+                new autoComplete({
+                    minChars: 1,
+                    selector: this,
+                    source: function (term, response) {
+                        var searchParams = new URLSearchParams();
+                        if (term === '/') {
+                            term = base;
+                        }
+                        searchParams.set('path', term);
+                        searchParams.set('type', type);
+                        fetch('/bin/cms/paths', searchParams).then(function (response) {
+                            return response.json();
+                        }).then(function (data) {
+                            response(data);
+                        });
+                    }
+                });
             }
         }
     });
+    
     rava.bind('.search-button', {
         events: {
             click: function () {
@@ -36,11 +55,12 @@
             }
         }
     });
+    
     rava.bind('.search-select-button', {
         events: {
             click : function () {
                 var path = this.dataset.path;
-                if(Sling.CMS.pathfield instanceof HTMLInputElement){
+                if (Sling.CMS.pathfield instanceof HTMLInputElement) {
                     Sling.CMS.pathfield.value = this.dataset.path;
                 } else {
                     Sling.CMS.pathfield.postMessage({
@@ -52,12 +72,11 @@
             }
         }
     });
-    
 
-    window.addEventListener("message", function(event){
-        if(event.data.action === 'slingcms.setpath'){
+    window.addEventListener("message", function (event) {
+        if (event.data.action === 'slingcms.setpath') {
             Sling.CMS.pathfield.value = event.data.path;
         }
     }, false);
     
-}(window.rava = window.rava || {}, window.Sling = window.Sling || {}));
+}(window.rava = window.rava || {}, window.Sling = window.Sling || {}, window.autoComplete = window.autoComplete || {}));

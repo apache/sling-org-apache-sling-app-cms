@@ -14,19 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var gulp        = require('gulp');
-var sass        = require('gulp-sass');
-var header      = require('gulp-header');
-var cleanCSS   = require('gulp-clean-css');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var header = require('gulp-header');
+var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
-var uglify = require('gulp-terser');
-var sourcemaps = require('gulp-sourcemaps');
+var terser = require('gulp-terser');
 var streamqueue = require('streamqueue');
-var saveLicense = require('uglify-save-license');
 var log = require('fancy-log');
-
-
 
 const apache2License = [
 '/*',
@@ -51,12 +47,8 @@ const apache2License = [
 gulp.task('styles', function() {
      return streamqueue ({objectMode: true},
             gulp.src('./src/scss/*.scss')
+                .pipe(header(apache2License))
                 .pipe(sass().on('error', sass.logError))
-                .pipe(concat('scss-files.scss'))
-                .pipe(sourcemaps.init())
-                .pipe(cleanCSS())
-                .pipe(header(apache2License)),
-            gulp.src('./node_modules/summernote/dist/summernote-lite.css')
                 .pipe(cleanCSS()),
             gulp.src([
                 './node_modules/jam-icons/css/jam.min.css',
@@ -69,46 +61,55 @@ gulp.task('styles', function() {
          .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
 });
 
-
 gulp.task('cms-assets', function() {
-    gulp.src(['./src/img/*'])
+    return gulp.src(['./src/img/*'])
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/img'));
-    gulp.src('./node_modules/summernote/dist/font/*')
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css/font'));
-    gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
+});
+
+gulp.task('cms-fonts', function() {
+    return gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/fonts'));
 });
 
 gulp.task('cms-js', function() {
-    return gulp.src([
-            './node_modules/jquery/dist/jquery.js',
-            './node_modules/rava/dist/rava.js',
-            './node_modules/datatables/media/js/jquery.dataTables.js',
-            './node_modules/datatables-bulma/js/dataTables.bulma.js',
-            './node_modules/wysihtml/dist/minified/wysihtml.min.js',
-            './node_modules/wysihtml/dist/minified/wysihtml.all-commands.min.js',
-            './node_modules/wysihtml/dist/minified/wysihtml.table_editing.min.js',
-            './node_modules/wysihtml/dist/minified/wysihtml.toolbar.min.js',
-            './node_modules/wysihtml/parser_rules/advanced_and_extended.js',
-            './node_modules/handlebars/dist/handlebars.js',
-            './node_modules/js-autocomplete/auto-complete.js',
-            './src/js/cms.js',
-            './src/js/cms.*.js'
-        ])
+    return streamqueue ({objectMode: true},
+            gulp.src([
+                './node_modules/rava/dist/rava.min.js',
+                './node_modules/wysihtml/dist/minified/wysihtml.min.js',
+                './node_modules/wysihtml/dist/minified/wysihtml.all-commands.min.js',
+                './node_modules/wysihtml/dist/minified/wysihtml.table_editing.min.js',
+                './node_modules/wysihtml/dist/minified/wysihtml.toolbar.min.js',
+                './node_modules/handlebars/dist/handlebars.min.js',
+                './node_modules/js-autocomplete/auto-complete.min.js'
+            ]),
+            gulp.src([
+                './node_modules/sorttable/sorttable.js',
+                './node_modules/wysihtml/parser_rules/advanced_and_extended.js'
+            ])
+            .pipe(terser()),
+            gulp.src([
+                './src/js/cms.js',
+                './src/js/cms.*.js'
+            ])
+            .pipe(terser())
+            .pipe(concat('cms.js'))
+            .pipe(header(apache2License))
+         )
         .pipe(concat('scripts-all.min.js'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
 });
 
-gulp.task('editor-assets', function() {
-    gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
+gulp.task('editor-fonts', function() {
+    return gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/fonts'));
 });
-
 
 gulp.task('editor-js', function() {
     return gulp.src([
             './src/js/editor.js'
         ])
+        .pipe(terser())
+        .pipe(header(apache2License))
         .pipe(concat('editor.min.js'))
         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/js'));
 });
@@ -117,7 +118,6 @@ gulp.task('editor-styles', function() {
      return streamqueue ({objectMode: true},
             gulp.src(['./src/scss/editor.scss'])
                 .pipe(sass().on('error', sass.logError))
-                .pipe(sourcemaps.init())
                 .pipe(cleanCSS())
                 .pipe(header(apache2License)),
             gulp.src([
@@ -132,11 +132,8 @@ gulp.task('cms-styles', function() {
      return streamqueue ({objectMode: true},
             gulp.src('./src/scss/cms.scss')
                 .pipe(sass().on('error', sass.logError))
-                .pipe(sourcemaps.init())
                 .pipe(cleanCSS())
                 .pipe(header(apache2License)),
-            gulp.src('./node_modules/summernote/dist/summernote-lite.css')
-                .pipe(cleanCSS()),
             gulp.src([
                 './node_modules/jam-icons/css/jam.min.css',
                 './node_modules/js-autocomplete/auto-complete.css'
@@ -147,28 +144,33 @@ gulp.task('cms-styles', function() {
 });
 
 gulp.task('starter-assets', function() {
-    gulp.src(['./src/fonts/*'])
-        .pipe(gulp.dest('./dist/jcr_root/content/starter/fonts'));
-    gulp.src('./src/img/*')
+    return gulp.src('./src/img/*')
         .pipe(gulp.dest('./dist/jcr_root/content/starter/img'));
-    gulp.src('./src/img/sling-logo.svg')
+});
+
+gulp.task('starter-fonts', function() {
+    return gulp.src(['./src/fonts/*'])
+        .pipe(gulp.dest('./dist/jcr_root/content/starter/fonts'));
+});
+
+gulp.task('starter-logo', function() {
+    return gulp.src('./src/img/sling-logo.svg')
         .pipe(gulp.dest('./dist/jcr_root/content/starter'));
 });
 
 gulp.task('starter-styles', function() {
-     return gulp.src('./src/scss/starter.scss')
-                .pipe(sass().on('error', sass.logError))
-                .pipe(sourcemaps.init())
-                .pipe(cleanCSS())
-                .pipe(header(apache2License))
-         .pipe(rename('bundle.css'))
-         .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
+    return gulp.src('./src/scss/starter.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(cleanCSS())
+        .pipe(header(apache2License))
+        .pipe(rename('bundle.css'))
+        .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
 });
 
-gulp.task('cms', ['cms-styles', 'cms-js', 'cms-assets'], function() {});
+gulp.task('cms', gulp.series('cms-styles', 'cms-js', 'cms-assets', 'cms-fonts'));
 
-gulp.task('editor', ['editor-styles', 'editor-js', 'editor-assets'], function() {});
+gulp.task('editor', gulp.series('editor-styles', 'editor-js', 'editor-fonts'));
 
-gulp.task('starter', ['starter-styles', 'starter-assets'], function() {});
+gulp.task('starter', gulp.series('starter-styles', 'starter-assets', 'starter-fonts', 'starter-logo'));
 
-gulp.task('default', ['starter', 'cms', 'editor'], function() {});
+gulp.task('default', gulp.series('starter', 'cms', 'editor'));

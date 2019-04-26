@@ -17,7 +17,7 @@
  * under the License.
  */
 /* eslint-env browser, es6 */
-(function (rava, $) {
+(function (rava) {
     'use strict';
     rava.bind('.taxonomy', {
         events: {
@@ -25,25 +25,26 @@
                 click: function (event) {
                     event.preventDefault();
                     event.stopPropagation();
-                    var $ctx = $(this),
-                        $span = $('<span/>').html($ctx.find('.taxonomy__template').html()),
-                        val = $ctx.find('.taxonomy__field input').val(),
+                    var context = this,
+                        span = document.createElement('span'),
+                        val = context.querySelector('.taxonomy__field input').value,
                         found = false,
-                        title = $ctx.find('option[value="' + val + '"]').text();
-                    $ctx.find('.taxonomy__item input').each(function (idx, el) {
-                        if ($(el).val() === val) {
+                        title = context.querySelector('option[value="' + val + '"]').innerText;
+                    span.innerHTML = context.querySelector('.taxonomy__template').innerHTML;
+                    context.querySelectorAll('.taxonomy__item input').forEach(function (el) {
+                        if (el.value === val) {
                             found = true;
                         }
                     });
                     if (found) {
                         return false;
                     }
-                    $span.find('input').val(val);
+                    span.querySelector('input').value = val;
 
                     if (title !== '') {
-                        $span.find('.taxonomy__title').text(title);
-                        $('.taxonomy__container').append($span);
-                        $ctx.find('.taxonomy__field input').val('');
+                        span.querySelector('.taxonomy__title').innerText = title;
+                        this.closest('.taxonomy').querySelector('.taxonomy__container').appendChild(span);
+                        context.querySelector('.taxonomy__field input').value = '';
                     }
                 }
             }
@@ -53,10 +54,11 @@
     rava.bind('.taxonomy__item, .taxonomy__item *', {
         events: {
             click: function () {
-                $(this).remove();
-                return false;
+                event.preventDefault();
+                event.stopPropagation();
+                this.closest('.taxonomy__item').remove();
             }
         }
     });
 
-}(window.rava = window.rava || {}, window.jQuery || {}));
+}(window.rava = window.rava || {}));

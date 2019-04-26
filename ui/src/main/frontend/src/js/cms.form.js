@@ -17,112 +17,126 @@ w * Licensed to the Apache Software Foundation (ASF) under one
  * under the License.
  */
 
-
-rava.bind(".Form-Ajax", {
-    events :{
-        ":scope .close" : {
-            click : function() {
-                if(window.parent && window.parent.window && window.parent.window.CMSEditor) {
-                    window.parent.window.CMSEditor.ui.hideModal();
+/* eslint-env browser, es6 */
+(function (rava, Sling) {
+    'use strict';
+    
+    rava.bind(".Form-Ajax", {
+        events: {
+            ":scope .close" : {
+                click : function () {
+                    if (window.parent && window.parent.window && window.parent.window.CMSEditor) {
+                        window.parent.window.CMSEditor.ui.hideModal();
+                    }
                 }
-            }
-        },
-        submit : function(event){
-            event.preventDefault();
-            var $form = $(this);
-            var jcrcontent = false;
-            $form.find('input,select,textarea').each(function(idx,inp){
-                if(inp.name.indexOf('jcr:content') != -1){
-                    jcrcontent = true;
+            },
+            submit : function (event) {
+                event.preventDefault();
+                var form = this,
+                    jcrcontent = false,
+                    callback = form.dataset.callback,
+                    formData = new FormData(form);
+                form.querySelectorAll('input,select,textarea').forEach(function (el) {
+                    if (el.name.indexOf('jcr:content') !== -1) {
+                        jcrcontent = true;
+                    }
+                });
+                if (form.dataset.addDate && !form.querySelector('input[name="jcr:content/jcr:lastModified"]')) {
+                    if (jcrcontent) {
+                        form.innerHTML = form.innerHTML + '<input type="hidden" name="jcr:content/jcr:lastModified" />' +
+                            '<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />' +
+                            '<input type="hidden" name="jcr:content/jcr:created" />' +
+                            '<input type="hidden" name="jcr:content/jcr:createdBy" />';
+                    } else {
+                        form.innerHTML = form.innerHTML + '<input type="hidden" name="jcr:lastModified" />' +
+                            '<input type="hidden" name="jcr:lastModifiedBy" />' +
+                            '<input type="hidden" name="jcr:created" />' +
+                            '<input type="hidden" name="jcr:createdBy" />';
+                    }
                 }
-            });
-            if($form.data('addDate') && $form.find('input[name="jcr:content/jcr:lastModified"]').length == 0){
-                if(jcrcontent){
-                    $form.append('<input type="hidden" name="jcr:content/jcr:lastModified" />');
-                    $form.append('<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />');
-                    $form.append('<input type="hidden" name="jcr:content/jcr:created" />');
-                    $form.append('<input type="hidden" name="jcr:content/jcr:createdBy" />');
-                } else {
-                    $form.append('<input type="hidden" name="jcr:lastModified" />');
-                    $form.append('<input type="hidden" name="jcr:lastModifiedBy" />');
-                    $form.append('<input type="hidden" name="jcr:created" />');
-                    $form.append('<input type="hidden" name="jcr:createdBy" />');
-                }
-            }
-            var callback = $form.data('callback');
-            var data = new FormData(this);
-            $form.find('.form-wrapper').attr('disabled', 'disabled');
-            $.ajax({
-                url: $form.attr('action'),
-                type: 'POST',
-                data: data,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                success: function(res,msg){
-                    if (callback && Sling.CMS.handlers[callback]){
-                        Sling.CMS.handlers[callback](res, msg);
-                    } else if (window.parent.window.CMSEditor) {
-                        var reloadParent = false;
-                        res.changes.forEach(change => {
-                           if (change.type !== 'modified') {
-                               reloadParent = true;
-                           } 
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    cache: 'no-cache',
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }).then(function (response) {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.json();
+                }).catch(function (error) {
+                    if (window.self !== window.top) {
+                        window.top.Sling.CMS.ui.confirmMessage(error.message, error.message, function () {
+                            form.querySelector('.form-wrapper').disabled = false;
                         });
-                        var path = $form.attr('action');
+                    } else {
+                        Sling.CMS.ui.confirmMessage(error.message, error.message, function () {
+                            form.querySelector('.form-wrapper').disabled = false;
+                        });
+                    }
+                }).then(function (res) {
+                    if (callback && Sling.CMS.handlers[callback]) {
+                        Sling.CMS.handlers[callback](res, 'success');
+                    } else if (window.parent.window.CMSEditor) {
+                        var reloadParent = false,
+                            path = form.action;
+                        res.changes.forEach(function (change) {
+                            if (change.type !== 'modified') {
+                                reloadParent = true;
+                            }
+                        });
                         if (reloadParent) {
-                            var pathArr = path.split('\/');
+                            let pathArr = path.split('\/');
                             pathArr.pop();
                             path = pathArr.join('/');
                         }
-                        Sling.CMS.ui.confirmReloadComponent(res, msg, path);
+                        Sling.CMS.ui.confirmReloadComponent(res, 'success', path);
                     } else {
-                        Sling.CMS.ui.confirmReload(res, msg);
+                        Sling.CMS.ui.confirmReload(res, 'success');
                     }
-                },
-                error: function(xhr, msg, err){
-                    if(window.self !== window.top){
-                        window.top.Sling.CMS.ui.confirmMessage(msg, err,function(){
-                            $form.find('.form-wrapper').removeAttr('disabled');
-                        });
-                    } else {
-                        Sling.CMS.ui.confirmMessage(msg, err,function(){
-                            $form.find('.form-wrapper').removeAttr('disabled');
-                        });
+                });
+                form.querySelector('.form-wrapper').disabled = true;
+            }
+        }
+    });
+
+    rava.bind('.Get-Form', {
+        events : {
+            submit : function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                var form = this,
+                    wrapper = form.querySelector('.form-wrapper');
+                fetch(form.action + '?' + new URLSearchParams(new FormData(form)).toString()).then(function (response) {
+                    return response.text();
+                }).then(function (text) {
+                    var tmp = document.createElement('div');
+                    tmp.innerHTML = text;
+                    document.querySelector(form.dataset.target).innerHTML = tmp.querySelector(form.dataset.load).innerHTML;
+                    tmp.remove();
+                    if (wrapper) {
+                        wrapper.disabled = false;
                     }
+                });
+                if (wrapper) {
+                    wrapper.disabled = true;
                 }
-            });
-            return false;
+            }
         }
-    }
-});
-
-
-rava.bind('.Get-Form', {
-    events : {
-        submit : function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            var $form = $(this);
-            var params = $form.serialize();
-            $form.find('.form-wrapper').attr('disabled', 'disabled');
-            $($form.data('target')).load($form.attr('action') + '?' + params +'  ' + $form.data('load'), function(){
-                $form.find('.form-wrapper').removeAttr('disabled');
-            });
-            return false;
+    });
+    
+    rava.bind('.suffix-form', {
+        events: {
+            submit: function (event) {
+                event.preventDefault();
+                var suffix = this.querySelector('input[name=suffix]').value,
+                    path = this.action;
+                window.location = path + suffix;
+                return false;
+            }
         }
-    }
-});
+    });
 
-
-rava.bind('.suffix-form', {
-    events: {
-        submit: function (event) {
-            event.preventDefault();
-            var suffix = $(this).find('input[name=suffix]').val();
-            var path = $(this).attr('action');
-            window.location = path + suffix;
-            return false;
-        }
-    }
-});
+}(window.rava = window.rava || {}, window.Sling = window.Sling || {}));
