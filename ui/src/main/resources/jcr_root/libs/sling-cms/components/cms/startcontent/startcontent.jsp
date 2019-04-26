@@ -26,7 +26,7 @@
                 <fmt:message key="slingcms.recentcontent" />
             </p>
             <c:forEach var="item" items="${startContent.recentContent}">
-                <a class="panel-block" title="${item.path}" href="/cms/site/content.html${item.parent.path}">
+                <a class="panel-block" title="${item.path}" href="/cms/site/content.html${item.parent.path}?resource=${item.path}">
                     <span class="panel-icon">
                         <c:choose>
                             <c:when test="${item.resourceType == 'sling:Page'}">
@@ -58,7 +58,8 @@
             <div class="panel-block">
                 <form method="get" class="Get-Form" data-target=".search-result-container" data-load="div" action="${resource.path}.search.html">
                     <p class="control has-icons-left">
-                        <input class="input is-small" type="text" name="q">
+                        <label class="is-hidden" for="search-term">Search</label>
+                        <input class="input is-small" type="text" name="q" id="search-term" />
                         <span class="icon is-small is-left">
                             <i class="jam jam-search" aria-hidden="true"></i>
                         </span>
