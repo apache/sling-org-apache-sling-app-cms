@@ -16,5 +16,5 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<script src="/static/clientlibs/sling-cms/js/scripts-all.min.js"></script>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<script src="/static/clientlibs/sling-cms/js/scripts-all.min.js" async></script>
