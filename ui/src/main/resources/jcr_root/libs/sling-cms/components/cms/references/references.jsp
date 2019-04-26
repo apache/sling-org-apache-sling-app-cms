@@ -37,7 +37,7 @@
                             </span>
                         </td>
                         <td title="${ref.containingPage.path}">
-                            <a href="/cms/site/content.html${ref.containingPage.parent.path}" target="_blank">
+                            <a href="/cms/site/content.html${ref.containingPage.parent.path}?resource=${ref.containingPage.path}" target="_blank">
                                 ${sling:encode(ref.containingPage.title,'HTML')}
                             </a>
                         </td>

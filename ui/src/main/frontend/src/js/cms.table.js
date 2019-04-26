@@ -21,34 +21,10 @@
 (function (rava) {
     'use strict';
     
-    var table = null,
-        urlParams = new URLSearchParams(window.location.search),
-        resourceParam = urlParams.get('resource');
-    rava.bind(".table", {
-        callbacks : {
-            created: function () {
-                var table = this;
-                if (table.closest('.table__wrapper')) {
-                    var search = table.closest('.table__wrapper').querySelector('input[name=search]'),
-                        filter = function (event) {
-                            event.stopPropagation();
-                            event.preventDefault();
-                            var value = this.value;
-                            table.querySelectorAll('tbody tr').forEach(function (row) {
-                                if (row.innerText.indexOf(value) === -1) {
-                                    row.classList.add('is-hidden');
-                                } else {
-                                    row.classList.remove('is-hidden');
-                                }
-                            });
-                        };
-                    search.addEventListener('keyup', filter);
-                    search.addEventListener('change', filter);
-                }
-            }
-        }
-    });
-
+    var urlParams = new URLSearchParams(window.location.search),
+        resourceParam = urlParams.get('resource'),
+        searchParam = urlParams.get('search');
+    
     rava.bind(".table tbody tr", {
         events: {
             click: function () {
@@ -60,12 +36,45 @@
             }
         }
     });
-
-    if (table && resourceParam) {
-        table.search(resourceParam.split(/\//).slice(-1)).draw();
-        if (document.querySelector('.table tr[data-resource=\'' + resourceParam + '\']')) {
-            document.querySelector('.table tr[data-resource=\'' + resourceParam + '\']').click();
-        }
-    }
     
+    rava.bind(".table", {
+        callbacks : {
+            created: function () {
+                var table = this;
+                if (table.closest('.table__wrapper')) {
+                    var search = table.closest('.table__wrapper').querySelector('input[name=search]'),
+                        filter = function (event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            var value = this.value.toLowerCase();
+                            table.querySelectorAll('tbody tr').forEach(function (row) {
+                                if (row.innerText.toLowerCase().indexOf(value) === -1 && !row.querySelector('td[data-value="' + resourceParam + '"]')) {
+                                    row.classList.add('is-hidden');
+                                } else {
+                                    row.classList.remove('is-hidden');
+                                }
+                            });
+                        };
+                    search.addEventListener('keyup', filter);
+                    search.addEventListener('change', filter);
+                    
+                    if (resourceParam) {
+                        table.querySelectorAll('tbody tr').forEach(function (row) {
+                            if (row.querySelector('td[data-value="' + resourceParam + '"]')) {
+                                row.classList.remove('is-hidden');
+                                row.click();
+                            } else {
+                                row.classList.add('is-hidden');
+                            }
+                        });
+                        table.closest('.table__wrapper').querySelector('input[name=search]').value = resourceParam;
+                    } else if (searchParam) {
+                        table.closest('.table__wrapper').querySelector('input[name=search]').value = searchParam;
+                        filter(new Event('fake'));
+                    }
+                }
+            }
+        }
+    });
+
 }(window.rava = window.rava || {}));
