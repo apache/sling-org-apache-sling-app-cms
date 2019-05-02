@@ -33,6 +33,11 @@
                 });
                 this.classList.add('is-selected');
                 document.querySelector('.actions-target').innerHTML = this.querySelector('.cell-actions').innerHTML;
+            },
+            dblclick: function () {
+                if(this.querySelector('.item-link')){
+                    window.location = this.querySelector('.item-link').href;
+                }
             }
         }
     });
