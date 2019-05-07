@@ -150,6 +150,10 @@ h5 {
     margin-bottom: .5em;
 }
 
+#search-results .box {
+    overflow: hidden;
+}
+
 #search-results .tile {
     flex-wrap: wrap;
     padding: .5em;

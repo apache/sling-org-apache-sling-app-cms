@@ -49,12 +49,11 @@
                             <c:set var="icon" value="sitemap" />
                         </c:otherwise>
                     </c:choose>
-                    <h5>
-                        <span class="jam jam-${icon}"></span>
-                        ${sling:encode(title,'HTML')}
+                    <h5 title="${sling:encode(title,'HTML_ATTR')}">
+                        <span class="jam jam-${icon}"></span>&nbsp;${sling:encode(title,'HTML')}
                     </h5>
                     <small class="is-size-7">
-                        <em>${result.path}</em>
+                        <em title="${sling:encode(result.path,'HTML_ATTR')}">${sling:encode(result.path,'HTML')}</em>
                     </small><br/>
                     <a href="#" class="button search-select-button is-pulled-right" data-path="${result.path}">Select</a>
                     <br class="clearfix" />

@@ -30,7 +30,7 @@
         },
         methods: {
             getModal: function (title, link, button) {
-                if (window.parent && window.parent.parent) {
+                if (window.self !== window.top && window.parent.parent) {
                     window.parent.parent.postMessage({
                         "action": "slingcms.openmodal",
                         "url": link,

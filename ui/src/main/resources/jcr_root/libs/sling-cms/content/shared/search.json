@@ -11,7 +11,7 @@
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/cms/getform",
                 "button": "Search",
-                "load": "#search-results .is-ancestor",
+                "load": "#search-results",
                 "target": "#search-results",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",
@@ -29,10 +29,10 @@
                         "name": "type",
                         "label": "Content Type",
                         "options": [
-                            "Page=sling:Page",
-                            "File=sling:File",
-                            "Folder=sling:Folder",
-                            "Everything=nt:base"
+                            "All=nt:base",
+                            "Files=sling:File",
+                            "Folders=sling:Folder",
+                            "Pages=sling:Page"
                         ]
                     },
                     "path": {

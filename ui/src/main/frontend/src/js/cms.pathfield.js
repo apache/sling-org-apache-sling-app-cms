@@ -31,13 +31,10 @@
                     minChars: 1,
                     selector: this,
                     source: function (term, response) {
-                        var searchParams = new URLSearchParams();
                         if (term === '/') {
                             term = base;
                         }
-                        searchParams.set('path', term);
-                        searchParams.set('type', type);
-                        fetch('/bin/cms/paths', searchParams).then(function (response) {
+                        fetch('/bin/cms/paths?path=' + encodeURIComponent(term) + '&type=' + encodeURIComponent(type)).then(function (response) {
                             return response.json();
                         }).then(function (data) {
                             response(data);
