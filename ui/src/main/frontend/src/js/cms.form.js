@@ -42,17 +42,19 @@ w * Licensed to the Apache Software Foundation (ASF) under one
                     }
                 });
                 if (form.dataset.addDate && !form.querySelector('input[name="jcr:content/jcr:lastModified"]')) {
+                    var dateContainer = document.createElement('div');
                     if (jcrcontent) {
-                        form.innerHTML = form.innerHTML + '<input type="hidden" name="jcr:content/jcr:lastModified" />' +
+                        dateContainer.innerHTML = '<input type="hidden" name="jcr:content/jcr:lastModified" />' +
                             '<input type="hidden" name="jcr:content/jcr:lastModifiedBy" />' +
                             '<input type="hidden" name="jcr:content/jcr:created" />' +
                             '<input type="hidden" name="jcr:content/jcr:createdBy" />';
                     } else {
-                        form.innerHTML = form.innerHTML + '<input type="hidden" name="jcr:lastModified" />' +
+                        dateContainer.innerHTML = '<input type="hidden" name="jcr:lastModified" />' +
                             '<input type="hidden" name="jcr:lastModifiedBy" />' +
                             '<input type="hidden" name="jcr:created" />' +
                             '<input type="hidden" name="jcr:createdBy" />';
                     }
+                    form.appendChild(dateContainer);
                 }
                 fetch(form.action, {
                     method: 'POST',
@@ -81,7 +83,7 @@ w * Licensed to the Apache Software Foundation (ASF) under one
                         Sling.CMS.handlers[callback](res, 'success');
                     } else if (window.parent.window.CMSEditor) {
                         var reloadParent = false,
-                            path = form.action;
+                            path = res.path;
                         res.changes.forEach(function (change) {
                             if (change.type !== 'modified') {
                                 reloadParent = true;
