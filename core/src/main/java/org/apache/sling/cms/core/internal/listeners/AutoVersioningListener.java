@@ -17,10 +17,9 @@
 package org.apache.sling.cms.core.internal.listeners;
 
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -62,9 +61,6 @@ import org.slf4j.LoggerFactory;
 public class AutoVersioningListener implements ResourceChangeListener, ExternalResourceChangeListener {
 
     private static final Logger log = LoggerFactory.getLogger(AutoVersioningListener.class);
-    public static final String NN_METADATA = "metadata";
-
-    public static final String PN_X_PARSED_BY = "X-Parsed-By";
 
     private int cutoff;
     private boolean enabled;
@@ -83,12 +79,10 @@ public class AutoVersioningListener implements ResourceChangeListener, ExternalR
     public void onChange(List<ResourceChange> changes) {
         if (enabled) {
             log.trace("onChange");
-            Map<String, Object> serviceParams = new HashMap<>();
-            serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-cms-versionmgr");
-            ResourceResolver serviceResolver = null;
 
-            try {
-                serviceResolver = factory.getServiceResourceResolver(serviceParams);
+            try (ResourceResolver serviceResolver = factory.getServiceResourceResolver(
+                    Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, "sling-cms-versionmgr"))) {
+
                 Set<String> pages = new HashSet<>();
                 for (ResourceChange rc : changes) {
                     Resource changed = serviceResolver.getResource(rc.getPath());
@@ -110,10 +104,6 @@ public class AutoVersioningListener implements ResourceChangeListener, ExternalR
                 }
             } catch (LoginException e) {
                 log.error("Exception getting service user", e);
-            } finally {
-                if (serviceResolver != null) {
-                    serviceResolver.close();
-                }
             }
         }
     }
