@@ -68,7 +68,8 @@
     rava.bind(".modal", {
         events: {
             ".close,.modal-close,.close-modal,.modal-background": {
-                click: function () {
+                click: function (event) {
+                    event.preventDefault();
                     this.remove();
                 }
             }

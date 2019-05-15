@@ -18,20 +18,28 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:forEach var="actionConfig" items="${sling:listChildren(resource)}">
-	<c:choose>
-		<c:when test="${actionConfig.valueMap.modal}">
-			<div class="control">
-				<a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-					<span class="jam jam-${actionConfig.valueMap.icon}"></span>
-				</a>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<div class="control">
-				<a class="button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-					<span class="jam jam-${actionConfig.valueMap.icon}"></span>
-				</a>
-			</div>
-		</c:otherwise>
-	</c:choose>
+    <c:choose>
+        <c:when test="${actionConfig.valueMap.modal}">
+            <div class="control">
+                <a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+                    <span class="jam jam-${actionConfig.valueMap.icon}">
+                        <span class="is-vhidden">
+                            ${sling:encode(actionConfig.valueMap.title,'HTML')}
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="control">
+                <a class="button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+                    <span class="jam jam-${actionConfig.valueMap.icon}">
+                        <span class="is-vhidden">
+                            ${sling:encode(actionConfig.valueMap.title,'HTML')}
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </c:otherwise>
+    </c:choose>
 </c:forEach>

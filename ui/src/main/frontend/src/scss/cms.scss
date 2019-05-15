@@ -90,6 +90,12 @@ h5 {
     position: relative;
 }
 
+.is-vhidden {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+
 .loader {
     margin: auto;
     width: 2em;

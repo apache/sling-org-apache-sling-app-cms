@@ -20,7 +20,7 @@
  <div class="reload-container table__wrapper" data-path="${resource.path}.html${slingRequest.requestPathInfo.suffix}">
     <form method="get" class="table__filter">
         <p class="control has-icons-left">
-            <label class="is-hidden" for="search-term">Search</label>
+            <label class="is-vhidden" for="search-term">Search</label>
             <input class="input is-small" type="text" name="search" id="search-term">
             <span class="icon is-small is-left">
                 <i class="jam jam-search" aria-hidden="true"></i>

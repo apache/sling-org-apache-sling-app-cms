@@ -121,34 +121,35 @@ public class EditIncludeFilter implements Filter {
             component = er.getComponent();
             editPath = component.getEditPath();
         }
-        writer.write("<div class=\"sling-cms-component\" data-component=\""+component+"\" data-sling-cms-title=\""
-                + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
-                + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
-                + "\" data-sling-cms-edit=\"" + editPath + "\"><div class=\"sling-cms-editor\">");
+        String title = component != null ? component.getTitle()
+                : StringUtils.substringAfterLast(resource.getResourceType(), "/");
+        writer.write("<div class=\"sling-cms-component\" data-component=\"" + component + "\" data-sling-cms-title=\""
+                + title + "\" data-sling-cms-resource-path=\"" + resource.getPath()
+                + "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\" data-sling-cms-edit=\""
+                + editPath + "\"><div class=\"sling-cms-editor\">");
         writer.write(
                 "<div class=\"level has-background-grey\"><div class=\"level-left\"><div class=\"field has-addons\">");
 
-        writer.write(
-                "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"edit\" data-sling-cms-path=\""
-                        + resource.getPath() + "\" data-sling-cms-edit=\"" + editPath
-                        + "\" title=\"Edit Component\"><span class=\"jam jam-pencil-f\"></span></button></div>");
+        writer.write("<div class=\"control\"><a href=\"/cms/editor/edit.html" + resource.getPath() + "?editor="
+                + editPath + "\" class=\"level-item button action-button\"  title=\"Edit " + title
+                + "\"><span class=\"jam jam-pencil-f\"><span class=\"is-vhidden\">Edit " + title
+                + "</span></span></a></div>");
         if (!first || !last) {
-            writer.write(
-                    "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"reorder\" data-sling-cms-path=\""
-                            + resource.getPath()
-                            + "\" title=\"Reorder Component\"><span class=\"jam jam-arrows-v\"></span></button></div>");
+            writer.write("<div class=\"control\"><a href=\"/cms/editor/reorder.html" + resource.getPath()
+                    + "\" class=\"level-item button action-button\" title=\"Reorder " + title
+                    + "\"><span class=\"jam jam-arrows-v\"><span class=\"is-vhidden\">Reorder " + title
+                    + "</span></span></a></div>");
         }
         if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
-            writer.write(
-                    "<div class=\"control\"><button class=\"level-item button\" data-sling-cms-action=\"delete\" data-sling-cms-path=\""
-                            + resource.getPath()
-                            + "\" title=\"Delete Component\"><span class=\"jam jam-trash\"></span></button></div>");
+            writer.write("<div class=\"control\"><a href=\"/cms/editor/delete.html" + resource.getPath()
+                    + "\" class=\"level-item button action-button\" title=\"Delete Component\"><span class=\"jam jam-trash\"><span class=\"is-vhidden\">Delete "
+                    + title + "</span></span></a></div>");
         }
 
         writer.write("</div></div>");
         if (component != null) {
-            writer.write("<div class=\"level-right\"><div class=\"level-item has-text-light\">" + component.getTitle()
-                    + "</div></div>");
+            writer.write(
+                    "<div class=\"level-right\"><div class=\"level-item has-text-light\">" + title + "</div></div>");
         }
         writer.write("</div></div>");
     }

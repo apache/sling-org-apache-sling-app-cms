@@ -30,7 +30,7 @@
             <sling:encode value="${properties.button}" default="Save" mode="HTML" />
         </button>
         <c:if test="${properties.skipcancel != true}">
-            <button type="button" class="button close">Cancel</button>
+            <a href="${header.referer}" class="button close">Cancel</a>
         </c:if>
     </fieldset>
 </form>

@@ -34,6 +34,11 @@
     .is-draggable {
         position: relative;
     }
+    .is-vhidden {
+        position: absolute !important;
+        top: -9999px !important;
+        left: -9999px !important;
+    }
     .level {
         padding: .5em;
     }

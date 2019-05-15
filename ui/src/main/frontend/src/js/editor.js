@@ -132,20 +132,9 @@
                         });
                     },
                     attachClicks: function (ctx) {
-                        CMSEditor.util.attachClick(ctx, '.sling-cms-editor .button[data-sling-cms-action=add]', function () {
-                            CMSEditor.ui.showModal('/cms/editor/add.html' + this.dataset.slingCmsPath + '?availableTypes=' + this.dataset.slingCmsAvailableTypes, this.title);
-                        });
-                        CMSEditor.util.attachClick(ctx, '.sling-cms-editor .button[data-sling-cms-action=delete]', function () {
-                            CMSEditor.ui.showModal('/cms/editor/delete.html' + this.dataset.slingCmsPath, this.title);
-                        });
-                        CMSEditor.util.attachClick(ctx, '.sling-cms-editor .button[data-sling-cms-action=edit]', function () {
-                            CMSEditor.ui.showModal(
-                                '/cms/editor/edit.html' + this.dataset.slingCmsPath + '?editor=' + this.dataset.slingCmsEdit,
-                                CMSEditor.util.findParent(this, '.sling-cms-component').dataset.slingCmsTitle || this.title
-                            );
-                        });
-                        CMSEditor.util.attachClick(ctx, '.sling-cms-editor .button[data-sling-cms-action=reorder]', function () {
-                            CMSEditor.ui.showModal('/cms/editor/reorder.html' + this.dataset.slingCmsPath, this.title);
+                        CMSEditor.util.attachClick(ctx, '.sling-cms-editor .action-button', function (event) {
+                            event.preventDefault();
+                            CMSEditor.ui.showModal(this.href, this.title);
                         });
                     },
                     findParent: function (el, exp) {
