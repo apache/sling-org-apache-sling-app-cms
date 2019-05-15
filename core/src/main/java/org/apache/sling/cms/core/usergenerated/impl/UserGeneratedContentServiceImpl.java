@@ -59,7 +59,7 @@ public class UserGeneratedContentServiceImpl implements UserGeneratedContentServ
 
         log.debug("Connecting with service user");
         Map<String, Object> serviceParams = new HashMap<>();
-        serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-ugc");
+        serviceParams.put(ResourceResolverFactory.SUBSERVICE, "sling-cms-ugc");
         serviceResolver = factory.getServiceResourceResolver(serviceParams);
     }
 
