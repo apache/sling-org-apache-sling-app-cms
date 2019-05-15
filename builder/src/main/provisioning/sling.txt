@@ -95,7 +95,6 @@
     org.apache.pdfbox/fontbox/2.0.12
     org.apache.pdfbox/jempbox/1.8.16
     org.apache.tika/tika-core/1.19.1
-    org.apache.tika/tika-parsers/1.19.1
 
 [artifacts startLevel=15]
     org.apache.sling/org.apache.sling.jcr.jcr-wrapper/2.0.0

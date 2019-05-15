@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms.core.internal.jobs;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.ConfigurableJobExecutor;
 import org.apache.sling.cms.File;
-import org.apache.sling.cms.core.internal.listeners.FileMetadataExtractor;
+import org.apache.sling.cms.FileMetadataExtractor;
 import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
 import org.apache.sling.event.jobs.consumer.JobExecutionContext;
@@ -89,11 +90,11 @@ public class FileMetadataExtractorJob extends ConfigurableJobExecutor {
                     extractor.extractMetadata(file);
                     context.incrementProgressCount(processed++);
                     context.log("Extracted metadata for {0}", file.getPath());
-                } catch (Throwable t) {
+                } catch (IOException e) {
                     context.log("Failed to extract matadata for {0}", file.getPath());
                     context.incrementProgressCount(processed++);
-                    context.log("Exception {0}", t.getMessage());
-                    log.warn("Failed to extract metadata for " + file.getPath(), t);
+                    context.log("Exception {0}", e.getMessage());
+                    log.warn("Failed to extract metadata for " + file.getPath(), e);
                 }
             }
 

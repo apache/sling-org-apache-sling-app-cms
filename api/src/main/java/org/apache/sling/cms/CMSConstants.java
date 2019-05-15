@@ -60,6 +60,11 @@ public class CMSConstants {
     public static final String NAMESPACE = "sling";
 
     /**
+     * The subpath for the metadata under sling:File resources
+     */
+    public static final String NN_METADATA = "metadata";
+
+    /**
      * Component node type.
      */
     public static final String NT_COMPONENT = NAMESPACE + ":Component";
@@ -129,7 +134,7 @@ public class CMSConstants {
      */
     public static final String[] PUBLISHABLE_TYPES = new String[] { CMSConstants.NT_FILE, CMSConstants.NT_PAGE,
             JcrResourceConstants.NT_SLING_FOLDER, JcrResourceConstants.NT_SLING_ORDERED_FOLDER };
-
+    
     /**
      * The name of the admin user
      */

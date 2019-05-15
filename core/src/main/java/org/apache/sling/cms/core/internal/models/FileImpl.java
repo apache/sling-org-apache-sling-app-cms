@@ -28,10 +28,10 @@ import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.Site;
 import org.apache.sling.cms.SiteManager;
-import org.apache.sling.cms.core.internal.listeners.FileMetadataExtractor;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -118,7 +118,7 @@ public class FileImpl implements File {
 
     @Override
     public ValueMap getMetadata() {
-        Resource metadata = this.getContentResource().getChild(FileMetadataExtractor.NN_METADATA);
+        Resource metadata = this.getContentResource().getChild(CMSConstants.NN_METADATA);
         Map<String, Object> data = new TreeMap<>();
         if (metadata != null) {
             metadata.getValueMap().entrySet()
