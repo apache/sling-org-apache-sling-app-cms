@@ -29,7 +29,7 @@
         events: {
             input: {
                 change : function (event) {
-                    var nameField = this.querySelector('.file-name');
+                    var nameField = event.target.closest('.file').querySelector('.file-name');
                     if (nameField) {
                         nameField.textContent = event.target.files[0].name;
                     }
