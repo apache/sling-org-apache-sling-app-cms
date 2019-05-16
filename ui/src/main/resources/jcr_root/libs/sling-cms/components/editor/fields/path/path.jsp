@@ -58,11 +58,13 @@
     <c:when test="${properties.hidesearch != true}">
     	<div class="field has-addons">
           <div class="control is-expanded">
-              <input class="input pathfield" type="text" name="${properties.name}" value="${value}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+              <input class="input pathfield" type="text" id="${properties.name}" name="${properties.name}" value="${value}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
           </div>
           <div class="control">
               <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
-                  <span class="jam jam-search"></span>
+                  <span class="jam jam-search">
+                    <span class="is-vhidden">Search</span>
+                  </span>
               </a>
           </div>
          </div>

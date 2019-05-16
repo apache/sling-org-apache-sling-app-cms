@@ -28,11 +28,15 @@
      </fieldset>
     <div class="taxonomy__field field has-addons">
         <div class="control is-expanded">
-             <input class="input" type="text" ${required} ${disabled} list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
+             <input class="input" type="text" ${required} ${disabled} id="${properties.name}" list="taxonomy-${fn:replace(resource.name,':','-')}" autocomplete="off" />
          </div>
          <div class="control">
              <button class="taxonomy__add button">
-                 <span class="jam jam-plus"></span>
+                 <span class="jam jam-plus">
+                    <span class="is-vhidden">
+                        Add
+                    </span>
+                 </span>
              </button>
          </div>
      </div>

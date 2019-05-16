@@ -25,7 +25,11 @@
             </div>
             <div class="control">
                 <button class="repeating__remove button">
-                    <span class="jam jam-minus"></span>
+                    <span class="jam jam-minus">
+                        <span class="is-vhidden">
+                            Remove
+                        </span>
+                    </span>
                 </button>
             </div>
         </div>
@@ -38,13 +42,17 @@
                 </div>
                 <div class="control">
                     <button class="repeating__remove button">
-                        <span class="jam jam-minus"></span>
+                        <span class="jam jam-minus">
+                            <span class="is-vhidden">
+                                Remove
+                            </span>
+                        </span>
                     </button>
                 </div>
             </div>
         </c:forEach>
     </div>
-    <button type="button" class="repeating__add button">
+    <button type="button" class="repeating__add button" name="${properties.name}">
         <span class="jam jam-plus"></span>
     </button>
 </div>

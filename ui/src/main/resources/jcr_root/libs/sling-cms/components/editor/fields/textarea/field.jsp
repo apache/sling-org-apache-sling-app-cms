@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<textarea class="textarea" name="${properties.name}" ${required} ${disabled}>${value}</textarea>
+<textarea class="textarea" name="${properties.name}" id="${properties.name}" ${required} ${disabled}>${value}</textarea>

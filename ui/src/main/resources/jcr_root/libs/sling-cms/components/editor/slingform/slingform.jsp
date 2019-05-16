@@ -17,7 +17,6 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<h1 class="title">${properties.title}</h1>
 <form method="post"
     action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}"
     enctype="multipart/form-data" class="Form-Ajax"

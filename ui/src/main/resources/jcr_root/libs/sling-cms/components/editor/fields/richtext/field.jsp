@@ -27,5 +27,5 @@
         </c:otherwise>
     </c:choose>
     <sling:include resource="${toolbar}" />
-    <textarea class="rte-editor textarea" name="${properties.name}" ${required} ${disabled}>${value}</textarea>
+    <textarea class="rte-editor textarea" id="${properties.name}" name="${properties.name}" ${required} ${disabled}>${value}</textarea>
 </div>

@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<input type="${not empty properties.type ? properties.type : 'text'}" class="input" name="${properties.name}" value="${value}" ${required} ${disabled} />
+<input type="${not empty properties.type ? properties.type : 'text'}" class="input" id="${properties.name}" name="${properties.name}" value="${value}" ${required} ${disabled} />

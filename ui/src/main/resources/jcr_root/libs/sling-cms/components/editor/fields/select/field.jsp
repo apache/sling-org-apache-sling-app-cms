@@ -21,7 +21,7 @@
     <c:set var="multiple" value="multiple = \"multiple\"" />
 </c:if>
 <div class="select is-fullwidth">
-    <select name="${properties.name}" ${required} ${disabled} ${multiple}>
+    <select name="${properties.name}" id="${properties.name}" ${required} ${disabled} ${multiple}>
         <c:choose>
             <c:when test="${not empty properties.options}">
                 <c:forEach var="option" items="${properties.options}">
