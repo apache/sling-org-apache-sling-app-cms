@@ -16,67 +16,50 @@
  */
 package org.apache.sling.cms.core.internal.servlets;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Optional;
 
-import javax.imageio.ImageIO;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.ImageType;
-import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
-import org.apache.sling.cms.File;
+import org.apache.sling.cms.transformation.FileThumbnailTransformer;
+import org.apache.sling.cms.transformation.OutputFileFormat;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.google.common.net.MediaType;
-
-import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.Thumbnails.Builder;
-import net.coobird.thumbnailator.geometry.Positions;
-
+/**
+ * A servlet to transform images using the FileThumbnailTransformer API. Can be
+ * invoked using the syntax:
+ * 
+ * /content/file/path.jpg.transform/command-param1-param2/command2-param1-param2.png
+ */
 @Component(service = { Servlet.class }, property = { "sling.servlet.extensions=transform",
         "sling.servlet.resourceTypes=sling:File", "sling.servlet.resourceTypes=nt:file" })
 public class TransformServlet extends SlingSafeMethodsServlet {
 
+    private static final Logger log = LoggerFactory.getLogger(TransformServlet.class);
+
     private static final long serialVersionUID = -1513067546618762171L;
 
+    @Reference
+    private transient FileThumbnailTransformer transformer;
+
+    @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
-
-        Builder<? extends InputStream> builder = Thumbnails.of(getInputStream(request.getResource()));
-        for (String cmd : request.getRequestPathInfo().getSuffix().split("/")) {
-            if (cmd.startsWith("resize-")) {
-                builder.size(Integer.parseInt(cmd.split("\\-")[1], 10), Integer.parseInt(cmd.split("\\-")[2], 10));
-            }
+        String original = response.getContentType();
+        try {
+            response.setContentType(OutputFileFormat.forRequest(request).getMimeType());
+            transformer.transformFile(request, response.getOutputStream());
+        } catch (Exception e) {
+            log.error("Exception transforming image", e);
+            response.setContentType(original);
+            response.sendError(400, "Could not transform image with provided commands");
         }
-        builder.crop(Positions.CENTER);
-        response.setContentType("image/png");
-        builder.toOutputStream(response.getOutputStream());
     }
 
-    private InputStream getInputStream(Resource resource) throws IOException {
-        String contentType = Optional.ofNullable(resource.adaptTo(File.class)).map(File::getContentType).orElse("");
-        if (contentType.startsWith("image")) {
-            return resource.adaptTo(InputStream.class);
-        }
-        if (MediaType.PDF.toString().equals(contentType)) {
-            PDDocument document = PDDocument.load(resource.adaptTo(InputStream.class));
-            PDFRenderer pdfRenderer = new PDFRenderer(document);
-            BufferedImage bim = pdfRenderer.renderImageWithDPI(0, 300, ImageType.RGB);
-            ByteArrayOutputStream os = new ByteArrayOutputStream();
-            ImageIO.write(bim, "jpeg", os);
-            document.close();
-            return new ByteArrayInputStream(os.toByteArray());
-        }
-        return null;
-    }
 }

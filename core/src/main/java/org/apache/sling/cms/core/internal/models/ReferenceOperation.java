@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 
 import javax.jcr.query.Query;
 
+import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.cms.CMSConstants;
@@ -42,11 +43,11 @@ public abstract class ReferenceOperation {
     private Resource resource = null;
 
     public ReferenceOperation(Resource resource) {
-        String path = resource.getPath().replace("/", "\\/");
+        String path = resource.getPath();
         if (CMSConstants.NT_PAGE.equals(resource.getResourceType())) {
-            regex = Pattern.compile("(^" + path + "($|\\/)|(\\'|\\\")" + path + "(\\.html|\\'|\\\"|\\/))");
+            regex = Pattern.compile("(^\\Q" + path + "\\E($|\\/)|(\\'|\\\")\\Q" + path + "\\E(\\.html|\\'|\\\"|\\/))");
         } else {
-            regex = Pattern.compile("(^" + path + "($|\\/)|(\\'|\\\")" + path + "(\\'|\\\"|\\/))");
+            regex = Pattern.compile("(^\\Q" + path + "\\E($|\\/)|(\\'|\\\")\\Q" + path + "\\E(\\'|\\\"|\\/))");
         }
         this.resource = resource;
     }
@@ -82,7 +83,7 @@ public abstract class ReferenceOperation {
     public void init() {
         log.debug("Finding references to {}", resource.getPath());
         String query = "SELECT * FROM [nt:base] AS s WHERE NOT ISDESCENDANTNODE([/jcr:system/jcr:versionStorage]) AND CONTAINS(s.*, '"
-                + resource.getPath() + "')";
+                + Text.escapeIllegalXpathSearchChars(resource.getPath()) + "')";
         Set<String> paths = new HashSet<>();
 
         Iterator<Resource> resources = resource.getResourceResolver().findResources(query, Query.JCR_SQL2);
