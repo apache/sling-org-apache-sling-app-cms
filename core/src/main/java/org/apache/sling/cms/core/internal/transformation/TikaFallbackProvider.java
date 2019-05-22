@@ -1,0 +1,85 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.sling.cms.core.internal.transformation;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.JEditorPane;
+
+import org.apache.sling.cms.File;
+import org.apache.sling.cms.transformation.OutputFileFormat;
+import org.apache.sling.cms.transformation.ThumbnailProvider;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.sax.BodyContentHandler;
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
+
+@Component(service = ThumbnailProvider.class, property = { Constants.SERVICE_RANKING + "=" + Integer.MIN_VALUE })
+public class TikaFallbackProvider implements ThumbnailProvider {
+
+    private static final Logger log = LoggerFactory.getLogger(TikaFallbackProvider.class);
+
+    @Override
+    public boolean applies(File file) {
+        return true;
+    }
+
+    @Override
+    public InputStream getThumbnail(File file) throws IOException {
+
+        log.info("Extracting content thumbnail from {}", file.getPath());
+        try {
+
+            log.debug("Extracting file contents");
+            InputStream is = file.getResource().adaptTo(InputStream.class);
+            Parser parser = new AutoDetectParser();
+            BodyContentHandler handler = new BodyContentHandler();
+            Metadata md = new Metadata();
+            ParseContext context = new ParseContext();
+            parser.parse(is, handler, md, context);
+
+            log.debug("Creating thumbnail of file contents");
+            int width = 500;
+            int height = 500;
+            BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics graphics = image.createGraphics();
+            JEditorPane jep = new JEditorPane("text/html", handler.toString());
+            jep.setSize(width, height);
+            jep.print(graphics);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, OutputFileFormat.PNG.toString(), baos);
+            return new ByteArrayInputStream(baos.toByteArray());
+        } catch (SAXException | TikaException e) {
+            throw new IOException("Failed to generate thumbnail from " + file.getPath(), e);
+        }
+    }
+
+}
