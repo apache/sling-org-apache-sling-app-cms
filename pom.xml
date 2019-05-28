@@ -54,8 +54,6 @@
     <dependencyManagement>
         <dependencies>
 
-
-
             <!-- Other Apache Dependencies -->
             <dependency>
                 <groupId>org.apache.cocoon</groupId>

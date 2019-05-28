@@ -20,9 +20,9 @@
 
 # startlevel 5 together with jetty (to allow use during startup)
 [artifacts startLevel=5]
-    org.apache.felix/org.apache.felix.healthcheck.api/2.0.0
-    org.apache.felix/org.apache.felix.healthcheck.core/2.0.2
-    org.apache.felix/org.apache.felix.healthcheck.generalchecks/2.0.2
+    org.apache.felix/org.apache.felix.healthcheck.api/2.0.2
+    org.apache.felix/org.apache.felix.healthcheck.core/2.0.6
+    org.apache.felix/org.apache.felix.healthcheck.generalchecks/2.0.4
     org.apache.felix/org.apache.felix.healthcheck.webconsoleplugin/2.0.0
 
 # sling health check bundles at startlevel 20
@@ -53,6 +53,7 @@
       "javax.script.ScriptEngineManager",
     ]
 
+
   ## bundles
   
   org.apache.felix.hc.generalchecks.BundlesStartedCheck
@@ -81,3 +82,14 @@
     user.mapping=[
       "org.apache.sling.hc.support\=sling-readall"
     ]
+
+  ## Service Unavailable Filter for startup-shutdown
+  org.apache.felix.hc.core.impl.filter.ServiceUnavailableFilter-startupandshutdown
+    tags=["systemalive"]
+    service.ranking=I"2147483647"
+    osgi.http.whiteboard.context.select="(osgi.http.whiteboard.context.name\=*)"
+    osgi.http.whiteboard.filter.regex="(?!/system/).*"
+    responseTextFor503="classpath:org.apache.sling.starter.content:content/content/startup/index.html"
+    includeExecutionResult=B"false"
+    autoDisableFilter=B"true"
+    avoid404DuringStartup=B"true"
