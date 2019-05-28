@@ -15,7 +15,7 @@
     </parent>
     <artifactId>org.apache.sling.cms.metadata-extractor</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Sling - Metadata Extractor</name>
+    <name>Apache Sling - Metadata Extractor Bundle Wrapper</name>
     <description>OSGi Bundle Wrapper for https://github.com/drewnoakes/metadata-extractor</description>
 
     <properties>

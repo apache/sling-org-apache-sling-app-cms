@@ -15,7 +15,7 @@
     </parent>
     <artifactId>org.apache.sling.cms.thumbnailator</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Sling - Thumbnailator Wrapper</name>
+    <name>Apache Sling - Thumbnailator Bundle Wrapper</name>
     <description>OSGi Bundle Wrapper for https://github.com/coobird/thumbnailator</description>
 
     <properties>
