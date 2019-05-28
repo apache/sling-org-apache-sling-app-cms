@@ -36,7 +36,9 @@ import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.transformation.OutputFileFormat;
 import org.apache.sling.cms.transformation.ThumbnailProvider;
+import org.apache.sling.commons.classloader.DynamicClassLoaderManager;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import com.google.common.net.MediaType;
 
@@ -46,6 +48,9 @@ import com.google.common.net.MediaType;
 @Component(service = ThumbnailProvider.class)
 public class SlideShowThumbnailProvider implements ThumbnailProvider {
 
+    @Reference
+    private DynamicClassLoaderManager dclm;
+
     @Override
     public boolean applies(File file) {
         MediaType mt = MediaType.parse(file.getContentType());
@@ -54,6 +59,10 @@ public class SlideShowThumbnailProvider implements ThumbnailProvider {
 
     @Override
     public InputStream getThumbnail(File file) throws IOException {
+        if (dclm != null) {
+            Thread.currentThread().setContextClassLoader(dclm.getDynamicClassLoader());
+        }
+
         SlideShow<?, ?> ppt = null;
         MediaType mt = MediaType.parse(file.getContentType());
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
