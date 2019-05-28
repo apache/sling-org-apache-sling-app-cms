@@ -22,7 +22,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.transformation.FileThumbnailTransformer;
@@ -35,6 +35,8 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Lists;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.Thumbnails.Builder;
@@ -72,7 +74,8 @@ public class FileThumbnailTransformerImpl implements FileThumbnailTransformer {
     @Override
     public void transformFile(File file, String[] commands, OutputFileFormat format, OutputStream out)
             throws IOException {
-        ThumbnailProvider provider = thumbnailProviders.stream().filter(tp -> tp.applies(file)).findFirst()
+        ThumbnailProvider provider = Lists.reverse(thumbnailProviders).stream().filter(tp -> tp.applies(file))
+                .findFirst()
                 .orElseThrow(() -> new IOException("Unable to find thumbnail provider for: " + file.getPath()));
         log.debug("Using thumbnail provider {} for file {}", provider, file);
         Builder<? extends InputStream> builder = Thumbnails.of(provider.getThumbnail(file));

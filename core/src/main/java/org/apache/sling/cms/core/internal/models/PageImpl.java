@@ -23,7 +23,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -192,7 +192,7 @@ public class PageImpl implements Page {
     }
 
     @Override
-    public Site getSite() { 
+    public Site getSite() {
         SiteManager siteMgr = resource.adaptTo(SiteManager.class);
         Site site = null;
         if (siteMgr != null) {

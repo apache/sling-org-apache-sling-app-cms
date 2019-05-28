@@ -16,7 +16,7 @@
  */
 package org.apache.sling.cms;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 
 public class Reference {

@@ -19,8 +19,8 @@ package org.apache.sling.cms.core.internal.models;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.Component;
 import org.apache.sling.models.annotations.Default;

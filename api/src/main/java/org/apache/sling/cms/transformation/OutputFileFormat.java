@@ -16,7 +16,7 @@
  */
 package org.apache.sling.cms.transformation;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 
 import com.google.common.base.Enums;
@@ -35,7 +35,8 @@ public enum OutputFileFormat {
      * @return the format for the suffix
      */
     public static OutputFileFormat forRequest(SlingHttpServletRequest request) {
-        String suffixExtension = StringUtils.substringAfterLast(request.getRequestPathInfo().getSuffix(), ".").toUpperCase();
+        String suffixExtension = StringUtils.substringAfterLast(request.getRequestPathInfo().getSuffix(), ".")
+                .toUpperCase();
         return Enums.getIfPresent(OutputFileFormat.class, suffixExtension).or(OutputFileFormat.JPEG);
     }
 

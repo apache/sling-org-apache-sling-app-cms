@@ -27,7 +27,7 @@ import javax.json.JsonArrayBuilder;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -43,82 +43,82 @@ import org.slf4j.LoggerFactory;
  * Servlet which includes the content of the page when the page is accessed.
  */
 @Component(service = { Servlet.class }, property = { "sling.servlet.paths=/bin/cms/paths",
-		"sling.servlet.methods=" + HttpConstants.METHOD_GET })
+        "sling.servlet.methods=" + HttpConstants.METHOD_GET })
 @Designate(ocd = PathSuggestionServletConfig.class)
 public class PathSuggestionServlet extends SlingSafeMethodsServlet {
 
-	private static final long serialVersionUID = -410942682163323725L;
-	private static final Logger log = LoggerFactory.getLogger(PathSuggestionServlet.class);
+    private static final long serialVersionUID = -410942682163323725L;
+    private static final Logger log = LoggerFactory.getLogger(PathSuggestionServlet.class);
 
-	private static final Map<String, String[]> typeFilters = new HashMap<>();
+    private static final Map<String, String[]> typeFilters = new HashMap<>();
 
-	@Activate
-	public void activate(PathSuggestionServletConfig config) {
-		typeFilters.clear();
-		for (String filter : config.typeFilters()) {
-			String[] parts = filter.split("\\=");
-			String key = parts[0];
-			String[] types = parts[1].split("\\,");
-			typeFilters.put(key, types);
-		}
-		log.info("Loaded type filters {}", typeFilters);
-	}
+    @Activate
+    public void activate(PathSuggestionServletConfig config) {
+        typeFilters.clear();
+        for (String filter : config.typeFilters()) {
+            String[] parts = filter.split("\\=");
+            String key = parts[0];
+            String[] types = parts[1].split("\\,");
+            typeFilters.put(key, types);
+        }
+        log.info("Loaded type filters {}", typeFilters);
+    }
 
-	@Override
-	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
-			throws ServletException, IOException {
-		String path = request.getParameter("path");
+    @Override
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
+            throws ServletException, IOException {
+        String path = request.getParameter("path");
 
-		if (StringUtils.isEmpty(path)) {
-			path = "/";
-		}
-		log.debug("Finding valid paths under {}", path);
+        if (StringUtils.isEmpty(path)) {
+            path = "/";
+        }
+        log.debug("Finding valid paths under {}", path);
 
-		String type = request.getParameter("type");
-		if (!typeFilters.containsKey(type)) {
-			type = "all";
-		}
-		log.debug("Filtering by type: {}", type);
+        String type = request.getParameter("type");
+        if (!typeFilters.containsKey(type)) {
+            type = "all";
+        }
+        log.debug("Filtering by type: {}", type);
 
-		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
-		Resource parent = request.getResourceResolver().getResource(path);
+        JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
+        Resource parent = request.getResourceResolver().getResource(path);
 
-		if (parent == null) {
-			path = StringUtils.left(path, path.lastIndexOf('/'));
-			if (StringUtils.isEmpty(path)) {
-				path = "/";
-			}
+        if (parent == null) {
+            path = StringUtils.left(path, path.lastIndexOf('/'));
+            if (StringUtils.isEmpty(path)) {
+                path = "/";
+            }
 
-			log.debug("Using stemmed path {}", path);
-			parent = request.getResourceResolver().getResource(path);
-		}
-		if (parent != null) {
-			for (Resource child : parent.getChildren()) {
-				if (isIncluded(child, type)) {
-					arrBuilder.add(child.getPath());
-				}
-			}
-		}
+            log.debug("Using stemmed path {}", path);
+            parent = request.getResourceResolver().getResource(path);
+        }
+        if (parent != null) {
+            for (Resource child : parent.getChildren()) {
+                if (isIncluded(child, type)) {
+                    arrBuilder.add(child.getPath());
+                }
+            }
+        }
 
-		response.setContentType("application/json");
-		response.getWriter().write(arrBuilder.build().toString());
-	}
+        response.setContentType("application/json");
+        response.getWriter().write(arrBuilder.build().toString());
+    }
 
-	private boolean isIncluded(Resource child, String type) {
-		try {
-			Node node = child.adaptTo(Node.class);
-			if (node != null) {
-				for (String t : typeFilters.get(type)) {
-					if (node.isNodeType(t)) {
-						return true;
-					}
-				}
-			} else {
-				log.debug("Unable to adapt child resource {} to node", child.getPath());
-			}
-		} catch (RepositoryException e) {
-			log.warn("Unexpected exception accessing JCR Node", e);
-		}
-		return false;
-	}
+    private boolean isIncluded(Resource child, String type) {
+        try {
+            Node node = child.adaptTo(Node.class);
+            if (node != null) {
+                for (String t : typeFilters.get(type)) {
+                    if (node.isNodeType(t)) {
+                        return true;
+                    }
+                }
+            } else {
+                log.debug("Unable to adapt child resource {} to node", child.getPath());
+            }
+        } catch (RepositoryException e) {
+            log.warn("Unexpected exception accessing JCR Node", e);
+        }
+        return false;
+    }
 }
