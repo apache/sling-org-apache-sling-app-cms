@@ -13,10 +13,10 @@
         <groupId>org.apache.sling</groupId>
         <version>0.11.3-SNAPSHOT</version>
     </parent>
-    <artifactId>org.apache.sling.cms.api</artifactId>
+    <artifactId>org.apache.sling.cms.transformer</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Sling - CMS API</name>
-    <description>An API for the Apache Sling Reference CMS Application</description>
+    <name>Apache Sling - Transformer</name>
+    <description>An API and Service for creating and transforming images and documents into thumbnails</description>
 
     <properties>
         <sling.java.version>8</sling.java.version>
@@ -28,6 +28,12 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                        <Export-Package>org.apache.sling.cms.transformer,net.coobird.thumbnailator.*</Export-Package>
+                    </instructions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -72,45 +78,105 @@
     </profiles>
 
     <dependencies>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.component.annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.cmpn</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Sling Dependencies -->
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.event.api</artifactId>
+            <artifactId>org.apache.sling.caconfig.api</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.jcr.resource</artifactId>
+            <artifactId>org.apache.sling.cms.api</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.cms.core</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.event.api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Utilities -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <!-- Document handling -->
         <dependency>
-            <groupId>org.apache.jackrabbit</groupId>
-            <artifactId>jackrabbit-jcr-commons</artifactId>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.annotation</artifactId>
+            <artifactId>pdfbox</artifactId>
+            <groupId>org.apache.pdfbox</groupId>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+        </dependency>
+
+        <!-- Testing dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
         </dependency>
     </dependencies>
 </project>
