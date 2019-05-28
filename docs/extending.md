@@ -16,7 +16,7 @@ Developers can  extend or even override any portion of the Sling CMS application
 
 Depending on what you need to extend or override, there are two different options. If you want to override the content in Sling CMS, you can use [Sling Resource Merger](https://sling.apache.org/documentation/bundles/resource-merger.html) to customize any of the content in Sling CMS. If you need to overlay one of the scripts, you can overlay the scripts using the Sling script overlays.
 
-## Determing the Correct Approach
+## Determining the Correct Approach
 
 To determine the correct approach, first determine what you are looking to overlay. Sling CMS uses Sling Mappings to map the short path */cms* to the Sling repository path */libs/sling-cms/content*, so can use this same pattern to determine the path of the content serving a CMS page, For example the resource serving */cms/start.html* would be found at */libs/sling-cms/content/start*.
 

@@ -18,7 +18,7 @@ Consoles in Sling CMS generally follow the same pattern:
 
  1. The left navigation allows for switching between components of Sling CMS
  2. The create bar contains buttons to create new content
- 3. The breakcrumb shows context within the content structure
+ 3. The breadcrumb shows context within the content structure
  4. Filter for filtering content
  5. Table of content, clicking on the name of the item will open that item
  6. The action buttons on an individual piece of content
@@ -31,7 +31,7 @@ The first type of content is Site content. Every site belongs to a Site Group, t
 
 From there you can see the sites and child Site Groups that belong to the site group. Select the name of the Site or Site Group to open the Site / Site Group.
 
-Sites can contain Pages, Files and Folders. Static content is soley static and only contains Files and Folders. 
+Sites can contain Pages, Files and Folders. Static content is solely static and only contains Files and Folders. 
 
 ![Site Content](img/site-content.png)
 

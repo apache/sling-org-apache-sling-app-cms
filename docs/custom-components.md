@@ -39,7 +39,7 @@ A component can belong to one or more groups. If a component belongs to no group
 
 ## Editor
 
-The editor is defined by the edit subnode and is required for a component to be addable to a container.
+The editor is defined by the edit sub-node and is required for a component to be addable to a container.
 
 This node structure will be used to define the form for editing an instance of the component. This node should have the resource type `sling-cms/components/editor/slingform` and should have a button attribute.
 
@@ -47,7 +47,7 @@ See the [editor field types](editor-field-types.md) for a list of the default fi
 
 ## Config
 
-The config is defined by the config subnode and is not required. 
+The config is defined by the config sub-node and is not required. 
 
 This node structure will be used to define the form for editing a shared configuration for that component for every page instance using the same template. This node should have the resource type `sling-cms/components/editor/slingform` and should have a button attribute.
 

@@ -54,10 +54,10 @@ This tool is accessible from *Tools > Node Browser* or at [http://localhost:8080
 
 ![OSGi Console](img/osgi-console.png)
 
-This console is accessbile from *Tools > System Console* or at [http://localhost:8080/system/console](http://localhost:8080/system/console). The OSGi Console contains several administrative tools allowing administrators to install and manage bundles, configure logging, configure services and many other tasks.
+This console is accessible from *Tools > System Console* or at [http://localhost:8080/system/console](http://localhost:8080/system/console). The OSGi Console contains several administrative tools allowing administrators to install and manage bundles, configure logging, configure services and many other tasks.
 
 # Users & Groups
 
 ![users and Groups](img/users-groups.png)
 
-This tool is accessbile from *Tools > Users & Groups* or at [http://localhost:8080/bin/users.html](http://localhost:8080/bin/users.html). It allows administrators to create and manage users and groups within Sling CMS. Permissions are managed in the Node Browser
+This tool is accessible from *Tools > Users & Groups* or at [http://localhost:8080/bin/users.html](http://localhost:8080/bin/users.html). It allows administrators to create and manage users and groups within Sling CMS. Permissions are managed in the Node Browser

@@ -12,7 +12,7 @@
 
 # Building Sling CMS
 
-To nuild an instance with of the Sling CMS, you'll need Apache Maven 3.0+ and Git.
+To build an instance with of the Sling CMS, you'll need Apache Maven 3.0+ and Git.
 
 First clone the code:
 

@@ -22,7 +22,7 @@ To create a Site Group, expand *Sites* in the left navigation and select *+Site 
 
 The title can be anything you wish, though terse but informative is best. You can either specify a name or one will be generated from the title. 
 
-Generally speaking, you should specify a configuration. This configuration will determine what templates and components will be available in the site as well as other configurations. If creating nexted Site Groups, this may not be necessary as they will be inherited.
+Generally speaking, you should specify a configuration. This configuration will determine what templates and components will be available in the site as well as other configurations. If creating nested Site Groups, this may not be necessary as they will be inherited.
 
 ## Creating a Site
 
@@ -42,7 +42,7 @@ Finally, you can specify a config, but by default, the site will inherit from th
 
 Sling CMS uses Context Aware configuration to configure the sites. By default, you can use the configuration at */conf/global*, but you will probably want to create a custom configuration for real-world uses.
 
-To create a configuration, open the *Configuration* left nav and select *+Configuration*. This will open a new modal window to create the new configuration. Specify a title, set the name to "site", then select the type *Sling CMS - Site Configuration* from the dropdown.
+To create a configuration, open the *Configuration* left navigation and select *+Configuration*. This will open a new modal window to create the new configuration. Specify a title, set the name to "site", then select the type *Sling CMS - Site Configuration* from the dropdown.
 
 ![Site Configuration](img/create-site-configuration.png)
 
@@ -70,7 +70,7 @@ Templates are used to define the structure, allowed components, allowed location
 
 To support a simple site with a single domain, you would create a mapping as such:
 
- - Create a folder with the protocal supported for the domain (e.g. https)
+ - Create a folder with the protocol supported for the domain (e.g. https)
  - Create a Mapping with the domain name and port number for the request, (e.g. www.site.com.443)
  - Set the internal redirect to the path of the site in Sling CMS
  

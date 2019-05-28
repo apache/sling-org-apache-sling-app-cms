@@ -12,7 +12,7 @@
 
 # Project Intro
 
-This page will give you an introduction of the structure of the Sling CMS project and some idea of how all of this comes together. If you aren't planning on extending or contributing to Sling CMS, this probably isn't necessary fot you.
+This page will give you an introduction of the structure of the Sling CMS project and some idea of how all of this comes together. If you aren't planning on extending or contributing to Sling CMS, this probably isn't necessary for you.
 
 ## Project Structure
 

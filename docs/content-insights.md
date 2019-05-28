@@ -22,7 +22,7 @@ This insight uses the W3C HTML validator to validate the markup of your page and
 
 ## Page Speed
 
-This insight uses Google Page Speed to analyize the page speed performance of a live page, so it will only work on published pages. 
+This insight uses Google Page Speed to analyze the page speed performance of a live page, so it will only work on published pages. 
 
 ### Configuring the Page Speed Insight
 

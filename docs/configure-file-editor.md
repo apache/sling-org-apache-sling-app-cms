@@ -16,7 +16,7 @@ The file editor allows users to specify properties on all `sling:File` resources
 
 You can create different file editor configurations for different file types and different types. To add a configuration:
 
- 1. Open the site configuration and create / open the subfolders *files/editors*
+ 1. Open the site configuration and create / open the sub-folders *files/editors*
  2. Click *+ Config* to create a new config and set the type to *Sling CMS - File Editor* 
     ![Add Config](img/add-config.png)
  3. Click on the configuration to edit it and optionally set the applicable MimeType. If no mime type is set, the configuration will be considered as a default.
