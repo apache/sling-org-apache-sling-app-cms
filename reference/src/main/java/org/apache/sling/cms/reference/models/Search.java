@@ -26,7 +26,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.jcr.query.Query;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;

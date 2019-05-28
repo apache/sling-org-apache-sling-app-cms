@@ -23,7 +23,7 @@ import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.jcr.query.Query;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -38,126 +38,126 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = SlingHttpServletRequest.class)
 public class ItemList {
 
-	private static final Logger log = LoggerFactory.getLogger(List.class);
+    private static final Logger log = LoggerFactory.getLogger(List.class);
 
-	private int count;
+    private int count;
 
-	private int end;
+    private int end;
 
-	@RequestAttribute
-	private String limit;
+    @RequestAttribute
+    private String limit;
 
-	private int page;
+    private int page;
 
-	private Integer[] pages;
+    private Integer[] pages;
 
-	@RequestAttribute
-	private String query;
+    @RequestAttribute
+    private String query;
 
-	private SlingHttpServletRequest request;
+    private SlingHttpServletRequest request;
 
-	private List<Resource> items = new ArrayList<>();
+    private List<Resource> items = new ArrayList<>();
 
-	private int start;
+    private int start;
 
-	public ItemList(SlingHttpServletRequest request) {
-		this.request = request;
-	}
+    public ItemList(SlingHttpServletRequest request) {
+        this.request = request;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	public int getCurrentPage() {
-		return page + 1;
-	}
+    public int getCurrentPage() {
+        return page + 1;
+    }
 
-	public int getEnd() {
-		return end;
-	}
+    public int getEnd() {
+        return end;
+    }
 
-	public Integer[] getPages() {
-		return pages;
-	}
+    public Integer[] getPages() {
+        return pages;
+    }
 
-	public String getQuery() {
-		return query;
-	}
+    public String getQuery() {
+        return query;
+    }
 
-	public List<Resource> getItems() {
-		return items;
-	}
+    public List<Resource> getItems() {
+        return items;
+    }
 
-	public int getStart() {
-		return start;
-	}
+    public int getStart() {
+        return start;
+    }
 
-	@PostConstruct
-	public void init() {
+    @PostConstruct
+    public void init() {
 
-		log.trace("init");
+        log.trace("init");
 
-		Set<String> distinct = new HashSet<>();
+        Set<String> distinct = new HashSet<>();
 
-		if (request.getRequestPathInfo().getSuffix() != null) {
-			query = query.replace("{SUFFIX}", request.getRequestPathInfo().getSuffix());
-		}
-		log.debug("Listing results of: {}", query);
+        if (request.getRequestPathInfo().getSuffix() != null) {
+            query = query.replace("{SUFFIX}", request.getRequestPathInfo().getSuffix());
+        }
+        log.debug("Listing results of: {}", query);
 
-		Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);
-		while (res.hasNext()) {
-			Resource result = res.next();
-			if (!distinct.contains(result.getPath())) {
-				items.add(result);
-				distinct.add(result.getPath());
-			}
-		}
-		count = items.size();
-		log.debug("Found {} results", count);
+        Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);
+        while (res.hasNext()) {
+            Resource result = res.next();
+            if (!distinct.contains(result.getPath())) {
+                items.add(result);
+                distinct.add(result.getPath());
+            }
+        }
+        count = items.size();
+        log.debug("Found {} results", count);
 
-		if (StringUtils.isNotBlank(request.getParameter("page")) && request.getParameter("page").matches("\\d+")) {
-			page = Integer.parseInt(request.getParameter("page"), 10) - 1;
-			log.debug("Using page {}", page);
-		} else {
-			page = 0;
-			log.debug("Page {} not specified or not valid", request.getParameter("page"));
-		}
+        if (StringUtils.isNotBlank(request.getParameter("page")) && request.getParameter("page").matches("\\d+")) {
+            page = Integer.parseInt(request.getParameter("page"), 10) - 1;
+            log.debug("Using page {}", page);
+        } else {
+            page = 0;
+            log.debug("Page {} not specified or not valid", request.getParameter("page"));
+        }
 
-		int l = Integer.parseInt(this.limit, 10);
-		if (page * l >= count) {
-			start = count;
-		} else {
-			start = page * l;
-		}
-		log.debug("Using start {}", start);
+        int l = Integer.parseInt(this.limit, 10);
+        if (page * l >= count) {
+            start = count;
+        } else {
+            start = page * l;
+        }
+        log.debug("Using start {}", start);
 
-		if ((page * l) + l >= count) {
-			end = count;
-		} else {
-			end = (page * l) + l;
-		}
-		log.debug("Using end {}", end);
-		items = items.subList(start, end);
+        if ((page * l) + l >= count) {
+            end = count;
+        } else {
+            end = (page * l) + l;
+        }
+        log.debug("Using end {}", end);
+        items = items.subList(start, end);
 
-		List<Integer> pgs = new ArrayList<>();
-		int max = ((int) Math.ceil((double) count / l)) + 1;
-		for (int i = 1; i < max; i++) {
-			pgs.add(i);
-		}
-		pages = pgs.toArray(new Integer[pgs.size()]);
-		if (log.isDebugEnabled()) {
-			log.debug("Loaded pages {}", Arrays.toString(pages));
-		}
-	}
+        List<Integer> pgs = new ArrayList<>();
+        int max = ((int) Math.ceil((double) count / l)) + 1;
+        for (int i = 1; i < max; i++) {
+            pgs.add(i);
+        }
+        pages = pgs.toArray(new Integer[pgs.size()]);
+        if (log.isDebugEnabled()) {
+            log.debug("Loaded pages {}", Arrays.toString(pages));
+        }
+    }
 
-	public boolean isFirst() {
-		return page == 0;
-	}
+    public boolean isFirst() {
+        return page == 0;
+    }
 
-	public boolean isLast() {
-		if (pages.length > 0) {
-			return page + 1 == pages[pages.length - 1];
-		}
-		return true;
-	}
+    public boolean isLast() {
+        if (pages.length > 0) {
+            return page + 1 == pages[pages.length - 1];
+        }
+        return true;
+    }
 }
