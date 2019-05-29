@@ -18,8 +18,8 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">Select Component</option>
-<c:forEach var="component" items="${sling:findResources(resourceResolver,'SELECT * FROM [sling:Component] WHERE [componentType] IS NOT NULL','JCR-SQL2')}">
-    <c:if test="${sling:getRelativeResource(component,'config') != null && sling:getRelativeResource(component,'config').resourceType != 'sling:Folder'}">
+<c:forEach var="component" items="${sling:findResources(resourceResolver,'SELECT * FROM [sling:Component] WHERE [componentType] IS NOT NULL ORDER BY [jcr:title]','JCR-SQL2')}">
+    <c:if test="${sling:getRelativeResource(component,'config') != null && sling:getRelativeResource(component,'config').resourceType != 'sling:Folder' && sling:getRelativeResource(component,'config').resourceType != 'sling:Component'}">
         <c:choose>
             <c:when test="${fn:startsWith(component.path,'/apps/')}">
                 <c:set var="rt" value="${fn:substringAfter(component.path,'/apps/')}" />
