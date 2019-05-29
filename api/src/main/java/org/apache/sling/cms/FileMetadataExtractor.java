@@ -31,9 +31,9 @@ public interface FileMetadataExtractor {
      * Extract the metadata from the specified file and return the resulting
      * metadata
      * 
-     * @param file
+     * @param file the file from which to extract the metadata
      * @return the metadata from the file
-     * @throws IOException
+     * @throws IOException an exception occurs extracting the metadata
      */
     Map<String,Object> extractMetadata(File file) throws IOException;
 
@@ -42,7 +42,7 @@ public interface FileMetadataExtractor {
      * the jcr:content/metadata node of the file resource
      * 
      * @param file the file to extract the metadata from
-     * @throws IOException
+     * @throws IOException an exception occurs updating the metadata
      */
     void updateMetadata(File file) throws IOException;
 
@@ -51,9 +51,9 @@ public interface FileMetadataExtractor {
      * the jcr:content/metadata node of the file resource
      * 
      * @param file the file to extract the metadata from
-     * @param save if true, persist the results, if not leave the changes
+     * @param persist if true, persist the results, if not leave the changes
      *             unpersisted
-     * @throws IOException
+     * @throws IOException an exception occurs updating the metadata
      */
     void updateMetadata(File file, boolean persist) throws IOException;
 }

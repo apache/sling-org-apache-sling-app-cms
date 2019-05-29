@@ -27,7 +27,7 @@ public interface CurrentUser {
      * Gets a collection of all of the groups this user belongs to including
      * containing groups.
      * 
-     * @return
+     * @return the groups the user belongs to
      */
     public Collection<String> getGroups();
 
