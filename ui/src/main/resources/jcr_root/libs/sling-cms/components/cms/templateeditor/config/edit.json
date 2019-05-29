@@ -1,48 +1,48 @@
  {
-	"jcr:primaryType": "nt:unstructured",
-	"sling:resourceType": "sling-cms/components/editor/slingform",
-	"button": "Save Page Type",
-	"fields": {
-		"jcr:primaryType": "nt:unstructured",
-		"sling:resourceType": "sling-cms/components/general/container",
-		"title": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/text",
-			"label": "Title",
-			"name": "jcr:title",
-			"required": true
-		},
-		"allowedPaths": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/repeating",
-			"type": "text",
-			"label": "Allowed Paths",
-			"name": "allowedPaths",
-			"required": true
-		},
-		"allowedPathsTypeHint": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/hidden",
-			"name": "allowedPaths@TypeHint",
-			"value": "String[]"
-		},
-		"availableComponentTypes": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/cms/availablecomponenttypes"
-		},
-		"template": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/textarea",
-			"defaultValue": "{\r\n  \"jcr:primaryType\": \"sling:Page\",\r\n  \"jcr:content\": {\r\n    \"jcr:primaryType\": \"nt:unstructured\",\r\n    \"jcr:title\": \"{{title}}\",\r\n    \"sling:template\": \"{{template}}\",\r\n    \"sling:resourceType\": \"reference\/components\/pages\/base\",\r\n    \"published\": false\r\n  }\r\n}",
-			"label": "Template",
-			"name": "template",
-			"required": true
-		},
-		"format": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "sling-cms/components/editor/fields/button",
-			"label": "Format",
-			"onclick": "javascript:try {$('textarea[name=template]').val(JSON.stringify(JSON.parse($('textarea[name=template]').val()), null, 2));} catch (e) { alert('Unable to parse Template JSON'); };return false;"
-		}
-	}
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save Page Type",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "title": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Title",
+            "name": "jcr:title",
+            "required": true
+        },
+        "allowedPaths": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/repeating",
+            "type": "text",
+            "label": "Allowed Paths",
+            "name": "allowedPaths",
+            "required": true
+        },
+        "allowedPathsTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "allowedPaths@TypeHint",
+            "value": "String[]"
+        },
+        "availableComponentTypes": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/cms/availablecomponenttypes"
+        },
+        "template": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/textarea",
+            "defaultValue": "{\r\n  \"jcr:primaryType\": \"sling:Page\",\r\n  \"jcr:content\": {\r\n    \"jcr:primaryType\": \"nt:unstructured\",\r\n    \"jcr:title\": \"{{title}}\",\r\n    \"sling:template\": \"{{template}}\",\r\n    \"sling:resourceType\": \"reference\/components\/pages\/base\",\r\n    \"published\": false\r\n  }\r\n}",
+            "label": "Template",
+            "name": "template",
+            "required": true
+        },
+        "format": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/button",
+            "label": "Format",
+            "onclick": "javascript:try {document.querySelector('textarea[name=template]').value = JSON.stringify(JSON.parse(document.querySelector('textarea[name=template]').value), null, 2);} catch (e) { alert('Unable to parse Template JSON'); };return false;"
+        }
+    }
 }
