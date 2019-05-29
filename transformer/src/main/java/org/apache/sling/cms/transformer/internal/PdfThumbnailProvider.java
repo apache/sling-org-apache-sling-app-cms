@@ -54,5 +54,4 @@ public class PdfThumbnailProvider implements ThumbnailProvider {
             return new ByteArrayInputStream(os.toByteArray());
         }
     }
-
 }

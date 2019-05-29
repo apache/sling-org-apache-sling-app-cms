@@ -52,6 +52,26 @@ public class FileThumbnailTransformerImpl implements FileThumbnailTransformer {
     @Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE, policyOption = ReferencePolicyOption.GREEDY)
     private List<ThumbnailProvider> thumbnailProviders;
 
+    /**
+     * @return the handlers
+     */
+    public List<TransformationHandler> getHandlers() {
+        return handlers;
+    }
+
+    private ThumbnailProvider getThumbnailProvider(File file) throws IOException {
+        return Lists.reverse(thumbnailProviders).stream().filter(tp -> tp.applies(file))
+                .findFirst()
+                .orElseThrow(() -> new IOException("Unable to find thumbnail provider for: " + file.getPath()));
+    }
+
+    /**
+     * @return the thumbnailProviders
+     */
+    public List<ThumbnailProvider> getThumbnailProviders() {
+        return thumbnailProviders;
+    }
+
     @Override
     public TransformationHandler getTransformationHandler(String command) {
         return handlers.stream().filter(h -> h.applies(command)).findFirst().orElse(null);
@@ -74,9 +94,7 @@ public class FileThumbnailTransformerImpl implements FileThumbnailTransformer {
     @Override
     public void transformFile(File file, String[] commands, OutputFileFormat format, OutputStream out)
             throws IOException {
-        ThumbnailProvider provider = Lists.reverse(thumbnailProviders).stream().filter(tp -> tp.applies(file))
-                .findFirst()
-                .orElseThrow(() -> new IOException("Unable to find thumbnail provider for: " + file.getPath()));
+        ThumbnailProvider provider = getThumbnailProvider(file);
         log.debug("Using thumbnail provider {} for file {}", provider, file);
         Builder<? extends InputStream> builder = Thumbnails.of(provider.getThumbnail(file));
         for (String command : commands) {
