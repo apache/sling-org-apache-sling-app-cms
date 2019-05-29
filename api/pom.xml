@@ -9,7 +9,7 @@
     <parent>
         <artifactId>org.apache.sling.cms</artifactId>
         <groupId>org.apache.sling</groupId>
-        <version>0.12.0</version>
+        <version>0.12.1-SNAPSHOT</version>
     </parent>
     <artifactId>org.apache.sling.cms.api</artifactId>
     <packaging>bundle</packaging>
