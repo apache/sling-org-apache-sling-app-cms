@@ -37,7 +37,6 @@
     <modules>
         <module>api</module>
         <module>core</module>
-        <module>metadata-extractor</module>
         <module>transformer</module>
         <module>ui</module>
         <module>reference</module>

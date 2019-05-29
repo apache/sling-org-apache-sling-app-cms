@@ -36,10 +36,7 @@
     org.apache.sling/org.apache.sling.cms.transformer/${cms.version}
     org.apache.tika/tika-bundle/1.19.1
     commons-lang/commons-lang/2.6
-    
-[artifacts startLevel=25]
-    org.apache.sling/org.apache.sling.cms.metadata-extractor/${cms.version}
-    
+
 [:repoinit]
 
     # CMS root paths
