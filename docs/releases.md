@@ -12,21 +12,28 @@
 
 # Releases
 
+## 0.12.0 - CURRENT VERSION
 
-## 0.11.2 - CURRENT VERSION
+Focus on continued improvements to user experience, including significant optimizations to front end page performance and accessibility improvements. HTML5 support in rewriter pipelines. Improvements around file support including metadata extraction and thumbnail support. 
+
+ * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.12.0)
+ * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.12.0)
+
+
+## 0.11.2
 
 Fixes issues in 0.11.0
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.11.2)
- * [JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.core/0.11.2)
-
+ * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.11.2)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/A-SHA)
 
 ## 0.11.0
 
 Adding API for content insights. Switching to a more flexible WYSIWYG library. Significant enhancements and bug fixes to the overall user experience.
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/tag/org.apache.sling.cms-0.11.0)
- * [JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.core/0.11.0)
+ * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.11.0)
  * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/f2c7c37bf99401aef192db1ac1467c799b3a3b95)
  
 ## 0.10.0
