@@ -19,14 +19,13 @@ Focus on continued improvements to user experience, including significant optimi
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.12.0)
  * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.12.0)
 
-
 ## 0.11.2
 
 Fixes issues in 0.11.0
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.11.2)
  * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.11.2)
- * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/A-SHA)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/d4bdcc313f78e882234d5ac9d9af64712c46c726)
 
 ## 0.11.0
 
