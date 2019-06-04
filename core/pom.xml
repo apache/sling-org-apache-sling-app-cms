@@ -71,8 +71,8 @@
                         <exclude>velocity.log</exclude>
                         <!-- don't check anything in target -->
                         <exclude>target/*</exclude>
-                        <exclude>src/test/resources/*.pp*</exclude>
-                        <exclude>src/test/resources/*.do*</exclude>
+                        <!-- for some reason Rat doesn't seem to pick up that PPTs are binary -->
+                        <exclude>src/test/resources/Sling.ppt</exclude>
                     </excludes>
                 </configuration>
                 <executions>
