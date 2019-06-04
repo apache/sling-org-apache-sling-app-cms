@@ -31,10 +31,6 @@ public class SlingCMSContextHelper {
 
         context.load().json("/content.json", "/content");
         context.load().binaryResource("/apache.png", "/content/apache/sling-apache-org/index/apache.png/jcr:content");
-        context.load().binaryResource("/sling.pdf", "/content/apache/sling-apache-org/index/sling.pdf/jcr:content");
-        context.load().binaryResource("/Sling.docx", "/content/apache/sling-apache-org/index/Sling.docx/jcr:content");
-        context.load().binaryResource("/Sling.pptx", "/content/apache/sling-apache-org/index/Sling.pptx/jcr:content");
-        context.load().binaryResource("/Sling.ppt", "/content/apache/sling-apache-org/index/Sling.ppt/jcr:content");
 
         context.registerAdapter(Resource.class, InputStream.class, new Function<Resource, InputStream>() {
             public InputStream apply(Resource input) {
