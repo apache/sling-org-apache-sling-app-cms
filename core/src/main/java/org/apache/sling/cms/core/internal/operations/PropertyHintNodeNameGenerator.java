@@ -41,9 +41,11 @@ public class PropertyHintNodeNameGenerator implements NodeNameGenerator {
 
     public @interface Config {
 
+        @SuppressWarnings("squid:S00100") // ignore we have to support the old property format
         @AttributeDefinition(name = "%allowed.chars.name", description = "%allowed.chars.description")
         String allowed_chars() default "abcdefghijklmnopqrstuvwxyz0123456789_-";
 
+        @SuppressWarnings("squid:S00100") // ignore we have to support the old property format
         @AttributeDefinition(name = "%replacement.char.name", description = "%replacement.char.description")
         String replacement_char() default "-";
     }

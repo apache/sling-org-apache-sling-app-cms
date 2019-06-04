@@ -45,13 +45,11 @@ import org.osgi.service.component.annotations.Reference;
         WebConsoleConstants.PLUGIN_CATEGORY + "=Status" }, service = { Servlet.class })
 public class InsightsWebConsole extends AbstractWebConsolePlugin {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 4819043498961127418L;
     public static final String CONSOLE_LABEL = "slingcms-insights";
     public static final String CONSOLE_TITLE = "Sling CMS Insights";
 
+    @SuppressWarnings("squid:S2078") // ignore since this field is is injected by OSGi
     @Reference
     private InsightFactory insightFactory;
 

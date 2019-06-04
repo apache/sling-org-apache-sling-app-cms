@@ -49,15 +49,13 @@ import com.google.common.collect.Lists;
         WebConsoleConstants.PLUGIN_CATEGORY + "=Status" }, service = { Servlet.class })
 public class TransformerWebConsole extends AbstractWebConsolePlugin {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 4819043498961127418L;
     public static final String CONSOLE_LABEL = "slingcms-transformer";
     public static final String CONSOLE_TITLE = "Sling CMS Transformer";
 
+    @SuppressWarnings("squid:S2078") // ignore since this field is is injected by OSGi
     @Reference
-    private FileThumbnailTransformer fileThumbnailTransformer;
+    private transient FileThumbnailTransformer fileThumbnailTransformer;
 
     @Override
     public String getTitle() {
