@@ -22,7 +22,7 @@ VOLUME /opt/sling/sling
 
 # Setup Sling CMS
 RUN mkdir -p /opt/sling
-RUN wget -O org.apache.sling.cms.jar https://repository.apache.org/content/repositories/snapshots/org/apache/sling/org.apache.sling.cms.builder/0.11.3-SNAPSHOT/org.apache.sling.cms.builder-0.11.3-20181207.040617-10.jar
+RUN wget -O org.apache.sling.cms.jar https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.12.0/org.apache.sling.cms.builder-0.12.0.jar
 ENV JAVA_OPTS -Xmx512m
 ENV SLING_OPTS ''
 
