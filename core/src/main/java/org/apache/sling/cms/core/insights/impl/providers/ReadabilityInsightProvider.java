@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(service = InsightProvider.class)
+@Component(service = InsightProvider.class, immediate = true)
 public class ReadabilityInsightProvider extends BaseInsightProvider {
 
     public static final String I18N_KEY_READABILITY_DETAIL = "slingcms.readability.detail";

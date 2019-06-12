@@ -23,7 +23,7 @@ import org.apache.sling.cms.readability.ReadabilityService;
 import org.apache.sling.cms.readability.ReadabilityServiceFactory;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,7 @@ public class ReadabilityServiceFactoryImpl implements ReadabilityServiceFactory 
 
     private static final Logger log = LoggerFactory.getLogger(ReadabilityServiceFactoryImpl.class);
 
-    @Reference(cardinality = ReferenceCardinality.MULTIPLE)
+    @Reference(policyOption = ReferencePolicyOption.GREEDY)
     private List<ReadabilityService> services;
 
     @Override

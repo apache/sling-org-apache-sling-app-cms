@@ -44,7 +44,7 @@ public class InsightFactoryImpl implements InsightFactory {
 
     @Reference
     private SlingRequestProcessor requestProcessor;
-    
+
     @Override
     public List<Insight> getInsights(File file) {
         return getInsights(new FileInsightRequestImpl(file));
@@ -62,7 +62,7 @@ public class InsightFactoryImpl implements InsightFactory {
         return getInsights(new PageInsightRequestImpl(page, requestProcessor));
     }
 
-    public List<InsightProvider>  getProviders() {
+    public List<InsightProvider> getProviders() {
         return providers;
     }
 

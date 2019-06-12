@@ -49,7 +49,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(service = InsightProvider.class)
+@Component(service = InsightProvider.class, immediate = true)
 @Designate(ocd = Config.class)
 public class PageSpeedInsightProvider extends BaseInsightProvider {
 

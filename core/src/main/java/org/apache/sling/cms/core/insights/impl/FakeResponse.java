@@ -83,7 +83,7 @@ public class FakeResponse implements HttpServletResponse {
 
     @Override
     public void addHeader(String s, String s1) {
-        throw new UnsupportedOperationException();
+        // NOOP since this is executed by the Sling Engine
     }
 
     @Override
