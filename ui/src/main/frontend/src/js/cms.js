@@ -109,6 +109,11 @@
                     containers.forEach(function (container) {
                         var request = new XMLHttpRequest(),
                             link = container.dataset.path;
+                        if (link.indexOf('?') === -1) {
+                            link += '?tstamp=' + Date.now();
+                        } else {
+                            link += '&tstamp=' + Date.now();
+                        }
                         request.open('GET', link, true);
                         request.onload = function () {
                             var tmp = document.createElement('div');
