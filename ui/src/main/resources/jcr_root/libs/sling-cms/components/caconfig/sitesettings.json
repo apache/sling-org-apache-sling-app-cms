@@ -1,4 +1,6 @@
 {
-	"jcr:primaryType": "sling:Component",
-	"jcr:title" : "Sling CMS - Site Settings"
+    "jcr:primaryType": "sling:Component",
+    "jcr:title": "Sling CMS - Site Settings",
+    "sling:resourceSuperType": "sling-cms/components/caconfig/base",
+    "componentType": "SlingCMS-Config"
 }

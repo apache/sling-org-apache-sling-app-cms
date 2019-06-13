@@ -17,18 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<h3>Rewrite Configuration</h3>
-<dl>
-	<dt>Doctype</dt>
-	<dd>
-		<sling:encode value="${resource.valueMap.doctype}" mode="HTML" />
-	</dd>
-	<dt>Rewritten Attributes</dt>
-	<dd>
-		<ul>
-			<c:forEach var="attribute" items="${resource.valueMap.attributes}">
-				<sling:encode value="${attribute}" mode="HTML" />
-			</c:forEach>
-		</ul>
-	</dd>
-</dl>
+<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/caconfig/sitesettings/config" />

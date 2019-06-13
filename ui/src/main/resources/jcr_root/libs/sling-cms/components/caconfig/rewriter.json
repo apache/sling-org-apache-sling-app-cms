@@ -1,4 +1,6 @@
 {
-	"jcr:primaryType": "sling:Component",
-	"jcr:title" : "Sling CMS - Rewriter Configuration"
+    "jcr:primaryType": "sling:Component",
+    "jcr:title": "Sling CMS - Rewriter Configuration",
+    "sling:resourceSuperType": "sling-cms/components/caconfig/base",
+    "componentType": "SlingCMS-Config"
 }

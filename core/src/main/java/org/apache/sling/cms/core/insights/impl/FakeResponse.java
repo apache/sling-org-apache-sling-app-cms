@@ -166,7 +166,7 @@ public class FakeResponse implements HttpServletResponse {
 
     @Override
     public void reset() {
-        throw new UnsupportedOperationException();
+        // do nothing
     }
 
     @Override
@@ -226,7 +226,7 @@ public class FakeResponse implements HttpServletResponse {
 
     @Override
     public void setLocale(Locale locale) {
-        throw new UnsupportedOperationException();
+        // do nothing
     }
 
     @Override

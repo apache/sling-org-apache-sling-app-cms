@@ -1,6 +1,6 @@
 {
-	"jcr:primaryType": "sling:Component",
-	"jcr:title": "Sling CMS - Readability Configuration",
-	"sling:resourceSuperType": "sling-cms/components/caconfig/base",
+    "jcr:primaryType": "sling:Component",
+    "jcr:title": "Sling CMS - Readability Configuration",
+    "sling:resourceSuperType": "sling-cms/components/caconfig/base",
     "componentType": "SlingCMS-Config"
 }

@@ -11,15 +11,12 @@
             "jcr:title": "File Configurations"
         },
         "editors": {
-            "jcr:primaryType": "sling:OrderedFolder",
-            "jcr:content": {
-                "jcr:primaryType": "nt:unstructured",
-                "jcr:title": "File Editor"
-            },
+            "jcr:primaryType": "sling:Config",
+            "sling:resourceType": "sling-cms/components/caconfig/fileeditor",
             "default": {
-                "jcr:primaryType": "sling:Config",
+                "jcr:primaryType": "nt:unstructured",
                 "jcr:title": "Default File Editor",
-                "sling:resourceType": "sling-cms/components/caconfig/fileeditor",
+                "sling:resourceType": "sling-cms/components/caconfig/fileeditor/config",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",
                     "title": {
@@ -82,11 +79,15 @@
         }
     },
     "site": {
-        "jcr:primaryType": "sling:Config",
-        "sling:resourceType": "sling-cms/components/caconfig/site",
-        "jcr:title": "Default Site Configuration",
-        "rewrite": {
+        "jcr:primaryType": "sling:OrderedFolder",
+        "jcr:content": {
             "jcr:primaryType": "nt:unstructured",
+            "jcr:title": "Default Site Configuration"
+        },
+        "rewrite": {
+            "jcr:primaryType": "sling:Config",
+            "jcr:title": "Rewriter",
+            "sling:resourceType": "sling-cms/components/caconfig/rewriter",
             "doctype": "<!DOCTYPE html>",
             "attributes": [
                 "action",
@@ -95,10 +96,15 @@
             ]
         },
         "settings": {
+            "jcr:primaryType": "sling:Config",
+            "jcr:title": "Site Settings",
+            "sling:resourceType": "sling-cms/components/caconfig/sitesettings",
             "taxonomyroot": "/etc/taxonomy"
         },
         "templates": {
-            "jcr:primaryType": "nt:unstructured",
+            "jcr:primaryType": "sling:Config",
+            "jcr:title": "Templates",
+            "sling:resourceType": "sling-cms/components/caconfig/templates",
             "base-page": {
                 "jcr:primaryType": "nt:unstructured",
                 "jcr:title": "Base Page",

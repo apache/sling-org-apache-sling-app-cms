@@ -52,9 +52,9 @@
                         "jcr:primaryType": "nt:unstructured",
                         "alternatives": [
                             "/cms/template/edit.html",
-                            "/cms/config/edit.html"
+                            "/cms/config"
                         ],
-                        "link": "/cms/config/list.html/conf",
+                        "link": "/cms/config/configs.html/conf",
                         "text": "Configuration"
                     },
                     "usergenerated": {

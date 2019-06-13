@@ -31,7 +31,7 @@ import org.apache.sling.cms.insights.InsightRequest;
 import org.apache.sling.engine.SlingRequestProcessor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * Implementation of the InsightFactory service interface
@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 @Component(immediate = true, service = { InsightFactory.class })
 public class InsightFactoryImpl implements InsightFactory {
 
-    @Reference(cardinality = ReferenceCardinality.MULTIPLE)
+    @Reference(policyOption = ReferencePolicyOption.GREEDY)
     private List<InsightProvider> providers;
 
     @Reference

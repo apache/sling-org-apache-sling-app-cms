@@ -1,3 +1,4 @@
+
 {
     "jcr:primaryType": "nt:unstructured",
     "sling:resourceType": "sling-cms/components/general/container",
@@ -72,13 +73,13 @@
                             "icon": "pencil-f",
                             "prefix": "/cms/template/edit.html"
                         },
-                    "references": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "modal": true,
-                        "title": "References",
-                        "icon": "directions",
-                        "prefix": "/cms/shared/references.html"
-                    },
+                        "references": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "modal": true,
+                            "title": "References",
+                            "icon": "directions",
+                            "prefix": "/cms/shared/references.html"
+                        },
                         "movecopy": {
                             "jcr:primaryType": "nt:unstructured",
                             "modal": true,
