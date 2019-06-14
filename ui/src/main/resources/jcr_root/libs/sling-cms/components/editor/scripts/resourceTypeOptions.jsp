@@ -19,17 +19,17 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">Select Component</option>
 <c:forEach var="type" items="${fn:split(param.availableTypes,',')}">
-	<optgroup label="${sling:encode(type,'HTML_ATTR')}">
-		<c:set var="query" value="SELECT * FROM [sling:Component] WHERE [componentType]='${type}' ORDER BY [jcr:title]" />
-		<c:forEach var="component" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
-			<c:choose>
-				<c:when test="${fn:startsWith(component.path,'/apps/')}">
-					<option value="${fn:substringAfter(component.path,'/apps/')}"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
-				</c:when>
-				<c:otherwise>
-					<option value="${fn:substringAfter(component.path,'/libs/')}"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-	</optgroup>
+    <optgroup label="${sling:encode(type,'HTML_ATTR')}">
+        <c:set var="query" value="SELECT * FROM [sling:Component] WHERE [componentType]='${type}' ORDER BY [jcr:title]" />
+        <c:forEach var="component" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
+            <c:choose>
+                <c:when test="${fn:startsWith(component.path,'/apps/')}">
+                    <option value="${fn:substringAfter(component.path,'/apps/')}"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
+                </c:when>
+                <c:otherwise>
+                    <option value="${fn:substringAfter(component.path,'/libs/')}"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </optgroup>
 </c:forEach>
