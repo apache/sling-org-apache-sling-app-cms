@@ -1,0 +1,6 @@
+{
+    "jcr:primaryType": "sling:Component",
+    "jcr:title": "Sling CMS - Component Policies",
+    "sling:resourceSuperType": "sling-cms/components/caconfig/base",
+    "componentType": "SlingCMS-Config"
+}

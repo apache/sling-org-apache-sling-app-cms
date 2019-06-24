@@ -34,7 +34,8 @@ public class ResourceEditorAssociationTest {
 
     @Before
     public void init() {
-        rea = new ResourceEditorAssociation(new ResourceEditorAssociationConfig() {
+        rea = new ResourceEditorAssociation();
+        rea.activate(new ResourceEditorAssociationConfig() {
 
             @Override
             public Class<? extends Annotation> annotationType() {

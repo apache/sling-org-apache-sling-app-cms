@@ -16,7 +16,7 @@
  */
 package org.apache.sling.cms;
 
-import java.util.Map;
+import java.util.List;
 
 import org.apache.sling.api.resource.Resource;
 import org.osgi.annotation.versioning.ProviderType;
@@ -36,19 +36,11 @@ public interface PageTemplate {
     String[] getAllowedPaths();
 
     /**
-     * Gets the list of Component Types which will be available for pages created
-     * with this template
+     * Gets the list of Component Policies for pages created with this template
      * 
-     * @return the availableComponentTypes
+     * @return the component policies
      */
-    String[] getAvailableComponentTypes();
-
-    /**
-     * Gets the Component Configurations for this template
-     * 
-     * @return the componentConfigs
-     */
-    Map<String, Resource> getComponentConfigs();
+    List<ComponentPolicy> getComponentPolicies();
 
     /**
      * Gets the Resource backing this template

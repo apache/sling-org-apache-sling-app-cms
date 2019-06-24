@@ -33,15 +33,12 @@
 <hr/>
 <div>
     <h4>
-        Available Component Types
+        Component Policies
     </h4>
-    <ul>
-        <c:forEach var="availableComponentType" items="${properties.availableComponentTypes}">
-            <li>
-                <sling:encode value="${availableComponentType}" mode="HTML" />
-            </li>
-        </c:forEach>
-    </ul>
+    <c:set var="oldAvailableTypes" value="${availableTypes}" />
+    <c:set var="availableTypes" value="SlingCMS-PolicyMappingConfig" scope="request" />
+    <sling:include path="policies" resourceType="sling-cms/components/general/container" />
+    <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 </div>
 <hr/>
 <div>
@@ -58,15 +55,5 @@
     <c:set var="oldAvailableTypes" value="${availableTypes}" />
     <c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
     <sling:include path="fields" resourceType="sling-cms/components/general/container" />
-    <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
-</div>
-<hr/>
-<div>
-    <h4>
-        Component Configurations
-    </h4>
-    <c:set var="oldAvailableTypes" value="${availableTypes}" />
-    <c:set var="availableTypes" value="SlingCMS-ComponentConfig" scope="request" />
-    <sling:include path="componentConfigurations" resourceType="sling-cms/components/general/container" />
     <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 </div>

@@ -17,16 +17,16 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="searchresult ${searchConfig.valueMap.resultClass}">
-	<div class="searchresult__header ${searchConfig.valueMap.resultHeaderClass}">
-		<a href="${result.path}.html" class="searchresult__link">
-			<sling:encode value="${result.valueMap['jcr:content/jcr:title']}" mode="HTML" />
-		</a>
-	</div>
-	<p class="searchresult__body">
-		<sling:encode value="${result.valueMap['jcr:content/jcr:description']}" mode="HTML" />
-	</p>
-	<a href="${result.path}.html" class="searchresult__link">
-		${fn:replace(result.path,sling:getAbsoluteParent(result,3).path,'')}.html
-	</a>
+<div class="searchresult ${searchConfig.resultClass}">
+    <div class="searchresult__header ${searchConfig.resultHeaderClass}">
+        <a href="${result.path}.html" class="searchresult__link">
+            <sling:encode value="${result.valueMap['jcr:content/jcr:title']}" mode="HTML" />
+        </a>
+    </div>
+    <p class="searchresult__body">
+        <sling:encode value="${result.valueMap['jcr:content/jcr:description']}" mode="HTML" />
+    </p>
+    <a href="${result.path}.html" class="searchresult__link">
+        ${fn:replace(result.path,sling:getAbsoluteParent(result,3).path,'')}.html
+    </a>
 </div>

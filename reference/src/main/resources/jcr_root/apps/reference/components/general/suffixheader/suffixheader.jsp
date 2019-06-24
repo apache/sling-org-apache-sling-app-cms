@@ -18,13 +18,13 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:choose>
-	<c:when test="${not empty properties.property}">
-		<c:set var="value" value="${slingRequest.requestPathInfo.suffixResource.valueMap[properties.property]}" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="value" value="${slingRequest.requestPathInfo.suffixResource.name}" />
-	</c:otherwise>
+    <c:when test="${not empty properties.property}">
+        <c:set var="value" value="${slingRequest.requestPathInfo.suffixResource.valueMap[properties.property]}" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="value" value="${slingRequest.requestPathInfo.suffixResource.name}" />
+    </c:otherwise>
 </c:choose>
 <${properties.tag}>
-	<sling:encode value="${fn:replace(properties.subString,'{SUFFIX}',value)}" mode="HTML" />
+    <sling:encode value="${fn:replace(properties.subString,'{SUFFIX}',value)}" mode="HTML" />
 </${properties.tag}>

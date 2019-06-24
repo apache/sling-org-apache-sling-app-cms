@@ -18,6 +18,7 @@ package org.apache.sling.cms;
 
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -29,9 +30,10 @@ public interface PageTemplateManager {
 
     /**
      * Gets the available templates for the current resource based on the templates
-     * in the repository and then limiting the templates by their allowed pathF
+     * in the repository and then limiting the templates by their allowed path
      * 
      * @return the list of available templates
      */
+    @NotNull
     List<PageTemplate> getAvailableTemplates();
 }

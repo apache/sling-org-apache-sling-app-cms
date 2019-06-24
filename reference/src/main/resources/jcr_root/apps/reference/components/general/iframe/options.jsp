@@ -17,10 +17,9 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PageManager" />
-<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/iframe']}" />
-<c:forEach var="wrapperClass" items="${configRsrc.valueMap.wrapperClasses}">
-	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.wrapperClass == sling:encode(fn:split(wrapperClass,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(wrapperClass,'=')[1],'HTML_ATTR')}">
-		${sling:encode(fn:split(wrapperClass,'=')[0],'HTML')}
-	</option>
+<sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.ComponentConfiguration" var="cmpCfg" />
+<c:forEach var="wrapperClass" items="${cmpCfg.properties.wrapperClasses}">
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.wrapperClass == sling:encode(fn:split(wrapperClass,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(wrapperClass,'=')[1],'HTML_ATTR')}">
+        ${sling:encode(fn:split(wrapperClass,'=')[0],'HTML')}
+    </option>
 </c:forEach>

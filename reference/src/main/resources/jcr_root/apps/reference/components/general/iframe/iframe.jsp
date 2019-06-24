@@ -18,9 +18,8 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${not empty properties.src}">
-    <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
-    <c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/iframe']}" />
+    <sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.ComponentConfiguration" var="cmpCfg" />
     <div class="${properties.wrapperClass}">
-        <iframe src="${properties.src}" class="${configRsrc.valueMap.iframeClass}" ${properties.allowFullscreen}></iframe>
+        <iframe src="${properties.src}" class="${cmpCfg.properties.iframeClass}" ${properties.allowFullscreen}></iframe>
     </div>
 </c:if>

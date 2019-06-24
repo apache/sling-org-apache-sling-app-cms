@@ -17,15 +17,15 @@
 package org.apache.sling.cms.core.internal.models;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.ComponentPolicy;
 import org.apache.sling.cms.PageTemplate;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -41,15 +41,10 @@ public class PageTemplateImpl implements PageTemplate {
     private String[] allowedPaths;
 
     @Inject
-    @Optional
-    private String[] availableComponentTypes;
-
-    @Inject
-    @Optional
-    private List<Resource> componentConfigurations;
-
-    @Inject
     private List<Resource> fields;
+
+    @Inject
+    private List<Resource> policies;
 
     private Resource resource;
 
@@ -76,26 +71,9 @@ public class PageTemplateImpl implements PageTemplate {
         return allowedPaths;
     }
 
-    /**
-     * @return the availableComponentTypes
-     */
     @Override
-    public String[] getAvailableComponentTypes() {
-        return availableComponentTypes;
-    }
-
-    /**
-     * @return the componentConfigs
-     */
-    @Override
-    public Map<String, Resource> getComponentConfigs() {
-        Map<String, Resource> configs = new HashMap<>();
-        if (componentConfigurations != null) {
-            for (Resource cfg : componentConfigurations) {
-                configs.put(cfg.getValueMap().get("type", String.class), cfg);
-            }
-        }
-        return configs;
+    public List<ComponentPolicy> getComponentPolicies() {
+        return policies.stream().map(p -> p.adaptTo(ComponentPolicy.class)).collect(Collectors.toList());
     }
 
     /**
@@ -136,9 +114,9 @@ public class PageTemplateImpl implements PageTemplate {
      */
     @Override
     public String toString() {
-        return "PageTemplate [allowedPaths=" + Arrays.toString(allowedPaths) + ", availableComponentTypes="
-                + Arrays.toString(availableComponentTypes) + ", fields=" + fields + ", resource=" + resource
-                + ", template=" + template + ", title=" + title + "]";
+        return "PageTemplateImpl [allowedPaths=" + Arrays.toString(allowedPaths) + ", fields=" + fields + ", policies="
+                + getComponentPolicies() + ", resource=" + resource + ", template=" + template + ", title=" + title
+                + "]";
     }
 
 }

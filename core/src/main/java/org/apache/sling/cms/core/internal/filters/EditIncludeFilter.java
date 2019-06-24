@@ -123,7 +123,7 @@ public class EditIncludeFilter implements Filter {
         }
         String title = component != null ? component.getTitle()
                 : StringUtils.substringAfterLast(resource.getResourceType(), "/");
-        writer.write("<div class=\"sling-cms-component\" data-component=\"" + component + "\" data-sling-cms-title=\""
+        writer.write("<div class=\"sling-cms-component\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\""
                 + title + "\" data-sling-cms-resource-path=\"" + resource.getPath()
                 + "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\" data-sling-cms-edit=\""
                 + editPath + "\"><div class=\"sling-cms-editor\">");

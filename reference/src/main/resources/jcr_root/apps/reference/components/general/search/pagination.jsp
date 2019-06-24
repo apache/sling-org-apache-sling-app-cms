@@ -19,41 +19,41 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="pageParam" value="${not empty param.q ? param.q : '1'}" />
 <nav>
-	<ul class="${searchConfig.valueMap.paginationClass}">
-		<c:choose>
-			<c:when test="${search.first == true}">
-				<li class="${searchConfig.valueMap.pageItemClass} disabled">
-					<span class="${searchConfig.valueMap.pageLinkClass}">
-						&lt;
-					</span>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="${searchConfig.valueMap.pageItemClass}">
-					<a class="${searchConfig.valueMap.pageLinkClass}" href="?q=${sling:encode(search.term,'HTML_ATTR')}">&lt;</a>
-				</li>
-			</c:otherwise>
-		</c:choose>
-		<c:forEach var="page" items="${search.pages}">
-			<li class="${searchConfig.valueMap.pageItemClass}${page == pageParam ? ' active' : ''}">
-				<a href="?q=${sling:encode(search.term,'HTML_ATTR')}&page=${page}" class="${searchConfig.valueMap.pageLinkClass}${page == param.page ? ' active' : ''}">
-					${page}
-				</a>
-			</li>
-		</c:forEach>
-		<c:choose>
-			<c:when test="${search.last}">
-				<li class="${searchConfig.valueMap.pageItemClass} disabled">
-					<span class="${searchConfig.valueMap.pageLinkClass}">
-						&gt;
-					</span>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="${searchConfig.valueMap.pageItemClass}">
-					<a class="${searchConfig.valueMap.pageLinkClass}" href="?q=${sling:encode(search.term,'HTML_ATTR')}&page=${search.currentPage + 1}">&gt;</a>
-				</li>
-			</c:otherwise>
-		</c:choose>
-	</ul>
+    <ul class="${searchConfig.paginationClass}">
+        <c:choose>
+            <c:when test="${search.first == true}">
+                <li class="${searchConfig.pageItemClass} disabled">
+                    <span class="${searchConfig.pageLinkClass}">
+                        &lt;
+                    </span>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="${searchConfig.pageItemClass}">
+                    <a class="${searchConfig.pageLinkClass}" href="?q=${sling:encode(search.term,'HTML_ATTR')}">&lt;</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+        <c:forEach var="page" items="${search.pages}">
+            <li class="${searchConfig.pageItemClass}${page == pageParam ? ' active' : ''}">
+                <a href="?q=${sling:encode(search.term,'HTML_ATTR')}&page=${page}" class="${searchConfig.pageLinkClass}${page == param.page ? ' active' : ''}">
+                    ${page}
+                </a>
+            </li>
+        </c:forEach>
+        <c:choose>
+            <c:when test="${search.last}">
+                <li class="${searchConfig.pageItemClass} disabled">
+                    <span class="${searchConfig.pageLinkClass}">
+                        &gt;
+                    </span>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="${searchConfig.pageItemClass}">
+                    <a class="${searchConfig.pageLinkClass}" href="?q=${sling:encode(search.term,'HTML_ATTR')}&page=${search.currentPage + 1}">&gt;</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+    </ul>
 </nav>

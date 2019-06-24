@@ -18,5 +18,5 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${not empty properties.src}">
-	<img src="${properties.src}" alt="${properties.alt}" class="${properties.imageClass}" />
+    <img src="${properties.src}" alt="${properties.alt}" class="${properties.imageClass}" />
 </c:if>

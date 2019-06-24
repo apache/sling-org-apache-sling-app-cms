@@ -18,41 +18,41 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <nav>
-	<ul class="${listConfig.valueMap.paginationClass}">
-		<c:choose>
-			<c:when test="${list.first == true}">
-				<li class="${listConfig.valueMap.pageItemClass} disabled">
-					<span class="${listConfig.valueMap.pageLinkClass}">
-						&lt;
-					</span>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="${listConfig.valueMap.pageItemClass}">
-					<a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage - 1}">&lt;</a>
-				</li>
-			</c:otherwise>
-		</c:choose>
-		<c:forEach var="page" items="${list.pages}">
-			<li class="${listConfig.valueMap.pageItemClass} ${page == list.currentPage ? 'active' : ''}">
-				<a href="?page=${page}" class="${listConfig.valueMap.pageLinkClass}">
-					${page}
-				</a>
-			</li>
-		</c:forEach>
-		<c:choose>
-			<c:when test="${list.last}">
-				<li class="${listConfig.valueMap.pageItemClass} disabled">
-					<span class="${listConfig.valueMap.pageLinkClass}">
-						&gt;
-					</span>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="${listConfig.valueMap.pageItemClass}">
-					<a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage + 1}">&gt;</a>
-				</li>
-			</c:otherwise>
-		</c:choose>
-	</ul>
+    <ul class="${listConfig.valueMap.paginationClass}">
+        <c:choose>
+            <c:when test="${list.first == true}">
+                <li class="${listConfig.valueMap.pageItemClass} disabled">
+                    <span class="${listConfig.valueMap.pageLinkClass}">
+                        &lt;
+                    </span>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="${listConfig.valueMap.pageItemClass}">
+                    <a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage - 1}">&lt;</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+        <c:forEach var="page" items="${list.pages}">
+            <li class="${listConfig.valueMap.pageItemClass} ${page == list.currentPage ? 'active' : ''}">
+                <a href="?page=${page}" class="${listConfig.valueMap.pageLinkClass}">
+                    ${page}
+                </a>
+            </li>
+        </c:forEach>
+        <c:choose>
+            <c:when test="${list.last}">
+                <li class="${listConfig.valueMap.pageItemClass} disabled">
+                    <span class="${listConfig.valueMap.pageLinkClass}">
+                        &gt;
+                    </span>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="${listConfig.valueMap.pageItemClass}">
+                    <a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage + 1}">&gt;</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+    </ul>
 </nav>

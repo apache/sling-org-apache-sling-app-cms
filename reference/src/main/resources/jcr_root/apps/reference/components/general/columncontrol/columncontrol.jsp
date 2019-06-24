@@ -17,28 +17,27 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <c:choose>
- 	<c:when test="${properties.container == true}">
- 		<sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
-		<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/columncontrol']}" />
- 		<div class="${configRsrc.valueMap.containerclass}">
- 			<div class="row">
-				<c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
-					<div class="${sling:encode(col,'HTML_ATTR')}">
-						<sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
-					</div>
-				</c:forEach>
-			</div>
- 		</div>
- 	</c:when>
- 	<c:otherwise>
- 		<div class="row">
-			<c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
-				<div class="${sling:encode(col,'HTML_ATTR')}">
-					<sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
-				</div>
-			</c:forEach>
-		</div>
- 	</c:otherwise>
- </c:choose>
-
+<c:choose>
+    <c:when test="${properties.container == true}">
+        <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.ComponentPolicyManager" var="componentPolicyMgr" />
+        <c:set var="configRsrc" value="${componentPolicyMgr.componentPolicy.componentConfigs['reference/components/general/columncontrol']}" />
+        <div class="${configRsrc.valueMap.containerclass}">
+            <div class="row">
+                <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
+                    <div class="${sling:encode(col,'HTML_ATTR')}">
+                        <sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
+                    </div>
+                </c:forEach>
+            </div>
+         </div>
+     </c:when>
+     <c:otherwise>
+         <div class="row">
+            <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
+                <div class="${sling:encode(col,'HTML_ATTR')}">
+                    <sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
+                </div>
+            </c:forEach>
+        </div>
+    </c:otherwise>
+</c:choose>

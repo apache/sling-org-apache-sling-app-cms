@@ -22,8 +22,11 @@
         <c:set var="availableTypes" value="${requestScope.availableTypes}" />
     </c:when>
     <c:when test="${empty requestScope.availableTypes}">
-        <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
-        <c:set var="availableTypes" value="${fn:join(pageMgr.page.template.availableComponentTypes,',')}" />
+        <sling:adaptTo var="policyMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.ComponentPolicyManager" />
+        <c:set var="policy" value="${policyMgr.componentPolicy}" />
+        <c:if test="${policy != null && not empty policy.availableComponentTypes}">
+            <c:set var="availableTypes" value="${fn:join(policy.availableComponentTypes,',')}" />
+        </c:if>
     </c:when>
 </c:choose>
 <c:forEach var="child" items="${sling:listChildren(resource)}">

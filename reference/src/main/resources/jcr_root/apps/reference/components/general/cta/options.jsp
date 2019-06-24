@@ -17,10 +17,9 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo var="pageMgr" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PageManager" />
-<c:set var="configRsrc" value="${pageMgr.page.template.componentConfigs['reference/components/general/cta']}" />
-<c:forEach var="ctaClass" items="${configRsrc.valueMap.ctaClasses}">
-	<option ${slingRequest.requestPathInfo.suffixResource.valueMap.ctaClass == sling:encode(fn:split(ctaClass,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(ctaClass,'=')[1],'HTML_ATTR')}">
-		${sling:encode(fn:split(ctaClass,'=')[0],'HTML')}
-	</option>
+<sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.ComponentConfiguration" var="cmpCfg" />
+<c:forEach var="ctaClass" items="${cmpCfg.properties.ctaClasses}">
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.ctaClass == sling:encode(fn:split(ctaClass,'=')[1],'HTML_ATTR') ? 'selected' : ''} value="${sling:encode(fn:split(ctaClass,'=')[1],'HTML_ATTR')}">
+        ${sling:encode(fn:split(ctaClass,'=')[0],'HTML')}
+    </option>
 </c:forEach>

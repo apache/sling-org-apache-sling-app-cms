@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms;
 
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -28,7 +29,9 @@ public interface PageManager {
     /**
      * Get the page containing the adapted resource
      * 
-     * @return the page
+     * @return the page containing the adapted resource or null if the resource is
+     *         not a child of a page
      */
+    @Nullable
     Page getPage();
 }

@@ -17,29 +17,8 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<nav class="breadcrumb" aria-label="breadcrumbs">
-    <c:set var="siteCfgResource" value="${slingRequest.requestPathInfo.suffixResource.parent.parent}" />
-    <c:set var="cfgResource" value="${siteCfgResource.parent}" />
-    <ul>
-        <li>
-            <a href="/cms/config/list.html${cfgResource.path}">
-                <sling:encode value="${cfgResource.valueMap['jcr:content/jcr:title']}" mode="HTML" default="${cfgResource.name}" />
-            </a>
-        </li>
-        <li>
-            <a href="/cms/config/edit.html${siteCfgResource.path}">
-                <sling:encode value="${siteCfgResource.valueMap['jcr:title']}" mode="HTML" default="${siteCfgResource.name}" />
-            </a>
-        </li>
-        <li class="is-active">
-            <a href="#">
-                <sling:encode value="${resource.valueMap['jcr:title']}" mode="HTML" />
-            </a>
-        </li>
-    </ul>
-</nav>
  <c:set var="cmsEditEnabled" value="true" scope="request" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/cms/templateeditor/config" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/caconfig/template/config" />
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
 <c:set var="cmsEditEnabled" value="false" scope="request" />

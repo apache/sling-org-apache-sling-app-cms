@@ -18,24 +18,24 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
-<c:set var="searchConfig" value="${pageMgr.page.template.componentConfigs['reference/components/general/search']}" scope="request" />
+<c:set var="searchConfig" value="${sling:adaptTo(resource,'org.apache.sling.cms.ComponentConfiguration').properties}" scope="request" />
 <c:if test="${not empty properties.limit && not empty param.q}">
-	<c:set var="search" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.Search')}" scope="request"  />
-	<div class="search ${searchConfig.valueMap.searchClass}">
-		<div class="search__header">
-			<fmt:message key="slingcms.search.header">
-				<fmt:param value="${sling:encode(search.term,'HTML')}" />
-				<fmt:param value="${search.start + 1}" />
-				<fmt:param value="${search.end}" />
-				<fmt:param value="${search.count}" />
-			</fmt:message>
-		</div>
-		<div class="search__results">
-			<c:forEach var="result" items="${search.results}">
-				<c:set var="result" value="${result}" scope="request" />
-				<sling:call script="result.jsp" />
-			</c:forEach>
-		</div>
-		<sling:call script="pagination.jsp" />
-	</div>
+    <c:set var="search" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.Search')}" scope="request"  />
+    <div class="search ${searchConfig.searchClass}">
+        <div class="search__header">
+            <fmt:message key="slingcms.search.header">
+                <fmt:param value="${sling:encode(search.term,'HTML')}" />
+                <fmt:param value="${search.start + 1}" />
+                <fmt:param value="${search.end}" />
+                <fmt:param value="${search.count}" />
+            </fmt:message>
+        </div>
+        <div class="search__results">
+            <c:forEach var="result" items="${search.results}">
+                <c:set var="result" value="${result}" scope="request" />
+                <sling:call script="result.jsp" />
+            </c:forEach>
+        </div>
+        <sling:call script="pagination.jsp" />
+    </div>
 </c:if>${search.finalize}

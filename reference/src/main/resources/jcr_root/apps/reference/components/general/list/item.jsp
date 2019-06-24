@@ -18,15 +18,15 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <li>
-	<c:choose>
-		<c:when test="${item.resourceType == 'sling:File' || item.resourceType == 'nt:file'}">
-			<c:set var="url" value="${item.path }" />
-		</c:when>
-		<c:otherwise>
-			<c:set var="url" value="${item.path}.html" />
-		</c:otherwise>
-	</c:choose>
-	<a href="${url}">
-		<sling:encode value="${item.valueMap['jcr:content/jcr:title']}" default="${item.name}" mode="HTML" />
-	</a>
+    <c:choose>
+        <c:when test="${item.resourceType == 'sling:File' || item.resourceType == 'nt:file'}">
+            <c:set var="url" value="${item.path }" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="url" value="${item.path}.html" />
+        </c:otherwise>
+    </c:choose>
+    <a href="${url}">
+        <sling:encode value="${item.valueMap['jcr:content/jcr:title']}" default="${item.name}" mode="HTML" />
+    </a>
 </li>

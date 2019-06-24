@@ -19,13 +19,13 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:call script="init.jsp" />
 <c:if test="${list != null}">
-	<${tag} class="list ${clazz}">
-		<c:forEach var="it" items="${list.items}">
-			<c:set var="item" value="${it}" scope="request" />
-			<sling:call script="item.jsp" />
-		</c:forEach>
-		<c:if test="${includePagination}">
-			<sling:call script="pagination.jsp" />
-		</c:if>
-	</${tag}>
+    <${tag} class="list ${clazz}">
+        <c:forEach var="it" items="${list.items}">
+            <c:set var="item" value="${it}" scope="request" />
+            <sling:call script="item.jsp" />
+        </c:forEach>
+        <c:if test="${includePagination}">
+            <sling:call script="pagination.jsp" />
+        </c:if>
+    </${tag}>
 </c:if>

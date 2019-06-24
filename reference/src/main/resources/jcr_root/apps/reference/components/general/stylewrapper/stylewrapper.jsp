@@ -18,5 +18,5 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="${properties.style}">
-	<sling:include path="container" resourceType="sling-cms/components/general/container" />
+    <sling:include path="container" resourceType="sling-cms/components/general/container" />
 </div>

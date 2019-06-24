@@ -18,7 +18,7 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${not empty properties.href}">
-	<a href="${properties.href }" class="${properties.ctaClass}" ${target}>
-		<sling:encode value="${properties.text}" mode="HTML" />
-	</a>
+    <a href="${properties.href}" class="${properties.ctaClass}" ${target}>
+        <sling:encode value="${properties.text}" mode="HTML" />
+    </a>
 </c:if>

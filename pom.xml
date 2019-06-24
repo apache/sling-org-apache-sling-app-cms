@@ -304,6 +304,7 @@
                         <!-- Fixing issues with deleted modules -->
                         <exclude>**/target/*</exclude>
                         <exclude>**/target/**/*</exclude>
+                        <exclude>vagrant/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

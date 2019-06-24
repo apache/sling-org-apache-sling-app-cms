@@ -109,13 +109,10 @@
                 "jcr:primaryType": "nt:unstructured",
                 "jcr:title": "Base Page",
                 "template": "{\r\n  \"jcr:primaryType\": \"sling:Page\",\r\n  \"jcr:content\": {\r\n    \"jcr:primaryType\": \"nt:unstructured\",\r\n    \"jcr:title\": \"{{title}}\",\r\n    \"sling:template\": \"/conf/global/site/templates/base-page\",\r\n    \"sling:resourceType\": \"reference/components/pages/base\",\r\n    \"published\": false\r\n  }\r\n}",
-                "availableComponentTypes": [
-                    "General"
-                ],
                 "allowedPaths": [
                     "/content/apache/sling-apache-org.*"
                 ],
-                "sling:resourceType": "sling-cms/components/cms/pagetemplate",
+                "sling:resourceType": "sling-cms/components/caconfig/template",
                 "fields": {
                     "jcr:primaryType": "nt:unstructured",
                     "text": {
@@ -133,19 +130,6 @@
                         "type": "text",
                         "label": "Name",
                         "sling:resourceType": "sling-cms/components/editor/fields/text"
-                    }
-                },
-                "componentConfigurations": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "componentconfig": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "type": "reference/components/general/columncontrol",
-                        "containerclass": "container",
-                        "columns": [
-                            "50-50=col-md-6 col-md-6",
-                            "100=col-md-12"
-                        ],
-                        "sling:resourceType": "sling-cms/components/caconfig/component"
                     }
                 }
             }

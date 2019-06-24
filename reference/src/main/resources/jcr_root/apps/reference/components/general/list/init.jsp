@@ -23,7 +23,7 @@
 <c:set var="includePagination" value="${properties.includePagination}" scope="request" />
 <c:set var="tag" value="${not empty properties.tag ? properties.tag : 'ul'}" scope="request" />
 <c:set var="clazz" value="${not empty properties.class ? properties.class : ''}" scope="request" />
-<c:set var="listConfig" value="${pageMgr.page.template.componentConfigs['reference/components/general/list']}" scope="request" />
+<c:set var="listConfig" value="${sling:adaptTo(resource,'org.apache.sling.cms.ComponentConfiguration').resource}" scope="request" />
 <c:if test="${not empty query}">
 	<c:set var="list" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.ItemList')}" scope="request"  />
 </c:if>
