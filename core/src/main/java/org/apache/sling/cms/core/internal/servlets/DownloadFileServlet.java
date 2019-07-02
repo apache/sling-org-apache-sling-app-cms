@@ -14,6 +14,8 @@ import org.osgi.service.component.annotations.Component;
         "sling.servlet.methods=GET", "sling.servlet.extensions=html" })
 public class DownloadFileServlet extends SlingSafeMethodsServlet {
 
+    private static final long serialVersionUID = 6234007100684499058L;
+
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
         handleMethodNotImplemented(request, response);
