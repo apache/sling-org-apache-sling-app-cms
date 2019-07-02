@@ -18,7 +18,9 @@ package org.apache.sling.cms.core.internal.filters;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.Optional;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -47,7 +49,7 @@ public class EditIncludeFilter implements Filter {
     public static final String ENABLED_ATTR_NAME = "cmsEditEnabled";
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void destroy() {
         // Nothing required
     }
 
@@ -59,33 +61,8 @@ public class EditIncludeFilter implements Filter {
         boolean includeEnd = false;
 
         if (enabled) {
-
-            String editPath = null;
-            Resource resource = ((SlingHttpServletRequest) request).getResource();
-
-            EditableResource editableResource = new EditableResourceImpl(resource);
-            Component component = editableResource.getComponent();
-            if (component != null && !component.isType(CMSConstants.COMPONENT_TYPE_PAGE)) {
-                editPath = component.getEditPath();
-            }
-
             writer = response.getWriter();
-
-            if (StringUtils.isNotEmpty(editPath)) {
-                includeEnd = true;
-                writeEditorMarkup(resource, writer);
-            } else if (component != null && !component.isEditable()) {
-                includeEnd = true;
-                EditableResource er = resource.adaptTo(EditableResource.class);
-                if (er != null) {
-                    component = er.getComponent();
-                }
-                writer = response.getWriter();
-                writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
-                        + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
-                        + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
-                        + "\">");
-            }
+            includeEnd = writeHeader(request, writer, includeEnd);
         }
         chain.doFilter(request, response);
         if (enabled && writer != null && includeEnd) {
@@ -93,15 +70,30 @@ public class EditIncludeFilter implements Filter {
         }
     }
 
-    private void writeEditorMarkup(Resource resource, PrintWriter writer) {
+    private Iterator<Resource> getSiblings(Resource resource) {
+        return Optional.ofNullable(resource.getParent()).map(p -> p.listChildren()).orElse(Collections.emptyIterator());
+    }
 
-        boolean last = false;
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Nothing required
+    }
+
+    private boolean isFirst(Resource resource) {
         boolean first = false;
         if (resource != null && resource.getParent() != null) {
-            Iterator<Resource> children = resource.getParent().listChildren();
+            Iterator<Resource> children = getSiblings(resource);
             if (!children.hasNext() || children.next().getPath().equals(resource.getPath())) {
                 first = true;
             }
+        }
+        return first;
+    }
+
+    private boolean isLast(Resource resource) {
+        boolean last = false;
+        if (resource != null && resource.getParent() != null) {
+            Iterator<Resource> children = getSiblings(resource);
             if (children.hasNext()) {
                 while (children.hasNext()) {
                     if (children.next().getPath().equals(resource.getPath()) && !children.hasNext()) {
@@ -112,19 +104,22 @@ public class EditIncludeFilter implements Filter {
                 last = true;
             }
         }
-        boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
+        return last;
+    }
 
-        Component component = null;
+    private void writeEditorMarkup(Resource resource, PrintWriter writer) {
+
+        boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
+        boolean last = isFirst(resource);
+        boolean first = isLast(resource);
+
         EditableResource er = new EditableResourceImpl(resource);
-        String editPath = "";
-        if (er != null) {
-            component = er.getComponent();
-            editPath = component.getEditPath();
-        }
-        String title = component != null ? component.getTitle()
+        Component component = er.getComponent();
+        String editPath = component.getEditPath();
+        String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                 : StringUtils.substringAfterLast(resource.getResourceType(), "/");
-        writer.write("<div class=\"sling-cms-component\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\""
-                + title + "\" data-sling-cms-resource-path=\"" + resource.getPath()
+        writer.write("<div class=\"sling-cms-component\" data-component=\"" + component.getResource().getPath()
+                + "\" data-sling-cms-title=\"" + title + "\" data-sling-cms-resource-path=\"" + resource.getPath()
                 + "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\" data-sling-cms-edit=\""
                 + editPath + "\"><div class=\"sling-cms-editor\">");
         writer.write(
@@ -147,16 +142,36 @@ public class EditIncludeFilter implements Filter {
         }
 
         writer.write("</div></div>");
-        if (component != null) {
-            writer.write(
-                    "<div class=\"level-right\"><div class=\"level-item has-text-light\">" + title + "</div></div>");
-        }
+        writer.write("<div class=\"level-right\"><div class=\"level-item has-text-light\">" + title + "</div></div>");
         writer.write("</div></div>");
     }
 
-    @Override
-    public void destroy() {
-        // Nothing required
+    private boolean writeHeader(ServletRequest request, PrintWriter writer, boolean includeEnd) {
+        String editPath = null;
+        Resource resource = ((SlingHttpServletRequest) request).getResource();
+
+        EditableResource editableResource = new EditableResourceImpl(resource);
+        Component component = editableResource.getComponent();
+        if (component != null && !component.isType(CMSConstants.COMPONENT_TYPE_PAGE)) {
+            editPath = component.getEditPath();
+        }
+
+
+        if (StringUtils.isNotEmpty(editPath)) {
+            includeEnd = true;
+            writeEditorMarkup(resource, writer);
+        } else if (component != null && !component.isEditable()) {
+            includeEnd = true;
+            EditableResource er = resource.adaptTo(EditableResource.class);
+            if (er != null) {
+                component = er.getComponent();
+            }
+            writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
+                    + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
+                    + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
+                    + "\">");
+        }
+        return includeEnd;
     }
 
 }

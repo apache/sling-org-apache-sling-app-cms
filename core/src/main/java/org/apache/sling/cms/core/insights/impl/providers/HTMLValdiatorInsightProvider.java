@@ -19,6 +19,7 @@
 package org.apache.sling.cms.core.insights.impl.providers;
 
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
@@ -126,30 +127,7 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
                     }
                 }
             }
-            double score = 0.0;
-            if (errors > 5) {
-                insight.setPrimaryMessage(Message
-                        .danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_DANGER, new Object[] { errors, warnings })));
-                score = 0.2;
-            } else if (errors > 0) {
-                insight.setPrimaryMessage(Message
-                        .danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_DANGER, new Object[] { errors, warnings })));
-                score = 0.4;
-            } else if (warnings > 5) {
-                insight.setPrimaryMessage(
-                        Message.danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_WARN, new Object[] { warnings })));
-                score = 0.6;
-            } else if (warnings > 0) {
-                insight.setPrimaryMessage(
-                        Message.danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_WARN, new Object[] { warnings })));
-                score = 0.8;
-            } else {
-                insight.setPrimaryMessage(Message.danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_SUCCESS)));
-                score = 1.0;
-            }
-            insight.setScore(score);
-            insight.setMoreDetailsLink("https://validator.w3.org/nu/?doc="
-                    + URLEncoder.encode(pageRequest.getPage().getPublishedUrl(), StandardCharsets.UTF_8.toString()));
+            updateInsight(insight, pageRequest, dictionary, errors, warnings);
         } finally {
             if (reader != null) {
                 reader.close();
@@ -157,6 +135,34 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
         }
 
         return insight;
+    }
+
+    private void updateInsight(Insight insight, PageInsightRequest pageRequest, I18NDictionary dictionary, int errors,
+            int warnings) throws UnsupportedEncodingException {
+        double score = 0.0;
+        if (errors > 5) {
+            insight.setPrimaryMessage(Message
+                    .danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_DANGER, new Object[] { errors, warnings })));
+            score = 0.2;
+        } else if (errors > 0) {
+            insight.setPrimaryMessage(Message
+                    .danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_DANGER, new Object[] { errors, warnings })));
+            score = 0.4;
+        } else if (warnings > 5) {
+            insight.setPrimaryMessage(
+                    Message.warn(dictionary.get(I18N_KEY_HTMLVALIDATOR_WARN, new Object[] { warnings })));
+            score = 0.6;
+        } else if (warnings > 0) {
+            insight.setPrimaryMessage(
+                    Message.warn(dictionary.get(I18N_KEY_HTMLVALIDATOR_WARN, new Object[] { warnings })));
+            score = 0.8;
+        } else {
+            insight.setPrimaryMessage(Message.success(dictionary.get(I18N_KEY_HTMLVALIDATOR_SUCCESS)));
+            score = 1.0;
+        }
+        insight.setScore(score);
+        insight.setMoreDetailsLink("https://validator.w3.org/nu/?doc="
+                + URLEncoder.encode(pageRequest.getPage().getPublishedUrl(), StandardCharsets.UTF_8.toString()));
     }
 
     @Override

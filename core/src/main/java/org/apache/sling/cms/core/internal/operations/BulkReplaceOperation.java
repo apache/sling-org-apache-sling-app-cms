@@ -56,6 +56,7 @@ public class BulkReplaceOperation implements PostOperation {
     public static final String PN_REPLACE = "replace";
     public static final String PN_MODE = "mode";
 
+    @SuppressWarnings("javasecurity:S2631") // ignoring warning since this servlet can only be executed by privileged users
     @Override
     public void run(SlingHttpServletRequest request, PostResponse response, SlingPostProcessor[] processors) {
 
@@ -73,6 +74,7 @@ public class BulkReplaceOperation implements PostOperation {
             String find = request.getParameter(PN_FIND);
             if (MODE_REGEX.equals(request.getParameter(PN_MODE))) {
                 log.debug("Using regular expressions to search for {}", find);
+                
                 rfind = Pattern.compile(find);
             } else {
                 log.debug("Searching for {}", find);

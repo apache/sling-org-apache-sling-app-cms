@@ -18,6 +18,7 @@ package org.apache.sling.cms.core.internal.rewriter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,22 +44,11 @@ public class HTML5Serializer implements Serializer {
 
     private static final int CHAR_LT = 60;
 
-    private final Set<String> emptyTags = new HashSet<String>() {
-        private static final long serialVersionUID = 1L;
-        {
-            add("br");
-            add("area");
-            add("link");
-            add("img");
-            add("param");
-            add("hr");
-            add("input");
-            add("col");
-            add("base");
-            add("meta");
-        }
-    };
+    private static final Set<String> emptyTags = new HashSet<>();
+    static {
+        emptyTags.addAll(Arrays.asList("br", "area", "link", "img", "param", "hr", "input", "col", "base", "meta"));
 
+    };
     private PrintWriter writer;
 
     private ConfigurationResourceResolver resolver;
@@ -146,24 +136,14 @@ public class HTML5Serializer implements Serializer {
         for (int i = 0; i < atts.getLength(); i++) {
             if ("endSlash".equals(atts.getQName(i))) {
                 endSlash = true;
-                continue;
             }
-            if ("a".equals(localName) && "shape".equals(atts.getLocalName(i))) {
-                continue;
-            }
-            if ("iframe".equals(localName)
-                    && ("frameborder".equals(atts.getLocalName(i)) || "scrolling".equals(atts.getLocalName(i)))) {
-                continue;
-            }
-            if ("br".equals(localName) && ("clear".equals(atts.getLocalName(i)))) {
+            String value = atts.getValue(i);
+            if (shouldContinue(localName, atts, i)) {
                 continue;
             }
             writer.write(CHAR_SP);
             writer.write(atts.getLocalName(i));
-            String value = atts.getValue(i);
-            if (value == null) {
-                continue;
-            }
+
             writer.write(CHAR_EQ);
             writer.write('"');
             writer.write(value);
@@ -174,6 +154,26 @@ public class HTML5Serializer implements Serializer {
             writer.write("/");
         }
         writer.write(CHAR_GT);
+    }
+
+    private boolean shouldContinue(String localName, Attributes atts, int i) {
+        if ("endSlash".equals(atts.getQName(i))) {
+            return true;
+        }
+        if ("a".equals(localName) && "shape".equals(atts.getLocalName(i))) {
+            return true;
+        }
+        if ("iframe".equals(localName)
+                && ("frameborder".equals(atts.getLocalName(i)) || "scrolling".equals(atts.getLocalName(i)))) {
+            return true;
+        }
+        if ("br".equals(localName) && ("clear".equals(atts.getLocalName(i)))) {
+            return true;
+        }
+        if (atts.getValue(i) == null) {
+            return true;
+        }
+        return false;
     }
 
     @Override

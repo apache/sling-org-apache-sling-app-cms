@@ -97,52 +97,7 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
 
         I18NDictionary dictionary = i18nProvider.getDictionary(request.getResource().getResourceResolver());
         if (site != null && config != null) {
-            ReadabilityService svc = factory.getReadabilityService(site.getLocale());
-
-            double score = svc.calculateAverageGradeLevel(text);
-            String scoreStr = new DecimalFormat("##0.00").format(score);
-
-            insight.setScored(true);
-
-            log.debug("Calculating readability of page {}", pageRequest.getPage());
-
-            if (score > config.getMaxGradeLevel() || score < config.getMinGradeLevel()) {
-                log.debug("Retrieved out of bounds readability {} based on range {}-{}", score,
-                        config.getMinGradeLevel(), config.getMaxGradeLevel());
-
-                StandardDeviation sd = new StandardDeviation(false);
-                double stddev = sd.evaluate(new double[] { config.getMinGradeLevel(), config.getMaxGradeLevel() });
-                double dev;
-                if (score > config.getMaxGradeLevel()) {
-                    dev = score - config.getMaxGradeLevel();
-                } else {
-                    dev = config.getMinGradeLevel() - score;
-                }
-                double calcScore = 1 - (dev / stddev) * .5;
-                if (calcScore > 0) {
-                    insight.setScore(calcScore);
-                } else {
-                    insight.setScore(0.0);
-                }
-                insight.setPrimaryMessage(Message.warn(dictionary.get(I18N_KEY_READABILITY_RESULT_WARN,
-                        new Object[] { config.getMinGradeLevel(), config.getMaxGradeLevel(), scoreStr })));
-            } else {
-                log.debug("Retrieved in bounds readability {} based on range {}-{}", score, config.getMinGradeLevel(),
-                        config.getMaxGradeLevel());
-                insight.setScore(1.0);
-                insight.setPrimaryMessage(Message.success(dictionary.get(I18N_KEY_READABILITY_RESULT_SUCCESS,
-                        new Object[] { config.getMinGradeLevel(), config.getMaxGradeLevel(), scoreStr })));
-            }
-            Text t = svc.extractSentences(text);
-
-            insight.getScoreDetails().add(Message.defaultMsg(dictionary.get(I18N_KEY_READABILITY_STATS,
-                    new Object[] { t.getSentences().size(), t.getWordCount(), t.getComplexWordCount() })));
-            addDetail(insight, svc.calculateARI(t), "ARI");
-            addDetail(insight, svc.calculateColemanLiauIndex(t), "Coleman-Liau Index");
-            addDetail(insight, svc.calculateFleschKincaidGradeLevel(t), "Flesch-Kincaid Grade Level");
-            addDetail(insight, svc.calculateFleschReadingEase(t), "Flesch-Kincaid Reading Ease");
-            addDetail(insight, svc.calculateGunningFog(t), "Gunning Fog");
-            addDetail(insight, svc.calculateSMOG(t), "SMOG");
+            executeReadabilityCheck(insight, pageRequest, text, site, config, dictionary);
 
         } else {
             log.warn("Failed to get readability for resource {} site or config were null",
@@ -154,6 +109,56 @@ public class ReadabilityInsightProvider extends BaseInsightProvider {
         }
 
         return insight;
+    }
+
+    private void executeReadabilityCheck(Insight insight, PageInsightRequest pageRequest, String text, Site site,
+            ReadabilitySiteConfig config, I18NDictionary dictionary) {
+        ReadabilityService svc = factory.getReadabilityService(site.getLocale());
+
+        double score = svc.calculateAverageGradeLevel(text);
+        String scoreStr = new DecimalFormat("##0.00").format(score);
+
+        insight.setScored(true);
+
+        log.debug("Calculating readability of page {}", pageRequest.getPage());
+
+        if (score > config.getMaxGradeLevel() || score < config.getMinGradeLevel()) {
+            log.debug("Retrieved out of bounds readability {} based on range {}-{}", score,
+                    config.getMinGradeLevel(), config.getMaxGradeLevel());
+
+            StandardDeviation sd = new StandardDeviation(false);
+            double stddev = sd.evaluate(new double[] { config.getMinGradeLevel(), config.getMaxGradeLevel() });
+            double dev;
+            if (score > config.getMaxGradeLevel()) {
+                dev = score - config.getMaxGradeLevel();
+            } else {
+                dev = config.getMinGradeLevel() - score;
+            }
+            double calcScore = 1 - (dev / stddev) * .5;
+            if (calcScore > 0) {
+                insight.setScore(calcScore);
+            } else {
+                insight.setScore(0.0);
+            }
+            insight.setPrimaryMessage(Message.warn(dictionary.get(I18N_KEY_READABILITY_RESULT_WARN,
+                    new Object[] { config.getMinGradeLevel(), config.getMaxGradeLevel(), scoreStr })));
+        } else {
+            log.debug("Retrieved in bounds readability {} based on range {}-{}", score, config.getMinGradeLevel(),
+                    config.getMaxGradeLevel());
+            insight.setScore(1.0);
+            insight.setPrimaryMessage(Message.success(dictionary.get(I18N_KEY_READABILITY_RESULT_SUCCESS,
+                    new Object[] { config.getMinGradeLevel(), config.getMaxGradeLevel(), scoreStr })));
+        }
+        Text t = svc.extractSentences(text);
+
+        insight.getScoreDetails().add(Message.defaultMsg(dictionary.get(I18N_KEY_READABILITY_STATS,
+                new Object[] { t.getSentences().size(), t.getWordCount(), t.getComplexWordCount() })));
+        addDetail(insight, svc.calculateARI(t), "ARI");
+        addDetail(insight, svc.calculateColemanLiauIndex(t), "Coleman-Liau Index");
+        addDetail(insight, svc.calculateFleschKincaidGradeLevel(t), "Flesch-Kincaid Grade Level");
+        addDetail(insight, svc.calculateFleschReadingEase(t), "Flesch-Kincaid Reading Ease");
+        addDetail(insight, svc.calculateGunningFog(t), "Gunning Fog");
+        addDetail(insight, svc.calculateSMOG(t), "SMOG");
     }
 
     @Override

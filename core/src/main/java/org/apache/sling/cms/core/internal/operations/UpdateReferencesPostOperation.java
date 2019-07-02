@@ -39,46 +39,49 @@ import org.slf4j.LoggerFactory;
 @Component(immediate = true, service = { SlingPostProcessor.class }, property = Constants.SERVICE_RANKING + "=-1")
 public class UpdateReferencesPostOperation implements SlingPostProcessor {
 
-	public static final String RP_UPDATE_REFERENCES = SlingPostConstants.RP_PREFIX + "updateReferences";
+    public static final String RP_UPDATE_REFERENCES = SlingPostConstants.RP_PREFIX + "updateReferences";
 
-	private static final Logger log = LoggerFactory.getLogger(UpdateReferencesPostOperation.class);
+    private static final Logger log = LoggerFactory.getLogger(UpdateReferencesPostOperation.class);
 
-	@Override
-	public void process(SlingHttpServletRequest request, final List<Modification> changes) throws Exception {
-		if ((SlingPostConstants.OPERATION_DELETE.equals(request.getParameter(SlingPostConstants.RP_OPERATION))
-				|| SlingPostConstants.OPERATION_MOVE.equals(request.getParameter(SlingPostConstants.RP_OPERATION)))
-				&& "true".equalsIgnoreCase(request.getParameter(RP_UPDATE_REFERENCES))) {
+    @Override
+    public void process(SlingHttpServletRequest request, final List<Modification> changes) throws Exception {
+        if ((SlingPostConstants.OPERATION_DELETE.equals(request.getParameter(SlingPostConstants.RP_OPERATION))
+                || SlingPostConstants.OPERATION_MOVE.equals(request.getParameter(SlingPostConstants.RP_OPERATION)))
+                && "true".equalsIgnoreCase(request.getParameter(RP_UPDATE_REFERENCES))) {
+            updateReferences(request, changes);
+        }
+    }
 
-			final String find = request.getResource().getPath();
-			final String destination = request.getParameter(SlingPostConstants.RP_DEST);
-			log.debug("Using destination: {}", destination);
-			ReferenceOperation ro = new ReferenceOperation(request.getResource()) {
-				@Override
-				public void doProcess(Resource resource, String matchingKey) {
-					ModifiableValueMap properties = resource.adaptTo(ModifiableValueMap.class);
-					log.trace("Updating references in property {}@{}", resource.getPath(), matchingKey);
-					if (properties != null) {
-						if (properties.get(matchingKey) instanceof String) {
-							String value = properties.get(matchingKey, "").replace(find, destination);
-							properties.put(matchingKey, value);
-							log.trace("Updated value {}", value);
-						} else if (properties.get(matchingKey) instanceof String[]) {
-							String[] values = properties.get(matchingKey, new String[0]);
-							for (int i = 0; i < values.length; i++) {
-								values[i] = values[i].replace(find, destination);
-							}
-							properties.put(matchingKey, values);
-							if (log.isTraceEnabled()) {
-								log.trace("Updated values {}", Arrays.toString(values));
-							}
-						}
-					} else {
-						log.warn("Unable to update references in {}, unable to edit", resource);
-					}
-					changes.add(Modification.onModified(resource.getPath()));
-				}
-			};
-			ro.init();
-		}
-	}
+    private void updateReferences(SlingHttpServletRequest request, final List<Modification> changes) {
+        final String find = request.getResource().getPath();
+        final String destination = request.getParameter(SlingPostConstants.RP_DEST);
+        log.debug("Using destination: {}", destination);
+        ReferenceOperation ro = new ReferenceOperation(request.getResource()) {
+            @Override
+            public void doProcess(Resource resource, String matchingKey) {
+                ModifiableValueMap properties = resource.adaptTo(ModifiableValueMap.class);
+                log.trace("Updating references in property {}@{}", resource.getPath(), matchingKey);
+                if (properties != null) {
+                    if (properties.get(matchingKey) instanceof String) {
+                        String value = properties.get(matchingKey, "").replace(find, destination);
+                        properties.put(matchingKey, value);
+                        log.trace("Updated value {}", value);
+                    } else if (properties.get(matchingKey) instanceof String[]) {
+                        String[] values = properties.get(matchingKey, new String[0]);
+                        for (int i = 0; i < values.length; i++) {
+                            values[i] = values[i].replace(find, destination);
+                        }
+                        properties.put(matchingKey, values);
+                        if (log.isTraceEnabled()) {
+                            log.trace("Updated values {}", Arrays.toString(values));
+                        }
+                    }
+                } else {
+                    log.warn("Unable to update references in {}, unable to edit", resource);
+                }
+                changes.add(Modification.onModified(resource.getPath()));
+            }
+        };
+        ro.init();
+    }
 }
