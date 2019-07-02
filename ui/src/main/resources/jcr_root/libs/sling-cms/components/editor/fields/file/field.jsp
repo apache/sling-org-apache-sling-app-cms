@@ -18,57 +18,35 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:choose>
-	<c:when test="${properties.accepts}">
-		<c:set var="accepts" value="${properties.accepts}" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="accepts" value="image/*,audio/*,video/*,application/json,text/css,application/pdf" />
-	</c:otherwise>
+    <c:when test="${properties.accepts}">
+        <c:set var="accepts" value="${properties.accepts}" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="accepts" value=".doc,.docx,.ppt,.pptx,.xls,.xlsx,image/*,audio/*,video/*,application/json,text/css,application/pdf" />
+    </c:otherwise>
 </c:choose>
-<div class="repeating">
- 	<fieldset disabled="disabled" class="repeating__template is-hidden">
- 		<div class="repeating__item Grid">
-            <div class="file has-name is-fullwidth">
-                <label class="file-label">
-                   <input type="file" class="file-input" name="${properties.name}" ${required} accept="${accepts}" />
-                   <span class="file-cta">
-                      <span class="file-icon">
-                        <i class="jam jam-upload"></i>
-                      </span>
-                      <span class="file-label">
-                        Browse
-                      </span>
-                   </span>
-                   <span class="file-name">
-                        No File Selected
-                    </span>
-                    <span class='control'>
-                        <span class="button repeating__remove button">-</span>
-                    </span>
-                </label>
-            </div>
-	 	</div>
- 	</fieldset>
- 	<div class="repeating__container">
-	 	<div class="repeating__item Grid">
- 			<div class="file has-name is-fullwidth">
- 			    <label class="file-label">
-	 			   <input type="file" class="file-input" name="${properties.name}" ${required} accept="${accepts}" />
-	 			   <span class="file-cta">
-				      <span class="file-icon">
-				        <i class="jam jam-upload"></i>
-				      </span>
-				      <span class="file-label">
-				        Browse
-				      </span>
-                   </span>
-				   <span class="file-name">
-                        No File Selected
-                    </span>
-	                    <span class="button repeating__remove button">-</span>
-	 			</label>
-	 		</div>
-	 	</div>
-	</div>
-	<button type="button" class="repeating__add button">+</button>
+<div class="is-hidden file-item-template">
+    <div class="columns">
+        <div class="column file-item-name">
+        </div>
+        <div class="column">
+            <progress class="progress file-item-progress" max="100">0%</progress>
+        </div>
+    </div>
+</div>
+<div class="file is-fullwidth is-boxed">
+    <label class="file-label">
+        <input type="file" class="file-input" name="${properties.name}" ${required} accept="${accepts}" multiple="multiple" />
+        <span class="file-cta">
+            <span class="file-icon">
+                <i class="jam jam-upload"></i>
+            </span>
+            <span class="file-label">
+                Browse / Drag File(s)
+            </span>
+        </span>
+    </label>
+</div>
+<div class="file-item-container is-hidden">
+    <hr/>
 </div>

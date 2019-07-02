@@ -24,14 +24,105 @@
 (function (rava, wysihtml, wysihtmlParserRules) {
     'use strict';
     
-    /* Update the name on file selection */
+    /* Support for file uploads */
+    var setProgress = function(meter, progress){
+        meter.innerText = Math.round(progress)+'%';
+        meter.value = Math.round(progress);
+    }
+    var uploadFile = function(meter, action, file) {
+        var formData = new FormData();
+        
+        formData.append('*', file);
+        formData.append("*@TypeHint", "sling:File");
+        
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener('loadstart', function(){
+            setProgress(meter, 0);
+        }, false);
+        xhr.upload.addEventListener('progress', function(event) {
+            var percent = event.loaded / event.total * 100;
+            setProgress(meter, percent);
+        }, false);
+        xhr.upload.addEventListener('load', function(){
+            meter.classList.add('is-info');
+        }, false);
+        xhr.addEventListener('readystatechange', function(event) {
+            var status, text, readyState;
+            try {
+                readyState = event.target.readyState;
+                text = event.target.responseText;
+                status = event.target.status;
+            }catch(e) {
+            }
+            if (readyState == 4){
+                meter.classList.remove('is-info');
+                if(status == '200' && text) {
+                    meter.classList.add('is-success');
+                } else {
+                    meter.classList.add('is-danger');
+                    console.warn('Failed to upload %s, recieved message %s', file.name, text);
+                }
+            }
+        }, false);
+        xhr.open('POST', action, true);
+        xhr.send(formData);
+    }
+    var handleFile = function(scope, file){
+        var it = document.createElement('div'),
+            ctr = scope.closest('.control').querySelector('.file-item-container'),
+            meter = null;
+        it.innerHTML = document.querySelector('.file-item-template').innerHTML;
+        meter = it.querySelector('.progress');
+        it.querySelector('.file-item-name').innerText = file.name;
+        ctr.classList.remove('is-hidden');
+        ctr.appendChild(it);
+        
+        uploadFile(meter,scope.closest('form').action, file);
+    }
     rava.bind(".file", {
+        callbacks: {
+            created : function () {
+                var field = this,
+                    close = field.closest('form').querySelector('a.close');
+
+                field.addEventListener("dragover", function(event) {
+                    event.preventDefault();
+                }, false);
+                field.addEventListener("dragenter", function(event) {
+                    event.preventDefault();
+                    field.classList.add('is-primary');
+                }, false);
+                field.addEventListener("dragleave", function(event) {
+                    event.preventDefault();
+                    field.classList.remove('is-primary');
+                }, false);
+                field.addEventListener("drop", function(event) {
+                    event.preventDefault();
+                    field.classList.remove('is-primary');
+                    if (event.dataTransfer.items) {
+                        for (var i = 0; i < event.dataTransfer.items.length; i++) {
+                            if (event.dataTransfer.items[i].kind === 'file') {
+                                handleFile(field, event.dataTransfer.items[i].getAsFile());
+                            }
+                        }
+                    } else {
+                        for (var i = 0; i < event.dataTransfer.files.length; i++) {
+                            handleFile(field, event.dataTransfer.files[i]);
+                        }
+                    }
+                }, false);
+                field.closest('form').querySelector('button[type=submit]').remove();
+                close.innerText = 'Done';
+                close.addEventListener('click', function(event){
+                    window.Sling.CMS.ui.reloadContext();
+                });
+            }
+        },
         events: {
             input: {
                 change : function (event) {
-                    var nameField = event.target.closest('.file').querySelector('.file-name');
-                    if (nameField) {
-                        nameField.textContent = event.target.files[0].name;
+                    for(var i = 0; i < event.target.files.length; i++){
+                        handleFile(event.target, event.target.files[i]);
                     }
                 }
             }
