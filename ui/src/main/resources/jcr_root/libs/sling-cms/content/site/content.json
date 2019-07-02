@@ -189,7 +189,8 @@
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": false,
                                     "title": "Download file",
-                                    "icon": "download"
+                                    "icon": "download",
+                                    "prefix": "/cms/file/download.html"
                                 },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
@@ -265,7 +266,8 @@
                                     "jcr:primaryType": "nt:unstructured",
                                     "modal": false,
                                     "title": "Download file",
-                                    "icon": "download"
+                                    "icon": "download",
+                                    "prefix": "/cms/file/download.html"
                                 },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
