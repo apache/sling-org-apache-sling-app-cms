@@ -40,6 +40,7 @@ public class DownloadFileServlet extends SlingSafeMethodsServlet {
             throws ServletException, IOException {
         Resource suffixResource = request.getRequestPathInfo().getSuffixResource();
         if (suffixResource != null) {
+            response.setContentType(suffixResource.getValueMap().get("jcr:content/jcr:mimeType", ""));
             response.setHeader("Content-Disposition", "attachment; " + suffixResource.getName());
             IOUtils.copy(suffixResource.adaptTo(InputStream.class), response.getOutputStream());
         } else {
