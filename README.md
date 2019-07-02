@@ -14,5 +14,5 @@ A reference implementation of a simple Content Management System built in Apache
  * [Releases](docs/releases.md)
  * [Users](docs/users.md)
  
-### [Download Latest Version](https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.11.2/org.apache.sling.cms.builder-0.11.2.jar)
+### [Download Latest Version](https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.12.0/org.apache.sling.cms.builder-0.12.0.jar)
 ### [Report an Issue](https://issues.apache.org/jira)
