@@ -49,7 +49,7 @@ public class InsightsWebConsole extends AbstractWebConsolePlugin {
     public static final String CONSOLE_LABEL = "slingcms-insights";
     public static final String CONSOLE_TITLE = "Sling CMS Insights";
 
-    @SuppressWarnings("squid:S2078") // ignore since this field is is injected by OSGi
+    @SuppressWarnings({ "squid:S2078", "squid:S2226" }) // ignore since this field is is injected by OSGi
     @Reference
     private InsightFactory insightFactory;
 
