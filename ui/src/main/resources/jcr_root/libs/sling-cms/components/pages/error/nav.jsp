@@ -20,7 +20,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
 <div class="navbar-brand">
 <a class="navbar-item" href="http://sling.apache.org" >
-    <img src="/static/clientlibs/sling-cms/img/sling-logo.svg" width="100" alt="Apache Sling"/>
+    <img src="${branding.logo}" width="100" alt="${branding.appName}"/>
 </a>
 <a href="/cms/start.html" class="navbar-item" title="CMS Home"><span class="icon"><i class="jam jam-home-f"></i></span></a>
 </div>

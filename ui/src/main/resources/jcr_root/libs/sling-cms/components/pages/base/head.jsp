@@ -18,18 +18,20 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>${properties['jcr:title']} :: Apache Sling CMS</title>
-	<link href="/static/clientlibs/sling-cms/css/styles.min.css" rel="stylesheet" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/static/clientlibs/sling-cms/img/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/static/clientlibs/sling-cms/img/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/static/clientlibs/sling-cms/img/favicon-16x16.png">
-	<link rel="shortcut icon" href="/static/clientlibs/sling-cms/img/favicon.ico">
-	<meta name="apple-mobile-web-app-title" content="Apache Sling CMS">
-	<meta name="application-name" content="Apache Sling CMS">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-config" content="/static/clientlibs/sling-cms/img/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${properties['jcr:title']} :: ${branding.appName}</title>
+    <link href="${branding.css}" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="${branding.appleTouchIcon}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="${branding.favicon32}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="${branding.favicon16}" />
+    <link rel="shortcut icon" href="${branding.favicon}" />
+    <meta name="apple-mobile-web-app-title" content="${branding.appName}" />
+    <meta name="application-name" content="${branding.appName}" />
+    <link rel="mask-icon" href="${branding.appleMaskIcon}" color="${branding.tileColor}" />
+    <meta name="msapplication-TileColor" content="${branding.tileColor}" />
+    <meta name="theme-color" content="${branding.tileColor}" />
+    <meta name="msapplication-config" content="${branding.browserConfig}">
+    <link rel="manifest" href="${branding.webManifest }">
 </head>

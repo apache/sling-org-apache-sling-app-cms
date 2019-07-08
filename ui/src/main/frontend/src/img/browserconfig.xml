@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one
   or more contributor license agreements.  See the NOTICE file
@@ -17,11 +16,12 @@
   specific language governing permissions and limitations
   under the License.
 -->
+<?xml version="1.0" encoding="utf-8"?>
 <browserconfig>
     <msapplication>
         <tile>
             <square150x150logo src="/static/clientlibs/sling-cms/img/mstile-150x150.png"/>
-            <TileColor>#ffffff</TileColor>
+            <TileColor>#662f8f</TileColor>
         </tile>
     </msapplication>
 </browserconfig>

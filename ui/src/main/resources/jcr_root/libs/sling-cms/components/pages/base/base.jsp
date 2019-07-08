@@ -18,6 +18,6 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <html lang="en">
-	<sling:call script="head.jsp" />
-	<sling:call script="body.jsp" />
+    <sling:call script="head.jsp" />
+    <sling:call script="body.jsp" />
 </html>
