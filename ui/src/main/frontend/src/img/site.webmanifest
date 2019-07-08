@@ -1,0 +1,21 @@
+{
+    "name": "Apache Sling CMS",
+    "short_name": "Apache Sling CMS",
+    "icons": [
+        {
+            "src": "/static/clientlibs/sling-cms/img/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/clientlibs/sling-cms/img/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#662f8f",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/cms/start.html",
+    "scope": "/"
+}

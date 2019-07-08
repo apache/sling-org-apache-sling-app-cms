@@ -10,5 +10,13 @@
     "tileColor": "#662f8f",
     "browserConfig": "/static/clientlibs/sling-cms/img/browserconfig.xml",
     "webManifest": "/static/clientlibs/sling-cms/img/site.webmanifest",
-    "css": "/static/clientlibs/sling-cms/css/styles.min.css"
+    "css": "/static/clientlibs/sling-cms/css/styles.min.css",
+    "security:acl": [
+        {
+            "principal": "everyone",
+            "granted": [
+                "jcr:read"
+            ]
+        }
+    ]
 }
