@@ -15,6 +15,13 @@
         "name": "submitClass",
         "type": "text"
     },
+    "alertClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Alert Class",
+        "name": "alertClass",
+        "type": "text"
+    },
     "fieldClass": {
         "jcr:primaryType": "nt:unstructured",
         "sling:resourceType": "sling-cms/components/editor/fields/text",

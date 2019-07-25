@@ -21,13 +21,19 @@
 <c:set var="formData" value="${sling:adaptTo(slingRequest,'org.apache.sling.cms.reference.forms.FormRequest').formData}" scope="request" />
 <form class="${formConfig.formClass}" action="${resource.path}.allowpost.html" method="post" data-analytics-id="${sling:encode(properties.formId,'HTML_ATTR')}">
     <c:if test="${param.message == 'success'}">
-        ${properties.successMessage}
+        <div class="${formConfig.alertClass}">
+            ${properties.successMessage}
+        </div>
     </c:if>
     <c:if test="${param.error == 'actions'}">
-        ${properties.actionsErrorMessage}
+        <div class="${formConfig.alertClass}">
+            ${properties.actionsErrorMessage}
+        </div>
     </c:if>
     <c:if test="${param.error == 'fields'}">
-        ${properties.fieldsErrorMessage}
+        <div class="${formConfig.alertClass}">
+            ${properties.fieldsErrorMessage}
+        </div>
     </c:if>
 
     <c:set var="oldAvailableTypes" value="${availableTypes}" />
