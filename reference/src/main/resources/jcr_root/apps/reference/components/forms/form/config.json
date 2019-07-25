@@ -1,0 +1,81 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/general/container",
+    "formClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Form Class",
+        "name": "formClass",
+        "type": "text"
+    },
+    "submitClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Submit Class",
+        "name": "submitClass",
+        "type": "text"
+    },
+    "fieldClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Field Class",
+        "name": "fieldClass",
+        "type": "text"
+    },
+    "actionConfigGroups": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Action Config Groups",
+        "name": "actionConfigGroups",
+        "type": "text"
+    },
+    "providerConfigGroups": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Provider Config Groups",
+        "name": "providerConfigGroups",
+        "type": "text"
+    },
+    "fieldConfigGroups": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Field Config Groups",
+        "name": "fieldConfigGroups",
+        "type": "text"
+    },
+    "fieldGroupClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Field Group Class",
+        "name": "fieldGroupClass",
+        "type": "text"
+    },
+    "fieldRequiredClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Field Required Class",
+        "name": "fieldRequiredClass",
+        "type": "text"
+    },
+    "checkFieldClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Check Field Class",
+        "name": "checkFieldClass",
+        "type": "text"
+    },
+    "checkInputClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Check Input Class",
+        "name": "checkInputClass",
+        "type": "text"
+    },
+    "checkLabelClass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Check Label Class",
+        "name": "checkLabelClass",
+        "type": "text"
+    }
+}

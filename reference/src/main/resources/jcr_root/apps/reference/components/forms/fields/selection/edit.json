@@ -1,0 +1,103 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "label": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Label",
+            "name": "label"
+        },
+        "name": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Name",
+            "name": "name",
+            "required": true
+        },
+        "multiple": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Multiple Select?",
+            "name": "multiple",
+            "options": {
+                "yes": {
+                    "label": "Yes",
+                    "value": true
+                },
+                "no": {
+                    "label": "No",
+                    "value": false
+                }
+            }
+        },
+        "multipleTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "multiple@TypeHint",
+            "value": "Boolean"
+        },
+        "noSelection": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "No Selection Message",
+            "name": "noSelection"
+        },
+        "tagRoot": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/path",
+            "label": "Tag Root",
+            "name": "tagRoot",
+            "basePath": "/etc/taxonomy",
+            "type": "sling:Taxonomy",
+            "titleProperty": "jcr:title"
+        },
+        "required": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Required",
+            "name": "required",
+            "options": {
+                "no": {
+                    "label": "No",
+                    "value": false
+                },
+                "yes": {
+                    "label": "Yes",
+                    "value": true
+                }
+            }
+        },
+        "requiredTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "required@TypeHint",
+            "value": "Boolean"
+        },
+        "display": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Display",
+            "name": "display",
+            "options": {
+                "select": {
+                    "label": "Select",
+                    "value": "select"
+                },
+                "radioCheckbox": {
+                    "label": "Radio / Checkbox",
+                    "value": "radioCheckbox"
+                }
+            }
+        },
+        "addClasses": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Add Classes",
+            "name": "addClasses"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "formId": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Form ID",
+            "name": "formId"
+        },
+        "submitText": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "defaultValue": "Submit",
+            "label": "Submit Text",
+            "name": "submitText"
+        },
+        "successMessage": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/richtext",
+            "label": "Success Message",
+            "name": "successMessage"
+        },
+        "actionsErrorMessage": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/richtext",
+            "label": "Actions Error Message",
+            "name": "actionsErrorMessage"
+        },
+        "fieldsErrorMessage": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/richtext",
+            "label": "Fields Error Message",
+            "name": "fieldsErrorMessage"
+        }
+    }
+}

@@ -26,6 +26,7 @@
     org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlbeans/3.0.2_1
     org.apache.commons/commons-math3/3.6.1
     org.apache.commons/commons-compress/1.18
+    commons-email/commons-email/1.5
 
 [artifacts startLevel=20]
     org.apache.servicemix.bundles/org.apache.servicemix.bundles.poi/4.0.1_2

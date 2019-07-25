@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.apache.sling</groupId>
         <artifactId>sling</artifactId>
-        <version>33</version>
+        <version>34</version>
         <relativePath />
     </parent>
 
@@ -196,6 +196,12 @@
             </dependency>
 
             <!-- Utilities / Misc -->
+            <dependency>
+                <artifactId>commons-email</artifactId>
+                <version>1.5</version>
+                <groupId>org.apache.commons</groupId>
+                <scope>provided</scope>
+            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>

@@ -1,0 +1,156 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:title": "Test Form",
+        "sling:template": "/conf/site/site/templates/form",
+        "sling:resourceType": "test/components/pages/form",
+        "published": true,
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "invaliddate": {
+                "jcr:primaryType": "nt:unstructured",
+                "required": true,
+                "name": "datefield",
+                "type": "text",
+                "label": "Daty",
+                "saveAs": "date",
+                "sling:resourceType": "reference/components/forms/fields/textfield"
+            },
+            "form": {
+                "jcr:primaryType": "nt:unstructured",
+                "submitText": "Submit",
+                "formId": "Test Form",
+                "sling:resourceType": "reference/components/forms/form",
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "fieldset": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "legend": "Section 1",
+                        "sling:resourceType": "reference/components/forms/fieldset",
+                        "fields": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "textarea": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": false,
+                                "name": "textarea",
+                                "label": "Textarea",
+                                "sling:resourceType": "reference/components/forms/fields/textarea"
+                            },
+                            "requiredtextarea": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "requiredtextarea",
+                                "label": "Required Textarea",
+                                "sling:resourceType": "reference/components/forms/fields/textarea"
+                            },
+                            "multiselect": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "tagRoot": "/etc/taxonomy/forms/field",
+                                "addClasses": "",
+                                "required": false,
+                                "noSelection": "",
+                                "name": "multiselect",
+                                "label": "MultiSelect",
+                                "multiple": true,
+                                "sling:resourceType": "reference/components/forms/fields/selection",
+                                "display": "radioCheckbox"
+                            },
+                            "textfield": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "addClasses": "",
+                                "required": false,
+                                "name": "textfield",
+                                "type": "tel",
+                                "label": "Money Money Money",
+                                "value": "",
+                                "placeholder": "$",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "requiredtextfield": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "addClasses": "",
+                                "additionalAttributes": [
+                                    "min=1",
+                                    "max=1000000",
+                                    "step=1"
+                                ],
+                                "pattern": "",
+                                "required": true,
+                                "name": "money",
+                                "type": "number",
+                                "label": "Money Money Money",
+                                "value": "",
+                                "saveAs": "integer",
+                                "placeholder": "$",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "patternfield": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "patternfield",
+                                "pattern":"\\d+",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "double": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "double",
+                                "type": "number",
+                                "label": "Daty",
+                                "saveAs": "double",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "integer": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "integer",
+                                "type": "number",
+                                "label": "Daty",
+                                "saveAs": "integer",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "datefield": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "datefield",
+                                "type": "date",
+                                "label": "Daty",
+                                "saveAs": "date",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "singleselect": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "tagRoot": "/etc/taxonomy/forms/period",
+                                "addClasses": "",
+                                "required": true,
+                                "noSelection": "",
+                                "name": "singleselect",
+                                "label": "Single Select",
+                                "multiple": false,
+                                "sling:resourceType": "reference/components/forms/fields/selection",
+                                "display": "select"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sendemail": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "reference/components/forms/actions/sendemail",
+                        "from": "test@email.com",
+                        "to": "test@email.com",
+                        "subject": "A Subject",
+                        "message": "A message"
+                    },
+                    "updateprofile": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "subpath": "jobprofile",
+                        "sling:resourceType": "reference/components/forms/actions/updateprofile"
+                    }
+                }
+            }
+        }
+    }
+}

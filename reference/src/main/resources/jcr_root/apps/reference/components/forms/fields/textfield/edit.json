@@ -1,0 +1,160 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "label": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Label",
+            "name": "label"
+        },
+        "name": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Name",
+            "name": "name",
+            "required": true
+        },
+        "value": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Value",
+            "name": "value"
+        },
+        "placeholder": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Placeholder",
+            "name": "placeholder"
+        },
+        "required": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Required",
+            "name": "required",
+            "options": {
+                "no": {
+                    "label": "No",
+                    "value": false
+                },
+                "yes": {
+                    "label": "Yes",
+                    "value": true
+                }
+            }
+        },
+        "requiredTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "required@TypeHint",
+            "value": "Boolean"
+        },
+        "saveAs": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Save As",
+            "name": "saveAs",
+            "options": {
+                "string": {
+                    "label": "String",
+                    "value": "string"
+                },
+                "date": {
+                    "label": "Date",
+                    "value": "date"
+                },
+                "double": {
+                    "label": "Floating Point (Double)",
+                    "value": "double"
+                },
+                "integer": {
+                    "label": "Integer",
+                    "value": "integer"
+                }
+            }
+        },
+        "type": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Type",
+            "name": "type",
+            "options": {
+                "text": {
+                    "label": "Text",
+                    "value": "text"
+                },
+                "date": {
+                    "label": "Date",
+                    "value": "date"
+                },
+                "datetime-local": {
+                    "label": "Datetime Local",
+                    "value": "datetime-local"
+                },
+                "email": {
+                    "label": "Email",
+                    "value": "email"
+                },
+                "hidden": {
+                    "label": "Hidden",
+                    "value": "hidden"
+                },
+                "month": {
+                    "label": "Month",
+                    "value": "month"
+                },
+                "number": {
+                    "label": "Number",
+                    "value": "number"
+                },
+                "password": {
+                    "label": "Password",
+                    "value": "password"
+                },
+                "search": {
+                    "label": "Search",
+                    "value": "search"
+                },
+                "tel": {
+                    "label": "Telephone",
+                    "value": "tel"
+                },
+                "time": {
+                    "label": "Time",
+                    "value": "time"
+                },
+                "url": {
+                    "label": "URL",
+                    "value": "url"
+                }
+            }
+        },
+        "pattern": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Pattern",
+            "name": "pattern"
+        },
+        "addClasses": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Add Classes",
+            "name": "addClasses"
+        },
+        "additionalAttributes": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/repeating",
+            "label": "Additional Attributes",
+            "name": "additionalAttributes"
+        },
+        "additionalAttributesTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "additionalAttributes@TypeHint",
+            "value": "String[]"
+        }
+    }
+}

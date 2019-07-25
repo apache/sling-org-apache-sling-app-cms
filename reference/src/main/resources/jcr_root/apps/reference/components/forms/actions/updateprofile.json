@@ -1,0 +1,5 @@
+{
+    "jcr:primaryType" : "sling:Component",
+    "jcr:title": "Update Profile",
+    "componentType": "Form Action"
+}
