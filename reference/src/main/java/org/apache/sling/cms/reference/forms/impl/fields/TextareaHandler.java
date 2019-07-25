@@ -23,9 +23,11 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.reference.forms.FieldHandler;
 import org.apache.sling.cms.reference.forms.FormException;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Component(service = FieldHandler.class)
 public class TextareaHandler implements FieldHandler {
 
     private static final Logger log = LoggerFactory.getLogger(TextareaHandler.class);
