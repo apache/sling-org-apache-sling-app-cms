@@ -1,5 +1,6 @@
 {
     "jcr:primaryType" : "sling:Component",
     "jcr:title": "Textarea",
-    "componentType": "Form Field"
+    "componentType": "Form Field",
+    "reloadPage": true
 }

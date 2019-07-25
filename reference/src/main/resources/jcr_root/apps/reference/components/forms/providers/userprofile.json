@@ -1,5 +1,6 @@
 {
     "jcr:primaryType" : "sling:Component",
     "jcr:title": "User Profile",
-    "componentType": "Form Value Provider"
+    "componentType": "Form Value Provider",
+    "reloadPage": true
 }

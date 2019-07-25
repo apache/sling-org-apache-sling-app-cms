@@ -61,13 +61,20 @@ public interface Component {
      * @return the title
      */
     String getTitle();
-    
+
     /**
-     * True if the component is editable, false otherwise. 
+     * True if the component is editable, false otherwise.
      * 
      * @return the editable flag
      */
     boolean isEditable();
+
+    /**
+     * Returns true if the the property reloadPage is set to true.
+     * 
+     * @return true if page should be reloaded when the component is saved
+     */
+    boolean isReloadPage();
 
     /**
      * Returns true if the only component type on the component is the specified

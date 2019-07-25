@@ -118,10 +118,11 @@ public class EditIncludeFilter implements Filter {
         String editPath = component.getEditPath();
         String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                 : StringUtils.substringAfterLast(resource.getResourceType(), "/");
-        writer.write("<div class=\"sling-cms-component\" data-component=\"" + component.getResource().getPath()
-                + "\" data-sling-cms-title=\"" + title + "\" data-sling-cms-resource-path=\"" + resource.getPath()
-                + "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\" data-sling-cms-edit=\""
-                + editPath + "\"><div class=\"sling-cms-editor\">");
+        writer.write("<div class=\"sling-cms-component\" data-reload=\"" + component.isReloadPage()
+                + "\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\"" + title
+                + "\" data-sling-cms-resource-path=\"" + resource.getPath() + "\" data-sling-cms-resource-type=\""
+                + resource.getResourceType() + "\" data-sling-cms-edit=\"" + editPath
+                + "\"><div class=\"sling-cms-editor\">");
         writer.write(
                 "<div class=\"level has-background-grey\"><div class=\"level-left\"><div class=\"field has-addons\">");
 
@@ -156,7 +157,6 @@ public class EditIncludeFilter implements Filter {
             editPath = component.getEditPath();
         }
 
-
         if (StringUtils.isNotEmpty(editPath)) {
             includeEnd = true;
             writeEditorMarkup(resource, writer);
@@ -168,8 +168,7 @@ public class EditIncludeFilter implements Filter {
             }
             writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
                     + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
-                    + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType()
-                    + "\">");
+                    + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\">");
         }
         return includeEnd;
     }

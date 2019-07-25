@@ -80,14 +80,18 @@
                         }
                     },
                     reloadComponent: function (path, cb) {
-                        var component = document.querySelector('.sling-cms-component[data-sling-cms-resource-path="' + path + '"]');
+                        var component = document.querySelector('.sling-cms-component[data-sling-cms-resource-path="' + path + '"]'),
+                            reloadPage = component.dataset.reload  === 'true';
                         while (!component && path.length > 1) {
                             var pathArr = path.split('\/');
                             pathArr.pop();
                             path = pathArr.join('/');
                             component = document.querySelector('.sling-cms-component[data-sling-cms-resource-path="' + path + '"]');
+                            if(component.dataset.reload  === 'true') {
+                                reloadPage = true;
+                            }
                         }
-                        if (!component) {
+                        if (!component || reloadPage) {
                             CMSEditor.ui.hideModal();
                             window.top.location.reload();
                         }

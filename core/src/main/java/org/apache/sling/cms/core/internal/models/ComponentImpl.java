@@ -43,6 +43,11 @@ public class ComponentImpl implements Component {
     @Default(booleanValues = true)
     private boolean editable;
 
+    @Inject
+    @Optional
+    @Default(booleanValues = false)
+    private boolean reloadPage;
+
     private Resource resource;
 
     @Inject
@@ -159,6 +164,11 @@ public class ComponentImpl implements Component {
     @Override
     public boolean isEditable() {
         return editable;
+    }
+
+    @Override
+    public boolean isReloadPage() {
+        return reloadPage;
     }
 
     /**
