@@ -149,6 +149,14 @@
                         "subpath": "jobprofile",
                         "sling:resourceType": "reference/components/forms/actions/updateprofile"
                     }
+                },
+                "providers": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "userprofile": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "reference/components/forms/providers/userprofile",
+                        "subpath": "jobprofile"
+                    }
                 }
             }
         }

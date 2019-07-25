@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">Select Policy</option>
-<sling:getParent var="parent" resource="${slingRequest.requestPathInfo.suffixResource}" level="4" />
+<sling:getParent var="parent" resource="${slingRequest.requestPathInfo.suffixResource}" level="2" />
 <c:set var="query" value="SELECT * FROM [nt:unstructured] WHERE [sling:resourceType] = 'sling-cms/components/caconfig/policy' AND ISDESCENDANTNODE([${parent.path}]) ORDER BY [jcr:title]" />
 <c:forEach var="policy" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
     <option value="${policy.path}" ${policy.path == editProperties.policyPath ? 'selected' : ''}><sling:encode value="${policy.valueMap['jcr:title']}" mode="HTML" /></option>

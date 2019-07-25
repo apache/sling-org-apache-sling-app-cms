@@ -86,16 +86,18 @@ public class FormRequestImpl implements FormRequest {
         if (request.getSession().getAttribute(this.getSessionId()) != null) {
             formData.putAll(((Map<String, Object>) request.getSession().getAttribute(this.getSessionId())));
         }
-        if (this.loadProviders) {
+        if (this.loadProviders && getFormResource().getChild("providers") != null) {
             List<Resource> providers = ResourceTree.stream(getFormResource().getChild("providers"))
                     .map(ResourceTree::getResource).collect(Collectors.toList());
             for (Resource provider : providers) {
                 log.debug("Looking for handler for: {}", provider);
-                for (FormValueProvider fvp : formValueProvider) {
-                    if (fvp.handles(provider)) {
-                        log.debug("Invoking field value provider: {}", fvp.getClass());
-                        fvp.loadValues(provider, formData);
-                        break;
+                if (formValueProvider != null) {
+                    for (FormValueProvider fvp : formValueProvider) {
+                        if (fvp.handles(provider)) {
+                            log.debug("Invoking field value provider: {}", fvp.getClass());
+                            fvp.loadValues(provider, formData);
+                            break;
+                        }
                     }
                 }
             }

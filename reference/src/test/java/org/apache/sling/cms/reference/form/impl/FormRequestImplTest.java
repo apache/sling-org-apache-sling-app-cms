@@ -59,7 +59,7 @@ public class FormRequestImplTest {
         FieldSetter.setField(formRequest, formRequest.getClass().getDeclaredField("fieldHandlers"),
                 Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
 
-        formRequest.init();
+        formRequest.initFields();
     }
 
     @Test
