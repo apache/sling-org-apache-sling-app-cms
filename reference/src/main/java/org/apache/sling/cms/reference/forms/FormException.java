@@ -32,4 +32,14 @@ public class FormException extends Exception {
         super(message);
     }
 
+    /**
+     * Construct a new FormException with only a message
+     * 
+     * @param message the message to indicate the cause of the exception
+     * @param cause   the cause of this exception
+     */
+    public FormException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
