@@ -16,7 +16,14 @@
             "sling:resourceType": "sling-cms/components/editor/fields/text",
             "defaultValue": "Submit",
             "label": "Submit Text",
-            "name": "submitText"
+            "name": "submitText",
+            "required": true
+        },
+        "thankYouPage": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/path",
+            "label": "Thank You Page",
+            "name": "thankYouPage"
         },
         "successMessage": {
             "jcr:primaryType": "nt:unstructured",
