@@ -90,24 +90,25 @@ public class SendEmailAction implements JobConsumer, FormAction {
         log.trace("process");
 
         try {
+
+            log.debug("Configuring connection to {}:{} with username {}", config.hostName(), config.smtpPort(),
+                    config.username());
             Email email = new SimpleEmail();
             email.setHostName(config.hostName());
             email.setSmtpPort(config.smtpPort());
             email.setAuthenticator(new DefaultAuthenticator(config.username(), config.password()));
             email.setStartTLSEnabled(config.tlsEnabled());
-            log.debug("Configuring connection to {}:{} with username {}", config.hostName(), config.smtpPort(),
-                    config.username());
 
             String from = job.getProperty(FROM, String.class);
             String to = job.getProperty(TO, String.class);
             String subject = job.getProperty(SUBJECT, String.class);
             String message = job.getProperty(MESSAGE, String.class);
+            log.debug("Sending email from {} to {} with subject {}", from, to, subject);
 
             email.setFrom(from);
-            email.setSubject(job.getProperty(SUBJECT, String.class));
+            email.setSubject(subject);
             email.setMsg(message);
             email.addTo(to);
-            log.debug("Sending email from {} to {} with subject {}", from, to, subject);
 
             email.send();
         } catch (EmailException e) {
