@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 #		 Licensed to the Apache Software Foundation (ASF) under one or more contributor license
 #        agreements. See the NOTICE file distributed with this work for additional information
@@ -9,24 +10,42 @@
 #        either express or implied. See the License for the specific language governing permissions
 #        and limitations under the License.
 #
-# Apache Sling CMS Dockerfile
-
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-Vagrant.configure("2") do |config|
-  config.vm.box = "centos/7"
-  config.vm.synced_folder "src", "/vagrant_data"
-
-  config.vm.define "cms", primary: true do |cms|
-    cms.vm.network "forwarded_port", guest: 8080, host: 8090
-    cms.vm.network "private_network", ip: "10.0.0.2"
-    cms.vm.provision "shell", path: "src/install-slingcms.sh"
-  end
-
-  config.vm.define "web" do |web|
-    web.vm.network "forwarded_port", guest: 80, host: 8085
-    web.vm.network "private_network", ip: "10.0.0.3"
-    web.vm.provision "shell", path: "src/install-apache.sh"
-  end
-end
+#
+# chkconfig: 35 85 15
+# description: This service manages the Sling CMS java process.
+# processname: slingcms
+# pidfile: ${SLING_ROOT}/app.pid
+ 
+# Source function library.
+. /etc/rc.d/init.d/functions
+ 
+SCRIPT_NAME=`basename $0`
+SLING_ROOT=/opt/slingcms
+SLING_USER=sling
+ 
+########
+START=${SLING_ROOT}/start.sh
+STOP=${SLING_ROOT}/stop.sh
+ 
+case "$1" in
+start)
+echo -n "Starting Sling CMS services: "
+su - ${SLING_USER} ${START}
+touch /var/lock/subsys/${SCRIPT_NAME}
+;;
+stop)
+echo -n "Shutting down Sling CMS services: "
+su - ${SLING_USER} ${STOP}
+rm -f /var/lock/subsys/${SCRIPT_NAME}
+;;
+restart)
+su - ${SLING_USER} ${STOP}
+su - ${SLING_USER} ${START}
+;;
+reload)
+;;
+*)
+echo "Usage: ${SCRIPT_NAME} {start|stop|reload}"
+exit 1
+;;
+esac

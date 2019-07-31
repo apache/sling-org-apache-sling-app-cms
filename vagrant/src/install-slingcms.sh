@@ -21,36 +21,25 @@
 # The following variables may be used to override the defaults.
 #
 
-# port used for accessing the app
-if [ -z "$APP_PORT" ]; then
-	APP_PORT=8080
-fi
+yum update -y
+yum install -y java-11-openjdk
+echo "Dependencies installed..."
 
-# default JVM options
-if [ -z "$APP_JVM_OPTS" ]; then
-	APP_JVM_OPTS='-server -Xmx1024m -XX:MaxPermSize=256M -Djava.awt.headless=true'
-fi
+adduser sling
+echo "Created Sling user..."
 
-# debugging support
-if [ -n "${APP_DEBUG_PORT}" ]; then
-	APP_JVM_OPTS="${APP_JVM_OPTS} -agentlib:jdwp=transport=dt_socket,server=y,address=${APP_DEBUG_PORT},suspend=n"
-fi
+mkdir -p /opt/slingcms
+curl https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.12.0/org.apache.sling.cms.builder-0.12.0.jar --output /opt/slingcms/org.apache.sling.cms.jar
+cp /vagrant_data/start.sh /vagrant_data/stop.sh /opt/slingcms
+chmod +x /opt/slingcms/*.sh
+chown -R sling:sling /opt/slingcms
+echo "Sling CMS installed..."
 
-# ------------------------------------------------------------------------------
-# do not configure below this point
-# ------------------------------------------------------------------------------
+cp  /vagrant_data/init.sh /etc/rc.d/init.d/slingcms
+chmod u+rwx /etc/rc.d/init.d/slingcms
+systemctl enable slingcms.service
+systemctl start slingcms.service
+echo "Sling CMS service created / started..."
 
-if [ $APP_PORT ]; then
-	START_OPTS="${START_OPTS} -p ${APP_PORT}"
-fi
-START_OPTS="${START_OPTS}"
-
-JARFILE=`ls *cms*.jar | head -1`
-mkdir -p sling/logs
-(
-  (
-    java $APP_JVM_OPTS -jar $JARFILE $START_OPTS &
-    echo $! > app.pid
-  ) >> sling/logs/stdout.log 2>&1
-) &
-echo "Application started on port ${APP_PORT}!"
+yum clean all
+echo "Sling CMS installation complete!"

@@ -15,32 +15,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# This script stops the (running) application
+#
+# This script configures the start information for this server.
+#
+# The following variables may be used to override the defaults.
 #
 
-START_OPTS='stop -c .'
-JARFILE=`ls *cms*.jar | head -1`
+yum update -y
+yum install -y httpd
+echo "Dependencies installed..."
 
-java -jar $JARFILE $START_OPTS
-STOP_CODE=$?
-if [ "${STOP_CODE}" == "0" ]; then
-	echo "Application not running"
-else
-	echo "Stop command returned ${STOP_CODE}. Trying to kill the process..."
-	PID=$(cat app.pid 2>/dev/null)
-	rm -f app.pid
-	if [ "$PID" ]; then
-		if ps -p $PID > /dev/null 2>&1; then
-			kill $PID
-			STOP_CODE=$?
-			echo "process ${PID} was killed"
-		else
-       		echo "process ${PID} not running"
-	       	STOP_CODE=4
-	    fi
-	else
-		echo "app.pid not found"
-		STOP_CODE=4
-	fi
-fi
-exit ${STOP_CODE}
+setenforce 0
+cp /vagrant_data/selinux /etc/sysconfig
+echo "SELinux Disabled..."
+
+cp /vagrant_data/cms.conf /etc/httpd/conf.d
+cp /vagrant_data/site.conf /etc/httpd/conf.d
+mkdir -p /var/www/vhosts/sling-cms
+mkdir -p /var/www/vhosts/sling
+mkdir -p /var/cache/httpd/sling
+chown apache:apache -R /var/www/vhosts
+chown -R apache:apache /var/cache/httpd/sling
+service httpd start
+echo "Apache Web Server installed and started..."
+
+yum clean all
+echo "Apache installation complete!"
