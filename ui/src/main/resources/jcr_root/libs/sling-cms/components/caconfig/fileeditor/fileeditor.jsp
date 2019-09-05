@@ -22,7 +22,7 @@
 
 <c:set var="oldAvailableTypes" value="${availableTypes}" />
 <c:set var="availableTypes" value="SlingCMS-FileEditor" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/general/container" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/general/reloadcontainer" />
 <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 
 <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />

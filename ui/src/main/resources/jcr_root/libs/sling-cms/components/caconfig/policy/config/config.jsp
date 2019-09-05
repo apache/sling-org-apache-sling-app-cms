@@ -39,6 +39,6 @@
     </h4>
     <c:set var="oldAvailableTypes" value="${availableTypes}" />
     <c:set var="availableTypes" value="SlingCMS-ComponentConfig" scope="request" />
-    <sling:include path="componentConfigurations" resourceType="sling-cms/components/general/container" />
+    <sling:include path="componentConfigurations" resourceType="sling-cms/components/general/reloadcontainer" />
     <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 </div>

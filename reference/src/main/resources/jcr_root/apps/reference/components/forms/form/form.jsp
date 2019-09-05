@@ -39,13 +39,13 @@
     <c:set var="oldAvailableTypes" value="${availableTypes}" />
 
     <c:set var="availableTypes" value="${formConfig.providerConfigGroups}" scope="request" />
-    <sling:include path="providers" resourceType="sling-cms/components/general/container" />
+    <sling:include path="providers" resourceType="sling-cms/components/general/reloadcontainer" />
     
     <c:set var="availableTypes" value="${formConfig.fieldConfigGroups}" scope="request" />
-    <sling:include path="fields" resourceType="sling-cms/components/general/container" />
+    <sling:include path="fields" resourceType="sling-cms/components/general/reloadcontainer" />
 
     <c:set var="availableTypes" value="${formConfig.actionConfigGroups}" scope="request" />
-    <sling:include path="actions" resourceType="sling-cms/components/general/container" />
+    <sling:include path="actions" resourceType="sling-cms/components/general/reloadcontainer" />
     <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
     
     <button type="submit" class="${formConfig.submitClass}">${properties.submitText}</button>
