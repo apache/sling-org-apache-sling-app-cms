@@ -162,13 +162,13 @@ public class EditIncludeFilter implements Filter {
             writeEditorMarkup(resource, writer);
         } else if (component != null && !component.isEditable()) {
             includeEnd = true;
-            EditableResource er = resource.adaptTo(EditableResource.class);
-            if (er != null) {
-                component = er.getComponent();
-            }
-            writer.write("<div class=\"sling-cms-component\" data-sling-cms-title=\""
-                    + (component != null ? component.getTitle() : "") + "\" data-sling-cms-resource-path=\""
-                    + resource.getPath() + "\" data-sling-cms-resource-type=\"" + resource.getResourceType() + "\">");
+            String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
+                    : StringUtils.substringAfterLast(resource.getResourceType(), "/");
+            writer.write("<div class=\"sling-cms-component\" data-reload=\"" + component.isReloadPage()
+            + "\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\"" + title
+            + "\" data-sling-cms-resource-path=\"" + resource.getPath() + "\" data-sling-cms-resource-type=\""
+            + resource.getResourceType() + "\" data-sling-cms-edit=\"" + editPath
+            + "\">");
         }
         return includeEnd;
     }

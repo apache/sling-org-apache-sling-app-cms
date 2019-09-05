@@ -37,7 +37,7 @@
     </h4>
     <c:set var="oldAvailableTypes" value="${availableTypes}" />
     <c:set var="availableTypes" value="SlingCMS-PolicyMappingConfig" scope="request" />
-    <sling:include path="policies" resourceType="sling-cms/components/general/container" />
+    <sling:include path="policies" resourceType="sling-cms/components/general/reloadcontainer" />
     <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 </div>
 <hr/>
@@ -54,6 +54,6 @@
     </h4>
     <c:set var="oldAvailableTypes" value="${availableTypes}" />
     <c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
-    <sling:include path="fields" resourceType="sling-cms/components/general/container" />
+    <sling:include path="fields" resourceType="sling-cms/components/general/reloadcontainer" />
     <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
 </div>

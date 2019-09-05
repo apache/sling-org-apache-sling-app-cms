@@ -18,4 +18,4 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
  <c:set var="availableTypes" value="SlingCMS-PolicyConfig" scope="request" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/general/container" />
+<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/general/reloadcontainer" />
