@@ -42,6 +42,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.jcr.base.util.AccessControlUtil;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
@@ -51,7 +52,8 @@ import org.slf4j.LoggerFactory;
  * Checks to ensure that the user is logged in for requests which otherwise
  * would be allowed when accessing through a CMS-specific domain name.
  */
-@Component(service = { Filter.class }, property = { "sling.filter.scope=request" })
+@Component(service = { Filter.class }, property = {
+        "sling.filter.scope=request" }, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = CMSSecurityFilterConfig.class)
 public class CMSSecurityFilter implements Filter {
 

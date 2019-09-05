@@ -35,13 +35,14 @@ import org.apache.sling.event.jobs.JobManager;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = { FormAction.class, JobConsumer.class }, property = {
-        JobConsumer.PROPERTY_TOPICS + "=" + SendEmailAction.TOPIC })
+        JobConsumer.PROPERTY_TOPICS + "=" + SendEmailAction.TOPIC }, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = SendEmailActonConfig.class)
 public class SendEmailAction implements JobConsumer, FormAction {
 
