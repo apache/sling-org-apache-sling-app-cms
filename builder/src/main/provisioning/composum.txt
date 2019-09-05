@@ -15,16 +15,27 @@
 #  KIND, either express or implied.  See the License for the
 #  specific language governing permissions and limitations
 #  under the License.
-[feature name=composum-console]
+[feature name=composum-nodes]
 [variables]
-    composum.version=1.9.4
+    composum.nodes.version=1.11.3
 
 [artifacts startLevel=20]
 
-  com.composum.sling.core/composum-sling-core-commons/${composum.version}
-  com.composum.sling.core/composum-sling-core-config/${composum.version}
-  com.composum.sling.core/composum-sling-core-console/${composum.version}
-  com.composum.sling.core/composum-sling-core-jslibs/${composum.version}
-  com.composum.sling.core/composum-sling-user-management/${composum.version}
-  com.composum.sling.core/composum-sling-package-manager/${composum.version}
-  org.apache.jackrabbit.vault/org.apache.jackrabbit.vault/3.2.4
+  com.composum.sling.core/composum-sling-core-commons/${composum.nodes.version}
+  com.composum.sling.core/composum-sling-core-console/${composum.nodes.version}
+  com.composum.sling.core/composum-sling-core-jslibs/${composum.nodes.version}
+  com.composum.sling.core/composum-sling-user-management/${composum.nodes.version}
+  com.composum.sling.core/composum-sling-package-manager/${composum.nodes.version}
+  com.composum.sling.core.osgi/composum-sling-osgi-package-installer/${composum.nodes.version}
+  org.apache.jackrabbit.vault/org.apache.jackrabbit.vault/3.2.8
+
+[configurations]
+
+  # the whitelisting of administrative login (to replace by service users in Nodes 2.0)
+  org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment-composum
+    whitelist.name="composum"
+    whitelist.bundles=[
+      "com.composum.core.commons",\
+      "com.composum.core.pckgmgr",\
+      "com.composum.core.pckginstall"
+    ]

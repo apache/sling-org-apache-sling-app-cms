@@ -1,6 +1,0 @@
-{
-    "jcr:primaryType": "sling:OsgiConfig",
-    "user.mapping": [
-        "org.apache.sling.cms.core:sling-cms-versionmgr=sling-cms-versionmgr"
-    ]
-}

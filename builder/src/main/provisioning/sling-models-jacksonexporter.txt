@@ -18,7 +18,7 @@
 #
 [feature name=models-jacksonexporter]
 [variables]
-    jackson.version=2.9.7
+    jackson.version=2.9.9
 
 [artifacts]
   org.apache.sling/org.apache.sling.models.jacksonexporter/1.0.8

@@ -1,6 +1,0 @@
-{
-    "jcr:primaryType": "sling:OsgiConfig",
-    "user.mapping": [
-        "org.apache.sling.models.impl:sling-cms-error=sling-cms-error"
-    ]
-}
