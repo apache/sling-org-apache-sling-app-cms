@@ -48,20 +48,23 @@ public class UserProfileFormValueProvider implements FormValueProvider {
             ResourceResolver resolver = providerResource.getResourceResolver();
             String userId = resolver.getUserID();
             JackrabbitSession session = (JackrabbitSession) resolver.adaptTo(Session.class);
-            UserManager userManager = session.getUserManager();
-            User user = (User) userManager.getAuthorizable(userId);
+            if (session != null) {
+                UserManager userManager = session.getUserManager();
+                User user = (User) userManager.getAuthorizable(userId);
 
-            String subpath = providerResource.getValueMap().get("subpath", "profile");
-            log.debug("Loading profile data from: {}/{}", user.getPath(), subpath);
+                String subpath = providerResource.getValueMap().get("subpath", "profile");
+                log.debug("Loading profile data from: {}/{}", user.getPath(), subpath);
 
-            Iterator<String> keys = user.getPropertyNames(subpath);
-            while (keys.hasNext()) {
+                Iterator<String> keys = user.getPropertyNames(subpath);
+                while (keys.hasNext()) {
 
-                String key = keys.next();
-                log.debug("Loading key {}", key);
-                loadKey(formData, subpath, key, user);
+                    String key = keys.next();
+                    log.debug("Loading key {}", key);
+                    loadKey(formData, subpath, key, user);
+                }
+            } else {
+                log.warn("Failed to load Jackrabbit session for request");
             }
-
         } catch (RepositoryException e) {
             log.warn("Exception loading values from user profile", e);
         }

@@ -99,7 +99,11 @@ public class FormHandler extends SlingAllMethodsServlet {
 
     protected FormRequest getFormRequest(SlingHttpServletRequest request) throws FormException {
         FormRequest fr = request.adaptTo(FormRequest.class);
-        ((FormRequestImpl) fr).initFields();
-        return fr;
+        if (fr != null) {
+            ((FormRequestImpl) fr).initFields();
+            return fr;
+        } else {
+            throw new FormException("Unable to adapt to a form request");
+        }
     }
 }

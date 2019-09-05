@@ -51,45 +51,50 @@ public class UpdateProfileAction implements FormAction {
         String userId = resolver.getUserID();
         JackrabbitSession session = (JackrabbitSession) resolver.adaptTo(Session.class);
 
-        try {
-            final UserManager userManager = session.getUserManager();
-            if (userManager.getAuthorizable(userId) != null) {
+        if (session != null) {
+            try {
+                final UserManager userManager = session.getUserManager();
+                if (userManager.getAuthorizable(userId) != null) {
 
-                User user = (User) userManager.getAuthorizable(userId);
-                log.debug("Updating profile for {}", userId);
+                    User user = (User) userManager.getAuthorizable(userId);
+                    log.debug("Updating profile for {}", userId);
 
-                String subpath = actionResource.getValueMap().get("subpath", "profile");
-                ValueFactory valueFactory = session.getValueFactory();
+                    String subpath = actionResource.getValueMap().get("subpath", "profile");
+                    ValueFactory valueFactory = session.getValueFactory();
 
-                for (Entry<String, Object> e : request.getFormData().entrySet()) {
-                    Value value = null;
-                    if (e.getValue() instanceof String[]) {
-                        user.setProperty(subpath + "/" + e.getKey(), Arrays.stream((String[]) e.getValue())
-                                .map(valueFactory::createValue).collect(Collectors.toList()).toArray(new Value[0]));
-                    } else {
-                        if (e.getValue() instanceof Calendar) {
-                            value = valueFactory.createValue((Calendar) e.getValue());
-                        } else if (e.getValue() instanceof Double) {
-                            value = valueFactory.createValue((Double) e.getValue());
-                        } else if (e.getValue() instanceof Integer) {
-                            value = valueFactory.createValue((Double) e.getValue());
+                    for (Entry<String, Object> e : request.getFormData().entrySet()) {
+                        Value value = null;
+                        if (e.getValue() instanceof String[]) {
+                            user.setProperty(subpath + "/" + e.getKey(), Arrays.stream((String[]) e.getValue())
+                                    .map(valueFactory::createValue).collect(Collectors.toList()).toArray(new Value[0]));
                         } else {
-                            value = valueFactory.createValue((String) e.getValue());
+                            if (e.getValue() instanceof Calendar) {
+                                value = valueFactory.createValue((Calendar) e.getValue());
+                            } else if (e.getValue() instanceof Double) {
+                                value = valueFactory.createValue((Double) e.getValue());
+                            } else if (e.getValue() instanceof Integer) {
+                                value = valueFactory.createValue((Double) e.getValue());
+                            } else {
+                                value = valueFactory.createValue((String) e.getValue());
+                            }
+                            user.setProperty(subpath + "/" + e.getKey(), value);
                         }
-                        user.setProperty(subpath + "/" + e.getKey(), value);
                     }
-                }
-                log.debug("Saving changes!");
-                resolver.commit();
+                    log.debug("Saving changes!");
+                    resolver.commit();
 
-                return FormActionResult.success("Profile Updated");
-            } else {
-                log.warn("No profile found for {}", userId);
-                return FormActionResult.failure("No profile found for " + userId);
+                    return FormActionResult.success("Profile Updated");
+                } else {
+                    log.warn("No profile found for {}", userId);
+                    return FormActionResult.failure("No profile found for " + userId);
+                }
+            } catch (RepositoryException | PersistenceException e) {
+                log.warn("Failed to update profile for {}", userId, e);
+                return FormActionResult.failure("Failed to update profile for " + userId);
             }
-        } catch (RepositoryException | PersistenceException e) {
-            log.warn("Failed to update profile for {}", userId, e);
-            return FormActionResult.failure("Failed to update profile for " + userId);
+        } else {
+            log.warn("Failed to get session for {}", userId);
+            return FormActionResult.failure("Failed to get session for " + userId);
         }
     }
 
