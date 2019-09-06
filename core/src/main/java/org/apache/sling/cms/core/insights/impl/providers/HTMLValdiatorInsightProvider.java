@@ -139,7 +139,7 @@ public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
 
     private void updateInsight(Insight insight, PageInsightRequest pageRequest, I18NDictionary dictionary, int errors,
             int warnings) throws UnsupportedEncodingException {
-        double score = 0.0;
+        double score;
         if (errors > 5) {
             insight.setPrimaryMessage(Message
                     .danger(dictionary.get(I18N_KEY_HTMLVALIDATOR_DANGER, new Object[] { errors, warnings })));

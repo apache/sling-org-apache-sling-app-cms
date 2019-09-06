@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = Resource.class, adapters = PageTemplateManager.class)
 public class PageTemplateManagerImpl implements PageTemplateManager {
 
-    private static final Logger log = LoggerFactory.getLogger(PageTemplateManager.class);
+    private static final Logger log = LoggerFactory.getLogger(PageTemplateManagerImpl.class);
 
     private Resource resource;
 

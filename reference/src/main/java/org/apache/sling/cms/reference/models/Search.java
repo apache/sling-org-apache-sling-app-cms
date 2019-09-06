@@ -111,7 +111,7 @@ public class Search {
 
         Set<String> distinct = new HashSet<>();
 
-        String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replaceAll("'", "''");
+        String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replace("'", "''");
 
         resolver = searchService.getResourceResolver(request);
 

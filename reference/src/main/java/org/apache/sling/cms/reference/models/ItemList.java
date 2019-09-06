@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = SlingHttpServletRequest.class)
 public class ItemList {
 
-    private static final Logger log = LoggerFactory.getLogger(List.class);
+    private static final Logger log = LoggerFactory.getLogger(ItemList.class);
 
     private int count;
 

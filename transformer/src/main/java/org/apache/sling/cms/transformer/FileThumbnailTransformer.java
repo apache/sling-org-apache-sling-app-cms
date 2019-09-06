@@ -21,7 +21,6 @@ import java.io.OutputStream;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.cms.File;
-import org.apache.sling.cms.transformer.OutputFileFormat;
 
 /**
  * Transforms a Sling File into thumbnails using the registered

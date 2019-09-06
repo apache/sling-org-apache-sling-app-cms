@@ -71,7 +71,7 @@ public class EditIncludeFilter implements Filter {
     }
 
     private Iterator<Resource> getSiblings(Resource resource) {
-        return Optional.ofNullable(resource.getParent()).map(p -> p.listChildren()).orElse(Collections.emptyIterator());
+        return Optional.ofNullable(resource.getParent()).map(Resource::listChildren).orElse(Collections.emptyIterator());
     }
 
     @Override

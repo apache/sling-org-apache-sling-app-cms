@@ -84,9 +84,7 @@ public class TransformerWebConsole extends AbstractWebConsolePlugin {
         pw.println("========================");
 
         List<TransformationHandler> handlers = ((FileThumbnailTransformerImpl) fileThumbnailTransformer).getHandlers();
-        handlers.forEach(h -> {
-            pw.println(h.getClass().getName());
-        });
+        handlers.forEach(h -> pw.println(h.getClass().getName()));
         pw.println("</pre>");
         pw.println("</div>");
     }
