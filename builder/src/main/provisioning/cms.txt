@@ -156,3 +156,51 @@
     logins=["admin:admin"]
     hc.name="Sling CMS - Default Logins Check"
     hc.tags=["configuration"]
+    
+  org.apache.felix.hc.generalchecks.JmxAttributeCheck-jobqueue
+    mbean.name="org.apache.sling:type\=queues,name\=AllQueues"
+    hc.name="Sling - Job Queue"
+    hc.tags=["sling","system-resources"]
+    attribute.value.constraint="< 1000"
+    attribute.name="NumberOfQueuedJobs"
+    statusForFailedContraint="WARN"
+    
+  org.apache.felix.hc.generalchecks.JmxAttributeCheck-requestdurationwarn
+    mbean.name="org.apache.sling:type\=engine,service\=RequestProcessor"
+    hc.name="Sling - StdDev Request Duration (WARN)"
+    hc.tags=["sling","system-resources"]
+    attribute.value.constraint="matches (1)?\\d?\\d\\..*"
+    attribute.name="StandardDeviationDurationMsec"
+    statusForFailedContraint="WARN"
+    
+  org.apache.felix.hc.generalchecks.JmxAttributeCheck-requestdurationcritical
+    mbean.name="org.apache.sling:type\=engine,service\=RequestProcessor"
+    hc.name="Sling - StdDev Request Duration (CRITICAL)"
+    hc.tags=["sling","system-resources"]
+    attribute.value.constraint="matches (1|2|3|4)?\\d?\\d\\..*"
+    attribute.name="StandardDeviationDurationMsec"
+    statusForFailedContraint="CRITICAL"
+    
+  org.apache.felix.hc.generalchecks.JmxAttributeCheck-index
+    mbean.name="org.apache.jackrabbit.oak:name\=async,type\=IndexStats"
+    hc.name="Jackrabbit Oak - Index"
+    hc.tags=["oak","system-resources"]
+    attribute.value.constraint="false"
+    attribute.name="Failing"
+    statusForFailedContraint="CRITICAL"
+    
+  org.apache.felix.hc.generalchecks.JmxAttributeCheck-luceneindex
+    mbean.name="org.apache.jackrabbit.oak:name\=Lucene Index statistics,type\=LuceneIndex"
+    hc.name="Jackrabbit Oak - Lucene Index"
+    hc.tags=["oak","system-resources"]
+    attribute.value.constraint="false"
+    attribute.name="Failing"
+    statusForFailedContraint="CRITICAL"
+    
+  org.apache.felix.hc.generalchecks.JmxAttributeCheck-slowqueries
+    mbean.name="org.apache.jackrabbit.oak:name\=Oak Query Statistics,type\=QueryStat"
+    hc.name="Jackrabbit Oak - Slow Queries"
+    hc.tags=["oak","system-resources"]
+    attribute.value.constraint="0"
+    attribute.name="SlowQueriesQueueSize"
+    statusForFailedContraint="WARN"

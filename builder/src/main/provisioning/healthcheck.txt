@@ -31,11 +31,6 @@
     org.apache.sling/org.apache.sling.hc.support/1.0.6
 
 [configurations]
-    
-  ## servlet
-    
-  org.apache.felix.hc.core.impl.servlet.HealthCheckExecutorServlet-default
-    servletPath="/system/health"
 
   ## systemalive checks
 
