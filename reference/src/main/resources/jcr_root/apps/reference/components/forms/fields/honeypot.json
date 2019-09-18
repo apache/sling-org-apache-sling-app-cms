@@ -1,0 +1,6 @@
+{
+    "jcr:primaryType" : "sling:Component",
+    "jcr:title": "Honeypot",
+    "componentType": "Form Field",
+    "reloadPage": true
+}

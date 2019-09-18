@@ -1,0 +1,23 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "containerClass": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Container Class",
+            "name": "containerClass",
+            "required": true
+        },
+        "name": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Honeypot Name",
+            "name": "name",
+            "required": true
+        }
+    }
+}
