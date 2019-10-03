@@ -20,6 +20,10 @@
 
 START_OPTS='stop -c .'
 JARFILE=`ls *cms*.jar | head -1`
+if [ -z "$JARFILE" ]; then
+  echo "No CMS JAR file found."
+  exit 1
+fi
 
 java -jar $JARFILE $START_OPTS
 STOP_CODE=$?

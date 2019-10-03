@@ -21,6 +21,10 @@
 # The following variables may be used to override the defaults.
 #
 
+script="$0"
+basename="$(dirname $script)"
+cd $basename
+
 # port used for accessing the app
 if [ -z "$APP_PORT" ]; then
 	APP_PORT=8080
@@ -46,6 +50,10 @@ fi
 START_OPTS="${START_OPTS}"
 
 JARFILE=`ls *cms*.jar | head -1`
+if [ -z "$JARFILE" ]; then
+  echo "No CMS JAR file found."
+  exit 1
+fi
 mkdir -p sling/logs
 (
   (
