@@ -56,7 +56,7 @@
                 <fmt:message key="slingcms.findcontent" />
             </p>
             <div class="panel-block">
-                <form method="get" class="Get-Form" data-target=".search-result-container" data-load="div" action="${resource.path}.search.html">
+                <form method="get" class="get-form" data-target=".search-result-container" data-load="div" action="${resource.path}.search.html">
                     <p class="control has-icons-left">
                         <label class="is-vhidden" for="search-term">Search</label>
                         <input class="input is-small" type="text" name="q" id="search-term" />

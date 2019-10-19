@@ -19,21 +19,21 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="page" value="${sling:adaptTo(resource,'org.apache.sling.cms.PageManager').page}" />
 <c:choose>
-	<c:when test="${not empty properties.action}">
-		<c:set var="action" value="${properties.action}" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="action" value="${page.path}.html" />
-	</c:otherwise>
+    <c:when test="${not empty properties.action}">
+        <c:set var="action" value="${properties.action}" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="action" value="${page.path}.html" />
+    </c:otherwise>
 </c:choose>
-<form method="get" action="${action}" class="Get-Form" data-target="${properties.target}" data-load="${properties.load}">
-	<fieldset class="form-wrapper field">
-		<input type="hidden" name="_charset_" value="utf-8" />
-		<sling:include path="fields" resourceType="sling-cms/components/general/container" />
-		<div class="Field-Group">
-			<button type="submit" class="button is-primary" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
-				<sling:encode value="${properties.button}" mode="HTML" />
-			</button>
-		</div>
-	</fieldset>
+<form method="get" action="${action}" class="get-form" data-target="${properties.target}" data-load="${properties.load}">
+    <fieldset class="form-wrapper field">
+        <input type="hidden" name="_charset_" value="utf-8" />
+        <sling:include path="fields" resourceType="sling-cms/components/general/container" />
+        <div class="Field-Group">
+            <button type="submit" class="button is-primary" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
+                <sling:encode value="${properties.button}" mode="HTML" />
+            </button>
+        </div>
+    </fieldset>
 </form>
