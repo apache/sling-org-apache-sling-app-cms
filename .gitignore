@@ -16,3 +16,5 @@ bin
 .metadata/
 .vagrant/
 *.iml
+node_modules/
+node/

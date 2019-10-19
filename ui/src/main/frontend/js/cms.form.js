@@ -104,14 +104,19 @@ w * Licensed to the Apache Software Foundation (ASF) under one
         }
     });
 
-    rava.bind('.Get-Form', {
+    rava.bind('.get-form', {
         events : {
             submit : function (event) {
                 event.preventDefault();
                 event.stopPropagation();
+                var modal = Sling.CMS.ui.loaderModal('Loading...');
                 var form = this,
                     wrapper = form.querySelector('.form-wrapper');
                 fetch(form.action + '?' + new URLSearchParams(new FormData(form)).toString()).then(function (response) {
+                    if (!response.ok) {
+                        modal.remove();
+                        throw new Error(response.statusText);
+                    }
                     return response.text();
                 }).then(function (text) {
                     var tmp = document.createElement('div');
@@ -121,6 +126,7 @@ w * Licensed to the Apache Software Foundation (ASF) under one
                     if (wrapper) {
                         wrapper.disabled = false;
                     }
+                    modal.remove();
                 });
                 if (wrapper) {
                     wrapper.disabled = true;

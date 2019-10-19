@@ -44,9 +44,16 @@ const apache2License = [
 ''
 ].join('\n');
 
+let srcDir = function(sub) {
+    return './src/main/frontend/' + sub;
+};
+let distDir = function(sub) {
+    return './target/frontend/dist/' + sub;
+}
+
 gulp.task('styles', function() {
      return streamqueue ({objectMode: true},
-            gulp.src('./src/scss/*.scss')
+            gulp.src(srcDir('scss/*.scss'))
                 .pipe(header(apache2License))
                 .pipe(sass().on('error', sass.logError))
                 .pipe(cleanCSS()),
@@ -56,19 +63,19 @@ gulp.task('styles', function() {
             ])
          )
          .pipe(concat('styles.min.css'))
-         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'))
+         .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms/css')))
          .pipe(rename('bundle.css'))
-         .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
+         .pipe(gulp.dest(distDir('jcr_root/content/starter/css')));
 });
 
 gulp.task('cms-assets', function() {
-    return gulp.src(['./src/img/*'])
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/img'));
+    return gulp.src([srcDir('img/*')])
+        .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms/img')));
 });
 
 gulp.task('cms-fonts', function() {
     return gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/fonts'));
+        .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms/fonts')));
 });
 
 gulp.task('cms-js', function() {
@@ -88,35 +95,35 @@ gulp.task('cms-js', function() {
             ])
             .pipe(terser()),
             gulp.src([
-                './src/js/cms.js',
-                './src/js/cms.*.js'
+                srcDir('js/cms.js'),
+                srcDir('js/cms.*.js')
             ])
             .pipe(terser())
             .pipe(concat('cms.js'))
             .pipe(header(apache2License))
          )
         .pipe(concat('scripts-all.min.js'))
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/js'));
+        .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms/js')));
 });
 
 gulp.task('editor-fonts', function() {
     return gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/fonts'));
+        .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms-editor/fonts')));
 });
 
 gulp.task('editor-js', function() {
     return gulp.src([
-            './src/js/editor.js'
+            srcDir('js/editor.js')
         ])
         .pipe(terser())
         .pipe(header(apache2License))
         .pipe(concat('editor.min.js'))
-        .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/js'));
+        .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms-editor/js')));
 });
 
 gulp.task('editor-styles', function() {
      return streamqueue ({objectMode: true},
-            gulp.src(['./src/scss/editor.scss'])
+            gulp.src([srcDir('scss/editor.scss')])
                 .pipe(sass().on('error', sass.logError))
                 .pipe(cleanCSS())
                 .pipe(header(apache2License)),
@@ -125,12 +132,12 @@ gulp.task('editor-styles', function() {
             ])
          )
          .pipe(concat('editor.min.css'))
-         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms-editor/css'));
+         .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms-editor/css')));
 });
 
 gulp.task('cms-styles', function() {
      return streamqueue ({objectMode: true},
-            gulp.src('./src/scss/cms.scss')
+            gulp.src(srcDir('scss/cms.scss'))
                 .pipe(sass().on('error', sass.logError))
                 .pipe(cleanCSS())
                 .pipe(header(apache2License)),
@@ -140,31 +147,31 @@ gulp.task('cms-styles', function() {
             ])
          )
          .pipe(concat('styles.min.css'))
-         .pipe(gulp.dest('./dist/jcr_root/static/clientlibs/sling-cms/css'));
+         .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms/css')));
 });
 
 gulp.task('starter-assets', function() {
-    return gulp.src('./src/img/*')
-        .pipe(gulp.dest('./dist/jcr_root/content/starter/img'));
+    return gulp.src(srcDir('img/*'))
+        .pipe(gulp.dest(distDir('jcr_root/content/starter/img')));
 });
 
 gulp.task('starter-fonts', function() {
-    return gulp.src(['./src/fonts/*'])
-        .pipe(gulp.dest('./dist/jcr_root/content/starter/fonts'));
+    return gulp.src([srcDir('fonts/*')])
+        .pipe(gulp.dest(distDir('jcr_root/content/starter/fonts')));
 });
 
 gulp.task('starter-logo', function() {
-    return gulp.src('./src/img/sling-logo.svg')
-        .pipe(gulp.dest('./dist/jcr_root/content/starter'));
+    return gulp.src(srcDir('img/sling-logo.svg'))
+        .pipe(gulp.dest(distDir('jcr_root/content/starter')));
 });
 
 gulp.task('starter-styles', function() {
-    return gulp.src('./src/scss/starter.scss')
+    return gulp.src(srcDir('scss/starter.scss'))
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCSS())
         .pipe(header(apache2License))
         .pipe(rename('bundle.css'))
-        .pipe(gulp.dest('./dist/jcr_root/content/starter/css'));
+        .pipe(gulp.dest(distDir('jcr_root/content/starter/css')));
 });
 
 gulp.task('cms', gulp.series('cms-styles', 'cms-js', 'cms-assets', 'cms-fonts'));

@@ -3,5 +3,6 @@
     "jcr:title": "Reload Container",
     "sling:resourceSuperType": "sling-cms/components/general/container",
     "editable": false,
-    "reloadPage": true
+    "reloadPage": true,
+    "container": true
 }

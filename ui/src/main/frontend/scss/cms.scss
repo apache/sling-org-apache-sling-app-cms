@@ -19,7 +19,7 @@
 
 @import 'fonts';
 @import 'overrides';
-@import "../../node_modules/bulma/bulma.sass";
+@import "../../../../node_modules/bulma/bulma.sass";
 body.cms {
     min-height: 100vh;
     @media screen and (min-width: $tablet), print {

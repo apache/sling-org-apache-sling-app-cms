@@ -16,6 +16,8 @@
  */
 package org.apache.sling.cms.core.internal.models;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -37,6 +39,11 @@ public class ComponentImpl implements Component {
     @Optional
     @Named("componentType")
     private String[] componentType;
+
+    @Inject
+    @Optional
+    @Default(booleanValues = false)
+    private boolean container;
 
     @Inject
     @Optional
@@ -162,6 +169,11 @@ public class ComponentImpl implements Component {
     }
 
     @Override
+    public boolean isContainer() {
+        return container;
+    }
+
+    @Override
     public boolean isEditable() {
         return editable;
     }
@@ -192,14 +204,11 @@ public class ComponentImpl implements Component {
         return isType;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
-        return "Component [title=" + title + ", resource=" + resource + ", componentType=" + componentType + "]";
+        return "ComponentImpl [componentType=" + Arrays.toString(componentType) + ", editable=" + editable
+                + ", container=" + container + ", reloadPage=" + reloadPage + ", resource=" + resource + ", title="
+                + title + "]";
     }
 
 }

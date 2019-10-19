@@ -46,7 +46,11 @@ import org.apache.sling.cms.core.internal.models.EditableResourceImpl;
         "sling.filter.scope=component" })
 public class EditIncludeFilter implements Filter {
 
+    private static final String BUTTON_CLASSES = "level-item button is-small has-text-black-ter action-button";
+
     public static final String ENABLED_ATTR_NAME = "cmsEditEnabled";
+
+    public static final String WRITE_DROP_TARGET_ATTR_NAME = "writeDropTarget";
 
     @Override
     public void destroy() {
@@ -58,25 +62,45 @@ public class EditIncludeFilter implements Filter {
             throws IOException, ServletException {
         boolean enabled = "true".equals(request.getAttribute(ENABLED_ATTR_NAME));
         PrintWriter writer = null;
-        boolean includeEnd = false;
-
         if (enabled) {
+            boolean includeEnd = false;
+            SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+            Resource resource = slingRequest.getResource();
+            Boolean container = isContainer(resource);
+            Boolean writeDropTarget = shouldWriteDropTarget(slingRequest);
             writer = response.getWriter();
-            includeEnd = writeHeader(request, writer, includeEnd);
-        }
-        chain.doFilter(request, response);
-        if (enabled && writer != null && includeEnd) {
-            writer.write("</div>");
+            if (writeDropTarget) {
+                this.writeDropTarget(resource, writer, "before " + resource.getName());
+            }
+            includeEnd = writeHeader(slingRequest, writer, includeEnd);
+            request.setAttribute(WRITE_DROP_TARGET_ATTR_NAME, container);
+            chain.doFilter(request, response);
+            request.setAttribute(WRITE_DROP_TARGET_ATTR_NAME, writeDropTarget);
+            if (includeEnd) {
+                writer.write("</div>");
+            }
+        } else {
+            chain.doFilter(request, response);
         }
     }
 
     private Iterator<Resource> getSiblings(Resource resource) {
-        return Optional.ofNullable(resource.getParent()).map(Resource::listChildren).orElse(Collections.emptyIterator());
+        return Optional.ofNullable(resource.getParent()).map(Resource::listChildren)
+                .orElse(Collections.emptyIterator());
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         // Nothing required
+    }
+
+    private boolean isContainer(Resource resource) {
+        EditableResource er = new EditableResourceImpl(resource);
+        if (er != null && er.getComponent() != null) {
+            return er.getComponent().isContainer();
+        } else {
+            return false;
+        }
     }
 
     private boolean isFirst(Resource resource) {
@@ -107,7 +131,17 @@ public class EditIncludeFilter implements Filter {
         return last;
     }
 
-    private void writeEditorMarkup(Resource resource, PrintWriter writer) {
+    private boolean shouldWriteDropTarget(SlingHttpServletRequest request) {
+        return request.getAttribute(WRITE_DROP_TARGET_ATTR_NAME) != null
+                && request.getAttribute(WRITE_DROP_TARGET_ATTR_NAME) == Boolean.TRUE;
+    }
+
+    private void writeDropTarget(Resource resource, PrintWriter writer, String order) {
+        writer.write("<div class=\"sling-cms-droptarget\" data-path=\"" + resource.getParent().getPath()
+                + "\" data-order=\"" + order + "\"></div>");
+    }
+
+    private void writeEditorMarkup(Resource resource, PrintWriter writer, boolean draggable) {
 
         boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
         boolean last = isFirst(resource);
@@ -118,38 +152,42 @@ public class EditIncludeFilter implements Filter {
         String editPath = component.getEditPath();
         String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                 : StringUtils.substringAfterLast(resource.getResourceType(), "/");
+
         writer.write("<div class=\"sling-cms-component\" data-reload=\"" + component.isReloadPage()
                 + "\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\"" + title
                 + "\" data-sling-cms-resource-path=\"" + resource.getPath() + "\" data-sling-cms-resource-type=\""
                 + resource.getResourceType() + "\" data-sling-cms-edit=\"" + editPath
-                + "\"><div class=\"sling-cms-editor\">");
+                + "\" data-sling-cms-resource-name=\"" + component.getResource().getName()
+                + "\"><div class=\"sling-cms-editor\" draggable=\"" + draggable + "\">");
         writer.write(
-                "<div class=\"level has-background-grey\"><div class=\"level-left\"><div class=\"field has-addons\">");
+                "<div class=\"level has-background-light\"><div class=\"level-left\"><div class=\"field has-addons\">");
 
         writer.write("<div class=\"control\"><a href=\"/cms/editor/edit.html" + resource.getPath() + "?editor="
-                + editPath + "\" class=\"level-item button action-button\"  title=\"Edit " + title
+                + editPath + "\" class=\"" + BUTTON_CLASSES + "\"  title=\"Edit " + title
                 + "\"><span class=\"jam jam-pencil-f\"><span class=\"is-vhidden\">Edit " + title
                 + "</span></span></a></div>");
         if (!first || !last) {
             writer.write("<div class=\"control\"><a href=\"/cms/editor/reorder.html" + resource.getPath()
-                    + "\" class=\"level-item button action-button\" title=\"Reorder " + title
+                    + "\" class=\"" + BUTTON_CLASSES + "\" title=\"Reorder " + title
                     + "\"><span class=\"jam jam-arrows-v\"><span class=\"is-vhidden\">Reorder " + title
                     + "</span></span></a></div>");
         }
         if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
-            writer.write("<div class=\"control\"><a href=\"/cms/editor/delete.html" + resource.getPath()
-                    + "\" class=\"level-item button action-button\" title=\"Delete Component\"><span class=\"jam jam-trash\"><span class=\"is-vhidden\">Delete "
+            writer.write("<div class=\"control\"><a href=\"/cms/editor/delete.html" + resource.getPath() + "\" class=\""
+                    + BUTTON_CLASSES
+                    + "\" title=\"Delete Component\"><span class=\"jam jam-trash\"><span class=\"is-vhidden\">Delete "
                     + title + "</span></span></a></div>");
         }
 
         writer.write("</div></div>");
-        writer.write("<div class=\"level-right\"><div class=\"level-item has-text-light\">" + title + "</div></div>");
+        writer.write(
+                "<div class=\"level-right\"><div class=\"level-item has-text-black-ter\">" + title + "</div></div>");
         writer.write("</div></div>");
     }
 
-    private boolean writeHeader(ServletRequest request, PrintWriter writer, boolean includeEnd) {
+    private boolean writeHeader(SlingHttpServletRequest request, PrintWriter writer, boolean includeEnd) {
         String editPath = null;
-        Resource resource = ((SlingHttpServletRequest) request).getResource();
+        Resource resource = request.getResource();
 
         EditableResource editableResource = new EditableResourceImpl(resource);
         Component component = editableResource.getComponent();
@@ -159,17 +197,17 @@ public class EditIncludeFilter implements Filter {
 
         if (StringUtils.isNotEmpty(editPath)) {
             includeEnd = true;
-            writeEditorMarkup(resource, writer);
+            writeEditorMarkup(resource, writer, shouldWriteDropTarget(request));
         } else if (component != null && !component.isEditable()) {
             includeEnd = true;
             String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                     : StringUtils.substringAfterLast(resource.getResourceType(), "/");
             writer.write("<div class=\"sling-cms-component\" data-reload=\"" + component.isReloadPage()
-            + "\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\"" + title
-            + "\" data-sling-cms-resource-path=\"" + resource.getPath() + "\" data-sling-cms-resource-type=\""
-            + resource.getResourceType() + "\" data-sling-cms-edit=\"" + editPath
-            + "\">");
+                    + "\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\"" + title
+                    + "\" data-sling-cms-resource-path=\"" + resource.getPath() + "\" data-sling-cms-resource-type=\""
+                    + resource.getResourceType() + "\" data-sling-cms-edit=\"" + editPath + "\">");
         }
+
         return includeEnd;
     }
 

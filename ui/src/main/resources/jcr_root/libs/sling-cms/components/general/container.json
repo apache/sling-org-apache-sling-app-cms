@@ -1,5 +1,6 @@
 {
 	"jcr:primaryType": "sling:Component",
     "jcr:title": "Container",
-    "editable": false
+    "editable": false,
+    "container": true
 }

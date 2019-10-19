@@ -16,20 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-@import 'fonts';
 .sling-cms-editor {
+    @import 'fonts';
     @import 'overrides';
-    @import "../../node_modules/bulma/sass/utilities/_all.sass";
-    @import "../../node_modules/bulma/sass/base/_all.sass";
-    @import "../../node_modules/bulma/sass/elements/box.sass";
-    @import "../../node_modules/bulma/sass/elements/button.sass";
-    @import "../../node_modules/bulma/sass/form/_all.sass";
-    @import "../../node_modules/bulma/sass/elements/icon.sass";
-    @import "../../node_modules/bulma/sass/components/level.sass";
-    @import "../../node_modules/bulma/sass/components/modal.sass";
+    @import "../../../../node_modules/bulma/sass/utilities/_all.sass";
+    @import "../../../../node_modules/bulma/sass/base/_all.sass";
+    @import "../../../../node_modules/bulma/sass/elements/box.sass";
+    @import "../../../../node_modules/bulma/sass/elements/button.sass";
+    @import "../../../../node_modules/bulma/sass/form/_all.sass";
+    @import "../../../../node_modules/bulma/sass/elements/icon.sass";
+    @import "../../../../node_modules/bulma/sass/components/level.sass";
+    @import "../../../../node_modules/bulma/sass/components/modal.sass";
     font-family: "Open Sans",sans-serif;
     * {
         box-sizing: border-box;
+    }
+    [draggable] {
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      /* Required to make elements draggable in old WebKit */
+      -khtml-user-drag: element;
+      -webkit-user-drag: element;
     }
     .is-draggable {
         position: relative;
@@ -77,4 +86,20 @@
     .sling-cms-logo {
         height: 25px;
     }
+}
+.sling-cms-component {
+    border: 1px solid rgba(0,0,0,0.0);
+}
+.sling-cms-component__is-active {
+    border-color: hsl(0, 0%, 86%);
+}
+.sling-cms-droptarget__is-active {
+    height: 2em;
+    border: 1px solid hsl(0, 0%, 71%);
+    background-color: hsl(0, 0%, 96%);
+}
+.sling-cms-droptarget__is-over {
+    height: 2em;
+    border: 1px solid hsl(0, 0%, 96%);
+    background-color: hsl(0, 0%, 71%);
 }

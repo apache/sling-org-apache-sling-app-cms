@@ -312,6 +312,8 @@
                         <exclude>**/target/*</exclude>
                         <exclude>**/target/**/*</exclude>
                         <exclude>vagrant/**/*</exclude>
+                        <exclude>node/**/*</exclude>
+                        <exclude>node_modules/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

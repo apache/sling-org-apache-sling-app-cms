@@ -63,6 +63,13 @@ public interface Component {
     String getTitle();
 
     /**
+     * True if the component is a container, false otherwise.
+     * 
+     * @return the container flag
+     */
+    boolean isContainer();
+
+    /**
      * True if the component is editable, false otherwise.
      * 
      * @return the editable flag
