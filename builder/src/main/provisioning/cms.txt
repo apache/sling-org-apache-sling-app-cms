@@ -204,3 +204,14 @@
     attribute.value.constraint="0"
     attribute.name="SlowQueriesQueueSize"
     statusForFailedContraint="WARN"
+    
+  org.apache.sling.servlets.get.DefaultGetServlet
+    index.files=["index","index.html"]
+    aliases=[""]
+    enable.html=B"false"
+    json.maximumresults=I"200"
+    enable.txt=B"false"
+    enable.xml=B"false"
+    index=B"false"
+    enable.json=B"true"
+    ecmaSuport=B"true"
