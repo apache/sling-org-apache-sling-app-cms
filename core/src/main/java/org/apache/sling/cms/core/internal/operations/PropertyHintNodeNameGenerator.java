@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.request.RequestParameterMap;
+import org.apache.sling.cms.NameFilter;
 import org.apache.sling.cms.core.internal.operations.PropertyHintNodeNameGenerator.Config;
 import org.apache.sling.servlets.post.NodeNameGenerator;
 import org.osgi.service.component.annotations.Activate;
@@ -33,9 +34,9 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
  * Custom NodeNameGenerator for generating names based on the value of another
  * named property
  */
-@Component(service = NodeNameGenerator.class, immediate = true)
+@Component(service = { NodeNameGenerator.class, NameFilter.class }, immediate = true)
 @Designate(ocd = Config.class)
-public class PropertyHintNodeNameGenerator implements NodeNameGenerator {
+public class PropertyHintNodeNameGenerator implements NodeNameGenerator, NameFilter {
 
     @ObjectClassDefinition(name = "%cms.name.generator.name", description = "%cms.name.generator.description", localization = "OSGI-INF/l10n/bundle")
 
@@ -67,6 +68,7 @@ public class PropertyHintNodeNameGenerator implements NodeNameGenerator {
         this.replacementChar = config.replacement_char().toCharArray()[0];
     }
 
+    @Override
     public String filter(String nodeName) {
         final StringBuilder sb = new StringBuilder();
         char lastAdded = 0;

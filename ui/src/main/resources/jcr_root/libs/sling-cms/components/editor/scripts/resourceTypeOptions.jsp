@@ -21,6 +21,7 @@
 <c:forEach var="type" items="${fn:split(param.availableTypes,',')}">
     <optgroup label="${sling:encode(type,'HTML_ATTR')}">
         <c:set var="query" value="SELECT * FROM [sling:Component] WHERE [componentType]='${type}' ORDER BY [jcr:title]" />
+        ${query}
         <c:forEach var="component" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
             <c:choose>
                 <c:when test="${fn:startsWith(component.path,'/apps/')}">

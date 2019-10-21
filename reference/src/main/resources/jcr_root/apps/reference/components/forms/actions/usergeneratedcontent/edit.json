@@ -1,0 +1,133 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "approveAction": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Action",
+            "name": "approveAction",
+            "required": true,
+            "options": {
+                "MOVE": {
+                    "label": "Move",
+                    "value": "MOVE"
+                },
+                "PUBLISH": {
+                    "label": "Publish",
+                    "value": "PUBLISH"
+                }
+            }
+        },
+        "additionalProperties": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/repeating",
+            "label": "Additional Properties",
+            "name": "additionalProperties",
+            "required": false
+        },
+        "bucket": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Bucket",
+            "name": "bucket",
+            "required": true
+        },
+        "contentType": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Content Type",
+            "name": "contentType",
+            "required": true,
+            "options": {
+                "COMMENT": {
+                    "label": "Comment",
+                    "value": "COMMENT"
+                },
+                "FORUM_POST": {
+                    "label": "Forum Post",
+                    "value": "FORUM_POST"
+                },
+                "REPLY": {
+                    "label": "Reply",
+                    "value": "REPLY"
+                },
+                "BLOG_POST": {
+                    "label": "Blog Post",
+                    "value": "BLOG_POST"
+                },
+                "CONTACT_FORM": {
+                    "label": "Contact Form",
+                    "value": "CONTACT_FORM"
+                },
+                "SIGNUP": {
+                    "label": "Signup",
+                    "value": "SIGNUP"
+                },
+                "MESSAGE": {
+                    "label": "Message",
+                    "value": "MESSAGE"
+                },
+                "OTHER": {
+                    "label": "Other",
+                    "value": "OTHER"
+                }
+            }
+        },
+        "name": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Name",
+            "name": "name",
+            "required": true
+        },
+        "pathDepth": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Path Depth",
+            "name": "pathDepth",
+            "required": true,
+            "type": "number"
+        },
+        "preview": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/textarea",
+            "label": "Preview",
+            "name": "preview",
+            "required": true
+        },
+        "targetPath": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Target Path",
+            "name": "targetPath"
+        },
+        "wrapPage": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Wrap in Page?",
+            "name": "wrapPage",
+            "required": true,
+            "options": {
+                "MOVE": {
+                    "label": "Yes",
+                    "value": "true"
+                },
+                "PUBLISH": {
+                    "label": "No",
+                    "value": "false"
+                }
+            }
+        },
+        "wrapPageTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "wrapPage@TypeHint",
+            "value": "Boolean"
+        }
+    }
+}
+
