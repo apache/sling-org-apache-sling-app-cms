@@ -106,7 +106,7 @@
     end
     create service user sling-cms-ugc
     set ACL for sling-cms-ugc
-        allow   jcr:write    on /etc/usergenerated
+        allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /etc/usergenerated
     end
     create service user sling-cms-versionmgr
     set ACL for sling-cms-versionmgr
