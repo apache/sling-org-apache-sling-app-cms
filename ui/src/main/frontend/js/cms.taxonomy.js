@@ -19,19 +19,19 @@
 /* eslint-env browser, es6 */
 (function (rava) {
     'use strict';
-    rava.bind('.taxonomy', {
+    rava.bind('.labelfield', {
         events: {
-            '.taxonomy__add, .taxonomy__add *': {
+            '.labelfield__add, .labelfield__add *': {
                 click: function (event) {
                     event.preventDefault();
                     event.stopPropagation();
                     var context = this,
                         span = document.createElement('span'),
-                        val = context.querySelector('.taxonomy__field input').value,
+                        val = context.querySelector('.labelfield__field input').value,
                         found = false,
                         title = context.querySelector('option[value="' + val + '"]').innerText;
-                    span.innerHTML = context.querySelector('.taxonomy__template').innerHTML;
-                    context.querySelectorAll('.taxonomy__item input').forEach(function (el) {
+                    span.innerHTML = context.querySelector('.labelfield__template').innerHTML;
+                    context.querySelectorAll('.labelfield__item input').forEach(function (el) {
                         if (el.value === val) {
                             found = true;
                         }
@@ -42,21 +42,21 @@
                     span.querySelector('input').value = val;
 
                     if (title !== '') {
-                        span.querySelector('.taxonomy__title').innerText = title;
-                        this.closest('.taxonomy').querySelector('.taxonomy__container').appendChild(span);
-                        context.querySelector('.taxonomy__field input').value = '';
+                        span.querySelector('.labelfield__title').innerText = title;
+                        this.closest('.labelfield').querySelector('.labelfield__container').appendChild(span);
+                        context.querySelector('.labelfield__field input').value = '';
                     }
                 }
             }
         }
     });
 
-    rava.bind('.taxonomy__item, .taxonomy__item *', {
+    rava.bind('.labelfield__item, .labelfield__item *', {
         events: {
             click: function () {
                 event.preventDefault();
                 event.stopPropagation();
-                this.closest('.taxonomy__item').remove();
+                this.closest('.labelfield__item').remove();
             }
         }
     });
