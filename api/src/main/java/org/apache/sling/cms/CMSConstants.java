@@ -17,7 +17,7 @@
 package org.apache.sling.cms;
 
 import org.apache.jackrabbit.JcrConstants;
-import org.apache.sling.jcr.resource.JcrResourceConstants;
+import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 
 /**
  * Constants used throughout the Sling CMS

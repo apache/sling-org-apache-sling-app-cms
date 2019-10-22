@@ -32,7 +32,7 @@ import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.usergenerated.UGCBucketConfig;
 import org.apache.sling.cms.usergenerated.UserGeneratedContentService;
-import org.apache.sling.jcr.resource.JcrResourceConstants;
+import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;

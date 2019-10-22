@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -34,12 +35,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.jackrabbit.api.JackrabbitSession;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.jcr.base.util.AccessControlUtil;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -107,26 +108,7 @@ public class CMSSecurityFilter implements Filter {
 
                 // check to see if the user is a member of the specified group
                 if (StringUtils.isNotBlank(config.group())) {
-                    Authorizable auth;
-                    try {
-                        Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
-                        UserManager userManager = AccessControlUtil.getUserManager(session);
-                        log.trace("Retrieved user manager {} with session {}", userManager, session);
-                        auth = userManager.getAuthorizable(slingRequest.getUserPrincipal());
-                        if (auth != null) {
-                            log.trace("Checking to see if user {} is in required group {}", auth.getID(),
-                                    config.group());
-                            Iterator<Group> groups = ((User) auth).memberOf();
-                            while (groups.hasNext()) {
-                                if (groups.next().getID().equals(config.group())) {
-                                    allowed = true;
-                                    break;
-                                }
-                            }
-                        }
-                    } catch (Exception e) {
-                        log.error("Exception determing group membership", e);
-                    }
+                    allowed = checkGroupMembership(slingRequest);
 
                     // just check to make sure the user is logged in
                 } else {
@@ -149,6 +131,43 @@ public class CMSSecurityFilter implements Filter {
         }
 
         chain.doFilter(request, response);
+    }
+
+    private boolean checkGroupMembership(SlingHttpServletRequest slingRequest) {
+        boolean allowed = false;
+        try {
+            Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
+            UserManager userManager = null;
+            if (session instanceof JackrabbitSession) {
+                userManager = ((JackrabbitSession) session).getUserManager();
+            }
+            if (userManager == null) {
+                log.warn("Unable to retrieve user manager");
+                return false;
+            }
+            log.trace("Retrieved user manager {} with session {}", userManager, session);
+            Authorizable auth;
+
+            auth = userManager.getAuthorizable(slingRequest.getUserPrincipal());
+            if (auth == null) {
+                log.warn("Unable to retrieve user from principal {}", slingRequest.getUserPrincipal());
+                return false;
+            }
+
+            log.trace("Checking to see if user {} is in required group {}", auth.getID(), config.group());
+            Iterator<Group> groups = ((User) auth).memberOf();
+            while (groups.hasNext()) {
+                if (groups.next().getID().equals(config.group())) {
+                    allowed = true;
+                    break;
+                }
+            }
+
+        } catch (RepositoryException e) {
+            log.error("Unexpected exception checking group membership", e);
+            return false;
+        }
+        return allowed;
     }
 
     @Override
