@@ -19,11 +19,29 @@
             "name": "submitText",
             "required": true
         },
-        "thankYouPage": {
+        "successPage": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/editor/fields/path",
-            "label": "Thank You Page",
-            "name": "thankYouPage"
+            "label": "Success Page",
+            "name": "successPage"
+        },
+        "successAction": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Success Action",
+            "name": "successAction",
+            "options": {
+                "redirect": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "label": "Redirect",
+                    "value": "redirect"
+                },
+                "forward": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "label": "Forward",
+                    "value": "forward"
+                }
+            }
         },
         "successMessage": {
             "jcr:primaryType": "nt:unstructured",

@@ -30,6 +30,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.api.wrappers.SlingHttpServletRequestWrapper;
 import org.apache.sling.cms.Page;
 import org.apache.sling.cms.PageManager;
 import org.apache.sling.cms.ResourceTree;
@@ -89,9 +90,21 @@ public class FormHandler extends SlingAllMethodsServlet {
             return;
         }
 
-        String thankYouPage = request.getResource().getValueMap().get("thankYouPage", String.class);
+        String thankYouPage = request.getResource().getValueMap().get("successPage", String.class);
         if (StringUtils.isNotBlank(thankYouPage)) {
-            response.sendRedirect(request.getResourceResolver().map(request, thankYouPage) + ".html?message=success");
+            if ("forward".equals(request.getResource().getValueMap().get("successAction", String.class))) {
+                SlingHttpServletRequestWrapper requestWrapper = new SlingHttpServletRequestWrapper(request) {
+                    @Override
+                    public String getMethod() {
+                        return "GET";
+                    }
+                };
+
+                request.getRequestDispatcher(thankYouPage).forward(requestWrapper, response);
+            } else {
+                response.sendRedirect(
+                        request.getResourceResolver().map(request, thankYouPage) + ".html?message=success");
+            }
         } else {
             response.sendRedirect(request.getResourceResolver().map(request, pagePath) + ".html?message=success");
         }
