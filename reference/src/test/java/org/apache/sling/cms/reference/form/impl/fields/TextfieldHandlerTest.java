@@ -35,6 +35,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
+
 public class TextfieldHandlerTest {
 
     @Rule
@@ -55,7 +57,8 @@ public class TextfieldHandlerTest {
     public void testDatefield() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("datefield", new String[] { "2019-02-12" });
+        context.request()
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("datefield", "2019-02-12").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -63,7 +66,8 @@ public class TextfieldHandlerTest {
         handler.handleField(context.request(), fieldResource, formData);
         assertTrue(formData.get("datefield") instanceof Calendar);
 
-        context.request().getParameterMap().put("datefield", new String[] { "df-02-12" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("datefield", "df-02-12").build());
+
         try {
             handler.handleField(context.request(), fieldResource, formData);
             fail();
@@ -71,9 +75,9 @@ public class TextfieldHandlerTest {
 
         }
 
-        Resource invalidDate = resolver
-                .getResource("/form/jcr:content/container/invaliddate");
-        context.request().getParameterMap().put("invalidate", new String[] { "2019-02-12" });
+        Resource invalidDate = resolver.getResource("/form/jcr:content/container/invaliddate");
+        context.request()
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("invalidate", "2019-02-12").build());
         try {
             handler.handleField(context.request(), invalidDate, formData);
             fail();
@@ -87,14 +91,15 @@ public class TextfieldHandlerTest {
     public void testDouble() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("double", new String[] { "123.23" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("double", "123.23").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver.getResource("/form/jcr:content/container/form/fields/fieldset/fields/double");
         handler.handleField(context.request(), fieldResource, formData);
         assertEquals(123.23, formData.get("double"));
 
-        context.request().getParameterMap().put("double", new String[] { "b" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("double", "b").build());
+
         try {
             handler.handleField(context.request(), fieldResource, formData);
             fail();
@@ -120,7 +125,7 @@ public class TextfieldHandlerTest {
     public void testInteger() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("integer", new String[] { "123" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("integer", "123").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -128,7 +133,7 @@ public class TextfieldHandlerTest {
         handler.handleField(context.request(), fieldResource, formData);
         assertEquals(123, formData.get("integer"));
 
-        context.request().getParameterMap().put("integer", new String[] { "b" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("integer", "b").build());
         try {
             handler.handleField(context.request(), fieldResource, formData);
             fail();
@@ -155,8 +160,8 @@ public class TextfieldHandlerTest {
     public void testNotRequiredWithValue() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("textfield", new String[] { "Hello World" });
-        context.request().getParameterMap().put("textfield2", new String[] { "Hello World" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("textfield", "Hello World")
+                .put("textfield2", "Hello World").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -182,7 +187,7 @@ public class TextfieldHandlerTest {
 
         }
 
-        context.request().getParameterMap().put("patternfield", new String[] { "123" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("patternfield", "123").build());
 
         handler.handleField(context.request(), fieldResource, formData);
         assertEquals("123", formData.get("patternfield"));
@@ -209,7 +214,7 @@ public class TextfieldHandlerTest {
     public void testRequiresWithValue() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("money", new String[] { "123" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("money", "123").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver

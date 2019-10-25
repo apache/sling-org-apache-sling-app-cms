@@ -35,6 +35,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.internal.util.reflection.FieldSetter;
 
+import com.google.common.collect.ImmutableMap;
+
 public class FormRequestImplTest {
     @Rule
     public final SlingContext context = new SlingContext();
@@ -45,14 +47,11 @@ public class FormRequestImplTest {
         SlingContextHelper.initContext(context);
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
-        context.request().getParameterMap().put("requiredtextarea", new String[] { "Hello World!" });
-        context.request().getParameterMap().put("singleselect", new String[] { "Hello World!" });
-        context.request().getParameterMap().put("anotherkey", new String[] { "Hello World!" });
-        context.request().getParameterMap().put("money", new String[] { "123" });
-        context.request().getParameterMap().put("patternfield", new String[] { "123" });
-        context.request().getParameterMap().put("double", new String[] { "2.7" });
-        context.request().getParameterMap().put("integer", new String[] { "2" });
-        context.request().getParameterMap().put("datefield", new String[] { "2019-02-02" });
+        context.request()
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World!")
+                        .put("singleselect", "Hello World!").put("anotherkey", "Hello World!").put("money", "123")
+                        .put("patternfield", "123").put("double", "2.7").put("integer", "2")
+                        .put("datefield", "2019-02-02").build());
 
         formRequest = new FormRequestImpl(context.request());
 

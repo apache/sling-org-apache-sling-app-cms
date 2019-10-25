@@ -34,6 +34,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
+
 public class SelectionHandlerTest {
 
     @Rule
@@ -66,7 +68,8 @@ public class SelectionHandlerTest {
     public void testSingleSelect() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("singleselect", new String[] { "Hello World" });
+        context.request()
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("singleselect", "Hello World").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -98,7 +101,7 @@ public class SelectionHandlerTest {
     public void testMultipleSelect() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("multiselect", new String[] {});
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("multiselect", "").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -106,7 +109,8 @@ public class SelectionHandlerTest {
         handler.handleField(context.request(), fieldResource, formData);
         assertFalse(formData.containsKey("multiselect"));
 
-        context.request().getParameterMap().put("multiselect", new String[] { "Thing 1", "Thing 2" });
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
+                .put("multiselect", new String[] { "Thing 1", "Thing 2" }).build());
         handler.handleField(context.request(), fieldResource, formData);
         assertTrue(formData.containsKey("multiselect"));
     }

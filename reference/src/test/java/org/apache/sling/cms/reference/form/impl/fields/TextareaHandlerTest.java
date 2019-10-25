@@ -34,6 +34,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
+
 public class TextareaHandlerTest {
 
     @Rule
@@ -66,7 +68,7 @@ public class TextareaHandlerTest {
     public void testNotRequiredNoValue() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("textarea", new String[] { });
+        context.request().getParameterMap().put("textarea", new String[] {});
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -79,7 +81,8 @@ public class TextareaHandlerTest {
     public void testNotRequiredWithValue() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("textarea", new String[] { "Hello World" });
+        context.request()
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("textarea", "Hello World").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -87,8 +90,6 @@ public class TextareaHandlerTest {
         handler.handleField(context.request(), fieldResource, formData);
         assertEquals("Hello World", formData.get("textarea"));
     }
-    
-
 
     @Test
     public void testRequiresNoValue() {
@@ -111,7 +112,8 @@ public class TextareaHandlerTest {
     public void testRequiresWithValue() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("requiredtextarea", new String[] { "Hello World" });
+        context.request()
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
