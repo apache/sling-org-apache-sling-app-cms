@@ -46,6 +46,7 @@ public class CreateUserOperation implements PostOperation {
 
     private static final Logger log = LoggerFactory.getLogger(CreateUserOperation.class);
 
+    @SuppressWarnings("squid:S2068") // Just the parameter key, not the value
     public static final String PN_PASSWORD = ":password";
 
     @Override
