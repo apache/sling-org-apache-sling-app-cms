@@ -66,7 +66,7 @@ public class ChangePasswordOperationTest {
 
         assertNull(response.getError());
 
-        Mockito.verify(user).changePassword("test1", "test2");
+        Mockito.verify(user).changePassword("test1");
 
     }
     
