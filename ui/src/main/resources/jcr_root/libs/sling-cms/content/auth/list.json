@@ -1,0 +1,229 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Users / Groups",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "contentactions": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentactions",
+                "actions": {
+                    "user": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "User",
+                        "prefix": "/cms/auth/user/create.html"
+                    },
+                    "group": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "Group",
+                        "prefix": "/cms/auth/group/create.html"
+                    },
+                    "repFolder": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "Folder",
+                        "prefix": "/cms/auth/newfolder.html"
+                    }
+                }
+            },
+            "contentbreadcrumb": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentbreadcrumb",
+                "depth": 0
+            },
+            "contenttable": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contenttable",
+                "columns": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "name": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Name"
+                    },
+                    "actions": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Actions"
+                    }
+                },
+                "types": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "rep:AuthorizableFolder": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "columns": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "name": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/name",
+                                "link": true,
+                                "prefix": "/cms/auth/list.html"
+                            },
+                            "actions": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                                "movecopy": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Move / Copy Folder",
+                                    "icon": "move-alt",
+                                    "prefix": "/cms/shared/movecopy.html"
+                                },
+                                "delete": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Delete Folder",
+                                    "icon": "trash",
+                                    "prefix": "/cms/shared/delete.html"
+                                }
+                            }
+                        }
+                    },
+                    "rep:Group": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "columns": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "name": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/text",
+                                "property": "rep:principalName"
+                            },
+                            "actions": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                                "membership": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Group Membership",
+                                    "icon": "user-circle",
+                                    "prefix": "/cms/auth/membership.html"
+                                },
+                                "members": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Group Members",
+                                    "icon": "users",
+                                    "prefix": "/cms/auth/group/members.html"
+                                },
+                                "movecopy": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Move / Copy Group",
+                                    "icon": "move-alt",
+                                    "prefix": "/cms/shared/movecopy.html"
+                                },
+                                "delete": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Delete Group",
+                                    "icon": "trash",
+                                    "prefix": "/cms/shared/delete.html"
+                                }
+                            }
+                        }
+                    },
+                    "rep:SystemUser": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "columns": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "name": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/text",
+                                "property": "rep:principalName"
+                            },
+                            "actions": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                                "edit": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Edit User",
+                                    "icon": "pencil-f",
+                                    "prefix": "/cms/auth/user/edit.html"
+                                },
+                                "membership": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Group Membership",
+                                    "icon": "user-circle",
+                                    "prefix": "/cms/auth/membership.html"
+                                },
+                                "movecopy": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Move / Copy User",
+                                    "icon": "move-alt",
+                                    "prefix": "/cms/shared/movecopy.html"
+                                },
+                                "delete": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Delete User",
+                                    "icon": "trash",
+                                    "prefix": "/cms/shared/delete.html"
+                                }
+                            }
+                        }
+                    },
+                    "rep:User": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "columns": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "name": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/text",
+                                "property": "rep:principalName"
+                            },
+                            "actions": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                                "profile": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "User Profile",
+                                    "icon": "id-card",
+                                    "prefix": "/cms/auth/user/profile.html"
+                                },
+                                "password": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Change Password",
+                                    "icon": "key",
+                                    "prefix": "/cms/auth/user/password.html"
+                                },
+                                "status": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Status",
+                                    "icon": "stop-sign",
+                                    "prefix": "/cms/auth/user/status.html"
+                                },
+                                "membership": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Group Membership",
+                                    "icon": "user-circle",
+                                    "prefix": "/cms/auth/membership.html"
+                                },
+                                "movecopy": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Move / Copy User",
+                                    "icon": "move-alt",
+                                    "prefix": "/cms/shared/movecopy.html"
+                                },
+                                "delete": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "modal": true,
+                                    "title": "Delete User",
+                                    "icon": "trash",
+                                    "prefix": "/cms/shared/delete.html"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

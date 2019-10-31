@@ -141,7 +141,10 @@
                     },
                     "usersgroups": {
                         "jcr:primaryType": "nt:unstructured",
-                        "link": "/bin/users.html",
+                        "enabledGroups": [
+                            "administrators"
+                        ],
+                        "link": "/cms/auth/list.html/home",
                         "text": "Users &amp; Groups"
                     }
                 }

@@ -37,7 +37,34 @@
     </div>
     <div class="navbar-menu" id="top-navbar-menu">
         <div class="navbar-end">
-            <a class="navbar-item " href="/system/sling/logout" title="Logout of Apache Sling CMS"><span>${resourceResolver.userID} </span><i class="jam jam-log-out"></i></a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" var="auth" />
+                <sling:getResource path="${auth.authorizable.path}/profile" var="profile" />
+                <a class="navbar-link">
+                    <sling:encode value="${profile.valueMap.name}" default="${resourceResolver.userID}" mode="HTML" />
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item Fetch-Modal" data-title="User Profile" data-path=".Main-Content form" href="/cms/auth/user/profile.html${auth.authorizable.path}">
+                        <i class="jam jam-id-card">
+                            <span class="is-vhidden">Profile</span>
+                        </i>&nbsp;
+                        Profile
+                    </a>
+                    <a class="navbar-item" href="https://github.com/apache/sling-org-apache-sling-app-cms" target="_blank">
+                        <i class="jam jam-help">
+                            <span class="is-vhidden">Help</span>
+                        </i>&nbsp;
+                        Help
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" href="/system/sling/logout">
+                        <i class="jam jam-log-out">
+                            <span class="is-vhidden">Logout</span>
+                        </i>&nbsp;
+                        Logout
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </nav>

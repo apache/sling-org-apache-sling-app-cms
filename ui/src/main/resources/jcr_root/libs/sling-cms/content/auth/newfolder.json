@@ -1,0 +1,36 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/modal",
+        "jcr:title": "Create Authorizable Folder",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "slingform": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/slingform",
+                "actionSuffix": "/*",
+                "button": "Create Folder",
+                "successPrepend": "/cms/auth/list.html",
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/general/container",
+                    "name": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/text",
+                        "label": "Name",
+                        "name": ":name",
+                        "required": true
+                    },
+                    "primaryType": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": "jcr:primaryType",
+                        "value": "rep:AuthorizableFolder"
+                    }
+                }
+            }
+        }
+    }
+}

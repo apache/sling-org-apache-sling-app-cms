@@ -69,7 +69,7 @@ public class TouchLastModifiedPostOperation implements SlingPostProcessor {
         Set<String> parentPaths = new HashSet<>();
         List<Resource> resources = paths.stream().map(p -> request.getResourceResolver().getResource(p))
                 .map(CMSUtils::findPublishableParent).filter(p -> {
-                    if (parentPaths.contains(p.getPath())) {
+                    if (p == null || parentPaths.contains(p.getPath())) {
                         return false;
                     } else {
                         parentPaths.add(p.getPath());

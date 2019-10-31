@@ -1,0 +1,43 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/modal",
+        "jcr:title": "Create User",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "slingform": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/slingform",
+                "actionSuffix": "/*",
+                "button": "Create User",
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/general/container",
+                    "name": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/text",
+                        "label": "Name",
+                        "name": ":name",
+                        "required": true
+                    },
+                    "password": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/text",
+                        "label": "Password",
+                        "name": ":password",
+                        "required": true,
+                        "type": "password"
+                    },
+                    "operation": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": ":operation",
+                        "value": "createuser"
+                    }
+                }
+            }
+        }
+    }
+}

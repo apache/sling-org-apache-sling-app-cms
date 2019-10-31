@@ -1,0 +1,6 @@
+{
+    "jcr:primaryType": "sling:Component",
+    "sling:resourceSuperType" : "sling-cms/components/editor/fields/labelfield",
+    "componentType": "SlingCMS-FieldConfig",
+    "jcr:title": "Sling CMS - Membership"
+}

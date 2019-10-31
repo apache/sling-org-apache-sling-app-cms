@@ -32,7 +32,7 @@
             </c:if>
         </c:forEach>
     </c:forEach>
-    <sling:adaptTo var="currentUser" adaptable="${slingRequest.resourceResolver}" adaptTo="org.apache.sling.cms.CurrentUser" />
+    <sling:adaptTo var="currentUser" adaptable="${slingRequest.resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" />
     <ul id="${fn:replace(properties.title,' ','-')}-nav" class="menu-list ${hidden}">
         <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
             <c:set var="selected" value="" />
@@ -44,11 +44,11 @@
                     <c:set var="selected" value="is-selected" />
                 </c:if>
             </c:forEach>
-            <c:set var="enabled" value="${true}" />
-            <c:if test="${not empty item.valueMap.enabledGroups && currentUser.id != 'admin'}">
+            <c:set var="enabled" value="${currentUser.administrator || empty item.valueMap.enabledGroups}" />
+            <c:if test="${not empty item.valueMap.enabledGroups && !currentUser.administrator}">
                 <c:set var="enabled" value="${false}" />
                 <c:forEach var="group" items="${item.valueMap.enabledGroups}">
-                    <c:forEach var="userGroup" items="${currentUser.groups}">
+                    <c:forEach var="userGroup" items="${currentUser.groupNames}">
                         <c:if test="${group == userGroup}">
                             <c:set var="enabled" value="${true}" />
                         </c:if>

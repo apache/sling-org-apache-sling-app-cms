@@ -1,0 +1,31 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/modal",
+        "jcr:title": "User Status",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "slingform": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/slingform",
+                "button": "Update Status",
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/general/container",
+                    "status": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/auth/status"
+                    },
+                    "operation": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": ":operation",
+                        "value": "updatestatus"
+                    }
+                }
+            }
+        }
+    }
+}

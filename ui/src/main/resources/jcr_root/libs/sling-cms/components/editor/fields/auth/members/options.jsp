@@ -16,12 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<option value="">Select Locale</option>
-<c:forEach var="locale" items="${sling:adaptTo(slingRequest,'org.apache.sling.cms.core.models.LocaleList').locales}">
-    <c:if test="${not empty locale.language}">
-        <option value="${locale}" ${locale == editProperties[properties.name] ? 'selected' : ''}>
-            ${locale.displayLanguage} ${locale.displayCountry} (${locale})
-        </option>
-    </c:if>
-</c:forEach>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<datalist id="labelfield-${fn:replace(resource.name,':','-')}">
+    <c:set var="query" value="SELECT * FROM [rep:Authorizable] WHERE ISDESCENDANTNODE([/home]) ORDER BY [rep:principalName]" />
+    <c:forEach var="auth" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
+        <option value="${sling:encode(auth.path,'HTML_ATTR')}">${sling:encode(auth.valueMap['rep:principalName'],'HTML')}</option>
+    </c:forEach>
+</datalist>

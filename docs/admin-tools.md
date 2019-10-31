@@ -60,4 +60,4 @@ This console is accessible from *Tools > System Console* or at [http://localhost
 
 ![users and Groups](img/users-groups.png)
 
-This tool is accessible from *Tools > Users & Groups* or at [http://localhost:8080/bin/users.html](http://localhost:8080/bin/users.html). It allows administrators to create and manage users and groups within Sling CMS. Permissions are managed in the Node Browser
+This tool is accessible from *Tools > Users & Groups* or at [http://localhost:8080/cms/auth/list.html/home](http://localhost:8080/cms/auth/list.html/home). It allows administrators to create and manage users and groups within Sling CMS. Permissions are managed in the Node Browser

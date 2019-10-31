@@ -23,7 +23,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
-import org.apache.sling.cms.core.helpers.SlingCMSContextHelper;
+import org.apache.sling.cms.core.helpers.SlingCMSTestHelper;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -36,7 +36,7 @@ public class DownloadFileServletTest {
 
     @Before
     public void init() {
-        SlingCMSContextHelper.initContext(context);
+        SlingCMSTestHelper.initContext(context);
 
     }
 

@@ -16,12 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<option value="">Select Locale</option>
-<c:forEach var="locale" items="${sling:adaptTo(slingRequest,'org.apache.sling.cms.core.models.LocaleList').locales}">
-    <c:if test="${not empty locale.language}">
-        <option value="${locale}" ${locale == editProperties[properties.name] ? 'selected' : ''}>
-            ${locale.displayLanguage} ${locale.displayCountry} (${locale})
-        </option>
-    </c:if>
-</c:forEach>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="user" value="${sling:adaptTo(slingRequest.requestPathInfo.suffixResource,'org.apache.sling.cms.AuthorizableWrapper').authorizable }" />
+<c:choose>
+    <c:when test="${user.disabled}">
+        <dl>
+            <dt>Status</dt>
+            <dd>Disabled</dd>
+            <dt>Reason</dt>
+            <dd><sling:encode value="${user.disabledReason}" mode="HTML" /></dd>
+        </dl>
+        <input type="hidden" name=":reason" value="" />
+    </c:when>
+    <c:otherwise>
+        <dl>
+            <dt>Status</dt>
+            <dd>Enabled</dd>
+            <dt><label for=":reason">Disable Reason</label></dt>
+            <dd><input type="text" class="input" name=":reason" value="" /></dd>
+        </dl>
+    </c:otherwise>
+</c:choose>

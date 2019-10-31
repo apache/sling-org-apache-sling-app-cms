@@ -1,0 +1,41 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/modal",
+        "jcr:title": "User Profile",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "slingform": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/editor/slingform",
+                "button": "Update Profile",
+                "fields": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/general/container",
+                    "name": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/text",
+                        "label": "Name",
+                        "name": "profile/name"
+                    },
+                    "email": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/text",
+                        "label": "Email",
+                        "type": "email",
+                        "name": "profile/email"
+                    },
+                    "locale": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                        "label": "Locale",
+                        "name": "profile/locale",
+                        "optionsScript": "/libs/sling-cms/components/editor/scripts/localeOptions.jsp"
+                    }
+                }
+            }
+        }
+    }
+}

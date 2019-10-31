@@ -27,10 +27,10 @@ import java.util.stream.Stream;
 import org.apache.sling.api.SlingException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
+import org.apache.sling.cms.AuthorizableWrapper;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.CMSJobManager;
 import org.apache.sling.cms.ConfigurableJobExecutor;
-import org.apache.sling.cms.CurrentUser;
 import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.JobManager;
 import org.apache.sling.event.jobs.JobManager.QueryType;
@@ -58,8 +58,9 @@ public class CMSJobManagerImpl implements CMSJobManager {
     private SlingHttpServletRequest request;
 
     public CMSJobManagerImpl(SlingHttpServletRequest request) {
-        CurrentUser currentUser = request.getResourceResolver().adaptTo(CurrentUser.class);
-        if (currentUser == null || !currentUser.isMember(CMSConstants.GROUP_JOB_USERS)) {
+        AuthorizableWrapper currentUser = request.getResourceResolver().adaptTo(AuthorizableWrapper.class);
+        if (currentUser == null
+                || (!currentUser.isAdministrator() && !currentUser.isMember(CMSConstants.GROUP_JOB_USERS))) {
             throw new SlingException(
                     "User " + request.getResourceResolver().getUserID() + " is not a member of job-users", null);
         }

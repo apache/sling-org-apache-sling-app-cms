@@ -17,11 +17,13 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<option value="">Select Locale</option>
-<c:forEach var="locale" items="${sling:adaptTo(slingRequest,'org.apache.sling.cms.core.models.LocaleList').locales}">
-    <c:if test="${not empty locale.language}">
-        <option value="${locale}" ${locale == editProperties[properties.name] ? 'selected' : ''}>
-            ${locale.displayLanguage} ${locale.displayCountry} (${locale})
-        </option>
-    </c:if>
+<sling:adaptTo var="auth" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" />
+<c:forEach var="member" items="${auth.declaredMembers}">
+    <a class="button labelfield__item">
+        <input type="hidden" name="${properties.name}" value="${member.path}" />
+        <span class="labelfield__title">
+            ${sling:encode(member,'HTML')}
+        </span>
+        <span class="jam jam-close"></span>
+    </a>
 </c:forEach>
