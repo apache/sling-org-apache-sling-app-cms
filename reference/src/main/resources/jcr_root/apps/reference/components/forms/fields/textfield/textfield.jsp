@@ -34,6 +34,9 @@
         <c:when test="${not empty formData[properties.name]}">
             <c:set var="fieldValue" value="${formData[properties.name]}" />
         </c:when>
+        <c:when test="${not empty requestScope[properties.name]}">
+            <c:set var="fieldValue" value="${requestScope[properties.name]}" />
+        </c:when>
         <c:when test="${not empty properties.value}">
             <c:set var="fieldValue" value="${properties.value}" />
         </c:when>

@@ -32,6 +32,9 @@
         <c:when test="${not empty formData[properties.name]}">
             <c:set var="fieldValue" value="${formData[properties.name]}" />
         </c:when>
+        <c:when test="${not empty requestScope[properties.name]}">
+            <c:set var="fieldValue" value="${requestScope[properties.name]}" />
+        </c:when>
         <c:when test="${not empty properties.value}">
             <c:set var="fieldValue" value="${properties.value}" />
         </c:when>
@@ -39,6 +42,6 @@
     <textarea class="${formConfig.fieldClass}" id="${properties.name}" name="${properties.name}" ${properties.required ? 'required="required"' : ''}
         <c:forEach var="attr" items="${properties.additionalAttributes}">
             ${fn:split(attr,'\\=')[0]}="${fn:split(attr,'\\=')[1]}"
-        </c:forEach> 
+        </c:forEach>
         >${fieldValue}</textarea>
 </div>
