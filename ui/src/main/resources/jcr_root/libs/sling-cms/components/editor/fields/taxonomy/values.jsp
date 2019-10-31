@@ -18,9 +18,9 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:forEach var="item" items="${value}">
-    <a class="button taxonomy__item">
+    <a class="button labelfield__item">
         <input type="hidden" name="${properties.name}" value="${item}" />
-        <span class="taxonomy__title">
+        <span class="labelfield__title">
             ${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}
         </span>
         <span class="jam jam-close"></span>

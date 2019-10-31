@@ -19,6 +19,8 @@
 /* eslint-env browser, es6 */
 (function (rava) {
     'use strict';
+    
+    
     rava.bind('.labelfield', {
         events: {
             '.labelfield__add, .labelfield__add *': {

@@ -44,4 +44,6 @@
          <sling:call script="values.jsp" />
      </div>
     <sling:call script="options" />
+    <input type="hidden" name="${properties.name}@TypeHint" value="String[]"/>
+    <input type="hidden" name="${properties.name}@Delete" value="delete" />
 </div>
