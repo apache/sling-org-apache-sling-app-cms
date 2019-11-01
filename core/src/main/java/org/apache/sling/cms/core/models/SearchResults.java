@@ -55,7 +55,7 @@ public class SearchResults {
             path = request.getParameter("path");
         }
 
-        term = Text.escapeIllegalXpathSearchChars(request.getParameter("term")).replaceAll("'", "''");
+        term = Text.escapeIllegalXpathSearchChars(request.getParameter("term")).replace("'", "''");
         this.request = request;
     }
 

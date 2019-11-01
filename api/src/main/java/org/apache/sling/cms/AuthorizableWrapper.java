@@ -20,6 +20,7 @@ import java.util.Iterator;
 
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A wrapper for working with JackRabbit Authorizables in JSPs and Sling Models
@@ -32,6 +33,7 @@ public interface AuthorizableWrapper {
      * 
      * @return a JackRabbit Authorizable
      */
+    @NotNull
     Authorizable getAuthorizable();
 
     /**
@@ -40,6 +42,7 @@ public interface AuthorizableWrapper {
      * 
      * @return the declared members of this authorizable
      */
+    @NotNull
     Iterator<Authorizable> getDeclaredMembers();
 
     /**
@@ -47,6 +50,7 @@ public interface AuthorizableWrapper {
      * 
      * @return the direct membership
      */
+    @NotNull
     Iterator<Group> getDeclaredMembership();
 
     /**
@@ -55,6 +59,7 @@ public interface AuthorizableWrapper {
      * 
      * @return the groups the user belongs to
      */
+    @NotNull
     Iterator<String> getGroupNames();
 
     /**
@@ -62,6 +67,7 @@ public interface AuthorizableWrapper {
      * 
      * @return the current user's ID
      */
+    @NotNull
     public String getId();
 
     /**
@@ -70,6 +76,7 @@ public interface AuthorizableWrapper {
      * 
      * @return the transitive members of this authorizable
      */
+    @NotNull
     Iterator<Authorizable> getMembers();
 
     /**
@@ -77,6 +84,7 @@ public interface AuthorizableWrapper {
      * 
      * @return the transitive membership
      */
+    @NotNull
     Iterator<Group> getMembership();
 
     /**

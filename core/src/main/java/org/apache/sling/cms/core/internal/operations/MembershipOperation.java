@@ -52,10 +52,9 @@ public class MembershipOperation implements PostOperation {
         try {
 
             List<String> groups = new ArrayList<>();
-            Optional.ofNullable(request.getParameterValues(PN_MEMBERSHIP)).ifPresent(p -> {
-                groups.addAll(Arrays.asList(p));
-            });
-            
+            Optional.ofNullable(request.getParameterValues(PN_MEMBERSHIP))
+                    .ifPresent(p -> groups.addAll(Arrays.asList(p)));
+
             AuthorizableWrapper authWrapper = request.getResource().adaptTo(AuthorizableWrapper.class);
 
             Authorizable auth = authWrapper.getAuthorizable();

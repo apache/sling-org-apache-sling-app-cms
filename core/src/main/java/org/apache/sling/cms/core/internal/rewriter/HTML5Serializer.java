@@ -47,8 +47,7 @@ public class HTML5Serializer implements Serializer {
     private static final Set<String> emptyTags = new HashSet<>();
     static {
         emptyTags.addAll(Arrays.asList("br", "area", "link", "img", "param", "hr", "input", "col", "base", "meta"));
-
-    };
+    }
     private PrintWriter writer;
 
     private ConfigurationResourceResolver resolver;

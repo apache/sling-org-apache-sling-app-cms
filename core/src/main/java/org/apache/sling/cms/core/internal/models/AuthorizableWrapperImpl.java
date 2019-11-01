@@ -48,8 +48,7 @@ public class AuthorizableWrapperImpl implements AuthorizableWrapper {
         authorizable = CommonUtils.getUserManager(resolver).getAuthorizable(resolver.getUserID());
     }
 
-    public AuthorizableWrapperImpl(Resource resource)
-            throws AccessDeniedException, UnsupportedRepositoryOperationException, RepositoryException {
+    public AuthorizableWrapperImpl(Resource resource) throws RepositoryException {
         this.authorizable = CommonUtils.getUserManager(resource.getResourceResolver())
                 .getAuthorizableByPath(resource.getPath());
         if (authorizable == null) {

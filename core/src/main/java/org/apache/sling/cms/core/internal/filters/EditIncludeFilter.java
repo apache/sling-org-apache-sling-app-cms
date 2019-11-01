@@ -67,7 +67,7 @@ public class EditIncludeFilter implements Filter {
             SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
             Resource resource = slingRequest.getResource();
             Boolean container = isContainer(resource);
-            Boolean writeDropTarget = shouldWriteDropTarget(slingRequest);
+            boolean writeDropTarget = shouldWriteDropTarget(slingRequest);
             writer = response.getWriter();
             if (writeDropTarget) {
                 this.writeDropTarget(resource, writer, "before " + resource.getName());
@@ -96,7 +96,7 @@ public class EditIncludeFilter implements Filter {
 
     private boolean isContainer(Resource resource) {
         EditableResource er = new EditableResourceImpl(resource);
-        if (er != null && er.getComponent() != null) {
+        if (er.getComponent() != null) {
             return er.getComponent().isContainer();
         } else {
             return false;

@@ -31,6 +31,9 @@ public class CommonUtils {
 
     private static final Logger log = LoggerFactory.getLogger(CommonUtils.class);
 
+    private CommonUtils() {
+    }
+
     public static final UserManager getUserManager(ResourceResolver resolver) throws RepositoryException {
         return Optional.ofNullable(resolver.adaptTo(Session.class)).map(session -> {
             UserManager userManager = null;
