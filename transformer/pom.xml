@@ -30,6 +30,10 @@
                     <instructions>
                         <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
                         <Export-Package>org.apache.sling.cms.transformer,net.coobird.thumbnailator.*</Export-Package>
+                        
+                        <Sling-Model-Packages>
+                            org.apache.sling.cms.transformer
+                        </Sling-Model-Packages>
                     </instructions>
                 </configuration>
             </plugin>
@@ -111,7 +115,15 @@
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
+            <artifactId>osgi.annotation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.component.annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.metatype.annotations</artifactId>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -134,7 +146,6 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.caconfig.api</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>

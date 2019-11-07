@@ -19,6 +19,9 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <br/>
 <h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${resource.path})</h3>
+<c:if test="${sling:getRelativeResource(resource, 'thumbnail') != null}">
+    <img src="${resource.path}/thumbnail.transform/sling-cms-thumbnail128.png" alt="Thumbnail" class="image is-128x128" />
+</c:if>
 <br/>
 <div>
     <h4>Allowed Paths</h4>

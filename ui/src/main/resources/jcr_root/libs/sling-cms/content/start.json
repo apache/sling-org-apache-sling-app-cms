@@ -33,6 +33,8 @@
                         "jcr:primaryType": "nt:unstructured",
                         "alternatives": [
                             "/cms/site/content.html/content",
+                            "/cms/site/content.table.html/content",
+                            "/cms/site/content.grid.html/content",
                             "/cms/file/optimize.html"
                         ],
                         "link": "/cms/site/sites.html/content",
@@ -51,6 +53,7 @@
                     "config": {
                         "jcr:primaryType": "nt:unstructured",
                         "alternatives": [
+                            "/cms/transformations/edit.html",
                             "/cms/template/edit.html",
                             "/cms/config"
                         ],

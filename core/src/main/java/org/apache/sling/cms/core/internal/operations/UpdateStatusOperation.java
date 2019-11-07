@@ -18,6 +18,7 @@ package org.apache.sling.cms.core.internal.operations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.jcr.RepositoryException;
 
@@ -51,7 +52,9 @@ public class UpdateStatusOperation implements PostOperation {
 
             String reason = request.getParameter(PN_REASON);
 
-            AuthorizableWrapper authWrapper = request.getResource().adaptTo(AuthorizableWrapper.class);
+            AuthorizableWrapper authWrapper = Optional
+                    .ofNullable(request.getResource().adaptTo(AuthorizableWrapper.class))
+                    .orElseThrow(() -> new RepositoryException("Failed to get authorizable: " + request.getResource()));
 
             if (authWrapper.getAuthorizable().isGroup()) {
                 throw new RepositoryException("Authorizable is not a user");

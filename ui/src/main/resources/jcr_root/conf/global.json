@@ -12,6 +12,7 @@
         },
         "editors": {
             "jcr:primaryType": "sling:Config",
+            "jcr:title": "File Editors",
             "sling:resourceType": "sling-cms/components/caconfig/fileeditor",
             "default": {
                 "jcr:primaryType": "nt:unstructured",
@@ -76,6 +77,68 @@
                     }
                 }
             }
+        },
+        "transformations": {
+            "jcr:primaryType": "sling:Config",
+            "jcr:title": "Transformations",
+            "sling:resourceType": "sling-cms/components/caconfig/transformations",
+            "sling-cms-thumbnail": {
+                "jcr:primaryType": "nt:unstructured",
+                "name": "sling-cms-thumbnail",
+                "sling:resourceType": "sling-cms/components/caconfig/transformation",
+                "handlers": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "size": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "height": "600",
+                        "width": "480",
+                        "sling:resourceType": "sling-cms/components/caconfig/transformationhandlers/size"
+                    },
+                    "crop": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "position": "CENTER",
+                        "sling:resourceType": "sling-cms/components/caconfig/transformationhandlers/crop"
+                    }
+                }
+            },
+            "sling-cms-thumbnail128": {
+                "jcr:primaryType": "nt:unstructured",
+                "name": "sling-cms-thumbnail128",
+                "sling:resourceType": "sling-cms/components/caconfig/transformation",
+                "handlers": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "size": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "height": "128",
+                        "width": "128",
+                        "sling:resourceType": "sling-cms/components/caconfig/transformationhandlers/size"
+                    },
+                    "crop": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "position": "CENTER",
+                        "sling:resourceType": "sling-cms/components/caconfig/transformationhandlers/crop"
+                    }
+                }
+            },
+            "sling-cms-thumbnail32": {
+                "jcr:primaryType": "nt:unstructured",
+                "name": "sling-cms-thumbnail32",
+                "sling:resourceType": "sling-cms/components/caconfig/transformation",
+                "handlers": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "size": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "height": "32",
+                        "width": "32",
+                        "sling:resourceType": "sling-cms/components/caconfig/transformationhandlers/size"
+                    },
+                    "crop": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "position": "CENTER",
+                        "sling:resourceType": "sling-cms/components/caconfig/transformationhandlers/crop"
+                    }
+                }
+            }
         }
     },
     "site": {
@@ -96,7 +159,7 @@
             ]
         },
         "policies": {
-            "jcr:primaryType": "sling:Config", 
+            "jcr:primaryType": "sling:Config",
             "jcr:title": "Default Policy",
             "sling:resourceType": "sling-cms/components/caconfig/policies",
             "policy": {

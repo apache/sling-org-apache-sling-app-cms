@@ -17,7 +17,11 @@
 package org.apache.sling.cms.transformer.internal;
 
 import java.io.InputStream;
+import java.util.Optional;
 
+import org.apache.jackrabbit.JcrConstants;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.transformer.ThumbnailProvider;
 import org.osgi.service.component.annotations.Component;
@@ -27,17 +31,20 @@ import com.google.common.net.MediaType;
 /**
  * A thumbnail provider for image files.
  */
-@Component(service = ThumbnailProvider.class)
+@Component(service = ThumbnailProvider.class, immediate = true)
 public class ImageThumbnailProvider implements ThumbnailProvider {
 
     @Override
-    public boolean applies(File file) {
-        return MediaType.parse(file.getContentType()).is(MediaType.ANY_IMAGE_TYPE);
+    public boolean applies(Resource resource) {
+        return (CMSConstants.NT_FILE.equals(resource.getResourceType())
+                || JcrConstants.NT_FILE.equals(resource.getResourceType()))
+                && Optional.ofNullable(resource.adaptTo(File.class))
+                        .map(f -> MediaType.parse(f.getContentType()).is(MediaType.ANY_IMAGE_TYPE)).orElse(false);
     }
 
     @Override
-    public InputStream getThumbnail(File file) {
-        return file.getResource().adaptTo(InputStream.class);
+    public InputStream getThumbnail(Resource resource) {
+        return resource.adaptTo(InputStream.class);
     }
 
 }

@@ -17,8 +17,10 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
- <c:set var="cmsEditEnabled" value="true" scope="request" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
-<sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/caconfig/template/config" />
-<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
-<c:set var="cmsEditEnabled" value="false" scope="request" />
+<div class="scroll-container">
+    <c:set var="cmsEditEnabled" value="true" scope="request" />
+    <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
+    <sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling-cms/components/caconfig/template/config" />
+    <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
+    <c:set var="cmsEditEnabled" value="false" scope="request" />
+</div>

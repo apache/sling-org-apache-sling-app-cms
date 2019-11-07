@@ -26,7 +26,9 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JEditorPane;
 
-import org.apache.sling.cms.File;
+import org.apache.jackrabbit.JcrConstants;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.transformer.OutputFileFormat;
 import org.apache.sling.cms.transformer.ThumbnailProvider;
 import org.apache.tika.exception.TikaException;
@@ -41,24 +43,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-@Component(service = ThumbnailProvider.class, property = { Constants.SERVICE_RANKING + "=" + Integer.MIN_VALUE })
+@Component(service = ThumbnailProvider.class, property = {
+        Constants.SERVICE_RANKING + "=" + Integer.MIN_VALUE }, immediate = true)
 public class TikaFallbackProvider implements ThumbnailProvider {
 
     private static final Logger log = LoggerFactory.getLogger(TikaFallbackProvider.class);
 
     @Override
-    public boolean applies(File file) {
-        return true;
+    public boolean applies(Resource resource) {
+        return (CMSConstants.NT_FILE.equals(resource.getResourceType())
+                || JcrConstants.NT_FILE.equals(resource.getResourceType()));
     }
 
     @Override
-    public InputStream getThumbnail(File file) throws IOException {
+    public InputStream getThumbnail(Resource resource) throws IOException {
 
-        log.info("Extracting content thumbnail from {}", file.getPath());
+        log.info("Extracting content thumbnail from {}", resource.getPath());
         try {
 
             log.debug("Extracting file contents");
-            InputStream is = file.getResource().adaptTo(InputStream.class);
+            InputStream is = resource.adaptTo(InputStream.class);
             Parser parser = new AutoDetectParser();
             BodyContentHandler handler = new BodyContentHandler();
             Metadata md = new Metadata();
@@ -78,7 +82,7 @@ public class TikaFallbackProvider implements ThumbnailProvider {
             ImageIO.write(image, OutputFileFormat.PNG.toString(), baos);
             return new ByteArrayInputStream(baos.toByteArray());
         } catch (SAXException | TikaException e) {
-            throw new IOException("Failed to generate thumbnail from " + file.getPath(), e);
+            throw new IOException("Failed to generate thumbnail from " + resource.getPath(), e);
         }
     }
 

@@ -22,10 +22,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
-import org.apache.sling.cms.File;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.transformer.ThumbnailProvider;
 import org.apache.sling.cms.transformer.helpers.SlingCMSContextHelper;
-import org.apache.sling.cms.transformer.internal.SlideShowThumbnailProvider;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -40,24 +39,19 @@ public class SlideShowThumbnailProviderTest {
     @Rule
     public final SlingContext context = new SlingContext();
 
-    private File docxFile;
-    private File pptFile;
-    private File pptxFile;
+    private Resource docxFile;
+    private Resource pptFile;
+    private Resource pptxFile;
 
     private ThumbnailProvider provider;
 
     @Before
     public void init() {
         SlingCMSContextHelper.initContext(context);
-        docxFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.docx")
-                .adaptTo(File.class);
-        pptxFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.pptx")
-                .adaptTo(File.class);
-        pptFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.ppt")
-                .adaptTo(File.class);
-
+        docxFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.docx");
+        pptxFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.pptx");
+        pptFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.ppt");
         provider = new SlideShowThumbnailProvider();
-
     }
 
     @Test

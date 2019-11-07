@@ -19,34 +19,34 @@ package org.apache.sling.cms.transformer;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.sling.api.resource.Resource;
+
 import net.coobird.thumbnailator.Thumbnails.Builder;
 
 /*
- * Transformation handlers handle the transformation of thumbnails using the Thumbnails library.
- * Each transformation handler implements a named transformation command which will be parsed out 
- * of the suffix of the transformation request by splitting the suffix by slashes and checking the 
- * "applies" method of each TransformationHandler, in order. 
+ * Transformation handlers handle the transformation of files using the Thumbnails library.
+ * Each transformation handler implements a transformation command using the specifed configuration.
  */
+@SuppressWarnings("squid:S1214") // I don't like this rule...
 public interface TransformationHandler {
 
-    /**
-     * Returns true if the transformation handler should execute for the specified
-     * command.
-     * 
-     * @param command the command to check
-     * @return true if the handler will handle this, false otherwise
-     */
-    boolean applies(String command);
+    public static final String HANDLER_RESOURCE_TYPE = "handler.resourceType";
 
     /**
-     * Handles the transformation of the thumbnail using the command values from the
+     * Get the resource type associated with this handler
+     * 
+     * @return the handler resource type
+     */
+    String getResourceType();
+
+    /**
+     * Handles the transformation of the file using the command values from the
      * suffix segment.
      * 
      * @param builder the Thumbnails builder to use / update
-     * @param cmd     the command to parse to retrieve the configuration values for
-     *                the transformation
-     * @throws IOException an exception occurs transforming the thumbnail
+     * @param config  the configuration values for the transformation
+     * @throws IOException an exception occurs transforming the file
      */
-    void handle(Builder<? extends InputStream> builder, String cmd) throws IOException;
+    void handle(Builder<? extends InputStream> builder, Resource config) throws IOException;
 
 }

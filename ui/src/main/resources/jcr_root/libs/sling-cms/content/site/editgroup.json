@@ -30,6 +30,12 @@
                         "name": "sling:configRef",
                         "required": false,
                         "type": "config"
+                    },
+                    "contentPrimaryType": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": "jcr:content/jcr:primaryType",
+                        "value": "nt:unstructured"
                     }
                 }
             }

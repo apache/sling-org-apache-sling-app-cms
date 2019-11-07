@@ -17,25 +17,28 @@
 package org.apache.sling.cms.transformer.internal;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 
-import org.apache.sling.cms.transformer.internal.CropHandler;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.testing.resourceresolver.MockResource;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.Thumbnails.Builder;
 
 public class CropHandlerTest {
-    
+
     private Builder<? extends InputStream> builder;
     private CropHandler cropper;
 
-    @Before 
+    @Before
     public void init() {
         builder = Thumbnails.of(getClass().getClassLoader().getResourceAsStream("apache.png"));
         builder.size(200, 200);
@@ -43,29 +46,31 @@ public class CropHandlerTest {
     }
 
     @Test
-    public void testApplies() {
-        assertTrue(cropper.applies("crop-CENTER"));
-    }
-
-    @Test
     public void testCrop() throws IOException {
-        cropper.handle(builder, "crop-CENTER");
+        Resource config = new MockResource("/conf", Collections.singletonMap(CropHandler.PN_POSITION, "CENTER"),
+                Mockito.mock(ResourceResolver.class));
+        cropper.handle(builder, config);
         assertNotNull(builder.asBufferedImage());
     }
-    
 
     @Test
     public void testCropLower() throws IOException {
-        cropper.handle(builder, "crop-center");
+
+        Resource config = new MockResource("/conf", Collections.singletonMap(CropHandler.PN_POSITION, "center"),
+                Mockito.mock(ResourceResolver.class));
+        cropper.handle(builder, config);
         assertNotNull(builder.asBufferedImage());
     }
-    
+
     @Test
     public void testInvalidParam() throws IOException {
         try {
-            cropper.handle(builder, "crop-CENTERZ");
+
+            Resource config = new MockResource("/conf", Collections.singletonMap(CropHandler.PN_POSITION, "centerz"),
+                    Mockito.mock(ResourceResolver.class));
+            cropper.handle(builder, config);
             fail();
-        }catch(IOException e) {
+        } catch (IOException e) {
         }
     }
 

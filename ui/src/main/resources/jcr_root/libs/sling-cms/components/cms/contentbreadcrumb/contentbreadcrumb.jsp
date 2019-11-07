@@ -19,18 +19,18 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="breadcrumb" adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.ContentBreadcrumb" />
 <nav class="breadcrumb" aria-label="breadcrumbs">
-<ul>
-    <c:forEach var="parent" items="${breadcrumb.parents}">
-        <li>
-            <a href="${parent.left}">
-                <sling:encode value="${parent.right}" mode="HTML" />
+    <ul>
+        <c:forEach var="parent" items="${breadcrumb.parents}">
+            <li>
+                <a href="${parent.left}">
+                    <sling:encode value="${parent.right}" mode="HTML" />
+                </a>
+            </li>
+        </c:forEach>
+        <li class="is-active">
+            <a href="#">
+                <sling:encode value="${breadcrumb.currentItem}" mode="HTML" />
             </a>
         </li>
-    </c:forEach>
-    <li class="is-active">
-        <a href="#">
-            <sling:encode value="${breadcrumb.currentItem}" mode="HTML" />
-        </a>
-    </li>
-</ul>
+    </ul>
 </nav>

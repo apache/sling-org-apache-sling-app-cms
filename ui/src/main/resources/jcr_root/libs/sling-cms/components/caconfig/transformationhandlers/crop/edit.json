@@ -1,0 +1,53 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "position": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Position",
+            "name": "position",
+            "options": {
+                "CENTER": {
+                    "label": "Center",
+                    "value": "CENTER"
+                },
+                "BOTTOM_CENTER": {
+                    "label": "Bottom Center",
+                    "value": "BOTTOM_CENTER"
+                },
+                "BOTTOM_LEFT": {
+                    "label": "Bottom Left",
+                    "value": "BOTTOM_LEFT"
+                },
+                "BOTTOM_RIGHT": {
+                    "label": "Bottom Right",
+                    "value": "BOTTOM_RIGHT"
+                },
+                "CENTER_LEFT": {
+                    "label": "Center Left",
+                    "value": "CENTER_LEFT"
+                },
+                "CENTER_RIGHT": {
+                    "label": "Center Right",
+                    "value": "CENTER_RIGHT"
+                },
+                "TOP_LEFT": {
+                    "label": "Top Left",
+                    "value": "TOP_LEFT"
+                },
+                "TOP_CENTER": {
+                    "label": "Top Center",
+                    "value": "TOP_CENTER"
+                },
+                "TOP_RIGHT": {
+                    "label": "Top Right",
+                    "value": "TOP_RIGHT"
+                }
+            }
+        }
+    }
+}

@@ -93,16 +93,22 @@
                             "sling:resourceType": "sling-cms/components/general/richtext"
                         }
                     }
+                },
+                "apache.png": {
+                    "jcr:primaryType": "sling:File"
+                },
+                "sling.pdf": {
+                    "jcr:primaryType": "sling:File"
+                },
+                "Sling.docx": {
+                    "jcr:primaryType": "sling:File"
+                },
+                "Sling.pptx": {
+                    "jcr:primaryType": "sling:File"
+                },
+                "Sling.ppt": {
+                    "jcr:primaryType": "sling:File"
                 }
-            },
-            "apache.png": {
-                "jcr:primaryType": "sling:File"
-            },
-            "sling.pdf": {
-                "jcr:primaryType": "sling:File"
-            },
-            "sling.docx": {
-                "jcr:primaryType": "sling:File"
             }
         }
     }

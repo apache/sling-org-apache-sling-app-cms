@@ -54,7 +54,9 @@ public class MembersOperation implements PostOperation {
             List<String> auths = new ArrayList<>();
             Optional.ofNullable(request.getParameterValues(PN_MEMBERS)).ifPresent(p -> auths.addAll(Arrays.asList(p)));
 
-            AuthorizableWrapper groupWrapper = request.getResource().adaptTo(AuthorizableWrapper.class);
+            AuthorizableWrapper groupWrapper = Optional
+                    .ofNullable(request.getResource().adaptTo(AuthorizableWrapper.class))
+                    .orElseThrow(() -> new RepositoryException("Failed to get group"));
             if (!groupWrapper.getAuthorizable().isGroup()) {
                 throw new RepositoryException("Provided authorizable is not a group");
             }
@@ -81,7 +83,9 @@ public class MembersOperation implements PostOperation {
                 if (resource == null) {
                     throw new RepositoryException("Failed to resolve authorizable at " + path);
                 }
-                Authorizable authorizable = resource.adaptTo(AuthorizableWrapper.class).getAuthorizable();
+                Authorizable authorizable = Optional.ofNullable(resource.adaptTo(AuthorizableWrapper.class))
+                        .map(AuthorizableWrapper::getAuthorizable)
+                        .orElseThrow(() -> new RepositoryException("Failed to get authorizable from: " + resource));
                 group.addMember(authorizable);
                 changes.add(Modification.onModified(authorizable.getPath()));
                 log.debug("Adding member {} to {}", authorizable, group);

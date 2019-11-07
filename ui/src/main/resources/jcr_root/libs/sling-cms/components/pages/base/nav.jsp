@@ -19,7 +19,7 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <nav class="navbar" role="navigation" aria-label="main mavigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="http://sling.apache.org" >
+        <a class="navbar-item" href="http://sling.apache.org">
             <img src="${branding.logo}" width="100" alt="${branding.appName}"/>
         </a>
         <a href="/cms/start.html" class="navbar-item" title="CMS Home">
@@ -41,6 +41,9 @@
                 <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" var="auth" />
                 <sling:getResource path="${auth.authorizable.path}/profile" var="profile" />
                 <a class="navbar-link">
+                    <c:if test="${sling:getRelativeResource(profile,'thumbnail') != null}">
+                        <img src="${profile.path}/thumbnail.transform/sling-cms-thumbnail32.png" alt="${resourceResolver.userID}" />
+                    </c:if>&nbsp;
                     <sling:encode value="${profile.valueMap.name}" default="${resourceResolver.userID}" mode="HTML" />
                 </a>
                 <div class="navbar-dropdown">

@@ -19,34 +19,31 @@ package org.apache.sling.cms.transformer.internal;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.transformer.TransformationHandler;
 import org.osgi.service.component.annotations.Component;
 
 import net.coobird.thumbnailator.Thumbnails.Builder;
 
-@Component(service = TransformationHandler.class)
+/**
+ * A transformer for resizing an image
+ */
+@Component(service = TransformationHandler.class, property = { TransformationHandler.HANDLER_RESOURCE_TYPE
+        + "=sling-cms/components/caconfig/transformationhandlers/size" }, immediate = true)
 public class SizeHandler implements TransformationHandler {
 
+    public static final String PN_HEIGHT = "height";
+    public static final String PN_WIDTH = "width";
+
     @Override
-    public boolean applies(String command) {
-        return command.startsWith("size-");
+    public String getResourceType() {
+        return "sling-cms/components/caconfig/transformationhandlers/size";
     }
 
     @Override
-    public void handle(Builder<? extends InputStream> builder, String cmd) throws IOException {
-        int width = -1;
-        try {
-            width = Integer.parseInt(cmd.split("\\-")[1], 10);
-        } catch (NumberFormatException nfe) {
-            throw new IOException("Failed to get width from " + cmd.split("\\-")[1]);
-        }
-
-        int height = -1;
-        try {
-            height = Integer.parseInt(cmd.split("\\-")[2], 10);
-        } catch (NumberFormatException nfe) {
-            throw new IOException("Failed to get height from " + cmd.split("\\-")[2]);
-        }
+    public void handle(Builder<? extends InputStream> builder, Resource config) throws IOException {
+        int width = config.getValueMap().get(PN_WIDTH, -1);
+        int height = config.getValueMap().get(PN_HEIGHT, -1);
         builder.size(width, height);
     }
 

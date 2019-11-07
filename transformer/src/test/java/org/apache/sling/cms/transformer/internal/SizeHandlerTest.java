@@ -17,52 +17,64 @@
 package org.apache.sling.cms.transformer.internal;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.sling.cms.transformer.internal.SizeHandler;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.testing.resourceresolver.MockResource;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.Thumbnails.Builder;
 
 public class SizeHandlerTest {
-    
+
     private Builder<? extends InputStream> builder;
     private SizeHandler sizer;
 
-    @Before 
+    @Before
     public void init() {
         builder = Thumbnails.of(getClass().getClassLoader().getResourceAsStream("apache.png"));
         sizer = new SizeHandler();
     }
 
     @Test
-    public void testApplies() {
-        assertTrue(sizer.applies("size-200-200"));
+    public void testResize() throws IOException {
+
+        Map<String, Object> config = new HashMap<>();
+        config.put(SizeHandler.PN_WIDTH, 200);
+        config.put(SizeHandler.PN_HEIGHT, 200);
+        sizer.handle(builder, new MockResource("/conf", config, Mockito.mock(ResourceResolver.class)));
+        assertNotNull(builder.asBufferedImage());
     }
 
     @Test
-    public void testResize() throws IOException {
-        sizer.handle(builder, "size-200-200");
-        assertNotNull(builder.asBufferedImage());
-    }
-    
-    @Test
-    public void testInvalidParam() throws IOException {
+    public void testInvalidWidth() throws IOException {
         try {
-            sizer.handle(builder, "size-k-200");
+            Map<String, Object> config = new HashMap<>();
+            config.put(SizeHandler.PN_WIDTH, "K");
+            config.put(SizeHandler.PN_HEIGHT, 200);
+            sizer.handle(builder, new MockResource("/conf", config, Mockito.mock(ResourceResolver.class)));
             fail();
-        }catch(IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
         }
+    }
+
+    @Test
+    public void testInvalidHeight() throws IOException {
         try {
-            sizer.handle(builder, "size-222-h");
+            Map<String, Object> config = new HashMap<>();
+            config.put(SizeHandler.PN_WIDTH, 200);
+            config.put(SizeHandler.PN_HEIGHT, "h");
+            sizer.handle(builder, new MockResource("/conf", config, Mockito.mock(ResourceResolver.class)));
             fail();
-        }catch(IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
         }
     }
 

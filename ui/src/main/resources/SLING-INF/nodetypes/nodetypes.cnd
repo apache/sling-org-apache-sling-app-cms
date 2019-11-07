@@ -48,6 +48,7 @@
     - * (undefined) copy
     - * (undefined) copy multiple
     + metadata (nt:unstructured) = nt:unstructured copy primary
+    + renditions (nt:unstructured) = nt:unstructured copy primary
 
 [sling:Page] > nt:hierarchyNode
     orderable

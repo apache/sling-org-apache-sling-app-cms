@@ -19,6 +19,7 @@ package org.apache.sling.cms.transformer.internal;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.transformer.TransformationHandler;
 import org.osgi.service.component.annotations.Component;
 
@@ -28,21 +29,25 @@ import net.coobird.thumbnailator.geometry.Positions;
 /**
  * A transformation handler to crop images
  */
-@Component(service = TransformationHandler.class)
+@Component(service = TransformationHandler.class, property = { TransformationHandler.HANDLER_RESOURCE_TYPE
+        + "=sling-cms/components/caconfig/transformationhandlers/crop" }, immediate = true)
 public class CropHandler implements TransformationHandler {
 
+    public static final String PN_POSITION = "position";
+
     @Override
-    public boolean applies(String command) {
-        return command.startsWith("crop-");
+    public String getResourceType() {
+        return "sling-cms/components/caconfig/transformationhandlers/crop";
     }
 
     @Override
-    public void handle(Builder<? extends InputStream> builder, String cmd) throws IOException {
+    public void handle(Builder<? extends InputStream> builder, Resource config) throws IOException {
+        String positionStr = config.getValueMap().get(PN_POSITION, "CENTER").toUpperCase();
         try {
-            Positions pos = Positions.valueOf(cmd.split("\\-")[1].toUpperCase());
+            Positions pos = Positions.valueOf(positionStr);
             builder.crop(pos);
         } catch (IllegalArgumentException e) {
-            throw new IOException("Unable to load crop position from " + cmd.split("\\-")[1], e);
+            throw new IOException("Unable to load crop position from " + positionStr, e);
         }
     }
 

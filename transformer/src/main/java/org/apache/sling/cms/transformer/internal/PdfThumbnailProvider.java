@@ -21,12 +21,16 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.transformer.ThumbnailProvider;
 import org.osgi.service.component.annotations.Component;
@@ -36,17 +40,20 @@ import com.google.common.net.MediaType;
 /**
  * A thumbnail provider for PDF documents.
  */
-@Component(service = ThumbnailProvider.class)
+@Component(service = ThumbnailProvider.class, immediate = true)
 public class PdfThumbnailProvider implements ThumbnailProvider {
 
     @Override
-    public boolean applies(File file) {
-        return MediaType.PDF.is(MediaType.parse(file.getContentType()));
+    public boolean applies(Resource resource) {
+        return (CMSConstants.NT_FILE.equals(resource.getResourceType())
+                || JcrConstants.NT_FILE.equals(resource.getResourceType()))
+                && Optional.ofNullable(resource.adaptTo(File.class))
+                        .map(r -> MediaType.PDF.is(MediaType.parse(r.getContentType()))).orElse(false);
     }
 
     @Override
-    public InputStream getThumbnail(File file) throws IOException {
-        try (PDDocument document = PDDocument.load(file.getResource().adaptTo(InputStream.class))) {
+    public InputStream getThumbnail(Resource resource) throws IOException {
+        try (PDDocument document = PDDocument.load(resource.adaptTo(InputStream.class))) {
             PDFRenderer pdfRenderer = new PDFRenderer(document);
             BufferedImage bim = pdfRenderer.renderImageWithDPI(0, 300, ImageType.RGB);
             ByteArrayOutputStream os = new ByteArrayOutputStream();

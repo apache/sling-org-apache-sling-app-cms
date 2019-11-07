@@ -16,16 +16,33 @@
  */
 package org.apache.sling.cms.transformer.internal;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
+import javax.jcr.query.Query;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.jackrabbit.JcrConstants;
+import org.apache.poi.util.IOUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
-import org.apache.sling.cms.transformer.FileThumbnailTransformer;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.transformer.OutputFileFormat;
+import org.apache.sling.cms.transformer.Transformation;
+import org.apache.sling.cms.transformer.Transformer;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -45,21 +62,87 @@ public class TransformServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = -1513067546618762171L;
 
-    @Reference
-    private transient FileThumbnailTransformer transformer;
+    public static final String SERVICE_USER = "sling-cms-transformer";
+
+    private transient TransformationServiceUser transformationServiceUser;
+
+    private transient Transformer transformer;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
+        log.trace("doGet");
+
+        String name = StringUtils.substringBeforeLast(request.getRequestPathInfo().getSuffix(), ".");
+        String format = StringUtils.substringAfterLast(request.getRequestPathInfo().getSuffix(), ".");
+        log.debug("Transforming resource: {} with transformation: {} to {}", request.getResource(), name, format);
         String original = response.getContentType();
-        try {
-            response.setContentType(OutputFileFormat.forRequest(request).getMimeType());
-            transformer.transformFile(request, response.getOutputStream());
+        try (ResourceResolver serviceResolver = transformationServiceUser.getTransformationServiceUser()) {
+            Transformation transformation = findTransformation(serviceResolver, name);
+            if (transformation != null) {
+                response.setContentType(OutputFileFormat.forRequest(request).getMimeType());
+                String expectedPath = "jcr:content/renditions/" + name + "." + format;
+                Resource rendition = request.getResource().getChild(expectedPath);
+                if (rendition != null) {
+                    log.debug("Using existing rendition {}", name);
+                    IOUtils.copy(rendition.adaptTo(InputStream.class), response.getOutputStream());
+                } else {
+                    log.debug("Creating new rendition {}", name);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    transformer.transform(request.getResource(), transformation,
+                            OutputFileFormat.valueOf(format.toUpperCase()), baos);
+                    IOUtils.copy(new ByteArrayInputStream(baos.toByteArray()), response.getOutputStream());
+                    if (CMSConstants.NT_FILE.equals(request.getResource().getResourceType())) {
+                        Resource file = ResourceUtil.getOrCreateResource(serviceResolver,
+                                request.getResource().getPath() + "/" + expectedPath,
+                                Collections.singletonMap(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_FILE),
+                                JcrConstants.NT_UNSTRUCTURED, false);
+                        Map<String, Object> properties = new HashMap<>();
+                        properties.put(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
+                        properties.put(JcrConstants.JCR_DATA, new ByteArrayInputStream(baos.toByteArray()));
+                        ResourceUtil.getOrCreateResource(serviceResolver,
+                                file.getPath() + "/" + JcrConstants.JCR_CONTENT, properties,
+                                JcrConstants.NT_UNSTRUCTURED, true);
+                    }
+
+                }
+            } else {
+                log.error("Exception transforming image: {} with transformation: {}", request.getResource(), name);
+                response.setContentType(original);
+                response.sendError(400, "Could not transform image with transformation: " + name);
+            }
         } catch (Exception e) {
-            log.error("Exception transforming image", e);
+            log.error("Exception rendering transformed resource", e);
             response.setContentType(original);
-            response.sendError(400, "Could not transform image with provided commands");
+            response.sendError(500, "Could not transform image with transformation: " + name);
+
         }
+    }
+
+    protected Transformation findTransformation(ResourceResolver serviceResolver, String name) throws LoginException {
+        name = name.substring(1).replace("'", "''");
+        log.debug("Finding transformations with {}", name);
+
+        Iterator<Resource> transformations = serviceResolver.findResources(
+                "SELECT * FROM [nt:unstructured] WHERE ISDESCENDANTNODE([/conf]) AND [sling:resourceType]='sling-cms/components/caconfig/transformation' AND [name]='"
+                        + name + "'",
+                Query.JCR_SQL2);
+        if (transformations.hasNext()) {
+            Resource transformation = transformations.next();
+            return transformation.adaptTo(Transformation.class);
+        }
+
+        return null;
+    }
+
+    @Reference
+    public void setTransformationServiceUser(TransformationServiceUser transformationServiceUser) {
+        this.transformationServiceUser = transformationServiceUser;
+    }
+
+    @Reference
+    public void setTransformer(Transformer transformer) {
+        this.transformer = transformer;
     }
 
 }

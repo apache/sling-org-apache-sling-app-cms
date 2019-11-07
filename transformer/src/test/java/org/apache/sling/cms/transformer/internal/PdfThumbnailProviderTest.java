@@ -22,9 +22,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
-import org.apache.sling.cms.File;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.transformer.helpers.SlingCMSContextHelper;
-import org.apache.sling.cms.transformer.internal.PdfThumbnailProvider;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -39,16 +38,14 @@ public class PdfThumbnailProviderTest {
     @Rule
     public final SlingContext context = new SlingContext();
 
-    private File imageFile;
-    private File pdfFile;
+    private Resource imageFile;
+    private Resource pdfFile;
 
     @Before
     public void init() {
         SlingCMSContextHelper.initContext(context);
-        imageFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/apache.png")
-                .adaptTo(File.class);
-        pdfFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/sling.pdf")
-                .adaptTo(File.class);
+        imageFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/apache.png");
+        pdfFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/sling.pdf");
     }
 
     @Test

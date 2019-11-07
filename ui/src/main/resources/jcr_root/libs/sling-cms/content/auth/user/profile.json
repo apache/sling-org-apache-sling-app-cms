@@ -20,6 +20,27 @@
                         "label": "Name",
                         "name": "profile/name"
                     },
+                    "thumbnail": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/text",
+                        "label": "Thumbnail",
+                        "name": "profile/thumbnail",
+                        "type": "file"
+                    },
+                    "thumbnailTypeHint": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+                        "name": "profile/thumbnail@TypeHint",
+                        "value": "sling:File"
+                    },
+                    "thumbnailPreview": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/thumbnail",
+                        "alt": "User Thumbnail",
+                        "className": "is-128x128",
+                        "subpath": "profile/thumbnail",
+                        "suffix": ".transform/sling-cms-thumbnail128.png"
+                    },
                     "email": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/text",
@@ -33,6 +54,24 @@
                         "label": "Locale",
                         "name": "profile/locale",
                         "optionsScript": "/libs/sling-cms/components/editor/scripts/localeOptions.jsp"
+                    },
+                    "defaultLayout": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/editor/fields/select",
+                        "label": "Default Layout",
+                        "name": "profile/defaultLayout",
+                        "options": {
+                            "grid": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "label": "Grid",
+                                "value": "grid"
+                            },
+                            "table": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "label": "Table",
+                                "value": "table"
+                            }
+                        }
                     }
                 }
             }

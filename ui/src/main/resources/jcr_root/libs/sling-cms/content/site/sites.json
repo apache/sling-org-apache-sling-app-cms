@@ -10,6 +10,7 @@
             "contentactions": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/cms/contentactions",
+                "includeSwitcher": true,
                 "actions": {
                     "page": {
                         "jcr:primaryType": "nt:unstructured",
@@ -33,7 +34,7 @@
             },
             "contenttable": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/contenttable",
+                "sling:resourceType": "sling-cms/components/cms/contentlayout",
                 "columns": {
                     "jcr:primaryType": "nt:unstructured",
                     "name": {

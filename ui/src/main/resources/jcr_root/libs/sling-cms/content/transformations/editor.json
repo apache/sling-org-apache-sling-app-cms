@@ -1,0 +1,102 @@
+
+{
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/general/container",
+    "richtext": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/richtext",
+        "text": "<br/><h3>Transformations</h3>"
+    },
+    "contentactions": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/contentactions",
+        "actions": {
+            "template": {
+                "jcr:primaryType": "nt:unstructured",
+                "label": "Transformation",
+                "prefix": "/cms/transformations/create.html"
+            }
+        }
+    },
+    "contenttable": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/contenttable",
+        "appendSuffix": "/transformations",
+        "columns": {
+            "jcr:primaryType": "nt:unstructured",
+            "name": {
+                "jcr:primaryType": "nt:unstructured",
+                "title": "Name"
+            },
+            "title": {
+                "jcr:primaryType": "nt:unstructured",
+                "title": "Transformation Name"
+            },
+            "lastModified": {
+                "jcr:primaryType": "nt:unstructured",
+                "title": "Last Modified"
+            },
+            "actions": {
+                "jcr:primaryType": "nt:unstructured",
+                "title": "Actions"
+            }
+        },
+        "types": {
+            "jcr:primaryType": "nt:unstructured",
+            "nt:unstructured": {
+                "jcr:primaryType": "nt:unstructured",
+                "columns": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "name": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/cms/columns/name",
+                        "link": false
+                    },
+                    "transformationName": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/cms/columns/text",
+                        "property": "name"
+                    },
+                    "lastModified": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
+                        "subPath": ""
+                    },
+                    "actions": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                        "edit": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "modal": false,
+                            "new": false,
+                            "title": "Edit Transformation",
+                            "icon": "pencil-f",
+                            "prefix": "/cms/transformations/edit.html"
+                        },
+                        "references": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "modal": true,
+                            "title": "References",
+                            "icon": "directions",
+                            "prefix": "/cms/shared/references.html"
+                        },
+                        "movecopy": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "modal": true,
+                            "title": "Move / Copy Transformation",
+                            "icon": "move-alt",
+                            "prefix": "/cms/shared/movecopy.html"
+                        },
+                        "delete": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "modal": true,
+                            "title": "Delete Transformation",
+                            "icon": "trash",
+                            "prefix": "/cms/shared/delete.html"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

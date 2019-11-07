@@ -25,14 +25,18 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 import org.apache.poi.sl.usermodel.Slide;
 import org.apache.poi.sl.usermodel.SlideShow;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.transformer.OutputFileFormat;
 import org.apache.sling.cms.transformer.ThumbnailProvider;
@@ -45,28 +49,32 @@ import com.google.common.net.MediaType;
 /**
  * Provides Thumbnails for Microsoft PPT and PPTX files.
  */
-@Component(service = ThumbnailProvider.class)
+@Component(service = ThumbnailProvider.class, immediate = true)
 public class SlideShowThumbnailProvider implements ThumbnailProvider {
 
     @Reference
     private DynamicClassLoaderManager dclm;
 
     @Override
-    public boolean applies(File file) {
-        MediaType mt = MediaType.parse(file.getContentType());
-        return mt.is(MediaType.MICROSOFT_POWERPOINT) || mt.is(MediaType.OOXML_PRESENTATION);
+    public boolean applies(Resource resource) {
+        return (CMSConstants.NT_FILE.equals(resource.getResourceType())
+                || JcrConstants.NT_FILE.equals(resource.getResourceType()))
+                && Optional.ofNullable(resource.adaptTo(File.class)).map(f -> {
+                    MediaType mt = MediaType.parse(f.getContentType());
+                    return mt.is(MediaType.MICROSOFT_POWERPOINT) || mt.is(MediaType.OOXML_PRESENTATION);
+                }).orElse(false);
     }
 
     @Override
-    public InputStream getThumbnail(File file) throws IOException {
+    public InputStream getThumbnail(Resource resource) throws IOException {
         if (dclm != null) {
             Thread.currentThread().setContextClassLoader(dclm.getDynamicClassLoader());
         }
 
         SlideShow<?, ?> ppt = null;
-        MediaType mt = MediaType.parse(file.getContentType());
+        MediaType mt = MediaType.parse(resource.adaptTo(File.class).getContentType());
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                InputStream is = file.getResource().adaptTo(InputStream.class)) {
+                InputStream is = resource.adaptTo(InputStream.class)) {
             if (mt.is(MediaType.MICROSOFT_POWERPOINT)) {
                 ppt = new HSLFSlideShow(is);
             } else {

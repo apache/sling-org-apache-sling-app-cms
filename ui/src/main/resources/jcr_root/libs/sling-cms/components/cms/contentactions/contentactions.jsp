@@ -18,17 +18,56 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <nav class="level">
-	<div class="level-left">
-		<div class="level-item">
-			<div class="buttons has-addons">
-				<c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
-					<a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}">+ ${action.valueMap.label}</a>
-				</c:forEach>
-			</div>
-		</div>
-		<div class="level-item">
-			<div class="buttons has-addons actions-target">
-			</div>
-		</div>
-	</div>
+    <div class="level-left">
+        <div class="level-item">
+            <div class="buttons has-addons">
+                <c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
+                    <a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${slingRequest.requestPathInfo.suffix}">+ ${action.valueMap.label}</a>
+                </c:forEach>
+            </div>
+        </div>
+        <div class="level-item">
+            <div class="buttons has-addons actions-target">
+            </div>
+        </div>
+    </div>
+    <c:if test="${properties.includeSwitcher}">
+        <div class="level-right">
+            <div class="level-item">
+                <div class="field">
+                    <div class="control has-icons-left">
+                        <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" var="auth" />
+                        <sling:getResource path="${auth.authorizable.path}/profile" var="profile" />
+                        <c:set var="pagePath" value="${sling:adaptTo(resource,'org.apache.sling.cms.PageManager').page.path}" />
+                        <form method="get" action="" class="layout-switch">
+                            <div class="select">
+                                <select>
+                                    <c:choose>
+                                        <c:when test="${slingRequest.requestPathInfo.selectorString == 'table' || (profile.valueMap.defaultLayout == 'table' && slingRequest.requestPathInfo.selectorString != 'grid')}">
+                                            <option value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.grid.html${slingRequest.requestPathInfo.suffix}">Grid</option>
+                                            <option selected value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.table.html${slingRequest.requestPathInfo.suffix}">Table</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option selected value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.grid.html${slingRequest.requestPathInfo.suffix}">Grid</option>
+                                            <option value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.table.html${slingRequest.requestPathInfo.suffix}">Table</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </select>
+                            </div>
+                            <div class="icon is-small is-left">
+                                <c:choose>
+                                    <c:when test="${slingRequest.requestPathInfo.selectorString == 'table' || (profile.valueMap.defaultLayout == 'table' && slingRequest.requestPathInfo.selectorString != 'grid')}">
+                                        <i class="jam jam-unordered-list"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <i class="jam jam-grid"></i>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
 </nav>

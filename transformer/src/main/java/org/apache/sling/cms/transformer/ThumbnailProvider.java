@@ -19,29 +19,29 @@ package org.apache.sling.cms.transformer;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.sling.cms.File;
+import org.apache.sling.api.resource.Resource;
 
 /**
- * Service for retrieving a thumbnail for the specified File object.
+ * Service for retrieving a thumbnail for the specified Resource.
  */
 public interface ThumbnailProvider {
 
     /**
-     * Returns true if the ThumbnailProvider applies for the specified file.
+     * Returns true if the ThumbnailProvider applies for the specified resource.
      * 
-     * @param file the file to check
-     * @return true if this ThumbnailProvider will create a thumbnail for this file,
-     *         false otherwise
+     * @param resource the resource to check
+     * @return true if this ThumbnailProvider will create a thumbnail for this
+     *         resource, false otherwise
      */
-    boolean applies(File file);
+    boolean applies(Resource resource);
 
     /**
-     * Get the thumbnail from the specified file.
+     * Get the thumbnail from the specified resource.
      * 
-     * @param file the file from which to retrieve the thumbnail
+     * @param resource the resource from which to retrieve the thumbnail
      * @return the thumbnail
      * @throws IOException an exception occurs retrieving the thumbnail
      */
-    InputStream getThumbnail(File file) throws IOException;
+    InputStream getThumbnail(Resource resource) throws IOException;
 
 }

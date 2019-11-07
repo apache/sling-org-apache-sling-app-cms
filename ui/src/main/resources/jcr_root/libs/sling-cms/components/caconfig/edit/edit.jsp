@@ -18,5 +18,7 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${slingRequest.requestPathInfo.suffixResource != null}">
-    <sling:include resource="${slingRequest.requestPathInfo.suffixResource}" />
+    <div class="scroll-container">
+        <sling:include resource="${slingRequest.requestPathInfo.suffixResource}" />
+    </div>
 </c:if>

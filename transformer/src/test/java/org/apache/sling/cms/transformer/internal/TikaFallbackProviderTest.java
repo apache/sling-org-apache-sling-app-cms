@@ -20,9 +20,8 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 
-import org.apache.sling.cms.File;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.transformer.helpers.SlingCMSContextHelper;
-import org.apache.sling.cms.transformer.internal.TikaFallbackProvider;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -37,13 +36,12 @@ public class TikaFallbackProviderTest {
     @Rule
     public final SlingContext context = new SlingContext();
 
-    private File docxFile;
+    private Resource docxFile;
 
     @Before
     public void init() {
         SlingCMSContextHelper.initContext(context);
-        docxFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.docx")
-                .adaptTo(File.class);
+        docxFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.docx");
     }
 
     @Test

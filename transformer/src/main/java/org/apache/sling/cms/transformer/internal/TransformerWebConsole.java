@@ -28,9 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.felix.webconsole.AbstractWebConsolePlugin;
 import org.apache.felix.webconsole.WebConsoleConstants;
-import org.apache.sling.cms.transformer.FileThumbnailTransformer;
 import org.apache.sling.cms.transformer.ThumbnailProvider;
 import org.apache.sling.cms.transformer.TransformationHandler;
+import org.apache.sling.cms.transformer.Transformer;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -55,7 +55,7 @@ public class TransformerWebConsole extends AbstractWebConsolePlugin {
 
     @SuppressWarnings({ "squid:S2078", "squid:S2226" }) // ignore since this field is is injected by OSGi
     @Reference
-    private transient FileThumbnailTransformer fileThumbnailTransformer;
+    private transient Transformer transformer;
 
     @Override
     public String getTitle() {
@@ -75,16 +75,15 @@ public class TransformerWebConsole extends AbstractWebConsolePlugin {
         pw.println("<pre>");
         pw.println("Registered Thumbnail Providers");
         pw.println("========================");
-        List<ThumbnailProvider> providers = ((FileThumbnailTransformerImpl) fileThumbnailTransformer)
-                .getThumbnailProviders();
+        List<ThumbnailProvider> providers = ((TransformerImpl) transformer).getThumbnailProviders();
         Lists.reverse(providers).forEach(p -> pw.println(p.getClass().getName()));
         pw.println("</pre><br/>");
         pw.println("<pre>");
         pw.println("Registered Transformation Handlers");
         pw.println("========================");
 
-        List<TransformationHandler> handlers = ((FileThumbnailTransformerImpl) fileThumbnailTransformer).getHandlers();
-        handlers.forEach(h -> pw.println(h.getClass().getName()));
+        List<TransformationHandler> handlers = ((TransformerImpl) transformer).getHandlers();
+        handlers.forEach(h -> pw.println(h.getResourceType() + "=" + h.getClass().getCanonicalName()));
         pw.println("</pre>");
         pw.println("</div>");
     }

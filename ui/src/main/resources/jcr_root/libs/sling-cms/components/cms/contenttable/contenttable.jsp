@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <div class="reload-container table__wrapper" data-path="${resource.path}.html${slingRequest.requestPathInfo.suffix}">
+ <div class="reload-container table__wrapper scroll-container contentnav" data-path="${resource.path}.html${slingRequest.requestPathInfo.suffix}">
     <form method="get" class="table__filter">
         <p class="control has-icons-left">
             <label class="is-vhidden" for="search-term">Search</label>
@@ -46,7 +46,7 @@
             <c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}" varStatus="status">
                 <sling:getResource var="typeConfig" base="${resource}" path="types/${child.valueMap['jcr:primaryType']}" />
                 <c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
-                    <tr class="sortable__row" data-resource="${child.path}" data-type="${typeConfig.path}">
+                    <tr class="contentnav__item sortable__row" data-resource="${child.path}" data-type="${typeConfig.path}">
                         <td class="Cell-Static" title="# ${status.index + 1}" data-sort-value="<fmt:formatNumber pattern="0000" value="${count}" />">
                             ${count}
                         </td>
