@@ -42,7 +42,6 @@
         }
     });
     
-
     rava.bind('.contentnav', {
         callbacks : {
             created: function () {

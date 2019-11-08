@@ -41,7 +41,7 @@ public class TransformationManagerImpl implements TransformationManager {
 
     @Override
     public List<Transformation> getTransformations() {
-        Collection<Resource> transformationResources = configResourceResolver.getResourceCollection(resource, "file",
+        Collection<Resource> transformationResources = configResourceResolver.getResourceCollection(resource, "files",
                 "transformations");
         return transformationResources.stream().map(r -> r.adaptTo(Transformation.class)).collect(Collectors.toList());
     }
