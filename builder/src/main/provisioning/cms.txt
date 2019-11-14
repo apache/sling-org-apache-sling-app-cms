@@ -101,9 +101,10 @@
         allow   jcr:read    on /
     end
     create service user sling-cms-transformer
-    set ACL for sling-cms-metadata
+    set ACL for sling-cms-transformer
         allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /content
-        allow   jcr:read    on /conf
+        allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /static
+        allow   jcr:read    on /
     end
     create service user sling-rewriter
     set ACL for sling-rewriter
