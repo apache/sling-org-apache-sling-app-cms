@@ -19,9 +19,15 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="modifiedProperty" value="${colConfig.valueMap.subPath}jcr:lastModified" />
 <c:set var="modifiedByProperty" value="${colConfig.valueMap.subPath}jcr:lastModifiedBy" />
-<fmt:formatDate var="lastModified" type = "both"  dateStyle = "medium" timeStyle = "medium" value="${resource.valueMap[modifiedProperty].time}" />
-<c:set var="colValue" value="${lastModified} - ${resource.valueMap[modifiedByProperty]}" />
-<td title="${sling:encode(colValue,'HTML_ATTR')}">
-	<sling:encode value="${lastModified}" mode="HTML" /><br/>
-	<sling:encode value="${resource.valueMap[modifiedByProperty]}" mode="HTML" />
-</td>
+<c:catch var="dateEx">
+    <fmt:formatDate var="lastModified" type = "both"  dateStyle = "medium" timeStyle = "medium" value="${resource.valueMap[modifiedProperty].time}" />
+    <c:set var="colValue" value="${lastModified} - ${resource.valueMap[modifiedByProperty]}" />
+    <td title="${sling:encode(colValue,'HTML_ATTR')}">
+        <sling:encode value="${lastModified}" mode="HTML" /><br/>
+        <sling:encode value="${resource.valueMap[modifiedByProperty]}" mode="HTML" />
+    </td>
+</c:catch>
+<c:if test="${dateEx != null}">
+    <td title="">
+    </td>
+</c:if>
