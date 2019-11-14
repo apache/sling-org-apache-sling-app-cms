@@ -1,0 +1,35 @@
+{
+    "jcr:primaryType": "sling:OrderedFolder",
+    "jcr:content": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:title": "Sling CMS Thumbnails"
+    },
+    "file.png": {
+        "jcr:primaryType": "sling:File",
+        "jcr:content": {
+            "jcr:primaryType": "sling:FileContent",
+            "jcr:mimeType": "image/png"
+        }
+    },
+    "folder.png": {
+        "jcr:primaryType": "sling:File",
+        "jcr:content": {
+            "jcr:primaryType": "sling:FileContent",
+            "jcr:mimeType": "image/png"
+        }
+    },
+    "page.png": {
+        "jcr:primaryType": "sling:File",
+        "jcr:content": {
+            "jcr:primaryType": "sling:FileContent",
+            "jcr:mimeType": "image/png"
+        }
+    },
+    "site.png": {
+        "jcr:primaryType": "sling:File",
+        "jcr:content": {
+            "jcr:primaryType": "sling:FileContent",
+            "jcr:mimeType": "image/png"
+        }
+    }
+}
