@@ -136,7 +136,8 @@
                             jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy,
                             jcr_root/libs/sling/servlet/errorhandler;overwriteProperties:=true;overwrite:=true;uninstall:=true;path:=/libs/sling/servlet/errorhandler,
                             jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,
-                            jcr_root/static/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/static/clientlibs/sling-cms;ignoreImportProviders:=xml
+                            jcr_root/static/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/static/clientlibs/sling-cms;ignoreImportProviders:=xml,
+                            jcr_root/static/sling-cms/thumbnails;overwrite:=true;uninstall:=true;path:=/static/sling-cms/thumbnails;ignoreImportProviders:=xml
                         </Sling-Initial-Content>
                         <Include-Resource>{maven-resources},${basedir}/target/frontend/dist</Include-Resource>
                     </instructions>
