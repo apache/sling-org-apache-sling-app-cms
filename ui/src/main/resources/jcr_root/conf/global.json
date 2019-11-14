@@ -90,8 +90,8 @@
                     "jcr:primaryType": "nt:unstructured",
                     "size": {
                         "jcr:primaryType": "nt:unstructured",
-                        "height": "600",
-                        "width": "480",
+                        "height": "480",
+                        "width": "600",
                         "sling:resourceType": "sling-cms/components/caconfig/transformationhandlers/size"
                     },
                     "crop": {
