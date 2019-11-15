@@ -74,7 +74,7 @@ gulp.task('cms-assets', function() {
 });
 
 gulp.task('cms-fonts', function() {
-    return gulp.src(['./node_modules/jam-icons/fonts/*','./src/fonts/*'])
+    return gulp.src(['./node_modules/jam-icons/fonts/*',srcDir('fonts/*')])
         .pipe(gulp.dest(distDir('jcr_root/static/clientlibs/sling-cms/fonts')));
 });
 
