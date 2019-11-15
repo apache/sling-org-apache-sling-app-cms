@@ -63,6 +63,11 @@ h5 {
     font-size: 120%;
 }
 
+.breadcrumb {
+    display:flex;
+    justify-content: space-between;
+} 
+
 .card.is-selected {
     border: 1px solid $violet;
 }
@@ -78,6 +83,11 @@ h5 {
         height: 100%;
         overflow: visible;
     }
+}
+
+.contentnav-search {
+    display: flex;
+    margin-block-end: 0;
 }
 
 .has-padding-1 {
@@ -114,6 +124,10 @@ h5 {
 
 .is-draggable {
     position: relative;
+}
+
+.is-selected .is-linked {
+    border: 1px solid $primary;
 }
 
 .is-vhidden {
@@ -184,7 +198,7 @@ h5 {
 
 .scroll-container {
     overflow-y: auto;
-    height: calc(100vh - 190px);
+    height: calc(100vh - 205px);
     overflow-x: hidden;
     padding: 2px;
     @media screen and (max-width: $tablet - 1px) {
@@ -211,11 +225,6 @@ h5 {
 #search-results .tile {
     flex-wrap: wrap;
     padding: .5em;
-}
-
-.table__filter {
-    display: inline-block;
-    float: right;
 }
 
 .table__wrapper {

@@ -46,7 +46,7 @@
         callbacks : {
             created: function () {
                 let cnav = this;
-                var search = cnav.querySelector('input[name=search]'),
+                var search = document.querySelector('.contentnav-search input[name=search]'),
                     filter = function (event) {
                         event.stopPropagation();
                         event.preventDefault();
@@ -71,9 +71,9 @@
                             item.classList.add('is-hidden');
                         }
                     });
-                    cnav.querySelector('input[name=search]').value = resourceParam;
+                    document.querySelector('.contentnav-search input[name=search]').value = resourceParam;
                 } else if (searchParam) {
-                    cnav.querySelector('input[name=search]').value = searchParam;
+                    document.querySelector('.contentnav-search input[name=search]').value = searchParam;
                     filter(new Event('fake'));
                 }
             }

@@ -18,15 +18,6 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="reload-container scroll-container contentnav" data-path="${resource.path}.grid.html${slingRequest.requestPathInfo.suffix}">
-    <form method="get" class="table__filter">
-        <p class="control has-icons-left">
-            <label class="is-vhidden" for="search-term">Search</label>
-            <input class="input is-small" type="text" name="search" id="search-term">
-            <span class="icon is-small is-left">
-                <i class="jam jam-search" aria-hidden="true"></i>
-            </span>
-        </p>
-    </form>
     <div class="tile is-ancestor">
         <c:forEach var="child" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}" varStatus="status">
             <c:set var="showCard" value="${false}" />
