@@ -59,9 +59,10 @@
                             }
                         });
                     };
-                search.addEventListener('keyup', filter);
-                search.addEventListener('change', filter);
-                
+                if(search){
+                    search.addEventListener('keyup', filter);
+                    search.addEventListener('change', filter);
+                }
                 if (resourceParam) {
                     cnav.querySelectorAll('.contentnav__item').forEach(function (item) {
                         if (item.querySelector('*[data-value="' + resourceParam + '"]')) {
