@@ -15,6 +15,33 @@
             "titleProperty": "jcr:content/jcr:title",
             "required": true
         },
+        "transformation": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Transformation",
+            "name": "transformation",
+            "required": false,
+            "optionsScript": "/apps/reference/components/general/image/transformations.jsp"
+        },
+        "transformationFormat": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Transformation Format",
+            "name": "transformationFormat",
+            "required": false,
+            "options": {
+                "png": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "label": "PNG",
+                    "value": "png"
+                },
+                "jpg": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "label": "Jpeg",
+                    "value": "jpeg"
+                }
+            }
+        },
         "alt": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/editor/fields/text",

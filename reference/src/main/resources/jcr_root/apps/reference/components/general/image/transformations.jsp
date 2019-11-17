@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@include file="/libs/sling-cms/global.jsp"%>
-<c:if test="${not empty properties.src}">
-    <c:if test="${not empty properties.transformation}">
-        <c:set var="transform" value=".transform/${properties.transformation}.${properties.transformationFormat}" />
-    </c:if>
-    <img src="${properties.src}${transform}" alt="${properties.alt}" class="${properties.imageClass}" />
-</c:if>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.transformer.TransformationManager" var="transformationManager" />
+<option value="">None</option>
+<c:forEach var="transformation" items="${transformationManager.transformations}">
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == transformation.name ? 'selected' : ''} value="${sling:encode(transformation.name,'HTML_ATTR')}">
+        ${sling:encode(transformation.name,'HTML')}
+    </option>
+</c:forEach>
