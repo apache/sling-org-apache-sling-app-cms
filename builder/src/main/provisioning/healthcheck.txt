@@ -38,7 +38,7 @@
     hc.tags=["systemalive"]
     targetStartLevel=I"30"
     
-  org.apache.felix.hc.generalchecks.ServicesCheck-systemalive
+  org.apache.felix.hc.generalchecks.ServicesCheck
     hc.tags=["systemalive"]
     services.list=[
       "org.apache.sling.jcr.api.SlingRepository",

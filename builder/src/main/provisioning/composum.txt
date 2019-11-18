@@ -17,7 +17,7 @@
 #  under the License.
 [feature name=composum-nodes]
 [variables]
-    composum.nodes.version=1.11.3
+    composum.nodes.version=1.11.5
 
 [artifacts startLevel=20]
 
@@ -26,7 +26,7 @@
   com.composum.sling.core/composum-sling-core-jslibs/${composum.nodes.version}
   com.composum.sling.core/composum-sling-package-manager/${composum.nodes.version}
   com.composum.sling.core.osgi/composum-sling-osgi-package-installer/${composum.nodes.version}
-  org.apache.jackrabbit.vault/org.apache.jackrabbit.vault/3.2.8
+  org.apache.jackrabbit.vault/org.apache.jackrabbit.vault/3.4.0
 
 [configurations]
 
