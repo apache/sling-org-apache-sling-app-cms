@@ -18,6 +18,7 @@
  - [Configuring File Editor](configure-file-editor.md)
  - [Creating a Template](templates.md)
  - [Error Pages](error-pages.md)
+ - [Image Transformations](image-transformations.md)
  - [MongoDB Support](mongodb.md)
  - [Securing Sling CMS](securing.md)
  - [User Generated Content](user-generated-content.md)
