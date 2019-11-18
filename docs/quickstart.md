@@ -38,3 +38,8 @@ This option allows you to install Sling CMS and Apache web server, which allows 
         127.0.0.1 cms.sling.apache.org
         
  5. Open a browser to [http://cms.sling.apache.org:8090/](http://cms.sling.apache.org:8090/) to view Sling CMS or [http://sling2.apache.org:8090/](http://sling2.apache.org:8090/) to view the published site
+
+## Read More About Using Sling CMS
+
+ - https://blog.mahsumdemir.com/bulding-my-blog/apache-sling-cms.html
+ - https://blogs.perficientdigital.com/2018/12/11/building-a-zero-cost-website-with-apache-sling-cms/
