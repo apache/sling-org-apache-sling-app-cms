@@ -83,6 +83,23 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:forEach>
+
+                                        <c:choose>
+                                            <c:when test="${sling:getRelativeResource(child,'jcr:content').valueMap.published}">
+                                                <a class="button Fetch-Modal" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                                                    <i class="jam jam-check">
+                                                        <span class="is-vhidden">Content Published</span>
+                                                    </i>
+                                                </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a class="button Fetch-Modal" href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
+                                                    <i class="jam jam-close">
+                                                        <span class="is-vhidden">Content Not Published</span>
+                                                    </i>
+                                                </a>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
                                 <footer class="card-footer">
