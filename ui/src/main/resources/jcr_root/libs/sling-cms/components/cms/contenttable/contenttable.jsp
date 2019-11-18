@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <div class="reload-container table__wrapper scroll-container contentnav" data-path="${resource.path}.html${slingRequest.requestPathInfo.suffix}">
+ <div class="reload-container table__wrapper scroll-container contentnav" data-path="${resource.path}.table.html${slingRequest.requestPathInfo.suffix}">
     <table class="table is-fullwidth is-striped sortable">
         <thead>
             <tr>
