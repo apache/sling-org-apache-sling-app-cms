@@ -19,21 +19,20 @@ package org.apache.sling.cms.core.internal.filters;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
-
 /**
  * Configuration for the CMSSecurityFilter
  */
 @ObjectClassDefinition(name = "%cms.security.filter.name", description = "%cms.security.filter.description", localization = "OSGI-INF/l10n/bundle")
 public @interface CMSSecurityFilterConfig {
 
-	@AttributeDefinition(name = "%hostDomains.name", description = "%hostDomains.description")
-	String[] hostDomains();
+    @AttributeDefinition(name = "%hostDomains.name", description = "%hostDomains.description")
+    String[] hostDomains() default "localhost";
 
-	@AttributeDefinition(name = "%allowedPatterns.name", description = "%allowedPatterns.description")
-	String[] allowedPatterns() default { "^\\/content\\/starter/.*$", "^\\/static/.*$",
-			"^\\/system\\/sling\\/form\\/login$" };
+    @AttributeDefinition(name = "%allowedPatterns.name", description = "%allowedPatterns.description")
+    String[] allowedPatterns() default { "^\\/content\\/starter/.*$", "^\\/static/.*$",
+            "^\\/system\\/sling\\/form\\/login$" };
 
-	@AttributeDefinition(name = "%group.name", description = "%group.description")
-	String group();
+    @AttributeDefinition(name = "%group.name", description = "%group.description")
+    String group();
 
 }

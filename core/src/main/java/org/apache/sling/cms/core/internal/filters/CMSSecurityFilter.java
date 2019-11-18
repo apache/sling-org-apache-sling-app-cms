@@ -41,6 +41,8 @@ import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.cms.CMSConstants;
+import org.apache.sling.cms.CMSUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -63,6 +65,8 @@ public class CMSSecurityFilter implements Filter {
     private CMSSecurityFilterConfig config;
 
     private List<Pattern> patterns = new ArrayList<>();
+
+    private static final String[] VALID_METHODS = new String[] { "GET", "HEAD" };
 
     @Modified
     @Activate
@@ -116,7 +120,6 @@ public class CMSSecurityFilter implements Filter {
                         allowed = true;
                     }
                 }
-
             }
 
             // permission checked failed, so return an unauthorized error
@@ -126,10 +129,13 @@ public class CMSSecurityFilter implements Filter {
                 ((HttpServletResponse) response).sendError(401);
                 return;
             }
-        } else {
-            log.trace("Not filtering request to host {}", request.getServerName());
+        } else if (ArrayUtils.contains(VALID_METHODS, slingRequest.getMethod())) {
+            Object editEnabled = slingRequest.getAttribute(CMSConstants.ATTR_EDIT_ENABLED);
+            if (!"true".equals(editEnabled) && !CMSUtils.isPublished(slingRequest.getResource())) {
+                ((HttpServletResponse) response).sendError(404);
+                return;
+            }
         }
-
         chain.doFilter(request, response);
     }
 
