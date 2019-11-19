@@ -34,46 +34,48 @@
     </ul>
 </nav>
 <h2><fmt:message key="${job.properties._titleKey}" /></h2>
-<dl>
-    <dt><fmt:message key="slingcms.state" /></dt>
-    <dd>${job.jobState}</dd>
-    <c:if test="${not empty job.resultMessage}">
-        <dt><fmt:message key="slingcms.jobs.resultmessage" /></dt>
-        <dd>${sling:encode(job.resultMessage,'HTML')}</dd>
-    </c:if>
-    <dt><fmt:message key="slingcms.started" /></dt>
-    <dd><fmt:formatDate value="${job.created.time}" type="both" dateStyle="long" timeStyle="long" /></dd>
-    <c:if test="${job.finishedDate != null}">
-        <dt><fmt:message key="slingcms.finished" /></dt>
-        <dd>
-            <fmt:formatDate value="${job.finishedDate.time}" type="both" dateStyle="long" timeStyle="long" />
-        </dd>
-    </c:if>
-    <c:if test="${job.progressStepCount > 0}">
-        <dt><fmt:message key="slingcms.jobs.progress" /></dt>
-        <dd>
-            ${job.finishedProgressStep} / ${job.progressStepCount}
-        </dd>
-    </c:if>
-    <c:if test="${job.progressLog != null && fn:length(job.progressLog) > 0}">
-        <dt><fmt:message key="slingcms.jobs.progresslog" /></dt>
+<div class="scroll-container">
+    <dl>
+        <dt><fmt:message key="slingcms.state" /></dt>
+        <dd>${job.jobState}</dd>
+        <c:if test="${not empty job.resultMessage}">
+            <dt><fmt:message key="slingcms.jobs.resultmessage" /></dt>
+            <dd>${sling:encode(job.resultMessage,'HTML')}</dd>
+        </c:if>
+        <dt><fmt:message key="slingcms.started" /></dt>
+        <dd><fmt:formatDate value="${job.created.time}" type="both" dateStyle="long" timeStyle="long" /></dd>
+        <c:if test="${job.finishedDate != null}">
+            <dt><fmt:message key="slingcms.finished" /></dt>
+            <dd>
+                <fmt:formatDate value="${job.finishedDate.time}" type="both" dateStyle="long" timeStyle="long" />
+            </dd>
+        </c:if>
+        <c:if test="${job.progressStepCount > 0}">
+            <dt><fmt:message key="slingcms.jobs.progress" /></dt>
+            <dd>
+                ${job.finishedProgressStep} / ${job.progressStepCount}
+            </dd>
+        </c:if>
+        <c:if test="${job.progressLog != null && fn:length(job.progressLog) > 0}">
+            <dt><fmt:message key="slingcms.jobs.progresslog" /></dt>
+            <dd>
+                <ul>
+                    <c:forEach var="log" items="${job.progressLog}">
+                        <li>${sling:encode(log,'HTML')}</li>
+                    </c:forEach>
+                </ul>
+            </dd>
+        </c:if>
+        <dt><fmt:message key="slingcms.jobs.properties" /></dt>
         <dd>
             <ul>
-                <c:forEach var="log" items="${job.progressLog}">
-                    <li>${sling:encode(log,'HTML')}</li>
+                <c:forEach var="el" items="${job.properties}">
+                    <c:if test="${not fn:contains(el.key, ':') && not fn:startsWith(el.key, '_') && not fn:startsWith(el.key, 'event.job.')}">
+                        <li><strong>${sling:encode(el.key,'HTML')}:</strong>
+                        ${sling:encode(el.value,'HTML')}
+                    </c:if>
                 </c:forEach>
             </ul>
         </dd>
-    </c:if>
-    <dt><fmt:message key="slingcms.jobs.properties" /></dt>
-    <dd>
-        <ul>
-            <c:forEach var="el" items="${job.properties}">
-                <c:if test="${not fn:contains(el.key, ':') && not fn:startsWith(el.key, '_') && not fn:startsWith(el.key, 'event.job.')}">
-                    <li><strong>${sling:encode(el.key,'HTML')}:</strong>
-                    ${sling:encode(el.value,'HTML')}
-                </c:if>
-            </c:forEach>
-        </ul>
-    </dd>
-</dl>
+    </dl>
+</div>
