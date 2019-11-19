@@ -111,7 +111,6 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
                 log.warn("Content resource is null");
                 return;
             }
-
             Map<String, Object> properties = null;
             Resource metadata = content.getChild(CMSConstants.NN_METADATA);
             if (metadata != null) {
@@ -151,7 +150,6 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
             putMetadata(properties, name, md);
         }
         return properties;
-
     }
 
     private void putMetadata(Map<String, Object> properties, String name, Metadata metadata) {
