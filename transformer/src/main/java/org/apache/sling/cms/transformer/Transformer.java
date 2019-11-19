@@ -30,10 +30,10 @@ public interface Transformer {
     /**
      * Transforms the resource
      * 
-     * @param resource the resource to transform
-     * @param commands the commands to execute
-     * @param format   the format of the stream to return
-     * @param out      the OutputStream to which to write the transformed file
+     * @param resource       the resource to transform
+     * @param transformation the transformation to execute
+     * @param format         the format of the stream to return
+     * @param out            the OutputStream to which to write the transformed file
      * @throws IOException an exception occurs transforming the resource
      */
     void transform(Resource resource, Transformation transformation, OutputFileFormat format, OutputStream out)
