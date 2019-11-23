@@ -14,10 +14,18 @@
 
 ## 0.12.0 - CURRENT VERSION
 
+Focus on continued improvements to user experience, including significant improvments to the look and feel of the sites screens. Cleaned up inconsistencies in the breadcrumbs. New drag and drop re-ordering and added basic editable forms and significantly improved image transformations.
+
+ * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.14.0)
+ * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.14.0)
+
+## 0.12.0
+
 Focus on continued improvements to user experience, including significant optimizations to front end page performance and accessibility improvements. HTML5 support in rewriter pipelines. Improvements around file support including metadata extraction and thumbnail support. 
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.12.0)
  * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.12.0)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/5d6043e23efcfee80dbac4ceca84247c7e296381)
 
 ## 0.11.2
 
