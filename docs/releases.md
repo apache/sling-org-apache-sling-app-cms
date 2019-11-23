@@ -12,7 +12,7 @@
 
 # Releases
 
-## 0.12.0 - CURRENT VERSION
+## 0.14.0 - CURRENT VERSION
 
 Focus on continued improvements to user experience, including significant improvments to the look and feel of the sites screens. Cleaned up inconsistencies in the breadcrumbs. New drag and drop re-ordering and added basic editable forms and significantly improved image transformations.
 
