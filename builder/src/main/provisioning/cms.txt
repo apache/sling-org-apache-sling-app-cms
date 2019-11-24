@@ -38,7 +38,7 @@
     org.apache.sling/org.apache.sling.cms.core/${cms.version}
     org.apache.sling/org.apache.sling.cms.reference/${cms.version}
     org.apache.sling/org.apache.sling.cms.transformer/${cms.version}
-    org.apache.tika/tika-bundle/1.21
+    org.apache.tika/tika-bundle/1.22
 
 [:repoinit]
 
