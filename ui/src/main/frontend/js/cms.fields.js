@@ -17,13 +17,13 @@
  * under the License.
  */
 
-/** 
+/**
  * Utility scripts for decorating form fields
  */
 /* eslint-env browser, es6 */
 (function (rava, wysihtml, wysihtmlParserRules) {
     'use strict';
-    
+
     /* Support for file uploads */
     var setProgress = function(meter, progress){
         meter.innerText = Math.round(progress)+'%';
@@ -31,10 +31,10 @@
     }
     var uploadFile = function(meter, action, file) {
         var formData = new FormData();
-        
+
         formData.append('*', file);
         formData.append("*@TypeHint", "sling:File");
-        
+
         var xhr = new XMLHttpRequest();
         xhr.upload.addEventListener('loadstart', function(){
             setProgress(meter, 0);
@@ -76,7 +76,7 @@
         it.querySelector('.file-item-name').innerText = file.name;
         ctr.classList.remove('is-hidden');
         ctr.appendChild(it);
-        
+
         uploadFile(meter,scope.closest('form').action, file);
     }
     rava.bind(".file", {
@@ -116,15 +116,11 @@
                 close.addEventListener('click', function(event){
                     window.Sling.CMS.ui.reloadContext();
                 });
-            }
-        },
-        events: {
-            input: {
-                change : function (event) {
+                field.querySelector('input').addEventListener('change', function(event){
                     for(var i = 0; i < event.target.files.length; i++){
                         handleFile(event.target, event.target.files[i]);
                     }
-                }
+                })
             }
         }
     });
@@ -141,7 +137,7 @@
             }
         }
     });
-    
+
     /* Support for repeating form fields */
     rava.bind(".repeating", {
         callbacks: {
@@ -169,7 +165,7 @@
             }
         }
     });
-    
+
     rava.bind('.rte', {
         callbacks : {
             created : function () {
