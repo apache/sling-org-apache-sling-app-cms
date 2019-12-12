@@ -22,6 +22,6 @@ A reference implementation of a simple Content Management System built in Apache
 Interested in contributing? Here's some great places to get started:
 
  - [Backlog](https://issues.apache.org/jira/issues/?jql=project%20%3D%20SLING%20AND%20status%20%3D%20Open%20AND%20component%20in%20(%22App%20CMS%22%2C%20%22App%20CMS%20Reference%22))
- - [Good Starting Issues](https://issues.apache.org/jira/issues/?jql=project%20%3D%20SLING%20AND%20status%20%3D%20Open%20AND%20component%20in%20(%22App%20CMS%22%2C%20%22App%20CMS%20Reference%22))
+ - [Good Starting Issues](https://issues.apache.org/jira/issues/?jql=project%20%3D%20SLING%20AND%20status%20%3D%20Open%20AND%20component%20in%20(%22App%20CMS%22%2C%20%22App%20CMS%20Reference%22)%20AND%20labels%20%3D%20newbie)
 
 You will find all the necessary details about how you can do this at https://sling.apache.org/contributing.html.
