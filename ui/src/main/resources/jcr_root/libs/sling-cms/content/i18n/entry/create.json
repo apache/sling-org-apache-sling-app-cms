@@ -31,11 +31,11 @@
                         "name": "sling:message",
                         "value": ""
                     },
-                    "nameHint": {
+                    "nameParam": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/hidden",
-                        "value": "entry",
-                        "name": ":nameHint"
+                        "name": ":nameParam",
+                        "value": "sling:key"
                     },
                     "primaryType": {
                         "jcr:primaryType": "nt:unstructured",

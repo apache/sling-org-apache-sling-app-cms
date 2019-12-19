@@ -16,164 +16,162 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+/* global wysihtml, wysihtmlParserRules */
 
-/**
- * Utility scripts for decorating form fields
- */
-/* eslint-env browser, es6 */
-(function (rava, wysihtml, wysihtmlParserRules) {
-    'use strict';
+rava.bind('.file', {
+  callbacks: {
+    created() {
+      const field = this;
+      const close = field.closest('form').querySelector('a.close');
 
-    /* Support for file uploads */
-    var setProgress = function(meter, progress){
-        meter.innerText = Math.round(progress)+'%';
+      function setProgress(m, progress) {
+        const meter = m;
+        meter.innerText = `${Math.round(progress)}%`;
         meter.value = Math.round(progress);
-    }
-    var uploadFile = function(meter, action, file) {
-        var formData = new FormData();
+      }
+      function uploadFile(meter, action, file) {
+        const formData = new FormData();
 
         formData.append('*', file);
-        formData.append("*@TypeHint", "sling:File");
+        formData.append('*@TypeHint', 'sling:File');
 
-        var xhr = new XMLHttpRequest();
-        xhr.upload.addEventListener('loadstart', function(){
-            setProgress(meter, 0);
+        const xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener('loadstart', () => {
+          setProgress(meter, 0);
         }, false);
-        xhr.upload.addEventListener('progress', function(event) {
-            var percent = event.loaded / event.total * 100;
-            setProgress(meter, percent);
+        xhr.upload.addEventListener('progress', (event) => {
+          const percent = (event.loaded / event.total) * 100;
+          setProgress(meter, percent);
         }, false);
-        xhr.upload.addEventListener('load', function(){
-            meter.classList.add('is-info');
+        xhr.upload.addEventListener('load', () => {
+          meter.classList.add('is-info');
         }, false);
-        xhr.addEventListener('readystatechange', function(event) {
-            var status, text, readyState;
-            try {
-                readyState = event.target.readyState;
-                text = event.target.responseText;
-                status = event.target.status;
-            }catch(e) {
+        xhr.addEventListener('readystatechange', (event) => {
+          let status; let text; let
+            readyState;
+          try {
+            readyState = event.target.readyState;
+            text = event.target.responseText;
+            status = event.target.status;
+          } catch (e) {
+            meter.classList.add('is-danger');
+          }
+          if (readyState === 4) {
+            meter.classList.remove('is-info');
+            if (status === 200 && text) {
+              meter.classList.add('is-success');
+            } else {
+              meter.classList.add('is-danger');
+              console.warn('Failed to upload %s, recieved message %s', file.name, text); // eslint-disable-line no-console
             }
-            if (readyState == 4){
-                meter.classList.remove('is-info');
-                if(status == '200' && text) {
-                    meter.classList.add('is-success');
-                } else {
-                    meter.classList.add('is-danger');
-                    console.warn('Failed to upload %s, recieved message %s', file.name, text);
-                }
-            }
+          }
         }, false);
         xhr.open('POST', action, true);
         xhr.send(formData);
-    }
-    var handleFile = function(scope, file){
-        var it = document.createElement('div'),
-            ctr = scope.closest('.control').querySelector('.file-item-container'),
-            meter = null;
+      }
+      function handleFile(scope, file) {
+        const it = document.createElement('div');
+        const ctr = scope.closest('.control').querySelector('.file-item-container');
+        let meter = null;
         it.innerHTML = document.querySelector('.file-item-template').innerHTML;
         meter = it.querySelector('.progress');
         it.querySelector('.file-item-name').innerText = file.name;
         ctr.classList.remove('is-hidden');
         ctr.appendChild(it);
+        uploadFile(meter, scope.closest('form').action, file);
+      }
 
-        uploadFile(meter,scope.closest('form').action, file);
-    }
-    rava.bind(".file", {
-        callbacks: {
-            created : function () {
-                var field = this,
-                    close = field.closest('form').querySelector('a.close');
+      field.addEventListener('dragover', (event) => {
+        event.preventDefault();
+      }, false);
+      field.addEventListener('dragenter', (event) => {
+        event.preventDefault();
+        field.classList.add('is-primary');
+      }, false);
+      field.addEventListener('dragleave', (event) => {
+        event.preventDefault();
+        field.classList.remove('is-primary');
+      }, false);
+      field.addEventListener('drop', (event) => {
+        event.preventDefault();
+        field.classList.remove('is-primary');
+        if (event.dataTransfer.items) {
+          const { items } = event.dataTransfer;
+          for (let i = 0; i < items.length; i++) { // eslint-disable-line no-plusplus
+            if (items[i].kind === 'file') {
+              handleFile(field, items[i].getAsFile());
+            }
+          }
+        } else {
+          const { files } = event.dataTransfer;
+          for (let i = 0; i < files.length; i++) { // eslint-disable-line no-plusplus
+            handleFile(field, files[i]);
+          }
+        }
+      }, false);
+      field.closest('form').querySelector('button[type=submit]').remove();
+      close.innerText = 'Done';
+      close.addEventListener('click', () => {
+        window.Sling.CMS.ui.reloadContext();
+      });
+      field.querySelector('input').addEventListener('change', (event) => {
+        const { files } = event.target;
+        for (let i = 0; i < files.length; i++) { // eslint-disable-line no-plusplus
+          handleFile(field, files[i]);
+        }
+      });
+    },
+  },
+});
 
-                field.addEventListener("dragover", function(event) {
-                    event.preventDefault();
-                }, false);
-                field.addEventListener("dragenter", function(event) {
-                    event.preventDefault();
-                    field.classList.add('is-primary');
-                }, false);
-                field.addEventListener("dragleave", function(event) {
-                    event.preventDefault();
-                    field.classList.remove('is-primary');
-                }, false);
-                field.addEventListener("drop", function(event) {
-                    event.preventDefault();
-                    field.classList.remove('is-primary');
-                    if (event.dataTransfer.items) {
-                        for (var i = 0; i < event.dataTransfer.items.length; i++) {
-                            if (event.dataTransfer.items[i].kind === 'file') {
-                                handleFile(field, event.dataTransfer.items[i].getAsFile());
-                            }
-                        }
-                    } else {
-                        for (var i = 0; i < event.dataTransfer.files.length; i++) {
-                            handleFile(field, event.dataTransfer.files[i]);
-                        }
-                    }
-                }, false);
-                field.closest('form').querySelector('button[type=submit]').remove();
-                close.innerText = 'Done';
-                close.addEventListener('click', function(event){
-                    window.Sling.CMS.ui.reloadContext();
-                });
-                field.querySelector('input').addEventListener('change', function(event){
-                    for(var i = 0; i < event.target.files.length; i++){
-                        handleFile(event.target, event.target.files[i]);
-                    }
-                })
-            }
-        }
-    });
+/* Support for updating the namehint when creating a component */
+rava.bind('.namehint', {
+  callbacks: {
+    created() {
+      const field = this;
+      this.closest('.Form-Ajax').querySelector('select[name="sling:resourceType"]').addEventListener('change', (evt) => {
+        const resourceType = evt.target.value.split('/');
+        field.value = resourceType[resourceType.length - 1];
+      });
+    },
+  },
+});
 
-    /* Support for updating the namehint when creating a component */
-    rava.bind(".namehint", {
-        callbacks: {
-            created : function () {
-                var field = this;
-                this.closest('.Form-Ajax').querySelector('select[name="sling:resourceType"]').addEventListener('change', function (evt) {
-                    var resourceType = evt.target.value.split("\/");
-                    field.value = resourceType[resourceType.length - 1];
-                });
-            }
-        }
-    });
+/* Support for repeating form fields */
+rava.bind('.repeating', {
+  callbacks: {
+    created() {
+      const ctr = this;
+      this.querySelectorAll('.repeating__add').forEach((el) => {
+        el.addEventListener('click', (event) => {
+          event.stopPropagation();
+          event.preventDefault();
+          const node = ctr.querySelector('.repeating__template > .repeating__item').cloneNode(true);
+          ctr.querySelector('.repeating__container').appendChild(node);
+        });
+      });
+    },
+  },
+});
+rava.bind('.repeating__item', {
+  events: {
+    ':scope .repeating__remove': {
+      click(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        this.remove();
+      },
+    },
+  },
+});
 
-    /* Support for repeating form fields */
-    rava.bind(".repeating", {
-        callbacks: {
-            created : function () {
-                var ctr = this;
-                this.querySelectorAll(".repeating__add").forEach(function (el) {
-                    el.addEventListener('click', function (event) {
-                        event.stopPropagation();
-                        event.preventDefault();
-                        var node = ctr.querySelector('.repeating__template > .repeating__item').cloneNode(true);
-                        ctr.querySelector('.repeating__container').appendChild(node);
-                    });
-                });
-            }
-        }
-    });
-    rava.bind(".repeating__item", {
-        events: {
-            ":scope .repeating__remove" : {
-                click: function (event) {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    this.remove();
-                }
-            }
-        }
-    });
-
-    rava.bind('.rte', {
-        callbacks : {
-            created : function () {
-                new wysihtml.Editor(this.querySelector('.rte-editor'), {
-                    toolbar: this.querySelector('.rte-toolbar'),
-                    parserRules:  wysihtmlParserRules
-                });
-            }
-        }
-    });
-}(window.rava = window.rava || {}, window.wysihtml = window.wysihtml || {}, window.wysihtmlParserRules = window.wysihtmlParserRules || {}));
+rava.bind('.rte', {
+  callbacks: {
+    created() {
+      new wysihtml.Editor(this.querySelector('.rte-editor'), { // eslint-disable-line no-new, new-cap
+        toolbar: this.querySelector('.rte-toolbar'),
+        parserRules: wysihtmlParserRules,
+      });
+    },
+  },
+});

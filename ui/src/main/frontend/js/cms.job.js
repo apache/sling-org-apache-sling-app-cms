@@ -16,27 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/* eslint-env browser, es6 */
-(function (rava) {
-    'use strict';
-    
-    rava.bind('.job-properties-container', {
-        callbacks : {
-            created :  function () {
-                var container = this;
-                document.querySelector(container.dataset.source).addEventListener('change', function () {
-                    var sourceSelect = this,
-                        config = this.value;
-                    sourceSelect.disabled = true;
-                    container.innerHTML = '';
-                    fetch(container.dataset.path + config).then(function (response) {
-                        return response.text();
-                    }).then(function (formHtml) {
-                        container.innerHTML = formHtml;
-                        sourceSelect.disabled = false;
-                    });
-                });
-            }
+
+rava.bind('.job-properties-container', {
+  callbacks: {
+    created() {
+      const container = this;
+      async function handleChange() {
+        const sourceSelect = this;
+        const config = this.value;
+        sourceSelect.disabled = true;
+        container.innerHTML = '';
+
+        const response = await fetch(container.dataset.path + config);
+        if (Sling.CMS.utils.ok(response)) {
+          const formHtml = await response.text();
+          container.innerHTML = formHtml;
+          sourceSelect.disabled = false;
         }
-    });
-}(window.rava = window.rava || {}));
+      }
+      document.querySelector(container.dataset.source).addEventListener('change', handleChange);
+    },
+  },
+});

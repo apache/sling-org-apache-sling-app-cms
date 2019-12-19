@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="scroll-container">
+<div class="scroll-container reload-container" data-path="${resource.path}.html${slingRequest.requestPathInfo.suffix}">
     <sling:include path="${resource.path}" resourceType="sling-cms/components/general/container" />
     <c:forEach var="language" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
         <c:if test="${firstChild == null && not empty language.valueMap['jcr:language']}">
@@ -71,10 +71,9 @@
                                             </c:if>
                                         </c:forEach>
                                         <c:if test="${keyfound == 'false'}">
-                                            <c:set var="rand" value="${helper.random}" />
-                                            <input name="${language.name}/entry_${rand}/sling:message" class="input" type="text" value="" />
-                                            <input name="${language.name}/entry_${rand}/sling:key" type="hidden" value="${key}" />
-                                            <input name="${language.name}/entry_${rand}/jcr:primaryType" type="hidden" value="sling:MessageEntry" />
+                                            <input name="${language.name}/${key}/sling:message" class="input" type="text" value="" />
+                                            <input name="${language.name}/${key}/sling:key" type="hidden" value="${key}" />
+                                            <input name="${language.name}/${key}/jcr:primaryType" type="hidden" value="sling:MessageEntry" />
                                         </c:if>
                                     </td>
                                 </c:if>
