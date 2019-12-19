@@ -16,51 +16,45 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/* eslint-env browser, es6 */
-(function (rava) {
-    'use strict';
-    
-    
-    rava.bind('.labelfield', {
-        events: {
-            '.labelfield__add, .labelfield__add *': {
-                click: function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    var context = this,
-                        span = document.createElement('span'),
-                        val = context.querySelector('.labelfield__field input').value,
-                        found = false,
-                        title = context.querySelector('option[value="' + val + '"]').innerText;
-                    span.innerHTML = context.querySelector('.labelfield__template').innerHTML;
-                    context.querySelectorAll('.labelfield__item input').forEach(function (el) {
-                        if (el.value === val) {
-                            found = true;
-                        }
-                    });
-                    if (found) {
-                        return false;
-                    }
-                    span.querySelector('input').value = val;
 
-                    if (title !== '') {
-                        span.querySelector('.labelfield__title').innerText = title;
-                        this.closest('.labelfield').querySelector('.labelfield__container').appendChild(span);
-                        context.querySelector('.labelfield__field input').value = '';
-                    }
-                }
-            }
+rava.bind('.labelfield', {
+  events: {
+    '.labelfield__add, .labelfield__add *': {
+      click(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const context = this;
+        const span = document.createElement('span');
+        const val = context.querySelector('.labelfield__field input').value;
+        let found = false;
+        const title = context.querySelector(`option[value="${val}"]`).innerText;
+        span.innerHTML = context.querySelector('.labelfield__template').innerHTML;
+        context.querySelectorAll('.labelfield__item input').forEach((el) => {
+          if (el.value === val) {
+            found = true;
+          }
+        });
+        if (found) {
+          return;
         }
-    });
+        span.querySelector('input').value = val;
 
-    rava.bind('.labelfield__item, .labelfield__item *', {
-        events: {
-            click: function () {
-                event.preventDefault();
-                event.stopPropagation();
-                this.closest('.labelfield__item').remove();
-            }
+        if (title !== '') {
+          span.querySelector('.labelfield__title').innerText = title;
+          this.closest('.labelfield').querySelector('.labelfield__container').appendChild(span);
+          context.querySelector('.labelfield__field input').value = '';
         }
-    });
+      },
+    },
+  },
+});
 
-}(window.rava = window.rava || {}));
+rava.bind('.labelfield__item, .labelfield__item *', {
+  events: {
+    click(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.closest('.labelfield__item').remove();
+    },
+  },
+});

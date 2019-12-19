@@ -16,64 +16,72 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/* eslint-env browser, es6 */
-(function (rava, Sling, autoComplete) {
-    'use strict';
-    
-    Sling.CMS.pathfield = null;
-    
-    rava.bind("input.pathfield", {
-        callbacks: {
-            created : function () {
-                var type = this.dataset.type,
-                    base = this.dataset.base;
-                new autoComplete({
-                    minChars: 1,
-                    selector: this,
-                    source: function (term, response) {
-                        if (term === '/') {
-                            term = base;
-                        }
-                        fetch('/bin/cms/paths?path=' + encodeURIComponent(term) + '&type=' + encodeURIComponent(type)).then(function (response) {
-                            return response.json();
-                        }).then(function (data) {
-                            response(data);
-                        });
-                    }
-                });
-            }
-        }
-    });
-    
-    rava.bind('.search-button', {
-        events: {
-            click: function () {
-                Sling.CMS.pathfield =  this.closest('.field').querySelector('.pathfield');
-            }
-        }
-    });
-    
-    rava.bind('.search-select-button', {
-        events: {
-            click : function () {
-                var path = this.dataset.path;
-                if (Sling.CMS.pathfield instanceof HTMLInputElement) {
-                    Sling.CMS.pathfield.value = this.dataset.path;
-                } else {
-                    Sling.CMS.pathfield.postMessage({
-                        "action": "slingcms.setpath",
-                        "path": path
-                    }, window.location.origin);
-                }
-                this.closest('.modal').remove();
-            }
-        }
-    });
+/* global autoComplete */
+Sling.CMS.pathfield = null;
 
-    window.addEventListener("message", function (event) {
-        if (event.data.action === 'slingcms.setpath') {
-            Sling.CMS.pathfield.value = event.data.path;
-        }
-    }, false);
-    
-}(window.rava = window.rava || {}, window.Sling = window.Sling || {}, window.autoComplete = window.autoComplete || {}));
+rava.bind('input.pathfield', {
+  callbacks: {
+    created() {
+      const { type } = this.dataset;
+      const { base } = this.dataset;
+
+      new autoComplete({ // eslint-disable-line no-new, new-cap
+        minChars: 1,
+        selector: this,
+        source(t, response) {
+          let term = t;
+          if (term === '/') {
+            term = base;
+          }
+          fetch(
+            `/bin/cms/paths?path=${encodeURIComponent(
+              term,
+            )}&type=${encodeURIComponent(type)}`,
+          )
+            .then((resp) => resp.json())
+            .then((data) => {
+              response(data);
+            });
+        },
+      });
+    },
+  },
+});
+
+rava.bind('.search-button', {
+  events: {
+    click() {
+      Sling.CMS.pathfield = this.closest('.field').querySelector('.pathfield');
+    },
+  },
+});
+
+rava.bind('.search-select-button', {
+  events: {
+    click() {
+      const { path } = this.dataset;
+      if (Sling.CMS.pathfield instanceof HTMLInputElement) {
+        Sling.CMS.pathfield.value = this.dataset.path;
+      } else {
+        Sling.CMS.pathfield.postMessage(
+          {
+            action: 'slingcms.setpath',
+            path,
+          },
+          window.location.origin,
+        );
+      }
+      this.closest('.modal').remove();
+    },
+  },
+});
+
+window.addEventListener(
+  'message',
+  (event) => {
+    if (event.data.action === 'slingcms.setpath') {
+      Sling.CMS.pathfield.value = event.data.path;
+    }
+  },
+  false,
+);

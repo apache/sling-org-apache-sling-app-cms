@@ -17,90 +17,70 @@
  * under the License.
  */
 
-/* eslint-env browser, es6 */
-(function (rava, Sling) {
-    'use strict';
-    rava.bind("a.Fetch-Modal", {
-        events: {
-            click: function (event) {
-                event.preventDefault();
-                this.disabled = true;
-                this.getModal(this.getAttribute('data-title'), this.getAttribute('href'), this);
-            }
-        },
-        methods: {
-            getModal: function (title, link, button) {
-                if (window.self !== window.top && window.parent.parent) {
-                    window.parent.parent.postMessage({
-                        "action": "slingcms.openmodal",
-                        "url": link,
-                        "title": title
-                    }, window.location.origin);
-                    button.removeAttribute('disabled');
-                } else {
-                    var modal = Sling.CMS.ui.loaderModal(),
-                        request = new XMLHttpRequest();
-                    request.open('GET', link, true);
-                    request.onload = function () {
-                        if (this.status === 500 || this.status === 404) {
-                            Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function () {
-                                Sling.CMS.ui.reloadContext();
-                            });
-                        } else {
-                            button.removeAttribute("disabled");
-                            if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
-                                window.location.reload();
-                            } else {
-                                modal.innerHTML = request.responseText;
-                            }
-                        }
-                    };
-                    modal.querySelector('.modal-background').addEventListener('click', function () {
-                        request.abort();
-                        button.removeAttribute('disabled');
-                    });
-                    request.send();
-                }
-            }
+rava.bind('a.Fetch-Modal', {
+  events: {
+    click(event) {
+      event.preventDefault();
+      this.disabled = true;
+      this.getModal(this.getAttribute('data-title'), this.getAttribute('href'), this);
+    },
+  },
+  methods: {
+    getModal(title, link, button) {
+      const modal = Sling.CMS.ui.loaderModal();
+      async function loadModal() {
+        const controller = new AbortController();
+        const request = await fetch(link, {
+          signal: controller.signal,
+        });
+        if (Sling.CMS.utils.ok(request)) {
+          const responseText = await request.text();
+          modal.innerHTML = responseText;
         }
-    });
-    
-    rava.bind(".modal", {
-        events: {
-            ".close,.modal-close,.close-modal,.modal-background": {
-                click: function (event) {
-                    event.preventDefault();
-                    this.remove();
-                }
-            }
-        }
-    });
-    
-    window.addEventListener("message", function (event) {
-        if (event.data.action === 'slingcms.openmodal') {
-            Sling.CMS.pathfield = event.source;
-            var modal = Sling.CMS.ui.loaderModal(),
-                request = new XMLHttpRequest();
-            request.open('GET', event.data.url, true);
-            request.onload = function () {
-                if (this.status === 500 || this.status === 404) {
-                    Sling.CMS.ui.confirmMessage(request.statusText, request.statusText, function () {
-                        Sling.CMS.ui.reloadContext();
-                    });
-                } else {
-                    if (request.responseURL.indexOf('/system/sling/form/login?resource=') !== -1) {
-                        window.location.reload();
-                    } else {
-                        modal.innerHTML = request.responseText;
-                    }
-                }
-            };
-            modal.querySelector('.modal-background').addEventListener('click', function () {
-                request.abort();
-            });
-            request.send();
-        }
-        
-    }, false);
+        modal.querySelector('.modal-background').addEventListener('click', () => {
+          controller.abort();
+          button.removeAttribute('disabled');
+        });
+      }
+      if (window.self !== window.top && window.parent.parent) {
+        window.parent.parent.postMessage({
+          action: 'slingcms.openmodal',
+          url: link,
+          title,
+        }, window.location.origin);
+        button.removeAttribute('disabled');
+      } else {
+        loadModal();
+      }
+    },
+  },
+});
 
-}(window.rava = window.rava || {}, window.Sling = window.Sling || {}));
+rava.bind('.modal', {
+  events: {
+    '.close,.modal-close,.close-modal,.modal-background': {
+      click(event) {
+        event.preventDefault();
+        this.remove();
+      },
+    },
+  },
+});
+
+window.addEventListener('message', async (event) => {
+  if (event.data.action === 'slingcms.openmodal') {
+    Sling.CMS.pathfield = event.source;
+    const modal = Sling.CMS.ui.loaderModal();
+    const controller = new AbortController();
+    const request = await fetch(event.data.url, {
+      signal: controller.signal,
+    });
+    if (Sling.CMS.utils.ok(request)) {
+      const responseText = await request.text();
+      modal.innerHTML = responseText;
+    }
+    modal.querySelector('.modal-background').addEventListener('click', () => {
+      controller.abort();
+    });
+  }
+}, false);

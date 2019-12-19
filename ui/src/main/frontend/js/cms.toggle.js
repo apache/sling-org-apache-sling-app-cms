@@ -17,39 +17,34 @@
  * under the License.
  */
 
-/* eslint-env browser, es6 */
-(function (rava) {
-    'use strict';
-    
-    rava.bind('.toggle-hidden', {
-        events : {
-            click: function () {
-                var target = document.querySelectorAll(this.dataset.target);
-                target.forEach(function (el) {
-                    el.classList.toggle('is-hidden');
-                });
-            }
-        }
-    });
+rava.bind('.toggle-hidden', {
+  events: {
+    click() {
+      const target = document.querySelectorAll(this.dataset.target);
+      target.forEach((el) => {
+        el.classList.toggle('is-hidden');
+      });
+    },
+  },
+});
 
-    rava.bind('.toggle-value', {
-        callbacks: {
-            created: function () {
-                var source = this.getAttribute('data-toggle-source'),
-                    selector = 'input[name="' + source + '"], select[name="' + source + '"]',
-                    toggle = this,
-                    sourceEl = document.querySelector(selector);
-                if (sourceEl) {
-                    sourceEl.addEventListener('change', function () {
-                        if (this.value !== toggle.dataset.toggleValue) {
-                            toggle.classList.add('is-hidden');
-                        } else {
-                            toggle.classList.remove('is-hidden');
-                        }
-                    });
-                }
-            }
+rava.bind('.toggle-value', {
+  callbacks: {
+    created() {
+      const source = this.getAttribute('data-toggle-source');
+      const selector = `input[name="${source}"], select[name="${source}"]`;
+      const toggle = this;
+      const sourceEl = document.querySelector(selector);
+      function handleChange() {
+        if (this.value !== toggle.dataset.toggleValue) {
+          toggle.classList.add('is-hidden');
+        } else {
+          toggle.classList.remove('is-hidden');
         }
-    });
-
-}(window.rava = window.rava || {}));
+      }
+      if (sourceEl) {
+        sourceEl.addEventListener('change', handleChange);
+      }
+    },
+  },
+});

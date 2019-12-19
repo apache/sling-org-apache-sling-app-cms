@@ -16,52 +16,47 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-/* eslint-env browser, es6 */
-(function (rava) {
-    'use strict';
-    var data = {
-        mouseX : 0,
-        mouseY : 0,
-        mouseDown : false,
-        elementX : 0,
-        elementY : 0
-    };
-    rava.bind(".is-draggable", {
-        methods : {
-            moveComplete: function () {
-                data.mouseDown = false;
-                data.elementX = parseInt(this.style.left, 10) || 0;
-                data.elementY = parseInt(this.style.top, 10) || 0;
-                return false;
-            }
-        },
-        events : {
-            ":root" : {
-                mouseup : function(){
-                    if (data.mouseDown === true) {
-                        this.moveComplete();
-                    }
-                },
-                mousemove : function(event){
-                    if (data.mouseDown === false) {
-                        return false;
-                    }
-                    var deltaX = event.clientX - data.mouseX,
-                        deltaY = event.clientY - data.mouseY;
-                    this.style.left = data.elementX + deltaX + 'px';
-                    this.style.top = data.elementY + deltaY + 'px';
-                    return false;
-                }
-            },
-            mousedown: function (event) {
-                if (!event.target.matches('.modal-title, .modal-title *')) {
-                    return;
-                }
-                data.mouseX = event.clientX;
-                data.mouseY = event.clientY;
-                data.mouseDown = true;
-            }
+const mousepos = {
+  mouseX: 0,
+  mouseY: 0,
+  mouseDown: false,
+  elementX: 0,
+  elementY: 0,
+};
+rava.bind('.is-draggable', {
+  methods: {
+    moveComplete() {
+      mousepos.mouseDown = false;
+      mousepos.elementX = parseInt(this.style.left, 10) || 0;
+      mousepos.elementY = parseInt(this.style.top, 10) || 0;
+      return false;
+    },
+  },
+  events: {
+    ':root': {
+      mouseup() {
+        if (mousepos.mouseDown === true) {
+          this.moveComplete();
         }
-    });
-}(window.rava = window.rava || {}));
+      },
+      mousemove(event) {
+        if (mousepos.mouseDown === false) {
+          return false;
+        }
+        const deltaX = event.clientX - mousepos.mouseX;
+        const deltaY = event.clientY - mousepos.mouseY;
+        this.style.left = `${mousepos.elementX + deltaX}px`;
+        this.style.top = `${mousepos.elementY + deltaY}px`;
+        return false;
+      },
+    },
+    mousedown(event) {
+      if (!event.target.matches('.modal-title, .modal-title *')) {
+        return;
+      }
+      mousepos.mouseX = event.clientX;
+      mousepos.mouseY = event.clientY;
+      mousepos.mouseDown = true;
+    },
+  },
+});
