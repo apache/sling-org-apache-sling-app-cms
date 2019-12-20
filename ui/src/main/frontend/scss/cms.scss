@@ -16,248 +16,260 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 @import 'fonts';
 @import 'overrides';
 @import "../../../../node_modules/bulma/bulma.sass";
+
 body.cms {
-    min-height: 100vh;
-    @media screen and (min-width: $tablet), print {
-        background: url(../img/gradient.jpg) no-repeat;
-        background-attachment: fixed;
-    }
-    @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
-        padding-left: 2em;
-    }
+  min-height: 100vh;
+  @media screen and (min-width: $tablet), print {
+    background: url("../img/gradient.jpg") no-repeat;
+    background-attachment: fixed;
+  }
+  @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+    padding-left: 2em;
+  }
 }
 
 dl {
-    padding: 1em 0;
+  padding: 1em 0;
 }
 
 dd {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 
 dt {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 h1 {
-    font-size: 200%;
+  font-size: 200%;
 }
 
 h2 {
-    font-size: 180%;
+  font-size: 180%;
 }
 
 h3 {
-    font-size: 160%;
+  font-size: 160%;
 }
 
 h4 {
-    font-size: 140%;
+  font-size: 140%;
 }
 
 h5 {
-    font-size: 120%;
+  font-size: 120%;
 }
 
 .breadcrumb {
-    display:flex;
-    justify-content: space-between;
-} 
+  display: flex;
+  justify-content: space-between;
+}
 
 .card.is-selected {
-    border: 1px solid $violet;
+  border: 1px solid $violet;
 }
 
 .card-footer-item {
-    word-break: break-all;
+  word-break: break-all;
+  display: block;
+  padding: 0.25em;
+  text-align: center;
+}
+
+small.card-footer-item {
+    font-size: 12px;
 }
 
 .container {
-    height: 100vh;
-    overflow: hidden;
-    @media screen and (max-width: $tablet - 1px) {
-        height: 100%;
-        overflow: visible;
-    }
+  height: 100vh;
+  overflow: hidden;
+  @media screen and (max-width: $tablet - 1px) {
+    height: 100%;
+    overflow: visible;
+  }
 }
 
 .contentnav-search {
-    display: flex;
-    margin-block-end: 0;
+  display: flex;
+  margin-block-end: 0;
 }
 
 .has-padding-1 {
-    padding: .5em;
+  padding: 0.5em;
 }
 
 .editor-page {
-    overflow-y: auto;
+  overflow-y: auto;
 }
+
 .file-icon {
-    font-size: xx-large;
+  font-size: xx-large;
 }
+
 .file-label {
-    text-align: center;
+  text-align: center;
 }
+
 .form-wrapper {
-    border: none;
+  border: none;
 }
 
 .form-wrapper[disabled] .button,
 .form-wrapper[disabled] .input,
-.form-wrapper[disabled] select,
-.form-wrapper[disabled] .textarea {
-    background-color: #f5f5f5;
-    border-color: #f5f5f5;
-    box-shadow: none;
-    color: #7a7a7a;
-    cursor: not-allowed;
+.form-wrapper[disabled] .textarea,
+.form-wrapper[disabled] select {
+  background-color: #f5f5f5;
+  border-color: #f5f5f5;
+  box-shadow: none;
+  color: #7a7a7a;
+  cursor: not-allowed;
 }
 
 .is-linked {
-    cursor: pointer;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0);
 }
 
 .is-draggable {
-    position: relative;
+  position: relative;
 }
 
 .is-selected .is-linked {
-    border: 1px solid $primary;
+  border: 1px solid $primary;
 }
 
 .is-vhidden {
-    position: absolute !important;
-    top: -9999px !important;
-    left: -9999px !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
 }
 
 .loader {
-    margin: auto;
-    width: 2em;
-    height: 2em;
-    border: 2px solid $primary;
-    border-right-color: transparent;
-    border-top-color: transparent;
+  margin: auto;
+  width: 2em;
+  height: 2em;
+  border: 2px solid $primary;
+  border-right-color: transparent;
+  border-top-color: transparent;
 }
 
 .menu {
-    overflow: auto;
+  overflow: auto;
 }
 
 .menu-label {
-    text-transform: none;
-    font-size: 1.25em;
-    letter-spacing: normal;
-    display: block;
-    padding: .25em 0;
-    color: #363636;
+  text-transform: none;
+  font-size: 1.25em;
+  letter-spacing: normal;
+  display: block;
+  padding: 0.25em 0;
+  color: #363636;
 }
 
 .menu-label:not(:last-child) {
-    margin: 0;
+  margin: 0;
 }
 
 .note-group-select-from-files {
-    display: none;
+  display: none;
 }
 
 .note-toolbar-wrapper {
-    height: auto !important;
+  height: auto !important;
 }
 
 .fixed-box {
-    max-height: 200px;
-    overflow: auto;
+  max-height: 200px;
+  overflow: auto;
 }
 
 .preview {
-    max-width: 100%;
-    padding: 1em;
+  max-width: 100%;
+  padding: 1em;
 }
 
 .rte-form {
-    margin: .5em 0;
+  margin: 0.5em 0;
 }
 
 .rte-form .buttons {
-    margin: .5em 0;
+  margin: 0.5em 0;
 }
 
 .rte-toolbar .jam:before {
-    font-size: x-large;
+  font-size: x-large;
 }
 
 .rte-toolbar .level {
-    margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .scroll-container {
-    overflow-y: auto;
-    height: calc(100vh - 205px);
-    overflow-x: hidden;
-    padding: 2px;
-    @media screen and (max-width: $tablet - 1px) {
-        height: 100%;
-        overflow: visible;
-        padding: 0px;
-    }
+  overflow-y: auto;
+  height: calc(100vh - 205px);
+  overflow-x: hidden;
+  padding: 2px;
+  @media screen and (max-width: $tablet - 1px) {
+    height: 100%;
+    overflow: visible;
+    padding: 0;
+  }
 }
 
 .scroll-container .scroll-container {
-    height: auto;
-    overflow: visible;
-    padding: 0px;
+  height: auto;
+  overflow: visible;
+  padding: 0;
 }
 
 .scroll-container > .is-ancestor {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 #search-results .box {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 #search-results .tile {
-    flex-wrap: wrap;
-    padding: .5em;
+  flex-wrap: wrap;
+  padding: 0.5em;
 }
 
 .table__wrapper {
-    overflow: auto;
+  overflow: auto;
 }
 
 table thead .sorting:after,
 table thead .sorting_asc:after,
-table thead .sorting_desc:after,
 table thead .sorting_asc_disabled:after,
+table thead .sorting_desc:after,
 table thead .sorting_desc_disabled:after {
-    font-family: 'jam-icons';
+  font-family: 'jam-icons';
 }
 
 table thead .sorting:after {
-    content: "\e943"
+  content: "\e943";
 }
 
 table thead .sorting_asc:after {
-    content: "\e93f"
+  content: "\e93f";
 }
 
 table thead .sorting_desc:after {
-    content: "\e92a"
+  content: "\e92a";
 }
 
-.table tr.is-selected, .menu .is-selected {
-    background-color: lighten($gray, 50%);
-    color: $grey-darker;
+.menu .is-selected,
+.table tr.is-selected {
+  background-color: lighten($gray, 50%);
+  color: $grey-darker;
 }
 
 .wysihtml-sandbox {
-    width: 100% !important;
-    max-height: 600px !important;
-    min-height: 300px !important;
+  width: 100% !important;
+  max-height: 600px !important;
+  min-height: 300px !important;
 }
