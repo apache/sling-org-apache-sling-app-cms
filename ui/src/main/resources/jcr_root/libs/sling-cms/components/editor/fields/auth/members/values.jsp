@@ -19,11 +19,11 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="auth" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" />
 <c:forEach var="member" items="${auth.declaredMembers}">
-    <a class="button labelfield__item">
+    <a class="tag labelfield__item" title="${member.path}">
         <input type="hidden" name="${properties.name}" value="${member.path}" />
         <span class="labelfield__title">
             ${sling:encode(member,'HTML')}
         </span>
-        <span class="jam jam-close"></span>
+        <button class="delete is-small"></button>
     </a>
 </c:forEach>
