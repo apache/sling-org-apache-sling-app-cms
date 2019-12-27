@@ -49,6 +49,7 @@ rava.bind('a.Fetch-Modal', {
           title,
         }, window.location.origin);
         button.removeAttribute('disabled');
+        modal.remove();
       } else {
         loadModal();
       }
