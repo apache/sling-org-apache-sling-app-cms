@@ -38,10 +38,13 @@ public class TikaFallbackProviderTest {
 
     private Resource docxFile;
 
+    private Resource largeFile;
+
     @Before
     public void init() {
         SlingCMSContextHelper.initContext(context);
         docxFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/Sling.docx");
+        largeFile = context.resourceResolver().getResource("/content/apache/sling-apache-org/index/editor.min.css");
     }
 
     @Test
@@ -49,6 +52,14 @@ public class TikaFallbackProviderTest {
         log.info("testTikaProvider");
         TikaFallbackProvider tfp = new TikaFallbackProvider();
         assertNotNull(tfp.getThumbnail(docxFile));
+    }
+
+
+    @Test
+    public void testLargeFile() throws IOException {
+        log.info("testLargeFile");
+        TikaFallbackProvider tfp = new TikaFallbackProvider();
+        assertNotNull(tfp.getThumbnail(largeFile));
     }
 
 }

@@ -35,6 +35,7 @@ public class SlingCMSContextHelper {
         context.load().binaryResource("/Sling.docx", "/content/apache/sling-apache-org/index/Sling.docx/jcr:content");
         context.load().binaryResource("/Sling.pptx", "/content/apache/sling-apache-org/index/Sling.pptx/jcr:content");
         context.load().binaryResource("/Sling.ppt", "/content/apache/sling-apache-org/index/Sling.ppt/jcr:content");
+        context.load().binaryResource("/editor.min.css", "/content/apache/sling-apache-org/index/editor.min.css/jcr:content");
 
         context.registerAdapter(Resource.class, InputStream.class, new Function<Resource, InputStream>() {
             public InputStream apply(Resource input) {
