@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.jcr.query.Query;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
@@ -34,6 +35,7 @@ import org.apache.jackrabbit.JcrConstants;
 import org.apache.poi.util.IOUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.request.RequestDispatcherOptions;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -43,8 +45,10 @@ import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.transformer.OutputFileFormat;
 import org.apache.sling.cms.transformer.Transformation;
 import org.apache.sling.cms.transformer.Transformer;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,10 +56,11 @@ import org.slf4j.LoggerFactory;
  * A servlet to transform images using the FileThumbnailTransformer API. Can be
  * invoked using the syntax:
  * 
- * /content/file/path.jpg.transform/command-param1-param2/command2-param1-param2.png
+ * /content/file/path.jpg.transform/transformation-name.png
  */
 @Component(service = { Servlet.class }, property = { "sling.servlet.extensions=transform",
         "sling.servlet.resourceTypes=sling:File", "sling.servlet.resourceTypes=nt:file" })
+@Designate(ocd = TransformServletConfig.class)
 public class TransformServlet extends SlingSafeMethodsServlet {
 
     private static final Logger log = LoggerFactory.getLogger(TransformServlet.class);
@@ -67,6 +72,13 @@ public class TransformServlet extends SlingSafeMethodsServlet {
     private transient TransformationServiceUser transformationServiceUser;
 
     private transient Transformer transformer;
+    
+    private TransformServletConfig config;
+    
+    @Activate
+    public void activate(TransformServletConfig config) {
+        this.config = config;
+    }
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -74,6 +86,7 @@ public class TransformServlet extends SlingSafeMethodsServlet {
         log.trace("doGet");
 
         String name = StringUtils.substringBeforeLast(request.getRequestPathInfo().getSuffix(), ".");
+        response.setHeader("Content-Disposition", "filename=" + request.getResource().getName());
         String format = StringUtils.substringAfterLast(request.getRequestPathInfo().getSuffix(), ".");
         log.debug("Transforming resource: {} with transformation: {} to {}", request.getResource(), name, format);
         String original = response.getContentType();
@@ -113,8 +126,12 @@ public class TransformServlet extends SlingSafeMethodsServlet {
             }
         } catch (Exception e) {
             log.error("Exception rendering transformed resource", e);
-            response.setContentType(original);
-            response.sendError(500, "Could not transform image with transformation: " + name);
+            response.setStatus(500);
+            RequestDispatcherOptions op = new RequestDispatcherOptions();
+            op.setReplaceSuffix(config.errorSuffix());
+            op.setReplaceSelectors("transform");
+            RequestDispatcher disp = request.getRequestDispatcher(config.errorResourcePath(), op);
+            disp.forward(request, response);
 
         }
     }

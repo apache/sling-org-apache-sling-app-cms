@@ -95,7 +95,7 @@
                     }
                 },
                 "apache.png": {
-                    "jcr:primaryType": "sling:File"
+                    "jcr:primaryType": "nt:file"
                 },
                 "sling.pdf": {
                     "jcr:primaryType": "sling:File"
