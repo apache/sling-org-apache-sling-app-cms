@@ -18,27 +18,27 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="field">
-	<label class="label" for="availableComponentTypes">
-		Available Component Types
-	</label>
-	<div class="control">
-		<c:set var="currentTypes" value="|${fn:join(slingRequest.requestPathInfo.suffixResource.valueMap.availableComponentTypes, '|')}|"/>
-		<sling:adaptTo var="componentManager" adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.ComponentManager" />
-		<c:forEach var="type" items="${componentManager.componentTypes}">
-			<label class="checkbox is-block">
-				<c:set var="search" value="|${type}|" />
-				<c:choose>
-					<c:when test="${fn:contains(currentTypes,search)}">
-						<c:set var="checked">checked="checked"</c:set>
-					</c:when>
-					<c:otherwise>
-						<c:set var="checked" value="" />
-					</c:otherwise>
-				</c:choose>
-				<input name="availableComponentTypes" type="checkbox" ${checked} value="${sling:encode(type,'HTML_ATTR')}">
-				<sling:encode value="${type}" mode="HTML" />
-			</label>
-		</c:forEach>
-	</div>
-	<input type="hidden" name="availableComponentTypes@TypeHint" value="String[]" />
+    <label class="label" for="availableComponentTypes">
+        Available Component Types
+    </label>
+    <div class="control">
+        <c:set var="currentTypes" value="|${fn:join(slingRequest.requestPathInfo.suffixResource.valueMap.availableComponentTypes, '|')}|"/>
+        <sling:adaptTo var="componentManager" adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.ComponentManager" />
+        <c:forEach var="type" items="${componentManager.componentTypes}">
+            <label class="checkbox is-block">
+                <c:set var="search" value="|${type}|" />
+                <c:choose>
+                    <c:when test="${fn:contains(currentTypes,search)}">
+                        <c:set var="checked">checked="checked"</c:set>
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="checked" value="" />
+                    </c:otherwise>
+                </c:choose>
+                <input name="availableComponentTypes" type="checkbox" ${checked} value="${sling:encode(type,'HTML_ATTR')}">
+                ${sling:encode(type,'HTML')}
+            </label>
+        </c:forEach>
+    </div>
+    <input type="hidden" name="availableComponentTypes@TypeHint" value="String[]" />
 </div>
