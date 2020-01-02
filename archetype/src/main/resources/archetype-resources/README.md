@@ -8,7 +8,7 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
 	OF ANY KIND, either express or implied. See the License for the specific
 	language governing permissions and limitations under the License. -->
-# ${appname} Sling CMS Project
+# ${appName} Apache Sling CMS Project
 
 An OSGi Bundle project created for the Apache Sling CMS. This project includes a
  simple client library using Bootstrap, a site configuration, a simple app with
