@@ -87,7 +87,7 @@ if (!window.CMSEditor) {
         let component = document.querySelector(
           `.sling-cms-component[data-sling-cms-resource-path="${path}"]`,
         );
-        let reloadPage = component.dataset.reload === 'true';
+        let forceReload = component && component.dataset.reload === 'true';
         while (!component && path.length > 1) {
           const pathArr = path.split('/');
           pathArr.pop();
@@ -95,11 +95,11 @@ if (!window.CMSEditor) {
           component = document.querySelector(
             `.sling-cms-component[data-sling-cms-resource-path="${path}"]`,
           );
-          if (component.dataset.reload === 'true') {
-            reloadPage = true;
+          if (component && component.dataset.reload === 'true') {
+            forceReload = true;
           }
         }
-        if (!component || reloadPage) {
+        if (!component || forceReload) {
           CMSEditor.ui.hideModal();
           window.top.location.reload();
         }
