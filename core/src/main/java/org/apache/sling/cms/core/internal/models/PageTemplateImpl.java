@@ -17,6 +17,7 @@
 package org.apache.sling.cms.core.internal.models;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,6 +45,7 @@ public class PageTemplateImpl implements PageTemplate {
     private List<Resource> fields;
 
     @Inject
+    @Optional
     private List<Resource> policies;
 
     private Resource resource;
@@ -73,7 +75,12 @@ public class PageTemplateImpl implements PageTemplate {
 
     @Override
     public List<ComponentPolicy> getComponentPolicies() {
-        return policies.stream().map(p -> p.adaptTo(ComponentPolicy.class)).collect(Collectors.toList());
+        if(policies != null){
+            return policies.stream().map(p -> p.adaptTo(ComponentPolicy.class)).collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
+
     }
 
     /**
@@ -109,7 +116,7 @@ public class PageTemplateImpl implements PageTemplate {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override
