@@ -8,7 +8,9 @@ The Apache Sling CMS is a reference implementation of a fully-featured Content M
 
 ## Try It
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/apache/sling-org-apache-sling-app-cms) 
+Try out Sling CMS on [Gitpod](https://www.gitpod.io/) for free for up to 50 hours / month.
+
+[![Try Sling CMS on Gitpod](https://img.shields.io/badge/Gitpod-Try%20Sling%20CMS%20Online-blue?logo=gitpod)](https://gitpod.io/#https://github.com/apache/sling-org-apache-sling-app-cms) 
 
 ## Documentation
 
