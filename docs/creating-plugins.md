@@ -10,7 +10,7 @@
 	language governing permissions and limitations under the License. -->
 [Apache Sling](https://sling.apache.org) > [Sling CMS](https://github.com/apache/sling-org-apache-sling-app-cms) > [Developers](developers.md) > Extending Sling CMS
 
-# Plugins
+# Creating Plugins
 
 The Apache Sling CMS has a robust extension model for [extending the core application](extending.md).
 This guide will help you structure your extension to ensure upgrade readiness.
@@ -20,9 +20,9 @@ This guide will help you structure your extension to ensure upgrade readiness.
 Unlike custom applications, plugin code should be provided in the /libs path under names folders.
 The recommended folder naming is:
 
-  /libs
-    /groupId
-      /pluginId
+    /libs
+      /groupId
+        /pluginId
 
 This structure ensures that plugins from different providers do not conflict.
 
