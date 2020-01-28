@@ -1,6 +1,5 @@
 tasks:
-  - init: mvn install -DskipTests=false
-  - command: java -jar builder/target/org.apache.sling.cms.builder-*.jar
+  - command: mvn install -DskipTests=false && java -jar builder/target/org.apache.sling.cms.builder-*.jar
 image:
   file: .gitpod.Dockerfile
 ports:
