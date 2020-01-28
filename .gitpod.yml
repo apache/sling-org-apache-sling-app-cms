@@ -1,0 +1,6 @@
+tasks:
+  - command: mvn install -DskipTests && java -jar builder/target/org.apache.sling.cms.builder-*-SNAPSHOT.jar
+image:
+  file: .gitpod.Dockerfile
+ports:
+  - port: 8080
