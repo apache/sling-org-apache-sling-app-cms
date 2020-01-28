@@ -14,6 +14,7 @@
 
 * [Project Introduction](intro.md)
 * [Building Sling CMS](building.md)
+* [Creating Plugins](creating-plugins.md)
 * [Custom Components](custom-components.md)
 * [Editor Field Types](editor-field-types.md)
 * [Extending Sling CMS](extending.md)
