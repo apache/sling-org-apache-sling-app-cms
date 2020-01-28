@@ -20,6 +20,7 @@
  - [Error Pages](error-pages.md)
  - [Image Transformations](image-transformations.md)
  - [MongoDB Support](mongodb.md)
+ - [Plugins](plugins.md)
  - [Securing Sling CMS](securing.md)
  - [Templates](templates.md)
  - [User Generated Content](user-generated-content.md)
