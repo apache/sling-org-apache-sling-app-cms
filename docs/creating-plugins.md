@@ -8,12 +8,12 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
 	OF ANY KIND, either express or implied. See the License for the specific
 	language governing permissions and limitations under the License. -->
-[Apache Sling](https://sling.apache.org) > [Sling CMS](https://github.com/apache/sling-org-apache-sling-app-cms) > [Developers](developers.md) > Extending Sling CMS
+[Apache Sling](https://sling.apache.org) > [Sling CMS](https://github.com/apache/sling-org-apache-sling-app-cms) > [Developers](developers.md) > Creating Plugins
 
 # Creating Plugins
 
 The Apache Sling CMS has a robust extension model for [extending the core application](extending.md).
-This guide will help you structure your extension to ensure upgrade readiness.
+This guide will help you to create a structure for plugins to ensure upgrade readiness.
 
 ## Application Path
 
