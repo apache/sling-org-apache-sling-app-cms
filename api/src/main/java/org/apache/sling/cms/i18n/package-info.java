@@ -18,9 +18,9 @@
  */
 
 /**
- * Support for Content Insights
+ * Package for managing i18n in Sling CMS
  *
- * @version 0.10.2
+ * @since 0.10.0
  */
 @org.osgi.annotation.versioning.Version("1.0.0")
-package org.apache.sling.cms.insights;
+package org.apache.sling.cms.i18n;

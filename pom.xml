@@ -8,8 +8,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.apache.sling</groupId>
-        <artifactId>sling</artifactId>
-        <version>34</version>
+        <artifactId>sling-bundle-parent</artifactId>
+        <version>36</version>
         <relativePath />
     </parent>
 
@@ -189,6 +189,12 @@
             </dependency>
 
             <!-- Utilities / Misc -->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>1.3.2</version>
+                <scope>provided</scope>
+            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-email</artifactId>

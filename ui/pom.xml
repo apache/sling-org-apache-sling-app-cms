@@ -11,7 +11,6 @@ License. -->
     <version>0.14.1-SNAPSHOT</version>
   </parent>
   <artifactId>org.apache.sling.cms.ui</artifactId>
-  <packaging>bundle</packaging>
   <name>Apache Sling - CMS UI</name>
   <description>A bundle providing the User Interface for the Apache Sling Reference CMS Application</description>
 
@@ -121,24 +120,9 @@ License. -->
           </execution>
         </executions>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Sling-Nodetypes>SLING-INF/nodetypes/nodetypes.cnd</Sling-Nodetypes>
-            <Sling-Initial-Content>
-              jcr_root;ignoreImportProviders:=xml, jcr_root/oak%3Aindex;overwrite:=false;uninstall:=true;path:=/oak:index, jcr_root/conf/global;overwrite:=false;uninstall:=true;path:=/conf/global,
-              jcr_root/etc/clientlibs;overwrite=true;ignoreImportProviders:=xml;path:=/etc/clientlibs, jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy,
-              jcr_root/libs/sling/servlet/errorhandler;overwriteProperties:=true;overwrite:=true;uninstall:=true;path:=/libs/sling/servlet/errorhandler, jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,
-              jcr_root/static/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/static/clientlibs/sling-cms;ignoreImportProviders:=xml,
-              jcr_root/static/sling-cms/thumbnails;overwrite:=true;uninstall:=true;path:=/static/sling-cms/thumbnails;ignoreImportProviders:=xml
-            </Sling-Initial-Content>
-            <Include-Resource>{maven-resources},${basedir}/target/frontend/dist</Include-Resource>
-          </instructions>
-        </configuration>
+          <groupId>biz.aQute.bnd</groupId>
+          <artifactId>bnd-maven-plugin</artifactId>
       </plugin>
     </plugins>
 
@@ -180,30 +164,6 @@ License. -->
       <properties>
         <frontend.mode>prod</frontend.mode>
       </properties>
-    </profile>
-    <profile>
-      <id>autoInstallBundle</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>maven-sling-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>install-bundle</id>
-                <goals>
-                  <goal>install</goal>
-                </goals>
-                <configuration>
-                  <slingUrl>${sling.protocol}://${sling.host}:${sling.port}/system/console</slingUrl>
-                  <user>${sling.username}</user>
-                  <password>${sling.password}</password>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>
