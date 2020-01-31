@@ -5,7 +5,7 @@
     "dependencies": {
         "bulma": "^0.8.0",
         "gulp-noop": "^1.0.0",
-        "handlebars": "^4.5.3",
+        "handlebars": "^4.7.2",
         "jam-icons": "^2.0.0",
         "js-autocomplete": "^1.0.4",
         "rava": "^2.1.0",
@@ -13,9 +13,9 @@
         "wysihtml": "^0.6.0-beta1"
     },
     "devDependencies": {
-        "eslint": "^6.7.2",
+        "eslint": "^6.8.0",
         "eslint-config-airbnb-base": "^14.0.0",
-        "eslint-plugin-import": "^2.19.1",
+        "eslint-plugin-import": "^2.20.0",
         "gulp": "^4.0.1",
         "gulp-clean-css": "^4.2.0",
         "gulp-cli": "^2.2.0",
