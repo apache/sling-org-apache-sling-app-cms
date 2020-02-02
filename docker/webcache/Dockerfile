@@ -9,25 +9,14 @@
 #        either express or implied. See the License for the specific language governing permissions
 #        and limitations under the License.
 #
-# Apache Sling CMS Dockerfile
-
+# Apache Sling CMS Web Cache Dockerfile
 
 # Pull base image.
-FROM openjdk:8-jre
+FROM ubuntu:latest
 MAINTAINER dev@sling.apache.org
 
-# Configure directories
-WORKDIR /opt/sling
-VOLUME /opt/sling/sling
-
-# Setup Sling CMS
-RUN mkdir -p /opt/sling
-RUN wget -O org.apache.sling.cms.jar https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.12.0/org.apache.sling.cms.builder-0.12.0.jar
-ENV JAVA_OPTS -Xmx512m
-ENV SLING_OPTS ''
-
 # Install Apache
-RUN apt-get update 
+RUN apt-get update
 RUN apt-get install apache2 -y
 
 # Configure mod_rewrite
@@ -50,7 +39,8 @@ COPY cms.conf /etc/apache2/sites-enabled
 COPY site.conf /etc/apache2/sites-enabled
 
 # Expose endpoints
-EXPOSE 80 443
+EXPOSE 80
 
-# Background Apache httpd and start Sling CMS
-CMD exec service apache2 start & service apache-htcacheclean start & java $JAVA_OPTS -jar org.apache.sling.cms.jar $SLING_OPTS
+# Start Apache httpd
+RUN service apache-htcacheclean start
+CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]

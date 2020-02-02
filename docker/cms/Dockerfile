@@ -9,14 +9,22 @@
 #        either express or implied. See the License for the specific language governing permissions
 #        and limitations under the License.
 #
+# Apache Sling CMS Dockerfile
 
-<VirtualHost *:80>
-   ServerName cms.sling.apache.org
-   DocumentRoot /var/www/vhosts/sling-cms
-   ErrorLog /var/log/apache2/sling-cms-err.log
-   TransferLog /var/log/apache2/sling-cms-access.log
-   
-   ProxyPass /.well-known !
-   ProxyPass / http://localhost:8080/
-   ProxyPassReverse / http://localhost:8080/
-</VirtualHost>
+# Pull base image.
+FROM adoptopenjdk:11-jre-openj9
+MAINTAINER dev@sling.apache.org
+
+# Configure directories
+WORKDIR /opt/sling
+VOLUME /opt/sling/sling
+
+# Setup Sling CMS
+RUN mkdir -p /opt/sling
+RUN curl -L https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.14.0/org.apache.sling.cms.builder-0.14.0.jar --output org.apache.sling.cms.jar
+
+# Expose endpoints
+EXPOSE 8080
+
+# Start Sling CMS
+CMD exec java -jar org.apache.sling.cms.jar
