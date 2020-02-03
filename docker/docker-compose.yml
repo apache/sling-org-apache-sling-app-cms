@@ -2,9 +2,19 @@ version: '3'
 services:
   cms:
     build: cms
-    ports:
-      - "8080:8080"
-  webacache:
+    expose:
+      - "8080"
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo
+    expose:
+    - "27017"
+    volumes:
+    - data-volume:/data/db
+  webcache:
     build: webcache
     ports:
       - "80:80"
+volumes:
+  data-volume:

@@ -2,7 +2,7 @@
 
 This is a sample Docker Compose configuration for using Apache Sling CMS in a containerized environment.
 
-It will start a container with the Apache Sling CMS and a webcache container pre-configured to proxy and cache two URLs.
+It will start a container with the Apache Sling CMS backed by MongoDB and a webcache container pre-configured to proxy and cache two URLs.
 
 ## Dependencies
 
