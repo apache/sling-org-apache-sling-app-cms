@@ -27,4 +27,4 @@ RUN curl -L https://search.maven.org/remotecontent?filepath=org/apache/sling/org
 EXPOSE 8080
 
 # Start Sling CMS
-CMD exec java -Dsling.run.modes=oak_mongo -Doak.mongo.uri=mongo -Doak.mongo.db=sling -jar org.apache.sling.cms.jar
+CMD exec java -Dsling.run.modes=oak_mongo -Doak.mongo.uri=mongodb://mongo:27017 -Doak.mongo.db=sling -jar org.apache.sling.cms.jar
