@@ -18,11 +18,11 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:forEach var="item" items="${value}">
-    <a class="button labelfield__item">
+    <a class="tag labelfield__item" title="${item}">
         <input type="hidden" name="${properties.name}" value="${item}" />
         <span class="labelfield__title">
             ${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}
         </span>
-        <span class="jam jam-close"></span>
+        <button class="delete is-small"></button>
     </a>
 </c:forEach>

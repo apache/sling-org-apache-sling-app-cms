@@ -38,6 +38,7 @@ rava.bind('.labelfield', {
           return;
         }
         span.querySelector('input').value = val;
+        span.querySelector('.labelfield__item').title = val;
 
         if (title !== '') {
           span.querySelector('.labelfield__title').innerText = title;

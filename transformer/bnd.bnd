@@ -1,0 +1,3 @@
+Sling-Model-Packages: org.apache.sling.cms.transformer
+
+-includeresource: lib/thumbnailator.jar=thumbnailator-[[0-9\.]]*.jar;lib:=true

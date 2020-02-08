@@ -44,12 +44,26 @@ rava.bind('.contentnav', {
       const searchParam = urlParams.get('search');
       const cnav = this;
       const search = document.querySelector('.contentnav-search input[name=search]');
+      function attrContains(ctx, attr) {
+        let matches = false;
+        const value = search.value.toLowerCase();
+        ctx.querySelectorAll(`*[${attr}]`).forEach((it) => {
+          if (it.getAttribute(attr).indexOf(value) !== -1) {
+            matches = true;
+          }
+        });
+        return matches;
+      }
       function filter(event) {
-        event.stopPropagation();
-        event.preventDefault();
+        if (event) {
+          event.stopPropagation();
+          event.preventDefault();
+        }
         const value = search.value.toLowerCase();
         cnav.querySelectorAll('.contentnav__item').forEach((item) => {
-          if (item.innerText.toLowerCase().indexOf(value) === -1 && !item.querySelector(`*[data-value="${resourceParam}"]`)) {
+          if (item.innerText.toLowerCase().indexOf(value) === -1
+            && !attrContains(item, 'title')
+            && !attrContains(item, 'data-value')) {
             item.classList.add('is-hidden');
           } else {
             item.classList.remove('is-hidden');
@@ -72,7 +86,7 @@ rava.bind('.contentnav', {
         document.querySelector('.contentnav-search input[name=search]').value = resourceParam;
       } else if (searchParam) {
         document.querySelector('.contentnav-search input[name=search]').value = searchParam;
-        filter(new Event('fake'));
+        filter();
       }
     },
   },

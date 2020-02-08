@@ -49,6 +49,7 @@ rava.bind('a.Fetch-Modal', {
           title,
         }, window.location.origin);
         button.removeAttribute('disabled');
+        modal.remove();
       } else {
         loadModal();
       }
@@ -56,13 +57,15 @@ rava.bind('a.Fetch-Modal', {
   },
 });
 
-rava.bind('.modal', {
+rava.bind('.close,.modal-close,.close-modal,.modal-background', {
   events: {
-    '.close,.modal-close,.close-modal,.modal-background': {
-      click(event) {
-        event.preventDefault();
-        this.remove();
-      },
+    click(evt) {
+      const modal = this.closest('.modal');
+      if (modal) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        modal.remove();
+      }
     },
   },
 });

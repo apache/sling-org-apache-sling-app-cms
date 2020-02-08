@@ -5,10 +5,10 @@ writing, software distributed under the License is distributed on an "AS IS" BAS
 License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
-  <packaging>bundle</packaging>
   <name>${appName}</name>
   <description>${appName} Sling CMS Project</description>
 
@@ -29,6 +29,17 @@ License. -->
   </properties>
 
   <build>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.sling</groupId>
+          <artifactId>sling-maven-plugin</artifactId>
+          <version>2.4.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
     <plugins>
 
       <!-- Handle the NodeJS Build -->
@@ -65,32 +76,47 @@ License. -->
         </executions>
       </plugin>
 
-      <!-- Build the bundle -->
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>4.2.1</version>
-        <extensions>true</extensions>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-maven-plugin</artifactId>
+        <version>5.0.0</version>
+        <executions>
+          <execution>
+            <id>bnd-process</id>
+            <goals>
+              <goal>bnd-process</goal>
+            </goals>
+            <configuration>
+              <bnd>
+                <![CDATA[
+# see https://issues.apache.org/jira/browse/SLING-8980
+-snapshot: SNAPSHOT
+                ]]>
+              </bnd>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
         <configuration>
-          <instructions>
-            <Sling-Initial-Content>
-              jcr_root,
-              jcr_root/apps/${appName};overwrite:=true;uninstall:=true;path:=/apps/${appName},
-              jcr_root/conf/${appName};overwrite:=false;uninstall:=false;path:=/conf/${appName},
-              jcr_root/static/clientlibs/${appName};overwrite=true;ignoreImportProviders:=xml;path:=/static/clientlibs/${appName}
-            </Sling-Initial-Content>
-            <Sling-Model-Packages>
-                ${package}
-            </Sling-Model-Packages>
-            <Include-Resource>{maven-resources},${basedir}/target/dist</Include-Resource>
-          </instructions>
+          <archive>
+            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
         </configuration>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
-
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3.2</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>javax.jcr</groupId>
       <artifactId>jcr</artifactId>
@@ -233,24 +259,22 @@ License. -->
 
   <profiles>
     <profile>
+      <!-- Use this profile to install the OSGi bundle automatically, during development -->
       <id>autoInstallBundle</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.sling</groupId>
-            <artifactId>maven-sling-plugin</artifactId>
-            <version>2.4.2</version>
+            <artifactId>sling-maven-plugin</artifactId>
             <executions>
               <execution>
                 <id>install-bundle</id>
                 <goals>
                   <goal>install</goal>
                 </goals>
-                <configuration>
-                  <slingUrl>${sling.protocol}://${sling.host}:${sling.port}/system/console</slingUrl>
-                  <user>${sling.username}</user>
-                  <password>${sling.password}</password>
-                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -258,4 +282,5 @@ License. -->
       </build>
     </profile>
   </profiles>
+
 </project>

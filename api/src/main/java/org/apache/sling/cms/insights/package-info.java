@@ -22,4 +22,5 @@
  *
  * @version 0.10.2
  */
+@org.osgi.annotation.versioning.Version("1.0.0")
 package org.apache.sling.cms.insights;

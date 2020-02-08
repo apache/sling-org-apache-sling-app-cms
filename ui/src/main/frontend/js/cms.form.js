@@ -102,8 +102,8 @@ rava.bind('.get-form', {
       const modal = Sling.CMS.ui.loaderModal('Loading...');
       const form = this;
       const wrapper = form.querySelector('.form-wrapper');
-      async function doGet() {
-        const request = await fetch(`${form.action}?${new URLSearchParams(new FormData(form)).toString()}`);
+      async function doGet(url) {
+        const request = await fetch(url);
         if (Sling.CMS.utils.ok(request)) {
           const tmp = document.createElement('div');
           tmp.innerHTML = await request.text();
@@ -117,11 +117,12 @@ rava.bind('.get-form', {
         } else {
           modal.remove();
         }
-        if (wrapper) {
-          wrapper.disabled = true;
-        }
       }
-      doGet();
+      const url = `${form.action}?${new URLSearchParams(new FormData(form)).toString()}`;
+      if (wrapper) {
+        wrapper.disabled = true;
+      }
+      doGet(url);
     },
   },
 });

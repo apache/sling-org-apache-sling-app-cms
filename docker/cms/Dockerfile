@@ -9,8 +9,22 @@
 #        either express or implied. See the License for the specific language governing permissions
 #        and limitations under the License.
 #
+# Apache Sling CMS Dockerfile
 
-<IfModule mod_cache_disk.c>
-    CacheDirLevels 2
-    CacheDirLength 1
-</IfModule>
+# Pull base image.
+FROM adoptopenjdk:11-jre-openj9
+MAINTAINER dev@sling.apache.org
+
+# Configure directories
+WORKDIR /opt/sling
+VOLUME /opt/sling/sling
+
+# Setup Sling CMS
+RUN mkdir -p /opt/sling
+RUN curl -L https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.14.0/org.apache.sling.cms.builder-0.14.0.jar --output org.apache.sling.cms.jar
+
+# Expose endpoints
+EXPOSE 8080
+
+# Start Sling CMS
+CMD exec java -Dsling.run.modes=oak_mongo -Doak.mongo.uri=mongodb://mongo:27017 -Doak.mongo.db=sling -jar org.apache.sling.cms.jar

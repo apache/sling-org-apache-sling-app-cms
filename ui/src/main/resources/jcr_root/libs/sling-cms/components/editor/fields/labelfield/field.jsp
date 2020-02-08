@@ -19,11 +19,11 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
  <div class="labelfield">
      <fieldset disabled="disabled" class="labelfield__template is-hidden">
-         <a class="button labelfield__item">
+         <a class="tag labelfield__item" title="">
             <input type="hidden" name="${properties.name}" value="" />
             <span class="labelfield__title">
             </span>
-            <span class="jam jam-close"></span>
+            <button class="delete is-small"></button>
         </a>
     </fieldset>
     <div class="labelfield__field field has-addons">
@@ -40,7 +40,7 @@
              </button>
          </div>
      </div>
-     <div class="labelfield__container">
+     <div class="labelfield__container tags are-large">
          <sling:call script="values.jsp" />
      </div>
     <sling:call script="options" />

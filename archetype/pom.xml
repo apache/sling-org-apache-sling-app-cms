@@ -15,6 +15,10 @@ License. -->
   <name>Apache Sling - CMS Archetype</name>
   <description>A Maven Archetype for creating Sling CMS projects</description>
 
+  <properties>
+    <bnd.baseline.skip>true</bnd.baseline.skip>
+  </properties>
+
   <build>
     <resources>
       <resource>

@@ -4,7 +4,13 @@
 
 # Apache Sling CMS
 
-A reference implementation of a simple Content Management System built in Apache Sling. This application showcases multiple Apache Sling features such as Context Aware Configurations, Resource Mapping, Rewriter and Resource Merging.
+The Apache Sling CMS is a reference implementation of a fully-featured Content Management System built in Apache Sling. This application showcases multiple Apache Sling features such as Context Aware Configurations, Resource Mapping, Rewriter and Resource Merging.
+
+## Try It
+
+Try out Sling CMS on [Gitpod](https://www.gitpod.io/) for free for up to 50 hours / month.
+
+[![Try Sling CMS on Gitpod](https://img.shields.io/badge/Gitpod-Try%20Sling%20CMS%20Online-blue?logo=gitpod)](https://gitpod.io/#https://github.com/apache/sling-org-apache-sling-app-cms) 
 
 ## Documentation
 
@@ -13,7 +19,7 @@ A reference implementation of a simple Content Management System built in Apache
  * [Developers](docs/developers.md)
  * [Releases](docs/releases.md)
  * [Users](docs/users.md)
- 
+
 ### [Download Latest Version](https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.14.0/org.apache.sling.cms.builder-0.14.0.jar)
 ### [Report an Issue](https://issues.apache.org/jira)
 

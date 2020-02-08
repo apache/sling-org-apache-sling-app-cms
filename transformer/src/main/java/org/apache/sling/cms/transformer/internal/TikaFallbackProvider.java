@@ -37,6 +37,7 @@ import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
+import org.apache.tika.sax.WriteOutContentHandler;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -62,19 +63,14 @@ public class TikaFallbackProvider implements ThumbnailProvider {
         try {
 
             log.debug("Extracting file contents");
-            InputStream is = resource.adaptTo(InputStream.class);
-            Parser parser = new AutoDetectParser();
-            BodyContentHandler handler = new BodyContentHandler();
-            Metadata md = new Metadata();
-            ParseContext context = new ParseContext();
-            parser.parse(is, handler, md, context);
+            String contents = extractContents(resource);
 
             log.debug("Creating thumbnail of file contents");
             int width = 500;
             int height = 500;
             BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             Graphics graphics = image.createGraphics();
-            JEditorPane jep = new JEditorPane("text/html", handler.toString());
+            JEditorPane jep = new JEditorPane("text/html", contents);
             jep.setSize(width, height);
             jep.print(graphics);
 
@@ -84,6 +80,26 @@ public class TikaFallbackProvider implements ThumbnailProvider {
         } catch (SAXException | TikaException e) {
             throw new IOException("Failed to generate thumbnail from " + resource.getPath(), e);
         }
+    }
+
+    private String extractContents(Resource resource) throws IOException, TikaException, SAXException {
+        InputStream is = resource.adaptTo(InputStream.class);
+        Parser parser = new AutoDetectParser();
+        WriteOutContentHandler woHandler = new WriteOutContentHandler();
+        BodyContentHandler bHandler = new BodyContentHandler(woHandler);
+        
+        Metadata md = new Metadata();
+        ParseContext context = new ParseContext();
+        try {
+            parser.parse(is, bHandler, md, context);
+        } catch (SAXException se) {
+            if (woHandler.isWriteLimitReached(se)) {
+                log.debug("Reached write limit for preview generation");
+            } else {
+                throw se;
+            }
+        }
+        return bHandler.toString();
     }
 
 }
