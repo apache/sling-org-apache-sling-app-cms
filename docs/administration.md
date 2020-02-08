@@ -19,6 +19,7 @@
  - [Configuring File Editor](configure-file-editor.md)
  - [Error Pages](error-pages.md)
  - [Image Transformations](image-transformations.md)
+ - [LDAP Authentication](ldap.md)
  - [MongoDB Support](mongodb.md)
  - [Plugins](plugins.md)
  - [Securing Sling CMS](securing.md)
