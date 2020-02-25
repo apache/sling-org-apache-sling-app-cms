@@ -38,7 +38,6 @@ public class PropertyHintNodeNameGeneratorTest {
 
         @Override
         public String allowed_chars() {
-            // TODO Auto-generated method stub
             return "abcdefghijklmnopqrstuvwxyz_-";
         }
 
