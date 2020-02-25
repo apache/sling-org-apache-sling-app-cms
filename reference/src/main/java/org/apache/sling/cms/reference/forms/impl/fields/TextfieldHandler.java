@@ -117,7 +117,7 @@ public class TextfieldHandler implements FieldHandler {
             throw new FormException("Field " + FieldHandler.getName(fieldResource) + " is not a valid " + type);
         }
 
-        if ("number".equals(type) && !NumberUtils.isNumber(value)) {
+        if ("number".equals(type) && !NumberUtils.isCreatable(value)) {
             throw new FormException("Field " + FieldHandler.getName(fieldResource) + " is not a number");
         }
     }

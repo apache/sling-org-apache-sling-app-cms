@@ -19,7 +19,7 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.text.StringSubstitutor;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
@@ -66,7 +66,7 @@ public class SendEmailAction implements JobConsumer, FormAction {
 
     @Override
     public FormActionResult handleForm(Resource actionResource, FormRequest request) throws FormException {
-        StrSubstitutor sub = new StrSubstitutor(request.getFormData());
+        StringSubstitutor sub = new StringSubstitutor(request.getFormData());
 
         ValueMap properties = actionResource.getValueMap();
         String to = sub.replace(properties.get(TO, String.class));
