@@ -1,5 +1,5 @@
 {
-    "jcr:mixinTypes": [ "sling:Redirect" ],
+    "jcr:mixinTypes": [ "sling:Redirect","rep:AccessControllable" ],
     "sling:resourceType": "sling:redirect",
     "sling:target": "/cms/start.html"
 }
