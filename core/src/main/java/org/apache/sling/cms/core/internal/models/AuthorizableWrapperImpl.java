@@ -21,9 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
-import javax.jcr.UnsupportedRepositoryOperationException;
 
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
