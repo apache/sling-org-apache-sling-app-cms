@@ -24,7 +24,7 @@
      </c:if>
      <c:choose>
          <c:when test="${versionable == 'true'}">
-             <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+             <form method="post" action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
                 <fieldset class="form-wrapper field">
                     <input type="hidden" name=":operation" value="checkpoint" />
                     <div class="Field-Group">
@@ -36,7 +36,7 @@
             </form>
          </c:when>
          <c:otherwise>
-             <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+             <form method="post" action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
                 <fieldset class="form-wrapper field">
                     <input type="hidden" name=":autoCheckout" value="true">
                     <input type="hidden" name=":autoCheckin" value="true">
@@ -84,7 +84,7 @@
                             </td>
                             <td>
                                 <c:if test="${!status.first}">
-                                    <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+                                    <form method="post" action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
                                         <fieldset class="form-wrapper field">
                                             <input type="hidden" name=":operation" value="restore" />
                                             <input type="hidden" name=":version" value="${version.name}" />

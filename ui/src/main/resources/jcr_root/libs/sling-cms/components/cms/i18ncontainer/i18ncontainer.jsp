@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="scroll-container reload-container" data-path="${resource.path}.html${slingRequest.requestPathInfo.suffix}">
+<div class="scroll-container reload-container" data-path="${resource.path}.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
     <sling:include path="${resource.path}" resourceType="sling-cms/components/general/container" />
     <c:forEach var="language" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
         <c:if test="${firstChild == null && not empty language.valueMap['jcr:language']}">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </nav>
-    <form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
+    <form method="post" action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
         <fieldset class="form-wrapper field">
             <input type="hidden" name="_charset_" value="utf-8" />
             <table class="table is-fullwidth is-striped">

@@ -18,7 +18,7 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <form method="post"
-    action="${slingRequest.requestPathInfo.suffix}${properties.actionSuffix}"
+    action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}${sling:encode(properties.actionSuffix,'HTML_ATTR')}"
     enctype="multipart/form-data" class="Form-Ajax"
     data-add-date="${properties.addDate != false}"
     data-callback="${properties.callback}">
@@ -29,7 +29,7 @@
             <sling:encode value="${properties.button}" default="Save" mode="HTML" />
         </button>
         <c:if test="${properties.skipcancel != true}">
-            <a href="${header.referer}" class="button close">Cancel</a>
+            <a href="${sling:encode(header.referer,'HTML_ATTR')}" class="button close">Cancel</a>
         </c:if>
     </fieldset>
 </form>

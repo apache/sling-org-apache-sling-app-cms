@@ -21,7 +21,7 @@
     <c:choose>
         <c:when test="${actionConfig.valueMap.modal}">
             <div class="control">
-                <a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+                <a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${sling:encode(actionConfig.valueMap.prefix,'HTML_ATTR')}${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
                     <span class="jam jam-${actionConfig.valueMap.icon}">
                         <span class="is-vhidden">
                             ${sling:encode(actionConfig.valueMap.title,'HTML')}
@@ -32,7 +32,7 @@
         </c:when>
         <c:otherwise>
             <div class="control">
-                <a class="button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${actionConfig.valueMap.prefix}${slingRequest.requestPathInfo.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+                <a class="button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${sling:encode(actionConfig.valueMap.prefix,'HTML_ATTR')}${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
                     <span class="jam jam-${actionConfig.valueMap.icon}">
                         <span class="is-vhidden">
                             ${sling:encode(actionConfig.valueMap.title,'HTML')}

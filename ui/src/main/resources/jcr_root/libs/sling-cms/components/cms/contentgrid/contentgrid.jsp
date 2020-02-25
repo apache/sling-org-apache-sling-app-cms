@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="reload-container scroll-container contentnav" data-path="${resource.path}.grid.html${slingRequest.requestPathInfo.suffix}">
+<div class="reload-container scroll-container contentnav" data-path="${resource.path}.grid.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
     <div class="tile is-ancestor">
         <c:forEach var="child" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}" varStatus="status">
             <c:set var="showCard" value="${false}" />

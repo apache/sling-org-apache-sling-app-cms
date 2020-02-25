@@ -50,7 +50,7 @@
                         <fmt:formatNumber value="${optimizer.result.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
                     </dd>
                 </dl>
-                <form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
+                <form action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" class="Form-Ajax" method="post">
                     <fieldset class="form-wrapper field">
                         <input type="hidden" name=":operation" value="fileoptim:optimize" />
                         <button type="submit" class="button is-primary">
@@ -76,7 +76,7 @@
                         <fmt:formatNumber value="${optimizedFile.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
                     </dd>
                 </dl>
-                <form action="${slingRequest.requestPathInfo.suffix}" class="Form-Ajax" method="post">
+                <form action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" class="Form-Ajax" method="post">
                     <fieldset class="form-wrapper field">
                         <input type="hidden" name=":operation" value="fileoptim:restore" />
                         <button type="submit" class="button is-primary">
@@ -97,7 +97,7 @@
     <div class="column">
         <c:if test="${optimizer.canOptimize && optimizer.result.optimized}">
             <h4>Preview</h4>
-            <img src="/system/fileoptim/preview?path=${slingRequest.requestPathInfo.suffix}" class="preview" />
+            <img src="/system/fileoptim/preview?path=${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" class="preview" />
         </c:if>
     </div>
 </div>

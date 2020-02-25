@@ -30,7 +30,7 @@
         </c:when>
     </c:choose>
 </c:forEach>
-<form method="post" action="${slingRequest.requestPathInfo.suffix}" enctype="multipart/form-data" class="Form-Ajax">
+<form method="post" action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" enctype="multipart/form-data" class="Form-Ajax">
     <c:choose>
         <c:when test="${matches != null}">
             <sling:include path="${matches.path}/fields" resourceType="sling-cms/components/general/container" />
