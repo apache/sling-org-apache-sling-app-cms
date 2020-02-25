@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.text.StringSubstitutor;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.PersistenceException;
@@ -69,7 +69,7 @@ public class UserGeneratedContentAction implements FormAction {
             bucketConfig.setPathDepth(properties.get("pathDepth", 0));
 
             log.debug("Creating UGC at with configuration:  {}", bucketConfig);
-            StrSubstitutor sub = new StrSubstitutor(request.getFormData());
+            StringSubstitutor sub = new StringSubstitutor(request.getFormData());
 
             Map<String, Object> contentProperties = new HashMap<>();
             contentProperties.put(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
