@@ -49,6 +49,9 @@
                             <c:set var="icon" value="sitemap" />
                         </c:otherwise>
                     </c:choose>
+                    <c:if test="${icon == 'file'}">
+                        <img src="${result.path}.transform/sling-cms-thumbnail.png" alt="${sling:encode(title,'HTML_ATTR')}" />
+                    </c:if>
                     <h5 title="${sling:encode(title,'HTML_ATTR')}">
                         <span class="jam jam-${icon}"></span>&nbsp;${sling:encode(title,'HTML')}
                     </h5>
