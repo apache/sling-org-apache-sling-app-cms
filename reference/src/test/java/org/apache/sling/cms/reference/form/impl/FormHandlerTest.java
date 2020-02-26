@@ -17,7 +17,6 @@
 package org.apache.sling.cms.reference.form.impl;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.util.Arrays;
 
 import javax.servlet.ServletException;
@@ -28,11 +27,10 @@ import org.apache.sling.cms.reference.forms.FormRequest;
 import org.apache.sling.cms.reference.forms.impl.FormHandler;
 import org.apache.sling.cms.reference.forms.impl.FormRequestImpl;
 import org.apache.sling.cms.reference.forms.impl.actions.SendEmailAction;
-import org.apache.sling.cms.reference.forms.impl.actions.SendEmailActonConfig;
 import org.apache.sling.cms.reference.forms.impl.fields.SelectionHandler;
 import org.apache.sling.cms.reference.forms.impl.fields.TextareaHandler;
 import org.apache.sling.cms.reference.forms.impl.fields.TextfieldHandler;
-import org.apache.sling.event.jobs.JobManager;
+import org.apache.sling.commons.messaging.mail.MailService;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -46,6 +44,7 @@ public class FormHandlerTest {
     @Rule
     public final SlingContext context = new SlingContext();
     private FormHandler formHandler;
+    private MailService mailService;
 
     @Before
     public void init() throws NoSuchFieldException, SecurityException, FormException {
@@ -59,7 +58,7 @@ public class FormHandlerTest {
                         .put("patternfield", "123").put("double", "2.7").put("integer", "2")
                         .put("datefield", "2019-02-02").build());
 
-        FormRequestImpl formRequest = new FormRequestImpl(context.request());
+        final FormRequestImpl formRequest = new FormRequestImpl(context.request());
 
         FieldSetter.setField(formRequest, formRequest.getClass().getDeclaredField("fieldHandlers"),
                 Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
@@ -69,47 +68,15 @@ public class FormHandlerTest {
         formHandler = new FormHandler() {
             private static final long serialVersionUID = 1L;
 
-            protected FormRequest getFormRequest(SlingHttpServletRequest request) {
+            protected FormRequest getFormRequest(final SlingHttpServletRequest request) {
                 return formRequest;
             }
         };
 
-        SendEmailAction sendEmailAction = new SendEmailAction();
-        sendEmailAction.activate(new SendEmailActonConfig() {
-
-            @Override
-            public String hostName() {
-                return "smtp.mailtrap.io";
-            }
-
-            @Override
-            public int smtpPort() {
-                return 587;
-            }
-
-            @Override
-            public boolean tlsEnabled() {
-                return true;
-            }
-
-            @Override
-            public String username() {
-                return "e7cfc0e9bb9b80";
-            }
-
-            @Override
-            public String password() {
-                return "b9902898ce236a";
-            }
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
-
-        });
-        FieldSetter.setField(sendEmailAction, SendEmailAction.class.getDeclaredField("jobManager"),
-                Mockito.mock(JobManager.class));
+        final SendEmailAction sendEmailAction = new SendEmailAction();
+        mailService = Mockito.mock(MailService.class);
+        Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
+        FieldSetter.setField(sendEmailAction, sendEmailAction.getClass().getDeclaredField("mailService"), mailService);
 
         FieldSetter.setField(formHandler, FormHandler.class.getDeclaredField("formActions"),
                 Arrays.asList(sendEmailAction));
@@ -119,6 +86,7 @@ public class FormHandlerTest {
     @Test
     public void testPost() throws ServletException, IOException {
         formHandler.service(context.request(), context.response());
+        Mockito.verify(mailService).sendMessage(Mockito.any());
     }
 
 }

@@ -19,19 +19,15 @@ package org.apache.sling.cms.reference.form.impl.actions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.annotation.Annotation;
-
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.cms.reference.form.impl.MockMessageBuilder;
 import org.apache.sling.cms.reference.form.impl.SlingContextHelper;
 import org.apache.sling.cms.reference.forms.FormActionResult;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.apache.sling.cms.reference.forms.impl.FormRequestImpl;
 import org.apache.sling.cms.reference.forms.impl.actions.SendEmailAction;
-import org.apache.sling.cms.reference.forms.impl.actions.SendEmailActonConfig;
-import org.apache.sling.event.jobs.Job;
-import org.apache.sling.event.jobs.JobManager;
-import org.apache.sling.event.jobs.consumer.JobConsumer.JobResult;
+import org.apache.sling.commons.messaging.mail.MailService;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -45,6 +41,7 @@ public class SendEmailActionTest {
     public final SlingContext context = new SlingContext();
     private SendEmailAction action;
     private ResourceResolver resolver;
+    private MailService mailService;
 
     @Before
     public void init() throws NoSuchFieldException, SecurityException {
@@ -54,41 +51,10 @@ public class SendEmailActionTest {
         resolver = context.resourceResolver();
         action = new SendEmailAction();
 
-        FieldSetter.setField(action, action.getClass().getDeclaredField("jobManager"), Mockito.mock(JobManager.class));
+        mailService = Mockito.mock(MailService.class);
+        Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
 
-        action.activate(new SendEmailActonConfig() {
-
-            @Override
-            public String hostName() {
-                return "smtp.mailtrap.io";
-            }
-
-            @Override
-            public int smtpPort() {
-                return 587;
-            }
-
-            @Override
-            public boolean tlsEnabled() {
-                return true;
-            }
-
-            @Override
-            public String username() {
-                return "e7cfc0e9bb9b80";
-            }
-
-            @Override
-            public String password() {
-                return "b9902898ce236a";
-            }
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
-
-        });
+        FieldSetter.setField(action, action.getClass().getDeclaredField("mailService"), mailService);
     }
 
     @Test
@@ -105,24 +71,12 @@ public class SendEmailActionTest {
     @Test
     public void testHandleForm() throws FormException {
 
-        FormRequest formRequest = new FormRequestImpl(context.request());
-        FormActionResult result = action
+        final FormRequest formRequest = new FormRequestImpl(context.request());
+        final FormActionResult result = action
                 .handleForm(resolver.getResource("/form/jcr:content/container/form/actions/sendemail"), formRequest);
 
         assertTrue(result.isSucceeded());
-    }
-
-    @Test
-    public void testProcess() throws FormException {
-
-        Job job = Mockito.mock(Job.class);
-        Mockito.when(job.getProperty(SendEmailAction.TO, String.class)).thenReturn("test@user.com");
-        Mockito.when(job.getProperty(SendEmailAction.FROM, String.class)).thenReturn("another@user.com");
-        Mockito.when(job.getProperty(SendEmailAction.SUBJECT, String.class)).thenReturn("SLING CMS");
-        Mockito.when(job.getProperty(SendEmailAction.MESSAGE, String.class)).thenReturn("WOW!");
-
-        JobResult result = action.process(job);
-        assertTrue(result == JobResult.OK);
+        Mockito.verify(mailService).sendMessage(Mockito.any());
     }
 
 }
