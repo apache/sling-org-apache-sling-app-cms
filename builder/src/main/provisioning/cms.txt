@@ -152,12 +152,6 @@
         "org.apache.sling.rewriter\=sling-rewriter"
     ]
 
-  org.apache.felix.hc.generalchecks.ServicesCheck-emailconfigured
-    hc.name="Sling CMS - Send Email Action Configured"
-    hc.tags=["configuration"]
-    statusForMissing="WARN"
-    services.list=["(component.name\=org.apache.sling.cms.reference.forms.impl.actions.SendEmailAction)"]
-
   org.apache.felix.hc.generalchecks.ServicesCheck-securityfilterconfigured
     hc.name="Sling CMS - Security Filter Configured"
     hc.tags=["configuration"]
