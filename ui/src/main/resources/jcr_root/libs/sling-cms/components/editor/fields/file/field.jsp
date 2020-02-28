@@ -39,7 +39,7 @@
         <input type="file" class="file-input" name="${properties.name}" ${required} accept="${accepts}" multiple="multiple" />
         <span class="file-cta">
             <span class="file-icon">
-                <i class="jam jam-upload"></i>
+                <em class="jam jam-upload"></em>
             </span>
             <span class="file-label">
                 Browse / Drag File(s)

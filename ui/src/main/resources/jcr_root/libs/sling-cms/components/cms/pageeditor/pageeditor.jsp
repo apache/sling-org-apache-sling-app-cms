@@ -18,5 +18,5 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="sling-cms-editor reload-container" data-path="${resource.path}.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
-	<iframe class="page-wrapper-frame" src="/cms/page/pagewrapper.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"></iframe>
+	<iframe class="page-wrapper-frame" src="/cms/page/pagewrapper.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" title="Page Wrapper Frame"></iframe>
 </div>

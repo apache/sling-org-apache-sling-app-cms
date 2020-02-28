@@ -21,7 +21,7 @@
 <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.StartContent" var="startContent" />
 <div class="columns">
     <div class="column">
-        <nav class="panel">
+        <nav class="panel" aria-label="<fmt:message key="slingcms.recentcontent" />">
             <p class="panel-heading">
                 <fmt:message key="slingcms.recentcontent" />
             </p>

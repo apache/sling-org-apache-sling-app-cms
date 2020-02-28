@@ -37,12 +37,12 @@
             <table class="table is-fullwidth is-striped">
                 <thead>
                     <tr>
-                        <th class="Column-key">
+                        <th class="Column-key" scope="col">
                             Key
                         </th>
                         <c:forEach var="language" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
                             <c:if test="${not empty language.valueMap['jcr:language']}">
-                                <th class="Column-${language.valueMap['jcr:language']}">
+                                <th class="Column-${language.valueMap['jcr:language']}" scope="col">
                                     <sling:adaptTo adaptable="${language}" adaptTo="org.apache.sling.cms.core.models.LocaleResource" var="localeResource" />
                                     <sling:encode value="${localeResource.locale.displayLanguage}" mode="HTML" /> <sling:encode value="${localeResource.locale.displayCountry}" mode="HTML" />
                                     <br/>

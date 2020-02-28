@@ -21,11 +21,11 @@
     <table class="table is-fullwidth is-striped sortable">
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     #
                 </th>
                 <c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">
-                    <th class="${column.name == 'actions' ? 'is-hidden' : '' }" data-attribute="${column.name}">
+                    <th class="${column.name == 'actions' ? 'is-hidden' : '' }" data-attribute="${column.name}" scope="col">
                         <sling:encode value="${column.valueMap.title}" mode="HTML" />
                     </th>
                 </c:forEach>

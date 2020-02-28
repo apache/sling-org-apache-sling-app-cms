@@ -56,11 +56,11 @@
             <table class="table is-fullwidth" data-sort="false" data-paginate="false">
                 <thead>
                     <tr>
-                        <th>Version</th>
-                        <th>Created</th>
-                        <th>Successors</th>
-                        <th>Predecessors</th>
-                        <th>Restore</th>
+                        <th scope="col">Version</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Successors</th>
+                        <th scope="col">Predecessors</th>
+                        <th scope="col">Restore</th>
                     </tr>
                 </thead>
                 <tbody class="load-versions">

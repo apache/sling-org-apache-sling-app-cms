@@ -204,7 +204,7 @@
     statusForFailedContraint="CRITICAL"
 
   org.apache.felix.hc.generalchecks.JmxAttributeCheck-slowqueries
-    mbean.name="org.apache.jackrabbit.oak:name\=Oak Query Statistics,type\=QueryStat"
+    mbean.name="org.apache.jackrabbit.oak:name\=Oak Query Statistics,type\=QueryStats"
     hc.name="Jackrabbit Oak - Slow Queries"
     hc.tags=["oak","system-resources"]
     attribute.value.constraint="0"

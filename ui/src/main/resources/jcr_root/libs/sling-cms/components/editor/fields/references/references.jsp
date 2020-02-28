@@ -34,10 +34,10 @@
             <table class="table" data-paginate="false">
                 <thead>
                     <tr>
-                        <th>Type</th>
-                        <th>Content</th>
-                        <th>Subpath</th>
-                        <th>Property</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Subpath</th>
+                        <th scope="col">Property</th>
                 </thead>
                 <tbody>
                     <c:forEach var="ref" items="${references.references}">

@@ -91,6 +91,9 @@
                                         <c:when test="${not empty child.valueMap['jcr:content/jcr:title']}">
                                             <c:set var="title" value="${child.valueMap['jcr:content/jcr:title']}" />
                                         </c:when>
+                                        <c:when test="${not empty child.valueMap['jcr:title']}">
+                                            <c:set var="title" value="${child.valueMap['jcr:title']}" />
+                                        </c:when>
                                         <c:otherwise>
                                             <c:set var="title" value="${child.name}" />
                                         </c:otherwise>
@@ -108,16 +111,16 @@
                                           <c:choose>
                                               <c:when test="${sling:getRelativeResource(child,'jcr:content').valueMap.published}">
                                                   <a class="Fetch-Modal has-text-success" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                                      <i class="jam jam-check">
+                                                      <em class="jam jam-check">
                                                           <span class="is-vhidden">Content Published</span>
-                                                      </i>
+                                                      </em>
                                                   </a>
                                               </c:when>
                                               <c:otherwise>
                                                   <a class="has-text-warning Fetch-Modal" href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
-                                                      <i class="jam jam-close">
+                                                      <em class="jam jam-close">
                                                           <span class="is-vhidden">Content Not Published</span>
-                                                      </i>
+                                                      </em>
                                                   </a>
                                               </c:otherwise>
                                           </c:choose>
