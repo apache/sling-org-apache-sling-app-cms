@@ -36,7 +36,6 @@ import org.apache.poi.util.IOUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.request.RequestDispatcherOptions;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceUtil;
@@ -73,7 +72,7 @@ public class TransformServlet extends SlingSafeMethodsServlet {
 
     private transient Transformer transformer;
     
-    private TransformServletConfig config;
+    private transient TransformServletConfig config;
     
     @Activate
     public void activate(TransformServletConfig config) {
@@ -136,7 +135,7 @@ public class TransformServlet extends SlingSafeMethodsServlet {
         }
     }
 
-    protected Transformation findTransformation(ResourceResolver serviceResolver, String name) throws LoginException {
+    protected Transformation findTransformation(ResourceResolver serviceResolver, String name) {
         name = name.substring(1).replace("'", "''");
         log.debug("Finding transformations with {}", name);
 
