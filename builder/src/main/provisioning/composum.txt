@@ -17,7 +17,7 @@
 #  under the License.
 [feature name=composum-nodes]
 [variables]
-    composum.nodes.version=1.11.5
+    composum.nodes.version=1.12.0
 
 [artifacts startLevel=20]
 
