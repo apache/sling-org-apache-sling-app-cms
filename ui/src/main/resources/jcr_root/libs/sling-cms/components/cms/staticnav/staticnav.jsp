@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="menu">
+<nav class="menu">
     <a class="menu-label toggle-hidden" data-target="#${fn:replace(properties.title,' ','-')}-nav">
         <sling:encode value="${properties.title}" mode="HTML" />
     </a>
@@ -60,4 +60,4 @@
             </c:if>
         </c:forEach>
     </ul>
-</div>
+</nav>
