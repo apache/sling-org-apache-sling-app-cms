@@ -173,6 +173,10 @@ small.card-footer-item {
   margin: 0;
 }
 
+nav .level-left, nav .level-right {
+  flex-shrink: inherit;
+}
+
 .note-group-select-from-files {
   display: none;
 }

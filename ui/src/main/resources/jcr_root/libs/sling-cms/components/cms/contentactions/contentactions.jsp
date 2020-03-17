@@ -39,7 +39,7 @@
                         <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" var="auth" />
                         <sling:getResource path="${auth.authorizable.path}/profile" var="profile" />
                         <c:set var="pagePath" value="${sling:adaptTo(resource,'org.apache.sling.cms.PageManager').page.path}" />
-                        <form method="get" action="" class="layout-switch">
+                        <form method="get" action="" class="layout-switch is-inline">
                             <div class="select">
                                 <select>
                                     <c:choose>
