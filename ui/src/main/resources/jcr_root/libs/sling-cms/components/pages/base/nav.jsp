@@ -24,9 +24,9 @@
         </a>
         <a href="/cms/start.html" class="navbar-item" title="CMS Home">
             <span class="icon">
-                <i class="jam jam-home-f">
+                <em class="jam jam-home-f">
                     <span class="is-vhidden">Home</span>
-                </i>
+                </em>
             </span>
         </a>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="#top-navbar-menu">
@@ -48,22 +48,22 @@
                 </a>
                 <div class="navbar-dropdown">
                     <a class="navbar-item Fetch-Modal" data-title="User Profile" data-path=".Main-Content form" href="/cms/auth/user/profile.html${auth.authorizable.path}">
-                        <i class="jam jam-id-card">
+                        <em class="jam jam-id-card">
                             <span class="is-vhidden">Profile</span>
-                        </i>&nbsp;
+                        </em>&nbsp;
                         Profile
                     </a>
-                    <a class="navbar-item" href="https://github.com/apache/sling-org-apache-sling-app-cms" target="_blank">
-                        <i class="jam jam-help">
+                    <a class="navbar-item" href="https://github.com/apache/sling-org-apache-sling-app-cms" target="_blank" rel="noopener noreferrer">
+                        <em class="jam jam-help">
                             <span class="is-vhidden">Help</span>
-                        </i>&nbsp;
+                        </em>&nbsp;
                         Help
                     </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item" href="/system/sling/logout">
-                        <i class="jam jam-log-out">
+                        <em class="jam jam-log-out">
                             <span class="is-vhidden">Logout</span>
-                        </i>&nbsp;
+                        </em>&nbsp;
                         Logout
                     </a>
                 </div>
