@@ -288,10 +288,12 @@ if (!window.CMSEditor) {
             'path',
             ed.closest('.sling-cms-component').dataset.slingCmsResourcePath,
           );
+          const resourceType = ed.closest('.sling-cms-component').dataset.slingCmsResourceType;
           event.dataTransfer.setData(
             'name',
-            ed.closest('.sling-cms-component').dataset.slingCmsResourceName,
+            resourceType.substr(resourceType.lastIndexOf('/') + 1) + '_' + Math.random().toString(36).substring(2)
           );
+          
           setTimeout(activateTargets, 10);
         });
         ed.addEventListener('dragend', deactivateTargets);
