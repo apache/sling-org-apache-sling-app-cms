@@ -42,8 +42,6 @@
     # OAK-7263 - oak-store-document should be in oak_mongo runmode
     org.apache.jackrabbit/oak-store-document/${oak.version}
     org.apache.jackrabbit/oak-store-spi/${oak.version}
-    org.apache.jackrabbit/oak-auth-external/${oak.version}
-    org.apache.jackrabbit/oak-auth-ldap/${oak.version}
 
 [artifacts startLevel=15 runModes=oak_tar]
     org.apache.jackrabbit/oak-segment-tar/${oak.version}
