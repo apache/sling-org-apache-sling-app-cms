@@ -69,7 +69,7 @@ public class AuthorizableWrapperImpl implements AuthorizableWrapper {
                 return empty.iterator();
             }
         } catch (RepositoryException e) {
-            log.error("Failed to get membership of authorizable: {}", authorizable, e);
+            log.error("Failed to get declared members of authorizable: {}", authorizable, e);
             return Collections.emptyIterator();
         }
     }
@@ -79,7 +79,7 @@ public class AuthorizableWrapperImpl implements AuthorizableWrapper {
         try {
             return authorizable.declaredMemberOf();
         } catch (RepositoryException e) {
-            log.error("Failed to get membership of authorizable: {}", authorizable, e);
+            log.error("Failed to get declared membership of authorizable: {}", authorizable, e);
             return Collections.emptyIterator();
         }
     }
@@ -102,7 +102,7 @@ public class AuthorizableWrapperImpl implements AuthorizableWrapper {
         try {
             return authorizable.getID();
         } catch (RepositoryException e) {
-            log.error("Failed to get ID from authorizable: {}", e);
+            log.error("Failed to get ID from authorizable: {}", authorizable, e);
             return null;
         }
     }
