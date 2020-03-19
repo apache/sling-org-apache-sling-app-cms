@@ -86,7 +86,7 @@ public class AuthorizableWrapperImpl implements AuthorizableWrapper {
 
     @Override
     public Iterator<String> getGroupNames() {
-        Iterable<Group> iterable = () -> getMembership();
+        Iterable<Group> iterable = this::getMembership;
         return StreamSupport.stream(iterable.spliterator(), false).map(g -> {
             try {
                 return g.getPrincipal().getName();
