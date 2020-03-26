@@ -12,12 +12,28 @@
 
 # Releases
 
-## 0.14.0 - CURRENT VERSION
+## 0.16.0 - CURRENT VERSION
+
+Added support for LDAP authentication, UI tweaks and bug fixes.
+
+#### [CVE Advisory: CVE-2020-1949 - Improper Neutralization of Input During Web Page Generation](https://s.apache.org/CVE-2020-1949)
+
+Scripts in Sling CMS do not property escape the Sling Selector from URLs when generating navigational elements for the administrative consoles and are vulnerable to reflected XSS attacks.
+
+#### Remediation
+
+Upgrade to Sling CMS 0.16.0.
+
+ * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.16.0)
+ * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.16.0)
+
+## 0.14.0
 
 Focus on continued improvements to user experience, including significant improvments to the look and feel of the sites screens. Cleaned up inconsistencies in the breadcrumbs. New drag and drop re-ordering and added basic editable forms and significantly improved image transformations.
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.14.0)
  * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.14.0)
+* [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/c45c70c207924d40b5f2cdca9b65374428d2ec3d)
 
 ## 0.12.0
 
