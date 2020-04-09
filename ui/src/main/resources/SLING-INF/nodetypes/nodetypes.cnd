@@ -21,7 +21,7 @@
 //    -  http://sling.apache.org/site/content-loading.html
 //    -  http://jackrabbit.apache.org/node-type-notation.html
 
-<sling = 'http://www.sling.apache.org/sling/1.0'>
+<sling = 'http://sling.apache.org/jcr/sling/1.0'>
     
 
 [sling:Component] > nt:unstructured
