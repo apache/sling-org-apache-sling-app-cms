@@ -24,11 +24,11 @@ rava.bind('.labelfield', {
         event.preventDefault();
         event.stopPropagation();
         const context = this;
-        const span = document.createElement('span');
+        const tmp = document.createElement('span');
         const val = context.querySelector('.labelfield__field input').value;
         let found = false;
         const title = context.querySelector(`option[value="${val}"]`).innerText;
-        span.innerHTML = context.querySelector('.labelfield__template').innerHTML;
+        tmp.innerHTML = context.querySelector('.labelfield__template').innerHTML;
         context.querySelectorAll('.labelfield__item input').forEach((el) => {
           if (el.value === val) {
             found = true;
@@ -37,12 +37,16 @@ rava.bind('.labelfield', {
         if (found) {
           return;
         }
-        span.querySelector('input').value = val;
-        span.querySelector('.labelfield__item').title = val;
+        tmp.querySelector('input').value = val;
+        tmp.querySelector('.labelfield__item').title = val;
 
         if (title !== '') {
-          span.querySelector('.labelfield__title').innerText = title;
-          this.closest('.labelfield').querySelector('.labelfield__container').appendChild(span);
+          tmp.querySelector('.labelfield__title').innerText = title;
+          tmp.childNodes.forEach(c => {
+            const child = c.cloneNode(true);
+            this.closest('.labelfield').querySelector('.labelfield__container').appendChild(child);
+          });
+          tmp.remove();
           context.querySelector('.labelfield__field input').value = '';
         }
       },
