@@ -22,11 +22,12 @@ import org.apache.sling.cms.ConfigurableJobExecutor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 @Component(service = InternalCMSJobManager.class)
 public class InternalCMSJobManager {
 
-    @Reference(cardinality = ReferenceCardinality.MULTIPLE)
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE, policyOption = ReferencePolicyOption.GREEDY)
     private List<ConfigurableJobExecutor> jobs;
 
     public List<ConfigurableJobExecutor> getJobs() {
