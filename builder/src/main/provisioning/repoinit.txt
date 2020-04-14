@@ -19,9 +19,9 @@
 [feature name=repoinit]
 
 [artifacts]
-  org.apache.sling/org.apache.sling.repoinit.parser/1.4.2
-  org.apache.sling/org.apache.sling.jcr.repoinit/1.1.20
-  org.apache.sling/org.apache.sling.provisioning.model/1.8.4
+  org.apache.sling/org.apache.sling.repoinit.parser/1.6.2
+  org.apache.sling/org.apache.sling.jcr.repoinit/1.1.24
+  org.apache.sling/org.apache.sling.provisioning.model/1.8.6
 
 [:repoinit]
     # general
