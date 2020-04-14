@@ -100,7 +100,7 @@
     org.apache.sling/org.apache.sling.fsresource/2.1.16
     org.apache.sling/org.apache.sling.i18n/2.5.14
     org.apache.sling/org.apache.sling.installer.console/1.1.0
-    org.apache.sling/org.apache.sling.installer.provider.jcr/3.1.26
+    org.apache.sling/org.apache.sling.installer.provider.jcr/3.2.0
     org.apache.sling/org.apache.sling.installer.hc/2.0.2
     org.apache.jackrabbit.vault/org.apache.jackrabbit.vault/3.4.0
     org.apache.sling/org.apache.sling.installer.factory.packages/1.0.0
@@ -215,3 +215,4 @@
     user.mapping=[
       "org.apache.sling.jcr.resource:validation\=sling-readall"
     ]
+
