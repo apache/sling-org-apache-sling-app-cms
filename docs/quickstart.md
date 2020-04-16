@@ -41,5 +41,6 @@ This option allows you to install Sling CMS and Apache web server, which allows 
 
 ## Read More About Using Sling CMS
 
+ - https://blogs.perficient.com/2019/12/09/sling-cms-version-0-14-0-new-capabilities-and-experience-improvements/
  - https://blog.mahsumdemir.com/bulding-my-blog/apache-sling-cms.html
  - https://blogs.perficientdigital.com/2018/12/11/building-a-zero-cost-website-with-apache-sling-cms/
