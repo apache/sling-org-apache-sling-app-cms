@@ -12,7 +12,24 @@
 
 # Releases
 
-## 0.16.0 - CURRENT VERSION
+
+## 0.16.2 - CURRENT VERSION
+
+Bug and UI fixes.
+
+**Note -** Breaking change in correcting Sling namespace URL. To load a package from previous versions of Sling CMS into 0.16.2+, run the script found here:
+
+https://github.com/apache/sling-org-apache-sling-app-cms/blob/master/builder/src/main/scripts/fix_package_namespace.sh
+
+e.g.:
+
+`/bin/sh fix_package_namespace.sh [package.zip]`
+
+
+ * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.16.2)
+ * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.16.2)
+
+## 0.16.0
 
 Added support for LDAP authentication, UI tweaks and bug fixes.
 
@@ -26,6 +43,7 @@ Upgrade to Sling CMS 0.16.0.
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.16.0)
  * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.16.0)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/5877660e1f5ad8626b1974df90f8d0a2c1da3d97)
 
 ## 0.14.0
 
@@ -33,7 +51,7 @@ Focus on continued improvements to user experience, including significant improv
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-0.14.0)
  * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/0.14.0)
-* [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/c45c70c207924d40b5f2cdca9b65374428d2ec3d)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/c45c70c207924d40b5f2cdca9b65374428d2ec3d)
 
 ## 0.12.0
 
