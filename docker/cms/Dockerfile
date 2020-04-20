@@ -21,7 +21,7 @@ VOLUME /opt/sling/sling
 
 # Setup Sling CMS
 RUN mkdir -p /opt/sling
-RUN curl -L https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.14.0/org.apache.sling.cms.builder-0.14.0.jar --output org.apache.sling.cms.jar
+RUN curl -L https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.16.2/org.apache.sling.cms.builder-0.16.2.jar --output org.apache.sling.cms.jar
 
 # Expose endpoints
 EXPOSE 8080
