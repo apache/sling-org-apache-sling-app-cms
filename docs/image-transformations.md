@@ -20,7 +20,7 @@ File transformations should be created per site configuration at via the Configu
 
 `/conf/[conf-name]/files/transformations`
 
-![Editing a Transformation](docs/img/edit-transformation.png)
+![Editing a Transformation](img/edit-transformation.png)
 
 Each transformation is defined as a series of handlers which will be executed in order. 
 
