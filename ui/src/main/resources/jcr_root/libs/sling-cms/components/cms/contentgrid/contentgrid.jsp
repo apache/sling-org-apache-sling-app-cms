@@ -34,27 +34,27 @@
                                     <figure class="image is-5by4">
                                         <c:choose>
                                             <c:when test="${child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
-                                                <img src="${child.path}.transform/sling-cms-thumbnail.png" alt="${child.name}">
+                                                <img src="${child.path}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${child.name}">
                                             </c:when>
                                             <c:when test="${child.resourceType == 'sling:Site'}">
-                                                <img src="/static/sling-cms/thumbnails/site.png.transform/sling-cms-thumbnail.png" alt="${sling:encode(child.name, 'HTML_ATTR')}">
+                                                <img src="/static/sling-cms/thumbnails/site.png.transform/sling-cms-thumbnail.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
                                             </c:when>
                                             <c:when test="${child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder'}">
-                                                <img src="/static/sling-cms/thumbnails/folder.png.transform/sling-cms-thumbnail.png" alt="${sling:encode(child.name, 'HTML_ATTR')}">
+                                                <img src="/static/sling-cms/thumbnails/folder.png.transform/sling-cms-thumbnail.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
                                             </c:when>
                                             <c:when test="${child.resourceType == 'sling:Page'}">
                                                 <c:set var="templateThumbnail" value="${child.valueMap['jcr:content/sling:template']}/thumbnail"/>
                                                 <c:choose>
                                                     <c:when test="${sling:getResource(resourceResolver, templateThumbnail) != null}">
-                                                        <img src="${templateThumbnail}.transform/sling-cms-thumbnail.png" alt="${sling:encode(child.name, 'HTML_ATTR')}">
+                                                        <img src="${templateThumbnail}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <img src="/static/sling-cms/thumbnails/page.png.transform/sling-cms-thumbnail.png" alt="${child.name}">
+                                                        <img src="/static/sling-cms/thumbnails/page.png.transform/sling-cms-thumbnail.png" loading="lazy" alt="${child.name}">
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:when>
                                             <c:otherwise>
-                                                <img src="/static/sling-cms/thumbnails/file.png.transform/sling-cms-thumbnail.png" alt="${child.name}">
+                                                <img src="/static/sling-cms/thumbnails/file.png.transform/sling-cms-thumbnail.png" loading="lazy" alt="${child.name}">
                                             </c:otherwise>
                                         </c:choose>
                                     </figure>

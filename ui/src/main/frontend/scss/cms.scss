@@ -16,8 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-@import 'fonts';
-@import 'overrides';
+@import "fonts";
+@import "overrides";
 @import "../../../../node_modules/bulma/bulma.sass";
 
 body.cms {
@@ -69,7 +69,7 @@ h5 {
 }
 
 .card.is-selected {
-  border: 1px solid $violet;
+  border: 1px solid $selected;
 }
 
 .card-footer-item {
@@ -79,8 +79,12 @@ h5 {
   text-align: center;
 }
 
+.card-image {
+  background-color: $gray-light;
+}
+
 small.card-footer-item {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .container {
@@ -130,7 +134,7 @@ small.card-footer-item {
 
 .is-linked {
   cursor: pointer;
-  border: 1px solid rgba(0,0,0,0);
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .is-draggable {
@@ -173,7 +177,8 @@ small.card-footer-item {
   margin: 0;
 }
 
-nav .level-left, nav .level-right {
+nav .level-left,
+nav .level-right {
   flex-shrink: inherit;
 }
 
@@ -251,7 +256,7 @@ table thead .sorting_asc:after,
 table thead .sorting_asc_disabled:after,
 table thead .sorting_desc:after,
 table thead .sorting_desc_disabled:after {
-  font-family: 'jam-icons';
+  font-family: "jam-icons";
 }
 
 table thead .sorting:after {
