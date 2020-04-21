@@ -31,21 +31,23 @@
     </c:choose>
 </c:forEach>
 <form method="post" action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" enctype="multipart/form-data" class="Form-Ajax">
-    <c:choose>
-        <c:when test="${matches != null}">
-            <sling:include path="${matches.path}/fields" resourceType="sling-cms/components/general/container" />
-        </c:when>
-        <c:when test="${general != null}">
-            <sling:include path="${general.path}/fields" resourceType="sling-cms/components/general/container" />
-        </c:when>
-        <c:otherwise>
-            No editor configured for <sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType']}" mode="HTML" />!
-        </c:otherwise>
-    </c:choose>
-    <div class="Field-Group">
-        <button type="submit" class="button is-primary">
-            Save File
-        </button>
-        <button type="button" class="button close">Cancel</button>
-    </div>
+    <fieldset class="form-wrapper field">
+        <c:choose>
+            <c:when test="${matches != null}">
+                <sling:include path="${matches.path}/fields" resourceType="sling-cms/components/general/container" />
+            </c:when>
+            <c:when test="${general != null}">
+                <sling:include path="${general.path}/fields" resourceType="sling-cms/components/general/container" />
+            </c:when>
+            <c:otherwise>
+                No editor configured for <sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType']}" mode="HTML" />!
+            </c:otherwise>
+        </c:choose>
+        <div class="Field-Group">
+            <button type="submit" class="button is-primary">
+                Save File
+            </button>
+            <button type="button" class="button close">Cancel</button>
+        </div>
+    </fieldset>
 </form>
