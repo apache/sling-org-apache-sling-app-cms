@@ -15,6 +15,9 @@
 FROM ubuntu:latest
 MAINTAINER dev@sling.apache.org
 
+# Avoid interaction with tzdata
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Install Apache
 RUN apt-get update
 RUN apt-get install apache2 -y
