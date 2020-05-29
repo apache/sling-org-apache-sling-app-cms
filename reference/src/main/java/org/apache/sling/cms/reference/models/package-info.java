@@ -18,7 +18,7 @@
  */
 
 /**
- * Handling for User Generated Content
+ * Reference models
  *
  * @version 0.9.0
  */
