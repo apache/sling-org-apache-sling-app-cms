@@ -33,13 +33,15 @@
             </a>
         </li>
     </ul>
-    <form method="get" class="contentnav-search">
-        <p class="control has-icons-left">
-            <label class="is-vhidden" for="search-term">Search</label>
-            <input class="input is-small" type="text" name="search" id="search-term">
-            <span class="icon is-small is-left">
-                <i class="jam jam-search" aria-hidden="true"></i>
-            </span>
-        </p>
-    </form>
+    <c:if test="${!properties.hideSearch}">
+        <form method="get" class="contentnav-search">
+            <p class="control has-icons-left">
+                <label class="is-vhidden" for="search-term">Search</label>
+                <input class="input is-small" type="text" name="search" id="search-term">
+                <span class="icon is-small is-left">
+                    <i class="jam jam-search" aria-hidden="true"></i>
+                </span>
+            </p>
+        </form>
+    </c:if>
 </nav>
