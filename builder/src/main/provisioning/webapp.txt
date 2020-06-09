@@ -22,4 +22,4 @@
 
 # Add the felix servlet bridge for the webapp case
 [artifacts runModes=:webapp]
-    org.apache.felix/org.apache.felix.http.bridge/4.0.10
+    org.apache.felix/org.apache.felix.http.bridge/4.0.12
