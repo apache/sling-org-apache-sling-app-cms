@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<br/><hr/><br/>
+<br/><br/>
 <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.StartContent" var="startContent" />
 <div class="columns">
     <div class="column">

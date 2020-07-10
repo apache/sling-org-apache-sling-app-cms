@@ -20,6 +20,12 @@
 @import "overrides";
 @import "../../../../node_modules/bulma/bulma.sass";
 
+@media screen and (min-width: $tablet) {
+  html {
+    overflow: hidden;
+  }
+}
+
 body.cms {
   min-height: 100vh;
   @media screen and (min-width: $tablet), print {
