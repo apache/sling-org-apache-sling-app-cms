@@ -78,10 +78,10 @@ public class HTML5Serializer implements Serializer {
     }
 
     @Override
-    public void endElement(String uri, String localName, String name) throws SAXException {
+    public void endElement(String uri, String localName, String qName) throws SAXException {
         if (!emptyTags.contains(localName)) {
             writer.write("</");
-            writer.write(localName);
+            writer.write(qName);
             writer.write(CHAR_GT);
         }
     }
@@ -127,10 +127,10 @@ public class HTML5Serializer implements Serializer {
     }
 
     @Override
-    public void startElement(String uri, String localName, String name, Attributes atts) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
         boolean endSlash = false;
         writer.write(CHAR_LT);
-        writer.write(localName);
+        writer.write(qName);
 
         for (int i = 0; i < atts.getLength(); i++) {
             if ("endSlash".equals(atts.getQName(i))) {
@@ -141,7 +141,7 @@ public class HTML5Serializer implements Serializer {
                 continue;
             }
             writer.write(CHAR_SP);
-            writer.write(atts.getLocalName(i));
+            writer.write(atts.getQName(i));
 
             writer.write(CHAR_EQ);
             writer.write('"');
