@@ -80,17 +80,6 @@
                 "title": "Tools",
                 "links": {
                     "jcr:primaryType": "nt:unstructured",
-                    "analytics": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "alternatives": [
-                            "/cms/analytics"
-                        ],
-                        "enabledGroups": [
-                            "administrators"
-                        ],
-                        "link": "/cms/analytics/list.html/etc/reports",
-                        "text": "Analytics"
-                    },
                     "bulkreplace": {
                         "jcr:primaryType": "nt:unstructured",
                         "link": "/cms/admin/bulkreplace.html",
