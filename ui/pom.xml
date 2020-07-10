@@ -96,8 +96,8 @@ License. -->
               <goal>install-node-and-npm</goal>
             </goals>
             <configuration>
-              <nodeVersion>v11.14.0</nodeVersion>
-              <npmVersion>6.9.0</npmVersion>
+              <nodeVersion>v14.2.0</nodeVersion>
+              <npmVersion>6.14.5</npmVersion>
             </configuration>
           </execution>
           <execution>
@@ -143,6 +143,7 @@ License. -->
                     <goals>
                       <goal>install-node-and-npm</goal>
                       <goal>npm</goal>
+                      <goal>npm rebuild node-sass</goal>
                       <goal>gulp</goal>
                     </goals>
                   </pluginExecutionFilter>
