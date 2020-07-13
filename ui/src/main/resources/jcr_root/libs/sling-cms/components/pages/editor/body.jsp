@@ -18,6 +18,20 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <body>
-	<sling:include path="container" resourceType="sling-cms/components/general/container"  />
-	<sling:call script="scripts.jsp" />
+    <sling:include path="container" resourceType="sling-cms/components/general/container"  />
+    <sling:call script="scripts.jsp" />
+    <script>
+    if (window.parent) {
+        document.onreadystatechange = () => {
+            if (document.readyState == "complete") {
+                window.parent.postMessage({
+                        action: "slingcms.editorloaded",
+                        height: document.querySelector("form").clientHeight + 20,
+                    },
+                    window.location.origin
+                );
+            }
+        };
+    }
+    </script>
 </body>

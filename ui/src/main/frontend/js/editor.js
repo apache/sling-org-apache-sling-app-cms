@@ -28,12 +28,12 @@ if (!window.CMSEditor) {
       // closing the modal
       CMSEditor.util.attachClick(
         document,
-        '.sling-cms-editor .modal-close, .sling-cms-editor .modal-background',
+        ".sling-cms-editor .modal-close, .sling-cms-editor .modal-background",
         () => {
           CMSEditor.ui.hideModal();
-        },
+        }
       );
-      window.addEventListener('keypress', (e) => {
+      window.addEventListener("keypress", (e) => {
         if (e.keyCode === 27 && CMSEditor.ui.modalDisplayed === true) {
           CMSEditor.ui.hideModal();
         }
@@ -53,17 +53,17 @@ if (!window.CMSEditor) {
         }
 
         // mouse button down over the element
-        CMSEditor.draggable.addEventListener('mousedown', (evt) => {
-          if (!evt.target.matches('.modal-title, .modal-title *')) {
+        CMSEditor.draggable.addEventListener("mousedown", (evt) => {
+          if (!evt.target.matches(".modal-title, .modal-title *")) {
             return;
           }
           mouseX = evt.clientX;
           mouseY = evt.clientY;
           mouseDown = true;
         });
-        CMSEditor.draggable.addEventListener('mouseup', moveComplete);
-        document.addEventListener('mouseout', moveComplete);
-        document.addEventListener('mousemove', (event) => {
+        CMSEditor.draggable.addEventListener("mouseup", moveComplete);
+        document.addEventListener("mouseout", moveComplete);
+        document.addEventListener("mousemove", (event) => {
           if (!mouseDown) {
             return;
           }
@@ -76,8 +76,8 @@ if (!window.CMSEditor) {
       modalDisplayed: false,
       hideModal() {
         if (CMSEditor.ui.modalDisplayed) {
-          if (document.querySelector('.sling-cms-editor .modal')) {
-            document.querySelector('.sling-cms-editor .modal').remove();
+          if (document.querySelector(".sling-cms-editor .modal")) {
+            document.querySelector(".sling-cms-editor .modal").remove();
           }
           CMSEditor.ui.modalDisplayed = false;
         }
@@ -85,17 +85,17 @@ if (!window.CMSEditor) {
       reloadComponent(ip, cb) {
         let path = ip;
         let component = document.querySelector(
-          `.sling-cms-component[data-sling-cms-resource-path="${path}"]`,
+          `.sling-cms-component[data-sling-cms-resource-path="${path}"]`
         );
-        let forceReload = component && component.dataset.reload === 'true';
+        let forceReload = component && component.dataset.reload === "true";
         while (!component && path.length > 1) {
-          const pathArr = path.split('/');
+          const pathArr = path.split("/");
           pathArr.pop();
-          path = pathArr.join('/');
+          path = pathArr.join("/");
           component = document.querySelector(
-            `.sling-cms-component[data-sling-cms-resource-path="${path}"]`,
+            `.sling-cms-component[data-sling-cms-resource-path="${path}"]`
           );
-          if (component && component.dataset.reload === 'true') {
+          if (component && component.dataset.reload === "true") {
             forceReload = true;
           }
         }
@@ -106,8 +106,8 @@ if (!window.CMSEditor) {
         fetch(
           `/cms/page/pagewrapper.html${path}?forceResourceType=${component.dataset.slingCmsResourceType}`,
           {
-            redirect: 'manual',
-          },
+            redirect: "manual",
+          }
         )
           .then((response) => {
             if (!response.ok) {
@@ -117,39 +117,41 @@ if (!window.CMSEditor) {
             return response.text();
           })
           .then((html) => {
-            const tmp = document.createElement('div');
+            const tmp = document.createElement("div");
             tmp.innerHTML = html;
             CMSEditor.util.attachEvents(tmp);
-            component.replaceWith(tmp.querySelector('.sling-cms-component'));
+            component.replaceWith(tmp.querySelector(".sling-cms-component"));
             tmp.remove();
             CMSEditor.ui.hideModal();
             cb();
           });
       },
       showModal(url, t) {
-        const title = t || '';
+        const title = t || "";
         if (CMSEditor.ui.modalDisplayed) {
           CMSEditor.ui.hideModal();
         }
-        document.querySelector('.sling-cms-editor-final').innerHTML = '<div class="modal"><div class="modal-background"></div><div class="modal-content"><div class="box"><h3 class="modal-title"></h3><section class="modal-body"></section></div></div><button class="modal-close is-large" aria-label="close"></button>';
+
+        document.querySelector(".sling-cms-editor-final").innerHTML =
+          '<div class="modal"><div class="modal-background"></div><div class="modal-content"><div class="box"><h3 class="modal-title"></h3><section class="modal-body"></section></div></div><button class="modal-close is-large" aria-label="close"></button>';
         document.querySelector(
-          '.sling-cms-editor .modal-title',
+          ".sling-cms-editor .modal-title"
         ).innerText = title;
         document.querySelector(
-          '.sling-cms-editor .modal-body',
+          ".sling-cms-editor .modal-body"
         ).innerHTML = `<iframe class="modal-frame" src="${url}"></iframe>`;
         document
-          .querySelector('.sling-cms-editor .modal')
-          .classList.add('is-active');
+          .querySelector(".sling-cms-editor .modal")
+          .classList.add("is-active");
         CMSEditor.util.attachClick(
           document,
-          '.sling-cms-editor .modal-background, .sling-cms-editor .modal-close',
+          ".sling-cms-editor .modal-background, .sling-cms-editor .modal-close",
           () => {
             CMSEditor.ui.hideModal();
-          },
+          }
         );
         CMSEditor.ui.draggable(
-          document.querySelector('.sling-cms-editor .modal-content'),
+          document.querySelector(".sling-cms-editor .modal-content")
         );
         CMSEditor.ui.modalDisplayed = true;
       },
@@ -157,7 +159,7 @@ if (!window.CMSEditor) {
     util: {
       attachClick(ctx, exp, cb) {
         ctx.querySelectorAll(exp).forEach((el) => {
-          el.addEventListener('click', cb, false);
+          el.addEventListener("click", cb, false);
         });
       },
       attachDrag(ed) {
@@ -165,72 +167,72 @@ if (!window.CMSEditor) {
         let dragActive = false;
         function handleOver(evt) {
           evt.preventDefault();
-          document.querySelectorAll('.sling-cms-droptarget').forEach((dt) => {
-            dt.classList.remove('sling-cms-droptarget__is-over');
+          document.querySelectorAll(".sling-cms-droptarget").forEach((dt) => {
+            dt.classList.remove("sling-cms-droptarget__is-over");
           });
-          evt.target.classList.add('sling-cms-droptarget__is-over');
+          evt.target.classList.add("sling-cms-droptarget__is-over");
         }
         function handleLeave(evt) {
-          evt.target.classList.remove('sling-cms-droptarget__is-over');
+          evt.target.classList.remove("sling-cms-droptarget__is-over");
         }
         function handleDrop(evt) {
           evt.preventDefault();
 
-          const sourcePath = evt.dataTransfer.getData('path');
-          const sourceName = evt.dataTransfer.getData('name');
+          const sourcePath = evt.dataTransfer.getData("path");
+          const sourceName = evt.dataTransfer.getData("name");
           const targetPath = `${evt.target.dataset.path}/${sourceName}`;
 
           async function move() {
             const formData = new FormData();
-            formData.append('_charset_', 'utf-8');
+            formData.append("_charset_", "utf-8");
             if (sourcePath !== targetPath) {
-              formData.append(':dest', targetPath);
-              formData.append(':operation', 'move');
+              formData.append(":dest", targetPath);
+              formData.append(":operation", "move");
             }
-            formData.append(':nameHint', sourceName);
-            formData.append(':order', evt.target.dataset.order);
+            formData.append(":nameHint", sourceName);
+            formData.append(":order", evt.target.dataset.order);
             let ui;
-            if (typeof Sling !== 'undefined') {
+            if (typeof Sling !== "undefined") {
               ui = Sling.CMS.ui;
             } else {
               ui = window.parent.Sling.CMS.ui;
             }
             const response = await fetch(sourcePath, {
-              method: 'POST',
+              method: "POST",
               body: formData,
-              cache: 'no-cache',
+              cache: "no-cache",
               headers: {
-                Accept: 'application/json',
+                Accept: "application/json",
               },
             });
             const res = await response.json();
             if (!response.ok) {
               ui.confirmMessage(
-                'Failed to move',
-                res['status.message'] || response.statusText,
-                () => {},
+                "Failed to move",
+                res["status.message"] || response.statusText,
+                () => {}
               );
             } else {
-              ui.confirmReload(res, 'success');
+              ui.confirmReload(res, "success");
             }
-            evt.target.classList.remove('sling-cms-droptarget__is-over');
+            evt.target.classList.remove("sling-cms-droptarget__is-over");
           }
           if (evt.target.dataset.create) {
             const formData = new FormData();
-            formData.append('_charset_', 'utf-8');
-            formData.append('jcr:primaryType', 'nt:unstructured');
+            formData.append("_charset_", "utf-8");
+            formData.append("jcr:primaryType", "nt:unstructured");
             let ui;
-            if (typeof Sling !== 'undefined') {
+            if (typeof Sling !== "undefined") {
               ui = Sling.CMS.ui;
             } else {
               ui = window.parent.Sling.CMS.ui;
             }
             fetch(evt.target.dataset.path, {
-              method: 'POST',
+              method: "POST",
               body: formData,
-              cache: 'no-cache',
+              cache: "no-cache",
               headers: {
-                Accept: 'application/json',
+                Accept: "application/json",
               },
             })
               .then((response) => {
@@ -251,83 +253,90 @@ if (!window.CMSEditor) {
         }
         function activateTargets() {
           if (dragActive) {
-            document.querySelectorAll('.sling-cms-droptarget').forEach((dt) => {
-              dt.classList.add('sling-cms-droptarget__is-active');
-              dt.addEventListener('dragover', handleOver);
-              dt.addEventListener('dragleave', handleLeave);
-              dt.addEventListener('drop', handleDrop);
+            document.querySelectorAll(".sling-cms-droptarget").forEach((dt) => {
+              dt.classList.add("sling-cms-droptarget__is-active");
+              dt.addEventListener("dragover", handleOver);
+              dt.addEventListener("dragleave", handleLeave);
+              dt.addEventListener("drop", handleDrop);
             });
           }
         }
         function deactivateTargets() {
           dragActive = false;
-          document.querySelectorAll('.sling-cms-droptarget').forEach((dt) => {
-            dt.classList.remove('sling-cms-droptarget__is-active');
-            dt.removeEventListener('dragover', handleOver);
-            dt.removeEventListener('dragleave', handleLeave);
-            dt.removeEventListener('drop', handleDrop);
+          document.querySelectorAll(".sling-cms-droptarget").forEach((dt) => {
+            dt.classList.remove("sling-cms-droptarget__is-active");
+            dt.removeEventListener("dragover", handleOver);
+            dt.removeEventListener("dragleave", handleLeave);
+            dt.removeEventListener("drop", handleDrop);
           });
           if (dragImage) {
             dragImage.remove();
           }
         }
-        ed.addEventListener('dragstart', (evt) => {
+        ed.addEventListener("dragstart", (evt) => {
           const event = evt;
           event.stopPropagation();
           dragActive = true;
-          event.dataTransfer.effectAllowed = 'move';
-          dragImage = document.createElement('div');
+          event.dataTransfer.effectAllowed = "move";
+          dragImage = document.createElement("div");
           dragImage.setAttribute(
-            'style',
-            `position: absolute; left: 0px; top: 0px; width: ${ed.offsetWidth}px; height: ${ed.offsetHeight}px; padding: 0.5em; background: grey; z-index: -1`,
+            "style",
+            `position: absolute; left: 0px; top: 0px; width: ${ed.offsetWidth}px; height: ${ed.offsetHeight}px; padding: 0.5em; background: grey; z-index: -1`
           );
-          dragImage.innerText = ed.querySelector('.level-right').innerText;
+          dragImage.innerText = ed.querySelector(".level-right").innerText;
           document.body.appendChild(dragImage);
           event.dataTransfer.setDragImage(dragImage, 20, 20);
           event.dataTransfer.setData(
-            'path',
-            ed.closest('.sling-cms-component').dataset.slingCmsResourcePath,
+            "path",
+            ed.closest(".sling-cms-component").dataset.slingCmsResourcePath
           );
-          const resourceType = ed.closest('.sling-cms-component').dataset.slingCmsResourceType;
+          const resourceType = ed.closest(".sling-cms-component").dataset
+            .slingCmsResourceType;
           event.dataTransfer.setData(
-            'name',
-            resourceType.substr(resourceType.lastIndexOf('/') + 1) + '_' + Math.random().toString(36).substring(2)
+            "name",
+            resourceType.substr(resourceType.lastIndexOf("/") + 1) +
+              "_" +
+              Math.random().toString(36).substring(2)
           );
-          
+
           setTimeout(activateTargets, 10);
         });
-        ed.addEventListener('dragend', deactivateTargets);
+        ed.addEventListener("dragend", deactivateTargets);
       },
       attachEvents(ctx) {
         function handleClick(event) {
           event.preventDefault();
           CMSEditor.ui.showModal(this.href, this.title);
         }
-        CMSEditor.util.attachClick(ctx, '.sling-cms-editor .action-button', handleClick);
-        if (ctx.matches && ctx.matches('.sling-cms-component')) {
+        CMSEditor.util.attachClick(
+          ctx,
+          ".sling-cms-editor .action-button",
+          handleClick
+        );
+        if (ctx.matches && ctx.matches(".sling-cms-component")) {
           CMSEditor.util.attachHover(ctx);
         }
-        ctx.querySelectorAll('.sling-cms-component').forEach((c) => {
+        ctx.querySelectorAll(".sling-cms-component").forEach((c) => {
           CMSEditor.util.attachHover(c);
         });
         ctx
-          .querySelectorAll('.sling-cms-editor')
+          .querySelectorAll(".sling-cms-editor")
           .forEach(CMSEditor.util.attachDrag);
       },
       attachHover(ctx) {
         function resetActive() {
           document
-            .querySelectorAll('.sling-cms-component__is-active')
+            .querySelectorAll(".sling-cms-component__is-active")
             .forEach((a) => {
-              a.classList.remove('sling-cms-component__is-active');
+              a.classList.remove("sling-cms-component__is-active");
             });
         }
-        ctx.addEventListener('mouseover', (evt) => {
+        ctx.addEventListener("mouseover", (evt) => {
           resetActive();
-          ctx.classList.add('sling-cms-component__is-active');
+          ctx.classList.add("sling-cms-component__is-active");
           evt.stopPropagation();
         });
-        ctx.addEventListener('mouseleave', resetActive);
+        ctx.addEventListener("mouseleave", resetActive);
       },
       findParent(el, exp) {
         if (el === null || el.parentElement === null) {
@@ -343,13 +352,31 @@ if (!window.CMSEditor) {
   window.CMSEditor = CMSEditor;
   window.onbeforeunload = () => {
     if (CMSEditor.ui.modalDisplayed) {
-      return 'Are you sure you want to leave this page?';
+      return "Are you sure you want to leave this page?";
     }
     return null;
   };
-  if (document.readyState === 'complete') {
+  if (document.readyState === "complete") {
     window.CMSEditor.init();
   } else {
-    document.addEventListener('DOMContentLoaded', CMSEditor.init, false);
+    document.addEventListener("DOMContentLoaded", CMSEditor.init, false);
   }
 }
+
+window.addEventListener("message", (event) => {
+  if (event.data.action === "slingcms.editorloaded") {
+    const modalBody = document.querySelector(
+      ".sling-cms-editor-final .modal-body"
+    );
+
+    const height = event.data.height;
+    if (height && modalBody && typeof height === "number") {
+      const innerHeight = document.querySelector(
+        ".sling-cms-editor-final .modal-background"
+      ).clientHeight;
+      if (height < innerHeight - 50) {
+        modalBody.style.height = `${height}px`;
+      }
+    }
+  }
+});
