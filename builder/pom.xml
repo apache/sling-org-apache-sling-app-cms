@@ -26,7 +26,7 @@
 
     <properties>
         <sling.java.version>8</sling.java.version>
-        <IT.expected.bundles.count>125</IT.expected.bundles.count>
+        <IT.expected.bundles.count>208</IT.expected.bundles.count>
         <cms.version>${project.parent.version}</cms.version>
     </properties>
 
@@ -163,4 +163,3 @@
         </dependency>
     </dependencies>
 </project>
-
