@@ -17,20 +17,24 @@
  * under the License.
  */
 .sling-cms-editor {
-  @import 'fonts';
-  @import 'overrides';
+  @import "fonts";
+  @import "overrides";
   @import "../../../../node_modules/bulma/sass/utilities/_all.sass";
-  @import "../../../../node_modules/bulma/sass/base/_all.sass";
+  @import "../../../../node_modules/bulma/sass/helpers/_all.sass";
   @import "../../../../node_modules/bulma/sass/elements/box.sass";
   @import "../../../../node_modules/bulma/sass/elements/button.sass";
   @import "../../../../node_modules/bulma/sass/form/_all.sass";
   @import "../../../../node_modules/bulma/sass/elements/icon.sass";
   @import "../../../../node_modules/bulma/sass/components/level.sass";
   @import "../../../../node_modules/bulma/sass/components/modal.sass";
-  font-family: "Open Sans",sans-serif;
+  font-family: "Open Sans", sans-serif;
 
   * {
     box-sizing: border-box;
+  }
+
+  .button {
+    text-decoration: none;
   }
 
   [draggable] {
@@ -98,7 +102,7 @@
 }
 
 .sling-cms-component {
-  border: 1px solid rgba(0,0,0,0.0);
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .sling-cms-component__is-active {

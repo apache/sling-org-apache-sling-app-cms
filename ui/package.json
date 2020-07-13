@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Scripts to power the front-end of Apache Sling's CMS example.",
     "dependencies": {
-        "bulma": "^0.8.2",
+        "bulma": "^0.9.0",
         "gulp-noop": "^1.0.0",
         "handlebars": "^4.7.6",
         "jam-icons": "^2.0.0",
@@ -13,9 +13,6 @@
         "wysihtml": "^0.6.0-beta1"
     },
     "devDependencies": {
-        "eslint": "^6.8.0",
-        "eslint-config-airbnb-base": "^14.1.0",
-        "eslint-plugin-import": "^2.20.2",
         "gulp": "^4.0.2",
         "gulp-clean-css": "^4.3.0",
         "gulp-cli": "^2.2.1",
