@@ -164,19 +164,19 @@ public class EditIncludeFilter implements Filter {
 
         writer.write("<div class=\"control\"><a href=\"/cms/editor/edit.html" + resource.getPath() + "?editor="
                 + editPath + "\" class=\"" + BUTTON_CLASSES + "\"  title=\"Edit " + title
-                + "\"><span class=\"jam jam-pencil-f\"><span class=\"is-vhidden\">Edit " + title
-                + "</span></span></a></div>");
+                + "\"><span class=\"icon\"><span class=\"jam jam-pencil-f\"><span class=\"is-vhidden\">Edit " + title
+                + "</span></span></span></a></div>");
         if (!first || !last) {
             writer.write("<div class=\"control\"><a href=\"/cms/editor/reorder.html" + resource.getPath()
                     + "\" class=\"" + BUTTON_CLASSES + "\" title=\"Reorder " + title
-                    + "\"><span class=\"jam jam-arrows-v\"><span class=\"is-vhidden\">Reorder " + title
-                    + "</span></span></a></div>");
+                    + "\"><span class=\"icon\"><span class=\"jam jam-arrows-v\"><span class=\"is-vhidden\">Reorder " + title
+                    + "</span></span></span></a></div>");
         }
         if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
             writer.write("<div class=\"control\"><a href=\"/cms/editor/delete.html" + resource.getPath() + "\" class=\""
                     + BUTTON_CLASSES
-                    + "\" title=\"Delete Component\"><span class=\"jam jam-trash\"><span class=\"is-vhidden\">Delete "
-                    + title + "</span></span></a></div>");
+                    + "\" title=\"Delete Component\"><span class=\"icon\"><span class=\"jam jam-trash\"><span class=\"is-vhidden\">Delete "
+                    + title + "</span></span></span></a></div>");
         }
 
         writer.write("</div></div>");
