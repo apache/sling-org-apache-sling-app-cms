@@ -133,16 +133,10 @@ if (!window.CMSEditor) {
         }
 
         document.querySelector(".sling-cms-editor-final").innerHTML =
-          '<div class="modal"><div class="modal-background"></div><div class="modal-content"><div class="box"><h3 class="modal-title"></h3><section class="modal-body"></section></div></div><button class="modal-close is-large" aria-label="close"></button>';
+          `<div class="modal"><div class="modal-background"></div><div class="modal-content"><div class="box"><h3 class="modal-title"></h3><section class="modal-body"><div class="loader is-loading"></div><iframe class="modal-frame" src="${url}"></iframe></section></div></div><button class="modal-close is-large" aria-label="close"></button>`;
         document.querySelector(
           ".sling-cms-editor .modal-title"
         ).innerText = title;
-        document.querySelector(
-          ".sling-cms-editor .modal-body"
-        ).innerHTML = `<iframe class="modal-frame" src="${url}"></iframe>`;
-        document
-          .querySelector(".sling-cms-editor .modal")
-          .classList.add("is-active");
         CMSEditor.util.attachClick(
           document,
           ".sling-cms-editor .modal-background, .sling-cms-editor .modal-close",
@@ -153,6 +147,9 @@ if (!window.CMSEditor) {
         CMSEditor.ui.draggable(
           document.querySelector(".sling-cms-editor .modal-content")
         );
+        document
+          .querySelector(".sling-cms-editor .modal")
+          .classList.add("is-active");
         CMSEditor.ui.modalDisplayed = true;
       },
     },
@@ -378,5 +375,6 @@ window.addEventListener("message", (event) => {
         modalBody.style.height = `${height}px`;
       }
     }
+    modalBody.querySelector(".loader").classList.add("is-hidden");
   }
 });

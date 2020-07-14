@@ -19,14 +19,7 @@
 .sling-cms-editor {
   @import "fonts";
   @import "overrides";
-  @import "../../../../node_modules/bulma/sass/utilities/_all.sass";
-  @import "../../../../node_modules/bulma/sass/helpers/_all.sass";
-  @import "../../../../node_modules/bulma/sass/elements/box.sass";
-  @import "../../../../node_modules/bulma/sass/elements/button.sass";
-  @import "../../../../node_modules/bulma/sass/form/_all.sass";
-  @import "../../../../node_modules/bulma/sass/elements/icon.sass";
-  @import "../../../../node_modules/bulma/sass/components/level.sass";
-  @import "../../../../node_modules/bulma/sass/components/modal.sass";
+  @import "../../../../node_modules/bulma/bulma.sass";
   font-family: "Open Sans", sans-serif;
 
   * {
@@ -61,9 +54,22 @@
     padding: 0.5em;
   }
 
+  .loader {
+    margin: auto;
+    width: 2em;
+    height: 2em;
+    border: 2px solid $primary;
+    border-right-color: transparent;
+    border-top-color: transparent;
+  }
+
   .modal-body {
     padding: 0.5em;
-    height: 500px;
+    height: 540px;
+  }
+
+  .modal-content {
+    overflow: hidden;
   }
 
   .modal-frame {
