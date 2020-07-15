@@ -85,7 +85,7 @@
 
   .page-wrapper-frame {
     position: fixed;
-    top: 44px;
+    top: 48px;
     left: 0;
     bottom: 0;
     right: 0;
@@ -97,8 +97,10 @@
     overflow: hidden;
     z-index: 998;
     padding-top: 8px;
+    height: calc(100vh - 48px);
     @media screen and (max-width: $tablet) {
-      top: 104px;
+      top: 112px;
+      height: calc(100vh - 112px);
     }
   }
 
