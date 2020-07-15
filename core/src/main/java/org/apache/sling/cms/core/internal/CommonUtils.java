@@ -24,6 +24,7 @@ import javax.jcr.Session;
 import org.apache.jackrabbit.api.JackrabbitSession;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +35,7 @@ public class CommonUtils {
     private CommonUtils() {
     }
 
-    public static final UserManager getUserManager(ResourceResolver resolver) throws RepositoryException {
+    public static final UserManager getUserManager(@NotNull ResourceResolver resolver) throws RepositoryException {
         return Optional.ofNullable(resolver.adaptTo(Session.class)).map(session -> {
             UserManager userManager = null;
             if (session instanceof JackrabbitSession) {
