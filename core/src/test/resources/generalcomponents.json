@@ -1,0 +1,66 @@
+{
+    "jcr:primaryType": "sling:Folder",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Jul 15 2020 14:28:49 GMT-0400",
+    "richtext": {
+        "jcr:primaryType": "sling:Component",
+        "jcr:title": "Rich Text Editor",
+        "componentType": "General",
+        "richtext.jsp": {
+            "jcr:primaryType": "nt:file",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 14:28:49 GMT-0400",
+            "jcr:content": {
+                "jcr:primaryType": "nt:resource",
+                "jcr:lastModifiedBy": "admin",
+                "jcr:mimeType": "application/octet-stream",
+                "jcr:lastModified": "Wed Jul 15 2020 18:28:49 GMT+0000",
+                ":jcr:data": 884,
+                "jcr:uuid": "e754a3f2-0c6b-4dad-bce3-2094dc82aa00"
+            }
+        },
+        "edit": {
+            "jcr:primaryType": "nt:unstructured",
+            "button": "Save",
+            "sling:resourceType": "sling-cms/components/editor/slingform",
+            "fields": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container",
+                "type": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "required": true,
+                    "name": "text",
+                    "label": "Text",
+                    "sling:resourceType": "sling-cms/components/editor/fields/richtext"
+                }
+            }
+        }
+    },
+    "container": {
+        "jcr:primaryType": "sling:Component",
+        "jcr:title": "Container",
+        "container": true,
+        "editable": false,
+        "container.jsp": {
+            "jcr:primaryType": "nt:file",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 14:28:49 GMT-0400",
+            "jcr:content": {
+                "jcr:primaryType": "nt:resource",
+                "jcr:lastModifiedBy": "admin",
+                "jcr:mimeType": "application/octet-stream",
+                "jcr:lastModified": "Wed Jul 15 2020 18:28:49 GMT+0000",
+                ":jcr:data": 2575,
+                "jcr:uuid": "954f8e68-c9ee-49c8-8158-9ec039730c55"
+            }
+        }
+    },
+    "reloadcontainer": {
+        "jcr:primaryType": "sling:Component",
+        "jcr:title": "Reload Container",
+        "reloadPage": true,
+        "container": true,
+        "sling:resourceSuperType": "sling-cms/components/general/container",
+        "editable": false
+    }
+}

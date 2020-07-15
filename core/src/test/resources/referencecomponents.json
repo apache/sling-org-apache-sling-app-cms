@@ -1,0 +1,473 @@
+{
+    "jcr:primaryType": "sling:Folder",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+    "general": {
+        "jcr:primaryType": "sling:Folder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+        "tags": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Tags",
+            "componentType": "General",
+            "tags.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "No Need to Edit",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        },
+        "sitemap": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+            "sitemap.xml.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "stylewrapper": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Style Wrapper",
+            "componentType": "General",
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "stylewrapper.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "options.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        },
+        "iframe": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "IFrame",
+            "componentType": "General",
+            "iframe.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "options.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save IFrame",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        },
+        "searchform": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Search Form",
+            "componentType": "General",
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "No Edit Needed",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "searchform.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "image": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Image",
+            "componentType": "General",
+            "transformations.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "image.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "options.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save Image",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        },
+        "cta": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Call to Action",
+            "componentType": "General",
+            "cta.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "options.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save CTA",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        },
+        "search": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Search",
+            "componentType": "General",
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "pagination.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "result.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "search.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "suffixheader": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Suffix Header",
+            "componentType": "General",
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "suffixheader.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "columncontrol": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Column Control",
+            "componentType": "General",
+            "columncontrol.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "options.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        },
+        "list": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "List",
+            "componentType": "General",
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "pagination.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "item.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "list.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "init.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "codeblock": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Code Block",
+            "componentType": "General",
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save Code Block",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "codeblock.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "reference": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Reference",
+            "componentType": "General",
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save Reference",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "reference.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "breadcrumb": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save Breadcrumb",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "breadcrumb.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        },
+        "rss": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+            "rss.xml.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        }
+    },
+    "forms": {
+        "jcr:primaryType": "sling:Folder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+        "providers": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+            "userprofile": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "User Profile",
+                "reloadPage": true,
+                "componentType": "Form Value Provider"
+            }
+        },
+        "fields": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+            "textfield": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "Text Field",
+                "reloadPage": true,
+                "componentType": "Form Field"
+            },
+            "honeypot": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "Honeypot",
+                "reloadPage": true,
+                "componentType": "Form Field"
+            },
+            "selection": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "Selection",
+                "reloadPage": true,
+                "componentType": "Form Field"
+            },
+            "textarea": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "Textarea",
+                "reloadPage": true,
+                "componentType": "Form Field"
+            }
+        },
+        "form": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Form",
+            "componentType": "General",
+            "config": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/container"
+            },
+            "form.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "allowpost.html.POST.servlet": {
+                "sling:resourceSuperType": "sling/bundle/resource",
+                "servletClass": "org.apache.sling.cms.reference.forms.impl.FormHandler",
+                "sling:resourceType": "/apps/reference/components/forms/form/allowpost.html.POST.servlet",
+                "servletName": "org.apache.sling.cms.reference.forms.impl.FormHandler"
+            }
+        },
+        "actions": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+            "sendemail": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "Email",
+                "componentType": "Form Action"
+            },
+            "updateprofile": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "Update Profile",
+                "componentType": "Form Action"
+            },
+            "usergeneratedcontent": {
+                "jcr:primaryType": "sling:Component",
+                "jcr:title": "User Generated Content",
+                "componentType": "Form Action"
+            }
+        },
+        "fieldset": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Fieldset",
+            "reloadPage": true,
+            "componentType": "Form Field",
+            "fieldset.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        }
+    },
+    "pages": {
+        "jcr:primaryType": "sling:Folder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400",
+        "post": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Reference - Blog Post Page",
+            "sling:resourceSuperType": "reference/components/pages/base",
+            "componentType": "Page",
+            "content.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save Page",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            }
+        },
+        "base": {
+            "jcr:primaryType": "sling:Component",
+            "jcr:title": "Reference - Base Page",
+            "componentType": "Page",
+            "body.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "content.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "head.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            },
+            "edit": {
+                "jcr:primaryType": "nt:unstructured",
+                "button": "Save Page",
+                "sling:resourceType": "sling-cms/components/editor/slingform"
+            },
+            "base.jsp": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Wed Jul 15 2020 10:16:53 GMT-0400"
+            }
+        }
+    }
+}

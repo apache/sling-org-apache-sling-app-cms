@@ -64,7 +64,7 @@ public class EditIncludeFilter implements Filter {
 
     public static final String WRITE_DROP_TARGET_ATTR_NAME = "writeDropTarget";
 
-    private static final String ENTRY_BASE = "res/editinclude/";
+    protected static final String ENTRY_BASE = "res/editinclude/";
 
     private Map<String, String> templates = new HashMap<>();
 
