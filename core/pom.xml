@@ -229,5 +229,9 @@
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
         </dependency>
+        <dependency>
+            <artifactId>commons-text</artifactId>
+            <groupId>org.apache.commons</groupId>
+        </dependency>
     </dependencies>
 </project>

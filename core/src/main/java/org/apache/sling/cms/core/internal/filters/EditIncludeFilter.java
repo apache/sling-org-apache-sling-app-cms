@@ -17,9 +17,14 @@
 package org.apache.sling.cms.core.internal.filters;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.Filter;
@@ -29,7 +34,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringSubstitutor;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -37,6 +44,11 @@ import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.Component;
 import org.apache.sling.cms.EditableResource;
 import org.apache.sling.cms.core.internal.models.EditableResourceImpl;
+import org.osgi.framework.Bundle;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.Activate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Filter for injecting the request attributes and markup to enable the Sling
@@ -46,11 +58,28 @@ import org.apache.sling.cms.core.internal.models.EditableResourceImpl;
         "sling.filter.scope=component" })
 public class EditIncludeFilter implements Filter {
 
-    private static final String BUTTON_CLASSES = "level-item button is-small has-text-black-ter action-button";
+    private static final Logger log = LoggerFactory.getLogger(EditIncludeFilter.class);
 
     public static final String ENABLED_ATTR_NAME = "cmsEditEnabled";
 
     public static final String WRITE_DROP_TARGET_ATTR_NAME = "writeDropTarget";
+
+    private static final String ENTRY_BASE = "res/editinclude/";
+
+    private Map<String, String> templates = new HashMap<>();
+
+    @Activate
+    public void activate(ComponentContext context) throws IOException {
+        Bundle bundle = context.getBundleContext().getBundle();
+        Enumeration<String> entries = bundle.getEntryPaths(ENTRY_BASE);
+        while (entries.hasMoreElements()) {
+            String en = entries.nextElement();
+            log.info("Loaded template: {}", en);
+            try (InputStream is = bundle.getEntry(en).openStream()) {
+                templates.put(en.replace(ENTRY_BASE, ""), IOUtils.toString(is, StandardCharsets.UTF_8));
+            }
+        }
+    }
 
     @Override
     public void destroy() {
@@ -137,8 +166,10 @@ public class EditIncludeFilter implements Filter {
     }
 
     private void writeDropTarget(Resource resource, PrintWriter writer, String order) {
-        writer.write("<div class=\"sling-cms-droptarget\" data-path=\"" + resource.getParent().getPath()
-                + "\" data-order=\"" + order + "\"></div>");
+        Map<String, Object> replacements = new HashMap<>();
+        replacements.put("parentPath", resource.getParent().getPath());
+        replacements.put("order", order);
+        writeTemplate(writer, replacements, "droptarget.html");
     }
 
     private void writeEditorMarkup(Resource resource, PrintWriter writer, boolean draggable) {
@@ -153,36 +184,33 @@ public class EditIncludeFilter implements Filter {
         String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                 : StringUtils.substringAfterLast(resource.getResourceType(), "/");
 
-        writer.write("<div class=\"sling-cms-component\" data-reload=\"" + component.isReloadPage()
-                + "\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\"" + title
-                + "\" data-sling-cms-resource-path=\"" + resource.getPath() + "\" data-sling-cms-resource-type=\""
-                + resource.getResourceType() + "\" data-sling-cms-edit=\"" + editPath
-                + "\" data-sling-cms-resource-name=\"" + component.getResource().getName()
-                + "\"><div class=\"sling-cms-editor\" draggable=\"" + draggable + "\">");
-        writer.write(
-                "<div class=\"level has-background-light\"><div class=\"level-left\"><div class=\"field has-addons\">");
+        Map<String, Object> replacements = new HashMap<>();
+        replacements.put("componentPath", component.getResource().getPath());
+        replacements.put("draggable", draggable);
+        replacements.put("editPath", editPath);
+        replacements.put("reload", component.isReloadPage());
+        replacements.put("resourceName", component.getResource().getName());
+        replacements.put("resourcePath", resource.getPath());
+        replacements.put("resourceType", resource.getResourceType());
+        replacements.put("title", title);
 
-        writer.write("<div class=\"control\"><a href=\"/cms/editor/edit.html" + resource.getPath() + "?editor="
-                + editPath + "\" class=\"" + BUTTON_CLASSES + "\"  title=\"Edit " + title
-                + "\"><span class=\"icon\"><span class=\"jam jam-pencil-f\"><span class=\"is-vhidden\">Edit " + title
-                + "</span></span></span></a></div>");
+        writeTemplate(writer, replacements, "start.html");
+        writeTemplate(writer, replacements, "edit.html");
         if (!first || !last) {
-            writer.write("<div class=\"control\"><a href=\"/cms/editor/reorder.html" + resource.getPath()
-                    + "\" class=\"" + BUTTON_CLASSES + "\" title=\"Reorder " + title
-                    + "\"><span class=\"icon\"><span class=\"jam jam-arrows-v\"><span class=\"is-vhidden\">Reorder " + title
-                    + "</span></span></span></a></div>");
+            writeTemplate(writer, replacements, "reorder.html");
         }
         if (!resource.getName().equals(JcrConstants.JCR_CONTENT) && exists) {
-            writer.write("<div class=\"control\"><a href=\"/cms/editor/delete.html" + resource.getPath() + "\" class=\""
-                    + BUTTON_CLASSES
-                    + "\" title=\"Delete Component\"><span class=\"icon\"><span class=\"jam jam-trash\"><span class=\"is-vhidden\">Delete "
-                    + title + "</span></span></span></a></div>");
+            writeTemplate(writer, replacements, "delete.html");
         }
+        writeTemplate(writer, replacements, "end.html");
+    }
 
-        writer.write("</div></div>");
-        writer.write(
-                "<div class=\"level-right\"><div class=\"level-item has-text-black-ter\">" + title + "</div></div>");
-        writer.write("</div></div>");
+    private void writeTemplate(PrintWriter writer, Map<String, Object> replacements, String templateName) {
+        StringSubstitutor sub = new StringSubstitutor(replacements);
+        String template = templates.get(templateName);
+        String result = sub.replace(template);
+        log.info("Using: {} and {} to create {}", templateName, replacements, result);
+        writer.write(result);
     }
 
     private boolean writeHeader(SlingHttpServletRequest request, PrintWriter writer, boolean includeEnd) {
@@ -202,10 +230,16 @@ public class EditIncludeFilter implements Filter {
             includeEnd = true;
             String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                     : StringUtils.substringAfterLast(resource.getResourceType(), "/");
-            writer.write("<div class=\"sling-cms-component\" data-reload=\"" + component.isReloadPage()
-                    + "\" data-component=\"" + component.getResource().getPath() + "\" data-sling-cms-title=\"" + title
-                    + "\" data-sling-cms-resource-path=\"" + resource.getPath() + "\" data-sling-cms-resource-type=\""
-                    + resource.getResourceType() + "\" data-sling-cms-edit=\"" + editPath + "\">");
+
+            Map<String, Object> replacements = new HashMap<>();
+            replacements.put("componentPath", component.getResource().getPath());
+            replacements.put("editPath", editPath);
+            replacements.put("reload", component.isReloadPage());
+            replacements.put("resourceName", component.getResource().getName());
+            replacements.put("resourcePath", resource.getPath());
+            replacements.put("resourceType", resource.getResourceType());
+            replacements.put("title", title);
+            writeTemplate(writer, replacements, "header.html");
         }
 
         return includeEnd;
