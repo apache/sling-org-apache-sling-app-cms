@@ -76,7 +76,8 @@ public class EditIncludeFilter implements Filter {
             String en = entries.nextElement();
             log.info("Loaded template: {}", en);
             try (InputStream is = bundle.getEntry(en).openStream()) {
-                templates.put(en.replace(ENTRY_BASE, ""), IOUtils.toString(is, StandardCharsets.UTF_8));
+                templates.put(en.replace(ENTRY_BASE, ""),
+                        StringUtils.substringAfter(IOUtils.toString(is, StandardCharsets.UTF_8), "-->"));
             }
         }
     }
@@ -221,6 +222,9 @@ public class EditIncludeFilter implements Filter {
         Component component = editableResource.getComponent();
         if (component != null && !component.isType(CMSConstants.COMPONENT_TYPE_PAGE)) {
             editPath = component.getEditPath();
+        }
+        if (editPath == null) {
+            editPath = "";
         }
 
         if (StringUtils.isNotEmpty(editPath)) {

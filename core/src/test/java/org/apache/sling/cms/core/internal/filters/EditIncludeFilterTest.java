@@ -16,8 +16,7 @@
  */
 package org.apache.sling.cms.core.internal.filters;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,7 +28,6 @@ import javax.jcr.UnsupportedRepositoryOperationException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.cms.core.helpers.SlingCMSTestHelper;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
@@ -83,7 +81,20 @@ public class EditIncludeFilterTest {
 
         includeFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
 
-        assertTrue(StringUtils.isBlank(context.response().getOutputAsString()));
+        assertEquals("", context.response().getOutputAsString());
+    }
+
+    @Test
+    public void testDisabled() throws IOException, ServletException {
+
+        context.currentResource("/content/apache/sling-apache-org/index/jcr:content/menu/richtext");
+        context.requestPathInfo().setExtension("html");
+
+        context.request().setAttribute(EditIncludeFilter.ENABLED_ATTR_NAME, "false");
+
+        includeFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
+
+        assertEquals("", context.response().getOutputAsString());
     }
 
     @Test
@@ -96,7 +107,25 @@ public class EditIncludeFilterTest {
 
         includeFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
 
-        assertNotEquals("", context.response().getOutputAsString());
+        assertEquals(
+                "<div class=\"sling-cms-component\" data-reload=\"false\" data-component=\"/libs/sling-cms/components/general/richtext\" data-sling-cms-title=\"Rich Text Editor\" data-sling-cms-resource-path=\"/content/apache/sling-apache-org/index/jcr:content/menu/richtext\" data-sling-cms-resource-type=\"sling-cms/components/general/richtext\" data-sling-cms-edit=\"/libs/sling-cms/components/general/richtext/edit\" data-sling-cms-resource-name=\"richtext\">\n    <div class=\"sling-cms-editor\" draggable=\"false\">\n        <div class=\"level has-background-light\">\n            <div class=\"level-left\">\n                <div class=\"field has-addons\"><div class=\"control\">\n    <a href=\"/cms/editor/edit.html/content/apache/sling-apache-org/index/jcr:content/menu/richtext?editor=/libs/sling-cms/components/general/richtext/edit\" class=\"level-item button is-small has-text-black-ter action-button\"  title=\"Edit Rich Text Editor\">\n        <span class=\"icon\">\n            <span class=\"jam jam-pencil-f\">\n                <span class=\"is-vhidden\">Edit Rich Text Editor</span>\n            </span>\n        </span>\n    </a>\n</div><div class=\"control\">\n    <a href=\"/cms/editor/delete.html/content/apache/sling-apache-org/index/jcr:content/menu/richtext\" class=\"level-item button is-small has-text-black-ter action-button\" title=\"Delete Component\">\n        <span class=\"icon\">\n            <span class=\"jam jam-trash\">\n                <span class=\"is-vhidden\">Delete Rich Text Editor</span>\n            </span>\n        </span>\n    </a>\n</div>            </div>  \n        </div>\n        <div class=\"level-right\">\n            <div class=\"level-item has-text-black-ter\">Rich Text Editor</div>\n        </div>\n    </div>\n</div></div>",
+                context.response().getOutputAsString());
+    }
+
+    @Test
+    public void testContainer() throws IOException, ServletException {
+
+        context.currentResource("/content/apache/sling-apache-org/index/jcr:content/container");
+        context.requestPathInfo().setExtension("html");
+
+        context.request().setAttribute(EditIncludeFilter.ENABLED_ATTR_NAME, "true");
+        context.request().setAttribute(EditIncludeFilter.WRITE_DROP_TARGET_ATTR_NAME, Boolean.TRUE);
+
+        includeFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
+
+        assertEquals(
+                "<div class=\"sling-cms-droptarget\" data-path=\"/content/apache/sling-apache-org/index/jcr:content\" data-order=\"before container\"></div><div class=\"sling-cms-component\" data-reload=\"false\" data-component=\"/libs/sling-cms/components/general/container\" data-sling-cms-title=\"Container\" data-sling-cms-resource-path=\"/content/apache/sling-apache-org/index/jcr:content/container\" data-sling-cms-resource-type=\"sling-cms/components/general/container\" data-sling-cms-edit=\"\"></div>",
+                context.response().getOutputAsString());
     }
 
 }
