@@ -68,7 +68,6 @@ public class EditIncludeFilterTest {
         ComponentContext context = Mockito.mock(ComponentContext.class);
         Mockito.when(context.getBundleContext()).thenReturn(bundleContext);
         includeFilter.activate(context);
-
     }
 
     @Test

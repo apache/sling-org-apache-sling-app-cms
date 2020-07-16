@@ -41,8 +41,6 @@ import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.cms.CMSConstants;
-import org.apache.sling.cms.CMSUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -65,8 +63,6 @@ public class CMSSecurityFilter implements Filter {
     private CMSSecurityFilterConfig config;
 
     private List<Pattern> patterns = new ArrayList<>();
-
-    private static final String[] VALID_METHODS = new String[] { "GET", "HEAD" };
 
     @Modified
     @Activate
@@ -96,31 +92,7 @@ public class CMSSecurityFilter implements Filter {
 
         SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
         if (config != null && ArrayUtils.contains(config.hostDomains(), request.getServerName())) {
-            log.trace("Filtering requests to host {}", request.getServerName());
-            String uri = slingRequest.getRequestURI();
-            boolean allowed = false;
-            for (Pattern p : this.patterns) {
-                if (p.matcher(uri).matches()) {
-                    log.trace("Allowing request matching pattern {}", p);
-                    allowed = true;
-                    break;
-                }
-            }
-
-            // the uri isn't allowed automatically, so check user permissions
-            if (!allowed) {
-
-                // check to see if the user is a member of the specified group
-                if (StringUtils.isNotBlank(config.group())) {
-                    allowed = checkGroupMembership(slingRequest);
-
-                    // just check to make sure the user is logged in
-                } else {
-                    if (!"anonymous".equals(slingRequest.getResourceResolver().getUserID())) {
-                        allowed = true;
-                    }
-                }
-            }
+            boolean allowed = checkAllowed(request, slingRequest);
 
             // permission checked failed, so return an unauthorized error
             if (!allowed) {
@@ -129,14 +101,39 @@ public class CMSSecurityFilter implements Filter {
                 ((HttpServletResponse) response).sendError(401);
                 return;
             }
-        } else if (ArrayUtils.contains(VALID_METHODS, slingRequest.getMethod())) {
-            Object editEnabled = slingRequest.getAttribute(CMSConstants.ATTR_EDIT_ENABLED);
-            if (!"true".equals(editEnabled) && !CMSUtils.isPublished(slingRequest.getResource())) {
-                ((HttpServletResponse) response).sendError(404);
-                return;
-            }
         }
         chain.doFilter(request, response);
+    }
+
+    private boolean checkAllowed(ServletRequest request, SlingHttpServletRequest slingRequest) {
+        log.trace("Filtering requests to host {}", request.getServerName());
+        String uri = slingRequest.getRequestURI();
+        boolean allowed = false;
+        for (Pattern p : this.patterns) {
+            if (p.matcher(uri).matches()) {
+                log.trace("Allowing request matching pattern {}", p);
+                allowed = true;
+                break;
+            }
+        }
+
+        // the uri isn't allowed automatically, so check user permissions
+        if (!allowed) {
+            log.trace("Request to {} not allowed, checking user permissions", uri);
+            // check to see if the user is a member of the specified group
+            if (StringUtils.isNotBlank(config.group())) {
+                allowed = checkGroupMembership(slingRequest);
+
+                // just check to make sure the user is logged in
+            } else {
+                if (!"anonymous".equals(slingRequest.getResourceResolver().getUserID())) {
+                    allowed = true;
+                }
+            }
+        } else {
+            log.trace("Request to {} allowed", uri);
+        }
+        return allowed;
     }
 
     private boolean checkGroupMembership(SlingHttpServletRequest slingRequest) {
