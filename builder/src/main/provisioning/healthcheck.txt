@@ -20,10 +20,10 @@
 
 # startlevel 5 together with jetty (to allow use during startup)
 [artifacts startLevel=5]
-    org.apache.felix/org.apache.felix.healthcheck.api/2.0.2
-    org.apache.felix/org.apache.felix.healthcheck.core/2.0.6
-    org.apache.felix/org.apache.felix.healthcheck.generalchecks/2.0.4
-    org.apache.felix/org.apache.felix.healthcheck.webconsoleplugin/2.0.0
+    org.apache.felix/org.apache.felix.healthcheck.api/2.0.4
+    org.apache.felix/org.apache.felix.healthcheck.core/2.0.8
+    org.apache.felix/org.apache.felix.healthcheck.generalchecks/2.0.6
+    org.apache.felix/org.apache.felix.healthcheck.webconsoleplugin/2.0.2
 
 # sling health check bundles at startlevel 20
 [artifacts startLevel=20]

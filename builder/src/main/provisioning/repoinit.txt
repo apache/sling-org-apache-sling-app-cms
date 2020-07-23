@@ -71,6 +71,13 @@
         allow	rep:write	on /apps/sling/install
     end
 
+    # content-package installer
+    create service user sling-package-install
+
+    set ACL for sling-package-install
+        allow	jcr:all     on	/
+        allow   jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository
+    end
 [configurations]
   org.apache.sling.jcr.repoinit.impl.RepositoryInitializer
     references="model@repoinit:context:/resources/provisioning/model.txt"
