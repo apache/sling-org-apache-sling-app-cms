@@ -20,7 +20,6 @@
     composum.nodes.version=1.12.0
 
 [artifacts startLevel=20]
-  org.codehaus.groovy/groovy-all/2.4.19
   com.composum.sling.core/composum-sling-core-commons/${composum.nodes.version}
   com.composum.sling.core/composum-sling-core-console/${composum.nodes.version}
   com.composum.sling.core/composum-sling-core-jslibs/${composum.nodes.version}

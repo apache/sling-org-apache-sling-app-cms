@@ -48,9 +48,12 @@
     org.apache.sling/org.apache.sling.cms.reference/${cms.version}
     org.apache.sling/org.apache.sling.cms.transformer/${cms.version}
     org.apache.sling/org.apache.sling.commons.crypto/1.0.0
+    org.apache.sling/org.apache.sling.commons.html/1.1.0
     org.apache.sling/org.apache.sling.commons.messaging.mail/1.0.0
     org.apache.sling/org.apache.sling.commons.messaging/1.0.0
+    org.apache.sling/org.apache.sling.rewriter/1.2.2
     org.apache.tika/tika-bundle/1.22
+    org.codehaus.groovy/groovy-all/2.4.19
 
 [:repoinit]
 
@@ -76,7 +79,6 @@
     set ACL for everyone
         allow   jcr:read    on /etc/usergenerated
     end
-
 
     # Groups
     create path (rep:AuthorizableFolder) /home/groups
