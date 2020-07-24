@@ -52,7 +52,7 @@
         },
         {
             "id":"org.apache.sling:org.apache.sling.fileoptim:0.9.4",
-            "start-order":"15"
+            "start-order":"20"
         },
         {
             "id":"org.apache.sling:org.apache.sling.resourcemerger:1.3.10",
