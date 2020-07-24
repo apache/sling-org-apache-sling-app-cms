@@ -1,0 +1,74 @@
+
+{
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:repoinit:0.16.3-SNAPSHOT",
+    "bundles":[
+        {
+            "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.24",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.provisioning.model:1.8.6",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.6.2",
+            "start-order":"20"
+        }
+    ],
+    "repoinit:TEXT|true":[
+        "# general",
+        "create path (sling:OrderedFolder) /content",
+        "set ACL for everyone",
+        "allow   jcr:read\ton /content",
+        "end",
+        "",
+        "# sling-mapping",
+        "create service user sling-mapping",
+        "",
+        "set ACL for sling-mapping",
+        "allow   jcr:read    on /",
+        "end",
+        "",
+        "# sling-readall",
+        "create service user sling-readall",
+        "",
+        "set ACL for sling-readall",
+        "allow   jcr:read    on /",
+        "end",
+        "",
+        "# sling-xss",
+        "create service user sling-xss",
+        "",
+        "create path (sling:Folder) /apps/sling/xss",
+        "",
+        "set ACL for sling-xss",
+        "allow   jcr:read    on /apps/sling/xss",
+        "end",
+        "",
+        "# sling-i18n",
+        "create service user sling-i18n",
+        "",
+        "set ACL for sling-i18n",
+        "allow   jcr:read    on /",
+        "end",
+        "",
+        "# sling-jcr-install",
+        "create service user sling-jcr-install",
+        "",
+        "# used for config OSGi writeback",
+        "create path (sling:Folder) /apps/sling/install",
+        "",
+        "set ACL for sling-jcr-install",
+        "allow\tjcr:read\ton\t/",
+        "allow\trep:write\ton /apps/sling/install",
+        "end",
+        "",
+        "# content-package installer",
+        "create service user sling-package-install",
+        "",
+        "set ACL for sling-package-install",
+        "allow\tjcr:all     on\t/",
+        "allow   jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository",
+        "end"
+    ]
+}

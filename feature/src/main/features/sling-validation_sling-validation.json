@@ -1,0 +1,36 @@
+
+{
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling-validation:0.16.3-SNAPSHOT",
+    "bundles":[
+        {
+            "id":"org.apache.sling:org.apache.sling.models.validation-impl:1.0.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.validation.api:1.0.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.validation.core:1.0.4",
+            "start-order":"20"
+        }
+    ],
+    "configurations":{
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~validation":{
+            "user.mapping":[
+                "org.apache.sling.validation.core=sling-validation"
+            ]
+        }
+    },
+    "repoinit:TEXT|true":[
+        "create service user sling-validation",
+        "",
+        "create path (sling:Folder) /apps",
+        "create path (sling:Folder) /libs",
+        "",
+        "set ACL for sling-validation",
+        "allow   jcr:read    on /apps",
+        "allow   jcr:read    on /libs",
+        "end"
+    ]
+}
