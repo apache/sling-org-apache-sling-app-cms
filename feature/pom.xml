@@ -97,7 +97,7 @@
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>aggregate-features</goal>
-                            <!-- <goal>analyse-features</goal> -->
+                            <goal>analyse-features</goal>
                             <goal>attach-features</goal>
                             <goal>attach-featurearchives</goal>
                         </goals>

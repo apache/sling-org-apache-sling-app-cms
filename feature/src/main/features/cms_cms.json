@@ -8,11 +8,11 @@
         },
         {
             "id":"org.apache.sling:org.apache.sling.cms.api:${cms.version}",
-            "start-order":"5"
+            "start-order":"20"
         },
         {
             "id":"org.apache.sling:org.apache.sling.cms.ui:${cms.version}",
-            "start-order":"5"
+            "start-order":"20"
         },
         {
             "id":"com.vladsch.flexmark:flexmark-osgi:0.61.24",
@@ -68,15 +68,15 @@
         },
         {
             "id":"org.apache.commons:commons-text:1.8",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.jasypt:1.9.3_1",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.poi:4.1.1_1",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.cms.core:${cms.version}",
@@ -92,31 +92,31 @@
         },
         {
             "id":"org.apache.sling:org.apache.sling.commons.crypto:1.0.0",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.commons.html:1.1.0",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.commons.messaging.mail:1.0.0",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.commons.messaging:1.0.0",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.rewriter:1.2.2",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.tika:tika-bundle:1.22",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.codehaus.groovy:groovy-all:2.4.19",
-            "start-order":"20"
+            "start-order":"15"
         }
     ],
     "configurations":{
