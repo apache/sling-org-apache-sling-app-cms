@@ -64,7 +64,7 @@
         },
         {
             "id":"com.sun.mail:javax.mail:1.6.2",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.commons:commons-text:1.8",
