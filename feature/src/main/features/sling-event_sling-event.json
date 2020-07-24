@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling-event:0.16.3-SNAPSHOT",
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling-event:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.event.dea:1.1.4",

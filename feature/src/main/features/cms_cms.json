@@ -1,21 +1,17 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:cms:0.16.3-SNAPSHOT",
-    "variables":{
-        "oak.version":"1.26.0",
-        "cms.version":"0.16.3-SNAPSHOT"
-    },
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:cms:${cms.version}",
     "bundles":[
         {
             "id":"com.github.livesense:org.liveSense.fragment.sun.misc:1.0.5",
             "start-order":"5"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.cms.api:0.16.3-SNAPSHOT",
+            "id":"org.apache.sling:org.apache.sling.cms.api:${cms.version}",
             "start-order":"5"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.cms.ui:0.16.3-SNAPSHOT",
+            "id":"org.apache.sling:org.apache.sling.cms.ui:${cms.version}",
             "start-order":"5"
         },
         {
@@ -43,11 +39,11 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-auth-external:1.26.0",
+            "id":"org.apache.jackrabbit:oak-auth-external:${oak.version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-auth-ldap:1.26.0",
+            "id":"org.apache.jackrabbit:oak-auth-ldap:${oak.version}",
             "start-order":"15"
         },
         {
@@ -83,15 +79,15 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.cms.core:0.16.3-SNAPSHOT",
+            "id":"org.apache.sling:org.apache.sling.cms.core:${cms.version}",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.cms.reference:0.16.3-SNAPSHOT",
+            "id":"org.apache.sling:org.apache.sling.cms.reference:${cms.version}",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.cms.transformer:0.16.3-SNAPSHOT",
+            "id":"org.apache.sling:org.apache.sling.cms.transformer:${cms.version}",
             "start-order":"20"
         },
         {

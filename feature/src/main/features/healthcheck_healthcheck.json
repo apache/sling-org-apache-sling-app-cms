@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:healthcheck:0.16.3-SNAPSHOT",
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:healthcheck:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.felix:org.apache.felix.healthcheck.api:2.0.4",
