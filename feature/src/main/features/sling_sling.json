@@ -4,7 +4,7 @@
     "bundles":[
         {
             "id":"commons-codec:commons-codec:1.14",
-            "start-order":"10"
+            "start-order":"5"
         },
         {
             "id":"commons-collections:commons-collections:3.2.2",
@@ -136,7 +136,7 @@
         },
         {
             "id":"org.apache.sling:org.apache.sling.servlets.post:2.3.36",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.servlets.resolver:2.7.2",
