@@ -4,11 +4,11 @@
     "bundles":[
         {
             "id":"commons-codec:commons-codec:1.14",
-            "start-order":"20"
+            "start-order":"10"
         },
         {
             "id":"commons-collections:commons-collections:3.2.2",
-            "start-order":"20"
+            "start-order":"10"
         },
         {
             "id":"javax.mail:mail:1.5.0-b01",
@@ -16,7 +16,7 @@
         },
         {
             "id":"org.apache.commons:commons-collections4:4.4",
-            "start-order":"20"
+            "start-order":"10"
         },
         {
             "id":"org.apache.commons:commons-math:2.2",
@@ -28,11 +28,11 @@
         },
         {
             "id":"org.apache.httpcomponents:httpclient-osgi:4.5.10",
-            "start-order":"20"
+            "start-order":"10"
         },
         {
             "id":"org.apache.httpcomponents:httpcore-osgi:4.4.12",
-            "start-order":"20"
+            "start-order":"10"
         },
         {
             "id":"org.apache.jackrabbit.vault:org.apache.jackrabbit.vault:3.4.4",
