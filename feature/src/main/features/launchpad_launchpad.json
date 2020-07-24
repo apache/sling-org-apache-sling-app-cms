@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:launchpad:0.16.3-SNAPSHOT",
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:launchpad:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.launchpad.base:6.0.2-2.6.36",

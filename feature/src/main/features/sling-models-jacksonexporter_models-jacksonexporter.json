@@ -1,20 +1,17 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling-models-jacksonexporter_models-jacksonexporter:0.16.3-SNAPSHOT",
-    "variables":{
-        "jackson.version":"2.11.1"
-    },
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling-models-jacksonexporter_models-jacksonexporter:${cms.version}",
     "bundles":[
         {
-            "id":"com.fasterxml.jackson.core:jackson-annotations:2.11.1",
+            "id":"com.fasterxml.jackson.core:jackson-annotations:${jackson.version}",
             "start-order":"20"
         },
         {
-            "id":"com.fasterxml.jackson.core:jackson-core:2.11.1",
+            "id":"com.fasterxml.jackson.core:jackson-core:${jackson.version}",
             "start-order":"20"
         },
         {
-            "id":"com.fasterxml.jackson.core:jackson-databind:2.11.1",
+            "id":"com.fasterxml.jackson.core:jackson-databind:${jackson.version}",
             "start-order":"20"
         },
         {

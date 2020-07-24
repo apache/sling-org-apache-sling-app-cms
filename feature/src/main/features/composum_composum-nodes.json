@@ -1,24 +1,21 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:composum_composum-nodes:0.16.3-SNAPSHOT",
-    "variables":{
-        "composum.nodes.version":"1.12.0"
-    },
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:composum_composum-nodes:${cms.version}",
     "bundles":[
         {
-            "id":"com.composum.sling.core:composum-sling-core-commons:1.12.0",
+            "id":"com.composum.sling.core:composum-sling-core-commons:${composum.version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-core-console:1.12.0",
+            "id":"com.composum.sling.core:composum-sling-core-console:${composum.version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-core-jslibs:1.12.0",
+            "id":"com.composum.sling.core:composum-sling-core-jslibs:${composum.version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-package-manager:1.12.0",
+            "id":"com.composum.sling.core:composum-sling-package-manager:${composum.version}",
             "start-order":"20"
         }
     ],

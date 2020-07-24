@@ -1,9 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:boot:0.16.3-SNAPSHOT",
-    "variables":{
-        "slf4j.version":"1.7.25"
-    },
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:boot:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.aries:org.apache.aries.util:1.1.3",
@@ -114,15 +111,15 @@
             "start-order":"1"
         },
         {
-            "id":"org.slf4j:jcl-over-slf4j:1.7.25",
+            "id":"org.slf4j:jcl-over-slf4j:${slf4j.version}",
             "start-order":"1"
         },
         {
-            "id":"org.slf4j:log4j-over-slf4j:1.7.25",
+            "id":"org.slf4j:log4j-over-slf4j:${slf4j.version}",
             "start-order":"1"
         },
         {
-            "id":"org.slf4j:slf4j-api:1.7.25",
+            "id":"org.slf4j:slf4j-api:${slf4j.version}",
             "start-order":"1"
         }
     ],

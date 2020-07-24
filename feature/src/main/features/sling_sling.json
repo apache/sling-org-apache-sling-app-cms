@@ -1,9 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling:0.16.3-SNAPSHOT",
-    "variables":{
-        "jackrabbit.version":"2.20.0"
-    },
+    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling:${cms.version}",
     "bundles":[
         {
             "id":"commons-codec:commons-codec:1.14",
@@ -270,27 +267,27 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-data:2.20.0",
+            "id":"org.apache.jackrabbit:jackrabbit-data:${jackrabbit.version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-jcr-commons:2.20.0",
+            "id":"org.apache.jackrabbit:jackrabbit-jcr-commons:${jackrabbit.version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-jcr-rmi:2.20.0",
+            "id":"org.apache.jackrabbit:jackrabbit-jcr-rmi:${jackrabbit.version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-spi-commons:2.20.0",
+            "id":"org.apache.jackrabbit:jackrabbit-spi-commons:${jackrabbit.version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-spi:2.20.0",
+            "id":"org.apache.jackrabbit:jackrabbit-spi:${jackrabbit.version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-webdav:2.20.0",
+            "id":"org.apache.jackrabbit:jackrabbit-webdav:${jackrabbit.version}",
             "start-order":"15"
         },
         {
