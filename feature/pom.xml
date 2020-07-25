@@ -107,6 +107,31 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>
+                                org.apache.sling.cms.feature.Main
+                            </mainClass>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                    <descriptors>
+                        <descriptor>src/main/assembly/standalone.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -144,6 +169,12 @@
             <artifactId>org.apache.felix.utils</artifactId>
             <version>1.11.2</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.feature.launcher</artifactId>
+            <version>1.1.4</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
