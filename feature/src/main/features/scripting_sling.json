@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:scripting_sling:${cms.version}",
+    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:scripting_sling:${cms.version}",
     "bundles":[
         {
             "id":"org.antlr:antlr4-runtime:4.7.2",

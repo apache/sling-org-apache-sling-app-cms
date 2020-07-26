@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:repoinit:${cms.version}",
+    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:repoinit:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.24",
