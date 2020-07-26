@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:sling-validation:${cms.version}",
+    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:sling-validation:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.models.validation-impl:1.0.0",

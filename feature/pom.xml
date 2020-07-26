@@ -19,7 +19,7 @@
         <version>0.16.3-SNAPSHOT</version>
     </parent>
 
-    <artifactId>org.apache.sling.cms.fmconverter</artifactId>
+    <artifactId>org.apache.sling.cms.feature</artifactId>
     <name>Apache Sling - CMS Feature Model</name>
 
     <properties>
@@ -174,7 +174,6 @@
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.feature.launcher</artifactId>
             <version>1.1.4</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

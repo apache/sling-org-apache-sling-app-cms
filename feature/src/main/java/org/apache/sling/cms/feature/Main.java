@@ -22,8 +22,6 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.jar.Attributes;
-import java.util.jar.Manifest;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -35,13 +33,14 @@ public class Main {
         String version = properties.getProperty("version");
         System.out.println("Version "+version);
 
-        URL farUrl = Main.class.getClassLoader().getResource("lib/org.apache.sling.cms.fmconverter-"+version+"-slingcms_far.far");
-        List<String> arguments = new ArrayList();
+        URL farUrl = Main.class.getClassLoader().getResource("lib/org.apache.sling.cms.feature-"+version+"-slingcms_far.far");
+        List<String> arguments = new ArrayList<>();
         arguments.addAll(Arrays.asList(args));
         if(!arguments.contains("-f")){
             arguments.add("-f");
             arguments.add(farUrl.toString());
         }
+
         org.apache.sling.feature.launcher.impl.Main.main(arguments.toArray(new String[arguments.size()]));
     }
 }

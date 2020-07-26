@@ -1,4 +1,4 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:webapp:${cms.version}"
+    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:webapp:${cms.version}"
 }

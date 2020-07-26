@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:oak:${cms.version}",
+    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:oak:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.felix:org.apache.felix.jaas:1.0.2",

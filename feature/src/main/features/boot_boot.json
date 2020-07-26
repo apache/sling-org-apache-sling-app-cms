@@ -1,6 +1,6 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.fmconverter:slingfeature:boot:${cms.version}",
+    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:boot:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.aries:org.apache.aries.util:1.1.3",
