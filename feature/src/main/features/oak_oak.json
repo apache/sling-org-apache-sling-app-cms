@@ -113,9 +113,6 @@
             "jaas.controlFlag":"sufficient",
             "jaas.classname":"org.apache.jackrabbit.oak.security.authentication.token.TokenLoginModule",
             "jaas.ranking:Integer":"200"
-        },
-        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService":{
-            "name":"Default NodeStore"
         }
     }
 }

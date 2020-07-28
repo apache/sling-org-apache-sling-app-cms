@@ -74,20 +74,33 @@
                     </framework>
                     <aggregates>
                         <aggregate>
-                            <classifier>slingcms</classifier>
+                            <classifier>slingcms-segment</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <title>Sling CMS</title>
+                            <filesExclude>node-store-composite/*.json</filesExclude>
+                            <title>Sling CMS -</title>
+                        </aggregate>
+                        <aggregate>
+                            <classifier>slingcms-composite-seed</classifier>
+                            <filesInclude>**/*.json</filesInclude>
+                            <filesExclude>node-store-composite/composite-runtime.json,node-store-segment/*.json</filesExclude>
+                            <title>Sling CMS - Composite Node Store Seed</title>
+                        </aggregate>
+                        <aggregate>
+                            <classifier>slingcms-composite-runtime</classifier>
+                            <filesInclude>**/*.json</filesInclude>
+                            <filesExclude>node-store-composite/composite-seed.json,node-store-segment/*.json</filesExclude>
+                            <title>Sling CMS - Composite Node Store Runtime</title>
                         </aggregate>
                     </aggregates>
                     <scans>
                         <scan>
-                            <includeClassifier>slingcms</includeClassifier>
+                            <includeClassifier>slingcms-segment,slingcms-composite-seed,slingcms-composite-runtime</includeClassifier>
                         </scan>
                     </scans>
                     <archives>
                         <archive>
                             <classifier>slingcms_far</classifier>
-                            <includeClassifier>slingcms</includeClassifier>
+                            <includeClassifier>slingcms-segment</includeClassifier>
                         </archive>
                     </archives>
                 </configuration>

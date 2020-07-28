@@ -1,0 +1,25 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:composite-seed:${cms.version}",
+    "configurations": {
+        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
+            "name": "Default NodeStore",
+            "standby": true
+        },
+        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService~global": {
+            "name": "Default NodeStore",
+            "repository.home": "sling/composite/repository-libs"
+        },
+        "org.apache.jackrabbit.oak.composite.CrossMountReferenceValidatorProvider": {
+            "failOnDetection": true
+        },
+        "org.apache.jackrabbit.oak.composite.MountInfoProviderService": {
+            "mountName": "libs",
+            "readOnlyMount": false,
+            "pathsSupportingFragments": [],
+            "mountedPaths": [
+                "/libs",
+                "/apps"
+            ]
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:segment:${cms.version}",
+    "configurations": {
+        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService":{
+            "name":"Default NodeStore"
+        }
+    }
+}
