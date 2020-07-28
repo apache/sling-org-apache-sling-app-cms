@@ -1,0 +1,54 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:composite-runtime:${cms.version}",
+    "configurations": {
+        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
+            "name": "Default NodeStore",
+            "standby": true
+        },
+        "org.apache.jackrabbit.oak.composite.CompositeNodeStoreService": {
+            "seedMount": "libs",
+            "enabled": true,
+            "enableChecks": false,
+            "partialReadOnly": true
+        },
+        "org.apache.jackrabbit.oak.composite.CrossMountReferenceValidatorProvider": {
+            "failOnDetection": true
+        },
+        "org.apache.jackrabbit.oak.composite.MountInfoProviderService": {
+            "mountName": "libs",
+            "readOnlyMount": true,
+            "pathsSupportingFragments": [
+                "/oak:index/*$"
+            ],
+            "mountedPaths": [
+                "/libs",
+                "/apps",
+                "/jcr:system/rep:permissionStore/oak:mount-libs-default"
+            ]
+        },
+        "org.apache.jackrabbit.oak.composite.checks.NodeTypeMountedNodeStoreChecker~referenceable": {
+            "errorLabel": "referenceable node",
+            "invalidNodeType": "mix:referenceable",
+            "excludedNodeTypes": [
+                "nt:resource"
+            ]
+        },
+        "org.apache.jackrabbit.oak.composite.checks.NodeTypeMountedNodeStoreChecker~versionable": {
+            "errorLabel": "versionable node",
+            "invalidNodeType": "mix:versionable"
+        },
+        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreFactory~libs": {
+            "role": "composite-mount-libs",
+            "customBlobStore": false,
+            "nodeDeduplicationCache.size": 0,
+            "repository.home": "sling/composite/repository-libs"
+        },
+        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreFactory~global": {
+            "service.ranking": 100,
+            "role": "composite-global",
+            "registerDescriptors": true,
+            "dispatchChanges": true,
+            "repository.home": "sling/composite/repository-global"
+        }
+    }
+}
