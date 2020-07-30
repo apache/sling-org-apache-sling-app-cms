@@ -13,18 +13,31 @@
 
 # Pull base image.
 FROM adoptopenjdk:11-jre-openj9
-MAINTAINER dev@sling.apache.org
+
+ARG FM_GROUP_ID=org.apache.sling
+ARG FM_ARTIFACT_ID=org.apache.sling.cms.feature
+ARG FM_VERSION=0.16.3-SNAPSHOT
+ARG FM_SEED_CLASSIFIER=slingcms-composite-seed
+ARG FM_RUNTIME_CLASSIFIER=slingcms-composite-seed
+ENV FM_ARTIFACT_ID=${FM_ARTIFACT_ID}
+ENV FM_RUNTIME_CLASSIFIER=${FM_RUNTIME_CLASSIFIER}
 
 # Configure directories
-WORKDIR /opt/sling
-VOLUME /opt/sling/sling
+WORKDIR /opt/slingcms
+
+# Install Apache Maven
+RUN apt-get update && apt-get install maven -y
+COPY /settings.xml /root/.m2/
 
 # Setup Sling CMS
-RUN mkdir -p /opt/sling
-RUN curl -L https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.builder/0.16.2/org.apache.sling.cms.builder-0.16.2.jar --output org.apache.sling.cms.jar
+COPY download-dependencies.sh /opt/slingcms/setup/
+RUN /bin/bash /opt/slingcms/setup/download-dependencies.sh
+COPY setup-composite.sh /opt/slingcms/setup/
+RUN /bin/bash /opt/slingcms/setup/setup-composite.sh
 
 # Expose endpoints
 EXPOSE 8080
 
 # Start Sling CMS
-CMD exec java -Dsling.run.modes=oak_mongo -Doak.mongo.uri=mongodb://mongo:27017 -Doak.mongo.db=sling -jar org.apache.sling.cms.jar
+CMD exec java -jar org.apache.sling.feature.launcher.jar \
+    -f ${FM_ARTIFACT_ID}-${FM_RUNTIME_CLASSIFIER}.slingosgifeature

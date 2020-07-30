@@ -49,6 +49,14 @@
             "registerDescriptors": true,
             "dispatchChanges": true,
             "repository.home": "sling/composite/repository-global"
+        },
+        "org.apache.sling.commons.log.LogManager": {
+            "org.apache.sling.commons.log.packagingDataEnabled": true,
+            "org.apache.sling.commons.log.pattern": "%d{dd.MM.yyyy HH:mm:ss.SSS} *%level* [%thread] %logger %msg%n",
+            "org.apache.sling.commons.log.level": "info",
+            "org.apache.sling.commons.log.file": "",
+            "org.apache.sling.commons.log.file.number:Integer": "-1",
+            "org.apache.sling.commons.log.file.size": ""
         }
     }
 }

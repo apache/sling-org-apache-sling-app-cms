@@ -13,14 +13,12 @@
 
 # Pull base image.
 FROM ubuntu:latest
-MAINTAINER dev@sling.apache.org
 
 # Avoid interaction with tzdata
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install Apache
-RUN apt-get update
-RUN apt-get install apache2 -y
+RUN apt-get update && apt-get install apache2 -y
 
 # Configure mod_rewrite
 RUN a2enmod rewrite
@@ -36,10 +34,8 @@ RUN a2enmod expires
 RUN a2enmod headers
 
 # Configure sites
-RUN mkdir -p /var/www/vhosts/sling-cms
-RUN mkdir -p /var/www/vhosts/sling
-COPY cms.conf /etc/apache2/sites-enabled
-COPY site.conf /etc/apache2/sites-enabled
+RUN mkdir -p /var/www/vhosts/sling-cms && mkdir -p /var/www/vhosts/sling
+COPY *.conf /etc/apache2/sites-enabled/
 
 # Expose endpoints
 EXPOSE 80
