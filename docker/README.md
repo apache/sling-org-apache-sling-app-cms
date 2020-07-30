@@ -2,7 +2,7 @@
 
 This is a sample Docker Compose configuration for using Apache Sling CMS in a containerized environment.
 
-It will start a container with the Apache Sling CMS backed by MongoDB and a webcache container pre-configured to proxy and cache two URLs.
+It will start a container with the Apache Sling CMS backed by a shared volume and a webcache container pre-configured to proxy and cache two URLs.
 
 ## Dependencies
 
@@ -16,6 +16,16 @@ This requires:
 To build, run the command:
 
 `docker-compose build`
+
+If you are using snapshots, to force a rebuild, run:
+
+`docker-compose build --no-cache --force-rm`
+
+## Volume
+
+This Docker Compose setup creates a volume _docker_sling-repository_ for the Apache Sling CMS repository. To destroy this volume call:
+
+`docker rm docker_sling-repository`
 
 ## Use
 

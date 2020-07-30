@@ -9,23 +9,17 @@
 #  either express or implied. See the License for the specific language governing permissions
 #  and limitations under the License.
 #
-version: '3'
+version: '3.4'
 services:
   cms:
     build: cms
-    expose:
-      - "8080"
-    depends_on:
-    - mongo
-  mongo:
-    image: mongo
-    expose:
-    - "27017"
+    ports:
+      - "8080:8080"
     volumes:
-    - data-volume:/data/db
+      - sling-repository:/opt/slingcms/sling/composite/repository-global
   webcache:
     build: webcache
     ports:
       - "80:80"
 volumes:
-  data-volume:
+  sling-repository:

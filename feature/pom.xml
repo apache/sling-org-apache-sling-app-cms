@@ -76,25 +76,33 @@
                         <aggregate>
                             <classifier>slingcms-segment</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/*.json</filesExclude>
+                            <filesExclude>node-store-composite/composite-*.json</filesExclude>
                             <title>Sling CMS -</title>
                         </aggregate>
                         <aggregate>
                             <classifier>slingcms-composite-seed</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/composite-runtime.json,node-store-segment/*.json</filesExclude>
+                            <filesExclude>node-store-composite/composite-runtime.json</filesExclude>
+                            <filesExclude>node-store-segment/segment.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Seed</title>
                         </aggregate>
                         <aggregate>
                             <classifier>slingcms-composite-runtime</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/composite-seed.json,node-store-segment/*.json</filesExclude>
+                            <filesExclude>node-store-composite/composite-seed.json</filesExclude>
+                            <filesExclude>node-store-segment/segment.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Runtime</title>
                         </aggregate>
                     </aggregates>
                     <scans>
                         <scan>
-                            <includeClassifier>slingcms-segment,slingcms-composite-seed,slingcms-composite-runtime</includeClassifier>
+                            <includeClassifier>slingcms-composite-runtime</includeClassifier>
+                        </scan>
+                        <scan>
+                            <includeClassifier>slingcms-composite-seed</includeClassifier>
+                        </scan>
+                        <scan>
+                            <includeClassifier>slingcms-segment</includeClassifier>
                         </scan>
                     </scans>
                     <archives>

@@ -1,8 +1,16 @@
 {
     "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:segment:${cms.version}",
     "configurations": {
-        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService":{
-            "name":"Default NodeStore"
+        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
+            "name": "Default NodeStore"
+        },
+        "org.apache.sling.commons.log.LogManager": {
+            "org.apache.sling.commons.log.packagingDataEnabled": true,
+            "org.apache.sling.commons.log.pattern": "%d{dd.MM.yyyy HH:mm:ss.SSS} *%level* [%thread] %logger %msg%n",
+            "org.apache.sling.commons.log.level": "info",
+            "org.apache.sling.commons.log.file": "logs/error.log",
+            "org.apache.sling.commons.log.file.number:Integer": "7",
+            "org.apache.sling.commons.log.file.size": "'.'yyyy-MM-dd"
         }
     }
 }

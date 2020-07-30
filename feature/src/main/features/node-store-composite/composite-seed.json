@@ -1,6 +1,9 @@
 {
     "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:composite-seed:${cms.version}",
     "configurations": {
+        "org.apache.felix.hc.core.impl.servlet.HealthCheckExecutorServlet~default": {
+            "servletPath": "/system/health"
+        },
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
             "name": "Default NodeStore",
             "standby": true
@@ -15,11 +18,22 @@
         "org.apache.jackrabbit.oak.composite.MountInfoProviderService": {
             "mountName": "libs",
             "readOnlyMount": false,
-            "pathsSupportingFragments": [],
+            "pathsSupportingFragments": [
+                "/oak:index/*$"
+            ],
             "mountedPaths": [
                 "/libs",
-                "/apps"
+                "/apps",
+                "/jcr:system/rep:permissionStore/oak:mount-libs-default"
             ]
+        },
+        "org.apache.sling.commons.log.LogManager": {
+            "org.apache.sling.commons.log.packagingDataEnabled": true,
+            "org.apache.sling.commons.log.pattern": "%d{dd.MM.yyyy HH:mm:ss.SSS} *%level* [%thread] %logger %msg%n",
+            "org.apache.sling.commons.log.level": "info",
+            "org.apache.sling.commons.log.file": "",
+            "org.apache.sling.commons.log.file.number:Integer": "-1",
+            "org.apache.sling.commons.log.file.size": ""
         }
     }
 }
