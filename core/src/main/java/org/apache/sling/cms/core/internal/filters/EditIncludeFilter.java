@@ -210,7 +210,7 @@ public class EditIncludeFilter implements Filter {
         StringSubstitutor sub = new StringSubstitutor(replacements);
         String template = templates.get(templateName);
         String result = sub.replace(template);
-        log.info("Using: {} and {} to create {}", templateName, replacements, result);
+        log.trace("Using: {} and {} to create {}", templateName, replacements, result);
         writer.write(result);
     }
 
