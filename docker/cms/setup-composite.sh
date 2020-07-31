@@ -20,7 +20,7 @@ java -jar org.apache.sling.feature.launcher.jar \
 SLING_PID=$!
 echo "Sling PID: ${SLING_PID}"
 
-sleep 10s
+sleep 30s
 STARTED=1
 for i in {1..10}; do
     echo "Checking to see if started with username: ${SLING_USERNAME}..."
@@ -32,6 +32,8 @@ for i in {1..10}; do
     fi
     sleep 30s
 done
+sleep 30s
+kill $SLING_PID
 
 if [ $STARTED -eq 1 ]; then
     echo "Failed to seed sling repository!"
