@@ -18,7 +18,7 @@ ARG FM_GROUP_ID=org.apache.sling
 ARG FM_ARTIFACT_ID=org.apache.sling.cms.feature
 ARG FM_VERSION=0.16.3-SNAPSHOT
 ARG FM_SEED_CLASSIFIER=slingcms-composite-seed
-ARG FM_RUNTIME_CLASSIFIER=slingcms-composite-seed
+ARG FM_RUNTIME_CLASSIFIER=slingcms-composite-runtime
 ENV FM_ARTIFACT_ID=${FM_ARTIFACT_ID}
 ENV FM_RUNTIME_CLASSIFIER=${FM_RUNTIME_CLASSIFIER}
 
