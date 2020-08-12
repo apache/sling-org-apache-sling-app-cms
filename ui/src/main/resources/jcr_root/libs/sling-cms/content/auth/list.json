@@ -64,14 +64,14 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy Folder",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete Folder",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"
@@ -93,28 +93,28 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "membership": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Group Membership",
                                     "icon": "user-circle",
                                     "prefix": "/cms/auth/membership.html"
                                 },
                                 "members": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Group Members",
                                     "icon": "users",
                                     "prefix": "/cms/auth/group/members.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy Group",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete Group",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"
@@ -136,7 +136,7 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "membership": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Group Membership",
                                     "icon": "user-circle",
                                     "prefix": "/cms/auth/membership.html"
@@ -158,42 +158,42 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "profile": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "User Profile",
                                     "icon": "id-card",
                                     "prefix": "/cms/auth/user/profile.html"
                                 },
                                 "password": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Change Password",
                                     "icon": "key",
                                     "prefix": "/cms/auth/user/password.html"
                                 },
                                 "status": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Status",
                                     "icon": "stop-sign",
                                     "prefix": "/cms/auth/user/status.html"
                                 },
                                 "membership": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Group Membership",
                                     "icon": "user-circle",
                                     "prefix": "/cms/auth/membership.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy User",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete User",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"

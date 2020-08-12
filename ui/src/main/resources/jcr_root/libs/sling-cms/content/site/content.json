@@ -102,35 +102,35 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": false,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/basic",
                                     "title": "Edit Page",
                                     "icon": "pencil-f",
                                     "prefix": "/cms/page/edit.html"
                                 },
                                 "properties": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Edit Page Properties",
                                     "icon": "cog",
                                     "prefix": "/cms/page/editproperties.html"
                                 },
                                 "insights": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Insights",
                                     "icon": "info",
                                     "prefix": "/cms/shared/insights.html"
                                 },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "References",
                                     "icon": "directions",
                                     "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy Page",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
@@ -138,14 +138,14 @@
                                 "version": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "ajaxPath": ".versionmanager",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Manage Versions",
                                     "icon": "history",
                                     "prefix": "/cms/shared/versions.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete the specified page",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"
@@ -188,28 +188,28 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "download": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": false,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/basic",
                                     "title": "Download file",
                                     "icon": "download",
                                     "prefix": "/cms/file/download.html"
                                 },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "References",
                                     "icon": "directions",
                                     "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy File",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete File",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"
@@ -251,35 +251,35 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Edit File Properties",
                                     "icon": "cog",
                                     "prefix": "/cms/file/edit.html"
                                 },
                                 "optimize": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Optimize File",
                                     "icon": "archive",
                                     "prefix": "/cms/file/optimize.html"
                                 },
                                 "download": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": false,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/basic",
                                     "title": "Download file",
                                     "icon": "download",
                                     "prefix": "/cms/file/download.html"
                                 },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "References",
                                     "icon": "directions",
                                     "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy File",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
@@ -287,14 +287,14 @@
                                 "version": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "ajaxPath": ".versionmanager",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Manage Versions",
                                     "icon": "history",
                                     "prefix": "/cms/shared/versions.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete File",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"
@@ -337,28 +337,28 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Edit Folder Properties",
                                     "icon": "cog",
                                     "prefix": "/cms/folder/edit.html"
                                 },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "References",
                                     "icon": "directions",
                                     "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy Folder",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete Folder",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"
@@ -401,28 +401,28 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Edit Folder Properties",
                                     "icon": "cog",
                                     "prefix": "/cms/folder/edit.html"
                                 },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "References",
                                     "icon": "directions",
                                     "prefix": "/cms/shared/references.html"
                                 },
                                 "movecopy": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Move / Copy Folder",
                                     "icon": "move-alt",
                                     "prefix": "/cms/shared/movecopy.html"
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete Folder",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"

@@ -60,28 +60,11 @@
                                     </figure>
                                     <div class="is-vhidden cell-actions">
                                         <sling:getResource base="${resource}" path="types/${child.valueMap['jcr:primaryType']}/columns/actions" var="colConfig" />
-
-                                        <c:forEach var="actionConfig" items="${sling:listChildren(colConfig)}">
-                                            <c:choose>
-                                                <c:when test="${actionConfig.valueMap.modal}">
-                                                    <a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${child.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-                                                        <span class="jam jam-${actionConfig.valueMap.icon}">
-                                                            <span class="is-vhidden">
-                                                                ${sling:encode(actionConfig.valueMap.title,'HTML')}
-                                                            </span>
-                                                        </span>
-                                                    </a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <a class="button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${actionConfig.valueMap.prefix}${child.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-                                                        <span class="jam jam-${actionConfig.valueMap.icon}">
-                                                            <span class="is-vhidden">
-                                                                ${sling:encode(actionConfig.valueMap.title,'HTML')}
-                                                            </span>
-                                                        </span>
-                                                    </a>
-                                                </c:otherwise>
-                                            </c:choose>
+                                        <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
+                                            <c:set var="actionConfig" value="${ac}" scope="request" />
+                                            <!-- Resource: ${resource} -->
+                                            <!-- Action Config: ${actionConfig} -->
+                                            <sling:include path="${child.path}" resourceType="${actionConfig.resourceType}" />
                                         </c:forEach>
                                     </div>
                                 </div>

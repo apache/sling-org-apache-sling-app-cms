@@ -16,28 +16,28 @@
                     "edit": {
                         "jcr:primaryType": "nt:unstructured",
                         "ajaxPath": ".Form-Ajax",
-                        "modal": true,
+                        "sling:resourceType": "sling-cms/components/cms/actions/modal",
                         "prefix": "/cms/page/editproperties.html",
                         "title": "Edit Page Properties",
                         "icon": "cog"
                     },
                     "insights": {
                         "jcr:primaryType": "nt:unstructured",
-                        "modal": true,
+                        "sling:resourceType": "sling-cms/components/cms/actions/modal",
                         "title": "Insights",
                         "icon": "info",
                         "prefix": "/cms/shared/insights.html"
                     },
                     "references": {
                         "jcr:primaryType": "nt:unstructured",
-                        "modal": true,
+                        "sling:resourceType": "sling-cms/components/cms/actions/modal",
                         "title": "References",
                         "icon": "directions",
                         "prefix": "/cms/shared/references.html"
                     },
                     "movecopy": {
                         "jcr:primaryType": "nt:unstructured",
-                        "modal": true,
+                        "sling:resourceType": "sling-cms/components/cms/actions/modal",
                         "title": "Move / Copy Page",
                         "icon": "move-alt",
                         "prefix": "/cms/shared/movecopy.html"
@@ -45,14 +45,14 @@
                     "version": {
                         "jcr:primaryType": "nt:unstructured",
                         "ajaxPath": ".versionmanager",
-                        "modal": true,
+                        "sling:resourceType": "sling-cms/components/cms/actions/modal",
                         "title": "Manage Versions",
                         "icon": "history",
                         "prefix": "/cms/shared/versions.html"
                     },
                     "delete": {
                         "jcr:primaryType": "nt:unstructured",
-                        "modal": true,
+                        "sling:resourceType": "sling-cms/components/cms/actions/modal",
                         "title": "Delete Page",
                         "icon": "trash",
                         "prefix": "/cms/shared/delete.html"

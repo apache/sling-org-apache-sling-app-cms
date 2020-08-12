@@ -68,7 +68,7 @@
                                 "sling:resourceType": "sling-cms/components/cms/columns/actions",
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "new": false,
                                     "title": "Edit Dictionary Properties",
                                     "icon": "cog",
@@ -76,7 +76,7 @@
                                 },
                                 "delete": {
                                     "jcr:primaryType": "nt:unstructured",
-                                    "modal": true,
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
                                     "title": "Delete i18n Dictionary",
                                     "icon": "trash",
                                     "prefix": "/cms/shared/delete.html"

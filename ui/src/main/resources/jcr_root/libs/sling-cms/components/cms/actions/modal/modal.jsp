@@ -17,9 +17,10 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td class="is-vhidden cell-actions">
-    <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
-        <c:set var="actionConfig" value="${ac}" scope="request" />
-        <sling:include path="${resource.path}" resourceType="${actionConfig.resourceType}" />
-    </c:forEach>
-</td>
+<a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${resource.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+    <span class="jam jam-${actionConfig.valueMap.icon}">
+        <span class="is-vhidden">
+            ${sling:encode(actionConfig.valueMap.title,'HTML')}
+        </span>
+    </span>
+</a>
