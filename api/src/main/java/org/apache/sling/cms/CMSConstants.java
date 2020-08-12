@@ -115,6 +115,16 @@ public class CMSConstants {
     public static final String PN_PUBLISHED = "published";
 
     /**
+     * The last time the page was published
+     */
+    public static final String PN_LAST_PUBLICATION = "lastPublication";
+
+    /**
+     * The last publication action
+     */
+    public static final String PN_LAST_PUBLICATION_TYPE = "lastPublicationType";
+
+    /**
      * Constant for the Site URL
      */
     public static final String PN_SITE_URL = CMSConstants.NAMESPACE + ":url";
@@ -134,7 +144,7 @@ public class CMSConstants {
      */
     public static final String[] PUBLISHABLE_TYPES = new String[] { CMSConstants.NT_FILE, CMSConstants.NT_PAGE,
             JcrResourceConstants.NT_SLING_FOLDER, JcrResourceConstants.NT_SLING_ORDERED_FOLDER };
-    
+
     /**
      * The name of the admin user
      */

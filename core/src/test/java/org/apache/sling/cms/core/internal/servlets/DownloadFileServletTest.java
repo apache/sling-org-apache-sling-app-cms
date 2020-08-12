@@ -37,7 +37,6 @@ public class DownloadFileServletTest {
     @Before
     public void init() {
         SlingCMSTestHelper.initContext(context);
-
     }
 
     @Test

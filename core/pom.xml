@@ -233,5 +233,9 @@
             <artifactId>commons-text</artifactId>
             <groupId>org.apache.commons</groupId>
         </dependency>
+        <dependency>
+            <artifactId>org.apache.sling.distribution.api</artifactId>
+            <groupId>org.apache.sling</groupId>
+        </dependency>
     </dependencies>
 </project>

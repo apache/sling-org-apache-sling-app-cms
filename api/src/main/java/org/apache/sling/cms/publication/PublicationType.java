@@ -14,29 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms;
-
-import org.apache.sling.api.resource.ValueMap;
-import org.osgi.annotation.versioning.ProviderType;
+package org.apache.sling.cms.publication;
 
 /**
- * An interface representing a sling:File resource. Adaptable from a sling:File
- * Resource.
+ * The type of publication. If in standalone will return STANDALONE.
  */
-@ProviderType
-public interface File extends PublishableResource {
-
-    /**
-     * Retrieves the metadata extracted from the file.
-     * 
-     * @return the metadata extracted from the file
-     */
-    ValueMap getMetadata();
-
-    /**
-     * Gets the content type of this file
-     * 
-     * @return the content type of the file
-     */
-    String getContentType();
+public enum PublicationType {
+    ADD, DELETE, NONE
 }

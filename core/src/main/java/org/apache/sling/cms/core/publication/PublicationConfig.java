@@ -14,29 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms;
+package org.apache.sling.cms.core.publication;
 
-import org.apache.sling.api.resource.ValueMap;
-import org.osgi.annotation.versioning.ProviderType;
+import org.apache.sling.cms.publication.PUBLICATION_MODE;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
-/**
- * An interface representing a sling:File resource. Adaptable from a sling:File
- * Resource.
- */
-@ProviderType
-public interface File extends PublishableResource {
+@ObjectClassDefinition(name = "%publication.config.name", description = "%publication.config.description", localization = "OSGI-INF/l10n/bundle")
+public @interface PublicationConfig {
 
-    /**
-     * Retrieves the metadata extracted from the file.
-     * 
-     * @return the metadata extracted from the file
-     */
-    ValueMap getMetadata();
+    @AttributeDefinition(name = "%publication.param.mode.name", description = "%publication.param.mode.description")
+    PUBLICATION_MODE publicationMode() default PUBLICATION_MODE.STANDALONE;
 
-    /**
-     * Gets the content type of this file
-     * 
-     * @return the content type of the file
-     */
-    String getContentType();
+    @AttributeDefinition(name = "%publication.param.agents.name", description = "%publication.param.agents.description")
+    String[] agents() default {};
 }

@@ -14,29 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms;
-
-import org.apache.sling.api.resource.ValueMap;
-import org.osgi.annotation.versioning.ProviderType;
+package org.apache.sling.cms.publication;
 
 /**
- * An interface representing a sling:File resource. Adaptable from a sling:File
- * Resource.
+ * A wrapper exception for an issue occuring when publishing or unpublishing
+ * content.
  */
-@ProviderType
-public interface File extends PublishableResource {
+public class PublicationException extends Exception {
 
-    /**
-     * Retrieves the metadata extracted from the file.
-     * 
-     * @return the metadata extracted from the file
-     */
-    ValueMap getMetadata();
+    public PublicationException(String message) {
+        super(message);
+    }
 
-    /**
-     * Gets the content type of this file
-     * 
-     * @return the content type of the file
-     */
-    String getContentType();
+    public PublicationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    private static final long serialVersionUID = 1L;
+
 }

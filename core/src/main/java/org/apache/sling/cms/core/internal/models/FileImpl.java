@@ -32,6 +32,7 @@ import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.Site;
 import org.apache.sling.cms.SiteManager;
+import org.apache.sling.cms.publication.PublicationType;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -70,6 +71,17 @@ public class FileImpl implements File {
     @Optional
     @Named("jcr:content/jcr:lastModifiedBy")
     private String lastModifiedBy;
+
+    @Inject
+    @Optional
+    @Named("jcr:content/lastPublication")
+    private Calendar lastPublication;
+
+    @Inject
+    @Optional
+    @Named("jcr:content/lastPublicationType")
+    @Default(values = "NONE")
+    private String lastPublicationType;
 
     @Inject
     @Named("jcr:content/published")
@@ -114,6 +126,16 @@ public class FileImpl implements File {
     @Override
     public String getLastModifiedBy() {
         return lastModifiedBy != null ? lastModifiedBy : createdBy;
+    }
+
+    @Override
+    public PublicationType getLastPublicationType() {
+        return PublicationType.valueOf(lastPublicationType);
+    }
+
+    @Override
+    public Calendar getLastPublication() {
+        return lastPublication;
     }
 
     @Override
@@ -187,4 +209,5 @@ public class FileImpl implements File {
     public boolean isPublished() {
         return published;
     }
+
 }

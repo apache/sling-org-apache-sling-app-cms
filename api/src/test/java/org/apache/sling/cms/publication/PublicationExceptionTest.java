@@ -14,29 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms;
+package org.apache.sling.cms.publication;
 
-import org.apache.sling.api.resource.ValueMap;
-import org.osgi.annotation.versioning.ProviderType;
+import static org.junit.Assert.assertEquals;
 
-/**
- * An interface representing a sling:File resource. Adaptable from a sling:File
- * Resource.
- */
-@ProviderType
-public interface File extends PublishableResource {
+import org.junit.Test;
 
-    /**
-     * Retrieves the metadata extracted from the file.
-     * 
-     * @return the metadata extracted from the file
-     */
-    ValueMap getMetadata();
+public class PublicationExceptionTest {
+    @Test
+    public void testMessageOnly() {
+        String message = "OH NO MR BILL!";
+        PublicationException pe = new PublicationException(message);
+        assertEquals(message, pe.getMessage());
+    }
 
-    /**
-     * Gets the content type of this file
-     * 
-     * @return the content type of the file
-     */
-    String getContentType();
+    @Test
+    public void testWithCause() {
+        String message = "OH NO MR BILL!";
+        Exception cause = new Exception();
+        PublicationException pe = new PublicationException(message, cause);
+        assertEquals(message, pe.getMessage());
+        assertEquals(cause, pe.getCause());
+    }
 }
