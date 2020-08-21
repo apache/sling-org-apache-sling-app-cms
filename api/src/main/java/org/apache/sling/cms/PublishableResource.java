@@ -139,4 +139,11 @@ public interface PublishableResource {
      */
     Calendar getLastPublication();
 
+    /**
+     * Get the name of the user who last published the page.
+     * 
+     * @return the user name or null
+     */
+    String getLastPublicationBy();
+
 }

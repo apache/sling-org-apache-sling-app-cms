@@ -17,14 +17,11 @@
 package org.apache.sling.cms.core.internal.models;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.cms.CMSConstants;
@@ -32,17 +29,14 @@ import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.cms.Page;
 import org.apache.sling.cms.PageTemplate;
 import org.apache.sling.cms.Site;
-import org.apache.sling.cms.SiteManager;
-import org.apache.sling.cms.publication.PublicationType;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 /**
  * A model representing a page.
  */
 @Model(adaptables = Resource.class, adapters = Page.class)
-public class PageImpl implements Page {
+public class PageImpl extends PublishableResourceImpl implements Page {
 
     public static final Page getContainingPage(Resource resource) {
         Resource pageRsrc = CMSUtils.findParentResourceofType(resource, CMSConstants.NT_PAGE);
@@ -53,85 +47,25 @@ public class PageImpl implements Page {
         return page;
     }
 
-    @Inject
-    @Optional
-    @Named("jcr:content")
-    private Resource contentResource;
+    private final String[] taxonomy;
+
+    private final String template;
+
+    private final String title;
 
     @Inject
-    @Optional
-    @Named("jcr:content/jcr:created")
-    private Calendar created;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/jcr:createdBy")
-    private String createdBy;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/jcr:lastModified")
-    private Calendar lastModified;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/jcr:lastModifiedBy")
-    private String lastModifiedBy;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/lastPublication")
-    private Calendar lastPublication;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/lastPublicationType")
-    @Default(values = "NONE")
-    private String lastPublicationType;
-
-    @Inject
-    @Named("jcr:content/published")
-    @Default(booleanValues = false)
-    private boolean published;
-
-    protected Resource resource;
-
-    @Inject
-    @Optional
-    @Named(JcrConstants.JCR_CONTENT + "/" + CMSConstants.PN_TAXONOMY)
-    private String[] taxonomy;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/sling:template")
-    private String template;
-
-    @Inject
-    @Named("jcr:content/jcr:title")
-    @Optional
-    private String title;
-
-    @Inject
-    @Named("jcr:primaryType")
-    private String type;
-
-    public PageImpl(Resource resource) {
-        this.resource = resource;
-    }
-
-    @Override
-    public Resource getContentResource() {
-        return contentResource;
-    }
-
-    @Override
-    public Calendar getCreated() {
-        return created;
-    }
-
-    @Override
-    public String getCreatedBy() {
-        return createdBy;
+    public PageImpl(@Self Resource resource) {
+        super(resource);
+        if (this.getContentResource() != null) {
+            ValueMap properties = this.getContentResource().getValueMap();
+            taxonomy = properties.get(CMSConstants.PN_TAXONOMY, String[].class);
+            template = properties.get(CMSConstants.PN_TEMPLATE, String.class);
+            title = properties.get(CMSConstants.PN_TITLE, String.class);
+        } else {
+            this.taxonomy = new String[0];
+            this.template = null;
+            this.title = null;
+        }
     }
 
     @Override
@@ -149,46 +83,6 @@ public class PageImpl implements Page {
     }
 
     @Override
-    public Calendar getLastModified() {
-        return lastModified != null ? lastModified : created;
-    }
-
-    @Override
-    public String getLastModifiedBy() {
-        return lastModifiedBy != null ? lastModifiedBy : createdBy;
-    }
-
-    @Override
-    public PublicationType getLastPublicationType() {
-        return PublicationType.valueOf(lastPublicationType);
-    }
-
-    @Override
-    public Calendar getLastPublication() {
-        return lastPublication;
-    }
-
-    @Override
-    public String getName() {
-        return resource.getName();
-    }
-
-    @Override
-    public Resource getParent() {
-        return resource.getParent();
-    }
-
-    @Override
-    public String getPath() {
-        return resource.getPath();
-    }
-
-    @Override
-    public ValueMap getProperties() {
-        return getContentResource().getValueMap();
-    }
-
-    @Override
     public String getPublishedPath() {
         Site site = getSite();
         if (site != null) {
@@ -196,31 +90,6 @@ public class PageImpl implements Page {
         } else {
             return resource.getPath() + ".html";
         }
-    }
-
-    @Override
-    public String getPublishedUrl() {
-        Site site = getSite();
-        if (site != null) {
-            return site.getUrl() + getPublishedPath();
-        } else {
-            return resource.getPath();
-        }
-    }
-
-    @Override
-    public Resource getResource() {
-        return resource;
-    }
-
-    @Override
-    public Site getSite() {
-        SiteManager siteMgr = resource.adaptTo(SiteManager.class);
-        Site site = null;
-        if (siteMgr != null) {
-            site = siteMgr.getSite();
-        }
-        return site;
     }
 
     @Override
@@ -245,10 +114,5 @@ public class PageImpl implements Page {
         } else {
             return resource.getName();
         }
-    }
-
-    @Override
-    public boolean isPublished() {
-        return published;
     }
 }

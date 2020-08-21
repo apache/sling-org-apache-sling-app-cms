@@ -75,7 +75,10 @@
                     "sling:taxonomy": "/etc/taxonomy/reference/community",
                     "jcr:lastModified": "Wed May 15 2019 14:05:46 GMT-0400",
                     "sling:resourceType": "reference/components/pages/base",
-                    "published": true,
+                    "sling:published": true,
+                    "sling:lastPublication": "Wed May 15 2019 14:05:46 GMT-0400",
+                    "sling:lastPublicationBy": "admin",
+                    "sling:lastPublicationType": "ADD",
                     "hideInSitemap": false,
                     "container": {
                         "jcr:primaryType": "nt:unstructured",
@@ -97,7 +100,11 @@
                 }
             },
             "apache.png": {
-                "jcr:primaryType": "sling:File"
+                "jcr:primaryType": "sling:File",
+                "jcr:content": {
+                    "jcr:primaryType": "sling:FileContent",
+                    "jcr:mimeType": "image/png"
+                }
             },
             "sling.pdf": {
                 "jcr:primaryType": "sling:File"

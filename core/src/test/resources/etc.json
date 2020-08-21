@@ -1,0 +1,291 @@
+{
+    "jcr:primaryType": "sling:OrderedFolder",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Thu Aug 20 2020 21:32:16 GMT-0400",
+    "i18n": {
+        "jcr:primaryType": "sling:OrderedFolder",
+        "jcr:mixinTypes": [
+            "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Aug 20 2020 21:32:16 GMT-0400",
+        "rep:policy": {
+            "jcr:primaryType": "rep:ACL",
+            "allow": {
+                "jcr:primaryType": "rep:GrantACE",
+                "rep:principalName": "everyone",
+                "rep:privileges": [
+                    "jcr:read"
+                ]
+            }
+        },
+        "jcr:content": {
+            "jcr:primaryType": "nt:unstructured",
+            "jcr:title": "i18n"
+        }
+    },
+    "taxonomy": {
+        "jcr:primaryType": "sling:OrderedFolder",
+        "jcr:mixinTypes": [
+            "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Aug 20 2020 21:32:16 GMT-0400",
+        "rep:policy": {
+            "jcr:primaryType": "rep:ACL",
+            "allow": {
+                "jcr:primaryType": "rep:GrantACE",
+                "rep:principalName": "everyone",
+                "rep:privileges": [
+                    "jcr:read"
+                ]
+            },
+            "allow1": {
+                "jcr:primaryType": "rep:GrantACE",
+                "rep:principalName": "taxonomy-users",
+                "rep:privileges": [
+                    "jcr:versionManagement",
+                    "rep:write"
+                ]
+            }
+        },
+        "jcr:content": {
+            "jcr:primaryType": "nt:unstructured",
+            "jcr:title": "Taxonomy"
+        },
+        "reference": {
+            "jcr:primaryType": "sling:Taxonomy",
+            "jcr:createdBy": "admin",
+            "jcr:title": "Reference",
+            "jcr:lastModifiedBy": "admin",
+            "jcr:created": "Thu Aug 20 2020 21:32:29 GMT-0400",
+            "jcr:lastModified": "Thu Aug 20 2020 21:32:29 GMT-0400",
+            "community": {
+                "jcr:primaryType": "sling:Taxonomy",
+                "jcr:createdBy": "admin",
+                "jcr:title": "Community",
+                "jcr:lastModifiedBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:29 GMT-0400",
+                "jcr:lastModified": "Thu Aug 20 2020 21:32:29 GMT-0400"
+            }
+        }
+    },
+    "usergenerated": {
+        "jcr:primaryType": "sling:OrderedFolder",
+        "jcr:mixinTypes": [
+            "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Aug 20 2020 21:32:16 GMT-0400",
+        "rep:policy": {
+            "jcr:primaryType": "rep:ACL",
+            "allow": {
+                "jcr:primaryType": "rep:GrantACE",
+                "rep:principalName": "everyone",
+                "rep:privileges": [
+                    "jcr:read"
+                ]
+            },
+            "allow1": {
+                "jcr:primaryType": "rep:GrantACE",
+                "rep:principalName": "ugc-users",
+                "rep:privileges": [
+                    "jcr:versionManagement",
+                    "rep:write"
+                ]
+            },
+            "allow2": {
+                "jcr:primaryType": "rep:GrantACE",
+                "rep:principalName": "sling-cms-ugc",
+                "rep:privileges": [
+                    "jcr:versionManagement",
+                    "rep:write"
+                ]
+            }
+        }
+    },
+    "clientlibs": {
+        "jcr:primaryType": "sling:Folder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu Aug 20 2020 21:32:22 GMT-0400",
+        "repl": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+            "script.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 5518,
+                    "jcr:uuid": "7399069e-d3a1-494d-baf7-2b10b1ded320"
+                }
+            },
+            "ace.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 302977,
+                    "jcr:uuid": "5b568ac3-5d5a-4303-a680-7dc410cbdbdf"
+                }
+            },
+            "mode-java.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 23341,
+                    "jcr:uuid": "742d9a90-b09a-4082-b6bb-c091557ae0db"
+                }
+            },
+            "style.css": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "text/css",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 1516,
+                    "jcr:uuid": "6adf6944-cc56-4d4f-87de-18dc0fb9187e"
+                }
+            },
+            "images": {
+                "jcr:primaryType": "sling:Folder",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "htl.svg": {
+                    "jcr:primaryType": "nt:file",
+                    "jcr:createdBy": "admin",
+                    "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                    "jcr:content": {
+                        "jcr:primaryType": "nt:resource",
+                        "jcr:lastModifiedBy": "admin",
+                        "jcr:mimeType": "image/svg+xml",
+                        "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                        ":jcr:data": 6825,
+                        "jcr:uuid": "cec6f7d8-edde-4dec-945d-4d2adc5b802e"
+                    }
+                }
+            },
+            "mode-javascript.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 19534,
+                    "jcr:uuid": "0501be01-4835-4d91-8d9d-79e81ed72dfb"
+                }
+            },
+            "jquery.min.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 96381,
+                    "jcr:uuid": "639a508f-96ce-47fb-9c5f-726f5cd9caea"
+                }
+            },
+            "bootstrap-theme.min.css": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "text/css",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 13185,
+                    "jcr:uuid": "5ef51f25-f205-4995-81c5-3b6bfbcf35b2"
+                }
+            },
+            "bootstrap.min.css": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "text/css",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 99961,
+                    "jcr:uuid": "20f38589-ca2e-4ed4-87a1-07a4108bb1e1"
+                }
+            },
+            "mode-html.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 41898,
+                    "jcr:uuid": "11b10a8e-71f5-4e47-88bf-4bb39b71d458"
+                }
+            },
+            "html5shiv.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 2429,
+                    "jcr:uuid": "6dcf4128-9e81-4735-8d03-241e576ba331"
+                }
+            },
+            "bootstrap.min.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 29110,
+                    "jcr:uuid": "9c60cd32-1b87-4094-a48f-2e0e5c9f5190"
+                }
+            },
+            "respond.min.js": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Aug 20 2020 21:32:30 GMT-0400",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "application/javascript",
+                    "jcr:lastModified": "Tue Jun 19 2018 11:43:44 GMT+0000",
+                    ":jcr:data": 4377,
+                    "jcr:uuid": "cf442a2d-e88b-45e9-a687-2eafae9a482c"
+                }
+            }
+        }
+    }
+}

@@ -49,7 +49,9 @@ public class SlingCMSTestHelper {
         context.addModelsForPackage("org.apache.sling.cms.core.internal.models");
         context.addModelsForPackage("org.apache.sling.cms.core.models");
 
+        context.load().json("/conf.json", "/conf");
         context.load().json("/content.json", "/content");
+        context.load().json("/etc.json", "/etc");
         context.load().json("/referencecomponents.json", "/apps/reference/components");
         context.load().json("/generalcomponents.json", "/libs/sling-cms/components/general");
         context.load().binaryResource("/apache.png", "/content/apache/sling-apache-org/index/apache.png/jcr:content");

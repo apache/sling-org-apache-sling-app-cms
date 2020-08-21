@@ -16,12 +16,11 @@
  */
 package org.apache.sling.cms.core.internal.models;
 
-import java.util.Calendar;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.jackrabbit.util.Text;
@@ -30,112 +29,27 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
-import org.apache.sling.cms.Site;
-import org.apache.sling.cms.SiteManager;
-import org.apache.sling.cms.publication.PublicationType;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 /**
  * A model representing a file
  */
 @Model(adaptables = Resource.class, adapters = File.class)
-public class FileImpl implements File {
+public class FileImpl extends PublishableResourceImpl implements File {
+
+    private final String contentType;
 
     @Inject
-    @Optional
-    @Named("jcr:content")
-    private Resource contentResource;
-
-    @Inject
-    @Named("jcr:content/jcr:mimeType")
-    private String contentType;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/jcr:created")
-    private Calendar created;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/jcr:createdBy")
-    private String createdBy;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/jcr:lastModified")
-    private Calendar lastModified;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/jcr:lastModifiedBy")
-    private String lastModifiedBy;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/lastPublication")
-    private Calendar lastPublication;
-
-    @Inject
-    @Optional
-    @Named("jcr:content/lastPublicationType")
-    @Default(values = "NONE")
-    private String lastPublicationType;
-
-    @Inject
-    @Named("jcr:content/published")
-    @Default(booleanValues = false)
-    private boolean published;
-
-    protected Resource resource;
-
-    @Inject
-    @Named("jcr:primaryType")
-    private String type;
-
-    public FileImpl(Resource resource) {
-        this.resource = resource;
-    }
-
-    @Override
-    public Resource getContentResource() {
-        return contentResource;
+    public FileImpl(@Self Resource resource) {
+        super(resource);
+        this.contentType = Optional.ofNullable(this.getContentResource())
+                .map(r -> r.getValueMap().get(JcrConstants.JCR_MIMETYPE, String.class)).orElse(null);
     }
 
     @Override
     public String getContentType() {
         return contentType;
-    }
-
-    @Override
-    public Calendar getCreated() {
-        return created;
-    }
-
-    @Override
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    @Override
-    public Calendar getLastModified() {
-        return lastModified != null ? lastModified : created;
-    }
-
-    @Override
-    public String getLastModifiedBy() {
-        return lastModifiedBy != null ? lastModifiedBy : createdBy;
-    }
-
-    @Override
-    public PublicationType getLastPublicationType() {
-        return PublicationType.valueOf(lastPublicationType);
-    }
-
-    @Override
-    public Calendar getLastPublication() {
-        return lastPublication;
     }
 
     @Override
@@ -148,66 +62,6 @@ public class FileImpl implements File {
         }
         data.remove(JcrConstants.JCR_PRIMARYTYPE);
         return new ValueMapDecorator(data);
-    }
-
-    @Override
-    public String getName() {
-        return resource.getName();
-    }
-
-    @Override
-    public Resource getParent() {
-        return resource.getParent();
-    }
-
-    @Override
-    public String getPath() {
-        return resource.getPath();
-    }
-
-    @Override
-    public ValueMap getProperties() {
-        return getContentResource().getValueMap();
-    }
-
-    @Override
-    public String getPublishedPath() {
-        Site site = getSite();
-        if (site != null) {
-            return resource.getPath().replace(site.getPath(), "");
-        } else {
-            return resource.getPath();
-        }
-    }
-
-    @Override
-    public String getPublishedUrl() {
-        Site site = getSite();
-        if (site != null) {
-            return site.getUrl() + getPublishedPath();
-        } else {
-            return resource.getPath();
-        }
-    }
-
-    @Override
-    public Resource getResource() {
-        return resource;
-    }
-
-    @Override
-    public Site getSite() {
-        SiteManager siteMgr = resource.adaptTo(SiteManager.class);
-        Site site = null;
-        if (siteMgr != null) {
-            site = siteMgr.getSite();
-        }
-        return site;
-    }
-
-    @Override
-    public boolean isPublished() {
-        return published;
     }
 
 }

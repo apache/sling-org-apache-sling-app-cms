@@ -112,17 +112,21 @@ public class CMSConstants {
     /**
      * Published flag property
      */
-    public static final String PN_PUBLISHED = "published";
+    public static final String PN_PUBLISHED = "sling:published";
 
     /**
      * The last time the page was published
      */
-    public static final String PN_LAST_PUBLICATION = "lastPublication";
+    public static final String PN_LAST_PUBLICATION = "sling:lastPublication";
+    /**
+     * The last time the page was published
+     */
+    public static final String PN_LAST_PUBLICATION_BY = "sling:lastPublicationBy";
 
     /**
      * The last publication action
      */
-    public static final String PN_LAST_PUBLICATION_TYPE = "lastPublicationType";
+    public static final String PN_LAST_PUBLICATION_TYPE = "sling:lastPublicationType";
 
     /**
      * Constant for the Site URL
@@ -133,6 +137,12 @@ public class CMSConstants {
      * Taxonomy attribute name
      */
     public static final String PN_TAXONOMY = NAMESPACE + ":taxonomy";
+
+
+    /**
+     * Template attribute name
+     */
+    public static final String PN_TEMPLATE = NAMESPACE + ":template";
 
     /**
      * Title attribute name

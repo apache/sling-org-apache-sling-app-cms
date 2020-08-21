@@ -17,6 +17,7 @@
 package org.apache.sling.cms.publication;
 
 import org.apache.sling.cms.PublishableResource;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Publication Manager is used to get the publication status of content and get
@@ -34,7 +35,7 @@ public interface PublicationManager {
      * @param resource the resource to publish
      * @throws PublicationException an exception occurs publishing the resource
      */
-    void publish(PublishableResource resource) throws PublicationException;
+    void publish(@NotNull PublishableResource resource) throws PublicationException;
 
     /**
      * Un-publishes the resource.
@@ -49,6 +50,7 @@ public interface PublicationManager {
      * 
      * @return the publication mode
      */
+    @NotNull
     PUBLICATION_MODE getPublicationMode();
 
 }
