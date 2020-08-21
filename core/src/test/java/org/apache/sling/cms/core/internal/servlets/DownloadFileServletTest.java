@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms.core.internal.servlets;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -47,11 +48,10 @@ public class DownloadFileServletTest {
         DownloadFileServlet dfs = new DownloadFileServlet();
 
         dfs.doGet(context.request(), context.response());
-        
-        assertTrue(context.response().getStatus() == 200);
+
+        assertEquals(200, context.response().getStatus());
         assertTrue(context.response().getHeaderNames().contains("Content-Disposition"));
     }
-    
 
     @Test
     public void testInValidRequest() throws ServletException, IOException {
@@ -62,7 +62,7 @@ public class DownloadFileServletTest {
 
         dfs.doGet(context.request(), context.response());
         
-        assertTrue(context.response().getStatus() == 404);
+        assertEquals(404, context.response().getStatus());
         assertFalse(context.response().getHeaderNames().contains("Content-Disposition"));
     }
 }
