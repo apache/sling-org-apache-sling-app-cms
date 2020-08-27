@@ -17,29 +17,9 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<c:forEach var="actionConfig" items="${sling:listChildren(resource)}">
-    <c:choose>
-        <c:when test="${actionConfig.valueMap.modal}">
-            <div class="control">
-                <a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${sling:encode(actionConfig.valueMap.prefix,'HTML_ATTR')}${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-                    <span class="jam jam-${actionConfig.valueMap.icon}">
-                        <span class="is-vhidden">
-                            ${sling:encode(actionConfig.valueMap.title,'HTML')}
-                        </span>
-                    </span>
-                </a>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div class="control">
-                <a class="button" ${actionConfig.valueMap.new != false ? 'target="_blank"' : ''} href="${sling:encode(actionConfig.valueMap.prefix,'HTML_ATTR')}${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
-                    <span class="jam jam-${actionConfig.valueMap.icon}">
-                        <span class="is-vhidden">
-                            ${sling:encode(actionConfig.valueMap.title,'HTML')}
-                        </span>
-                    </span>
-                </a>
-            </div>
-        </c:otherwise>
-    </c:choose>
+<c:forEach var="actionCfg" items="${sling:listChildren(resource)}">
+    <c:set var="actionConfig" value="${actionCfg}" scope="request" />
+    <div class="control">
+        <sling:include path="${request.requestPathInfo.suffix}" resourceType="${actionConfig.resourceType}" />
+    </div>
 </c:forEach>
