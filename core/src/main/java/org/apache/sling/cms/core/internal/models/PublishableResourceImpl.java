@@ -31,6 +31,8 @@ import org.apache.sling.cms.SiteManager;
 import org.apache.sling.cms.publication.PublicationType;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of the publishable resource interface and adaptable from a
@@ -38,6 +40,10 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
  */
 @Model(adaptables = Resource.class, adapters = PublishableResource.class)
 public class PublishableResourceImpl implements PublishableResource {
+
+    private static final Logger log = LoggerFactory.getLogger(PublishableResourceImpl.class);
+
+    public static final String LEGACY_PUBLISHED_PROPERTY = "published";
 
     private final Resource contentResource;
 
@@ -72,7 +78,8 @@ public class PublishableResourceImpl implements PublishableResource {
             this.lastPublication = properties.get(CMSConstants.PN_LAST_PUBLICATION, Calendar.class);
             this.lastPublicationBy = properties.get(NodeTypeConstants.JCR_LASTMODIFIEDBY, String.class);
             this.lastPublicationType = properties.get(CMSConstants.PN_LAST_PUBLICATION_TYPE, String.class);
-            this.published = properties.get(CMSConstants.PN_PUBLISHED, false);
+            this.published = properties.get(CMSConstants.PN_PUBLISHED,
+                    properties.get(LEGACY_PUBLISHED_PROPERTY, false));
         } else {
             this.lastModified = null;
             this.lastModifiedBy = null;
@@ -110,7 +117,14 @@ public class PublishableResourceImpl implements PublishableResource {
 
     @Override
     public PublicationType getLastPublicationType() {
-        return PublicationType.valueOf(lastPublicationType);
+        if (lastPublicationType != null) {
+            try {
+                return PublicationType.valueOf(lastPublicationType);
+            } catch (IllegalArgumentException iae) {
+                log.warn("Invalid publication type: {}", lastPublicationType, iae);
+            }
+        }
+        return null;
     }
 
     @Override
