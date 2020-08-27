@@ -17,9 +17,10 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td data-value="${sling:getRelativeResource(resource,'jcr:content').valueMap.published ? 0 : 1}">
+<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.PublishableResource" var="publishableResource" />
+<td data-value="${publishableResource.published ? 0 : 1}">
     <c:choose>
-        <c:when test="${sling:getRelativeResource(resource,'jcr:content').valueMap.published}">
+        <c:when test="${publishableResource.published}">
             <a class="button is-success is-outlined Fetch-Modal" href="/cms/shared/unpublish.html${resource.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
                 <i class="jam jam-check">
                     <span class="is-vhidden">Content Published</span>

@@ -58,16 +58,9 @@
                     },
                     "published": {
                         "jcr:primaryType": "nt:unstructured",
-                        "options": "Yes=true, No=false",
                         "name": "jcr:content/published",
                         "label": "Published",
-                        "sling:resourceType": "sling-cms/components/editor/fields/select"
-                    },
-                    "publishedTypeHint": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "name": "jcr:content/published@TypeHint",
-                        "value": "Boolean",
-                        "sling:resourceType": "sling-cms/components/editor/fields/hidden"
+                        "sling:resourceType": "sling-cms/components/editor/fields/publication"
                     },
                     "filemetadata": {
                         "jcr:primaryType": "nt:unstructured",

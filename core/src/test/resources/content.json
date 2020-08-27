@@ -55,6 +55,16 @@
             "jcr:language": "en",
             "sling:url": "https://sling.apache.org",
             "jcr:created": "Wed May 15 2019 12:40:00 GMT-0400",
+            "unpublished": {
+                "jcr:primaryType": "sling:Page",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:title": "Not Published",
+                    "sling:template": "/conf/global/site/templates/base-page",
+                    "sling:resourceType": "reference/components/pages/base",
+                    "sling:published": false
+                }
+            },
             "index": {
                 "jcr:primaryType": "sling:Page",
                 "jcr:mixinTypes": [

@@ -37,6 +37,15 @@ body.cms {
   }
 }
 
+.card-footer-group {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.card-footer-group small {
+  font-size: 0.75em;
+}
+
 dl {
   padding: 1em 0;
 }
@@ -47,6 +56,10 @@ dd {
 
 dt {
   font-weight: bold;
+}
+
+fieldset {
+  min-inline-size: auto;
 }
 
 h1 {

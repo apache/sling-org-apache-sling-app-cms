@@ -95,6 +95,31 @@
             "sling:message": "Job Properties",
             "sling:key": "slingcms.jobs.properties"
         },
+        "slingcms-publicationstatus": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Publication Status",
+            "sling:key": "slingcms.publicationstatus"
+        },
+        "slingcms-published": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Published",
+            "sling:key": "slingcms.published"
+        },
+        "slingcms-lastpublication": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Last Publication",
+            "sling:key": "slingcms.lastpublication"
+        },
+        "slingcms-lastpublicationby": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Last Publication By",
+            "sling:key": "slingcms.lastpublicationby"
+        },
+        "slingcms-lastpublicationtype": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Last Publication Type",
+            "sling:key": "slingcms.lastpublicationtype"
+        },
         "slingcms-recentcontent": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Recent Content",

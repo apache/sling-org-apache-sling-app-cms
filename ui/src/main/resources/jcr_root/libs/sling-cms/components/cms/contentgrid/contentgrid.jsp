@@ -28,6 +28,18 @@
             </c:forEach>
             <c:if test="${showCard}">
                 <div class="tile is-parent is-3 contentnav__item">
+                        <sling:getResource base="${resource}" path="types/${child.valueMap['jcr:primaryType']}/columns/name" var="nameConfig" />
+                        <c:choose>
+                            <c:when test="${not empty child.valueMap['jcr:content/jcr:title']}">
+                                <c:set var="title" value="${child.valueMap['jcr:content/jcr:title']}" />
+                            </c:when>
+                            <c:when test="${not empty child.valueMap['jcr:title']}">
+                                <c:set var="title" value="${child.valueMap['jcr:title']}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="title" value="${child.name}" />
+                            </c:otherwise>
+                        </c:choose>
                         <div class="tile is-child">
                             <div class="card is-linked" title="${sling:encode(child.name,'HTML_ATTR')}" data-value="${child.path}">
                                 <div class="card-image">
@@ -62,56 +74,46 @@
                                         <sling:getResource base="${resource}" path="types/${child.valueMap['jcr:primaryType']}/columns/actions" var="colConfig" />
                                         <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
                                             <c:set var="actionConfig" value="${ac}" scope="request" />
-                                            <!-- Resource: ${resource} -->
-                                            <!-- Action Config: ${actionConfig} -->
                                             <sling:include path="${child.path}" resourceType="${actionConfig.resourceType}" />
                                         </c:forEach>
                                     </div>
                                 </div>
                                 <footer class="card-footer">
-                                    <sling:getResource base="${resource}" path="types/${child.valueMap['jcr:primaryType']}/columns/name" var="nameConfig" />
-                                    <c:choose>
-                                        <c:when test="${not empty child.valueMap['jcr:content/jcr:title']}">
-                                            <c:set var="title" value="${child.valueMap['jcr:content/jcr:title']}" />
-                                        </c:when>
-                                        <c:when test="${not empty child.valueMap['jcr:title']}">
-                                            <c:set var="title" value="${child.valueMap['jcr:title']}" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:set var="title" value="${child.name}" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <div class="card-footer-item">
+                                    <div class="card-footer-item card-footer-group">
                                         <c:choose>
                                             <c:when test="${child.resourceType == 'sling:Site' || child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder' || child.resourceType == 'sling:Page'}">
-                                                <a href="${nameConfig.valueMap.prefix}${child.path}" class="item-link">${sling:encode(title,'HTML')}</a><br/>
+                                                <a href="${nameConfig.valueMap.prefix}${child.path}" class="item-link">${sling:encode(title,'HTML')}</a>
                                             </c:when>
                                             <c:otherwise>
-                                                ${sling:encode(title,'HTML')}<br/>
+                                                <span>${sling:encode(title,'HTML')}</span>
                                             </c:otherwise>
                                         </c:choose>
-                                        <small>
-                                          <c:choose>
-                                              <c:when test="${sling:getRelativeResource(child,'jcr:content').valueMap.published}">
-                                                  <a class="Fetch-Modal has-text-success" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                                      <em class="jam jam-check">
-                                                          <span class="is-vhidden">Content Published</span>
-                                                      </em>
-                                                  </a>
-                                              </c:when>
-                                              <c:otherwise>
-                                                  <a class="has-text-warning Fetch-Modal" href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
-                                                      <em class="jam jam-close">
-                                                          <span class="is-vhidden">Content Not Published</span>
-                                                      </em>
-                                                  </a>
-                                              </c:otherwise>
-                                          </c:choose>
-                                          <c:catch var="ex">
-                                            <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${child.valueMap['jcr:content/jcr:lastModified'].time}" />
-                                          </c:catch>
-                                        </small>
+                                        <c:catch var="ex">
+                                            <small>
+                                                <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${child.valueMap['jcr:content/jcr:lastModified'].time}" />
+                                            </small>
+                                        </c:catch>
                                     </div>
+                                </footer>
+                                <footer class="card-footer">
+                                    <sling:adaptTo adaptable="${child}" adaptTo="org.apache.sling.cms.PublishableResource" var="publishableResource" />
+                                    <c:if test="${child.resourceType == 'sling:Page' || child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
+                                        <c:choose>
+                                            <c:when test="${publishableResource.published}">
+                                                <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                                                    Unpublish
+                                                </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
+                                                    Publish
+                                                </a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+                                     <c:if test="${child.resourceType == 'sling:Site' || child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder' || child.resourceType == 'sling:Page'}">
+                                        <a href="${nameConfig.valueMap.prefix}${child.path}" class="card-footer-item">Open</a>
+                                    </c:if>
                                 </footer>
                             </div>
                         </div>

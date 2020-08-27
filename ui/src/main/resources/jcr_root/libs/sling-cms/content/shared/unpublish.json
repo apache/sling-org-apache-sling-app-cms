@@ -2,11 +2,15 @@
     "jcr:primaryType": "sling:Page",
     "jcr:content": {
         "sling:resourceType": "sling-cms/components/pages/modal",
-        "jcr:title": "Unpublish Content",
+        "jcr:title": "Publication Status",
         "jcr:primaryType": "nt:unstructured",
         "container": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/general/container",
+            "publicationstatus": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/publicationstatus"
+            },
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/editor/slingform",
@@ -19,17 +23,11 @@
                         "sling:resourceType": "sling-cms/components/editor/fields/suffixlabel",
                         "label": "Do you want to unpublish:"
                     },
-                    "published": {
+                    "operation": {
                         "jcr:primaryType": "nt:unstructured",
                         "sling:resourceType": "sling-cms/components/editor/fields/hidden",
-                        "name": "jcr:content/published",
-                        "value": "false"
-                    },
-                    "publishedTypeHint": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
-                        "name": "jcr:content/published@TypeHint",
-                        "value": "Boolean"
+                        "name": ":operation",
+                        "value": "unpublish"
                     }
                 }
             }
