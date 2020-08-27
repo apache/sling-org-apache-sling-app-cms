@@ -96,6 +96,43 @@ under the License.
                             </aggregates>
                         </configuration>
                     </execution>
+<<<<<<< HEAD
+=======
+                    <execution>
+                        <id>install-feature</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-features</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-sling-feature-archives</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-featurearchives</goal>
+                        </goals>
+                        <configuration>
+                            <archives>
+                                <archive>
+                                    <classifier>slingcmsfar</classifier>
+                                    <includeClassifier>slingcms</includeClassifier>
+                                </archive>
+                            </archives>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>diff</id>
+                        <goals>
+                            <goal>features-diff</goal>
+                        </goals>
+                        <configuration>
+                            <selection>
+                                <includeClassifier>oak_tar</includeClassifier>
+                                <includeClassifier>slingcms</includeClassifier>
+                            </selection>
+                        </configuration>
+                    </execution>
+>>>>>>> Adding a POM to convert PM to FM
                 </executions>
             </plugin>
             <plugin>
