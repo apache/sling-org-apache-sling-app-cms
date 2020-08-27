@@ -17,8 +17,6 @@
 package org.apache.sling.cms.core.internal.filters;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -33,7 +31,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.api.JackrabbitSession;
 import org.apache.jackrabbit.api.security.user.Authorizable;
@@ -41,11 +38,13 @@ import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.osgi.service.component.annotations.Activate;
+import org.apache.sling.cms.PublishableResource;
+import org.apache.sling.cms.publication.PUBLICATION_MODE;
+import org.apache.sling.cms.publication.PublicationManagerFactory;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
-import org.osgi.service.component.annotations.Modified;
-import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,33 +52,16 @@ import org.slf4j.LoggerFactory;
  * Checks to ensure that the user is logged in for requests which otherwise
  * would be allowed when accessing through a CMS-specific domain name.
  */
-@Component(service = { Filter.class }, property = {
-        "sling.filter.scope=request" }, configurationPolicy = ConfigurationPolicy.REQUIRE)
-@Designate(ocd = CMSSecurityFilterConfig.class)
+@Component(service = { Filter.class }, property = { "sling.filter.scope=request" }, immediate = true)
 public class CMSSecurityFilter implements Filter {
 
     private static final Logger log = LoggerFactory.getLogger(CMSSecurityFilter.class);
 
-    private CMSSecurityFilterConfig config;
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE, policyOption = ReferencePolicyOption.GREEDY)
+    private List<CMSSecurityConfigInstance> securityConfigInstances;
 
-    private List<Pattern> patterns = new ArrayList<>();
-
-    @Modified
-    @Activate
-    public void activate(CMSSecurityFilterConfig config) {
-        if (config.hostDomains() != null && config.hostDomains().length > 0) {
-            if (log.isInfoEnabled()) {
-                log.info("Applying CMS Security Filter for domains {}", Arrays.toString(config.hostDomains()));
-            }
-            this.config = config;
-            for (String p : config.allowedPatterns()) {
-                patterns.add(Pattern.compile(p));
-            }
-        } else {
-            this.config = null;
-            log.info("No host domains supplied, CMS Security Filter not enabled");
-        }
-    }
+    @Reference
+    private PublicationManagerFactory pubMgrFactory;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -90,26 +72,33 @@ public class CMSSecurityFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-        if (config != null && ArrayUtils.contains(config.hostDomains(), request.getServerName())) {
-            boolean allowed = checkAllowed(request, slingRequest);
-
-            // permission checked failed, so return an unauthorized error
-            if (!allowed) {
-                log.trace("Request to {} not allowed for user {}", slingRequest.getRequestURI(),
-                        slingRequest.getResourceResolver().getUserID());
-                ((HttpServletResponse) response).sendError(401);
-                return;
+        if (pubMgrFactory.getPublicationMode() == PUBLICATION_MODE.STANDALONE) {
+            SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+            for (CMSSecurityConfigInstance securityConfig : securityConfigInstances) {
+                log.trace("Checking to see if security config {} applies to request", securityConfig);
+                if (securityConfig.applies(slingRequest)) {
+                    boolean allowed = checkAllowed(securityConfig, slingRequest);
+                    // permission checked failed, so return an unauthorized error
+                    if (!allowed) {
+                        log.trace("Request to {} not allowed for user {}", slingRequest.getRequestURI(),
+                                slingRequest.getResourceResolver().getUserID());
+                        ((HttpServletResponse) response).sendError(401);
+                        return;
+                    }
+                }
             }
+        } else {
+            log.trace("Publication mode {} is not standalone", pubMgrFactory.getPublicationMode());
         }
+
         chain.doFilter(request, response);
     }
 
-    private boolean checkAllowed(ServletRequest request, SlingHttpServletRequest slingRequest) {
-        log.trace("Filtering requests to host {}", request.getServerName());
+    private boolean checkAllowed(CMSSecurityConfigInstance securityConfig, SlingHttpServletRequest slingRequest) {
+        log.trace("Filtering requests to host {}", slingRequest.getServerName());
         String uri = slingRequest.getRequestURI();
         boolean allowed = false;
-        for (Pattern p : this.patterns) {
+        for (Pattern p : securityConfig.getPatterns()) {
             if (p.matcher(uri).matches()) {
                 log.trace("Allowing request matching pattern {}", p);
                 allowed = true;
@@ -117,15 +106,19 @@ public class CMSSecurityFilter implements Filter {
             }
         }
 
+        PublishableResource publishableResource = slingRequest.getResource().adaptTo(PublishableResource.class);
+        if (publishableResource.isPublished()) {
+            allowed = true;
+        }
+
         // the uri isn't allowed automatically, so check user permissions
         if (!allowed) {
             log.trace("Request to {} not allowed, checking user permissions", uri);
             // check to see if the user is a member of the specified group
-            if (StringUtils.isNotBlank(config.group())) {
-                allowed = checkGroupMembership(slingRequest);
-
-                // just check to make sure the user is logged in
+            if (StringUtils.isNotBlank(securityConfig.getGroupName())) {
+                allowed = checkGroupMembership(securityConfig, slingRequest);
             } else {
+                // just check to make sure the user is logged in
                 if (!"anonymous".equals(slingRequest.getResourceResolver().getUserID())) {
                     allowed = true;
                 }
@@ -136,7 +129,8 @@ public class CMSSecurityFilter implements Filter {
         return allowed;
     }
 
-    private boolean checkGroupMembership(SlingHttpServletRequest slingRequest) {
+    private boolean checkGroupMembership(CMSSecurityConfigInstance securityConfig,
+            SlingHttpServletRequest slingRequest) {
         boolean allowed = false;
         try {
             Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
@@ -157,10 +151,11 @@ public class CMSSecurityFilter implements Filter {
                 return false;
             }
 
-            log.trace("Checking to see if user {} is in required group {}", auth.getID(), config.group());
+            log.trace("Checking to see if user {} is in required group {}", auth.getID(),
+                    securityConfig.getGroupName());
             Iterator<Group> groups = ((User) auth).memberOf();
             while (groups.hasNext()) {
-                if (groups.next().getID().equals(config.group())) {
+                if (groups.next().getID().equals(securityConfig.getGroupName())) {
                     allowed = true;
                     break;
                 }

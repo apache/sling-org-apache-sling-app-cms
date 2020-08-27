@@ -26,9 +26,9 @@ import javax.jcr.UnsupportedRepositoryOperationException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.core.helpers.SlingCMSTestHelper;
-import org.apache.sling.servlethelpers.MockSlingHttpServletRequest;
+import org.apache.sling.cms.publication.PUBLICATION_MODE;
+import org.apache.sling.cms.publication.PublicationManagerFactory;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -44,48 +44,31 @@ public class CMSSecurityFilterTest {
     @Before
     public void init() throws UnsupportedRepositoryOperationException, RepositoryException, IOException {
         SlingCMSTestHelper.initAuthContext(context);
-        securityFilter = new CMSSecurityFilter();
     }
 
     @Test
-    public void testNotMatchingDomain() throws IOException, ServletException {
-        context.request().setServerName("localhost");
-        securityFilter.activate(new CMSSecurityFilterConfig() {
+    public void testNotEnabled() throws IOException, ServletException {
 
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
+        PublicationManagerFactory factory = Mockito.mock(PublicationManagerFactory.class);
+        Mockito.when(factory.getPublicationMode()).thenReturn(PUBLICATION_MODE.CONTENT_DISTRIBUTION);
 
-            @Override
-            public String[] hostDomains() {
-                return new String[] { "cms.danklco.com" };
-            }
+        context.registerService(PublicationManagerFactory.class, factory);
 
-            @Override
-            public String[] allowedPatterns() {
-                return new String[0];
-            }
+        securityFilter = context.registerInjectActivateService(new CMSSecurityFilter());
 
-            @Override
-            public String group() {
-                return null;
-            }
-
-        });
         securityFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
         assertEquals(200, context.response().getStatus());
     }
 
     @Test
-    public void testMatchingDomain() throws IOException, ServletException {
-        ResourceResolver resolver = Mockito.mock(ResourceResolver.class);
-        Mockito.when(resolver.getUserID()).thenReturn("anonymous");
-        MockSlingHttpServletRequest request = new MockSlingHttpServletRequest(resolver);
-        request.setServerName("cms.danklco.com");
-        request.setServletPath("/content/apache/sling-apache/org.html");
+    public void testNotMatchingDomain() throws IOException, ServletException {
 
-        securityFilter.activate(new CMSSecurityFilterConfig() {
+        PublicationManagerFactory factory = Mockito.mock(PublicationManagerFactory.class);
+        Mockito.when(factory.getPublicationMode()).thenReturn(PUBLICATION_MODE.STANDALONE);
+        context.registerService(PublicationManagerFactory.class, factory);
+
+        CMSSecurityConfigInstance config = new CMSSecurityConfigInstance();
+        config.activate(new CMSSecurityFilterConfig() {
 
             @Override
             public Class<? extends Annotation> annotationType() {
@@ -94,12 +77,12 @@ public class CMSSecurityFilterTest {
 
             @Override
             public String[] hostDomains() {
-                return new String[] { "cms.danklco.com" };
+                return new String[] { "cms.apache.org" };
             }
 
             @Override
             public String[] allowedPatterns() {
-                return new String[0];
+                return null;
             }
 
             @Override
@@ -108,8 +91,12 @@ public class CMSSecurityFilterTest {
             }
 
         });
-        securityFilter.doFilter(request, context.response(), Mockito.mock(FilterChain.class));
-        assertEquals(401, context.response().getStatus());
-    }
+        context.registerService(CMSSecurityConfigInstance.class, config);
 
+        securityFilter = context.registerInjectActivateService(new CMSSecurityFilter());
+
+        context.request().setRemoteHost("www.apache.org");
+        securityFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
+        assertEquals(200, context.response().getStatus());
+    }
 }
