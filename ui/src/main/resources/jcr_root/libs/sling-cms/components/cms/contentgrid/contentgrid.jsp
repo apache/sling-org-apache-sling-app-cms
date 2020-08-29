@@ -89,9 +89,18 @@
                                 </div>
                             </footer>
                             <footer class="card-footer">
+                                <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.publication.PublicationManager" var="publicationManager" />
                                 <sling:adaptTo adaptable="${child}" adaptTo="org.apache.sling.cms.PublishableResource" var="publishableResource" />
                                 <c:if test="${child.resourceType == 'sling:Page' || child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
                                     <c:choose>
+                                        <c:when test="${publishableResource.published && publicationManager.publicationMode == 'CONTENT_DISTRIBUTION'}">
+                                            <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                                                Republish
+                                            </a>
+                                            <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                                                Unpublish
+                                            </a>
+                                        </c:when>
                                         <c:when test="${publishableResource.published}">
                                             <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
                                                 Unpublish

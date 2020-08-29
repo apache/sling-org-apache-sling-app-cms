@@ -55,7 +55,16 @@
         </dl>
     </div>
     <div class="column">
+        <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.publication.PublicationManager" var="publicationManager" />
         <c:choose>
+            <c:when test="${publishableResource.published && publicationManager.publicationMode == 'CONTENT_DISTRIBUTION'}">
+                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/publish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                    Republish
+                </a>
+                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/unpublish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                    Unpublish
+                </a>
+            </c:when>
             <c:when test="${publishableResource.published}">
                 <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/unpublish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
                     Unpublish
