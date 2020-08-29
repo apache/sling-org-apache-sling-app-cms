@@ -43,7 +43,7 @@ public interface PublicationManager {
      * @param resource the resource to publish
      * @throws PublicationException an exception occurs publishing the resource
      */
-    void unpublish(PublishableResource resource) throws PublicationException;
+    void unpublish(@NotNull PublishableResource resource) throws PublicationException;
 
     /**
      * The publication mode for the instance

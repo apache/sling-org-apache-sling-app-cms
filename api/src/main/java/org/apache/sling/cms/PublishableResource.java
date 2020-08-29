@@ -22,6 +22,10 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.cms.publication.PublicationType;
 
+/**
+ * A Model interface for adapting sling:File, sling:Page and sling:Config
+ * resources.
+ */
 public interface PublishableResource {
 
     /**

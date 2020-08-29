@@ -70,7 +70,11 @@ public class PublishableResourceImpl implements PublishableResource {
         this.resource = resource;
         this.created = resource.getValueMap().get(JcrConstants.JCR_CREATED, Calendar.class);
         this.createdBy = resource.getValueMap().get(NodeTypeConstants.JCR_CREATEDBY, String.class);
-        this.contentResource = resource.getChild(JcrConstants.JCR_CONTENT);
+        if (CMSConstants.NT_CONFIG.equals(resource.getValueMap().get(JcrConstants.JCR_PRIMARYTYPE, String.class))) {
+            this.contentResource = resource;
+        } else {
+            this.contentResource = resource.getChild(JcrConstants.JCR_CONTENT);
+        }
         if (this.contentResource != null) {
             ValueMap properties = contentResource.getValueMap();
             this.lastModified = properties.get(JcrConstants.JCR_LASTMODIFIED, Calendar.class);

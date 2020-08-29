@@ -31,12 +31,16 @@ import org.apache.sling.distribution.DistributionResponse;
 import org.apache.sling.distribution.Distributor;
 import org.apache.sling.distribution.SimpleDistributionRequest;
 import org.osgi.service.event.EventAdmin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of the PublicationManager interface using Sling Content
  * Distribution.
  */
 public class ContentDistributionPublicationManager extends StandalonePublicationManager {
+
+    private static final Logger log = LoggerFactory.getLogger(ContentDistributionPublicationManager.class);
 
     private final Distributor distributor;
     private final String[] agents;
@@ -45,18 +49,21 @@ public class ContentDistributionPublicationManager extends StandalonePublication
         super(eventAdmin);
         this.distributor = distributor;
         this.agents = agents;
-        
+
     }
 
     @Override
     public void publish(PublishableResource resource) throws PublicationException {
+        log.info("Publishing: {}", resource.getPath());
         DistributionRequest request = new SimpleDistributionRequest(DistributionRequestType.ADD,
-                new String[] { resource.getPath() }, Collections.singleton(resource.getContentResource().getPath()));
+                new String[] { resource.getPath(), resource.getContentResource().getPath() },
+                Collections.singleton(resource.getContentResource().getPath()));
         List<DistributionResponse> failedResponses = this
                 .distributeRequest(resource.getResource().getResourceResolver(), request);
         if (!failedResponses.isEmpty()) {
             throw new PublicationException("Failed to publish: " + collectFailures(failedResponses));
         } else {
+            log.debug("Content Distribution successful, updating publication information");
             super.publish(resource);
         }
     }
@@ -67,14 +74,20 @@ public class ContentDistributionPublicationManager extends StandalonePublication
     }
 
     private List<DistributionResponse> distributeRequest(ResourceResolver resolver, DistributionRequest request) {
-        return Arrays.stream(agents).map(a -> distributor.distribute(a, resolver, request))
-                .filter(res -> !res.isSuccessful()).collect(Collectors.toList());
+        return Arrays.stream(agents).map(a -> {
+            log.info("Sending to agent: {}", a);
+            DistributionResponse response = distributor.distribute(a, resolver, request);
+            log.debug("Retrieved response [{}]: {}", response.getState(), response.getMessage());
+            return response;
+        }).filter(res -> !res.isSuccessful()).collect(Collectors.toList());
     }
 
     @Override
     public void unpublish(PublishableResource resource) throws PublicationException {
+        log.info("Unpublish: {}", resource.getPath());
         DistributionRequest request = new SimpleDistributionRequest(DistributionRequestType.DELETE,
-                new String[] { resource.getPath() }, Collections.singleton(resource.getContentResource().getPath()));
+                new String[] { resource.getPath(), resource.getContentResource().getPath() },
+                Collections.singleton(resource.getContentResource().getPath()));
         List<DistributionResponse> failedResponses = this
                 .distributeRequest(resource.getResource().getResourceResolver(), request);
         if (!failedResponses.isEmpty()) {

@@ -36,7 +36,7 @@
     - componentType (string)
     - jcr:title (string)
     
-[sling:Config] > nt:hierarchyNode, mix:lastModified
+[sling:Config] > nt:hierarchyNode, mix:lastModified, mix:publishable
     orderable
     - sling:resourceType (string)
     - jcr:title (string)

@@ -37,6 +37,10 @@
                         "jcr:primaryType": "nt:unstructured",
                         "title": "Title"
                     },
+                    "published": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Published"
+                    },
                     "lastModified": {
                         "jcr:primaryType": "nt:unstructured",
                         "title": "Last Modified"
@@ -62,6 +66,10 @@
                                 "jcr:primaryType": "nt:unstructured",
                                 "sling:resourceType": "sling-cms/components/cms/columns/text",
                                 "property": "jcr:title"
+                            },
+                            "publish": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/publish"
                             },
                             "lastModified": {
                                 "jcr:primaryType": "nt:unstructured",
