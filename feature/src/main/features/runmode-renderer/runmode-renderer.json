@@ -1,0 +1,13 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:runmode-author:${cms.version}",
+    "configurations": {
+        "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
+            "publicationMode": "CONTENT_DISTRIBUTION",
+            "agents": []
+        },
+        "org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory~default": {
+            "packageBuilder.target": "(name=default)",
+            "name": "default"
+        }
+    }
+}

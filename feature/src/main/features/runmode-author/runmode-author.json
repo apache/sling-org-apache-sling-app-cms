@@ -1,0 +1,40 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:runmode-author:${cms.version}",
+    "configurations": {
+        "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
+            "publicationMode": "CONTENT_DISTRIBUTION",
+            "agents": []
+        },
+        "org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory~default": {
+            "packageBuilder.target": "(name=default)",
+            "name": "default"
+        },
+        "org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory~default": {
+            "fileThreshold": 1,
+            "cleanupDelay": 60,
+            "autoSaveThreshold": -1,
+            "package.roots": "",
+            "type": "jcrvlt",
+            "MEGA_BYTES": "MEGA_BYTES",
+            "property.filters": [
+                ""
+            ],
+            "pathsMapping": [
+                ""
+            ],
+            "strictImport": true,
+            "aclHandling": "",
+            "importMode": "REPLACE",
+            "digestAlgorithm": "NONE",
+            "tempFsFolder": "",
+            "monitoringQueueSize": 0,
+            "useOffHeapMemory": false,
+            "cugHandling": "",
+            "useBinaryReferences": false,
+            "package.filters": [
+                ""
+            ],
+            "name": "default"
+        }
+    }
+}

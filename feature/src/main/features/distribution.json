@@ -1,14 +1,79 @@
-
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:distribution:${cms.version}",
-    "bundles":[
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:distribution:${cms.version}",
+    "bundles": [
         {
-            "id":"org.apache.sling:org.apache.sling.distribution.api:0.4.0",
-            "start-order":"20"
+            "id": "org.apache.sling:org.apache.sling.distribution.api:0.4.0",
+            "start-order": "20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.distribution.core:0.4.2",
-            "start-order":"20"
+            "id": "org.apache.sling:org.apache.sling.distribution.core:0.4.2",
+            "start-order": "20"
         }
+    ],
+    "configurations": {
+        "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~agent": {
+            "provider.roots": "/libs/sling-cms/content/distribution/services/agents",
+            "kind": "agent"
+        },
+        "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~exporter": {
+            "provider.roots": "/libs/sling-cms/content/distribution/services/exporters",
+            "kind": "exporter"
+        },
+        "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~importer": {
+            "provider.roots": "/libs/sling-cms/content/distribution/services/importers",
+            "kind": "importer"
+        },
+        "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~agent": {
+            "provider.roots": "/libs/sling-cms/content/distribution/services/agents",
+            "kind": "agent"
+        },
+        "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~exporter": {
+            "provider.roots": "/libs/sling-cms/content/distribution/services/exporter",
+            "kind": "exporter"
+        },
+        "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~importer": {
+            "provider.roots": "/libs/sling-cms/content/distribution/services/importer",
+            "kind": "importer"
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~distribution": {
+            "user.mapping": [
+                "org.apache.sling.distribution.core=sling-package-install"
+            ]
+        },
+        "org.apache.sling.distribution.agent.impl.PrivilegeDistributionRequestAuthorizationStrategyFactory~default": {
+            "name": "default",
+            "jcrPrivilege": "sling:publish"
+        },
+        "org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory~default": {
+            "fileThreshold": 1,
+            "cleanupDelay": 60,
+            "autoSaveThreshold": -1,
+            "package.roots": "",
+            "type": "jcrvlt",
+            "MEGA_BYTES": "MEGA_BYTES",
+            "property.filters": [
+                ""
+            ],
+            "pathsMapping": [
+                ""
+            ],
+            "strictImport": true,
+            "aclHandling": "IGNORE",
+            "importMode": "",
+            "digestAlgorithm": "MD5",
+            "tempFsFolder": "",
+            "monitoringQueueSize": 0,
+            "useOffHeapMemory": false,
+            "cugHandling": "",
+            "useBinaryReferences": false,
+            "package.filters": [
+                "/home/users|-.*/.tokens",
+                "/home/users|-.*/.rep:cache"
+            ],
+            "name": "default"
+        }
+    },
+    "repoinit:TEXT|true": [
+        "register privilege sling:publish"
     ]
 }

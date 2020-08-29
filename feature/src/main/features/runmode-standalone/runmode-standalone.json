@@ -1,0 +1,17 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:runmode-standalone:${cms.version}",
+    "configurations": {
+        "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
+            "publicationMode": "STANDALONE",
+            "agents": []
+        },
+        "org.apache.sling.cms.core.internal.filters.CMSSecurityConfigInstance": {
+            "hostDomains": [],
+            "allowedPatterns": [
+                "^\/content\/starter/.*$",
+                "^\/static/.*$",
+                "^\/system\/sling\/form\/login$"
+            ]
+        }
+    }
+}
