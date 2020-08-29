@@ -65,6 +65,11 @@ public class CMSConstants {
     public static final String NN_METADATA = "metadata";
 
     /**
+     * Config node type.
+     */
+    public static final String NT_CONFIG = NAMESPACE + ":Config";
+
+    /**
      * Component node type.
      */
     public static final String NT_COMPONENT = NAMESPACE + ":Component";
@@ -137,7 +142,6 @@ public class CMSConstants {
      * Taxonomy attribute name
      */
     public static final String PN_TAXONOMY = NAMESPACE + ":taxonomy";
-
 
     /**
      * Template attribute name
