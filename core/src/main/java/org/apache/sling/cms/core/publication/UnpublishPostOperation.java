@@ -47,6 +47,8 @@ public class UnpublishPostOperation implements PostOperation {
     public void run(SlingHttpServletRequest request, PostResponse response, SlingPostProcessor[] processors) {
         final List<Modification> changes = new ArrayList<>();
         try {
+
+            response.setPath(request.getResource().getPath());
             publicationManagerFactory.getPublicationManager()
                     .unpublish(request.getResource().adaptTo(PublishableResource.class));
 
@@ -58,7 +60,6 @@ public class UnpublishPostOperation implements PostOperation {
 
             request.getResourceResolver().commit();
 
-            response.setPath(request.getResource().getPath());
             response.onModified(request.getResource().getPath());
         } catch (Exception e) {
             log.error("Failed to publish", e);
