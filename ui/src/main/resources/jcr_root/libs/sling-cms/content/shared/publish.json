@@ -9,7 +9,7 @@
             "sling:resourceType": "sling-cms/components/general/container",
             "publicationstatus": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/publicationstatus"
+                "sling:resourceType": "sling-cms/components/publication/status"
             },
             "slingform": {
                 "jcr:primaryType": "nt:unstructured",

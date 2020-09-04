@@ -82,9 +82,8 @@
                                 <div class="card-footer-item card-footer-group">
                                     <span>${sling:encode(title,'HTML')}</span>
                                     <c:catch var="ex">
-                                        <small>
-                                            <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${child.valueMap['jcr:content/jcr:lastModified'].time}" />
-                                        </small>
+                                        <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${child.valueMap['jcr:content/jcr:lastModified'].time}" var="lastMod" />
+                                        <small>${lastMod}</small>
                                     </c:catch>
                                 </div>
                             </footer>

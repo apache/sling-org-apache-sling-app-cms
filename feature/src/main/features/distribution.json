@@ -12,27 +12,27 @@
     ],
     "configurations": {
         "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~agent": {
-            "provider.roots": "/libs/sling-cms/content/distribution/services/agents",
+            "provider.roots": "/libs/sling/distribution/settings/agents",
             "kind": "agent"
         },
         "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~exporter": {
-            "provider.roots": "/libs/sling-cms/content/distribution/services/exporters",
+            "provider.roots": "/libs/sling/distribution/settings/exporters",
             "kind": "exporter"
         },
         "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~importer": {
-            "provider.roots": "/libs/sling-cms/content/distribution/services/importers",
+            "provider.roots": "/libs/sling/distribution/settings/importers",
             "kind": "importer"
         },
         "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~agent": {
-            "provider.roots": "/libs/sling-cms/content/distribution/services/agents",
+            "provider.roots": "/libs/sling/distribution/services/agents",
             "kind": "agent"
         },
         "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~exporter": {
-            "provider.roots": "/libs/sling-cms/content/distribution/services/exporter",
+            "provider.roots": "/libs/sling/distribution/services/exporter",
             "kind": "exporter"
         },
         "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~importer": {
-            "provider.roots": "/libs/sling-cms/content/distribution/services/importer",
+            "provider.roots": "/libs/sling/distribution/services/importer",
             "kind": "importer"
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~distribution": {

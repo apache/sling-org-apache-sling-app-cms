@@ -1,0 +1,57 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Publication Agents",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "richtext": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/general/richtext",
+                "text": "<nav class=\"breadcrumb\" aria-label=\"breadcrumbs\"><ul><li><a href=\"/cms/publication/home.html\">Publication</a></li><li class=\"is-active\"><a href=\"#\">Agents</a></li></ul></nav>"
+            },
+            "contentactions": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contentactions",
+                "actions": {}
+            },
+            "contenttable": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/contenttable",
+                "columns": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "name": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Name"
+                    },
+                    "title": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "title": "Title"
+                    }
+                },
+                "types": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling-distribution-setting": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "columns": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "name": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/name",
+                                "link": true,
+                                "prefix": "/cms/publication/agent.html"
+                            },
+                            "title": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "sling-cms/components/cms/columns/text",
+                                "property": "title"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

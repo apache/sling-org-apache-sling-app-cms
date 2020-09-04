@@ -138,6 +138,17 @@
                         "link": "/bin/browser.html",
                         "text": "Node Browser"
                     },
+                    "publication": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "alternatives": [
+                            "/cms/publication"
+                        ],
+                        "enabledGroups": [
+                            "publishers"
+                        ],
+                        "link": "/cms/publication/home.html",
+                        "text": "Publication"
+                    },
                     "systemconsole": {
                         "jcr:primaryType": "nt:unstructured",
                         "enabledGroups": [

@@ -35,7 +35,8 @@
             <c:set var="parentPath" value="${slingRequest.requestPathInfo.suffix}${not empty properties.appendSuffix ? properties.appendSuffix : ''}" />
             <c:set var="count" value="1" />
             <c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}" varStatus="status">
-                <sling:getResource var="typeConfig" base="${resource}" path="types/${child.valueMap['jcr:primaryType']}" />
+                <c:set var="type" value="${not empty child.valueMap['jcr:primaryType'] ? child.valueMap['jcr:primaryType'] : fn:replace(child.resourceType,'/','-')}" />
+                <sling:getResource var="typeConfig" base="${resource}" path="types/${type}" />
                 <c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
                     <tr class="contentnav__item sortable__row" data-resource="${child.path}" data-type="${typeConfig.path}">
                         <td class="Cell-Static" title="# ${status.index + 1}" data-sort-value="<fmt:formatNumber pattern="0000" value="${count}" />">

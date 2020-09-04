@@ -1,0 +1,69 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Publication Exporter",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "exporter": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/publication/exporter",
+                "configuration": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "agent-target": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Agent Target",
+                        "key": "agent.target"
+                    },
+                    "drop-invalid-items": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Drop invalid queue items",
+                        "key": "drop.invalid.items"
+                    },
+                    "endpoints": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configurationarray",
+                        "title": "Endpoints",
+                        "key": "endpoints"
+                    },
+                    "packageBuilder-target": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Package Builder Target",
+                        "objectName": "org.apache.sling.distribution.packaging.DistributionPackageBuilder",
+                        "key": "packageBuilder.target"
+                    },
+                    "pull-items": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Pull Items",
+                        "key": "pull.items"
+                    },
+                    "queue": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Queue",
+                        "key": "queue"
+                    },
+                    "transportSecretProvider-target": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Transport Secret Provider Target",
+                        "objectName": "org.apache.sling.distribution.transport.DistributionTransportSecretProvider",
+                        "key": "transportSecretProvider.target"
+                    },
+                    "type": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Type",
+                        "key": "type"
+                    }
+                }
+            }
+        }
+    }
+}

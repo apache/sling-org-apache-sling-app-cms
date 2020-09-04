@@ -1,0 +1,45 @@
+{
+    "jcr:primaryType": "sling:Page",
+    "jcr:content": {
+        "sling:resourceType": "sling-cms/components/pages/base",
+        "jcr:title": "Publication Importer",
+        "jcr:primaryType": "nt:unstructured",
+        "container": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/general/container",
+            "importer": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/publication/importer",
+                "configuration": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "enabled": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configurationarray",
+                        "title": "Endpoints",
+                        "key": "endpoints"
+                    },
+                    "packageBuilder-target": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Package Builder Target",
+                        "objectName": "org.apache.sling.distribution.packaging.DistributionPackageBuilder",
+                        "key": "packageBuilder.target"
+                    },
+                    "transportSecretProvider-target": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Transport Secret Provider Target",
+                        "objectName": "org.apache.sling.distribution.transport.DistributionTransportSecretProvider",
+                        "key": "transportSecretProvider.target"
+                    },
+                    "type": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "sling-cms/components/publication/configuration",
+                        "title": "Type",
+                        "key": "type"
+                    }
+                }
+            }
+        }
+    }
+}
