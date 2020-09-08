@@ -95,6 +95,11 @@
             "sling:message": "Job Properties",
             "sling:key": "slingcms.jobs.properties"
         },
+        "slingcms-bulkpublication-title": {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": "Bulk Publication",
+            "sling:key": "slingcms.bulkpublication.title"
+        },
         "slingcms-publicationstatus": {
             "jcr:primaryType": "sling:MessageEntry",
             "sling:message": "Publication Status",

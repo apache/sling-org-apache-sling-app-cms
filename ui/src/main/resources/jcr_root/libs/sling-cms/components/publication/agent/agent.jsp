@@ -64,7 +64,19 @@
                             <sling:include resource="${configRsrc}" />
                         </c:forEach>
                     </dl>
-                    <a class="button" href="/system/console/configMgr/${agentCfg['service.pid']}">Edit</a>
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <a class="button" href="/system/console/configMgr/${agentCfg['service.pid']}">Edit</a>
+                            </div>
+                            <div class="level-item">
+                                <form method="post" action="/libs/sling/distribution/services/agents/${agent.name}" class="mb-0" target="_blank">
+                                    <input type="hidden" name="action" value="TEST" />
+                                    <button class="button" type="submit">Test</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
         </div>

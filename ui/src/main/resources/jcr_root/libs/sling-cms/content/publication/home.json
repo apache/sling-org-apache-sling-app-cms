@@ -30,7 +30,7 @@
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/cms/tilecard",
                     "image": "/static/sling-cms/thumbnails/bulk-publication.png.transform/sling-cms-thumbnail.png",
-                    "link": "/cms/publication/bulk-publication.html",
+                    "link": "/cms/jobs/list.html",
                     "title": "Bulk Publication"
                 },
                 "exporters": {

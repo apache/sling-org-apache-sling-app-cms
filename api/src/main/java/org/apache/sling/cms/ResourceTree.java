@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms;
 
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -33,6 +34,11 @@ public class ResourceTree {
         return new ResourceTree(resource).streamTree(filterType);
     }
 
+    public static Stream<ResourceTree> stream(Resource resource, Predicate<Resource> filterTraversal,
+            Predicate<ResourceTree> filterInclude) {
+        return new ResourceTree(resource).streamTree(filterTraversal, filterInclude);
+    }
+
     private ResourceTree(Resource root) {
         this.root = root;
     }
@@ -42,14 +48,19 @@ public class ResourceTree {
     }
 
     private Stream<ResourceTree> streamTree() {
-        return Stream.concat(Stream.of(this), StreamSupport.stream(root.getChildren().spliterator(), false)
-                .map(ResourceTree::new).flatMap(ResourceTree::streamTree));
+        return streamTree(r -> true, rt -> true);
     }
 
     private Stream<ResourceTree> streamTree(String filterType) {
-        return Stream.concat(Stream.of(this),
-                StreamSupport.stream(root.getChildren().spliterator(), false)
-                        .filter(c -> filterType.equals(c.getResourceType())).map(ResourceTree::new)
-                        .flatMap(rt -> rt.streamTree(filterType)));
+        return streamTree((r -> filterType.equals(r.getResourceType())), rt -> true);
+    }
+
+    private Stream<ResourceTree> streamTree(Predicate<Resource> filterTraversal,
+            Predicate<ResourceTree> filterInclude) {
+        return Stream
+                .concat(Stream.of(this),
+                        StreamSupport.stream(root.getChildren().spliterator(), false).filter(filterTraversal)
+                                .map(ResourceTree::new).flatMap(rt -> rt.streamTree(filterTraversal, filterInclude)))
+                .filter(filterInclude);
     }
 }

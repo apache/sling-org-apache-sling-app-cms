@@ -54,7 +54,8 @@ rava.bind('.Form-Ajax', {
           }
           form.appendChild(dateContainer);
         }
-        const response = await fetch(form.action, {
+        const action = form.getAttribute('action');
+        const response = await fetch(action, {
           method: 'POST',
           body: formData,
           cache: 'no-cache',
