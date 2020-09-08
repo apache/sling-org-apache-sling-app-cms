@@ -1,0 +1,48 @@
+{
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/general/container",
+    "paths": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/repeating",
+        "label": "Paths",
+        "name": "paths"
+    },
+    "type": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/select",
+        "label": "Type",
+        "name": "type",
+        "options": {
+            "ADD": {
+                "label": "Publish",
+                "value": "ADD"
+            },
+            "regex": {
+                "label": "Unpublish",
+                "value": "DELETE"
+            }
+        }
+    },
+    "deep": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/select",
+        "label": "Is Deep",
+        "name": "deep",
+        "options": {
+            "ADD": {
+                "label": "Yes",
+                "value": "true"
+            },
+            "regex": {
+                "label": "No",
+                "value": "false"
+            }
+        }
+    },
+    "topic": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+        "name": "job.topics",
+        "value": "cmsjob/org/apache/sling/cms/publication/Bulk"
+    }
+}
