@@ -12,7 +12,7 @@
     -->
 <assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
 
-    <id>standalone</id>
+    <id>author</id>
     <includeBaseDirectory>false</includeBaseDirectory>
     <formats>
         <format>jar</format>
@@ -31,7 +31,7 @@
 
     <files>
         <file>
-            <source>${basedir}/target/org.apache.sling.cms.feature-${project.version}-slingcms_standalone_far.far</source>
+            <source>${basedir}/target/org.apache.sling.cms.feature-${project.version}-slingcms_author_far.far</source>
             <outputDirectory>lib</outputDirectory>
             <destName>slingcms.far</destName>
         </file>

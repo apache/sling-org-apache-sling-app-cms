@@ -33,7 +33,7 @@ public class Main {
         String version = properties.getProperty("version");
         System.out.println("Version "+version);
 
-        URL farUrl = Main.class.getClassLoader().getResource("lib/org.apache.sling.cms.feature-"+version+"-slingcms_far.far");
+        URL farUrl = Main.class.getClassLoader().getResource("lib/slingcms.far");
         List<String> arguments = new ArrayList<>();
         arguments.addAll(Arrays.asList(args));
         if(!arguments.contains("-f")){

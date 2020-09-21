@@ -74,16 +74,35 @@
                     </framework>
                     <aggregates>
                         <aggregate>
-                            <classifier>slingcms-segment</classifier>
+                            <classifier>slingcms-standalone</classifier>
                             <filesInclude>**/*.json</filesInclude>
                             <filesExclude>node-store-composite/composite-*.json</filesExclude>
-                            <title>Sling CMS -</title>
+                            <filesExclude>runmode-author/*.json</filesExclude>
+                            <filesExclude>runmode-renderer/*.json</filesExclude>
+                            <title>Sling CMS - Standalone</title>
+                        </aggregate>
+                        <aggregate>
+                            <classifier>slingcms-author</classifier>
+                            <filesInclude>**/*.json</filesInclude>
+                            <filesExclude>node-store-composite/composite-*.json</filesExclude>
+                            <filesExclude>runmode-renderer/*.json</filesExclude>
+                            <filesExclude>runmode-standalone/*.json</filesExclude>
+                            <title>Sling CMS - Author</title>
+                        </aggregate>
+                        <aggregate>
+                            <classifier>slingcms-renderer</classifier>
+                            <filesInclude>**/*.json</filesInclude>
+                            <filesExclude>node-store-composite/composite-*.json</filesExclude>
+                            <filesExclude>runmode-author/*.json</filesExclude>
+                            <filesExclude>runmode-standalone/*.json</filesExclude>
+                            <title>Sling CMS - Renderer</title>
                         </aggregate>
                         <aggregate>
                             <classifier>slingcms-composite-seed</classifier>
                             <filesInclude>**/*.json</filesInclude>
                             <filesExclude>node-store-composite/composite-runtime.json</filesExclude>
                             <filesExclude>node-store-segment/segment.json</filesExclude>
+                            <filesExclude>runmode*/*.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Seed</title>
                         </aggregate>
                         <aggregate>
@@ -91,6 +110,7 @@
                             <filesInclude>**/*.json</filesInclude>
                             <filesExclude>node-store-composite/composite-seed.json</filesExclude>
                             <filesExclude>node-store-segment/segment.json</filesExclude>
+                            <filesExclude>runmode*/*.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Runtime</title>
                         </aggregate>
                     </aggregates>
@@ -102,13 +122,27 @@
                             <includeClassifier>slingcms-composite-seed</includeClassifier>
                         </scan>
                         <scan>
-                            <includeClassifier>slingcms-segment</includeClassifier>
+                            <includeClassifier>slingcms-standalone</includeClassifier>
+                        </scan>
+                        <scan>
+                            <includeClassifier>slingcms-author</includeClassifier>
+                        </scan>
+                        <scan>
+                            <includeClassifier>slingcms-renderer</includeClassifier>
                         </scan>
                     </scans>
                     <archives>
                         <archive>
-                            <classifier>slingcms_far</classifier>
-                            <includeClassifier>slingcms-segment</includeClassifier>
+                            <classifier>slingcms_standalone_far</classifier>
+                            <includeClassifier>slingcms-standalone</includeClassifier>
+                        </archive>
+                        <archive>
+                            <classifier>slingcms_author_far</classifier>
+                            <includeClassifier>slingcms-author</includeClassifier>
+                        </archive>
+                        <archive>
+                            <classifier>slingcms_renderer_far</classifier>
+                            <includeClassifier>slingcms-renderer</includeClassifier>
                         </archive>
                     </archives>
                 </configuration>
@@ -150,6 +184,8 @@
                     </archive>
                     <descriptors>
                         <descriptor>src/main/assembly/standalone.xml</descriptor>
+                        <descriptor>src/main/assembly/author.xml</descriptor>
+                        <descriptor>src/main/assembly/renderer.xml</descriptor>
                     </descriptors>
                 </configuration>
             </plugin>

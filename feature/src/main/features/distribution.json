@@ -43,34 +43,6 @@
         "org.apache.sling.distribution.agent.impl.PrivilegeDistributionRequestAuthorizationStrategyFactory~default": {
             "name": "default",
             "jcrPrivilege": "sling:publish"
-        },
-        "org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory~default": {
-            "fileThreshold": 1,
-            "cleanupDelay": 60,
-            "autoSaveThreshold": -1,
-            "package.roots": "",
-            "type": "jcrvlt",
-            "MEGA_BYTES": "MEGA_BYTES",
-            "property.filters": [
-                ""
-            ],
-            "pathsMapping": [
-                ""
-            ],
-            "strictImport": true,
-            "aclHandling": "IGNORE",
-            "importMode": "",
-            "digestAlgorithm": "MD5",
-            "tempFsFolder": "",
-            "monitoringQueueSize": 0,
-            "useOffHeapMemory": false,
-            "cugHandling": "",
-            "useBinaryReferences": false,
-            "package.filters": [
-                "/home/users|-.*/.tokens",
-                "/home/users|-.*/.rep:cache"
-            ],
-            "name": "default"
         }
     },
     "repoinit:TEXT|true": [

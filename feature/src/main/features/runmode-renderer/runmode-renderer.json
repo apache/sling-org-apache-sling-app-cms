@@ -1,13 +1,44 @@
 {
-    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:runmode-author:${cms.version}",
+    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:runmode-renderer:${cms.version}",
     "configurations": {
         "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
             "publicationMode": "CONTENT_DISTRIBUTION",
             "agents": []
         },
+        "org.apache.sling.cms.core.publication.PublicationPropertyProvider": {
+            "endpointPath": "/libs/sling/distribution/services/importers/default"
+        },
         "org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory~default": {
             "packageBuilder.target": "(name=default)",
             "name": "default"
+        },
+        "org.apache.sling.discovery.oak.Config": {
+            "invertLeaderElectionPrefixOrder": false,
+            "enableSyncToken": true,
+            "hmacEnabled": false,
+            "soTimeout": 10,
+            "connectorPingTimeout": 120,
+            "enableEncryption": false,
+            "gzipConnectorRequestsEnabled": false,
+            "backoffStandbyFactor": "",
+            "topologyConnectorUrls": [
+                "http://localhost:8080/libs/sling/topology/connector"
+            ],
+            "hmacSharedKeyTTL": 14400000,
+            "leaderElectionPrefix": 1,
+            "discoveryLiteCheckInterval": 2,
+            "connectorPingInterval": 30,
+            "clusterSyncServiceInterval": 2,
+            "socketConnectTimeout": 10,
+            "clusterSyncServiceTimeout": 120,
+            "minEventDelay": 3,
+            "autoStopLocalLoopEnabled": false,
+            "backoffStableFactor": "",
+            "topologyConnectorWhitelist": [
+                "localhost",
+                "127.0.0.1"
+            ],
+            "sharedKey": ""
         }
     }
 }
