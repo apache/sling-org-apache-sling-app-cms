@@ -26,8 +26,8 @@ ENV FM_RUNTIME_CLASSIFIER=${FM_RUNTIME_CLASSIFIER}
 WORKDIR /opt/slingcms
 
 # Install Apache Maven
-RUN apt-get update && apt-get install maven -y
-COPY /settings.xml /root/.m2/
+RUN apt-get update && apt-get install maven jq -y
+COPY settings.xml /root/.m2/
 
 # Setup Sling CMS
 COPY download-dependencies.sh /opt/slingcms/setup/
