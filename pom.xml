@@ -38,7 +38,7 @@
         <module>transformer</module>
         <module>ui</module>
         <module>reference</module>
-        <module>builder</module>
+        <module>feature</module>
         <module>archetype</module>
     </modules>
 
@@ -129,12 +129,6 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.sling</groupId>
-                <artifactId>org.apache.sling.distribution.api</artifactId>
-                <version>0.4.0</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.commons.messaging</artifactId>
                 <version>1.0.0</version>
                 <scope>provided</scope>
@@ -149,6 +143,18 @@
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.commons.johnzon</artifactId>
                 <version>1.1.2</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <artifactId>org.apache.sling.discovery.api</artifactId>
+                <version>1.0.4</version>
+                <groupId>org.apache.sling</groupId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.distribution.api</artifactId>
+                <version>0.4.0</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
