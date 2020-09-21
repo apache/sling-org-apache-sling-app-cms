@@ -237,5 +237,9 @@
             <artifactId>org.apache.sling.distribution.api</artifactId>
             <groupId>org.apache.sling</groupId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.discovery.api</artifactId>
+        </dependency>
     </dependencies>
 </project>
