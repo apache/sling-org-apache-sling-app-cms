@@ -23,6 +23,13 @@ package org.apache.sling.cms.publication;
 public interface PublicationManagerFactory {
 
     /**
+     * Get the type of this particular instance
+     * 
+     * @return the instance type
+     */
+    INSTANCE_TYPE getInstanceType();
+
+    /**
      * Returns the publication mode for this instance.
      * 
      * @return the publication mode fro the instance

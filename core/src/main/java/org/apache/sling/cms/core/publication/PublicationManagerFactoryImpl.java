@@ -17,6 +17,7 @@
 package org.apache.sling.cms.core.publication;
 
 import org.apache.sling.api.adapter.AdapterFactory;
+import org.apache.sling.cms.publication.INSTANCE_TYPE;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
 import org.apache.sling.cms.publication.PublicationManager;
 import org.apache.sling.cms.publication.PublicationManagerFactory;
@@ -43,14 +44,22 @@ public class PublicationManagerFactoryImpl implements PublicationManagerFactory,
     @Reference(cardinality = ReferenceCardinality.OPTIONAL, policyOption = ReferencePolicyOption.GREEDY)
     private Distributor distributor;
 
+    private INSTANCE_TYPE instanceType;
+
     private PUBLICATION_MODE publicationMode;
 
     private String[] agents;
 
     @Activate
     public void activate(PublicationConfig config) {
+        this.instanceType = config.instanceType();
         this.publicationMode = config.publicationMode();
         this.agents = config.agents();
+    }
+
+    @Override
+    public INSTANCE_TYPE getInstanceType() {
+        return this.instanceType;
     }
 
     @Override

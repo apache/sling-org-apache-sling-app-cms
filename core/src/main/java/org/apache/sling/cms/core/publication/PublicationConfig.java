@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms.core.publication;
 
+import org.apache.sling.cms.publication.INSTANCE_TYPE;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -23,9 +24,12 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 @ObjectClassDefinition(name = "%publication.config.name", description = "%publication.config.description", localization = "OSGI-INF/l10n/bundle")
 public @interface PublicationConfig {
 
-    @AttributeDefinition(name = "%publication.param.mode.name", description = "%publication.param.mode.description")
-    PUBLICATION_MODE publicationMode() default PUBLICATION_MODE.STANDALONE;
-
     @AttributeDefinition(name = "%publication.param.agents.name", description = "%publication.param.agents.description")
     String[] agents() default {};
+
+    @AttributeDefinition(name = "%publication.param.type.name", description = "%publication.param.type.description")
+    INSTANCE_TYPE instanceType() default INSTANCE_TYPE.STANDALONE;
+
+    @AttributeDefinition(name = "%publication.param.mode.name", description = "%publication.param.mode.description")
+    PUBLICATION_MODE publicationMode() default PUBLICATION_MODE.STANDALONE;
 }
