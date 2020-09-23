@@ -28,7 +28,10 @@ public class Main {
         System.out.println("Bootstraping Sling CMS Feature Model");
         URL propertiesUrl =  Main.class.getClassLoader().getResource("slingcms.properties");
         Properties properties = new Properties();
-        properties.load(propertiesUrl.openStream());
+        try(InputStream is = propertiesUrl.openStream()){
+            properties.load(is);
+        }
+        
 
         String version = properties.getProperty("version");
         System.out.println("Version "+version);
@@ -36,10 +39,8 @@ public class Main {
         URL farUrl = Main.class.getClassLoader().getResource("lib/slingcms.far");
         List<String> arguments = new ArrayList<>();
         arguments.addAll(Arrays.asList(args));
-        if(!arguments.contains("-f")){
-            arguments.add("-f");
-            arguments.add(farUrl.toString());
-        }
+        arguments.add("-f");
+        arguments.add(farUrl.toString());
 
         org.apache.sling.feature.launcher.impl.Main.main(arguments.toArray(new String[arguments.size()]));
     }
