@@ -46,6 +46,7 @@ public class CMSSecurityFilterTest {
     @Before
     public void init() throws UnsupportedRepositoryOperationException, RepositoryException, IOException {
         SlingCMSTestHelper.initAuthContext(context);
+        context.currentResource("/content");
     }
 
     @Test
@@ -137,7 +138,7 @@ public class CMSSecurityFilterTest {
 
         securityFilter = context.registerInjectActivateService(new CMSSecurityFilter());
 
-        context.request().setRemoteHost("cms.apache.org");
+        context.request().setServerName("cms.apache.org");
         context.request().setServletPath("/static/test1.txt");
 
         securityFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
@@ -179,7 +180,7 @@ public class CMSSecurityFilterTest {
 
         securityFilter = context.registerInjectActivateService(new CMSSecurityFilter());
 
-        context.request().setRemoteHost("cms.apache.org");
+        context.request().setServerName("cms.apache.org");
         context.request().setServletPath("/content/test1.txt");
 
         PublishableResource published = Mockito.mock(PublishableResource.class);

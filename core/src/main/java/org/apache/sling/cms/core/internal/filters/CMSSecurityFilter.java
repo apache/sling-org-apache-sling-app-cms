@@ -103,7 +103,7 @@ public class CMSSecurityFilter implements Filter {
         }
 
         PublishableResource publishableResource = slingRequest.getResource().adaptTo(PublishableResource.class);
-        if (publishableResource.isPublished()) {
+        if (publishableResource != null && publishableResource.isPublished()) {
             log.trace("Resource is published");
             allowed = true;
         }
