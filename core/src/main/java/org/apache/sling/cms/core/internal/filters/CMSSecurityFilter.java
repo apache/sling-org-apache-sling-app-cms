@@ -19,7 +19,6 @@ package org.apache.sling.cms.core.internal.filters;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -98,22 +97,20 @@ public class CMSSecurityFilter implements Filter {
         log.trace("Filtering requests to host {}", slingRequest.getServerName());
         String uri = slingRequest.getRequestURI();
         boolean allowed = false;
-        for (Pattern p : securityConfig.getPatterns()) {
-            if (p.matcher(uri).matches()) {
-                log.trace("Allowing request matching pattern {}", p);
-                allowed = true;
-                break;
-            }
+        if (securityConfig.isUriAllowed(uri)) {
+            log.trace("Allowing request to uri {} based on allow patterns", uri);
+            allowed = true;
         }
 
         PublishableResource publishableResource = slingRequest.getResource().adaptTo(PublishableResource.class);
         if (publishableResource.isPublished()) {
+            log.trace("Resource is published");
             allowed = true;
         }
 
         // the uri isn't allowed automatically, so check user permissions
         if (!allowed) {
-            log.trace("Request to {} not allowed, checking user permissions", uri);
+            log.trace("Request to {} not public, checking user permissions", uri);
             // check to see if the user is a member of the specified group
             if (StringUtils.isNotBlank(securityConfig.getGroupName())) {
                 allowed = checkGroupMembership(securityConfig, slingRequest);

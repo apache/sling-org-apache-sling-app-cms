@@ -39,7 +39,6 @@ public class CMSSecurityConfigInstance {
     @Activate
     public void activate(CMSSecurityFilterConfig config) {
         this.config = config;
-
         if (config.allowedPatterns() != null) {
             for (String p : config.allowedPatterns()) {
                 patterns.add(Pattern.compile(p));
@@ -53,29 +52,17 @@ public class CMSSecurityConfigInstance {
                 || ArrayUtils.contains(config.hostDomains(), request.getServerName());
     }
 
-    /**
-     * @return the config
-     */
-    public CMSSecurityFilterConfig getConfig() {
-        return config;
-    }
-
     public String getGroupName() {
         return config.group();
     }
 
-    /**
-     * @param config the config to set
-     */
-    public void setConfig(CMSSecurityFilterConfig config) {
-        this.config = config;
-    }
-
-    /**
-     * @return the patterns
-     */
-    public List<Pattern> getPatterns() {
-        return patterns;
+    public boolean isUriAllowed(String uri) {
+        for (Pattern p : patterns) {
+            if (p.matcher(uri).matches()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
