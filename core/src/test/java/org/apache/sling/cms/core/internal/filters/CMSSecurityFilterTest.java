@@ -26,6 +26,8 @@ import javax.jcr.UnsupportedRepositoryOperationException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.PublishableResource;
 import org.apache.sling.cms.core.helpers.SlingCMSTestHelper;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
 import org.apache.sling.cms.publication.PublicationManagerFactory;
@@ -96,6 +98,94 @@ public class CMSSecurityFilterTest {
         securityFilter = context.registerInjectActivateService(new CMSSecurityFilter());
 
         context.request().setRemoteHost("www.apache.org");
+        securityFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
+        assertEquals(200, context.response().getStatus());
+    }
+
+    @Test
+    public void testAllowedPath() throws IOException, ServletException {
+
+        PublicationManagerFactory factory = Mockito.mock(PublicationManagerFactory.class);
+        Mockito.when(factory.getPublicationMode()).thenReturn(PUBLICATION_MODE.STANDALONE);
+        context.registerService(PublicationManagerFactory.class, factory);
+
+        CMSSecurityConfigInstance config = new CMSSecurityConfigInstance();
+        config.activate(new CMSSecurityFilterConfig() {
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String[] hostDomains() {
+                return new String[] { "cms.apache.org" };
+            }
+
+            @Override
+            public String[] allowedPatterns() {
+                return new String[] { "\\/static\\/.*" };
+            }
+
+            @Override
+            public String group() {
+                return null;
+            }
+
+        });
+        context.registerService(CMSSecurityConfigInstance.class, config);
+
+        securityFilter = context.registerInjectActivateService(new CMSSecurityFilter());
+
+        context.request().setRemoteHost("cms.apache.org");
+        context.request().setServletPath("/static/test1.txt");
+
+        securityFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
+        assertEquals(200, context.response().getStatus());
+    }
+
+    @Test
+    public void testPublished() throws IOException, ServletException {
+
+        PublicationManagerFactory factory = Mockito.mock(PublicationManagerFactory.class);
+        Mockito.when(factory.getPublicationMode()).thenReturn(PUBLICATION_MODE.STANDALONE);
+        context.registerService(PublicationManagerFactory.class, factory);
+
+        CMSSecurityConfigInstance config = new CMSSecurityConfigInstance();
+        config.activate(new CMSSecurityFilterConfig() {
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String[] hostDomains() {
+                return new String[] { "cms.apache.org" };
+            }
+
+            @Override
+            public String[] allowedPatterns() {
+                return new String[] { "\\/static\\/.*" };
+            }
+
+            @Override
+            public String group() {
+                return null;
+            }
+
+        });
+        context.registerService(CMSSecurityConfigInstance.class, config);
+
+        securityFilter = context.registerInjectActivateService(new CMSSecurityFilter());
+
+        context.request().setRemoteHost("cms.apache.org");
+        context.request().setServletPath("/content/test1.txt");
+
+        PublishableResource published = Mockito.mock(PublishableResource.class);
+        Mockito.when(published.isPublished()).thenReturn(true);
+        context.registerAdapter(Resource.class, PublishableResource.class, published);
+
         securityFilter.doFilter(context.request(), context.response(), Mockito.mock(FilterChain.class));
         assertEquals(200, context.response().getStatus());
     }
