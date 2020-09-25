@@ -58,7 +58,7 @@ public class ResourceTree {
     private Stream<ResourceTree> streamTree(Predicate<Resource> filterTraversal,
             Predicate<ResourceTree> filterInclude) {
         return Stream
-                .concat(Stream.of(this),
+                .concat(Stream.of(this).filter(rt -> filterTraversal.test(rt.getResource())),
                         StreamSupport.stream(root.getChildren().spliterator(), false).filter(filterTraversal)
                                 .map(ResourceTree::new).flatMap(rt -> rt.streamTree(filterTraversal, filterInclude)))
                 .filter(filterInclude);
