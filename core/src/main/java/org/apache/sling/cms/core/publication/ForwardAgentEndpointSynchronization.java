@@ -46,12 +46,12 @@ public class ForwardAgentEndpointSynchronization implements TopologyEventListene
 
     public static final String ENDPOINT_PROPERTY = "packageImporter.endpoints";
 
-    @Reference
     private ConfigurationAdmin configAdmin;
 
     @Activate
-    public void activate(ForwardAgentEndpointSynchronizationConfig config) {
-        log.info("activate");
+    public ForwardAgentEndpointSynchronization(@Reference ConfigurationAdmin configAdmin,
+            ForwardAgentEndpointSynchronizationConfig config) {
+        this.configAdmin = configAdmin;
         this.config = config;
     }
 
