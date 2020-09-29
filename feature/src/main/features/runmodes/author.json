@@ -5,6 +5,7 @@
             "agentTarget": "(name=default)"
         },
         "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
+            "instanceType": "AUTHOR",
             "publicationMode": "CONTENT_DISTRIBUTION",
             "agents": []
         },

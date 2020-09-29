@@ -2,6 +2,7 @@
     "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:runmode-renderer:${cms.version}",
     "configurations": {
         "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
+            "instanceType": "RENDERER",
             "publicationMode": "CONTENT_DISTRIBUTION",
             "agents": []
         },

@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:sling-caconfig:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.caconfig.api:1.2.0",

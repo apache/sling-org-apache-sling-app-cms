@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:sling:${cms.version}",
     "bundles":[
         {
             "id":"commons-codec:commons-codec:1.14",
@@ -8,7 +7,7 @@
         },
         {
             "id":"commons-collections:commons-collections:3.2.2",
-            "start-order":"10"
+            "start-order":"15"
         },
         {
             "id":"javax.mail:mail:1.5.0-b01",
@@ -16,7 +15,7 @@
         },
         {
             "id":"org.apache.commons:commons-collections4:4.4",
-            "start-order":"10"
+            "start-order":"15"
         },
         {
             "id":"org.apache.commons:commons-math:2.2",
@@ -28,15 +27,11 @@
         },
         {
             "id":"org.apache.httpcomponents:httpclient-osgi:4.5.10",
-            "start-order":"10"
+            "start-order":"15"
         },
         {
             "id":"org.apache.httpcomponents:httpcore-osgi:4.4.12",
-            "start-order":"10"
-        },
-        {
-            "id":"org.apache.jackrabbit.vault:org.apache.jackrabbit.vault:3.4.4",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.adapter:2.1.10",
@@ -59,7 +54,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.commons.fsclassloader:1.0.12",
+            "id":"org.apache.sling:org.apache.sling.commons.fsclassloader:1.0.14",
             "start-order":"20"
         },
         {
@@ -87,27 +82,11 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.installer.console:1.1.0",
-            "start-order":"20"
-        },
-        {
             "id":"org.apache.sling:org.apache.sling.installer.factory.packages:1.0.4",
             "start-order":"20"
         },
         {
             "id":"org.apache.sling:org.apache.sling.installer.hc:2.0.2",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.installer.provider.jcr:3.2.2",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.contentloader:2.3.0",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.resource:3.0.22",
             "start-order":"20"
         },
         {
@@ -119,16 +98,12 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.6.16",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.serviceuser.webconsole:1.0.2",
+            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.7.0",
             "start-order":"20"
         },
         {
             "id":"org.apache.sling:org.apache.sling.serviceusermapper:1.4.4",
-            "start-order":"20"
+            "start-order":"15"
         },
         {
             "id":"org.apache.sling:org.apache.sling.servlets.get:2.1.40",
@@ -136,22 +111,18 @@
         },
         {
             "id":"org.apache.sling:org.apache.sling.servlets.post:2.3.36",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.servlets.resolver:2.7.2",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.xss:2.2.2",
+            "id":"org.apache.sling:org.apache.sling.servlets.resolver:2.7.8",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.xss:2.2.6",
             "start-order":"20"
         },
         {
             "id":"org.apache.felix:org.apache.felix.metatype:1.2.2",
-            "start-order":"4"
-        },
-        {
-            "id":"org.apache.felix:org.apache.felix.scr:2.1.20",
             "start-order":"4"
         },
         {
@@ -179,6 +150,14 @@
             "start-order":"5"
         },
         {
+            "id":"org.apache.felix:org.apache.felix.http.jetty:4.0.18",
+            "start-order":"5"
+        },
+        {
+            "id":"org.apache.felix:org.apache.felix.http.servlet-api:1.1.2",
+            "start-order":"5"
+        },
+        {
             "id":"org.apache.felix:org.apache.felix.http.whiteboard:4.0.0",
             "start-order":"5"
         },
@@ -191,52 +170,16 @@
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.ds:2.1.0",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.event:1.1.8",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.memoryusage:1.0.10",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.obr:1.0.4",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.packageadmin:1.0.4",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.felix:org.apache.felix.webconsole:4.5.0",
-            "start-order":"5"
-        },
-        {
             "id":"org.apache.sling:org.apache.sling.api:2.22.0",
             "start-order":"5"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.auth.core:1.4.8",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.commons.log.webconsole:1.0.0",
+            "id":"org.apache.sling:org.apache.sling.auth.core:1.5.0",
             "start-order":"5"
         },
         {
             "id":"org.apache.sling:org.apache.sling.extensions.threaddump:0.2.2",
             "start-order":"5"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.extensions.webconsolebranding:1.0.2",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.extensions.webconsolesecurityprovider:1.2.4",
-            "start-order":"15"
         },
         {
             "id":"org.apache.felix:org.apache.felix.http.sslfilter:1.2.6",
@@ -259,35 +202,11 @@
             "start-order":"10"
         },
         {
-            "id":"com.google.guava:guava:15.0",
-            "start-order":"15"
+            "id":"org.apache.tika:tika-parsers:1.24",
+            "start-order":"10"
         },
         {
             "id":"io.dropwizard.metrics:metrics-core:3.2.6",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.jackrabbit:jackrabbit-data:${jackrabbit.version}",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.jackrabbit:jackrabbit-jcr-commons:${jackrabbit.version}",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.jackrabbit:jackrabbit-jcr-rmi:${jackrabbit.version}",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.jackrabbit:jackrabbit-spi-commons:${jackrabbit.version}",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.jackrabbit:jackrabbit-spi:${jackrabbit.version}",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.jackrabbit:jackrabbit-webdav:${jackrabbit.version}",
             "start-order":"15"
         },
         {
@@ -295,47 +214,31 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.api:2.4.0",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.base:3.1.0",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.davex:1.3.10",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.accessmanager:3.0.4",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager:2.2.8",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.jcr-wrapper:2.0.0",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.registration:1.0.6",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.webconsole:1.0.2",
-            "start-order":"15"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.jcr.webdav:2.3.8",
-            "start-order":"15"
-        },
-        {
             "id":"org.apache.sling:org.apache.sling.resource.filter:1.0.0",
             "start-order":"15"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.provisioning.model:1.8.6",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.6.2",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.24",
+            "start-order":"20"
         }
     ],
     "configurations":{
+        "org.apache.sling.commons.log.LogManager":{
+            "org.apache.sling.commons.log.packagingDataEnabled":true,
+            "org.apache.sling.commons.log.pattern":"%d{dd.MM.yyyy HH:mm:ss.SSS} *%level* [%thread] %logger %msg%n",
+            "org.apache.sling.commons.log.level":"info",
+            "org.apache.sling.commons.log.file":"logs/error.log",
+            "org.apache.sling.commons.log.file.number:Integer":"7",
+            "org.apache.sling.commons.log.file.size":"'.'yyyy-MM-dd"
+        },
         "org.apache.sling.engine.impl.log.RequestLogger":{
             "access.log.enabled":true,
             "request.log.outputtype:Integer":"0",
@@ -371,16 +274,13 @@
                 "org.apache.sling.discovery.commons",
                 "org.apache.sling.discovery.base",
                 "org.apache.sling.discovery.oak",
-                "org.apache.sling.extensions.webconsolesecurityprovider",
                 "org.apache.sling.i18n",
                 "org.apache.sling.jcr.base",
                 "org.apache.sling.jcr.contentloader",
                 "org.apache.sling.jcr.jackrabbit.usermanager",
                 "org.apache.sling.jcr.oak.server",
                 "org.apache.sling.jcr.repoinit",
-                "org.apache.sling.jcr.webconsole",
-                "org.apache.sling.servlets.post",
-                "org.apache.sling.serviceuser.webconsole"
+                "org.apache.sling.servlets.post"
             ],
             "whitelist.name":"sling"
         },
@@ -428,5 +328,61 @@
                 "org.apache.sling.xss=sling-xss"
             ]
         }
-    }
+    },
+    "repoinit:TEXT|true":[
+        "# general",
+        "create path (sling:OrderedFolder) /content",
+        "set ACL for everyone",
+        "allow   jcr:read   on /content",
+        "end",
+        "",
+        "# sling-mapping",
+        "create service user sling-mapping",
+        "",
+        "set ACL for sling-mapping",
+        "allow   jcr:read    on /",
+        "end",
+        "",
+        "# sling-readall",
+        "create service user sling-readall",
+        "",
+        "set ACL for sling-readall",
+        "allow   jcr:read    on /",
+        "end",
+        "",
+        "# sling-xss",
+        "create service user sling-xss",
+        "",
+        "create path (sling:Folder) /apps/sling/xss",
+        "",
+        "set ACL for sling-xss",
+        "allow   jcr:read    on /apps/sling/xss",
+        "end",
+        "",
+        "# sling-i18n",
+        "create service user sling-i18n",
+        "",
+        "set ACL for sling-i18n",
+        "allow   jcr:read    on /",
+        "end",
+        "",
+        "# sling-jcr-install",
+        "create service user sling-jcr-install",
+        "",
+        "# used for config OSGi writeback",
+        "create path (sling:Folder) /apps/sling/install",
+        "",
+        "set ACL for sling-jcr-install",
+        "allow    jcr:read    on    /",
+        "allow    rep:write    on /apps/sling/install",
+        "end",
+        "",
+        "# content-package installer",
+        "create service user sling-package-install",
+        "",
+        "set ACL for sling-package-install",
+        "allow    jcr:all     on    /",
+        "allow   jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository",
+        "end"
+    ]
 }

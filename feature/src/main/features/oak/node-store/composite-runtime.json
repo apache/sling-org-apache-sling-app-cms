@@ -1,9 +1,9 @@
 {
-    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:composite-runtime:${cms.version}",
     "configurations": {
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
             "name": "Default NodeStore",
-            "standby": true
+            "standby": true,
+            "customBlobStore": true
         },
         "org.apache.jackrabbit.oak.composite.CompositeNodeStoreService": {
             "seedMount": "libs",
@@ -37,6 +37,11 @@
             "errorLabel": "versionable node",
             "invalidNodeType": "mix:versionable"
         },
+        "org.apache.jackrabbit.oak.plugins.blob.datastore.FileDataStore": {
+            "minRecordLength": 4096,
+            "path": "${sling.home}/repository/datastore",
+            "cacheSizeInMB": 128
+        },
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreFactory~libs": {
             "role": "composite-mount-libs",
             "customBlobStore": false,
@@ -49,14 +54,6 @@
             "registerDescriptors": true,
             "dispatchChanges": true,
             "repository.home": "sling/composite/repository-global"
-        },
-        "org.apache.sling.commons.log.LogManager": {
-            "org.apache.sling.commons.log.packagingDataEnabled": true,
-            "org.apache.sling.commons.log.pattern": "%d{dd.MM.yyyy HH:mm:ss.SSS} *%level* [%thread] %logger %msg%n",
-            "org.apache.sling.commons.log.level": "info",
-            "org.apache.sling.commons.log.file": "",
-            "org.apache.sling.commons.log.file.number:Integer": "-1",
-            "org.apache.sling.commons.log.file.size": ""
         }
     }
 }

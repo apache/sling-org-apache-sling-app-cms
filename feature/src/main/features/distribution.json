@@ -1,5 +1,4 @@
 {
-    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:distribution:${cms.version}",
     "bundles": [
         {
             "id": "org.apache.sling:org.apache.sling.distribution.api:0.4.0",

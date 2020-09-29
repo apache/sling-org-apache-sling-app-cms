@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:composum_composum-nodes:${cms.version}",
     "bundles":[
         {
             "id":"com.composum.sling.core:composum-sling-core-commons:${composum.version}",

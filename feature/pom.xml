@@ -77,41 +77,41 @@
                         <aggregate>
                             <classifier>slingcms-standalone</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/composite-*.json</filesExclude>
-                            <filesExclude>runmode-author/*.json</filesExclude>
-                            <filesExclude>runmode-renderer/*.json</filesExclude>
+                            <filesExclude>oak/node-store/composite-*.json</filesExclude>
+                            <filesExclude>runmodes/author.json</filesExclude>
+                            <filesExclude>runmodes/renderer.json</filesExclude>
                             <title>Sling CMS - Standalone</title>
                         </aggregate>
                         <aggregate>
                             <classifier>slingcms-author</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/composite-*.json</filesExclude>
-                            <filesExclude>runmode-renderer/*.json</filesExclude>
-                            <filesExclude>runmode-standalone/*.json</filesExclude>
+                            <filesExclude>oak/node-store/composite-*.json</filesExclude>
+                            <filesExclude>runmodes/standalone.json</filesExclude>
+                            <filesExclude>runmodes/renderer.json</filesExclude>
                             <title>Sling CMS - Author</title>
                         </aggregate>
                         <aggregate>
                             <classifier>slingcms-renderer</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/composite-*.json</filesExclude>
-                            <filesExclude>runmode-author/*.json</filesExclude>
-                            <filesExclude>runmode-standalone/*.json</filesExclude>
+                            <filesExclude>oak/node-store/composite-*.json</filesExclude>
+                            <filesExclude>runmodes/standalone.json</filesExclude>
+                            <filesExclude>runmodes/author.json</filesExclude>
                             <title>Sling CMS - Renderer</title>
                         </aggregate>
                         <aggregate>
                             <classifier>slingcms-composite-seed</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/composite-runtime.json</filesExclude>
-                            <filesExclude>node-store-segment/segment.json</filesExclude>
-                            <filesExclude>runmode*/*.json</filesExclude>
+                            <filesExclude>oak/node-store/composite-seed.json</filesExclude>
+                            <filesExclude>oak/node-store/segment.json</filesExclude>
+                            <filesExclude>runmodes/*.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Seed</title>
                         </aggregate>
                         <aggregate>
                             <classifier>slingcms-composite-runtime</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>node-store-composite/composite-seed.json</filesExclude>
-                            <filesExclude>node-store-segment/segment.json</filesExclude>
-                            <filesExclude>runmode*/*.json</filesExclude>
+                            <filesExclude>oak/node-store/composite-seed.json</filesExclude>
+                            <filesExclude>oak/node-store/segment.json</filesExclude>
+                            <filesExclude>runmodes/*.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Runtime</title>
                         </aggregate>
                     </aggregates>
@@ -231,7 +231,7 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.feature.launcher</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.6</version>
         </dependency>
     </dependencies>
 </project>
