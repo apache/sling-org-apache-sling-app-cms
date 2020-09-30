@@ -14,12 +14,17 @@
 # Pull base image.
 FROM adoptopenjdk:11-jre-openj9
 
-ARG FM_GROUP_ID=org.apache.sling
-ARG FM_ARTIFACT_ID=org.apache.sling.cms.feature
-ARG FM_VERSION=0.16.3-SNAPSHOT
+ARG ADDITIONAL_FEATURE_COORDINATE=
+ARG CMS_GROUP_ID=org.apache.sling
+ARG CMS_ARTIFACT_ID=org.apache.sling.cms.feature
+ARG CMS_VERSION=0.16.3-SNAPSHOT
+ARG LAUNCHER_VERSION=1.1.6
 ARG FM_SEED_CLASSIFIER=slingcms-composite-seed
+ARG FM_RUNMODE_CLASSIFIER=runmode-standalone
 ARG FM_RUNTIME_CLASSIFIER=slingcms-composite-runtime
-ENV FM_ARTIFACT_ID=${FM_ARTIFACT_ID}
+ENV ADDITIONAL_FEATURE_COORDINATE=${ADDITIONAL_FEATURE_COORDINATE}
+ENV CMS_ARTIFACT_ID=${CMS_ARTIFACT_ID}
+ENV FM_RUNMODE_CLASSIFIER=${FM_RUNMODE_CLASSIFIER}
 ENV FM_RUNTIME_CLASSIFIER=${FM_RUNTIME_CLASSIFIER}
 
 # Configure directories
@@ -40,4 +45,5 @@ EXPOSE 8080
 
 # Start Sling CMS
 CMD exec java -jar org.apache.sling.feature.launcher.jar \
-    -f ${FM_ARTIFACT_ID}-${FM_RUNTIME_CLASSIFIER}.slingosgifeature
+    -f *.slingosgifeature  \
+    -f features/*.slingosgifeature 

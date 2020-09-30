@@ -11,15 +11,28 @@
 #
 version: '3.4'
 services:
-  cms:
-    build: cms
+  author:
+    build: 
+      context: cms
+      args:
+        FM_RUNMODE_CLASSIFIER: runmode-author
     ports:
       - "8080:8080"
     volumes:
-      - sling-repository:/opt/slingcms/sling/composite/repository-global
+      - sling-author:/opt/slingcms/sling/composite/repository-global
+  renderer:
+    build: 
+      context: cms
+      args:
+        FM_RUNMODE_CLASSIFIER: runmode-renderer
+    ports:
+      - "8090:8080"
+    volumes:
+      - sling-renderer:/opt/slingcms/sling/composite/repository-global
   webcache:
     build: webcache
     ports:
       - "80:80"
 volumes:
-  sling-repository:
+  sling-author:
+  sling-renderer:

@@ -11,24 +11,38 @@
 #        and limitations under the License.
 #
 
-mkdir -p /opt/slingcms
+mkdir -p /opt/slingcms/features
 cd /opt/slingcms
 
 echo "Downloading Feature Launcher..."
 mvn -q org.apache.maven.plugins:maven-dependency-plugin:copy \
-    -Dartifact=org.apache.sling:org.apache.sling.feature.launcher:1.1.4:jar \
+    -Dartifact=org.apache.sling:org.apache.sling.feature.launcher:${LAUNCHER_VERSION}:jar \
     -DoutputDirectory=/opt/slingcms \
     -Dmdep.stripVersion=true \
-    || { echo 'Failed to download Feature Launcher' ; exit 1; }
+    || { echo 'Failed to download Feature Launcher' ; exit 1; } 
  
 echo "Downloading Feature Models..."
 mvn -q org.apache.maven.plugins:maven-dependency-plugin:copy \
-    -Dartifact=${FM_GROUP_ID}:${FM_ARTIFACT_ID}:${FM_VERSION}:slingosgifeature:${FM_SEED_CLASSIFIER} \
+    -Dartifact=${CMS_GROUP_ID}:${CMS_ARTIFACT_ID}:${CMS_VERSION}:slingosgifeature:${FM_SEED_CLASSIFIER} \
     -DoutputDirectory=/opt/slingcms/setup \
     -Dmdep.stripVersion=true \
     || { echo 'Failed to download composite seed' ; exit 1; }
 mvn -q org.apache.maven.plugins:maven-dependency-plugin:copy \
-    -Dartifact=${FM_GROUP_ID}:${FM_ARTIFACT_ID}:${FM_VERSION}:slingosgifeature:${FM_RUNTIME_CLASSIFIER} \
+    -Dartifact=${CMS_GROUP_ID}:${CMS_ARTIFACT_ID}:${CMS_VERSION}:slingosgifeature:${FM_RUNTIME_CLASSIFIER} \
     -DoutputDirectory=/opt/slingcms \
     -Dmdep.stripVersion=true \
     || { echo 'Failed to download composite runtime' ; exit 1; }
+mvn -q org.apache.maven.plugins:maven-dependency-plugin:copy \
+    -Dartifact=${CMS_GROUP_ID}:${CMS_ARTIFACT_ID}:${CMS_VERSION}:slingosgifeature:${FM_RUNMODE_CLASSIFIER} \
+    -DoutputDirectory=/opt/slingcms/features \
+    -Dmdep.stripVersion=true \
+    || { echo 'Failed to download author feature' ; exit 1; }
+
+if [[ ! -z ${ADDITIONAL_FEATURE_COORDINATE} ]]; then
+    echo "Downloading Additional Feature ${ADDITIONAL_FEATURE_COORDINATE}"
+    mvn -q org.apache.maven.plugins:maven-dependency-plugin:copy \
+        -Dartifact=${ADDITIONAL_FEATURE_COORDINATE} \
+        -DoutputDirectory=/opt/slingcms/features \
+        -Dmdep.stripVersion=true \
+        || { echo "Failed to download feature ${ADDITIONAL_FEATURE_COORDINATE}" ; exit 1; }
+fi
