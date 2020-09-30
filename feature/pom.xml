@@ -29,7 +29,7 @@
         <composum.version>1.12.0</composum.version>
         <jackrabbit.version>2.20.0</jackrabbit.version>
         <jackson.version>2.11.1</jackson.version>
-        <oak.version>1.26.0</oak.version>
+        <oak.version>1.32.0</oak.version>
         <slf4j.version>1.7.25</slf4j.version>
         <bnd.baseline.skip>true</bnd.baseline.skip>
     </properties>
@@ -101,7 +101,7 @@
                         <aggregate>
                             <classifier>slingcms-composite-seed</classifier>
                             <filesInclude>**/*.json</filesInclude>
-                            <filesExclude>oak/node-store/composite-seed.json</filesExclude>
+                            <filesExclude>oak/node-store/composite-runtime.json</filesExclude>
                             <filesExclude>oak/node-store/segment.json</filesExclude>
                             <filesExclude>runmodes/*.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Seed</title>
