@@ -7,6 +7,14 @@
             "start-order":"5"
         },
         {
+            "id":"org.apache.sling:org.apache.sling.launchpad.api:1.2.0",
+            "start-order":"5"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.launchpad.startupmanager:1.0.0",
+            "start-order":"5"
+        },
+        {
             "id":"org.apache.sling:org.apache.sling.cms.api:${cms.version}",
             "start-order":"20"
         },

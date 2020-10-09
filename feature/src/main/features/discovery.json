@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:sling-discovery:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.discovery.api:1.0.4",

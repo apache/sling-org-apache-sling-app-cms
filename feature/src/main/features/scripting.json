@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:scripting_sling:${cms.version}",
     "bundles":[
         {
             "id":"org.antlr:antlr4-runtime:4.7.2",
@@ -15,7 +14,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.core:2.3.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.core:2.3.2",
             "start-order":"20"
         },
         {
@@ -59,7 +58,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.0-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.2-1.4.0",
             "start-order":"20"
         }
     ],

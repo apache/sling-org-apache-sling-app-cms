@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:sling-event:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.event.dea:1.1.4",

@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:healthcheck:${cms.version}",
     "bundles":[
         {
             "id":"org.apache.felix:org.apache.felix.healthcheck.api:2.0.4",

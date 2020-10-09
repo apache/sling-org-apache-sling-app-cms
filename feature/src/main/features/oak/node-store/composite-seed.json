@@ -4,8 +4,23 @@
             "servletPath": "/system/health"
         },
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
-            "name": "Default NodeStore",
-            "standby": true
+            "name": "Default NodeStore"
+        },
+        "org.apache.sling.commons.log.LogManager.factory.config~oak.log": {
+            "org.apache.sling.commons.log.pattern": "%-4r [%t] %-5p %c %x - %m%n",
+            "org.apache.sling.commons.log.names": [
+                "org.apache.jackrabbit.oak"
+            ],
+            "org.apache.sling.commons.log.level": "debug",
+            "org.apache.sling.commons.log.file": "logs/oak.log"
+        },
+        "org.apache.sling.commons.log.LogManager.factory.config~composum.log": {
+            "org.apache.sling.commons.log.pattern": "%-4r [%t] %-5p %c %x - %m%n",
+            "org.apache.sling.commons.log.names": [
+                "com.composum"
+            ],
+            "org.apache.sling.commons.log.level": "debug",
+            "org.apache.sling.commons.log.file": "logs/composum.log"
         },
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService~global": {
             "name": "Default NodeStore",

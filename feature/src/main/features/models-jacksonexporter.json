@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:sling-models-jacksonexporter_models-jacksonexporter:${cms.version}",
     "bundles":[
         {
             "id":"com.fasterxml.jackson.core:jackson-annotations:${jackson.version}",

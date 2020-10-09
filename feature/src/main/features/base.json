@@ -202,10 +202,6 @@
             "start-order":"10"
         },
         {
-            "id":"org.apache.tika:tika-parsers:1.24",
-            "start-order":"10"
-        },
-        {
             "id":"io.dropwizard.metrics:metrics-core:3.2.6",
             "start-order":"15"
         },
@@ -274,13 +270,15 @@
                 "org.apache.sling.discovery.commons",
                 "org.apache.sling.discovery.base",
                 "org.apache.sling.discovery.oak",
+                "org.apache.sling.extensions.webconsolesecurityprovider",
                 "org.apache.sling.i18n",
                 "org.apache.sling.jcr.base",
                 "org.apache.sling.jcr.contentloader",
                 "org.apache.sling.jcr.jackrabbit.usermanager",
                 "org.apache.sling.jcr.oak.server",
                 "org.apache.sling.jcr.repoinit",
-                "org.apache.sling.servlets.post"
+                "org.apache.sling.servlets.post",
+                "org.apache.sling.serviceuser.webconsole"
             ],
             "whitelist.name":"sling"
         },
