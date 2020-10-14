@@ -135,7 +135,7 @@ public class ErrorHandler {
     /**
      * Path under which the error pages for Sling CMS can be found.
      */
-    public static final String SLING_CMS_ERROR_PATH = "/content/sling-cms/errorhandling/";
+    public static final String SLING_CMS_ERROR_PATH = "/libs/sling-cms/content/errorhandling/";
 
     @RequestAttribute
     @Named(SlingConstants.ERROR_STATUS)
