@@ -23,6 +23,7 @@
             "mountedPaths": [
                 "/libs",
                 "/apps",
+                "/static",
                 "/jcr:system/rep:permissionStore/oak:mount-libs-default"
             ]
         },

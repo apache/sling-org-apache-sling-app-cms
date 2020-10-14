@@ -33,11 +33,13 @@
             "mountName": "libs",
             "readOnlyMount": false,
             "pathsSupportingFragments": [
-                "/oak:index/*$"
+                "/oak:index/*$",
+                "/var/sling/bundle-content/*$"
             ],
             "mountedPaths": [
                 "/libs",
                 "/apps",
+                "/static",
                 "/jcr:system/rep:permissionStore/oak:mount-libs-default"
             ]
         }
