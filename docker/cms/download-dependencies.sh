@@ -33,7 +33,7 @@ mvn -q org.apache.maven.plugins:maven-dependency-plugin:copy \
     -Dmdep.stripVersion=true \
     || { echo 'Failed to download composite runtime' ; exit 1; }
 mvn -q org.apache.maven.plugins:maven-dependency-plugin:copy \
-    -Dartifact=${CMS_GROUP_ID}:${CMS_ARTIFACT_ID}:${CMS_VERSION}:slingosgifeature:${FM_RUNMODE_CLASSIFIER} \
+    -Dartifact=${CMS_GROUP_ID}:${CMS_ARTIFACT_ID}:${CMS_VERSION}:slingosgifeature:runmode-${RUNMODE} \
     -DoutputDirectory=/opt/slingcms/features \
     -Dmdep.stripVersion=true \
     || { echo 'Failed to download author feature' ; exit 1; }

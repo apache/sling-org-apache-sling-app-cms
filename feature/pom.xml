@@ -137,14 +137,6 @@
                             <classifier>slingcms_standalone_far</classifier>
                             <includeClassifier>slingcms-standalone</includeClassifier>
                         </archive>
-                        <archive>
-                            <classifier>slingcms_author_far</classifier>
-                            <includeClassifier>slingcms-author</includeClassifier>
-                        </archive>
-                        <archive>
-                            <classifier>slingcms_renderer_far</classifier>
-                            <includeClassifier>slingcms-renderer</includeClassifier>
-                        </archive>
                     </archives>
                 </configuration>
                 <executions>
@@ -185,8 +177,6 @@
                     </archive>
                     <descriptors>
                         <descriptor>src/main/assembly/standalone.xml</descriptor>
-                        <descriptor>src/main/assembly/author.xml</descriptor>
-                        <descriptor>src/main/assembly/renderer.xml</descriptor>
                     </descriptors>
                 </configuration>
             </plugin>

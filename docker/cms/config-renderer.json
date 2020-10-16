@@ -1,0 +1,33 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.docker:slingfeature:renderer:1.0.0",
+    "configurations": {
+        "org.apache.sling.discovery.oak.Config": {
+            "invertLeaderElectionPrefixOrder": false,
+            "enableSyncToken": true,
+            "hmacEnabled": false,
+            "soTimeout": 10,
+            "connectorPingTimeout": 120,
+            "enableEncryption": false,
+            "gzipConnectorRequestsEnabled": false,
+            "backoffStandbyFactor": "",
+            "topologyConnectorUrls": [
+                "http://author:8080/libs/sling/topology/connector"
+            ],
+            "hmacSharedKeyTTL": 14400000,
+            "leaderElectionPrefix": 1,
+            "discoveryLiteCheckInterval": 2,
+            "connectorPingInterval": 30,
+            "clusterSyncServiceInterval": 2,
+            "socketConnectTimeout": 10,
+            "clusterSyncServiceTimeout": 120,
+            "minEventDelay": 3,
+            "autoStopLocalLoopEnabled": false,
+            "backoffStableFactor": "",
+            "topologyConnectorWhitelist": [
+                "localhost",
+                "127.0.0.1"
+            ],
+            "sharedKey": ""
+        }
+    }
+}

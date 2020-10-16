@@ -20,11 +20,11 @@ ARG CMS_ARTIFACT_ID=org.apache.sling.cms.feature
 ARG CMS_VERSION=0.16.3-SNAPSHOT
 ARG LAUNCHER_VERSION=1.1.6
 ARG FM_SEED_CLASSIFIER=slingcms-composite-seed
-ARG FM_RUNMODE_CLASSIFIER=runmode-standalone
+ARG RUNMODE=standalone
 ARG FM_RUNTIME_CLASSIFIER=slingcms-composite-runtime
 ENV ADDITIONAL_FEATURE_COORDINATE=${ADDITIONAL_FEATURE_COORDINATE}
 ENV CMS_ARTIFACT_ID=${CMS_ARTIFACT_ID}
-ENV FM_RUNMODE_CLASSIFIER=${FM_RUNMODE_CLASSIFIER}
+ENV RUNMODE=${RUNMODE}
 ENV FM_RUNTIME_CLASSIFIER=${FM_RUNTIME_CLASSIFIER}
 
 # Configure directories
@@ -39,11 +39,13 @@ COPY download-dependencies.sh /opt/slingcms/setup/
 RUN /bin/bash /opt/slingcms/setup/download-dependencies.sh
 COPY setup-composite.sh /opt/slingcms/setup/
 RUN /bin/bash /opt/slingcms/setup/setup-composite.sh
+COPY config-${RUNMODE}.json /opt/slingcms/features
 
 # Expose endpoints
 EXPOSE 8080
 
 # Start Sling CMS
 CMD exec java -jar org.apache.sling.feature.launcher.jar \
-    -f *.slingosgifeature  \
-    -f features/*.slingosgifeature 
+    -f *.slingosgifeature \
+    -f features/*.slingosgifeature \
+    -f features/*.json

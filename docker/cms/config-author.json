@@ -1,0 +1,56 @@
+{
+    "id": "org.apache.sling:org.apache.sling.cms.docker:slingfeature:author:1.0.0",
+    "configurations": {
+        "org.apache.sling.distribution.agent.impl.ForwardDistributionAgentFactory~default": {
+            "allowed.roots": [],
+            "async.delivery": false,
+            "details": "",
+            "enabled": true,
+            "http.conn.timeout": 10,
+            "log.level": "info",
+            "name": "default",
+            "packageBuilder.target": "(name=default)",
+            "packageImporter.endpoints": [],
+            "passiveQueues": [],
+            "priorityQueues": [],
+            "queue.processing.enabled": true,
+            "queue.provider": "jobs",
+            "requestAuthorizationStrategy.target": "(name=default)",
+            "retry.attempts": 100,
+            "retry.strategy": "none",
+            "title": "Default",
+            "transportSecretProvider.target": "(name=default)",
+            "triggers.target": "(name=)"
+        },
+        "org.apache.sling.distribution.transport.impl.UserCredentialsDistributionTransportSecretProvider~default": {
+            "name": "default",
+            "username": "admin",
+            "password": "admin"
+        },
+        "org.apache.sling.discovery.oak.Config": {
+            "invertLeaderElectionPrefixOrder": false,
+            "enableSyncToken": true,
+            "hmacEnabled": false,
+            "soTimeout": 10,
+            "connectorPingTimeout": 120,
+            "enableEncryption": false,
+            "gzipConnectorRequestsEnabled": false,
+            "backoffStandbyFactor": "",
+            "topologyConnectorUrls": [],
+            "hmacSharedKeyTTL": 14400000,
+            "leaderElectionPrefix": 1,
+            "discoveryLiteCheckInterval": 2,
+            "connectorPingInterval": 30,
+            "clusterSyncServiceInterval": 2,
+            "socketConnectTimeout": 10,
+            "clusterSyncServiceTimeout": 120,
+            "minEventDelay": 3,
+            "autoStopLocalLoopEnabled": false,
+            "backoffStableFactor": "",
+            "topologyConnectorWhitelist": [
+                "*"
+            ],
+            "sharedKey": ""
+        }
+    }
+}

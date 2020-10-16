@@ -1,4 +1,14 @@
 {
+    "bundles":[
+        {
+            "id":"org.apache.sling:org.apache.sling.cms.reference-content:${cms.version}",
+            "start-order":"10"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.cms.ui-content:${cms.version}",
+            "start-order":"5"
+        }
+    ],
     "configurations": {
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
             "name": "Default NodeStore",

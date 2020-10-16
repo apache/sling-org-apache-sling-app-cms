@@ -15,7 +15,7 @@ services:
     build: 
       context: cms
       args:
-        FM_RUNMODE_CLASSIFIER: runmode-author
+        RUNMODE: author
     ports:
       - "8080:8080"
     volumes:
@@ -24,7 +24,7 @@ services:
     build: 
       context: cms
       args:
-        FM_RUNMODE_CLASSIFIER: runmode-renderer
+        RUNMODE: renderer
     ports:
       - "8090:8080"
     volumes:

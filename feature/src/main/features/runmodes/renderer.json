@@ -7,39 +7,19 @@
             "agents": []
         },
         "org.apache.sling.cms.core.publication.PublicationPropertyProvider": {
-            "endpointPath": "/libs/sling/distribution/services/importers/default"
+            "endpointPath": "libs/sling/distribution/services/importer/default"
         },
         "org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory~default": {
             "packageBuilder.target": "(name=default)",
             "name": "default"
         },
-        "org.apache.sling.discovery.oak.Config": {
-            "invertLeaderElectionPrefixOrder": false,
-            "enableSyncToken": true,
-            "hmacEnabled": false,
-            "soTimeout": 10,
-            "connectorPingTimeout": 120,
-            "enableEncryption": false,
-            "gzipConnectorRequestsEnabled": false,
-            "backoffStandbyFactor": "",
-            "topologyConnectorUrls": [
-                "http://localhost:8080/libs/sling/topology/connector"
-            ],
-            "hmacSharedKeyTTL": 14400000,
-            "leaderElectionPrefix": 1,
-            "discoveryLiteCheckInterval": 2,
-            "connectorPingInterval": 30,
-            "clusterSyncServiceInterval": 2,
-            "socketConnectTimeout": 10,
-            "clusterSyncServiceTimeout": 120,
-            "minEventDelay": 3,
-            "autoStopLocalLoopEnabled": false,
-            "backoffStableFactor": "",
-            "topologyConnectorWhitelist": [
-                "localhost",
-                "127.0.0.1"
-            ],
-            "sharedKey": ""
+        "org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory~default": {
+            "aclHandling": "IGNORE",
+            "cugHandling": "OVERWRITE",
+            "importMode": "REPLACE",
+            "name": "default",
+            "package.filters": ["/home/users|-.*/.tokens", "/home/users|-.*/rep:cache"],
+            "type": "jcrvlt"
         }
     }
 }

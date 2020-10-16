@@ -7,11 +7,9 @@
         "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
             "instanceType": "AUTHOR",
             "publicationMode": "CONTENT_DISTRIBUTION",
-            "agents": []
-        },
-        "org.apache.sling.distribution.packaging.impl.importer.LocalDistributionPackageImporterFactory~default": {
-            "packageBuilder.target": "(name=default)",
-            "name": "default"
+            "agents": [
+                "default"
+            ]
         },
         "org.apache.sling.distribution.serialization.impl.vlt.VaultDistributionPackageBuilderFactory~default": {
             "fileThreshold": 1,
