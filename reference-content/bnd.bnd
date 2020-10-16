@@ -1,0 +1,1 @@
+Sling-Initial-Content: jcr_root;ignoreImportProviders:=xml,jcr_root/content/apache;overwrite:=false;uninstall:=false;path:=/content/apache,jcr_root/etc/taxonomy/reference;overwrite:=false;uninstall:=false;path:=/etc/taxonomy/reference,

@@ -1,0 +1,1 @@
+Sling-Initial-Content: jcr_root;overwriteProperties=true;overwrite=false;ignoreImportProviders:=xml,jcr_root/conf/global;overwrite=true;ignoreImportProviders:=xml;path:=/conf/global,jcr_root/etc/clientlibs;overwrite=true;ignoreImportProviders:=xml;path:=/etc/clientlibs,jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy

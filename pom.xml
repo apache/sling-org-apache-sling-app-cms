@@ -38,7 +38,9 @@
         <module>transformer</module>
         <module>login</module>
         <module>ui</module>
+        <module>ui-content</module>
         <module>reference</module>
+        <module>reference-content</module>
         <module>feature</module>
         <module>archetype</module>
     </modules>
