@@ -1,0 +1,142 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+   http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login :: Apache Sling CMS</title>
+    <link
+      href="/static/clientlibs/sling-cms/css/styles.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/clientlibs/sling-cms/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/clientlibs/sling-cms/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/clientlibs/sling-cms/img/favicon-16x16.png"
+    />
+    <link
+      rel="shortcut icon"
+      href="/static/clientlibs/sling-cms/img/favicon.ico"
+    />
+    <meta name="apple-mobile-web-app-title" content="Apache Sling CMS" />
+    <meta name="application-name" content="Apache Sling CMS" />
+    <link
+      rel="mask-icon"
+      href="/static/clientlibs/sling-cms/img/safari-pinned-tab.svg"
+      color="#662f8f"
+    />
+    <meta name="msapplication-TileColor" content="#662f8f" />
+    <meta name="theme-color" content="#662f8f" />
+    <meta
+      name="msapplication-config"
+      content="/static/clientlibs/sling-cms/img/browserconfig.xml"
+    />
+    <link
+      rel="manifest"
+      href="/static/clientlibs/sling-cms/img/site.webmanifest"
+    />
+  </head>
+
+  <body class="cms has-background-light">
+    <div class="gradient"></div>
+    <div class="container is-fluid">
+      <div class="columns is-centered is-vcentered" style="min-height: calc(100vh)">
+        <div class="column is-two-thirds-tablet is-half-desktop is-one-third-widescreen">
+          <div class="box mt-6">
+            <div class="columns">
+              <div class="column">
+                <a class="" href="http://sling.apache.org">
+                  <img src="/static/clientlibs/sling-cms/img/sling-logo.svg" width="100" alt="Apache Sling CMS">
+                </a>
+                <h1 class="pt-3 is-size-4">Welcome to Apache Sling CMS</h1>
+                <p>
+                  Sling CMS is a fully-featured Content Management System built
+                  with
+                  <a
+                    href="https://sling.apache.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Apache Sling</a
+                  >.
+                </p>
+              </div>
+              <div class="column">
+                <h3>Login</h3>
+                <p class="has-text-danger">${j_reason}</p>
+                <form method="POST" action="/j_security_check" class="py-3">
+                  <input type="hidden" name="_charset_" value="UTF-8" />
+                  <input type="hidden" name="resource" value="${resource}" />
+                  <div class="field">
+                    <label class="label is-sr-only" for="j_username"
+                      >Username</label
+                    >
+                    <div class="control">
+                      <input
+                        class="input"
+                        name="j_username"
+                        type="text"
+                        placeholder="Username"
+                        required="required"
+                      />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label is-sr-only" for="j_password"
+                      >Password</label
+                    >
+                    <div class="control">
+                      <input
+                        class="input"
+                        name="j_password"
+                        type="password"
+                        placeholder="Password"
+                        required="required"
+                      />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <button id="login" class="button is-primary" type="submit">
+                      Login
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="/static/clientlibs/sling-cms/js/scripts-all.min.js"
+      async
+    ></script>
+  </body>
+</html>

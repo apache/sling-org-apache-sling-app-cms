@@ -99,6 +99,10 @@
             "start-order":"20"
         },
         {
+            "id":"org.apache.sling:org.apache.sling.cms.login:${cms.version}",
+            "start-order":"20"
+        },
+        {
             "id":"org.apache.sling:org.apache.sling.commons.crypto:1.0.0",
             "start-order":"15"
         },
