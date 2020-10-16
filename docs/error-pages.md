@@ -16,8 +16,8 @@ When a user encounters an error on a Sling CMS site, Sling CMS will attempt to p
 
  - Check for a `sling:Page` at */content/[SITE_GROUP]/[SITE_NAME]/errors/[STATUS_CODE]*
  - Check for a `sling:Page` at */content/[SITE_GROUP]/[SITE_NAME]/errors/default*
- - Check for a `sling:Page` at */libs/sling-cms/content/errorhandling/[STATUS_CODE]*
- - Check for a `sling:Page` at */libs/sling-cms/content/errorhandling/default*
+ - Check for a `sling:Page` at */static/sling-cms/errorhandling/[STATUS_CODE]*
+ - Check for a `sling:Page` at */static/sling-cms/errorhandling/default*
  
 This allows you to customize the response to an error while not providing too much information to your users. For example, if you provide the following structure:
 
