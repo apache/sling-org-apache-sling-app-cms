@@ -131,7 +131,6 @@ public class TransformServlet extends SlingSafeMethodsServlet {
             op.setReplaceSelectors("transform");
             RequestDispatcher disp = request.getRequestDispatcher(config.errorResourcePath(), op);
             disp.forward(request, response);
-
         }
     }
 
@@ -140,7 +139,7 @@ public class TransformServlet extends SlingSafeMethodsServlet {
         log.debug("Finding transformations with {}", name);
 
         Iterator<Resource> transformations = serviceResolver.findResources(
-                "SELECT * FROM [nt:unstructured] WHERE ISDESCENDANTNODE([/conf]) AND [sling:resourceType]='sling-cms/components/caconfig/transformation' AND [name]='"
+                "SELECT * FROM [nt:unstructured] WHERE (ISDESCENDANTNODE([/conf]) OR ISDESCENDANTNODE([/libs/conf]) OR ISDESCENDANTNODE([/apps/conf])) AND [sling:resourceType]='sling-cms/components/caconfig/transformation' AND [name]='"
                         + name + "'",
                 Query.JCR_SQL2);
         if (transformations.hasNext()) {
