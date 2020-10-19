@@ -37,11 +37,11 @@
         <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
             <c:set var="selected" value="" />
             <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
-                <c:set var="selected" value="is-selected" />
+                <c:set var="selected" value="is-active" />
             </c:if>
             <c:forEach var="alternative" items="${item.valueMap.alternatives}">
                 <c:if test="${fn:startsWith(slingRequest.requestURI,alternative)}">
-                    <c:set var="selected" value="is-selected" />
+                    <c:set var="selected" value="is-active" />
                 </c:if>
             </c:forEach>
             <c:set var="enabled" value="${currentUser.administrator || empty item.valueMap.enabledGroups}" />
@@ -56,7 +56,7 @@
                 </c:forEach>
             </c:if>
             <c:if test="${enabled}">
-                <li class="${selected}"><a href="${item.valueMap.link}">${item.valueMap.text}</a></li>
+                <li><a href="${item.valueMap.link}" class="${selected}">${item.valueMap.text}</a></li>
             </c:if>
         </c:forEach>
     </ul>

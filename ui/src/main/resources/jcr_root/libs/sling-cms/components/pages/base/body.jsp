@@ -19,19 +19,19 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <body class="cms">
     <div class="gradient"></div>
-    <div class="container is-fluid">
-    <sling:call script="nav.jsp" />
-    <div class="columns">
-        <div class="column is-2">
-            <sling:include
-                path="/mnt/overlay/sling-cms/content/start/jcr:content/nav"
-                resourceType="sling-cms/components/general/container" />
+    <div class="main-section has-background-light">
+        <sling:call script="nav.jsp" />
+        <div class="columns">
+            <div class="column is-2 sidebar is-full-height">
+                <sling:include
+                    path="/mnt/overlay/sling-cms/content/start/jcr:content/nav"
+                    resourceType="sling-cms/components/general/container" />
+            </div>
+            <div class="column has-background-white-bis is-full-height">
+                <div class="Main-Content"> <sling:call
+                    script="content.jsp" /> </div>
+            </div>
         </div>
-        <div class="column">
-            <div class="Main-Content"> <sling:call
-                script="content.jsp" /> </div>
-        </div>
-    </div>
     </div>
     <sling:call script="scripts.jsp" />
 </body>

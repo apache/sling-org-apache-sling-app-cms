@@ -31,9 +31,14 @@ body.cms {
   @media screen and (min-width: $tablet), print {
     background: url("../img/gradient.jpg") no-repeat;
     background-attachment: fixed;
+    display: flex;
   }
-  @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
-    padding-left: 2em;
+}
+
+.gradient {
+  @media screen and (min-width: $tablet), print {
+    height: 100vh;
+    width: 16px;
   }
 }
 
@@ -151,6 +156,12 @@ small.card-footer-item {
   cursor: not-allowed;
 }
 
+.is-full-height {
+  @media screen and (min-width: $tablet), print {
+    height: calc(100vh - 65px);
+  }
+}
+
 .is-linked {
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -179,6 +190,18 @@ small.card-footer-item {
   border-top-color: transparent;
 }
 
+.Main-Content {
+  padding: 12px 0;
+}
+
+.main-section {
+  flex-grow: 1;
+}
+
+.main-section .columns {
+  padding: 0 16px;
+}
+
 .menu {
   overflow: auto;
 }
@@ -194,6 +217,10 @@ small.card-footer-item {
 
 .menu-label:not(:last-child) {
   margin: 0;
+}
+
+.navbar {
+  border-bottom: 0.5px solid hsl(0, 0%, 86%);
 }
 
 nav .level-left,
@@ -264,6 +291,12 @@ nav .level-right {
 #search-results .tile {
   flex-wrap: wrap;
   padding: 0.5em;
+}
+
+.sidebar {
+  @media screen and (min-width: $tablet) {
+    border-right: 0.5px solid hsl(0, 0%, 86%);
+  }
 }
 
 .table__wrapper {

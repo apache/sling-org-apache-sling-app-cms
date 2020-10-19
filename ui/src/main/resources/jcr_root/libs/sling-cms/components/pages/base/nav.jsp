@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<nav class="navbar" role="navigation" aria-label="main mavigation">
+<nav class="navbar has-background-light" role="navigation" aria-label="main mavigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="http://sling.apache.org">
             <img src="${branding.logo}" width="100" alt="${branding.appName}"/>
