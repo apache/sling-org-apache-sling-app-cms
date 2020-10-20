@@ -45,7 +45,9 @@ COPY config-${RUNMODE}.json /opt/slingcms/features
 EXPOSE 8080
 
 # Start Sling CMS
-CMD exec java -jar org.apache.sling.feature.launcher.jar \
+CMD exec java \
+    -Dsling.run.modes=composite-seed,${RUNMODE} \
+    -jar org.apache.sling.feature.launcher.jar \
     -f *.slingosgifeature \
     -f features/*.slingosgifeature \
     -f features/*.json

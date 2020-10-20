@@ -15,7 +15,9 @@ SLING_USERNAME="${SLING_USERNAME:-admin}"
 SLING_PASSWORD="${SLING_PASSWORD:-admin}"
 
 echo "Creating composite seed..."
-java -jar org.apache.sling.feature.launcher.jar \
+java \
+    -Dsling.run.modes=composite-seed,${RUNMODE} \
+    -jar org.apache.sling.feature.launcher.jar \
     -f /opt/slingcms/setup/${CMS_ARTIFACT_ID}-${FM_SEED_CLASSIFIER}.slingosgifeature \
     -f /opt/slingcms/features/*.slingosgifeature &
 SLING_PID=$!
