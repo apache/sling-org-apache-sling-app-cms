@@ -166,6 +166,8 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <finalName>org.apache.sling.cms-${project.version}</finalName>
                     <archive>
                         <manifest>
                             <mainClass>
