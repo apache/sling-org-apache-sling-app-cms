@@ -20,7 +20,7 @@
 			"jcr:primaryType": "nt:unstructured",
 			"properties": {
 				"jcr:primaryType": "nt:unstructured",
-				"cqTags": {
+				"slingTaxonomy": {
 					"jcr:primaryType": "nt:unstructured",
 					"ordered": false,
 					"propertyIndex": true,

@@ -3,8 +3,7 @@
     "compatVersion": 2,
     "type": "lucene",
     "async": [
-        "async",
-        "nrt"
+        "async"
     ],
     "evaluatePathRestrictions": true,
     "excludedPaths": [
@@ -60,14 +59,14 @@
             "jcr:primaryType": "nt:unstructured",
             "properties": {
                 "jcr:primaryType": "nt:unstructured",
-                "cqLastModified": {
+                "slingLastModified": {
                     "jcr:primaryType": "nt:unstructured",
                     "ordered": true,
                     "propertyIndex": true,
                     "name": "jcr:content/sling:lastModified",
                     "type": "Date"
                 },
-                "cqLastModifiedBy": {
+                "slingLastModifiedBy": {
                     "jcr:primaryType": "nt:unstructured",
                     "propertyIndex": true,
                     "name": "jcr:content/sling:lastModifiedBy",
