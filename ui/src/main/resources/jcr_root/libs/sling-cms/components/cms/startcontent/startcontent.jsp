@@ -51,7 +51,7 @@
         </nav>
     </div>
     <div class="column">
-        <nav class="panel">
+        <nav class="panel has-background-white">
             <p class="panel-heading">
                 <fmt:message key="slingcms.findcontent" />
             </p>
