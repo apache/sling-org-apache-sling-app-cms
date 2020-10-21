@@ -1,18 +1,21 @@
 {
     "jcr:primaryType": "oak:QueryIndexDefinition",
     "compatVersion": 2,
+    "indexPath": "/oak:index/slingFileLucene",
+    "name": "slingFileLucene",
     "type": "lucene",
-    "async": "async",
+    "async": [
+        "async",
+        "nrt"
+    ],
     "evaluatePathRestrictions": true,
-    "reindex": false,
-    "reindexCount": 1,
     "excludedPaths": [
         "/var",
         "/jcr:system"
     ],
     "aggregates": {
         "jcr:primaryType": "nt:unstructured",
-        "sling:Asset": {
+        "sling:File": {
             "jcr:primaryType": "nt:unstructured",
             "include0": {
                 "jcr:primaryType": "nt:unstructured",
@@ -36,6 +39,7 @@
                     "useInSuggest": true,
                     "propertyIndex": true,
                     "useInSpellcheck": true,
+                    "analyzed": true,
                     "name": "jcr:content/sling:taxonomy"
                 },
                 "jcrTitle": {
@@ -44,6 +48,7 @@
                     "useInSuggest": true,
                     "propertyIndex": true,
                     "useInSpellcheck": true,
+                    "analyzed": true,
                     "name": "jcr:content/jcr:title",
                     "boost": 2
                 },
@@ -53,7 +58,17 @@
                     "useInSuggest": true,
                     "propertyIndex": true,
                     "useInSpellcheck": true,
+                    "analyzed": true,
                     "name": "jcr:content/jcr:description"
+                },
+                "nodeName": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "nodeScopeIndex": true,
+                    "useInSuggest": true,
+                    "propertyIndex": true,
+                    "useInSpellcheck": true,
+                    "name": ":nodeName",
+                    "type": "String"
                 }
             }
         }

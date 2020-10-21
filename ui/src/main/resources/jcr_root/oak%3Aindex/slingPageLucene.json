@@ -1,17 +1,18 @@
 {
     "jcr:primaryType": "oak:QueryIndexDefinition",
     "compatVersion": 2,
+    "indexPath": "/oak:index/slingPageLucene",
+    "name": "slingPageLucene",
     "type": "lucene",
     "async": [
-        "async"
+        "async",
+        "nrt"
     ],
     "evaluatePathRestrictions": true,
     "excludedPaths": [
         "/var",
         "/jcr:system"
     ],
-    "reindex": false,
-    "reindexCount": 1,
     "aggregates": {
         "jcr:primaryType": "nt:unstructured",
         "sling:Page": {
@@ -78,6 +79,7 @@
                     "useInSuggest": true,
                     "propertyIndex": true,
                     "useInSpellcheck": true,
+                    "analyzed": true,
                     "name": "jcr:content/jcr:title",
                     "type": "String"
                 }

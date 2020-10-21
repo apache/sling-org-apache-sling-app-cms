@@ -1,17 +1,18 @@
 {
     "jcr:primaryType": "oak:QueryIndexDefinition",
     "compatVersion": 2,
+    "indexPath": "/oak:index/slingTaxonomy",
+    "name": "slingTaxonomy",
     "type": "lucene",
     "async": [
         "async",
         "nrt"
     ],
+    "evaluatePathRestrictions": true,
     "excludedPaths": [
         "/var",
         "/jcr:system"
     ],
-    "reindex": false,
-    "reindexCount": 1,
     "indexRules": {
         "jcr:primaryType": "nt:unstructured",
         "sling:Taxonomy": {
@@ -20,7 +21,10 @@
                 "jcr:primaryType": "nt:unstructured",
                 "jcrTitle": {
                     "jcr:primaryType": "nt:unstructured",
+                    "nodeScopeIndex": true,
+                    "useInSuggest": true,
                     "propertyIndex": true,
+                    "useInSpellcheck": true,
                     "analyzed": true,
                     "name": "jcr:title",
                     "type": "String"
