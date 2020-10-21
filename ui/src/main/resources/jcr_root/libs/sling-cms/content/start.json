@@ -36,16 +36,16 @@
                     "sitenav": {
                         "jcr:primaryType": "nt:unstructured",
                         "alternatives": [
-                            "/cms/site/content.html/content",
-                            "/cms/site/content.table.html/content",
-                            "/cms/site/content.grid.html/content",
-                            "/cms/file/optimize.html"
+                            "/cms/site"
                         ],
                         "link": "/cms/site/sites.html/content",
                         "text": "Sites"
                     },
                     "staticnav": {
                         "jcr:primaryType": "nt:unstructured",
+                        "alternatives": [
+                            "/cms/static"
+                        ],
                         "link": "/cms/static/content.html/static",
                         "text": "Static Content"
                     },
