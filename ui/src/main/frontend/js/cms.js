@@ -197,6 +197,11 @@ rava.bind('.sling-cms-include-config', {
             const markup = await response.text();
             container.innerHTML = markup;
           }
+          window.parent.parent.postMessage({
+            action: 'slingcms.openmodal',
+            url: link,
+            title,
+          }, window.location.origin);
         }
       }
       document.querySelector(container.dataset.source).addEventListener('change', loadContent);

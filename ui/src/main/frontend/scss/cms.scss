@@ -293,6 +293,10 @@ nav .level-right {
   padding: 0.5em;
 }
 
+.sling-cms-include-config {
+  min-height: 200px;
+}
+
 .sidebar {
   @media screen and (min-width: $tablet) {
     border-right: 0.5px solid hsl(0, 0%, 86%);
