@@ -42,6 +42,14 @@
                 "/static",
                 "/jcr:system/rep:permissionStore/oak:mount-libs-default"
             ]
+        },
+        "org.apache.sling.jcr.contentloader.internal.BundleContentLoaderListener": {
+            "includedTargets": [
+                "^\/apps\/.*$",
+                "^\/libs\/.*$",
+                "^\/oak:index\/.*$",
+                "^\/static\/.*$"
+            ]
         }
     }
 }

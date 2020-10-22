@@ -273,7 +273,6 @@
                 "org.apache.sling.extensions.webconsolesecurityprovider",
                 "org.apache.sling.i18n",
                 "org.apache.sling.jcr.base",
-                "org.apache.sling.jcr.contentloader",
                 "org.apache.sling.jcr.jackrabbit.usermanager",
                 "org.apache.sling.jcr.oak.server",
                 "org.apache.sling.jcr.repoinit",
@@ -290,6 +289,11 @@
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~installer-factories":{
             "user.mapping":[
                 "org.apache.sling.installer.factory.packages=sling-package-install"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~jcr-contentloader":{
+            "user.mapping":[
+                "org.apache.sling.jcr.contentloader=sling-jcr-contentloader"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~jcr-install":{
@@ -373,6 +377,14 @@
         "set ACL for sling-jcr-install",
         "allow    jcr:read    on    /",
         "allow    rep:write    on /apps/sling/install",
+        "end",
+        "",
+        "# jcr-contentloader",
+        "create service user sling-jcr-contentloader",
+        "",
+        "set ACL for sling-jcr-contentloader",
+        "allow    jcr:all     on    /",
+        "allow   jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository",
         "end",
         "",
         "# content-package installer",
