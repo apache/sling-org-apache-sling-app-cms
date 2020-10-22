@@ -47,14 +47,14 @@
             "role": "composite-mount-libs",
             "customBlobStore": false,
             "nodeDeduplicationCache.size": 0,
-            "repository.home": "sling/composite/repository-libs"
+            "repository.home": "${sling.home}/composite/repository-libs"
         },
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreFactory~global": {
             "service.ranking": 100,
             "role": "composite-global",
             "registerDescriptors": true,
             "dispatchChanges": true,
-            "repository.home": "sling/composite/repository-global"
+            "repository.home": "${sling.home}/composite/repository-global"
         },
         "org.apache.sling.jcr.contentloader.internal.BundleContentLoaderListener": {
             "includedTargets": [
@@ -63,7 +63,8 @@
             "excludedTargets": [
                 "^\/apps\/.*$",
                 "^\/libs\/.*$",
-                "^\/oak:index\/.*$"
+                "^\/oak:index\/.*$",
+                "^\/static\/.*$"
             ]
         }
     }

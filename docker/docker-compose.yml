@@ -19,7 +19,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - sling-author:/opt/slingcms/sling/composite/repository-global
+      - sling-author:/opt/slingcms/launcher/composite/repository-global
   renderer:
     build: 
       context: cms
@@ -28,7 +28,7 @@ services:
     ports:
       - "8090:8080"
     volumes:
-      - sling-renderer:/opt/slingcms/sling/composite/repository-global
+      - sling-renderer:/opt/slingcms/launcher/composite/repository-global
   webcache:
     build: webcache
     ports:

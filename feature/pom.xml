@@ -223,7 +223,7 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.feature.launcher</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.8</version>
         </dependency>
     </dependencies>
 </project>

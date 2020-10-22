@@ -7,7 +7,7 @@
             "name": "Default NodeStore"
         },
         "org.apache.sling.commons.log.LogManager.factory.config~oak.log": {
-            "org.apache.sling.commons.log.pattern": "%-4r [%t] %-5p %c %x - %m%n",
+            "org.apache.sling.commons.log.pattern": "%d{dd.MM.yyyy HH:mm:ss.SSS} *%level* [%thread] %logger %msg%n",
             "org.apache.sling.commons.log.names": [
                 "org.apache.jackrabbit.oak"
             ],
@@ -15,7 +15,7 @@
             "org.apache.sling.commons.log.file": "logs/oak.log"
         },
         "org.apache.sling.commons.log.LogManager.factory.config~composum.log": {
-            "org.apache.sling.commons.log.pattern": "%-4r [%t] %-5p %c %x - %m%n",
+            "org.apache.sling.commons.log.pattern": "%d{dd.MM.yyyy HH:mm:ss.SSS} *%level* [%thread] %logger %msg%n",
             "org.apache.sling.commons.log.names": [
                 "com.composum"
             ],
@@ -24,7 +24,7 @@
         },
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService~global": {
             "name": "Default NodeStore",
-            "repository.home": "sling/composite/repository-libs"
+            "repository.home": "${sling.home}/composite/repository-libs"
         },
         "org.apache.jackrabbit.oak.composite.CrossMountReferenceValidatorProvider": {
             "failOnDetection": true

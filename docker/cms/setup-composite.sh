@@ -45,10 +45,10 @@ if [ $STARTED -eq 1 ]; then
     exit 2
 else
     echo "Cleaning up seeding..."
-    rm -rf /opt/slingcms/launcher
-    cd sling/composite/repository-libs
-    ln -s segmentstore segmentstore-composite-mount-libs
-    cd ../../..
-    rm -rf /opt/slingcms/setup
+    rm -rf /opt/slingcms/launcher/framework /opt/slingcms/launcher/logs \
+        /opt/slingcms/launcher/repository /opt/slingcms/launcher/resources \
+        /opt/slingcms/setup
+    ln -s /opt/slingcms/launcher/composite/repository-libs/segmentstore \
+        /opt/slingcms/launcher/composite/repository-libs/segmentstore-composite-mount-libs
 fi
 echo "Repository seeded successfully!"
