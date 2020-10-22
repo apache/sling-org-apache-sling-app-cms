@@ -207,6 +207,12 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
+              <groupId>org.apache.sling</groupId>
+              <artifactId>org.apache.sling.scripting.jsp.taglib</artifactId>
+              <version>2.4.0</version>
+              <scope>provided</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.servlets.post</artifactId>
                 <version>2.3.30</version>
