@@ -1,6 +1,5 @@
 
 {
-    "id":"org.apache.sling:org.apache.sling.cms.feature:slingfeature:cms:${cms.version}",
     "bundles":[
         {
             "id":"com.github.livesense:org.liveSense.fragment.sun.misc:1.0.5",

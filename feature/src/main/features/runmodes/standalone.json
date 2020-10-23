@@ -1,5 +1,4 @@
 {
-    "id": "org.apache.sling:org.apache.sling.cms.feature:slingfeature:runmode-standalone:${cms.version}",
     "configurations": {
         "org.apache.sling.cms.core.publication.PublicationManagerFactoryImpl": {
             "instanceType": "STANDALONE",
