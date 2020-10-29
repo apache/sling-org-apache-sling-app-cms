@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "Scripts to power the front-end of Apache Sling's CMS example.",
     "dependencies": {
-        "bulma": "^0.9.0",
-        "gulp-noop": "^1.0.0",
+        "bulma": "^0.9.1",
+        "gulp-noop": "^1.0.1",
         "handlebars": "^4.7.6",
         "jam-icons": "^2.0.0",
         "js-autocomplete": "^1.0.4",
@@ -21,7 +21,7 @@
         "gulp-header": "^2.0.7",
         "gulp-rename": "^2.0.0",
         "gulp-sass": "^4.1.0",
-        "gulp-terser": "^1.1.7",
+        "gulp-terser": "^1.4.0",
         "streamqueue": "^1.1.2"
     },
     "license": "Apache-2.0"
