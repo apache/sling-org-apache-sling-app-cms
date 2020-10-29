@@ -9,4 +9,4 @@ USER gitpod
 #
 # More information: https://www.gitpod.io/docs/42_config_docker/
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
-             && sdk install java 8.0.242.hs-adpt"
+             && sdk install java 11.0.9.hs-adpt"
