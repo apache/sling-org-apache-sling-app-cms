@@ -196,6 +196,9 @@ small.card-footer-item {
 
 .main-section {
   flex-grow: 1;
+  @media screen and (min-width: $tablet), print {
+    width: calc(1vw - 16px);
+  }
 }
 
 .main-section .columns {

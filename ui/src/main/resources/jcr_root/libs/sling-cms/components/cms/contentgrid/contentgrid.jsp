@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="reload-container scroll-container contentnav" data-path="${resource.path}.grid.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
-    <div class="tile is-ancestor">
+    <div class="columns is-multiline">
         <c:forEach var="child" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}" varStatus="status">
             <c:set var="showCard" value="${false}" />
             <c:forEach var="type" items="${sling:listChildren(sling:getRelativeResource(resource,'types'))}">
@@ -27,7 +27,7 @@
                 </c:if>
             </c:forEach>
             <c:if test="${showCard}">
-                <div class="tile is-parent is-3 contentnav__item">
+                <div class="column is-half-tablet is-one-third-widescreen is-one-quarter-fullhd contentnav__item">
                     <sling:getResource base="${resource}" path="types/${child.valueMap['jcr:primaryType']}/columns/name" var="nameConfig" />
                     <c:choose>
                         <c:when test="${not empty child.valueMap['jcr:content/jcr:title']}">
@@ -40,83 +40,81 @@
                             <c:set var="title" value="${child.name}" />
                         </c:otherwise>
                     </c:choose>
-                    <div class="tile is-child">
-                        <div class="card is-linked" title="${sling:encode(child.name,'HTML_ATTR')}" data-value="${child.path}">
-                            <div class="card-image">
-                                <figure class="image is-5by4">
-                                    <c:choose>
-                                        <c:when test="${child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
-                                            <img src="${child.path}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${child.name}">
-                                        </c:when>
-                                        <c:when test="${child.resourceType == 'sling:Site'}">
-                                            <img src="/static/sling-cms/thumbnails/site.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
-                                        </c:when>
-                                        <c:when test="${child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder'}">
-                                            <img src="/static/sling-cms/thumbnails/folder.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
-                                        </c:when>
-                                        <c:when test="${child.resourceType == 'sling:Page'}">
-                                            <c:set var="templateThumbnail" value="${child.valueMap['jcr:content/sling:template']}/thumbnail"/>
-                                            <c:choose>
-                                                <c:when test="${sling:getResource(resourceResolver, templateThumbnail) != null}">
-                                                    <img src="${templateThumbnail}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="/static/sling-cms/thumbnails/page.png" loading="lazy" alt="${child.name}">
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <img src="/static/sling-cms/thumbnails/file.png" loading="lazy" alt="${child.name}">
-                                        </c:otherwise>
-                                    </c:choose>
-                                </figure>
-                                <div class="is-vhidden cell-actions">
-                                    <sling:getResource base="${resource}" path="types/${child.valueMap['jcr:primaryType']}/columns/actions" var="colConfig" />
-                                    <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
-                                        <c:set var="actionConfig" value="${ac}" scope="request" />
-                                        <sling:include path="${child.path}" resourceType="${actionConfig.resourceType}" />
-                                    </c:forEach>
-                                </div>
+                    <div class="card is-linked" title="${sling:encode(child.name,'HTML_ATTR')}" data-value="${child.path}">
+                        <div class="card-image">
+                            <figure class="image is-5by4">
+                                <c:choose>
+                                    <c:when test="${child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
+                                        <img src="${child.path}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${child.name}">
+                                    </c:when>
+                                    <c:when test="${child.resourceType == 'sling:Site'}">
+                                        <img src="/static/sling-cms/thumbnails/site.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
+                                    </c:when>
+                                    <c:when test="${child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder'}">
+                                        <img src="/static/sling-cms/thumbnails/folder.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
+                                    </c:when>
+                                    <c:when test="${child.resourceType == 'sling:Page'}">
+                                        <c:set var="templateThumbnail" value="${child.valueMap['jcr:content/sling:template']}/thumbnail"/>
+                                        <c:choose>
+                                            <c:when test="${sling:getResource(resourceResolver, templateThumbnail) != null}">
+                                                <img src="${templateThumbnail}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${sling:encode(child.name, 'HTML_ATTR')}">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="/static/sling-cms/thumbnails/page.png" loading="lazy" alt="${child.name}">
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="/static/sling-cms/thumbnails/file.png" loading="lazy" alt="${child.name}">
+                                    </c:otherwise>
+                                </c:choose>
+                            </figure>
+                            <div class="is-vhidden cell-actions">
+                                <sling:getResource base="${resource}" path="types/${child.valueMap['jcr:primaryType']}/columns/actions" var="colConfig" />
+                                <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
+                                    <c:set var="actionConfig" value="${ac}" scope="request" />
+                                    <sling:include path="${child.path}" resourceType="${actionConfig.resourceType}" />
+                                </c:forEach>
                             </div>
-                            <footer class="card-footer">
-                                <div class="card-footer-item card-footer-group">
-                                    <span>${sling:encode(title,'HTML')}</span>
-                                    <c:catch var="ex">
-                                        <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${child.valueMap['jcr:content/jcr:lastModified'].time}" var="lastMod" />
-                                        <small>${lastMod}</small>
-                                    </c:catch>
-                                </div>
-                            </footer>
-                            <footer class="card-footer">
-                                <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.publication.PublicationManager" var="publicationManager" />
-                                <sling:adaptTo adaptable="${child}" adaptTo="org.apache.sling.cms.PublishableResource" var="publishableResource" />
-                                <c:if test="${child.resourceType == 'sling:Page' || child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
-                                    <c:choose>
-                                        <c:when test="${publishableResource.published && publicationManager.publicationMode == 'CONTENT_DISTRIBUTION'}">
-                                            <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                                Republish
-                                            </a>
-                                            <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                                Unpublish
-                                            </a>
-                                        </c:when>
-                                        <c:when test="${publishableResource.published}">
-                                            <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                                Unpublish
-                                            </a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
-                                                Publish
-                                            </a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:if>
-                                    <c:if test="${child.resourceType == 'sling:Site' || child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder' || child.resourceType == 'sling:Page'}">
-                                    <a href="${nameConfig.valueMap.prefix}${child.path}" class="card-footer-item item-link">Open</a>
-                                </c:if>
-                            </footer>
                         </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item card-footer-group">
+                                <span>${sling:encode(title,'HTML')}</span>
+                                <c:catch var="ex">
+                                    <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${child.valueMap['jcr:content/jcr:lastModified'].time}" var="lastMod" />
+                                    <small>${lastMod}</small>
+                                </c:catch>
+                            </div>
+                        </footer>
+                        <footer class="card-footer">
+                            <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.publication.PublicationManager" var="publicationManager" />
+                            <sling:adaptTo adaptable="${child}" adaptTo="org.apache.sling.cms.PublishableResource" var="publishableResource" />
+                            <c:if test="${child.resourceType == 'sling:Site' || child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder' || child.resourceType == 'sling:Page'}">
+                                <a href="${nameConfig.valueMap.prefix}${child.path}" class="card-footer-item item-link">Open</a>
+                            </c:if>
+                            <c:if test="${child.resourceType == 'sling:Page' || child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
+                                <c:choose>
+                                    <c:when test="${publishableResource.published && publicationManager.publicationMode == 'CONTENT_DISTRIBUTION'}">
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                                            Republish
+                                        </a>
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                                            Unpublish
+                                        </a>
+                                    </c:when>
+                                    <c:when test="${publishableResource.published}">
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+                                            Unpublish
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
+                                            Publish
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:if>
+                        </footer>
                     </div>
                 </div> 
             </c:if>
