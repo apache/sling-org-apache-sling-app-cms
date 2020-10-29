@@ -10,7 +10,7 @@
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<br/><h3>i18n Dictionary</h3><br/>"
+                "text": "<h3>i18n Dictionary</h3>"
             },
             "contentactions": {
                 "jcr:primaryType": "nt:unstructured",
