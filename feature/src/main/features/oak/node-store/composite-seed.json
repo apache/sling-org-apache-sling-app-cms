@@ -1,8 +1,5 @@
 {
     "configurations": {
-        "org.apache.felix.hc.core.impl.servlet.HealthCheckExecutorServlet~default": {
-            "servletPath": "/system/health"
-        },
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
             "name": "Default NodeStore"
         },

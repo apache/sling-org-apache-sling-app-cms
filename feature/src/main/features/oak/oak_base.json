@@ -151,6 +151,9 @@
         }
     ],
     "configurations":{
+        "org.apache.felix.hc.core.impl.servlet.HealthCheckExecutorServlet~default": {
+            "servletPath": "/system/health"
+        },
         "org.apache.felix.jaas.ConfigurationSpi":{
             "jaas.defaultRealmName":"jackrabbit.oak",
             "jaas.configProviderName":"FelixJaasProvider"
