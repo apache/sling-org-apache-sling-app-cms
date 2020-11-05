@@ -68,6 +68,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.web.repository }}:{{ .Values.image.web.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.web.pullPolicy }}
+          env:
+            - name: AUTHOR_URL
+              value: localhost
+            - name: RENDERER_URL
+              value: localhost
           ports:
             - name: http
               containerPort: 80

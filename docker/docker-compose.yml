@@ -30,7 +30,11 @@ services:
     volumes:
       - sling-renderer:/opt/slingcms/launcher/composite/repository-global
   webcache:
-    build: webcache
+    environment: 
+      AUTHOR_URL: author
+      RENDERER_URL: renderer
+    build: 
+      context: webcache
     ports:
       - "80:80"
 volumes:
