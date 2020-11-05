@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "slingcms-standalone.fullname" . }}
+  labels:
+    {{- include "slingcms-standalone.labels" . | nindent 4 }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ default "80Gi" .Values.storage }}
+status: {}
