@@ -54,10 +54,20 @@ spec:
               containerPort: 8080
               protocol: TCP
           livenessProbe:
+            initialDelaySeconds: {{ .Values.livenessProbe.cms.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.cms.periodSeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.cms.timeoutSeconds }}
+            successThreshold: {{ .Values.livenessProbe.cms.successThreshold }}
+            failureThreshold: {{ .Values.livenessProbe.cms.failureThreshold }}
             httpGet:
               path: /system/health
               port: http
           readinessProbe:
+            initialDelaySeconds: {{ .Values.readinessProbe.cms.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.cms.periodSeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.cms.timeoutSeconds }}
+            successThreshold: {{ .Values.readinessProbe.cms.successThreshold }}
+            failureThreshold: {{ .Values.readinessProbe.cms.failureThreshold }}
             httpGet:
               path: /system/health
               port: http
@@ -78,10 +88,20 @@ spec:
               containerPort: 80
               protocol: TCP
           livenessProbe:
+            initialDelaySeconds: {{ .Values.livenessProbe.web.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.web.periodSeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.web.timeoutSeconds }}
+            successThreshold: {{ .Values.livenessProbe.web.successThreshold }}
+            failureThreshold: {{ .Values.livenessProbe.web.failureThreshold }}
             httpGet:
               path: /
               port: http
           readinessProbe:
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             httpGet:
               path: /
               port: http

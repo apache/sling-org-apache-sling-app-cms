@@ -33,6 +33,38 @@ image:
     # Overrides the image tag whose default is the chart appVersion.
     tag: 0.16.3-snapshot
 
+
+livenessProbe:
+  cms:
+    enabled: true
+    initialDelaySeconds: 120
+    periodSeconds: 5
+    timeoutSeconds: 5
+    failureThreshold: 24
+    successThreshold: 1
+  web:
+    enabled: true
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+readinessProbe:
+  cms:
+    enabled: true
+    initialDelaySeconds: 120
+    periodSeconds: 5
+    timeoutSeconds: 5
+    failureThreshold: 24
+    successThreshold: 1
+  web:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+
 resources:
   cms:
     requests:
