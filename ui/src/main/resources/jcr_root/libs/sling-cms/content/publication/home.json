@@ -22,28 +22,28 @@
                 "agents": {
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/cms/tilecard",
-                    "image": "/static/sling-cms/thumbnails/publish-agent.png",
+                    "icon": "/publish-agent.png",
                     "link": "/cms/publication/agents.html/libs/sling/distribution/settings/agents",
                     "title": "Agents"
                 },
                 "bulk-publication": {
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/cms/tilecard",
-                    "image": "/static/sling-cms/thumbnails/bulk-publication.png",
+                    "icon": "/bulk-publication.png",
                     "link": "/cms/jobs/list.html",
                     "title": "Bulk Publication"
                 },
                 "exporters": {
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/cms/tilecard",
-                    "image": "/static/sling-cms/thumbnails/exporter.png",
+                    "icon": "/exporter.png",
                     "link": "/cms/publication/exporters.html/libs/sling/distribution/settings/exporters",
                     "title": "Exporters"
                 },
                 "importers": {
                     "jcr:primaryType": "nt:unstructured",
                     "sling:resourceType": "sling-cms/components/cms/tilecard",
-                    "image": "/static/sling-cms/thumbnails/importer.png",
+                    "icon": "/importer.png",
                     "link": "/cms/publication/importers.html/libs/sling/distribution/settings/importers",
                     "title": "Importers"
                 }

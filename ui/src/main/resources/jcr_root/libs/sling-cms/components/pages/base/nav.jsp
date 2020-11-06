@@ -19,7 +19,7 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <nav class="navbar has-background-light" role="navigation" aria-label="main mavigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="http://sling.apache.org">
+        <a class="navbar-item" href="${branding.logoLink}">
             <img src="${branding.logo}" width="100" alt="${branding.appName}"/>
         </a>
         <a href="/cms/start.html" class="navbar-item" title="CMS Home">
@@ -53,7 +53,7 @@
                         </em>&nbsp;
                         Profile
                     </a>
-                    <a class="navbar-item" href="https://github.com/apache/sling-org-apache-sling-app-cms" target="_blank" rel="noopener noreferrer">
+                    <a class="navbar-item" href="${branding.helpLink}" target="_blank" rel="noopener noreferrer">
                         <em class="jam jam-help">
                             <span class="is-vhidden">Help</span>
                         </em>&nbsp;
