@@ -138,7 +138,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.contentloader:2.4.0-SNAPSHOT",
+            "id":"org.apache.sling:org.apache.sling.jcr.contentloader:2.4.0",
             "start-order":"20"
         },
         {
