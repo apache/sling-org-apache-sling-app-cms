@@ -241,5 +241,9 @@
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.discovery.api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.jknack</groupId>
+            <artifactId>handlebars</artifactId>
+        </dependency>
     </dependencies>
 </project>

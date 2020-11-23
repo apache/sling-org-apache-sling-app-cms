@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional
     information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the "License"); you may not use this file except
     in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to
@@ -207,10 +207,10 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-              <groupId>org.apache.sling</groupId>
-              <artifactId>org.apache.sling.scripting.jsp.taglib</artifactId>
-              <version>2.4.0</version>
-              <scope>provided</scope>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.scripting.jsp.taglib</artifactId>
+                <version>2.4.0</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.sling</groupId>
@@ -220,6 +220,12 @@
             </dependency>
 
             <!-- Utilities / Misc -->
+            <dependency>
+                <groupId>com.github.jknack</groupId>
+                <artifactId>handlebars</artifactId>
+                <version>4.2.0</version>
+                <scope>provided</scope>
+            </dependency>
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>javax.mail</artifactId>
