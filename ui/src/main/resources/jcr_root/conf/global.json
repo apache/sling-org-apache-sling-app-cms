@@ -198,6 +198,7 @@
                             "50% 50%=col-6,col-6",
                             "33% 33% 33%=col-4,col-4,col-4"
                         ],
+                        "rowClass": "row",
                         "sling:resourceType": "sling-cms/components/caconfig/component"
                     },
                     "component_1644835788": {

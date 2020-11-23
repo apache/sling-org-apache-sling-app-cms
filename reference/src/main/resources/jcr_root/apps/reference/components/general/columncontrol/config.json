@@ -21,5 +21,12 @@
         "label": "Container Class",
         "name": "containerclass",
         "required": true
+    },
+    "rowclass": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/fields/text",
+        "label": "Row Class",
+        "name": "rowClass",
+        "required": true
     }
 }

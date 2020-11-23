@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.ComponentPolicyManager" var="componentPolicyMgr" />
+<c:set var="configRsrc" value="${componentPolicyMgr.componentPolicy.componentConfigs['reference/components/general/columncontrol']}" />
 <c:choose>
     <c:when test="${properties.container == true}">
-        <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.ComponentPolicyManager" var="componentPolicyMgr" />
-        <c:set var="configRsrc" value="${componentPolicyMgr.componentPolicy.componentConfigs['reference/components/general/columncontrol']}" />
         <div class="${configRsrc.valueMap.containerclass}">
-            <div class="row">
+            <div class="${configRsrc.valueMap.rowClass}">
                 <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
                     <div class="${sling:encode(col,'HTML_ATTR')}">
                         <sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
@@ -32,7 +32,7 @@
          </div>
      </c:when>
      <c:otherwise>
-         <div class="row">
+         <div class="${configRsrc.valueMap.rowClass}">
             <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
                 <div class="${sling:encode(col,'HTML_ATTR')}">
                     <sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
