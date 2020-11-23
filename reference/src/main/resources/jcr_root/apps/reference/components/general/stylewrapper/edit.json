@@ -7,11 +7,16 @@
         "sling:resourceType": "sling-cms/components/general/container",
         "style": {
             "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "sling:resourceType": "sling-cms/components/editor/fields/combobox",
             "label": "Style Option",
             "name": "style",
-            "required": true,
             "optionsScript": "/apps/reference/components/general/stylewrapper/options.jsp"
+        },
+        "styleTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "style@TypeHint",
+            "value": "String[]"
         }
     }
 }

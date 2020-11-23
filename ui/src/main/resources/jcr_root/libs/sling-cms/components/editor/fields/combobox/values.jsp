@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<c:catch var="ex">
-    <c:set var="style" value="${fn:join(properties.style, ' ')}" />
-</c:catch>
-<c:if test="${ex != null}">
-    <c:set var="style" value="${properties.style}" />
-</c:if>
-<div class="${style}">
-    <sling:include path="container" resourceType="sling-cms/components/general/container" />
-</div>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:forEach var="item" items="${value}">
+    <a class="tag labelfield__item" title="${item}">
+        <input type="hidden" name="${properties.name}" value="${item}" />
+        <span class="labelfield__title">
+            ${sling:encode(item,'HTML')}
+        </span>
+        <button class="delete is-small"></button>
+    </a>
+</c:forEach>
