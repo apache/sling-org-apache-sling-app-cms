@@ -25,7 +25,7 @@
                 <div class="columns is-centered is-vcentered" style="min-height: calc(100vh - 85px)">
                     <div class="column is-two-thirds-tablet is-half-desktop is-one-third-widescreen">
                         <div class="box mt-6">
-                            <img src="/static/clientlibs/sling-cms/img/sling-logo.svg" width="100" alt="Apache Sling CMS" class="pb-3">
+                            <img src="${branding.logo}" width="100" alt="${branding.appName}" class="pb-3">
                             <sling:call script="content.jsp" />
                         </div>
                     </div>
