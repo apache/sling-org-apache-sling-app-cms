@@ -22,7 +22,14 @@
     <c:if test="${referenceResource != null}">
         <c:set var="originalEditEnabled" value="${cmsEditEnabled}"/>
         <c:set var="cmsEditEnabled" value="false" scope="request" />
-        <sling:include resource="${sling:getResource(resourceResolver,properties.reference)}" />
+        <c:choose>
+            <c:when test="${not empty properties.overrideType}">
+                <sling:include path="${properties.reference}" resourceType="${properties.overrideType}" />
+            </c:when>
+            <c:otherwise>
+                <sling:include resource="${referenceResource}" />
+            </c:otherwise>
+        </c:choose>
         <c:set var="cmsEditEnabled" value="${originalEditEnabled}" scope="request" />
     </c:if>
 </c:if>

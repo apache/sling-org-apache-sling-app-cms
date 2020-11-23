@@ -12,6 +12,13 @@
             "label": "Reference Source",
             "name": "reference",
             "required": true
+        },
+        "overrideType": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Override Type",
+            "name": "overrideType",
+            "optionsScript": "/apps/reference/components/general/reference/types.jsp"
         }
     }
 }

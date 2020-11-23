@@ -1,0 +1,8 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/general/container",
+    "availableComponentTypes": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/availablecomponenttypes"
+    }
+}
