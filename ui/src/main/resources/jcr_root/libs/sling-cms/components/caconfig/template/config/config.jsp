@@ -19,44 +19,48 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <br/>
 <h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${resource.path})</h3>
-<c:if test="${sling:getRelativeResource(resource, 'thumbnail') != null}">
-    <img src="${resource.path}/thumbnail.transform/sling-cms-thumbnail128.png" alt="Thumbnail" class="image is-128x128" />
-</c:if>
-<br/>
-<div>
-    <h4>Allowed Paths</h4>
-    <ul>
-        <c:forEach var="allowedPath" items="${properties.allowedPaths}">
-            <li>
-                <pre><sling:encode value="${allowedPath}" mode="HTML" /></pre>
-            </li>
-        </c:forEach>
-    </ul>
+<div class="panel">
+    <h4 class="panel-heading">Allowed Paths</h4>
+    <div class="panel-body p-2">
+        <ul>
+            <c:forEach var="allowedPath" items="${properties.allowedPaths}">
+                <li>
+                    <pre><sling:encode value="${allowedPath}" mode="HTML" /></pre>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
 </div>
 <hr/>
-<div>
-    <h4>
-        Component Policies
-    </h4>
-    <c:set var="oldAvailableTypes" value="${availableTypes}" />
-    <c:set var="availableTypes" value="SlingCMS-PolicyMappingConfig" scope="request" />
-    <sling:include path="policies" resourceType="sling-cms/components/general/reloadcontainer" />
-    <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
-</div>
-<hr/>
-<div>
-    <h4>
+<div class="panel">
+    <h4 class="panel-heading">
         Template Content
     </h4>
-    <pre><sling:encode value="${properties.template}" mode="HTML" /></pre>
+    <div class="panel-body p-2">
+        <pre><sling:encode value="${properties.template}" mode="HTML" /></pre>
+    </div>
 </div>
 <hr/>
-<div>
-    <h4>
+<div class="panel">
+    <h4 class="panel-heading">
+        Component Policies
+    </h4>
+    <div class="panel-body p-2">
+        <c:set var="oldAvailableTypes" value="${availableTypes}" />
+        <c:set var="availableTypes" value="SlingCMS-PolicyMappingConfig" scope="request" />
+        <sling:include path="policies" resourceType="sling-cms/components/general/reloadcontainer" />
+        <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+    </div>
+</div>
+<hr/>
+<div class="panel">
+    <h4 class="panel-heading">
         Configuration Fields
     </h4>
-    <c:set var="oldAvailableTypes" value="${availableTypes}" />
-    <c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
-    <sling:include path="fields" resourceType="sling-cms/components/general/reloadcontainer" />
-    <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+    <div class="panel-body p-2">
+        <c:set var="oldAvailableTypes" value="${availableTypes}" />
+        <c:set var="availableTypes" value="SlingCMS-FieldConfig" scope="request" />
+        <sling:include path="fields" resourceType="sling-cms/components/general/reloadcontainer" />
+        <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+    </div>
 </div>

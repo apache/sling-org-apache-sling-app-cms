@@ -12,19 +12,6 @@
             "name": "jcr:title",
             "required": true
         },
-        "thumbnail": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "sling-cms/components/editor/fields/text",
-            "label": "Thumbnail",
-            "name": "thumbnail",
-            "type": "file"
-        },
-        "thumbnailTypeHint": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
-            "name": "thumbnail@TypeHint",
-            "value": "sling:File"
-        },
         "allowedPaths": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/editor/fields/repeating",

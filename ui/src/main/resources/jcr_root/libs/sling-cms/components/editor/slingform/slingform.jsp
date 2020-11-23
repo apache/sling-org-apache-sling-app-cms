@@ -22,14 +22,16 @@
     enctype="multipart/form-data" class="Form-Ajax"
     data-add-date="${properties.addDate != false}"
     data-callback="${properties.callback}">
-    <fieldset class="form-wrapper field">
+    <fieldset class="form-wrapper pt-4 field">
         <input type="hidden" name="_charset_" value="utf-8" />
         <sling:include path="fields" resourceType="sling-cms/components/general/container" />
-        <button type="submit" class="button is-primary">
-            <sling:encode value="${properties.button}" default="Save" mode="HTML" />
-        </button>
-        <c:if test="${properties.skipcancel != true}">
-            <a href="${sling:encode(header.referer,'HTML_ATTR')}" class="button close">Cancel</a>
-        </c:if>
+        <div class="field">
+            <button type="submit" class="button is-primary">
+                <sling:encode value="${properties.button}" default="Save" mode="HTML" />
+            </button>
+            <c:if test="${properties.skipcancel != true}">
+                <a href="${sling:encode(header.referer,'HTML_ATTR')}" class="button close">Cancel</a>
+            </c:if>
+        </div>
     </fieldset>
 </form>

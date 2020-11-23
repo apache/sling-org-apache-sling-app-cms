@@ -20,25 +20,29 @@
 <br/>
 <h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${resource.path})</h3>
 <hr/>
-<div>
-    <h4>
+<div class="panel">
+    <h4 class="panel-heading">
         Available Component Types
     </h4>
-    <ul>
-        <c:forEach var="availableComponentType" items="${properties.availableComponentTypes}">
-            <li>
-                <sling:encode value="${availableComponentType}" mode="HTML" />
-            </li>
-        </c:forEach>
-    </ul>
+    <div class="panel-body p-2">
+        <ul>
+            <c:forEach var="availableComponentType" items="${properties.availableComponentTypes}">
+                <li>
+                    <sling:encode value="${availableComponentType}" mode="HTML" />
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
 </div>
 <hr/>
-<div>
-    <h4>
+<div class="panel">
+    <h4 class="panel-heading">
         Component Configurations
     </h4>
-    <c:set var="oldAvailableTypes" value="${availableTypes}" />
-    <c:set var="availableTypes" value="SlingCMS-ComponentConfig" scope="request" />
-    <sling:include path="componentConfigurations" resourceType="sling-cms/components/general/reloadcontainer" />
-    <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+    <div class="panel-body p-2">
+        <c:set var="oldAvailableTypes" value="${availableTypes}" />
+        <c:set var="availableTypes" value="SlingCMS-ComponentConfig" scope="request" />
+        <sling:include path="componentConfigurations" resourceType="sling-cms/components/general/reloadcontainer" />
+        <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
+    </div>
 </div>
