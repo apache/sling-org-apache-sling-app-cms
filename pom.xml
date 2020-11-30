@@ -16,7 +16,7 @@
     <artifactId>org.apache.sling.cms</artifactId>
     <name>Apache Sling - CMS</name>
     <description>An Apache Sling Reference CMS Application</description>
-    <version>0.16.3-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -47,7 +47,7 @@
         <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-app-cms.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-app-cms.git</developerConnection>
         <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-app-cms.git</url>
-        <tag>HEAD</tag>
+        <tag>org.apache.sling.cms-1.0.0</tag>
     </scm>
 
     <dependencyManagement>
