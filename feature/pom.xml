@@ -24,9 +24,10 @@
 
     <properties>
         <sling.java.version>8</sling.java.version>
-        <IT.expected.bundles.count>208</IT.expected.bundles.count>
+        <IT.expected.bundles.count>240</IT.expected.bundles.count>
         <cms.version>${project.parent.version}</cms.version>
-        <composum.version>1.12.0</composum.version>
+        <composum.version>1.12.4</composum.version>
+        <groovy.version>3.0.6</groovy.version>
         <jackrabbit.version>2.20.0</jackrabbit.version>
         <jackson.version>2.11.1</jackson.version>
         <oak.version>1.32.0</oak.version>
@@ -36,6 +37,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>ianal-maven-plugin</artifactId>
@@ -150,7 +152,7 @@
                             <goal>attach-featurearchives</goal>
                         </goals>
                         <configuration>
-                            <replacePropertyVariables>cms.version,composum.version,jackrabbit.version,jackson.version,oak.version,slf4j.version</replacePropertyVariables>
+                            <replacePropertyVariables>cms.version,composum.version,groovy.version,jackrabbit.version,jackson.version,oak.version,slf4j.version</replacePropertyVariables>
                         </configuration>
                     </execution>
                 </executions>
@@ -180,6 +182,75 @@
                     <descriptors>
                         <descriptor>src/main/assembly/standalone.xml</descriptor>
                     </descriptors>
+                </configuration>
+            </plugin>
+
+            <!-- reserve a network port for the integration tests -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>reserve-network-port</id>
+                        <goals>
+                            <goal>reserve-network-port</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <portNames>
+                                <portName>http.port</portName>
+                            </portNames>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>feature-launcher-maven-plugin</artifactId>
+                <version>0.1.0</version>
+                <configuration>
+                    <launches>
+                        <launch>
+                            <id>sling-12-oak-tar</id>
+                            <feature>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>${project.artifactId}</artifactId>
+                                <version>${project.version}</version>
+                                <classifier>slingcms-standalone</classifier>
+                                <type>slingosgifeature</type>
+                            </feature>
+                            <launcherArguments>
+                                <frameworkProperties>
+                                    <org.osgi.service.http.port>${http.port}</org.osgi.service.http.port>
+                                </frameworkProperties>
+                            </launcherArguments>
+                        </launch>
+                    </launches>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>start</goal>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <sling.http.port>${http.port}</sling.http.port>
+                        <IT.expected.bundles.count>${IT.expected.bundles.count}</IT.expected.bundles.count>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
