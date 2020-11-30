@@ -27,4 +27,4 @@
  * not implementation ) with some of the testing projects. This is another 
  * argument for keeping the tests minimal.</p>
  */
-package org.apache.sling.launchpad;
+package org.apache.sling.cms.feature;
