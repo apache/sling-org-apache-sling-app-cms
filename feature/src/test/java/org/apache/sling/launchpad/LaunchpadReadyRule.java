@@ -39,7 +39,7 @@ public class LaunchpadReadyRule extends ExternalResource {
     public LaunchpadReadyRule(int launchpadPort) {
 
         checks.add(new Check("http://localhost:" + launchpadPort + "/server/default/jcr:root/content"));
-        checks.add(new Check("http://localhost:" + launchpadPort + "/content/starter.html") {
+        checks.add(new Check("http://localhost:" + launchpadPort + "/system/sling/form/login") {
             @Override
             public String runCheck(HttpResponse response) throws Exception {
                 try (InputStreamReader isr = new InputStreamReader(response.getEntity().getContent());
@@ -47,7 +47,7 @@ public class LaunchpadReadyRule extends ExternalResource {
 
                     String line;
                     while ((line = reader.readLine()) != null) {
-                        if (line.contains("Do not remove this comment, used for Starter integration tests")) {
+                        if (line.contains("Welcome to Apache Sling CMS")) {
                             return null;
                         }
                     }

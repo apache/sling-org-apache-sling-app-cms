@@ -52,8 +52,8 @@ import org.w3c.dom.Node;
 
 public class SmokeIT {
 
-    private static final int LAUNCHPAD_PORT = Integer.getInteger("launchpad.http.port", 8080);
-    private static final int EXPECTED_BUNDLES_COUNT = Integer.getInteger("IT.expected.bundles.count", Integer.MAX_VALUE);
+    private static final int LAUNCHPAD_PORT = Integer.getInteger("sling.http.port", 8080);
+    private static final int EXPECTED_BUNDLES_COUNT = Integer.getInteger("IT.expected.bundles.count", 240);
 
     @ClassRule
     public static LaunchpadReadyRule LAUNCHPAD = new LaunchpadReadyRule(LAUNCHPAD_PORT);
