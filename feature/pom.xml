@@ -33,6 +33,7 @@
         <oak.version>1.32.0</oak.version>
         <slf4j.version>1.7.25</slf4j.version>
         <bnd.baseline.skip>true</bnd.baseline.skip>
+        <run.sling.smoke.test>true</run.sling.smoke.test>
     </properties>
 
     <build>
@@ -184,75 +185,15 @@
                     </descriptors>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <arguments>-Drun.sling.smoke.test=false</arguments>
+                </configuration>
+            </plugin>
 
-            <!-- reserve a network port for the integration tests -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>reserve-network-port</id>
-                        <goals>
-                            <goal>reserve-network-port</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <portNames>
-                                <portName>http.port</portName>
-                            </portNames>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.sling</groupId>
-                <artifactId>feature-launcher-maven-plugin</artifactId>
-                <version>0.1.0</version>
-                <configuration>
-                    <launches>
-                        <launch>
-                            <id>sling-12-oak-tar</id>
-                            <feature>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>${project.artifactId}</artifactId>
-                                <version>${project.version}</version>
-                                <classifier>slingcms-standalone</classifier>
-                                <type>slingosgifeature</type>
-                            </feature>
-                            <launcherArguments>
-                                <frameworkProperties>
-                                    <org.osgi.service.http.port>${http.port}</org.osgi.service.http.port>
-                                </frameworkProperties>
-                            </launcherArguments>
-                        </launch>
-                    </launches>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>start</goal>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <systemPropertyVariables>
-                        <sling.http.port>${http.port}</sling.http.port>
-                        <IT.expected.bundles.count>${IT.expected.bundles.count}</IT.expected.bundles.count>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -272,6 +213,90 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>run-smoke-test</id>
+            <activation>
+                <property>
+                    <name>run.sling.smoke.test</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- reserve a network port for the integration tests -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>reserve-network-port</id>
+                                <goals>
+                                    <goal>reserve-network-port</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <portNames>
+                                        <portName>http.port</portName>
+                                    </portNames>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.sling</groupId>
+                        <artifactId>feature-launcher-maven-plugin</artifactId>
+                        <version>0.1.0</version>
+                        <configuration>
+                            <launches>
+                                <launch>
+                                    <id>sling-12-oak-tar</id>
+                                    <feature>
+                                        <groupId>${project.groupId}</groupId>
+                                        <artifactId>${project.artifactId}</artifactId>
+                                        <version>${project.version}</version>
+                                        <classifier>slingcms-standalone</classifier>
+                                        <type>slingosgifeature</type>
+                                    </feature>
+                                    <launcherArguments>
+                                        <frameworkProperties>
+                                            <org.osgi.service.http.port>${http.port}</org.osgi.service.http.port>
+                                        </frameworkProperties>
+                                    </launcherArguments>
+                                </launch>
+                            </launches>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>start</goal>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <sling.http.port>${http.port}</sling.http.port>
+                                <IT.expected.bundles.count>${IT.expected.bundles.count}</IT.expected.bundles.count>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
