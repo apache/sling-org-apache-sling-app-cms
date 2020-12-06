@@ -16,26 +16,15 @@
  */
 package org.apache.sling.cms.feature;
 
-import java.io.InputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Bootstraping Sling CMS Feature Model");
-        URL propertiesUrl =  Main.class.getClassLoader().getResource("slingcms.properties");
-        Properties properties = new Properties();
-        try(InputStream is = propertiesUrl.openStream()){
-            properties.load(is);
-        }
-        
-
-        String version = properties.getProperty("version");
-        System.out.println("Version "+version);
+        System.out.println("Bootstrapping Sling CMS Feature Model");
 
         URL farUrl = Main.class.getClassLoader().getResource("lib/slingcms.far");
         List<String> arguments = new ArrayList<>();
