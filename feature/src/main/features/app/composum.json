@@ -2,19 +2,19 @@
 {
     "bundles":[
         {
-            "id":"com.composum.sling.core:composum-sling-core-commons:${composum.version}",
+            "id":"com.composum.sling.core:composum-sling-core-commons:${composum-version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-core-console:${composum.version}",
+            "id":"com.composum.sling.core:composum-sling-core-console:${composum-version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-core-jslibs:${composum.version}",
+            "id":"com.composum.sling.core:composum-sling-core-jslibs:${composum-version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-package-manager:${composum.version}",
+            "id":"com.composum.sling.core:composum-sling-package-manager:${composum-version}",
             "start-order":"20"
         }
     ],

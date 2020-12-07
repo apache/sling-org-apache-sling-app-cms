@@ -43,7 +43,6 @@ public class SendEmailAction implements FormAction {
     public static final String SUBJECT = "subject";
     public static final String TO = "to";
 
-    @Reference
     private MailService mailService;
 
     @Override
@@ -57,8 +56,7 @@ public class SendEmailAction implements FormAction {
         try {
             @NotNull
             final MimeMessage message = mailService.getMessageBuilder()
-                    .from(sub.replace(properties.get(FROM, String.class)))
-                    .to(to)
+                    .from(sub.replace(properties.get(FROM, String.class))).to(to)
                     .subject(sub.replace(properties.get(SUBJECT, String.class)))
                     .text(sub.replace(properties.get(MESSAGE, String.class))).build();
 
@@ -75,6 +73,11 @@ public class SendEmailAction implements FormAction {
     @Override
     public boolean handles(final Resource actionResource) {
         return "reference/components/forms/actions/sendemail".equals(actionResource.getResourceType());
+    }
+
+    @Reference
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
     }
 
 }

@@ -25,10 +25,8 @@ License. -->
       <artifactId>javax.servlet-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>jstl</groupId>
+      <groupId>org.apache.geronimo.bundles</groupId>
       <artifactId>jstl</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.sling</groupId>
@@ -37,8 +35,6 @@ License. -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jsp-api</artifactId>
-      <version>2.0</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 

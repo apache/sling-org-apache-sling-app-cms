@@ -23,6 +23,7 @@ public class SlingContextHelper {
     public static final void initContext(SlingContext context) {
 
         context.load().json("/form.json", "/form");
+        context.load().json("/form-no-actions.json", "/form-no-actions");
 
     }
 }

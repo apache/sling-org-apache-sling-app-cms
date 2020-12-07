@@ -2,18 +2,55 @@
 the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in
 writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the
 License. -->
-<archetype-descriptor
-  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0
-        http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-  xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  name="quickstart">
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0
+        http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="quickstart">
   <requiredProperties>
-    <requiredProperty key="appName"/>
-    <requiredProperty key="package"/>
+
+
+    <requiredProperty key="appName" />
+    <requiredProperty key="package" />
     <requiredProperty key="slingcmsVersion">
       <defaultValue>${project.version}</defaultValue>
     </requiredProperty>
+
+    <!-- Used to share versions with parent -->
+    <requiredProperty key="commons-lang3-version">
+      <defaultValue>${commons-lang3-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="geronimo-atinject_1-0_spec-version">
+      <defaultValue>${geronimo-atinject_1-0_spec-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="javax-annotation-api-version">
+      <defaultValue>${javax-annotation-api-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="jsp-api-version">
+      <defaultValue>${jsp-api-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="jstl-version">
+      <defaultValue>${jstl-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="org-apache-sling-api-version">
+      <defaultValue>${org-apache-sling-api-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="org-apache-sling-models-api-version">
+      <defaultValue>${org-apache-sling-models-api-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="org-apache-sling-scripting-api-version">
+      <defaultValue>${org-apache-sling-scripting-api-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="org-apache-sling-scripting-jsp-taglib-version">
+      <defaultValue>${org-apache-sling-scripting-jsp-taglib-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="osgi-annotation-version">
+      <defaultValue>${osgi-annotation-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="servlet-api-version">
+      <defaultValue>${servlet-api-version}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="slf4j-version">
+      <defaultValue>${slf4j-version}</defaultValue>
+    </requiredProperty>
+
   </requiredProperties>
   <fileSets>
     <fileSet filtered="true">

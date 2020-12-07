@@ -22,6 +22,7 @@ import java.util.Optional;
 
 import javax.jcr.RepositoryException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.cms.AuthorizableWrapper;
@@ -29,7 +30,6 @@ import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.PostOperation;
 import org.apache.sling.servlets.post.PostResponse;
 import org.apache.sling.servlets.post.SlingPostProcessor;
-import org.jsoup.helper.StringUtil;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +61,7 @@ public class UpdateStatusOperation implements PostOperation {
             }
 
             User user = (User) authWrapper.getAuthorizable();
-            user.disable(StringUtil.isBlank(reason) ? null : reason);
+            user.disable(StringUtils.isBlank(reason) ? null : reason);
 
             // invoke processors
             if (processors != null) {

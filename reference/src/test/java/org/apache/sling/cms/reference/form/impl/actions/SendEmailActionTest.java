@@ -33,7 +33,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.internal.util.reflection.FieldSetter;
 
 public class SendEmailActionTest {
 
@@ -54,7 +53,7 @@ public class SendEmailActionTest {
         mailService = Mockito.mock(MailService.class);
         Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
 
-        FieldSetter.setField(action, action.getClass().getDeclaredField("mailService"), mailService);
+        action.setMailService(mailService);
     }
 
     @Test

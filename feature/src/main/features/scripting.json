@@ -2,27 +2,27 @@
 {
     "bundles":[
         {
-            "id":"org.antlr:antlr4-runtime:4.7.2",
+            "id":"org.antlr:antlr4-runtime:4.9",
             "start-order":"20"
         },
         {
-            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino:1.7.10_1",
+            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino:1.7.13_1",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.api:2.2.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.api:${org-apache-sling-scripting-api-version}",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.core:2.3.2",
+            "id":"org.apache.sling:org.apache.sling.scripting.core:2.3.4",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.el-api:1.0.2",
+            "id":"org.apache.sling:org.apache.sling.scripting.el-api:1.0.4",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.javascript:3.1.2",
+            "id":"org.apache.sling:org.apache.sling.scripting.javascript:3.1.4",
             "start-order":"20"
         },
         {
@@ -30,7 +30,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.jsp.taglib:2.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.jsp.taglib:${org-apache-sling-scripting-jsp-taglib-version}",
             "start-order":"20"
         },
         {
@@ -38,15 +38,15 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler.java:1.2.0-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler.java:1.2.2-1.4.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler:1.2.6-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler:1.2.12-1.4.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.js.provider:1.2.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.js.provider:1.2.6",
             "start-order":"20"
         },
         {
@@ -54,11 +54,11 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.runtime:1.2.2-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.runtime:1.2.4-1.4.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.2-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.6-1.4.0",
             "start-order":"20"
         }
     ],

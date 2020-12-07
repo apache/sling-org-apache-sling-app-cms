@@ -37,6 +37,7 @@ import org.apache.sling.cms.ResourceTree;
 import org.apache.sling.cms.reference.forms.FormAction;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
@@ -49,10 +50,14 @@ public class FormHandler extends SlingAllMethodsServlet {
 
     private static final Logger log = LoggerFactory.getLogger(FormHandler.class);
 
-    @Reference(policyOption = ReferencePolicyOption.GREEDY)
-    private List<FormAction> formActions;
+    private transient List<FormAction> formActions;
 
     private static final long serialVersionUID = -8149443208959899098L;
+
+    @Activate
+    public FormHandler(@Reference(policyOption = ReferencePolicyOption.GREEDY) List<FormAction> formActions) {
+        this.formActions = formActions;
+    }
 
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -62,10 +67,13 @@ public class FormHandler extends SlingAllMethodsServlet {
                 .map(PageManager::getPage).map(Page::getPath)
                 .orElse(StringUtils.substringBefore(request.getResource().getPath(), "/" + JcrConstants.JCR_CONTENT));
 
-        List<Resource> actionResources = ResourceTree.stream(request.getResource().getChild("actions"))
-                .map(ResourceTree::getResource).collect(Collectors.toList());
-
         try {
+            if (request.getResource().getChild("actions") == null) {
+                throw new FormException("No actions provided to handle this form submission");
+            }
+            List<Resource> actionResources = ResourceTree.stream(request.getResource().getChild("actions"))
+                    .map(ResourceTree::getResource).collect(Collectors.toList());
+
             FormRequest formRequest = getFormRequest(request);
             if (formRequest == null) {
                 log.warn("Unable to create form request");
@@ -119,4 +127,5 @@ public class FormHandler extends SlingAllMethodsServlet {
             throw new FormException("Unable to adapt to a form request");
         }
     }
+
 }

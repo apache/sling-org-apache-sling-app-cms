@@ -33,7 +33,6 @@ import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.internal.util.reflection.FieldSetter;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -55,8 +54,8 @@ public class FormRequestImplTest {
 
         formRequest = new FormRequestImpl(context.request());
 
-        FieldSetter.setField(formRequest, formRequest.getClass().getDeclaredField("fieldHandlers"),
-                Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
+        formRequest
+                .setFieldHandlers(Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
 
         formRequest.initFields();
     }

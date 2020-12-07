@@ -13,19 +13,19 @@
             "start-order": "5"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.cms.api:${cms.version}",
+            "id": "org.apache.sling:org.apache.sling.cms.api:${cms-version}",
             "start-order": "20"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.cms.ui:${cms.version}",
+            "id": "org.apache.sling:org.apache.sling.cms.ui:${cms-version}",
             "start-order": "20"
         },
         {
-            "id": "com.vladsch.flexmark:flexmark-osgi:0.61.24",
+            "id": "com.vladsch.flexmark:flexmark-osgi:0.62.2",
             "start-order": "15"
         },
         {
-            "id": "org.apache.cocoon:cocoon-serializers-charsets:1.0.2",
+            "id": "org.apache.cocoon:cocoon-serializers-charsets:${cocoon-serializers-charsets-version}",
             "start-order": "15"
         },
         {
@@ -45,19 +45,19 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.jackrabbit:oak-auth-external:${oak.version}",
+            "id": "org.apache.jackrabbit:oak-auth-external:${oak-version}",
             "start-order": "15"
         },
         {
-            "id": "org.apache.jackrabbit:oak-auth-ldap:${oak.version}",
+            "id": "org.apache.jackrabbit:oak-auth-ldap:${oak-version}",
             "start-order": "15"
         },
         {
-            "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xmlbeans:3.0.2_1",
+            "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xmlbeans:3.1.0_2",
             "start-order": "15"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.fileoptim:0.9.4",
+            "id": "org.apache.sling:org.apache.sling.fileoptim:${org-apache-sling-fileoptim-version}",
             "start-order": "20"
         },
         {
@@ -65,7 +65,7 @@
             "start-order": "15"
         },
         {
-            "id": "org.jsoup:jsoup:1.13.1",
+            "id": "org.jsoup:jsoup:${jsoup-version}",
             "start-order": "15"
         },
         {
@@ -73,7 +73,7 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.commons:commons-text:1.8",
+            "id": "org.apache.commons:commons-text:${commons-text-version}",
             "start-order": "15"
         },
         {
@@ -81,23 +81,23 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.poi:4.1.1_1",
+            "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.poi:4.1.2_2",
             "start-order": "15"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.cms.core:${cms.version}",
+            "id": "org.apache.sling:org.apache.sling.cms.core:${cms-version}",
             "start-order": "20"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.cms.reference:${cms.version}",
+            "id": "org.apache.sling:org.apache.sling.cms.reference:${cms-version}",
             "start-order": "20"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.cms.transformer:${cms.version}",
+            "id": "org.apache.sling:org.apache.sling.cms.transformer:${cms-version}",
             "start-order": "20"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.cms.login:${cms.version}",
+            "id": "org.apache.sling:org.apache.sling.cms.login:${cms-version}",
             "start-order": "20"
         },
         {
@@ -145,95 +145,95 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.tika:tika-bundle:1.22",
+            "id": "org.apache.tika:tika-bundle:${tika-version}",
             "start-order": "15"
         },
         {
-            "id": "org.codehaus.groovy:groovy:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-ant:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-ant:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-astbuilder:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-astbuilder:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-cli-picocli:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-cli-picocli:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-console:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-console:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-datetime:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-datetime:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-docgenerator:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-docgenerator:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-groovydoc:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-groovydoc:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-groovysh:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-groovysh:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-jmx:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-jmx:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-json:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-json:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-jsr223:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-jsr223:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-macro:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-macro:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-nio:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-nio:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-servlet:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-servlet:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-sql:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-sql:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-swing:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-swing:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-templates:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-templates:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-test:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-test:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-test-junit5:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-test-junit5:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-testng:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-testng:${groovy-version}",
             "start-order": "20"
         },
         {
-            "id": "org.codehaus.groovy:groovy-xml:${groovy.version}",
+            "id": "org.codehaus.groovy:groovy-xml:${groovy-version}",
             "start-order": "20"
         }
     ],
@@ -436,7 +436,7 @@
         "end",
         "create service user sling-cms-versionmgr",
         "set ACL for sling-cms-versionmgr",
-        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /content",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /",
         "end"
     ]
 }

@@ -16,10 +16,17 @@
  */
 package org.apache.sling.cms.reference.form.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.never;
+
 import java.io.IOException;
 import java.util.Arrays;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.common.collect.ImmutableMap;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.cms.reference.forms.FormException;
@@ -36,57 +43,65 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.internal.util.reflection.FieldSetter;
-
-import com.google.common.collect.ImmutableMap;
 
 public class FormHandlerTest {
     @Rule
     public final SlingContext context = new SlingContext();
     private FormHandler formHandler;
     private MailService mailService;
+    private FormRequestImpl formRequest;
 
     @Before
     public void init() throws NoSuchFieldException, SecurityException, FormException {
         SlingContextHelper.initContext(context);
         context.request().setMethod("POST");
-        context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
-
         context.request()
                 .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World!")
                         .put("singleselect", "Hello World!").put("anotherkey", "Hello World!").put("money", "123")
                         .put("patternfield", "123").put("double", "2.7").put("integer", "2")
                         .put("datefield", "2019-02-02").build());
 
-        final FormRequestImpl formRequest = new FormRequestImpl(context.request());
+        formRequest = new FormRequestImpl(context.request());
 
-        FieldSetter.setField(formRequest, formRequest.getClass().getDeclaredField("fieldHandlers"),
-                Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
+        formRequest
+                .setFieldHandlers(Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
 
-        formRequest.init();
+        final SendEmailAction sendEmailAction = new SendEmailAction();
+        mailService = Mockito.mock(MailService.class);
+        Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
+        sendEmailAction.setMailService(mailService);
 
-        formHandler = new FormHandler() {
+        formHandler = new FormHandler(Arrays.asList(sendEmailAction)) {
             private static final long serialVersionUID = 1L;
 
             protected FormRequest getFormRequest(final SlingHttpServletRequest request) {
                 return formRequest;
             }
         };
-
-        final SendEmailAction sendEmailAction = new SendEmailAction();
-        mailService = Mockito.mock(MailService.class);
-        Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
-        FieldSetter.setField(sendEmailAction, sendEmailAction.getClass().getDeclaredField("mailService"), mailService);
-
-        FieldSetter.setField(formHandler, FormHandler.class.getDeclaredField("formActions"),
-                Arrays.asList(sendEmailAction));
-        context.request().setMethod("POST");
     }
 
     @Test
-    public void testPost() throws ServletException, IOException {
+    public void testPost() throws ServletException, IOException, FormException {
+
+        context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
+        formRequest.init();
+
         formHandler.service(context.request(), context.response());
         Mockito.verify(mailService).sendMessage(Mockito.any());
+    }
+
+    @Test
+    public void testNoActions() throws ServletException, IOException, FormException {
+
+        context.request()
+                .setResource(context.resourceResolver().getResource("/form-no-actions/jcr:content/container/form"));
+        formRequest.init();
+
+        formHandler.service(context.request(), context.response());
+
+        assertTrue(HttpServletResponse.SC_MOVED_TEMPORARILY == context.response().getStatus());
+        assertEquals("/form-no-actions.html?error=actions", context.response().getHeader("Location"));
+        Mockito.verify(mailService, never()).sendMessage(Mockito.any());
     }
 
 }

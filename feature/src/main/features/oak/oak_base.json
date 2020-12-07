@@ -10,91 +10,91 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-data:${jackrabbit.version}",
+            "id":"org.apache.jackrabbit:jackrabbit-data:${jackrabbit-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-jcr-commons:${jackrabbit.version}",
+            "id":"org.apache.jackrabbit:jackrabbit-jcr-commons:${jackrabbit-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-jcr-rmi:${jackrabbit.version}",
+            "id":"org.apache.jackrabbit:jackrabbit-jcr-rmi:${jackrabbit-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-spi-commons:${jackrabbit.version}",
+            "id":"org.apache.jackrabbit:jackrabbit-spi-commons:${jackrabbit-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-spi:${jackrabbit.version}",
+            "id":"org.apache.jackrabbit:jackrabbit-spi:${jackrabbit-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:jackrabbit-webdav:${jackrabbit.version}",
+            "id":"org.apache.jackrabbit:jackrabbit-webdav:${jackrabbit-version}",
             "start-order":"15"
         },        
         {
-            "id":"org.apache.jackrabbit:oak-api:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-api:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-blob-plugins:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-blob-plugins:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-blob:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-blob:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-commons:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-commons:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-core-spi:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-core-spi:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-core:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-core:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-jackrabbit-api:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-jackrabbit-api:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-jcr:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-jcr:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-lucene:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-lucene:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-query-spi:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-query-spi:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-security-spi:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-security-spi:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-segment-tar:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-segment-tar:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-store-composite:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-store-composite:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-store-document:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-store-document:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-store-spi:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-store-spi:${oak-version}",
             "start-order":"15"
         },
         {
-            "id":"org.apache.jackrabbit:oak-authorization-principalbased:${oak.version}",
+            "id":"org.apache.jackrabbit:oak-authorization-principalbased:${oak-version}",
             "start-order":"15"
         },
         {
@@ -102,7 +102,7 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.base:3.1.4",
+            "id":"org.apache.sling:org.apache.sling.jcr.base:3.1.6",
             "start-order":"15"
         },
         {
@@ -122,7 +122,7 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.oak.server:1.2.6",
+            "id":"org.apache.sling:org.apache.sling.jcr.oak.server:1.2.10",
             "start-order":"20"
         },
         {
@@ -142,11 +142,11 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.accessmanager:3.0.6",
+            "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.accessmanager:3.0.8",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager:2.2.10",
+            "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager:2.2.12",
             "start-order":"20"
         }
     ],

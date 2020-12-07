@@ -17,11 +17,10 @@
 package org.apache.sling.cms.transformer.helpers;
 
 import java.io.InputStream;
+import java.util.function.Function;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
-
-import com.google.common.base.Function;
 
 public class SlingCMSContextHelper {
 

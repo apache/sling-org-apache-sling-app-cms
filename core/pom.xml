@@ -103,10 +103,6 @@
             <artifactId>org.apache.sling.models.api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.jackrabbit</groupId>
-            <artifactId>jackrabbit-jcr-commons</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.jcr.resource</artifactId>
         </dependency>
@@ -135,8 +131,8 @@
             <artifactId>org.apache.sling.caconfig.api</artifactId>
         </dependency>
         <dependency>
-            <artifactId>jackrabbit-api</artifactId>
             <groupId>org.apache.jackrabbit</groupId>
+            <artifactId>oak-jackrabbit-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
@@ -244,6 +240,10 @@
         <dependency>
             <groupId>com.github.jknack</groupId>
             <artifactId>handlebars</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
         </dependency>
     </dependencies>
 </project>

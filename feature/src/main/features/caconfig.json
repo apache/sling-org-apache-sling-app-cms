@@ -2,7 +2,7 @@
 {
     "bundles":[
         {
-            "id":"org.apache.sling:org.apache.sling.caconfig.api:1.2.0",
+            "id":"org.apache.sling:org.apache.sling.caconfig.api:${org-apache-sling-caconfig-api-version}",
             "start-order":"20"
         },
         {

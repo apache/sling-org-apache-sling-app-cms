@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -40,8 +41,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.ResourceTree;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.mockito.Mockito;
-
-import com.google.common.base.Function;
 
 public class SlingCMSTestHelper {
 

@@ -14,11 +14,11 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.discovery.oak:1.2.28",
+            "id":"org.apache.sling:org.apache.sling.discovery.oak:1.2.30",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.discovery.support:1.0.4",
+            "id":"org.apache.sling:org.apache.sling.discovery.support:1.0.6",
             "start-order":"20"
         }
     ],

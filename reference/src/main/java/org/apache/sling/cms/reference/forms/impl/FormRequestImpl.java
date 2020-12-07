@@ -43,7 +43,6 @@ public class FormRequestImpl implements FormRequest {
 
     private static final Logger log = LoggerFactory.getLogger(FormRequestImpl.class);
 
-    @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL)
     private List<FieldHandler> fieldHandlers;
 
     private Map<String, Object> formData = new HashMap<>();
@@ -122,6 +121,16 @@ public class FormRequestImpl implements FormRequest {
     @Override
     public String getSessionId() {
         return "errorval-" + this.getOriginalRequest().getResource().getPath();
+    }
+
+    @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL)
+    public void setFieldHandlers(List<FieldHandler> fieldHandlers) {
+        this.fieldHandlers = fieldHandlers;
+    }
+
+    @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL)
+    public void setFormValueProvider(List<FormValueProvider> formValueProvider) {
+        this.formValueProvider = formValueProvider;
     }
 
 }
