@@ -1,0 +1,60 @@
+{
+    "bundles": [
+        {
+            "id": "org.apache.sling:org.apache.sling.graphql.core:0.0.8",
+            "start-order": "25"
+        },
+        {
+            "id": "com.cedarsoftware:json-io:4.12.0",
+            "start-order": "20"
+        },
+        {
+            "id": "com.graphql-java:graphql-java:15.0",
+            "start-order": "20"
+        },
+        {
+            "id": "org.antlr:antlr4-runtime:4.7.2",
+            "start-order": "20"
+        },
+        {
+            "id": "com.graphql-java:java-dataloader:2.2.3",
+            "start-order": "20"
+        },
+        {
+            "id": "org.reactivestreams:reactive-streams:1.0.2",
+            "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.servlet-helpers:1.4.2",
+            "start-order": "20"
+        },
+        {
+            "id": "com.github.jknack:handlebars:4.2.0",
+            "start-order": "20"
+        },
+        {
+            "id":"org.apache.johnzon:johnzon-core:1.2.4",
+            "start-order": "20"
+        },
+        {
+            "id":"org.apache.johnzon:johnzon-mapper:1.2.4",
+            "start-order": "20"
+        }
+    ],
+    "configurations": {
+        "org.apache.sling.graphql.core.GraphQLServlet~default": {
+            "sling.servlet.resourceTypes": "samples/servlet",
+            "sling.servlet.extensions": "json",
+            "sling.servlet.methods": [
+                "GET",
+                "POST"
+            ]
+        }
+    },
+    "repoinit:TEXT|true": [
+        "create path /graphql",
+        "set ACL on /graphql",
+        "allow jcr:read for everyone",
+        "end"
+    ]
+}
