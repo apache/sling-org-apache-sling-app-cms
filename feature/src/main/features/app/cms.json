@@ -309,17 +309,6 @@
             "attribute.name": "StandardDeviationDurationMsec",
             "statusForFailedContraint": "WARN"
         },
-        "org.apache.felix.hc.generalchecks.JmxAttributeCheck~slowqueries": {
-            "mbean.name": "org.apache.jackrabbit.oak:name=Oak Query Statistics,type=QueryStats",
-            "hc.tags": [
-                "oak",
-                "system-resources"
-            ],
-            "hc.name": "Jackrabbit Oak - Slow Queries",
-            "attribute.value.constraint": "0",
-            "attribute.name": "SlowQueriesQueueSize",
-            "statusForFailedContraint": "WARN"
-        },
         "org.apache.sling.hc.support.DefaultLoginsHealthCheck~slingcms": {
             "logins": [
                 "admin:admin"
@@ -437,6 +426,7 @@
         "create service user sling-cms-versionmgr",
         "set ACL for sling-cms-versionmgr",
         "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /",
+        "allow   jcr:read    on /jcr:system/jcr:versionStorage",
         "end"
     ]
 }
