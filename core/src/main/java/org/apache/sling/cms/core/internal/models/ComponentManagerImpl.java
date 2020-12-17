@@ -108,7 +108,7 @@ public class ComponentManagerImpl implements ComponentManager {
             if (component != null) {
                 for (String type : component.getComponentType()) {
                     if (!componentCache.containsKey(type)) {
-                        componentCache.put(type, new ArrayList<Component>());
+                        componentCache.put(type, new ArrayList<>());
                     }
                     componentCache.get(type).add(component);
                 }
