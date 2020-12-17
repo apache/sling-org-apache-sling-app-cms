@@ -1,0 +1,277 @@
+{
+    "bundles": [
+        {
+            "id": "org.apache.sling:org.apache.sling.cms.api:${cms-version}",
+            "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.cms.ui:${cms-version}",
+            "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.cms.core:${cms-version}",
+            "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.cms.reference:${cms-version}",
+            "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.cms.transformer:${cms-version}",
+            "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.cms.login:${cms-version}",
+            "start-order": "20"
+        }
+    ],
+    "configurations": {
+        "org.apache.sling.cms.core.internal.repository.DataStoreCleanupScheduler": {
+            "scheduler.expression": "0 31 1 ? * SUN *"
+        },
+        "org.apache.sling.cms.core.internal.repository.RevisionCleanupScheduler": {
+            "scheduler.expression": "0 31 1 ? * SUN *"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~auth": {
+            "pathPattern": "/home.*",
+            "editor": "/cms/auth/list.html"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~confbucket": {
+            "pathPattern": "\\/conf\\/[\\w\\d\\-_]+\\/[\\w\\d\\-_]+",
+            "editor": "/cms/config/bucket.html"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~confbuckets": {
+            "pathPattern": "\\/conf\\/[\\w\\d\\-_]+",
+            "editor": "/cms/config/buckets.html"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~confedit": {
+            "pathPattern": "\\/conf\\/[\\w\\d\\-_]+\\/[\\w\\d\\-_]+\\/.+",
+            "editor": "/cms/config/edit.html"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~confroot": {
+            "pathPattern": "\\/conf",
+            "editor": "/cms/config/configs.html"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~site": {
+            "pathPattern": "\\/content.*",
+            "editor": "/cms/site/content.html",
+            "resourceType": "sling:Site"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~sitecontent": {
+            "pathPattern": "\\/content.*",
+            "editor": "/cms/site/content.html",
+            "parentType": "sling:Site"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~sites": {
+            "pathPattern": "\\/content.*",
+            "editor": "/cms/site/sites.html",
+            "resourceType": "sling:OrderedFolder",
+            "service.ranking": 1
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~static": {
+            "pathPattern": "\\/static.*",
+            "editor": "/cms/static/content.html"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~taxonomy": {
+            "pathPattern": "\\/etc\\/taxonomy.*",
+            "editor": "/cms/taxonomy/list.html"
+        },
+        "org.apache.sling.cms.core.internal.ResourceEditorAssociation~ugc": {
+            "pathPattern": "\\/etc\\/usergenerated.*",
+            "editor": "/cms/usergenerated/content.html"
+        },
+        "org.apache.sling.cms.core.internal.rewriter.ReferenceMappingTransformerFactory": {
+            "mappedAttributes": [
+                "action",
+                "href",
+                "src"
+            ],
+            "enabledPaths": [
+                "/content"
+            ]
+        },
+        "org.apache.sling.cms.core.readability.impl.ReadabilityServiceImpl~en": {
+            "locale": "en",
+            "extraVowelExpression": ".+y$",
+            "vowelExpression": "a|e|i|o|u",
+            "isWordExpression": "[a-zA-Z]*",
+            "wordstems": [
+                "es",
+                "ed",
+                "ing",
+                "e"
+            ],
+            "complexityMin": 3
+        },
+        "org.apache.sling.engine.impl.auth.SlingAuthenticator": {
+            "sling.auth.requirements": [
+                "/bin",
+                "/cms",
+                "/libs",
+                "/apps",
+                "/etc",
+                "/home",
+                "/var"
+            ]
+        },
+        "org.apache.sling.event.jobs.QueueConfiguration~cmsqueue": {
+            "queue.name": "Sling CMS Jobs",
+            "queue.priority": "NORM",
+            "queue.maxparallel": 4624633867356078080,
+            "queue.topics": [
+                "cmsjob/*"
+            ],
+            "queue.retries": "10",
+            "queue.preferRunOnCreationInstance": true,
+            "queue.threadPoolSize": 0,
+            "queue.retrydelay": 2000,
+            "service.ranking": 0,
+            "queue.type": "UNORDERED",
+            "queue.keepJobs": true
+        },
+        "org.apache.sling.jcr.resource.internal.JcrResourceResolverFactoryImpl": {
+            "resource.resolver.required.providernames": [
+                "JCR"
+            ],
+            "resource.resolver.manglenamespaces": true,
+            "resource.resolver.optimize.alias.resolution": true,
+            "resource.resolver.vanitypath.blacklist": [
+                ""
+            ],
+            "resource.resolver.vanity.precedence": false,
+            "resource.resolver.vanitypath.maxEntries": -1,
+            "resource.resolver.required.providers": [
+                ""
+            ],
+            "resource.resolver.enable.vanitypath": true,
+            "resource.resolver.providerhandling.paranoid": false,
+            "resource.resolver.allowDirect": true,
+            "resource.resolver.mapping": [
+                "/:/",
+                "/content/:/",
+                "/system/docroot/:/",
+                "/mnt/overlay/sling-cms/content:/cms"
+            ],
+            "resource.resolver.vanitypath.whitelist": [
+                ""
+            ],
+            "resource.resolver.map.location": "/etc/map",
+            "resource.resolver.vanitypath.maxEntries.startup": true,
+            "resource.resolver.map.observation": [
+                "/"
+            ],
+            "resource.resolver.default.vanity.redirect.status": 302,
+            "resource.resolver.vanitypath.bloomfilter.maxBytes": 1024000,
+            "resource.resolver.searchpath": [
+                "/apps",
+                "/libs"
+            ],
+            "resource.resolver.log.unclosed": true,
+            "resource.resolver.log.closing": false,
+            "resource.resolver.virtual": [
+                "/:/"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-error": {
+            "user.mapping": [
+                "org.apache.sling.cms.core:sling-cms-error=sling-cms-error",
+                "org.apache.sling.models.impl:sling-cms-error=sling-cms-error"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-metadata": {
+            "user.mapping": [
+                "org.apache.sling.cms.core:sling-cms-metadata=sling-cms-metadata"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-transformer": {
+            "user.mapping": [
+                "org.apache.sling.cms.transformer:sling-cms-transformer=sling-cms-transformer"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-ugc": {
+            "user.mapping": [
+                "org.apache.sling.cms.core:sling-cms-ugc=sling-cms-ugc"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-versionmgr": {
+            "user.mapping": [
+                "org.apache.sling.cms.core:sling-cms-versionmgr=sling-cms-versionmgr"
+            ]
+        }
+    },
+    "repoinit:TEXT|true": [
+        "",
+        "# CMS root paths",
+        "create path (sling:OrderedFolder) /etc/i18n",
+        "set ACL for everyone",
+        "allow   jcr:read\ton /etc/i18n",
+        "end",
+        "create path (sling:OrderedFolder) /etc/taxonomy",
+        "set ACL for everyone",
+        "allow   jcr:read\ton /etc/taxonomy",
+        "end",
+        "create path (sling:OrderedFolder) /static",
+        "set ACL for everyone",
+        "allow   jcr:read\ton /static",
+        "end",
+        "create path (sling:OrderedFolder) /conf",
+        "set ACL for everyone",
+        "allow   jcr:read\ton /conf",
+        "end",
+        "create path (sling:OrderedFolder) /content",
+        "create path (sling:OrderedFolder) /etc/usergenerated",
+        "set ACL for everyone",
+        "allow   jcr:read    on /etc/usergenerated",
+        "end",
+        "",
+        "# Groups",
+        "create path (rep:AuthorizableFolder) /home/groups",
+        "create path (rep:AuthorizableFolder) /home/groups/sling-cms",
+        "create group administrators with path sling-cms",
+        "set ACL for administrators",
+        "allow   jcr:all    on /",
+        "end",
+        "create group authors with path sling-cms",
+        "set ACL for authors",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /content",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /static",
+        "allow   jcr:read    on /",
+        "end",
+        "create group job-users with path sling-cms",
+        "create group taxonomy-users with path sling-cms",
+        "set ACL for taxonomy-users",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /etc/taxonomy",
+        "end",
+        "create group ugc-users with path sling-cms",
+        "set ACL for ugc-users",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /etc/usergenerated",
+        "end",
+        "",
+        "# Service users",
+        "create service user sling-cms-error",
+        "set ACL for sling-cms-error",
+        "allow\tjcr:read\ton /",
+        "end",
+        "create service user sling-cms-metadata",
+        "set ACL for sling-cms-metadata",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /content",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /static",
+        "allow   jcr:read    on /",
+        "end",
+        "create service user sling-cms-transformer",
+        "set ACL for sling-cms-transformer",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /content",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /static",
+        "allow   jcr:read    on /",
+        "end",
+        "create service user sling-cms-ugc",
+        "set ACL for sling-cms-ugc",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /etc/usergenerated",
+        "end",
+        "create service user sling-cms-versionmgr",
+        "set ACL for sling-cms-versionmgr",
+        "allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /",
+        "allow   jcr:read    on /jcr:system/jcr:versionStorage",
+        "end"
+    ]
+}
