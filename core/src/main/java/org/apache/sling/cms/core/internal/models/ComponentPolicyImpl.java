@@ -20,8 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -41,8 +39,6 @@ public class ComponentPolicyImpl implements ComponentPolicy {
 
     @ValueMapValue
     private String policyPath;
-
-    private Optional<Resource> policyResource;
 
     private final ResourceResolver resolver;
 

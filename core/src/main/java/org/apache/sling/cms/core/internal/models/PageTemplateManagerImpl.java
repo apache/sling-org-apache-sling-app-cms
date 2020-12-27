@@ -19,8 +19,6 @@ package org.apache.sling.cms.core.internal.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.apache.sling.cms.CMSUtils;
