@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.common.collect.ImmutableMap;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.apache.sling.cms.reference.forms.impl.FormHandler;
@@ -60,11 +61,10 @@ public class FormHandlerTest {
                         .put("singleselect", "Hello World!").put("anotherkey", "Hello World!").put("money", "123")
                         .put("patternfield", "123").put("double", "2.7").put("integer", "2")
                         .put("datefield", "2019-02-02").build());
+        context.currentResource(Mockito.mock(Resource.class));
 
-        formRequest = new FormRequestImpl(context.request());
-
-        formRequest
-                .setFieldHandlers(Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
+        formRequest = new FormRequestImpl(context.request(), null,
+                Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
 
         final SendEmailAction sendEmailAction = new SendEmailAction();
         mailService = Mockito.mock(MailService.class);
@@ -84,7 +84,6 @@ public class FormHandlerTest {
     public void testPost() throws ServletException, IOException, FormException {
 
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
-        formRequest.init();
 
         formHandler.service(context.request(), context.response());
         Mockito.verify(mailService).sendMessage(Mockito.any());
@@ -95,7 +94,6 @@ public class FormHandlerTest {
 
         context.request()
                 .setResource(context.resourceResolver().getResource("/form-no-actions/jcr:content/container/form"));
-        formRequest.init();
 
         formHandler.service(context.request(), context.response());
 

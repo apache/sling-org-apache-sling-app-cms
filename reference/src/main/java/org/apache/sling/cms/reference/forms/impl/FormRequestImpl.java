@@ -19,9 +19,10 @@ package org.apache.sling.cms.reference.forms.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -35,33 +36,54 @@ import org.apache.sling.cms.reference.forms.FormValueProvider;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Implementation of a Form Request
+ */
 @Model(adaptables = { SlingHttpServletRequest.class, Resource.class }, adapters = FormRequest.class)
 public class FormRequestImpl implements FormRequest {
 
     private static final Logger log = LoggerFactory.getLogger(FormRequestImpl.class);
 
-    private List<FieldHandler> fieldHandlers;
+    private final List<FieldHandler> fieldHandlers;
 
-    private Map<String, Object> formData = new HashMap<>();
+    private final Map<String, Object> formData = new HashMap<>();
 
-    @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL)
-    private List<FormValueProvider> formValueProvider;
+    private final SlingHttpServletRequest request;
 
-    private final boolean loadProviders;
-
-    private SlingHttpServletRequest request;
-
-    public FormRequestImpl(SlingHttpServletRequest request) throws FormException {
+    @Inject
+    @SuppressWarnings("unchecked")
+    public FormRequestImpl(@Self SlingHttpServletRequest request,
+            @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL) List<FormValueProvider> formValueProvider,
+            @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL) List<FieldHandler> fieldHandlers) {
         this.request = request;
-        this.loadProviders = true;
+        this.fieldHandlers = fieldHandlers;
+        if (request.getSession().getAttribute(this.getSessionId()) != null) {
+            formData.putAll(((Map<String, Object>) request.getSession().getAttribute(this.getSessionId())));
+        }
+        if (getFormResource() != null && getFormResource().getChild("providers") != null) {
+            loadProviders(formValueProvider);
+        }
     }
 
-    public FormRequestImpl(SlingHttpServletRequest request, boolean loadProviders) throws FormException {
-        this.request = request;
-        this.loadProviders = loadProviders;
+    private void loadProviders(List<FormValueProvider> formValueProvider) {
+        List<Resource> providers = ResourceTree.stream(getFormResource().getChild("providers"))
+                .map(ResourceTree::getResource).collect(Collectors.toList());
+        for (Resource provider : providers) {
+            log.debug("Looking for handler for: {}", provider);
+            if (formValueProvider != null) {
+                for (FormValueProvider fvp : formValueProvider) {
+                    if (fvp.handles(provider)) {
+                        log.debug("Invoking field value provider: {}", fvp.getClass());
+                        fvp.loadValues(provider, formData);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -77,30 +99,6 @@ public class FormRequestImpl implements FormRequest {
     @Override
     public SlingHttpServletRequest getOriginalRequest() {
         return request;
-    }
-
-    @SuppressWarnings("unchecked")
-    @PostConstruct
-    public void init() throws FormException {
-        if (request.getSession().getAttribute(this.getSessionId()) != null) {
-            formData.putAll(((Map<String, Object>) request.getSession().getAttribute(this.getSessionId())));
-        }
-        if (this.loadProviders && getFormResource().getChild("providers") != null) {
-            List<Resource> providers = ResourceTree.stream(getFormResource().getChild("providers"))
-                    .map(ResourceTree::getResource).collect(Collectors.toList());
-            for (Resource provider : providers) {
-                log.debug("Looking for handler for: {}", provider);
-                if (formValueProvider != null) {
-                    for (FormValueProvider fvp : formValueProvider) {
-                        if (fvp.handles(provider)) {
-                            log.debug("Invoking field value provider: {}", fvp.getClass());
-                            fvp.loadValues(provider, formData);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
     }
 
     public void initFields() throws FormException {
@@ -120,17 +118,7 @@ public class FormRequestImpl implements FormRequest {
 
     @Override
     public String getSessionId() {
-        return "errorval-" + this.getOriginalRequest().getResource().getPath();
-    }
-
-    @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL)
-    public void setFieldHandlers(List<FieldHandler> fieldHandlers) {
-        this.fieldHandlers = fieldHandlers;
-    }
-
-    @OSGiService(injectionStrategy = InjectionStrategy.OPTIONAL)
-    public void setFormValueProvider(List<FormValueProvider> formValueProvider) {
-        this.formValueProvider = formValueProvider;
+        return "errorval-" + Optional.ofNullable(getFormResource()).map(Resource::getPath).orElse("null");
     }
 
 }

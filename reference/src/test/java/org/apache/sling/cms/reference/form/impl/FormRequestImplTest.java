@@ -52,11 +52,8 @@ public class FormRequestImplTest {
                         .put("patternfield", "123").put("double", "2.7").put("integer", "2")
                         .put("datefield", "2019-02-02").build());
 
-        formRequest = new FormRequestImpl(context.request());
-
-        formRequest
-                .setFieldHandlers(Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
-
+        formRequest = new FormRequestImpl(context.request(), null,
+                Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
         formRequest.initFields();
     }
 

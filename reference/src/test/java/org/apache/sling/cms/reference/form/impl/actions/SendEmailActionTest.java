@@ -70,7 +70,7 @@ public class SendEmailActionTest {
     @Test
     public void testHandleForm() throws FormException {
 
-        final FormRequest formRequest = new FormRequestImpl(context.request());
+        final FormRequest formRequest = new FormRequestImpl(context.request(), null, null);
         final FormActionResult result = action
                 .handleForm(resolver.getResource("/form/jcr:content/container/form/actions/sendemail"), formRequest);
 

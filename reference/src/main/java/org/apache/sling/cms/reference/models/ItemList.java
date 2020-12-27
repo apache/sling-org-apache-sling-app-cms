@@ -17,10 +17,14 @@
 package org.apache.sling.cms.reference.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
-import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.jcr.query.Query;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +32,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,28 +45,74 @@ public class ItemList {
 
     private static final Logger log = LoggerFactory.getLogger(ItemList.class);
 
-    private int count;
+    private final int count;
 
-    private int end;
+    private final int end;
+    private final List<Resource> items;
 
-    @RequestAttribute
-    private String limit;
+    private final int page;
 
-    private int page;
+    private final Integer[] pages;
+    private final String query;
 
-    private Integer[] pages;
+    private final int start;
 
-    @RequestAttribute
-    private String query;
+    @Inject
+    public ItemList(@Self SlingHttpServletRequest request, @RequestAttribute @Named("limit") String limit,
+            @RequestAttribute @Named("query") String query) {
+        this.query = query;
+        Set<String> distinct = new HashSet<>();
 
-    private SlingHttpServletRequest request;
+        if (request.getRequestPathInfo().getSuffix() != null) {
+            query = query.replace("{SUFFIX}", request.getRequestPathInfo().getSuffix());
+        }
+        log.debug("Listing results of: {}", query);
 
-    private List<Resource> items = new ArrayList<>();
+        List<Resource> queryItems = new ArrayList<>();
+        Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);
+        while (res.hasNext()) {
+            Resource result = res.next();
+            if (!distinct.contains(result.getPath())) {
+                queryItems.add(result);
+                distinct.add(result.getPath());
+            }
+        }
+        count = queryItems.size();
+        log.debug("Found {} results", count);
 
-    private int start;
+        if (StringUtils.isNotBlank(request.getParameter("page")) && request.getParameter("page").matches("\\d+")) {
+            page = Integer.parseInt(request.getParameter("page"), 10) - 1;
+            log.debug("Using page {}", page);
+        } else {
+            page = 0;
+            log.debug("Page {} not specified or not valid", request.getParameter("page"));
+        }
 
-    public ItemList(SlingHttpServletRequest request) {
-        this.request = request;
+        int l = Integer.parseInt(limit, 10);
+        if (page * l >= count) {
+            start = count;
+        } else {
+            start = page * l;
+        }
+        log.debug("Using start {}", start);
+
+        if ((page * l) + l >= count) {
+            end = count;
+        } else {
+            end = (page * l) + l;
+        }
+        log.debug("Using end {}", end);
+        items = queryItems.subList(start, end);
+
+        List<Integer> pgs = new ArrayList<>();
+        int max = ((int) Math.ceil((double) count / l)) + 1;
+        for (int i = 1; i < max; i++) {
+            pgs.add(i);
+        }
+        pages = pgs.toArray(new Integer[pgs.size()]);
+        if (log.isDebugEnabled()) {
+            log.debug("Loaded pages {}", Arrays.toString(pages));
+        }
     }
 
     public int getCount() {
@@ -90,64 +141,6 @@ public class ItemList {
 
     public int getStart() {
         return start;
-    }
-
-    @PostConstruct
-    public void init() {
-
-        log.trace("init");
-
-        Set<String> distinct = new HashSet<>();
-
-        if (request.getRequestPathInfo().getSuffix() != null) {
-            query = query.replace("{SUFFIX}", request.getRequestPathInfo().getSuffix());
-        }
-        log.debug("Listing results of: {}", query);
-
-        Iterator<Resource> res = request.getResourceResolver().findResources(query, Query.JCR_SQL2);
-        while (res.hasNext()) {
-            Resource result = res.next();
-            if (!distinct.contains(result.getPath())) {
-                items.add(result);
-                distinct.add(result.getPath());
-            }
-        }
-        count = items.size();
-        log.debug("Found {} results", count);
-
-        if (StringUtils.isNotBlank(request.getParameter("page")) && request.getParameter("page").matches("\\d+")) {
-            page = Integer.parseInt(request.getParameter("page"), 10) - 1;
-            log.debug("Using page {}", page);
-        } else {
-            page = 0;
-            log.debug("Page {} not specified or not valid", request.getParameter("page"));
-        }
-
-        int l = Integer.parseInt(this.limit, 10);
-        if (page * l >= count) {
-            start = count;
-        } else {
-            start = page * l;
-        }
-        log.debug("Using start {}", start);
-
-        if ((page * l) + l >= count) {
-            end = count;
-        } else {
-            end = (page * l) + l;
-        }
-        log.debug("Using end {}", end);
-        items = items.subList(start, end);
-
-        List<Integer> pgs = new ArrayList<>();
-        int max = ((int) Math.ceil((double) count / l)) + 1;
-        for (int i = 1; i < max; i++) {
-            pgs.add(i);
-        }
-        pages = pgs.toArray(new Integer[pgs.size()]);
-        if (log.isDebugEnabled()) {
-            log.debug("Loaded pages {}", Arrays.toString(pages));
-        }
     }
 
     public boolean isFirst() {

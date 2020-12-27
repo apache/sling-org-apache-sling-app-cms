@@ -21,8 +21,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -49,8 +47,6 @@ public class ContentBreadcrumb {
 
     private long depth;
 
-    private List<Pair<String, String>> parents;
-
     @OSGiService
     private ResourceEditorAssociationProvider provider;
 
@@ -68,6 +64,7 @@ public class ContentBreadcrumb {
     }
 
     public String getCurrentItem() {
+        List<Pair<String, String>> parents = getParents();
         if ((parents == null || parents.isEmpty()) && StringUtils.isNotBlank(rootTitle)) {
             return rootTitle;
         }
@@ -81,23 +78,6 @@ public class ContentBreadcrumb {
     }
 
     public List<Pair<String, String>> getParents() {
-        return parents;
-    }
-
-    private String getTitle(Resource resource) {
-        String title = resource.getValueMap().get(CMSConstants.PN_TITLE, String.class);
-        if (StringUtils.isNotBlank(title)) {
-            return title;
-        }
-        title = resource.getValueMap().get(JcrConstants.JCR_CONTENT + "/" + CMSConstants.PN_TITLE, String.class);
-        if (StringUtils.isNotBlank(title)) {
-            return title;
-        }
-        return resource.getName();
-    }
-
-    @PostConstruct
-    public void init() {
         List<Resource> ps = new ArrayList<>();
 
         Resource current = resource;
@@ -118,9 +98,24 @@ public class ContentBreadcrumb {
             ps.clear();
         }
 
-        parents = ps.stream().map(p -> new ImmutablePair<>(getLink(p), getTitle(p))).collect(Collectors.toList());
+        List<Pair<String, String>> parents = ps.stream().map(p -> new ImmutablePair<>(getLink(p), getTitle(p)))
+                .collect(Collectors.toList());
         if (!parents.isEmpty() && StringUtils.isNotBlank(rootTitle)) {
             parents.set(0, new ImmutablePair<>(parents.get(0).getLeft(), rootTitle));
         }
+        return parents;
     }
+
+    private String getTitle(Resource resource) {
+        String title = resource.getValueMap().get(CMSConstants.PN_TITLE, String.class);
+        if (StringUtils.isNotBlank(title)) {
+            return title;
+        }
+        title = resource.getValueMap().get(JcrConstants.JCR_CONTENT + "/" + CMSConstants.PN_TITLE, String.class);
+        if (StringUtils.isNotBlank(title)) {
+            return title;
+        }
+        return resource.getName();
+    }
+
 }

@@ -61,14 +61,14 @@ public class ComponentPolicyImpl implements ComponentPolicy {
 
     @Override
     public String[] getAvailableComponentTypes() {
-        return policyResource.map(pr -> pr.getValueMap().get("availableComponentTypes", new String[0]))
+        return getPolicyResource().map(pr -> pr.getValueMap().get("availableComponentTypes", new String[0]))
                 .orElse(new String[0]);
     }
 
     @Override
     public Map<String, Resource> getComponentConfigs() {
         Map<String, Resource> configs = new HashMap<>();
-        Resource container = policyResource.map(pr -> pr.getChild("componentConfigurations")).orElse(null);
+        Resource container = getPolicyResource().map(pr -> pr.getChild("componentConfigurations")).orElse(null);
         if (container != null) {
             container.getChildren().forEach(c -> configs.put(c.getValueMap().get("type", String.class), c));
         }
@@ -77,18 +77,19 @@ public class ComponentPolicyImpl implements ComponentPolicy {
         return configs;
     }
 
-    @PostConstruct
-    public void init() {
-        policyResource = Optional.ofNullable(resolver.getResource(policyPath));
+    private Optional<Resource> getPolicyResource() {
+        return Optional.ofNullable(resolver.getResource(policyPath));
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         return "ComponentPolicyImpl [pathPattern=" + pathPattern + ", policyPath=" + policyPath + ", resolver="
-                + resolver + ", policyResource=" + policyResource + "]";
+                + resolver + ", policyResource=" + getPolicyResource() + "]";
     }
 
 }

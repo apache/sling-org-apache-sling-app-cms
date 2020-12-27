@@ -19,8 +19,6 @@ package org.apache.sling.cms.core.internal.models;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
@@ -44,31 +42,24 @@ public class InsightsModelImpl implements InsightsModel {
     @OSGiService
     private InsightFactory insightsFactory;
 
-    private List<Insight> insights;
-
     private Resource resource;
 
     public InsightsModelImpl(Resource resource) {
         this.resource = resource;
     }
 
-    @PostConstruct
-    public void init() {
-        if (CMSConstants.NT_FILE.equals(resource.getResourceType())) {
-            log.debug("Gathering file insights for resource {}", resource);
-            insights = insightsFactory.getInsights(resource.adaptTo(File.class));
-        } else if (CMSConstants.NT_PAGE.equals(resource.getResourceType())) {
-            log.debug("Gathering page insights for resource {}", resource);
-            insights = insightsFactory.getInsights(resource.adaptTo(Page.class));
-        } else {
-            log.debug("Insights not available for resource {}", resource);
-            insights = Collections.emptyList();
-        }
-    }
-
     @Override
     public List<Insight> getInsights() {
-        return insights;
+        if (CMSConstants.NT_FILE.equals(resource.getResourceType())) {
+            log.debug("Gathering file insights for resource {}", resource);
+            return insightsFactory.getInsights(resource.adaptTo(File.class));
+        } else if (CMSConstants.NT_PAGE.equals(resource.getResourceType())) {
+            log.debug("Gathering page insights for resource {}", resource);
+            return insightsFactory.getInsights(resource.adaptTo(Page.class));
+        } else {
+            log.debug("Insights not available for resource {}", resource);
+            return Collections.emptyList();
+        }
     }
 
 }

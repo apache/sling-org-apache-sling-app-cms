@@ -42,8 +42,6 @@ public class PageTemplateManagerImpl implements PageTemplateManager {
 
     private Resource resource;
 
-    private List<PageTemplate> siteTemplates;
-
     @OSGiService
     private ConfigurationResourceResolver configurationResourceResolver;
 
@@ -51,9 +49,8 @@ public class PageTemplateManagerImpl implements PageTemplateManager {
         this.resource = resource;
     }
 
-    @PostConstruct
-    public void init() {
-        siteTemplates = CMSUtils.adaptResources(
+    private List<PageTemplate> getSiteTemplates() {
+        return CMSUtils.adaptResources(
                 configurationResourceResolver.getResourceCollection(resource, "site", "templates"), PageTemplate.class);
     }
 
@@ -62,7 +59,7 @@ public class PageTemplateManagerImpl implements PageTemplateManager {
         String path = resource.getPath();
         List<PageTemplate> availableTemplates = new ArrayList<>();
 
-        for (PageTemplate template : siteTemplates) {
+        for (PageTemplate template : getSiteTemplates()) {
             log.debug("Checking to see if template {} is available for path {}", template.getResource().getPath(),
                     path);
             for (String allowedPath : template.getAllowedPaths()) {
@@ -84,6 +81,6 @@ public class PageTemplateManagerImpl implements PageTemplateManager {
      */
     @Override
     public String toString() {
-        return "PageTemplateManager [siteTemplates=" + siteTemplates + ", resource=" + resource + "]";
+        return "PageTemplateManager [siteTemplates=" + getSiteTemplates() + ", resource=" + resource + "]";
     }
 }
