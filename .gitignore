@@ -19,3 +19,6 @@ bin
 node_modules/
 node/
 .vscode/
+pom.xml.releaseBackup
+pom.xml.tag
+release.properties
