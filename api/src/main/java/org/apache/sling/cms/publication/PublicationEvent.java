@@ -41,6 +41,7 @@ public class PublicationEvent extends Event {
      * Creates an event to be fired when a publication occurs.
      * 
      * @param resource the content published
+     * @param deep     if true publish the resource and all child resources
      * @return the publish event
      */
     public static PublicationEvent publish(PublishableResource resource, boolean deep) {
@@ -55,6 +56,7 @@ public class PublicationEvent extends Event {
      * Creates an event to be fired when a unpublish occurs.
      * 
      * @param resource the content unpublish
+     * @param deep     if true unpublish the resource and all child resources
      * @return the unpublish event
      */
     public static PublicationEvent unpublish(PublishableResource resource, boolean deep) {
