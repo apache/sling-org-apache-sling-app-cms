@@ -16,6 +16,7 @@
  */
 package org.apache.sling.cms.reference.forms.impl.fields;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,6 +26,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.reference.forms.FieldHandler;
 import org.apache.sling.cms.reference.forms.FormException;
@@ -73,10 +75,21 @@ public class TextfieldHandler implements FieldHandler {
             log.debug("Setting value for: {}", name);
 
             String saveAs = fieldResource.getValueMap().get("saveAs", "string");
+            String type = fieldResource.getValueMap().get("type", String.class);
 
-            if ("date".equals(saveAs)) {
+            if ("file".equals(type)) {
+                RequestParameter param = request.getRequestParameter(name);
+                try {
+                    formData.put(name, param.getInputStream());
+                } catch (IOException e) {
+                    throw new FormException("Failed to read file input: " + name, e);
+                }
+                formData.put(name + ".fileName", param.getFileName());
+                if (param.getContentType() != null) {
+                    formData.put(name + ".contentType", param.getContentType());
+                }
+            } else if ("date".equals(saveAs)) {
 
-                String type = fieldResource.getValueMap().get("type", String.class);
                 if (!dateFormats.containsKey(type)) {
                     throw new FormException("Field " + name + " is not a date type");
                 }

@@ -78,7 +78,7 @@ public class FormRequestImpl implements FormRequest {
                 for (FormValueProvider fvp : formValueProvider) {
                     if (fvp.handles(provider)) {
                         log.debug("Invoking field value provider: {}", fvp.getClass());
-                        fvp.loadValues(provider, formData);
+                        fvp.loadValues(request, provider, formData);
                         break;
                     }
                 }

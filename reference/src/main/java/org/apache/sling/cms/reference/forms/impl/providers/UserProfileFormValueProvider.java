@@ -29,6 +29,7 @@ import javax.jcr.Value;
 import org.apache.jackrabbit.api.JackrabbitSession;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.reference.forms.FormValueProvider;
@@ -42,7 +43,7 @@ public class UserProfileFormValueProvider implements FormValueProvider {
     private static final Logger log = LoggerFactory.getLogger(UserProfileFormValueProvider.class);
 
     @Override
-    public void loadValues(Resource providerResource, Map<String, Object> formData) {
+    public void loadValues(SlingHttpServletRequest request, Resource providerResource, Map<String, Object> formData) {
         log.trace("loadFormData");
         try {
             ResourceResolver resolver = providerResource.getResourceResolver();
@@ -57,11 +58,11 @@ public class UserProfileFormValueProvider implements FormValueProvider {
 
                 Iterator<String> keys = user.getPropertyNames(subpath);
                 while (keys.hasNext()) {
-
                     String key = keys.next();
                     log.debug("Loading key {}", key);
                     loadKey(formData, subpath, key, user);
                 }
+                formData.put("userId", user.getID());
             } else {
                 log.warn("Failed to load Jackrabbit session for request");
             }

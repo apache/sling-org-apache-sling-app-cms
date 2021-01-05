@@ -18,6 +18,7 @@ package org.apache.sling.cms.reference.forms;
 
 import java.util.Map;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 
 /**
@@ -32,8 +33,9 @@ public interface FormValueProvider {
     /**
      * Populates the form values for a request.
      * 
+     * @param request               the original request
      * @param valueProviderResource the resource for configuring this provider
      * @param formData              the map of data for the form
      */
-    void loadValues(Resource valueProviderResource, Map<String, Object> formData);
+    void loadValues(SlingHttpServletRequest request, Resource valueProviderResource, Map<String, Object> formData);
 }

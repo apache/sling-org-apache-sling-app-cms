@@ -25,6 +25,7 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringSubstitutor;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -67,6 +68,7 @@ public class FormHandler extends SlingAllMethodsServlet {
                 .map(PageManager::getPage).map(Page::getPath)
                 .orElse(StringUtils.substringBefore(request.getResource().getPath(), "/" + JcrConstants.JCR_CONTENT));
 
+        StringSubstitutor sub = null;
         try {
             if (request.getResource().getChild("actions") == null) {
                 throw new FormException("No actions provided to handle this form submission");
@@ -80,6 +82,7 @@ public class FormHandler extends SlingAllMethodsServlet {
                 response.sendRedirect(request.getResourceResolver().map(request, pagePath) + ".html?error=fields");
                 return;
             }
+            sub = new StringSubstitutor(formRequest.getFormData());
             request.getSession().setAttribute(formRequest.getSessionId(), formRequest.getFormData());
             for (Resource actionResource : actionResources) {
                 log.debug("Finding action handler for: {}", actionResource);
@@ -98,7 +101,7 @@ public class FormHandler extends SlingAllMethodsServlet {
             return;
         }
 
-        String thankYouPage = request.getResource().getValueMap().get("successPage", String.class);
+        String thankYouPage = sub.replace(request.getResource().getValueMap().get("successPage", pagePath));
         if (StringUtils.isNotBlank(thankYouPage)) {
             if ("forward".equals(request.getResource().getValueMap().get("successAction", String.class))) {
                 SlingHttpServletRequestWrapper requestWrapper = new SlingHttpServletRequestWrapper(request) {
@@ -110,12 +113,19 @@ public class FormHandler extends SlingAllMethodsServlet {
 
                 request.getRequestDispatcher(thankYouPage).forward(requestWrapper, response);
             } else {
-                response.sendRedirect(
-                        request.getResourceResolver().map(request, thankYouPage) + ".html?message=success");
+                response.sendRedirect(resolveThankYouPage(request, thankYouPage));
             }
         } else {
-            response.sendRedirect(request.getResourceResolver().map(request, pagePath) + ".html?message=success");
+            response.sendRedirect(resolveThankYouPage(request, thankYouPage));
         }
+    }
+
+    private String resolveThankYouPage(SlingHttpServletRequest request, String thankYouPage) {
+        if (!thankYouPage.contains(".html")) {
+            thankYouPage += ".html";
+        }
+        thankYouPage += "?message=success";
+        return request.getResourceResolver().map(request, thankYouPage);
     }
 
     protected FormRequest getFormRequest(SlingHttpServletRequest request) throws FormException {

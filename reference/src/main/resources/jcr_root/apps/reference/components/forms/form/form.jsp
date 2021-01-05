@@ -19,7 +19,7 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:set var="formConfig" value="${sling:adaptTo(resource,'org.apache.sling.cms.ComponentConfiguration').properties}" scope="request" />
 <c:set var="formData" value="${sling:adaptTo(slingRequest,'org.apache.sling.cms.reference.forms.FormRequest').formData}" scope="request" />
-<form class="${formConfig.formClass}" action="${resource.path}.allowpost.html" method="post" data-analytics-id="${sling:encode(properties.formId,'HTML_ATTR')}">
+<form class="${formConfig.formClass}" action="${resource.path}.allowpost.html" method="post" data-analytics-id="${sling:encode(properties.formId,'HTML_ATTR')}" enctype="multipart/form-data">
     <c:if test="${param.message == 'success'}">
         <div class="${formConfig.alertClass}">
             ${properties.successMessage}

@@ -16,17 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<body class="cms">
-    <div class="gradient"></div>
-    <div class="main-section has-background-light">
-        <div class="columns">
-            <div class="column has-background-white-bis" style="overflow-y: auto; height: 100vh">
-                <div class="Main-Content">
-                    <sling:call script="content.jsp" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <sling:call script="scripts.jsp" />
-</body>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
+<sling:include path="container" resourceType="sling-cms/components/general/container" />
+<sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />

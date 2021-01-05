@@ -60,16 +60,17 @@ public class UserGeneratedContentAction implements FormAction {
         ValueMap properties = actionResource.getValueMap();
 
         try {
+
+            StringSubstitutor sub = new StringSubstitutor(request.getFormData());
+
             UGCBucketConfig bucketConfig = new UGCBucketConfig();
             bucketConfig.setAction(
                     APPROVE_ACTION.valueOf(properties.get("approveAction", APPROVE_ACTION.PUBLISH.toString())));
-            bucketConfig.setBucket(properties.get("bucket", String.class));
+            bucketConfig.setBucket(sub.replace(properties.get("bucket", String.class)));
             bucketConfig
                     .setContentType(CONTENT_TYPE.valueOf(properties.get("contentType", CONTENT_TYPE.OTHER.toString())));
             bucketConfig.setPathDepth(properties.get("pathDepth", 0));
-
             log.debug("Creating UGC at with configuration:  {}", bucketConfig);
-            StringSubstitutor sub = new StringSubstitutor(request.getFormData());
 
             Map<String, Object> contentProperties = new HashMap<>();
             contentProperties.put(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);

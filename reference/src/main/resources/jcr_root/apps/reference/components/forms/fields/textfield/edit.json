@@ -98,6 +98,10 @@
                     "label": "Email",
                     "value": "email"
                 },
+                "file": {
+                    "label": "File",
+                    "value": "file"
+                },
                 "hidden": {
                     "label": "Hidden",
                     "value": "hidden"
