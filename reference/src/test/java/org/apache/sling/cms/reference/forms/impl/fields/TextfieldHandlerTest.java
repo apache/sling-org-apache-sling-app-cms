@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.reference.form.impl.fields;
+package org.apache.sling.cms.reference.forms.impl.fields;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -25,17 +25,16 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableMap;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.cms.reference.form.impl.SlingContextHelper;
 import org.apache.sling.cms.reference.forms.FormException;
-import org.apache.sling.cms.reference.forms.impl.fields.TextfieldHandler;
+import org.apache.sling.cms.reference.forms.impl.SlingContextHelper;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import com.google.common.collect.ImmutableMap;
 
 public class TextfieldHandlerTest {
 

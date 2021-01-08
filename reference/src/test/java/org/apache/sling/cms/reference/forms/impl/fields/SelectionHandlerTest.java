@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.reference.form.impl.fields;
+package org.apache.sling.cms.reference.forms.impl.fields;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -24,23 +24,22 @@ import static org.junit.Assert.fail;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableMap;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.cms.reference.form.impl.SlingContextHelper;
 import org.apache.sling.cms.reference.forms.FormException;
-import org.apache.sling.cms.reference.forms.impl.fields.TextareaHandler;
+import org.apache.sling.cms.reference.forms.impl.SlingContextHelper;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.google.common.collect.ImmutableMap;
-
-public class TextareaHandlerTest {
+public class SelectionHandlerTest {
 
     @Rule
     public final SlingContext context = new SlingContext();
-    private TextareaHandler handler;
+    private SelectionHandler handler;
     private ResourceResolver resolver;
 
     @Before
@@ -49,76 +48,70 @@ public class TextareaHandlerTest {
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
         resolver = context.resourceResolver();
-        handler = new TextareaHandler();
+        handler = new SelectionHandler();
     }
 
     @Test
     public void testHandles() {
 
         assertTrue(handler
-                .handles(resolver.getResource("/form/jcr:content/container/form/fields/fieldset/fields/textarea")));
+                .handles(resolver.getResource("/form/jcr:content/container/form/fields/fieldset/fields/singleselect")));
 
         assertFalse(handler.handles(resolver.getResource("/form/jcr:content/container/form/fields/fieldset/fields")));
 
-        assertFalse(handler
-                .handles(resolver.getResource("/form/jcr:content/container/form/fields/fieldset/fields/textfield")));
+        assertTrue(handler
+                .handles(resolver.getResource("/form/jcr:content/container/form/fields/fieldset/fields/multiselect")));
     }
 
     @Test
-    public void testNotRequiredNoValue() throws FormException {
-        ResourceResolver resolver = context.resourceResolver();
-
-        context.request().getParameterMap().put("textarea", new String[] {});
-
-        Map<String, Object> formData = new HashMap<>();
-        Resource fieldResource = resolver
-                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/textarea");
-        handler.handleField(context.request(), fieldResource, formData);
-        assertFalse(formData.containsKey("textarea"));
-    }
-
-    @Test
-    public void testNotRequiredWithValue() throws FormException {
+    public void testSingleSelect() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
         context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("textarea", "Hello World").build());
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("singleselect", "Hello World").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
-                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/textarea");
+                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/singleselect");
+
         handler.handleField(context.request(), fieldResource, formData);
-        assertEquals("Hello World", formData.get("textarea"));
+
+        assertEquals("Hello World", formData.get("singleselect"));
     }
 
     @Test
-    public void testRequiresNoValue() {
+    public void testMissingSingleSelect() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().getParameterMap().put("textarea", new String[0]);
+        context.request().getParameterMap().put("singleselect", new String[] {});
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
-                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/requiredtextarea");
+                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/singleselect");
         try {
             handler.handleField(context.request(), fieldResource, formData);
             fail();
-        } catch (FormException fe) {
-
+        } catch (Exception e) {
         }
+        assertFalse(formData.containsKey("singleselect"));
     }
 
     @Test
-    public void testRequiresWithValue() throws FormException {
+    public void testMultipleSelect() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World").build());
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("multiselect", "").build());
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
-                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/requiredtextarea");
+                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/multiselect");
         handler.handleField(context.request(), fieldResource, formData);
-        assertEquals("Hello World", formData.get("requiredtextarea"));
+        assertFalse(formData.containsKey("multiselect"));
+
+        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
+                .put("multiselect", new String[] { "Thing 1", "Thing 2" }).build());
+        handler.handleField(context.request(), fieldResource, formData);
+        assertTrue(formData.containsKey("multiselect"));
     }
+
 }

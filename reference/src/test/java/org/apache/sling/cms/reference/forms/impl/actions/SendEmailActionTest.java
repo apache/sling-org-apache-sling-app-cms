@@ -14,19 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.reference.form.impl.actions;
+package org.apache.sling.cms.reference.forms.impl.actions;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.cms.reference.form.impl.MockMessageBuilder;
-import org.apache.sling.cms.reference.form.impl.SlingContextHelper;
 import org.apache.sling.cms.reference.forms.FormActionResult;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.apache.sling.cms.reference.forms.impl.FormRequestImpl;
-import org.apache.sling.cms.reference.forms.impl.actions.SendEmailAction;
+import org.apache.sling.cms.reference.forms.impl.MockMessageBuilder;
+import org.apache.sling.cms.reference.forms.impl.SlingContextHelper;
 import org.apache.sling.commons.messaging.mail.MailService;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;

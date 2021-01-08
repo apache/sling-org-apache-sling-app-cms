@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.reference.form.impl;
+package org.apache.sling.cms.reference.forms.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -23,9 +23,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import com.google.common.collect.ImmutableMap;
+
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.cms.reference.forms.FormException;
-import org.apache.sling.cms.reference.forms.impl.FormRequestImpl;
 import org.apache.sling.cms.reference.forms.impl.fields.SelectionHandler;
 import org.apache.sling.cms.reference.forms.impl.fields.TextareaHandler;
 import org.apache.sling.cms.reference.forms.impl.fields.TextfieldHandler;
@@ -33,8 +34,6 @@ import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import com.google.common.collect.ImmutableMap;
 
 public class FormRequestImplTest {
     @Rule

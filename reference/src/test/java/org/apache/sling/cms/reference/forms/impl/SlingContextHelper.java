@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.reference.form.impl;
+package org.apache.sling.cms.reference.forms.impl;
 
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.reference.form.impl;
+package org.apache.sling.cms.reference.forms.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -32,8 +32,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
-import org.apache.sling.cms.reference.forms.impl.FormHandler;
-import org.apache.sling.cms.reference.forms.impl.FormRequestImpl;
 import org.apache.sling.cms.reference.forms.impl.actions.SendEmailAction;
 import org.apache.sling.cms.reference.forms.impl.fields.SelectionHandler;
 import org.apache.sling.cms.reference.forms.impl.fields.TextareaHandler;
