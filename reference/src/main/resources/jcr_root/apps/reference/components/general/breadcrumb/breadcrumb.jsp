@@ -16,17 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
- <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" var="pageMgr" />
+<%@include file="/libs/sling-cms/global.jsp"%>
 <a href="/">
-	Home
-</a>&nbsp;»&nbsp;
+    Home
+</a>&nbsp;&#xbb;&nbsp;
 <c:if test="${not empty properties.level}">
-	<c:forEach var="parent" items="${sling:getParents(pageMgr.page.resource,properties.level)}">
-		<c:if test="${parent.path != page.resource.path}">
-			<a href="${parent.path}.html">
-				<sling:encode value="${parent.valueMap['jcr:content/jcr:title']}" default="${parent.name}" mode="HTML" />
-			</a>&nbsp;»&nbsp;
-		</c:if>
-	</c:forEach>
+    <c:forEach var="parent" items="${sling:getParents(currentPage.resource,properties.level)}">
+        <c:if test="${parent.path != page.resource.path}">
+            <a href="${parent.path}.html">
+                <sling:encode value="${parent.valueMap['jcr:content/jcr:title']}" default="${parent.name}" mode="HTML" />
+            </a>&nbsp;&#xbb;&nbsp;
+        </c:if>
+    </c:forEach>
 </c:if>
