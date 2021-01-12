@@ -19,6 +19,7 @@ package org.apache.sling.cms.core.internal.filters;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -37,6 +38,7 @@ import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.cms.PublishableResource;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
 import org.apache.sling.cms.publication.PublicationManagerFactory;
@@ -102,7 +104,10 @@ public class CMSSecurityFilter implements Filter {
             allowed = true;
         }
 
-        PublishableResource publishableResource = slingRequest.getResource().adaptTo(PublishableResource.class);
+        PublishableResource publishableResource = Optional
+                .ofNullable(CMSUtils.findPublishableParent(slingRequest.getResource()))
+                .map(r -> r.adaptTo(PublishableResource.class)).orElse(null);
+
         if (publishableResource != null && publishableResource.isPublished()) {
             log.trace("Resource is published");
             allowed = true;
