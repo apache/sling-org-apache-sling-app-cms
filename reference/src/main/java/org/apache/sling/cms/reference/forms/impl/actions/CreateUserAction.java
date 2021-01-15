@@ -64,6 +64,8 @@ public class CreateUserAction implements FormAction {
     public static final String DEFAULT_RESOURCE_TYPE = "reference/components/forms/actions/createuser";
     public static final String PROFILE_PROPERTIES = "profileProperties";
     public static final String GROUPS = "groups";
+    public static final String PN_USERNAME = "username";
+    public static final String PN_INTERMEDIATE_PATH = "intermediatePath";
 
     private final ResourceResolverFactory factory;
     private final Config config;
@@ -80,10 +82,10 @@ public class CreateUserAction implements FormAction {
 
         final ValueMap properties = actionResource.getValueMap();
 
-        String username = request.getFormData().get("username", String.class);
+        String username = request.getFormData().get(PN_USERNAME, String.class);
         String password = request.getFormData().get(FormConstants.PN_PASSWORD, String.class);
 
-        String intermediatePath = properties.get("intermediatePath", String.class);
+        String intermediatePath = properties.get(PN_INTERMEDIATE_PATH, String.class);
 
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             return FormActionResult.failure("Empty username / password");
@@ -95,7 +97,7 @@ public class CreateUserAction implements FormAction {
                 JackrabbitSession session = (JackrabbitSession) adminResolver.adaptTo(Session.class);
                 final UserManager userManager = session.getUserManager();
 
-                if (userManager.getAuthorizable(new PrincipalImpl(username)) == null) {
+                if (userManager.getAuthorizable(username) == null) {
 
                     log.debug("Creating user {}", username);
                     User user = userManager.createUser(username, password, new PrincipalImpl(username),
@@ -104,7 +106,7 @@ public class CreateUserAction implements FormAction {
                     String[] groups = properties.get(GROUPS, new String[0]);
                     for (String g : groups) {
                         String groupName = sub.replace(g);
-                        Authorizable group = userManager.getAuthorizable(new PrincipalImpl(groupName));
+                        Authorizable group = userManager.getAuthorizable(groupName);
                         if (group == null || !group.isGroup()) {
                             log.error("Could not find group {}", groupName);
                             return FormActionResult.failure("Could not find group: " + groupName);

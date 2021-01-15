@@ -94,7 +94,7 @@ public class UpdateProfileAction implements FormAction {
                     } else if (e.getValue() instanceof Double) {
                         value = valueFactory.createValue((Double) e.getValue());
                     } else if (e.getValue() instanceof Integer) {
-                        value = valueFactory.createValue((Double) e.getValue());
+                        value = valueFactory.createValue((Integer) e.getValue());
                     } else {
                         value = valueFactory.createValue((String) e.getValue());
                     }

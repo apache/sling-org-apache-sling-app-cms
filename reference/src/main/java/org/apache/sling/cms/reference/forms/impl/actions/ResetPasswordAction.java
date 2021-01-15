@@ -18,7 +18,6 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.stream.Stream;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
