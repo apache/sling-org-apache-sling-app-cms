@@ -41,7 +41,7 @@
             <c:set var="fieldValue" value="${properties.value}" />
         </c:when>
     </c:choose>
-    <input type="${properties.type}" class="${formConfig.fieldClass}" id="${properties.name}" name="${properties.name}" value="${fieldValue}" ${not empty properties.pattern ? patternStr : ''} ${not empty properties.placeholder ? placeholderStr : ''} ${properties.required ? 'required="required"' : ''}
+    <input type="${sling:encode(properties.type,'HTML_ATTR')}" class="${sling:encode(formConfig.fieldClass,'HTML_ATTR')}" id="${sling:encode(properties.name,'HTML_ATTR')}" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(fieldValue,'HTML_ATTR')}" ${not empty properties.pattern ? patternStr : ''} ${not empty properties.placeholder ? placeholderStr : ''} ${properties.required ? 'required="required"' : ''}
         <c:forEach var="attr" items="${properties.additionalAttributes}">
             ${fn:split(attr,'\\=')[0]}="${fn:split(attr,'\\=')[1]}"
         </c:forEach> 

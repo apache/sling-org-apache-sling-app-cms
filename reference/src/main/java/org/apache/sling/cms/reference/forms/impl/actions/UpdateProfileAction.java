@@ -34,6 +34,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.reference.forms.FormAction;
 import org.apache.sling.cms.reference.forms.FormActionResult;
+import org.apache.sling.cms.reference.forms.FormConstants;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.osgi.service.component.annotations.Component;
@@ -51,51 +52,53 @@ public class UpdateProfileAction implements FormAction {
         String userId = resolver.getUserID();
         JackrabbitSession session = (JackrabbitSession) resolver.adaptTo(Session.class);
 
-        if (session != null) {
-            try {
-                final UserManager userManager = session.getUserManager();
-                if (userManager.getAuthorizable(userId) != null) {
-
-                    User user = (User) userManager.getAuthorizable(userId);
-                    log.debug("Updating profile for {}", userId);
-
-                    String subpath = actionResource.getValueMap().get("subpath", "profile");
-                    ValueFactory valueFactory = session.getValueFactory();
-
-                    for (Entry<String, Object> e : request.getFormData().entrySet()) {
-                        Value value = null;
-                        if (e.getValue() instanceof String[]) {
-                            user.setProperty(subpath + "/" + e.getKey(), Arrays.stream((String[]) e.getValue())
-                                    .map(valueFactory::createValue).collect(Collectors.toList()).toArray(new Value[0]));
-                        } else {
-                            if (e.getValue() instanceof Calendar) {
-                                value = valueFactory.createValue((Calendar) e.getValue());
-                            } else if (e.getValue() instanceof Double) {
-                                value = valueFactory.createValue((Double) e.getValue());
-                            } else if (e.getValue() instanceof Integer) {
-                                value = valueFactory.createValue((Double) e.getValue());
-                            } else {
-                                value = valueFactory.createValue((String) e.getValue());
-                            }
-                            user.setProperty(subpath + "/" + e.getKey(), value);
-                        }
-                    }
-                    log.debug("Saving changes!");
-                    resolver.commit();
-
-                    return FormActionResult.success("Profile Updated");
-                } else {
-                    log.warn("No profile found for {}", userId);
-                    return FormActionResult.failure("No profile found for " + userId);
-                }
-            } catch (RepositoryException | PersistenceException e) {
-                log.warn("Failed to update profile for {}", userId, e);
-                return FormActionResult.failure("Failed to update profile for " + userId);
-            }
-        } else {
+        if (session == null) {
             log.warn("Failed to get session for {}", userId);
             return FormActionResult.failure("Failed to get session for " + userId);
         }
+        try {
+            final UserManager userManager = session.getUserManager();
+            if (userManager.getAuthorizable(userId) == null) {
+
+                log.warn("No profile found for {}", userId);
+                return FormActionResult.failure("No profile found for " + userId);
+            }
+
+            User user = (User) userManager.getAuthorizable(userId);
+            log.debug("Updating profile for {}", userId);
+
+            String subpath = actionResource.getValueMap().get(FormConstants.PN_SUBPATH, FormConstants.PATH_PROFILE);
+            ValueFactory valueFactory = session.getValueFactory();
+
+            for (Entry<String, Object> e : request.getFormData().entrySet()) {
+                Value value = null;
+                if (e.getValue() instanceof String[]) {
+                    Value[] values = Arrays.stream(((String[]) e.getValue())).map(valueFactory::createValue)
+                            .collect(Collectors.toList()).toArray(new Value[0]);
+                    user.setProperty(subpath + "/" + e.getKey(), values);
+                } else {
+                    if (e.getValue() instanceof Calendar) {
+                        value = valueFactory.createValue((Calendar) e.getValue());
+                    } else if (e.getValue() instanceof Double) {
+                        value = valueFactory.createValue((Double) e.getValue());
+                    } else if (e.getValue() instanceof Integer) {
+                        value = valueFactory.createValue((Double) e.getValue());
+                    } else {
+                        value = valueFactory.createValue((String) e.getValue());
+                    }
+                    user.setProperty(subpath + "/" + e.getKey(), value);
+                }
+            }
+            log.debug("Saving changes!");
+            resolver.commit();
+
+            return FormActionResult.success("Profile Updated");
+
+        } catch (RepositoryException | PersistenceException e) {
+            log.warn("Failed to update profile for {}", userId, e);
+            return FormActionResult.failure("Failed to update profile for " + userId);
+        }
+
     }
 
     @Override

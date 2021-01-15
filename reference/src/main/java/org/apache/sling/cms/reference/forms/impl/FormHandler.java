@@ -36,6 +36,7 @@ import org.apache.sling.cms.Page;
 import org.apache.sling.cms.PageManager;
 import org.apache.sling.cms.ResourceTree;
 import org.apache.sling.cms.reference.forms.FormAction;
+import org.apache.sling.cms.reference.forms.FormActionResult;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.osgi.service.component.annotations.Activate;
@@ -86,11 +87,15 @@ public class FormHandler extends SlingAllMethodsServlet {
             request.getSession().setAttribute(formRequest.getSessionId(), formRequest.getFormData());
             for (Resource actionResource : actionResources) {
                 log.debug("Finding action handler for: {}", actionResource);
-                for (FormAction action : formActions) {
-                    if (action.handles(actionResource)) {
-                        log.debug("Invoking handler: {}", action.getClass());
-                        action.handleForm(actionResource, formRequest);
-                        break;
+                FormAction action = formActions.stream().filter(fa -> fa.handles(actionResource)).findFirst()
+                        .orElse(null);
+                if (action != null) {
+                    FormActionResult result = action.handleForm(actionResource, formRequest);
+                    if (!result.isSucceeded()) {
+                        throw new FormException(
+                                "Failed to invoke action: " + action + " with message: " + result.getMessage());
+                    } else {
+                        log.debug("Successfully invoked action: {}", result.getMessage());
                     }
                 }
             }

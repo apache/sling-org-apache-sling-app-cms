@@ -18,10 +18,13 @@ package org.apache.sling.cms.reference.forms.impl.fields;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.ByteArrayInputStream;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,12 +74,21 @@ public class TextfieldHandlerTest {
             handler.handleField(context.request(), fieldResource, formData);
             fail();
         } catch (FormException pe) {
+            // expected
+        }
+
+        context.request()
+                .setParameterMap(ImmutableMap.<String, Object>builder().put("invaliddate", "2019-99-99").build());
+
+        Resource invalidType = resolver.getResource("/form/jcr:content/container/invalidtype");
+        try {
+            handler.handleField(context.request(), invalidType, formData);
+            fail();
+        } catch (FormException pe) {
 
         }
 
         Resource invalidDate = resolver.getResource("/form/jcr:content/container/invaliddate");
-        context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("invalidate", "2019-02-12").build());
         try {
             handler.handleField(context.request(), invalidDate, formData);
             fail();
@@ -103,9 +115,30 @@ public class TextfieldHandlerTest {
             handler.handleField(context.request(), fieldResource, formData);
             fail();
         } catch (FormException pe) {
-
+            // expected
         }
 
+        fieldResource = resolver
+                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/unvalidateddouble");
+        try {
+            handler.handleField(context.request(), fieldResource, formData);
+            fail();
+        } catch (FormException pe) {
+            // expected
+        }
+    }
+
+    @Test
+    public void testFile() throws FormException {
+        ResourceResolver resolver = context.resourceResolver();
+
+        context.request().setParameterMap(Collections.singletonMap("file", new ByteArrayInputStream(new byte[0])));
+
+        Map<String, Object> formData = new HashMap<>();
+        Resource fieldResource = resolver.getResource("/form/jcr:content/container/form/fields/fieldset/fields/file");
+        handler.handleField(context.request(), fieldResource, formData);
+        assertNotNull(formData.get("file"));
+        assertEquals(ByteArrayInputStream.class, formData.get("file").getClass());
     }
 
     @Test
@@ -137,9 +170,17 @@ public class TextfieldHandlerTest {
             handler.handleField(context.request(), fieldResource, formData);
             fail();
         } catch (FormException pe) {
-
+            // expected
         }
 
+        fieldResource = resolver
+                .getResource("/form/jcr:content/container/form/fields/fieldset/fields/unvalidatedinteger");
+        try {
+            handler.handleField(context.request(), fieldResource, formData);
+            fail();
+        } catch (FormException pe) {
+
+        }
     }
 
     @Test

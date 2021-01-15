@@ -21,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
 
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.Arrays;
 
 import javax.servlet.ServletException;
@@ -64,11 +65,21 @@ public class FormHandlerTest {
         formRequest = new FormRequestImpl(context.request(), null,
                 Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
 
-        final SendEmailAction sendEmailAction = new SendEmailAction();
         mailService = Mockito.mock(MailService.class);
         Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
-        sendEmailAction.setMailService(mailService);
+        final SendEmailAction sendEmailAction = new SendEmailAction(mailService, new SendEmailAction.Config() {
 
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String[] supportedTypes() {
+                return new String[] { SendEmailAction.DEFAULT_RESOURCE_TYPE };
+            }
+
+        });
         formHandler = new FormHandler(Arrays.asList(sendEmailAction)) {
             private static final long serialVersionUID = 1L;
 

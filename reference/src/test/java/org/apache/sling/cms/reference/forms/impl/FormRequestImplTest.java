@@ -21,6 +21,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 
 import com.google.common.collect.ImmutableMap;
@@ -49,7 +50,7 @@ public class FormRequestImplTest {
                 .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World!")
                         .put("singleselect", "Hello World!").put("anotherkey", "Hello World!").put("money", "123")
                         .put("patternfield", "123").put("double", "2.7").put("integer", "2")
-                        .put("datefield", "2019-02-02").build());
+                        .put("file", new ByteArrayInputStream(new byte[0])).put("datefield", "2019-02-02").build());
 
         formRequest = new FormRequestImpl(context.request(), null,
                 Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));

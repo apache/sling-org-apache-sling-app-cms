@@ -8,11 +8,18 @@
         "published": true,
         "container": {
             "jcr:primaryType": "nt:unstructured",
+            "invalidtype": {
+                "jcr:primaryType": "nt:unstructured",
+                "required": true,
+                "name": "invalidtype",
+                "label": "Daty",
+                "saveAs": "date",
+                "sling:resourceType": "reference/components/forms/fields/textfield"
+            },
             "invaliddate": {
                 "jcr:primaryType": "nt:unstructured",
                 "required": true,
-                "name": "datefield",
-                "type": "text",
+                "name": "invaliddate",
                 "label": "Daty",
                 "saveAs": "date",
                 "sling:resourceType": "reference/components/forms/fields/textfield"
@@ -101,12 +108,38 @@
                                 "saveAs": "double",
                                 "sling:resourceType": "reference/components/forms/fields/textfield"
                             },
+                            "unvalidateddouble": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "double",
+                                "type": "text",
+                                "label": "Daty",
+                                "saveAs": "double",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "file": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "file",
+                                "type": "file",
+                                "label": "File",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
                             "integer": {
                                 "jcr:primaryType": "nt:unstructured",
                                 "required": true,
                                 "name": "integer",
                                 "type": "number",
                                 "label": "Daty",
+                                "saveAs": "integer",
+                                "sling:resourceType": "reference/components/forms/fields/textfield"
+                            },
+                            "unvalidatedinteger": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "required": true,
+                                "name": "integer",
+                                "type": "text",
+                                "label": "Inty",
                                 "saveAs": "integer",
                                 "sling:resourceType": "reference/components/forms/fields/textfield"
                             },
@@ -130,6 +163,11 @@
                                 "multiple": false,
                                 "sling:resourceType": "reference/components/forms/fields/selection",
                                 "display": "select"
+                            },
+                            "honeypot": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "name": "honeypot",
+                                "sling:resourceType": "reference/components/forms/fields/honeypot"
                             }
                         }
                     }

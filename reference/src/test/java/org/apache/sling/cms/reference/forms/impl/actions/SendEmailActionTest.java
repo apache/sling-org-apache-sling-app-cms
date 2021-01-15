@@ -19,6 +19,8 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.annotation.Annotation;
+
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.reference.forms.FormActionResult;
 import org.apache.sling.cms.reference.forms.FormException;
@@ -47,12 +49,20 @@ public class SendEmailActionTest {
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
         resolver = context.resourceResolver();
-        action = new SendEmailAction();
-
         mailService = Mockito.mock(MailService.class);
         Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
+        action = new SendEmailAction(mailService, new SendEmailAction.Config() {
 
-        action.setMailService(mailService);
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String[] supportedTypes() {
+                return new String[] { SendEmailAction.DEFAULT_RESOURCE_TYPE };
+            }
+        });
     }
 
     @Test
