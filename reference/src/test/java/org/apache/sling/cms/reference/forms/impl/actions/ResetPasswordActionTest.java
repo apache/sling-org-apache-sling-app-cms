@@ -47,7 +47,6 @@ import org.apache.sling.cms.reference.forms.FormConstants;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.apache.sling.cms.reference.forms.impl.FormRequestImpl;
-import org.apache.sling.cms.reference.forms.impl.actions.RequestPasswordResetAction.Config;
 import org.apache.sling.servlethelpers.MockSlingHttpServletRequest;
 import org.apache.sling.testing.resourceresolver.MockResource;
 import org.junit.Before;
@@ -119,39 +118,47 @@ public class ResetPasswordActionTest {
     @Test
     public void testHandleForm() throws FormException {
 
-        RequestPasswordResetAction action = new RequestPasswordResetAction(factory, null);
+        ResetPasswordAction action = new ResetPasswordAction(factory, null);
 
         FormRequest request = new FormRequestImpl(new MockSlingHttpServletRequest(resolver), null, null);
-        request.getFormData().put("email", "test@email.com");
+        request.getFormData().put("email", "valid@email.com");
         request.getFormData().put(FormConstants.PN_RESETTOKEN, "123");
         request.getFormData().put(FormConstants.PN_PASSWORD, "password1");
 
-        Resource actionResource = new MockResource("/content", Collections.emptyMap(), null);
+        Resource actionResource = new MockResource("/content",
+                Collections.singletonMap(RequestPasswordResetAction.PN_RESETTIMEOUT, 1000000), null);
 
         FormActionResult result = action.handleForm(actionResource, request);
         assertTrue(result.isSucceeded());
 
     }
 
-    @Test
-    public void testNoUser() throws FormException {
+    public FormActionResult doReset(String email) throws FormException {
 
         ResetPasswordAction action = new ResetPasswordAction(factory, null);
 
         FormRequest request = new FormRequestImpl(new MockSlingHttpServletRequest(resolver), null, null);
-        request.getFormData().put("email", "test1@email.com");
+        request.getFormData().put("email", email);
 
         Resource actionResource = new MockResource("/content",
                 Collections.singletonMap(RequestPasswordResetAction.PN_RESETTIMEOUT, 2), null);
 
-        FormActionResult result = action.handleForm(actionResource, request);
-        assertFalse(result.isSucceeded());
+        return action.handleForm(actionResource, request);
+
+    }
+
+    @Test
+    public void testInvalid() throws FormException {
+
+        assertFalse(doReset("invalid@email.com").isSucceeded());
+        assertFalse(doReset("expired@email.com").isSucceeded());
+        assertFalse(doReset("test123@email.com").isSucceeded());
 
     }
 
     @Test
     public void testHandles() throws FormException {
-        Config config = new Config() {
+        ResetPasswordAction action = new ResetPasswordAction(null, new ResetPasswordAction.Config() {
             @Override
             public Class<? extends Annotation> annotationType() {
                 return null;
@@ -159,12 +166,11 @@ public class ResetPasswordActionTest {
 
             @Override
             public String[] supportedTypes() {
-                return new String[] { RequestPasswordResetAction.DEFAULT_RESOURCE_TYPE };
+                return new String[] { ResetPasswordAction.DEFAULT_RESOURCE_TYPE };
             }
-        };
-        RequestPasswordResetAction action = new RequestPasswordResetAction(null, config);
+        });
         Resource validResource = Mockito.mock(Resource.class);
-        Mockito.when(validResource.getResourceType()).thenReturn(RequestPasswordResetAction.DEFAULT_RESOURCE_TYPE);
+        Mockito.when(validResource.getResourceType()).thenReturn(ResetPasswordAction.DEFAULT_RESOURCE_TYPE);
         assertTrue(action.handles(validResource));
 
         Resource inValidResource = Mockito.mock(Resource.class);

@@ -18,6 +18,7 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
@@ -37,26 +38,37 @@ import org.apache.sling.cms.reference.forms.FormActionResult;
 import org.apache.sling.cms.reference.forms.FormConstants;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
+import org.apache.sling.cms.reference.forms.FormUtils;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = FormAction.class)
+@Designate(ocd = UpdateProfileAction.Config.class)
 public class UpdateProfileAction implements FormAction {
 
+    public static final String DEFAULT_RESOURCE_TYPE = "reference/components/forms/actions/updateprofile";
+
     private static final Logger log = LoggerFactory.getLogger(UpdateProfileAction.class);
+
+    private Config config;
+
+    public UpdateProfileAction(Config config) {
+        this.config = config;
+    }
 
     @Override
     public FormActionResult handleForm(Resource actionResource, FormRequest request) throws FormException {
         ResourceResolver resolver = request.getOriginalRequest().getResourceResolver();
         String userId = resolver.getUserID();
-        JackrabbitSession session = (JackrabbitSession) resolver.adaptTo(Session.class);
 
-        if (session == null) {
-            log.warn("Failed to get session for {}", userId);
-            return FormActionResult.failure("Failed to get session for " + userId);
-        }
         try {
+            JackrabbitSession session = Optional.ofNullable((JackrabbitSession) resolver.adaptTo(Session.class))
+                    .orElseThrow(() -> new RepositoryException("Unable to get Jackrabbit Session"));
+
             final UserManager userManager = session.getUserManager();
             if (userManager.getAuthorizable(userId) == null) {
 
@@ -103,7 +115,15 @@ public class UpdateProfileAction implements FormAction {
 
     @Override
     public boolean handles(Resource actionResource) {
-        return "reference/components/forms/actions/updateprofile".equals(actionResource.getResourceType());
+        return FormUtils.handles(config.supportedTypes(), actionResource);
+    }
+
+    @ObjectClassDefinition(name = "%cms.reference.updateprofile.name", description = "%cms.reference.updateprofile.description", localization = "OSGI-INF/l10n/bundle")
+    public @interface Config {
+
+        @AttributeDefinition(name = "%cms.reference.supportedTypes.name", description = "%cms.reference.supportedTypes.description", defaultValue = {
+                DEFAULT_RESOURCE_TYPE })
+        String[] supportedTypes() default { DEFAULT_RESOURCE_TYPE };
     }
 
 }

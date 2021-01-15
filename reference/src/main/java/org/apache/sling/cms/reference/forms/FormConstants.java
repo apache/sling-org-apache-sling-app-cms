@@ -33,5 +33,5 @@ public class FormConstants {
     public static final String PN_RESETTOKEN = "resettoken";
     public static final String PN_RESETTIMEOUT = "resettimeout";
 
-    public static final String PN_PASSWORD = "passwordw";
+    public static final String PN_PASSWORD = "password";
 }
