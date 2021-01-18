@@ -19,7 +19,6 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,12 +89,12 @@ public class CreateUserActionTest {
         Mockito.when(session.getUserManager()).thenReturn(userManager);
 
         User existingUser = Mockito.mock(User.class);
-        Mockito.when(userManager.getAuthorizable(Mockito.eq("existing@email.com"))).thenReturn(existingUser);
+        Mockito.when(userManager.getAuthorizable("existing@email.com")).thenReturn(existingUser);
         Mockito.when(existingUser.getPath()).thenReturn("/home");
 
         Group agroup = Mockito.mock(Group.class);
         Mockito.when(agroup.isGroup()).thenReturn(true);
-        Mockito.when(userManager.getAuthorizable(Mockito.eq("group1"))).thenReturn(agroup);
+        Mockito.when(userManager.getAuthorizable("group1")).thenReturn(agroup);
 
         Map<String, Object> properties = new HashMap<>();
         properties.put(CreateUserAction.PN_INTERMEDIATE_PATH, "app");
@@ -112,7 +111,7 @@ public class CreateUserActionTest {
     @Test
     public void testHandleForm() throws FormException, RepositoryException {
 
-        CreateUserAction action = new CreateUserAction(factory, null);
+        CreateUserAction action = new CreateUserAction(factory);
 
         Mockito.when(resolver.getUserID()).thenReturn("valid@email.com");
 
@@ -129,7 +128,7 @@ public class CreateUserActionTest {
     @Test
     public void testExistingUser() throws FormException, RepositoryException {
 
-        CreateUserAction action = new CreateUserAction(factory, null);
+        CreateUserAction action = new CreateUserAction(factory);
 
         FormRequest request = new FormRequestImpl(new MockSlingHttpServletRequest(resolver), null, null);
         request.getFormData().put(CreateUserAction.PN_USERNAME, "existing@email.com");
@@ -141,19 +140,9 @@ public class CreateUserActionTest {
 
     @Test
     public void testHandles() throws FormException {
-        CreateUserAction action = new CreateUserAction(factory, new CreateUserAction.Config() {
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
-
-            @Override
-            public String[] supportedTypes() {
-                return new String[] { CreateUserAction.DEFAULT_RESOURCE_TYPE };
-            }
-        });
+        CreateUserAction action = new CreateUserAction(factory);
         Resource validResource = Mockito.mock(Resource.class);
-        Mockito.when(validResource.getResourceType()).thenReturn(CreateUserAction.DEFAULT_RESOURCE_TYPE);
+        Mockito.when(validResource.getResourceType()).thenReturn(CreateUserAction.RESOURCE_TYPE);
         assertTrue(action.handles(validResource));
 
         Resource inValidResource = Mockito.mock(Resource.class);

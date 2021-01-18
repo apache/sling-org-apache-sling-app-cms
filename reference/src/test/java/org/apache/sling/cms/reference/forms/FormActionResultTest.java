@@ -20,8 +20,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.sling.cms.reference.forms.FormActionResult;
-import org.apache.sling.cms.reference.forms.FormException;
 import org.junit.Test;
 
 public class FormActionResultTest {

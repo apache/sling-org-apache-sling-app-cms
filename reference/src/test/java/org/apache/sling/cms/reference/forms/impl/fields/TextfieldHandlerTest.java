@@ -23,6 +23,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayInputStream;
+import java.lang.annotation.Annotation;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,6 +35,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.impl.SlingContextHelper;
+import org.apache.sling.cms.reference.forms.impl.fields.TextfieldHandler.Config;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -52,7 +54,19 @@ public class TextfieldHandlerTest {
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
         resolver = context.resourceResolver();
-        handler = new TextfieldHandler();
+        handler = new TextfieldHandler(new Config() {
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String[] supportedTypes() {
+                return new String[] { TextfieldHandler.DEFAULT_RESOURCE_TYPE };
+            }
+
+        });
     }
 
     @Test

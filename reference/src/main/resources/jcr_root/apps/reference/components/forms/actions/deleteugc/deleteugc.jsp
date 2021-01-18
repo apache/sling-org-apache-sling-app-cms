@@ -18,13 +18,9 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Update Resource</h3>
+    <h3>Delete User Generated Content</h3>
     <dl>
-        <dt>Allowed Properties</dt>
-        <dd>${sling:encode(fn:join(properties.allowedProperties,','),'HTML')}</dd>
         <dt>Path</dt>
         <dd>${sling:encode(properties.path,'HTML')}</dd>
-        <dt>Service User</dt>
-        <dd>${sling:encode(properties.serviceUser,'HTML')}</dd>
     </dl>
 </c:if>

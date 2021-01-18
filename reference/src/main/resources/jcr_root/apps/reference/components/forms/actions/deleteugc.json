@@ -1,5 +1,5 @@
 {
     "jcr:primaryType" : "sling:Component",
-    "jcr:title": "Update Resource",
+    "jcr:title": "Delete User Generated Content",
     "componentType": "Form Action"
 }

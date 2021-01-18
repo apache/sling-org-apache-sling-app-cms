@@ -19,11 +19,8 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.annotation.Annotation;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
@@ -97,12 +94,12 @@ public class ResetPasswordActionTest {
         cal.add(Calendar.HOUR, 24);
         Mockito.when(validUser.getProperty(FormConstants.PN_RESETTIMEOUT))
                 .thenReturn(new Value[] { new DateValue(cal) });
-        Mockito.when(userManager.getAuthorizable(Mockito.eq("valid@email.com"))).thenReturn(validUser);
+        Mockito.when(userManager.getAuthorizable("valid@email.com")).thenReturn(validUser);
 
         User invalidUser = Mockito.mock(User.class);
         Mockito.when(invalidUser.getProperty(FormConstants.PN_RESETTOKEN))
                 .thenReturn(new Value[] { new StringValue("456") });
-        Mockito.when(userManager.getAuthorizable(Mockito.eq("invalid@email.com"))).thenReturn(invalidUser);
+        Mockito.when(userManager.getAuthorizable("invalid@email.com")).thenReturn(invalidUser);
 
         User expiredUser = Mockito.mock(User.class);
         Mockito.when(expiredUser.getProperty(FormConstants.PN_RESETTOKEN))
@@ -111,14 +108,14 @@ public class ResetPasswordActionTest {
         cal.add(Calendar.HOUR, -24);
         Mockito.when(expiredUser.getProperty(FormConstants.PN_RESETTIMEOUT))
                 .thenReturn(new Value[] { new DateValue(cal) });
-        Mockito.when(userManager.getAuthorizable(Mockito.eq("expired@email.com"))).thenReturn(expiredUser);
+        Mockito.when(userManager.getAuthorizable("expired@email.com")).thenReturn(expiredUser);
 
     }
 
     @Test
     public void testHandleForm() throws FormException {
 
-        ResetPasswordAction action = new ResetPasswordAction(factory, null);
+        ResetPasswordAction action = new ResetPasswordAction(factory);
 
         FormRequest request = new FormRequestImpl(new MockSlingHttpServletRequest(resolver), null, null);
         request.getFormData().put("email", "valid@email.com");
@@ -135,7 +132,7 @@ public class ResetPasswordActionTest {
 
     public FormActionResult doReset(String email) throws FormException {
 
-        ResetPasswordAction action = new ResetPasswordAction(factory, null);
+        ResetPasswordAction action = new ResetPasswordAction(factory);
 
         FormRequest request = new FormRequestImpl(new MockSlingHttpServletRequest(resolver), null, null);
         request.getFormData().put("email", email);
@@ -158,19 +155,9 @@ public class ResetPasswordActionTest {
 
     @Test
     public void testHandles() throws FormException {
-        ResetPasswordAction action = new ResetPasswordAction(null, new ResetPasswordAction.Config() {
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
-
-            @Override
-            public String[] supportedTypes() {
-                return new String[] { ResetPasswordAction.DEFAULT_RESOURCE_TYPE };
-            }
-        });
+        ResetPasswordAction action = new ResetPasswordAction(null);
         Resource validResource = Mockito.mock(Resource.class);
-        Mockito.when(validResource.getResourceType()).thenReturn(ResetPasswordAction.DEFAULT_RESOURCE_TYPE);
+        Mockito.when(validResource.getResourceType()).thenReturn(ResetPasswordAction.RESOURCE_TYPE);
         assertTrue(action.handles(validResource));
 
         Resource inValidResource = Mockito.mock(Resource.class);

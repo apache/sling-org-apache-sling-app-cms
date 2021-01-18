@@ -63,23 +63,47 @@ public class FormHandlerTest {
         context.currentResource(Mockito.mock(Resource.class));
 
         formRequest = new FormRequestImpl(context.request(), null,
-                Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
+                Arrays.asList(new SelectionHandler(new SelectionHandler.Config() {
+
+                    @Override
+                    public Class<? extends Annotation> annotationType() {
+                        return null;
+                    }
+
+                    @Override
+                    public String[] supportedTypes() {
+                        return new String[] { SelectionHandler.DEFAULT_RESOURCE_TYPE };
+                    }
+
+                }), new TextareaHandler(new TextareaHandler.Config() {
+
+                    @Override
+                    public Class<? extends Annotation> annotationType() {
+                        return null;
+                    }
+
+                    @Override
+                    public String[] supportedTypes() {
+                        return new String[] { TextareaHandler.DEFAULT_RESOURCE_TYPE };
+                    }
+
+                }), new TextfieldHandler(new TextfieldHandler.Config() {
+
+                    @Override
+                    public Class<? extends Annotation> annotationType() {
+                        return null;
+                    }
+
+                    @Override
+                    public String[] supportedTypes() {
+                        return new String[] { TextfieldHandler.DEFAULT_RESOURCE_TYPE };
+                    }
+
+                })));
 
         mailService = Mockito.mock(MailService.class);
         Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
-        final SendEmailAction sendEmailAction = new SendEmailAction(mailService, new SendEmailAction.Config() {
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
-
-            @Override
-            public String[] supportedTypes() {
-                return new String[] { SendEmailAction.DEFAULT_RESOURCE_TYPE };
-            }
-
-        });
+        final SendEmailAction sendEmailAction = new SendEmailAction(mailService);
         formHandler = new FormHandler(Arrays.asList(sendEmailAction)) {
             private static final long serialVersionUID = 1L;
 

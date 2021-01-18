@@ -16,8 +16,6 @@
  */
 package org.apache.sling.cms.reference.forms.impl.actions;
 
-import java.util.stream.Stream;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -33,17 +31,13 @@ import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.metatype.annotations.AttributeDefinition;
-import org.osgi.service.metatype.annotations.Designate;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = { FormAction.class })
-@Designate(ocd = SendEmailAction.Config.class)
 public class SendEmailAction implements FormAction {
 
-    public static final String DEFAULT_RESOURCE_TYPE = "reference/components/forms/actions/sendemail";
+    public static final String RESOURCE_TYPE = "reference/components/forms/actions/sendemail";
     public static final String FROM = "from";
     private static final Logger log = LoggerFactory.getLogger(SendEmailAction.class);
 
@@ -52,12 +46,10 @@ public class SendEmailAction implements FormAction {
     public static final String TO = "to";
 
     private final MailService mailService;
-    private Config config;
 
     @Activate
-    public SendEmailAction(@Reference MailService mailService, Config config) {
+    public SendEmailAction(@Reference MailService mailService) {
         this.mailService = mailService;
-        this.config = config;
     }
 
     @Override
@@ -87,14 +79,7 @@ public class SendEmailAction implements FormAction {
 
     @Override
     public boolean handles(Resource actionResource) {
-        return Stream.of(config.supportedTypes()).anyMatch(t -> t.equals(actionResource.getResourceType()));
+        return RESOURCE_TYPE.equals(actionResource.getResourceType());
     }
 
-    @ObjectClassDefinition(name = "%cms.reference.sendemail.name", description = "%cms.reference.sendemail.description", localization = "OSGI-INF/l10n/bundle")
-    public @interface Config {
-
-        @AttributeDefinition(name = "%cms.reference.supportedTypes.name", description = "%cms.reference.supportedTypes.description", defaultValue = {
-                DEFAULT_RESOURCE_TYPE })
-        String[] supportedTypes() default { DEFAULT_RESOURCE_TYPE };
-    }
 }

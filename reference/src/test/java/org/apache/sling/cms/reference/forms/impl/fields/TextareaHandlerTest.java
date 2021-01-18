@@ -21,19 +21,21 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.impl.SlingContextHelper;
+import org.apache.sling.cms.reference.forms.impl.fields.TextareaHandler.Config;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import com.google.common.collect.ImmutableMap;
 
 public class TextareaHandlerTest {
 
@@ -48,7 +50,19 @@ public class TextareaHandlerTest {
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
         resolver = context.resourceResolver();
-        handler = new TextareaHandler();
+        handler = new TextareaHandler(new Config() {
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String[] supportedTypes() {
+                return new String[] { TextareaHandler.DEFAULT_RESOURCE_TYPE };
+            }
+
+        });
     }
 
     @Test

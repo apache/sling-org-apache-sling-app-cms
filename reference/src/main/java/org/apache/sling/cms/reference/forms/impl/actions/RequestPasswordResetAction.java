@@ -19,7 +19,6 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 import javax.jcr.Session;
 import javax.jcr.ValueFactory;
@@ -38,27 +37,22 @@ import org.apache.sling.cms.reference.forms.FormRequest;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.metatype.annotations.AttributeDefinition;
-import org.osgi.service.metatype.annotations.Designate;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = { FormAction.class })
-@Designate(ocd = RequestPasswordResetAction.Config.class)
 public class RequestPasswordResetAction implements FormAction {
 
-    public static final String DEFAULT_RESOURCE_TYPE = "reference/components/forms/actions/requestpasswordreset";
+    public static final String RESOURCE_TYPE = "reference/components/forms/actions/requestpasswordreset";
     public static final String PN_RESETTOKEN = "resettoken";
     public static final String PN_RESETTIMEOUT = "resettimeout";
     private static final Logger log = LoggerFactory.getLogger(RequestPasswordResetAction.class);
     private ResourceResolverFactory factory;
-    private Config config;
 
     @Activate
-    public RequestPasswordResetAction(@Reference ResourceResolverFactory factory, Config config) {
+    public RequestPasswordResetAction(@Reference ResourceResolverFactory factory) {
         this.factory = factory;
-        this.config = config;
+
     }
 
     @Override
@@ -101,15 +95,7 @@ public class RequestPasswordResetAction implements FormAction {
 
     @Override
     public boolean handles(Resource actionResource) {
-        return Stream.of(config.supportedTypes()).anyMatch(t -> t.equals(actionResource.getResourceType()));
-    }
-
-    @ObjectClassDefinition(name = "%cms.reference.requestpasswordreset.name", description = "%cms.reference.requestpasswordreset.description", localization = "OSGI-INF/l10n/bundle")
-    public @interface Config {
-
-        @AttributeDefinition(name = "%cms.reference.supportedTypes.name", description = "%cms.reference.supportedTypes.description", defaultValue = {
-                DEFAULT_RESOURCE_TYPE })
-        String[] supportedTypes() default { DEFAULT_RESOURCE_TYPE };
+        return RESOURCE_TYPE.equals(actionResource.getResourceType());
     }
 
 }

@@ -19,7 +19,6 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.annotation.Annotation;
 import java.util.Collections;
 
 import javax.jcr.AccessDeniedException;
@@ -40,7 +39,6 @@ import org.apache.sling.cms.reference.forms.FormActionResult;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.apache.sling.cms.reference.forms.impl.FormRequestImpl;
-import org.apache.sling.cms.reference.forms.impl.actions.RequestPasswordResetAction.Config;
 import org.apache.sling.servlethelpers.MockSlingHttpServletRequest;
 import org.apache.sling.testing.resourceresolver.MockResource;
 import org.junit.Before;
@@ -84,14 +82,14 @@ public class RequestPasswordResetActionTest {
         UserManager userManager = Mockito.mock(UserManager.class);
         Mockito.when(session.getUserManager()).thenReturn(userManager);
 
-        Mockito.when(userManager.getAuthorizable(Mockito.eq("test@email.com"))).thenReturn(Mockito.mock(User.class));
+        Mockito.when(userManager.getAuthorizable("test@email.com")).thenReturn(Mockito.mock(User.class));
 
     }
 
     @Test
     public void testHandleForm() throws FormException {
 
-        RequestPasswordResetAction action = new RequestPasswordResetAction(factory, null);
+        RequestPasswordResetAction action = new RequestPasswordResetAction(factory);
 
         FormRequest request = new FormRequestImpl(new MockSlingHttpServletRequest(resolver), null, null);
         request.getFormData().put("email", "test@email.com");
@@ -107,7 +105,7 @@ public class RequestPasswordResetActionTest {
     @Test
     public void testNoUser() throws FormException {
 
-        RequestPasswordResetAction action = new RequestPasswordResetAction(factory, null);
+        RequestPasswordResetAction action = new RequestPasswordResetAction(factory);
 
         FormRequest request = new FormRequestImpl(new MockSlingHttpServletRequest(resolver), null, null);
         request.getFormData().put("email", "test1@email.com");
@@ -122,20 +120,10 @@ public class RequestPasswordResetActionTest {
 
     @Test
     public void testHandles() throws FormException {
-        Config config = new Config() {
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
 
-            @Override
-            public String[] supportedTypes() {
-                return new String[] { RequestPasswordResetAction.DEFAULT_RESOURCE_TYPE };
-            }
-        };
-        RequestPasswordResetAction action = new RequestPasswordResetAction(null, config);
+        RequestPasswordResetAction action = new RequestPasswordResetAction(null);
         Resource validResource = Mockito.mock(Resource.class);
-        Mockito.when(validResource.getResourceType()).thenReturn(RequestPasswordResetAction.DEFAULT_RESOURCE_TYPE);
+        Mockito.when(validResource.getResourceType()).thenReturn(RequestPasswordResetAction.RESOURCE_TYPE);
         assertTrue(action.handles(validResource));
 
         Resource inValidResource = Mockito.mock(Resource.class);

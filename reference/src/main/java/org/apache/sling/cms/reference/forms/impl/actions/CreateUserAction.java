@@ -45,35 +45,28 @@ import org.apache.sling.cms.reference.forms.FormActionResult;
 import org.apache.sling.cms.reference.forms.FormConstants;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
-import org.apache.sling.cms.reference.forms.FormUtils;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.metatype.annotations.AttributeDefinition;
-import org.osgi.service.metatype.annotations.Designate;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = { FormAction.class })
-@Designate(ocd = CreateUserAction.Config.class)
 public class CreateUserAction implements FormAction {
 
     private static final Logger log = LoggerFactory.getLogger(CreateUserAction.class);
-    public static final String DEFAULT_RESOURCE_TYPE = "reference/components/forms/actions/createuser";
+    public static final String RESOURCE_TYPE = "reference/components/forms/actions/createuser";
     public static final String PROFILE_PROPERTIES = "profileProperties";
     public static final String GROUPS = "groups";
     public static final String PN_USERNAME = "username";
     public static final String PN_INTERMEDIATE_PATH = "intermediatePath";
 
     private final ResourceResolverFactory factory;
-    private final Config config;
 
     @Activate
-    public CreateUserAction(@Reference ResourceResolverFactory factory, Config config) {
+    public CreateUserAction(@Reference ResourceResolverFactory factory) {
         this.factory = factory;
-        this.config = config;
     }
 
     @Override
@@ -151,15 +144,7 @@ public class CreateUserAction implements FormAction {
 
     @Override
     public boolean handles(Resource actionResource) {
-        return FormUtils.handles(config.supportedTypes(), actionResource);
-    }
-
-    @ObjectClassDefinition(name = "%cms.reference.createuser.name", description = "%cms.reference.createuser.description", localization = "OSGI-INF/l10n/bundle")
-    public @interface Config {
-
-        @AttributeDefinition(name = "%cms.reference.supportedTypes.name", description = "%cms.reference.supportedTypes.description", defaultValue = {
-                DEFAULT_RESOURCE_TYPE })
-        String[] supportedTypes() default { DEFAULT_RESOURCE_TYPE };
+        return RESOURCE_TYPE.equals(actionResource.getResourceType());
     }
 
 }

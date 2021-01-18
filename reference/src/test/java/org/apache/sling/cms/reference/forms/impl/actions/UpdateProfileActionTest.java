@@ -19,7 +19,6 @@ package org.apache.sling.cms.reference.forms.impl.actions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.annotation.Annotation;
 import java.util.Calendar;
 import java.util.Collections;
 
@@ -89,14 +88,14 @@ public class UpdateProfileActionTest {
         Mockito.when(session.getUserManager()).thenReturn(userManager);
 
         validUser = Mockito.mock(User.class);
-        Mockito.when(userManager.getAuthorizable(Mockito.eq("valid@email.com"))).thenReturn(validUser);
+        Mockito.when(userManager.getAuthorizable("valid@email.com")).thenReturn(validUser);
 
     }
 
     @Test
     public void testHandleForm() throws FormException, RepositoryException {
 
-        UpdateProfileAction action = new UpdateProfileAction(null);
+        UpdateProfileAction action = new UpdateProfileAction();
 
         Mockito.when(resolver.getUserID()).thenReturn("valid@email.com");
 
@@ -119,7 +118,7 @@ public class UpdateProfileActionTest {
     @Test
     public void testMissingUser() throws FormException, RepositoryException {
 
-        UpdateProfileAction action = new UpdateProfileAction(null);
+        UpdateProfileAction action = new UpdateProfileAction();
 
         Mockito.when(resolver.getUserID()).thenReturn("invalid@email.com");
 
@@ -136,7 +135,7 @@ public class UpdateProfileActionTest {
     @Test
     public void testError() throws FormException, RepositoryException, PersistenceException {
 
-        UpdateProfileAction action = new UpdateProfileAction(null);
+        UpdateProfileAction action = new UpdateProfileAction();
 
         Mockito.when(resolver.getUserID()).thenReturn("valid@email.com");
         Mockito.doThrow(new PersistenceException("I'm a sad panda")).when(resolver).commit();
@@ -153,19 +152,9 @@ public class UpdateProfileActionTest {
 
     @Test
     public void testHandles() throws FormException {
-        UpdateProfileAction action = new UpdateProfileAction(new UpdateProfileAction.Config() {
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return null;
-            }
-
-            @Override
-            public String[] supportedTypes() {
-                return new String[] { UpdateProfileAction.DEFAULT_RESOURCE_TYPE };
-            }
-        });
+        UpdateProfileAction action = new UpdateProfileAction();
         Resource validResource = Mockito.mock(Resource.class);
-        Mockito.when(validResource.getResourceType()).thenReturn(UpdateProfileAction.DEFAULT_RESOURCE_TYPE);
+        Mockito.when(validResource.getResourceType()).thenReturn(UpdateProfileAction.RESOURCE_TYPE);
         assertTrue(action.handles(validResource));
 
         Resource inValidResource = Mockito.mock(Resource.class);
