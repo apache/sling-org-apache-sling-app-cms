@@ -110,7 +110,6 @@ public class TextfieldHandler implements FieldHandler {
                     formData.put(name + ".contentType", param.getContentType());
                 }
             } else if ("date".equals(saveAs)) {
-
                 if (!dateFormats.containsKey(type)) {
                     throw new FormException("Field " + name + " is not a date type");
                 }

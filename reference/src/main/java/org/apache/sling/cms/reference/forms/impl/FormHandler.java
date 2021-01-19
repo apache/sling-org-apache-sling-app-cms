@@ -30,6 +30,7 @@ import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.api.wrappers.SlingHttpServletRequestWrapper;
 import org.apache.sling.cms.Page;
@@ -64,41 +65,38 @@ public class FormHandler extends SlingAllMethodsServlet {
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
+        ValueMap properties = request.getResource().getValueMap();
 
         String pagePath = Optional.ofNullable(request.getResource().adaptTo(PageManager.class))
                 .map(PageManager::getPage).map(Page::getPath)
                 .orElse(StringUtils.substringBefore(request.getResource().getPath(), "/" + JcrConstants.JCR_CONTENT));
+        String successPage = null;
+        String errorPage = pagePath;
 
         StringSubstitutor sub = null;
         try {
-            if (request.getResource().getChild("actions") == null) {
-                throw new FormException("No actions provided to handle this form submission");
-            }
-            List<Resource> actionResources = ResourceTree.stream(request.getResource().getChild("actions"))
-                    .map(ResourceTree::getResource).collect(Collectors.toList());
-
-            FormRequest formRequest = getFormRequest(request);
+            log.debug("Extracting form request...");
+            FormRequest formRequest = request.adaptTo(FormRequest.class);
             if (formRequest == null) {
                 log.warn("Unable to create form request");
-                response.sendRedirect(request.getResourceResolver().map(request, pagePath) + ".html?error=fields");
+                response.sendRedirect(this.resolveUrl(request, errorPage, "error=init"));
                 return;
             }
+
+            log.debug("Loading fields...");
+            boolean fieldsLoadSucceeded = ((FormRequestImpl) formRequest).initFields();
             sub = new StringSubstitutor(formRequest.getFormData());
-            request.getSession().setAttribute(formRequest.getSessionId(), formRequest.getFormData());
-            for (Resource actionResource : actionResources) {
-                log.debug("Finding action handler for: {}", actionResource);
-                FormAction action = formActions.stream().filter(fa -> fa.handles(actionResource)).findFirst()
-                        .orElse(null);
-                if (action != null) {
-                    FormActionResult result = action.handleForm(actionResource, formRequest);
-                    if (!result.isSucceeded()) {
-                        throw new FormException(
-                                "Failed to invoke action: " + action + " with message: " + result.getMessage());
-                    } else {
-                        log.debug("Successfully invoked action: {}", result.getMessage());
-                    }
-                }
+            successPage = sub.replace(properties.get("successPage", pagePath));
+            errorPage = sub.replace(properties.get("errorPage", pagePath));
+            if (!fieldsLoadSucceeded) {
+                log.warn("Field initialization failed, check logs");
+                response.sendRedirect(this.resolveUrl(request, errorPage, "error=fields"));
+                return;
             }
+            request.getSession().setAttribute(formRequest.getSessionId(), formRequest.getFormData());
+
+            log.debug("Calling actions...");
+            callActions(request, formRequest);
             request.getSession().removeAttribute(formRequest.getSessionId());
         } catch (FormException e) {
             log.warn("Exception executing actions", e);
@@ -106,31 +104,61 @@ public class FormHandler extends SlingAllMethodsServlet {
             return;
         }
 
-        String thankYouPage = sub.replace(request.getResource().getValueMap().get("successPage", pagePath));
-        if (StringUtils.isNotBlank(thankYouPage)) {
-            if ("forward".equals(request.getResource().getValueMap().get("successAction", String.class))) {
+        if (StringUtils.isNotBlank(successPage)) {
+            if ("forward".equals(properties.get("successAction", String.class))) {
                 SlingHttpServletRequestWrapper requestWrapper = new SlingHttpServletRequestWrapper(request) {
                     @Override
                     public String getMethod() {
                         return "GET";
                     }
                 };
-
-                request.getRequestDispatcher(thankYouPage).forward(requestWrapper, response);
+                request.getRequestDispatcher(successPage).forward(requestWrapper, response);
             } else {
-                response.sendRedirect(resolveThankYouPage(request, thankYouPage));
+                response.sendRedirect(resolveUrl(request, successPage, "message=success"));
             }
         } else {
-            response.sendRedirect(resolveThankYouPage(request, thankYouPage));
+            response.sendRedirect(resolveUrl(request, successPage, "message=success"));
         }
     }
 
-    private String resolveThankYouPage(SlingHttpServletRequest request, String thankYouPage) {
-        if (!thankYouPage.contains(".html")) {
-            thankYouPage += ".html";
+    private void callActions(SlingHttpServletRequest request, FormRequest formRequest) throws FormException {
+        Resource actions = request.getResource().getChild("actions");
+        if (actions == null) {
+            throw new FormException("No actions provided to handle this form submission");
         }
-        thankYouPage += "?message=success";
-        return request.getResourceResolver().map(request, thankYouPage);
+        List<Resource> actionResources = ResourceTree.stream(actions).map(ResourceTree::getResource)
+                .collect(Collectors.toList());
+
+        for (Resource actionResource : actionResources) {
+            log.debug("Finding action handler for: {}", actionResource);
+            FormAction action = formActions.stream().filter(fa -> fa.handles(actionResource)).findFirst().orElse(null);
+            if (action != null) {
+                FormActionResult result = action.handleForm(actionResource, formRequest);
+                if (!result.isSucceeded()) {
+                    throw new FormException(
+                            "Failed to invoke action: " + action + " with message: " + result.getMessage());
+                } else {
+                    log.debug("Successfully invoked action: {}", result.getMessage());
+                }
+            }
+        }
+    }
+
+    private String resolveUrl(SlingHttpServletRequest request, String url, String qs) {
+        if (url.contains("?")) {
+            qs = "&" + qs;
+        } else {
+            qs = "?" + qs;
+        }
+        if (url.startsWith("/")) {
+            if (!url.contains(".html")) {
+                url += ".html";
+            }
+            url += qs;
+            return request.getResourceResolver().map(request, url);
+        } else {
+            return url + qs;
+        }
     }
 
     protected FormRequest getFormRequest(SlingHttpServletRequest request) throws FormException {

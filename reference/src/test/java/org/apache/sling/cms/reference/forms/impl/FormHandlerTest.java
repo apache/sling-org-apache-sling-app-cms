@@ -17,7 +17,6 @@
 package org.apache.sling.cms.reference.forms.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
 
 import java.io.IOException;
@@ -100,17 +99,12 @@ public class FormHandlerTest {
                     }
 
                 })));
+        context.registerAdapter(SlingHttpServletRequest.class, FormRequest.class, formRequest);
 
         mailService = Mockito.mock(MailService.class);
         Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
         final SendEmailAction sendEmailAction = new SendEmailAction(mailService);
-        formHandler = new FormHandler(Arrays.asList(sendEmailAction)) {
-            private static final long serialVersionUID = 1L;
-
-            protected FormRequest getFormRequest(final SlingHttpServletRequest request) {
-                return formRequest;
-            }
-        };
+        formHandler = new FormHandler(Arrays.asList(sendEmailAction));
     }
 
     @Test
@@ -130,7 +124,7 @@ public class FormHandlerTest {
 
         formHandler.service(context.request(), context.response());
 
-        assertTrue(HttpServletResponse.SC_MOVED_TEMPORARILY == context.response().getStatus());
+        assertEquals(HttpServletResponse.SC_MOVED_TEMPORARILY, context.response().getStatus());
         assertEquals("/form-no-actions.html?error=actions", context.response().getHeader("Location"));
         Mockito.verify(mailService, never()).sendMessage(Mockito.any());
     }
