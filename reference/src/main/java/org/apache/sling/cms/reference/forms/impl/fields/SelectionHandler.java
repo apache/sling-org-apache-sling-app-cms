@@ -16,7 +16,6 @@
  */
 package org.apache.sling.cms.reference.forms.impl.fields;
 
-import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
