@@ -1,0 +1,46 @@
+{
+	"jcr:primaryType": "nt:unstructured",
+	"sling:resourceType": "sling-cms/components/editor/slingform",
+	"button": "Save",
+	"fields": {
+		"jcr:primaryType": "nt:unstructured",
+		"sling:resourceType": "sling-cms/components/general/container",
+		"errorMessage": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/richtext",
+			"label": "Error Message",
+			"name": "errorMessage",
+			"required": true
+		},
+		"usernameLabel": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"defaultValue": "Submit",
+			"label": "Username Label",
+			"name": "usernameLabel",
+			"required": true
+		},
+		"passwordLabel": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"defaultValue": "Submit",
+			"label": "Password Label",
+			"name": "passwordLabel",
+			"required": true
+		},
+		"submitLabel": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"defaultValue": "Submit",
+			"label": "Submit Label",
+			"name": "submitLabel",
+			"required": true
+		},
+		"successPage": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/path",
+			"label": "Success Page",
+			"name": "successPage"
+		}
+	}
+}

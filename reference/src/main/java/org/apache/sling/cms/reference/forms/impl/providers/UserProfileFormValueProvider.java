@@ -32,6 +32,7 @@ import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.cms.reference.forms.FormConstants;
 import org.apache.sling.cms.reference.forms.FormValueProvider;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ public class UserProfileFormValueProvider implements FormValueProvider {
                 UserManager userManager = session.getUserManager();
                 User user = (User) userManager.getAuthorizable(userId);
 
-                String subpath = providerResource.getValueMap().get("subpath", "profile");
+                String subpath = providerResource.getValueMap().get(FormConstants.PN_SUBPATH, FormConstants.PATH_PROFILE);
                 log.debug("Loading profile data from: {}/{}", user.getPath(), subpath);
 
                 Iterator<String> keys = user.getPropertyNames(subpath);

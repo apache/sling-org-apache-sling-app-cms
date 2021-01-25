@@ -101,19 +101,32 @@ public class FormRequestImpl implements FormRequest {
         return request;
     }
 
-    public void initFields() throws FormException {
+    public boolean initFields() {
         List<Resource> fields = ResourceTree.stream(getFormResource().getChild("fields")).map(ResourceTree::getResource)
                 .collect(Collectors.toList());
+        boolean successful = true;
         for (Resource field : fields) {
-            log.debug("Looking for handler for: {}", field);
-            for (FieldHandler fieldHandler : fieldHandlers) {
-                if (fieldHandler.handles(field)) {
-                    log.debug("Invoking field handler: {}", fieldHandler.getClass());
-                    fieldHandler.handleField(request, field, formData);
-                    break;
+            formData.remove(getErrorKey(field));
+            try {
+                log.debug("Looking for handler for: {}", field);
+                for (FieldHandler fieldHandler : fieldHandlers) {
+                    if (fieldHandler.handles(field)) {
+                        log.debug("Invoking field handler: {}", fieldHandler.getClass());
+                        fieldHandler.handleField(request, field, formData);
+                        break;
+                    }
                 }
+            } catch (FormException fe) {
+                log.warn("Failed to populate field {} due to exception", field, fe);
+                successful = false;
+                formData.put(getErrorKey(field), fe.getMessage());
             }
         }
+        return successful;
+    }
+
+    private String getErrorKey(Resource field) {
+        return "fielderror-" + field.getValueMap().get("name", String.class);
     }
 
     @Override

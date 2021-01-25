@@ -19,6 +19,12 @@
             "name": "submitText",
             "required": true
         },
+        "errorPage": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/path",
+            "label": "Error Page",
+            "name": "errorPage"
+        },
         "successPage": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/editor/fields/path",

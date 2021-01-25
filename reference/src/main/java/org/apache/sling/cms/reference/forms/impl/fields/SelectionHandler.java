@@ -27,18 +27,42 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.reference.forms.FieldHandler;
 import org.apache.sling.cms.reference.forms.FormException;
+import org.apache.sling.cms.reference.forms.FormUtils;
+import org.apache.sling.cms.reference.impl.SearchServiceImpl.Config;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = FieldHandler.class)
+@Designate(ocd = Config.class)
 public class SelectionHandler implements FieldHandler {
+
+    public static final String DEFAULT_RESOURCE_TYPE = "reference/components/forms/fields/selection";
 
     private static final Logger log = LoggerFactory.getLogger(SelectionHandler.class);
 
+    private final Config config;
+
+    @ObjectClassDefinition(name = "%cms.reference.selection.name", description = "%cms.reference.selection.description", localization = "OSGI-INF/l10n/bundle")
+    public @interface Config {
+
+        @AttributeDefinition(name = "%cms.reference.supportedTypes.name", description = "%cms.reference.supportedTypes.description", defaultValue = {
+                DEFAULT_RESOURCE_TYPE })
+        String[] supportedTypes() default { DEFAULT_RESOURCE_TYPE };
+    }
+
+    @Activate
+    public SelectionHandler(Config config) {
+        this.config = config;
+    }
+
     @Override
     public boolean handles(Resource fieldResource) {
-        return "reference/components/forms/fields/selection".equals(fieldResource.getResourceType());
+        return FormUtils.handles(config.supportedTypes(), fieldResource);
     }
 
     @Override
@@ -72,6 +96,7 @@ public class SelectionHandler implements FieldHandler {
                 formData.put(name, value);
             }
         }
+
     }
 
     private String[] stripBlank(String[] parameterValues) {

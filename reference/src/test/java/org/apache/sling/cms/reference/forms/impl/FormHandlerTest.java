@@ -17,10 +17,10 @@
 package org.apache.sling.cms.reference.forms.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
 
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.Arrays;
 
 import javax.servlet.ServletException;
@@ -62,20 +62,49 @@ public class FormHandlerTest {
         context.currentResource(Mockito.mock(Resource.class));
 
         formRequest = new FormRequestImpl(context.request(), null,
-                Arrays.asList(new SelectionHandler(), new TextareaHandler(), new TextfieldHandler()));
+                Arrays.asList(new SelectionHandler(new SelectionHandler.Config() {
 
-        final SendEmailAction sendEmailAction = new SendEmailAction();
+                    @Override
+                    public Class<? extends Annotation> annotationType() {
+                        return null;
+                    }
+
+                    @Override
+                    public String[] supportedTypes() {
+                        return new String[] { SelectionHandler.DEFAULT_RESOURCE_TYPE };
+                    }
+
+                }), new TextareaHandler(new TextareaHandler.Config() {
+
+                    @Override
+                    public Class<? extends Annotation> annotationType() {
+                        return null;
+                    }
+
+                    @Override
+                    public String[] supportedTypes() {
+                        return new String[] { TextareaHandler.DEFAULT_RESOURCE_TYPE };
+                    }
+
+                }), new TextfieldHandler(new TextfieldHandler.Config() {
+
+                    @Override
+                    public Class<? extends Annotation> annotationType() {
+                        return null;
+                    }
+
+                    @Override
+                    public String[] supportedTypes() {
+                        return new String[] { TextfieldHandler.DEFAULT_RESOURCE_TYPE };
+                    }
+
+                })));
+        context.registerAdapter(SlingHttpServletRequest.class, FormRequest.class, formRequest);
+
         mailService = Mockito.mock(MailService.class);
         Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
-        sendEmailAction.setMailService(mailService);
-
-        formHandler = new FormHandler(Arrays.asList(sendEmailAction)) {
-            private static final long serialVersionUID = 1L;
-
-            protected FormRequest getFormRequest(final SlingHttpServletRequest request) {
-                return formRequest;
-            }
-        };
+        final SendEmailAction sendEmailAction = new SendEmailAction(mailService);
+        formHandler = new FormHandler(Arrays.asList(sendEmailAction));
     }
 
     @Test
@@ -95,7 +124,7 @@ public class FormHandlerTest {
 
         formHandler.service(context.request(), context.response());
 
-        assertTrue(HttpServletResponse.SC_MOVED_TEMPORARILY == context.response().getStatus());
+        assertEquals(HttpServletResponse.SC_MOVED_TEMPORARILY, context.response().getStatus());
         assertEquals("/form-no-actions.html?error=actions", context.response().getHeader("Location"));
         Mockito.verify(mailService, never()).sendMessage(Mockito.any());
     }

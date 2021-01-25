@@ -20,9 +20,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-import org.apache.commons.text.StringSubstitutor;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.text.StringSubstitutor;
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
@@ -38,6 +39,7 @@ import org.apache.sling.cms.usergenerated.UGCBucketConfig;
 import org.apache.sling.cms.usergenerated.UserGeneratedContentService;
 import org.apache.sling.cms.usergenerated.UserGeneratedContentService.APPROVE_ACTION;
 import org.apache.sling.cms.usergenerated.UserGeneratedContentService.CONTENT_TYPE;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -48,11 +50,15 @@ public class UserGeneratedContentAction implements FormAction {
 
     private static final Logger log = LoggerFactory.getLogger(UserGeneratedContentAction.class);
 
-    @Reference
-    private NameFilter filter;
+    private final NameFilter filter;
 
-    @Reference
-    private UserGeneratedContentService ugcService;
+    private final UserGeneratedContentService ugcService;
+
+    @Activate
+    public UserGeneratedContentAction(@Reference NameFilter filter, @Reference UserGeneratedContentService ugcService) {
+        this.filter = filter;
+        this.ugcService = ugcService;
+    }
 
     @Override
     public FormActionResult handleForm(Resource actionResource, FormRequest request) throws FormException {
@@ -82,7 +88,7 @@ public class UserGeneratedContentAction implements FormAction {
                     log.warn("Invalid value: {}", v);
                     return null;
                 }
-            }).forEach(v -> {
+            }).filter(Objects::nonNull).forEach(v -> {
                 log.debug("Adding additional property: {}", v);
                 contentProperties.put(v.getLeft(), v.getRight());
             });

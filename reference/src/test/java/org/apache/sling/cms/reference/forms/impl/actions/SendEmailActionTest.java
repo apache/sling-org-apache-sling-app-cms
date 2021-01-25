@@ -47,12 +47,9 @@ public class SendEmailActionTest {
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
         resolver = context.resourceResolver();
-        action = new SendEmailAction();
-
         mailService = Mockito.mock(MailService.class);
         Mockito.when(mailService.getMessageBuilder()).thenReturn(new MockMessageBuilder());
-
-        action.setMailService(mailService);
+        action = new SendEmailAction(mailService);
     }
 
     @Test

@@ -39,9 +39,9 @@
             <c:set var="fieldValue" value="${properties.value}" />
         </c:when>
     </c:choose>
-    <textarea class="${formConfig.fieldClass}" id="${properties.name}" name="${properties.name}" ${properties.required ? 'required="required"' : ''}
+    <textarea class="${sling:encode(formConfig.fieldClass,'HTML')}" id="${sling:encode(properties.name,'HTML')}" name="${sling:encode(properties.name,'HTML')}" ${properties.required ? 'required="required"' : ''}
         <c:forEach var="attr" items="${properties.additionalAttributes}">
             ${fn:split(attr,'\\=')[0]}="${fn:split(attr,'\\=')[1]}"
         </c:forEach>
-        >${fieldValue}</textarea>
+        >${sling:encode(fieldValue,'HTML')}</textarea>
 </div>

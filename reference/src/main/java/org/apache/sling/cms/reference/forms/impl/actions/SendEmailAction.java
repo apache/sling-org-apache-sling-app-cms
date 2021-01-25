@@ -28,6 +28,7 @@ import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormRequest;
 import org.apache.sling.commons.messaging.mail.MailService;
 import org.jetbrains.annotations.NotNull;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ import org.slf4j.LoggerFactory;
 @Component(service = { FormAction.class })
 public class SendEmailAction implements FormAction {
 
+    public static final String RESOURCE_TYPE = "reference/components/forms/actions/sendemail";
     public static final String FROM = "from";
     private static final Logger log = LoggerFactory.getLogger(SendEmailAction.class);
 
@@ -43,7 +45,12 @@ public class SendEmailAction implements FormAction {
     public static final String SUBJECT = "subject";
     public static final String TO = "to";
 
-    private MailService mailService;
+    private final MailService mailService;
+
+    @Activate
+    public SendEmailAction(@Reference MailService mailService) {
+        this.mailService = mailService;
+    }
 
     @Override
     public FormActionResult handleForm(final Resource actionResource, final FormRequest request) throws FormException {
@@ -71,13 +78,8 @@ public class SendEmailAction implements FormAction {
     }
 
     @Override
-    public boolean handles(final Resource actionResource) {
-        return "reference/components/forms/actions/sendemail".equals(actionResource.getResourceType());
-    }
-
-    @Reference
-    public void setMailService(MailService mailService) {
-        this.mailService = mailService;
+    public boolean handles(Resource actionResource) {
+        return RESOURCE_TYPE.equals(actionResource.getResourceType());
     }
 
 }

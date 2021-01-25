@@ -21,6 +21,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.impl.SlingContextHelper;
+import org.apache.sling.cms.reference.forms.impl.fields.SelectionHandler.Config;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -48,7 +50,20 @@ public class SelectionHandlerTest {
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
         resolver = context.resourceResolver();
-        handler = new SelectionHandler();
+        handler = new SelectionHandler(new Config() {
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public String[] supportedTypes() {
+                return new String[] { SelectionHandler.DEFAULT_RESOURCE_TYPE };
+            }
+
+        });
     }
 
     @Test

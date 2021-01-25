@@ -190,7 +190,8 @@
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-ugc": {
             "user.mapping": [
-                "org.apache.sling.cms.core:sling-cms-ugc=sling-cms-ugc"
+                "org.apache.sling.cms.core:sling-cms-ugc=sling-cms-ugc",
+                "org.apache.sling.cms.reference:sling-cms-ugc=sling-cms-ugc"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-versionmgr": {
