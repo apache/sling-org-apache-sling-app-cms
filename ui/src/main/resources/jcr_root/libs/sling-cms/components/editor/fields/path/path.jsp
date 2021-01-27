@@ -63,7 +63,7 @@
           <div class="control">
               <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
                   <span class="jam jam-search">
-                    <span class="is-vhidden">Search</span>
+                    <span class="is-sr-only">Search</span>
                   </span>
               </a>
           </div>

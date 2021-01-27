@@ -23,7 +23,11 @@
             <input type="hidden" name="${properties.name}" value="" />
             <span class="labelfield__title">
             </span>
-            <button class="delete is-small"></button>
+            <button class="delete is-small">
+                <span class="is-sr-only">
+                    Delete
+                </span>
+            </button>
         </a>
     </fieldset>
     <div class="labelfield__field field has-addons">
@@ -33,7 +37,7 @@
          <div class="control">
              <button class="labelfield__add button">
                  <span class="jam jam-plus">
-                    <span class="is-vhidden">
+                    <span class="is-sr-only">
                         Add
                     </span>
                  </span>

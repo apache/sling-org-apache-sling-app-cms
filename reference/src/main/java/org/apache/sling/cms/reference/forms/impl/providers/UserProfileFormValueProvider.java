@@ -53,6 +53,8 @@ public class UserProfileFormValueProvider implements FormValueProvider {
             if (session != null) {
                 UserManager userManager = session.getUserManager();
                 User user = (User) userManager.getAuthorizable(userId);
+                
+                formData.put("userId", user.getID());
 
                 String subpath = providerResource.getValueMap().get(FormConstants.PN_SUBPATH, FormConstants.PATH_PROFILE);
                 log.debug("Loading profile data from: {}/{}", user.getPath(), subpath);
@@ -63,7 +65,6 @@ public class UserProfileFormValueProvider implements FormValueProvider {
                     log.debug("Loading key {}", key);
                     loadKey(formData, subpath, key, user);
                 }
-                formData.put("userId", user.getID());
             } else {
                 log.warn("Failed to load Jackrabbit session for request");
             }

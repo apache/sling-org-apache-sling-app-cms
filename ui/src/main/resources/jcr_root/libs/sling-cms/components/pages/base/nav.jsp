@@ -25,7 +25,7 @@
         <a href="/cms/start.html" class="navbar-item" title="CMS Home">
             <span class="icon">
                 <em class="jam jam-home-f">
-                    <span class="is-vhidden">Home</span>
+                    <span class="is-sr-only">Home</span>
                 </em>
             </span>
         </a>
@@ -49,20 +49,20 @@
                 <div class="navbar-dropdown">
                     <a class="navbar-item Fetch-Modal" data-title="User Profile" data-path=".Main-Content form" href="/cms/auth/user/profile.html${auth.authorizable.path}">
                         <em class="jam jam-id-card">
-                            <span class="is-vhidden">Profile</span>
+                            <span class="is-sr-only">Profile</span>
                         </em>&nbsp;
                         Profile
                     </a>
                     <a class="navbar-item" href="${branding.helpLink}" target="_blank" rel="noopener noreferrer">
                         <em class="jam jam-help">
-                            <span class="is-vhidden">Help</span>
+                            <span class="is-sr-only">Help</span>
                         </em>&nbsp;
                         Help
                     </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item" href="/system/sling/logout">
                         <em class="jam jam-log-out">
-                            <span class="is-vhidden">Logout</span>
+                            <span class="is-sr-only">Logout</span>
                         </em>&nbsp;
                         Logout
                     </a>

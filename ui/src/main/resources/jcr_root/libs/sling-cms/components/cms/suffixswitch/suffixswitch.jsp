@@ -29,10 +29,11 @@
             </label>
             <div class="field has-addons">
                 <div class="control is-expanded">
-                    <input class="input pathfield" type="text" name="suffix" required="required" data-type="${properties.type}" data-base="${properties.base}" autocomplete="off" />
+                    <input class="input pathfield" type="text" name="suffix" id="suffix" required="required" data-type="${properties.type}" data-base="${properties.base}" autocomplete="off" />
                 </div>
                 <div class="control">
                     <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
+                        <span class="is-sr-only">Search</span>
                         <span class="jam jam-search"></span>
                     </a>
                 </div>

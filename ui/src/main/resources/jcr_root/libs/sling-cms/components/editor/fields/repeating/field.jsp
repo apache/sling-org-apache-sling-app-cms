@@ -26,7 +26,7 @@
             <div class="control">
                 <button class="repeating__remove button">
                     <span class="jam jam-minus">
-                        <span class="is-vhidden">
+                        <span class="is-sr-only">
                             Remove
                         </span>
                     </span>
@@ -43,7 +43,7 @@
                 <div class="control">
                     <button class="repeating__remove button">
                         <span class="jam jam-minus">
-                            <span class="is-vhidden">
+                            <span class="is-sr-only">
                                 Remove
                             </span>
                         </span>

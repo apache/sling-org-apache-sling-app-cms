@@ -23,6 +23,10 @@
         <span class="labelfield__title">
             ${sling:encode(sling:getResource(resourceResolver,item).valueMap['jcr:title'],'HTML')}
         </span>
-        <button class="delete is-small"></button>
+        <button class="delete is-small">
+            <span class="is-sr-only">
+                Delete
+            </span>
+        </button>
     </a>
 </c:forEach>
