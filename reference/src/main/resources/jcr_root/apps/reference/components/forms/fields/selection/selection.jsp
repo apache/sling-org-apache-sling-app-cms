@@ -57,7 +57,7 @@
             <c:otherwise>
                 <select id="${properties.name}" class="form-control" ${properties.multiple ? 'multiple="multiple"' : ''} name="${properties.name}">
                     <c:if test="${not empty properties.noSelection && !properties.muliple}">
-                        <option>
+                        <option value="">
                             <sling:encode value="${properties.noSelection}" mode="HTML" />
                         </option>
                     </c:if>
