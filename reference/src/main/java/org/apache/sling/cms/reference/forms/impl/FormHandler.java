@@ -86,7 +86,6 @@ public class FormHandler extends SlingAllMethodsServlet {
             log.debug("Loading fields...");
             boolean fieldsLoadSucceeded = ((FormRequestImpl) formRequest).initFields();
             sub = new StringSubstitutor(formRequest.getFormData());
-            successPage = sub.replace(properties.get("successPage", pagePath));
             errorPage = sub.replace(properties.get("errorPage", pagePath));
             if (!fieldsLoadSucceeded) {
                 log.warn("Field initialization failed, check logs");
@@ -97,6 +96,7 @@ public class FormHandler extends SlingAllMethodsServlet {
 
             log.debug("Calling actions...");
             callActions(request, formRequest);
+            successPage = sub.replace(properties.get("successPage", pagePath));
             request.getSession().removeAttribute(formRequest.getSessionId());
         } catch (FormException e) {
             log.warn("Exception executing actions", e);
@@ -117,7 +117,7 @@ public class FormHandler extends SlingAllMethodsServlet {
                 response.sendRedirect(resolveUrl(request, successPage, "message=success"));
             }
         } else {
-            response.sendRedirect(resolveUrl(request, successPage, "message=success"));
+            response.sendRedirect(resolveUrl(request, pagePath, "message=success"));
         }
     }
 

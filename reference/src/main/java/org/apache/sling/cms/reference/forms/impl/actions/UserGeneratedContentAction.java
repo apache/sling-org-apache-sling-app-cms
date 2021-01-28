@@ -115,6 +115,8 @@ public class UserGeneratedContentAction implements FormAction {
 
             resolver.commit();
             log.debug("Successfully persisted UGC");
+
+            request.getFormData().put("ugcPath", container.getPath());
             return FormActionResult.success("Created UGC Item");
         } catch (PersistenceException e) {
             throw new FormException("Failed to create UGC Content", e);
