@@ -26,12 +26,6 @@
         }
     ],
     "configurations": {
-        "org.apache.sling.cms.core.internal.repository.DataStoreCleanupScheduler": {
-            "scheduler.expression": "0 31 1 ? * SUN *"
-        },
-        "org.apache.sling.cms.core.internal.repository.RevisionCleanupScheduler": {
-            "scheduler.expression": "0 31 1 ? * SUN *"
-        },
         "org.apache.sling.cms.core.internal.ResourceEditorAssociation~auth": {
             "pathPattern": "/home.*",
             "editor": "/cms/auth/list.html"
