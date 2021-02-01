@@ -35,13 +35,6 @@
             "label": "Intermediate Path",
             "name": "intermediatePath",
             "required": true
-        },
-        "serviceUser": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "sling-cms/components/editor/fields/text",
-            "label": "Service User",
-            "name": "serviceUser",
-            "required": true
         }
     }
 }

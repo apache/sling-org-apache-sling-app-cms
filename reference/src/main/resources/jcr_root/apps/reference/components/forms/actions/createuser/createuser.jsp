@@ -24,8 +24,6 @@
         <dd>${sling:encode(fn:join(properties.groups,','),'HTML')}</dd>
         <dt>Intermediate Path</dt>
         <dd>${sling:encode(properties.intermediatePath,'HTML')}</dd>
-        <dt>Service User</dt>
-        <dd>${sling:encode(properties.serviceUser,'HTML')}</dd>
         <dt>Set Profile Properties</dt>
         <dd>${sling:encode(fn:join(properties.profileProperties,','),'HTML')}</dd>
     </dl>

@@ -1,0 +1,27 @@
+{
+    "bundles": [
+        {
+            "id": "org.apache.sling:org.apache.sling.cms.reference:${cms-version}",
+            "start-order": "20"
+        }
+    ],
+    "configurations": {
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-cms-ugc-ref": {
+            "user.mapping": [
+                "org.apache.sling.cms.reference:sling-cms-ugc=sling-cms-ugc"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~slingcms-reference-usermanager": {
+            "user.mapping": [
+                "org.apache.sling.cms.reference:slingcms-reference-usermanager=slingcms-reference-usermanager"
+            ]
+        }
+    },
+    "repoinit:TEXT|true": [
+        "# Service users",
+        "create service user slingcms-reference-usermanager",
+        "set ACL for slingcms-reference-usermanager",
+        "  allow\tjcr:all\ton /home",
+        "end"
+    ]
+}
