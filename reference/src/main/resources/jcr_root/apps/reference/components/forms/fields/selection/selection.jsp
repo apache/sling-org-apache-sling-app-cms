@@ -47,7 +47,7 @@
                                 <c:set var="selected" value="${true}" />
                             </c:when>
                         </c:choose>
-                        <input class="${formConfig.checkInputClass}" type="${properties.multiple ? 'checkbox' : 'radio'}" name="${properties.name}" id="${properties.name}-${tag.name}" value="${tag.name}" ${selected ? 'checked="checked"' : ''} />
+                        <input class="${formConfig.checkInputClass}" type="${properties.multiple ? 'checkbox' : 'radio'}" name="${properties.name}" id="${properties.name}-${tag.name}" value="${tag.name}" ${selected ? 'checked="checked"' : ''} ${properties.required ? 'required="required"' : ''} />
                         <label class="${formConfig.checkLabelClass}" for="${properties.name}-${tag.name}">
                             <sling:encode value="${tag.valueMap['jcr:title']}" mode="HTML" />
                         </label>
@@ -55,7 +55,7 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <select id="${properties.name}" class="form-control" ${properties.multiple ? 'multiple="multiple"' : ''} name="${properties.name}">
+                <select id="${properties.name}" class="form-control" ${properties.multiple ? 'multiple="multiple"' : ''} ${properties.required ? 'required="required"' : ''} name="${properties.name}">
                     <c:if test="${not empty properties.noSelection && !properties.muliple}">
                         <option value="">
                             <sling:encode value="${properties.noSelection}" mode="HTML" />
