@@ -40,10 +40,6 @@
             <outputDirectory>org/apache/sling/cms/feature</outputDirectory>
         </file>
         <file>
-            <source>src/main/resources/slingcms.properties</source>
-            <filtered>true</filtered>
-        </file>
-        <file>
             <source>target/classes/META-INF/NOTICE</source>
             <outputDirectory>META-INF</outputDirectory>
         </file>
