@@ -211,6 +211,10 @@
         {
             "id": "org.codehaus.groovy:groovy-xml:${groovy-version}",
             "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.security:1.1.20",
+            "start-order": "20"
         }
     ],
     "configurations": {
