@@ -109,6 +109,14 @@
                             <filesExclude>runmodes/*.json</filesExclude>
                             <title>Sling CMS - Composite Node Store Runtime</title>
                         </aggregate>
+                        <aggregate>
+                            <classifier>slingcms-upgrade</classifier>
+                            <filesInclude>**/*.json</filesInclude>
+                            <filesExclude>framework-properties.json</filesExclude>
+                            <filesExclude>oak/node-store/*.json</filesExclude>
+                            <filesExclude>runmodes/*.json</filesExclude>
+                            <title>Sling CMS - Upgrade</title>
+                        </aggregate>
                     </aggregates>
                     <scans>
                         <scan>
@@ -131,6 +139,10 @@
                         <archive>
                             <classifier>slingcms_standalone_far</classifier>
                             <includeClassifier>slingcms-standalone</includeClassifier>
+                        </archive>
+                        <archive>
+                            <classifier>slingcms_upgrade_far</classifier>
+                            <includeClassifier>slingcms-upgrade</includeClassifier>
                         </archive>
                     </archives>
                 </configuration>
