@@ -51,7 +51,7 @@
             "hc.tags": [
                 "systemalive"
             ],
-            "targetStartLevel": 30
+            "targetStartLevel:Integer":"30"
         },
         "org.apache.felix.hc.generalchecks.MemoryCheck": {
             "hc.tags": [
@@ -99,6 +99,9 @@
             "includesRegex": ".*",
             "useCriticalForNotLoaded": true,
             "excludesRegex": ""
+        },
+        "org.apache.felix.hc.core.impl.servlet.HealthCheckExecutorServlet~default": {
+            "servletPath": "/system/health"
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~hc-support": {
             "user.mapping": [

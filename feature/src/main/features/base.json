@@ -98,7 +98,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.7.0",
+            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.7.2",
             "start-order":"20"
         },
         {
@@ -110,7 +110,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.servlets.post:2.3.36",
+            "id":"org.apache.sling:org.apache.sling.servlets.post:2.4.2",
             "start-order":"20"
         },
         {
@@ -202,7 +202,7 @@
             "start-order":"10"
         },
         {
-            "id":"io.dropwizard.metrics:metrics-core:3.2.5",
+            "id":"io.dropwizard.metrics:metrics-core:3.2.6",
             "start-order":"15"
         },
         {
@@ -273,6 +273,7 @@
                 "org.apache.sling.extensions.webconsolesecurityprovider",
                 "org.apache.sling.i18n",
                 "org.apache.sling.jcr.base",
+                "org.apache.sling.jcr.contentloader",
                 "org.apache.sling.jcr.jackrabbit.usermanager",
                 "org.apache.sling.jcr.oak.server",
                 "org.apache.sling.jcr.repoinit",
@@ -283,116 +284,58 @@
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~i18n":{
             "user.mapping":[
-                "org.apache.sling.i18n=sling-i18n"
+                "org.apache.sling.i18n=[sling-readall]"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~installer-factories":{
             "user.mapping":[
-                "org.apache.sling.installer.factory.packages=sling-package-install"
-            ]
-        },
-        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~jcr-contentloader":{
-            "user.mapping":[
-                "org.apache.sling.jcr.contentloader=sling-jcr-contentloader"
+                "org.apache.sling.installer.factory.packages=[sling-package-install]"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~jcr-install":{
             "user.mapping":[
-                "org.apache.sling.installer.provider.jcr=sling-jcr-install"
+                "org.apache.sling.installer.provider.jcr=[sling-readall,sling-jcr-install]"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~jcr-resource":{
             "user.mapping":[
-                "org.apache.sling.jcr.resource:validation=sling-readall"
+                "org.apache.sling.jcr.resource:validation=[sling-readall]"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~observation":{
             "user.mapping":[
-                "org.apache.sling.jcr.resource:observation=sling-readall"
+                "org.apache.sling.jcr.resource:observation=[sling-readall]"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~resourceresolver":{
             "user.mapping":[
-                "org.apache.sling.resourceresolver:mapping=sling-mapping",
-                "org.apache.sling.resourceresolver:hierarchy=sling-readall",
-                "org.apache.sling.resourceresolver:observation=sling-readall",
-                "org.apache.sling.resourceresolver:console=sling-readall"
+                "org.apache.sling.resourceresolver:mapping=[sling-readall]",
+                "org.apache.sling.resourceresolver:hierarchy=[sling-readall]",
+                "org.apache.sling.resourceresolver:observation=[sling-readall]",
+                "org.apache.sling.resourceresolver:console=[sling-readall]"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~servletsresolver":{
             "user.mapping":[
-                "org.apache.sling.servlets.resolver:console=sling-readall",
-                "org.apache.sling.servlets.resolver:scripts=sling-scripting"
+                "org.apache.sling.servlets.resolver:console=[sling-readall]",
+                "org.apache.sling.servlets.resolver:scripts=[sling-search-path-reader]"
             ]
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~xss":{
             "user.mapping":[
-                "org.apache.sling.xss=sling-xss"
+                "org.apache.sling.xss=[sling-xss]"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~jcr-usermanager":{
+            "user.mapping":[
+                "org.apache.sling.jcr.jackrabbit.usermanager=[sling-jcr-usermanager]"
+            ]
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~jcr-contentloader":{
+            "user.mapping":[
+                "org.apache.sling.jcr.contentloader=[sling-jcr-content-loader]"
             ]
         }
     },
-    "repoinit:TEXT|true":[
-        "# general",
-        "create path (sling:OrderedFolder) /content",
-        "set ACL for everyone",
-        "allow   jcr:read   on /content",
-        "end",
-        "",
-        "# sling-mapping",
-        "create service user sling-mapping",
-        "",
-        "set ACL for sling-mapping",
-        "allow   jcr:read    on /",
-        "end",
-        "",
-        "# sling-readall",
-        "create service user sling-readall",
-        "",
-        "set ACL for sling-readall",
-        "allow   jcr:read    on /",
-        "end",
-        "",
-        "# sling-xss",
-        "create service user sling-xss",
-        "",
-        "create path (sling:Folder) /apps/sling/xss",
-        "",
-        "set ACL for sling-xss",
-        "allow   jcr:read    on /apps/sling/xss",
-        "end",
-        "",
-        "# sling-i18n",
-        "create service user sling-i18n",
-        "",
-        "set ACL for sling-i18n",
-        "allow   jcr:read    on /",
-        "end",
-        "",
-        "# sling-jcr-install",
-        "create service user sling-jcr-install",
-        "",
-        "# used for config OSGi writeback",
-        "create path (sling:Folder) /apps/sling/install",
-        "",
-        "set ACL for sling-jcr-install",
-        "allow    jcr:read    on    /",
-        "allow    rep:write    on /apps/sling/install",
-        "end",
-        "",
-        "# jcr-contentloader",
-        "create service user sling-jcr-contentloader",
-        "",
-        "set ACL for sling-jcr-contentloader",
-        "allow    jcr:all     on    /",
-        "allow   jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository",
-        "end",
-        "",
-        "# content-package installer",
-        "create service user sling-package-install",
-        "",
-        "set ACL for sling-package-install",
-        "allow    jcr:all     on    /",
-        "allow   jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository",
-        "end"
-    ]
+    "repoinit:TEXT|true":"@file"
 }

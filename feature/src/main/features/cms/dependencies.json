@@ -236,7 +236,7 @@
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling.rewriter": {
             "user.mapping": [
-                "org.apache.sling.rewriter=sling-rewriter"
+                "org.apache.sling.rewriter=[sling-readall]"
             ]
         },
         "org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment~serviceuser-webconsole": {
@@ -245,11 +245,5 @@
             ],
             "whitelist.name": "org.apache.sling.serviceuser.webconsole"
         }
-    },
-    "repoinit:TEXT|true": [
-        "create service user sling-rewriter",
-        "set ACL for sling-rewriter",
-        "allow   jcr:read    on /",
-        "end"
-    ]
+    }
 }

@@ -17,19 +17,8 @@
     "configurations":{
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~validation":{
             "user.mapping":[
-                "org.apache.sling.validation.core=sling-validation"
+                "org.apache.sling.validation.core=[sling-search-path-reader]"
             ]
         }
-    },
-    "repoinit:TEXT|true":[
-        "create service user sling-validation",
-        "",
-        "create path (sling:Folder) /apps",
-        "create path (sling:Folder) /libs",
-        "",
-        "set ACL for sling-validation",
-        "allow   jcr:read    on /apps",
-        "allow   jcr:read    on /libs",
-        "end"
-    ]
+    }
 }

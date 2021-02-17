@@ -13,15 +13,8 @@
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~slingcms-reference-usermanager": {
             "user.mapping": [
-                "org.apache.sling.cms.reference:slingcms-reference-usermanager=slingcms-reference-usermanager"
+                "org.apache.sling.cms.reference:slingcms-reference-usermanager=[sling-jcr-usermanager]"
             ]
         }
-    },
-    "repoinit:TEXT|true": [
-        "# Service users",
-        "create service user slingcms-reference-usermanager",
-        "set ACL for slingcms-reference-usermanager",
-        "  allow\tjcr:all\ton /home",
-        "end"
-    ]
+    }
 }

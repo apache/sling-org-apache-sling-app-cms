@@ -13,19 +13,10 @@
     "configurations":{
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling.event":{
             "user.mapping":[
-                "org.apache.sling.event=sling-event",
-                "org.apache.sling.event.dea=sling-event"
+                "org.apache.sling.event=[sling-event]",
+                "org.apache.sling.event.dea=[sling-event]"
             ]
         }
     },
-    "repoinit:TEXT|true":[
-        "create service user sling-event",
-        "",
-        "create path (sling:Folder) /var",
-        "create path (sling:Folder) /var/eventing",
-        "",
-        "set ACL for sling-event",
-        "allow   jcr:read,rep:write    on /var/eventing",
-        "end"
-    ]
+    "repoinit:TEXT|true": "@file"
 }

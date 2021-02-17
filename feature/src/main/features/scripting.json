@@ -58,7 +58,39 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.6-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.4-1.4.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.scripting.freemarker:1.0.4",
+            "start-order":"20"
+        },
+        {
+            "id": "org.freemarker:freemarker:2.3.30",
+            "start-order": "20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.scripting.thymeleaf:2.0.2",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.thymeleaf:3.0.11.RELEASE_1",
+            "start-order":"20"
+        },
+        {
+            "id":"org.attoparser:attoparser:2.0.5.RELEASE",
+            "start-order":"20"
+        },
+        {
+            "id":"org.unbescape:unbescape:1.1.6.RELEASE",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl:3.2.1_1",
+            "start-order":"20"
+        },
+        {
+            "id":"org.javassist:javassist:3.27.0-GA",
             "start-order":"20"
         }
     ],
@@ -70,22 +102,9 @@
         },
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~scripting":{
             "user.mapping":[
-                "org.apache.sling.scripting.core=sling-scripting",
-                "org.apache.sling.scripting.sightly.js.provider=sling-scripting"
+                "org.apache.sling.scripting.core=[sling-search-path-reader]",
+                "org.apache.sling.scripting.sightly.js.provider=[sling-search-path-reader]"
             ]
         }
-    },
-    "repoinit:TEXT|true":[
-        "#<<< SLING-5848 - Define service user and ACLs for Scripting",
-        "create service user sling-scripting",
-        "",
-        "create path (sling:Folder) /libs",
-        "create path (sling:Folder) /apps",
-        "",
-        "set ACL for sling-scripting",
-        "deny    jcr:all     on /",
-        "allow   jcr:read    on /libs,/apps",
-        "end",
-        "# SLING-5848 - Define service user and ACLs for Scripting >>>"
-    ]
+    }
 }

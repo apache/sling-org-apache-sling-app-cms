@@ -17,11 +17,9 @@
     "configurations":{
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-caconfig":{
             "user.mapping":[
-                "org.apache.sling.caconfig.impl=sling-readall"
+                "org.apache.sling.caconfig.impl=[sling-readall]"
             ]
         }
     },
-    "repoinit:TEXT|true":[
-        "create path (sling:Folder) /conf"
-    ]
+    "repoinit:TEXT|true": "@file"
 }
