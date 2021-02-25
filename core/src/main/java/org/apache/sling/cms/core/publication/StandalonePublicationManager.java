@@ -17,10 +17,14 @@
 package org.apache.sling.cms.core.publication;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Optional;
 
+import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.PublishableResource;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
@@ -44,8 +48,13 @@ public class StandalonePublicationManager implements PublicationManager {
     @Override
     public void publish(PublishableResource resource) throws PublicationException {
         try {
-            ModifiableValueMap properties = Optional
-                    .ofNullable(resource.getContentResource().adaptTo(ModifiableValueMap.class))
+            Resource contentResource = resource.getContentResource();
+            if (contentResource == null) {
+                contentResource = resource.getResource().getResourceResolver().create(resource.getResource(),
+                        JcrConstants.JCR_CONTENT,
+                        Collections.singletonMap(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED));
+            }
+            ModifiableValueMap properties = Optional.ofNullable(contentResource.adaptTo(ModifiableValueMap.class))
                     .orElseThrow(() -> new PublicationException("Cannot modify resource"));
             properties.put(CMSConstants.PN_PUBLISHED, true);
             properties.put(CMSConstants.PN_LAST_PUBLICATION, Calendar.getInstance());
@@ -61,8 +70,13 @@ public class StandalonePublicationManager implements PublicationManager {
     @Override
     public void unpublish(PublishableResource resource) throws PublicationException {
         try {
-            ModifiableValueMap properties = Optional
-                    .ofNullable(resource.getContentResource().adaptTo(ModifiableValueMap.class))
+            Resource contentResource = resource.getContentResource();
+            if (contentResource == null) {
+                contentResource = resource.getResource().getResourceResolver().create(resource.getResource(),
+                        JcrConstants.JCR_CONTENT,
+                        Collections.singletonMap(JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED));
+            }
+            ModifiableValueMap properties = Optional.ofNullable(contentResource.adaptTo(ModifiableValueMap.class))
                     .orElseThrow(() -> new PublicationException("Cannot modify resource"));
             properties.put(CMSConstants.PN_PUBLISHED, false);
             properties.put(CMSConstants.PN_LAST_PUBLICATION, Calendar.getInstance());
