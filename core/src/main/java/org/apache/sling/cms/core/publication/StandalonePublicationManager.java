@@ -24,7 +24,6 @@ import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.PublishableResource;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
