@@ -98,7 +98,9 @@ rava.bind('.contentnav .contentnav__item', {
         tr.classList.remove('is-selected');
       });
       this.classList.add('is-selected');
-      document.querySelector('.actions-target').innerHTML = this.querySelector('.cell-actions').innerHTML;
+      if (document.querySelector('.actions-target') && this.querySelector('.cell-actions')){
+        document.querySelector('.actions-target').innerHTML = this.querySelector('.cell-actions').innerHTML;
+      }
     },
     dblclick() {
       if (this.querySelector('.item-link')) {
