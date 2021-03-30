@@ -26,7 +26,7 @@
                 </figure>
             </div>
             <footer class="card-footer">
-                <a class="card-footer-item" href="${sling:encode(properties.link,'HTML_ATTR')}" title="${sling:encode(properties.title,'HTML')}">
+                <a class="card-footer-item item-link" href="${sling:encode(properties.link,'HTML_ATTR')}" title="${sling:encode(properties.title,'HTML')}">
                     ${sling:encode(properties.title,'HTML')}
                 </a>
             </footer>
