@@ -90,7 +90,9 @@ rava.bind('.file', {
       }, false);
       field.addEventListener('dragleave', (event) => {
         event.preventDefault();
-        field.classList.remove('is-primary');
+        if(!field.contains(event.fromElement)){
+          field.classList.remove('is-primary');
+        }
       }, false);
       field.addEventListener('drop', (event) => {
         event.preventDefault();
