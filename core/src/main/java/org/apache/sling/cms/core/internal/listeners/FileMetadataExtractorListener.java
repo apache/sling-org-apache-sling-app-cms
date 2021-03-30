@@ -19,16 +19,16 @@ package org.apache.sling.cms.core.internal.listeners;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.LoginException;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.observation.ExternalResourceChangeListener;
 import org.apache.sling.api.resource.observation.ResourceChange;
 import org.apache.sling.api.resource.observation.ResourceChangeListener;
 import org.apache.sling.cms.CMSConstants;
-import org.apache.sling.cms.File;
-import org.apache.sling.cms.FileMetadataExtractor;
+import org.apache.sling.cms.core.internal.jobs.FileMetadataExtractorConsumer;
+import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -47,32 +47,21 @@ public class FileMetadataExtractorListener implements ResourceChangeListener, Ex
     private static final Logger log = LoggerFactory.getLogger(FileMetadataExtractorListener.class);
 
     @Reference
-    private FileMetadataExtractor extractor;
+    private JobManager jobManager;
 
     @Reference
     private ResourceResolverFactory factory;
-
-    private void handleChange(Resource changed) {
-        if (CMSConstants.NT_FILE.equals(changed.getResourceType())) {
-            log.debug("Extracting metadata from changed resource: {}", changed);
-            try {
-                extractor.updateMetadata(changed.adaptTo(File.class), true);
-            } catch (Exception e) {
-                log.warn("Failed to extract metadata from change: {}", changed, e);
-            }
-        } else {
-            log.trace("Not extracting metadata from changed resource: {}", changed);
-        }
-    }
 
     @Override
     public void onChange(List<ResourceChange> changes) {
         try (ResourceResolver serviceResolver = factory.getServiceResourceResolver(
                 Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, "sling-cms-metadata"))) {
-            for (ResourceChange rc : changes) {
-                Resource changed = serviceResolver.getResource(rc.getPath());
-                handleChange(changed);
-            }
+            changes.stream().map(rc -> serviceResolver.getResource(rc.getPath()))
+                    .filter(r -> CMSConstants.NT_FILE.equals(r.getResourceType())).forEach(r -> {
+                        log.debug("Queueing resource {}", r);
+                        jobManager.addJob(FileMetadataExtractorConsumer.TOPIC,
+                                Collections.singletonMap(SlingConstants.PROPERTY_PATH, r.getPath()));
+                    });
         } catch (LoginException e) {
             log.error("Exception getting service user", e);
         }

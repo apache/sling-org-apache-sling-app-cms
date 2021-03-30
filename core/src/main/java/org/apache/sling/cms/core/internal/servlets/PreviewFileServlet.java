@@ -17,7 +17,6 @@
 package org.apache.sling.cms.core.internal.servlets;
 
 import java.io.IOException;
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
