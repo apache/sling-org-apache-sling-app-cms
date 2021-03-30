@@ -195,6 +195,10 @@ small.card-footer-item {
   padding: 12px 0;
 }
 
+.Main-Content .level-left {
+  overflow-x: auto;
+}
+
 .main-section {
   flex-grow: 1;
   @media screen and (min-width: $tablet), print {
