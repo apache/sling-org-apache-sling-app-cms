@@ -1,7 +1,7 @@
 {
     "bundles": [
         {
-            "id": "org.apache.sling:org.apache.sling.feature:1.2.18",
+            "id": "org.apache.sling:org.apache.sling.feature:1.2.20",
             "start-order": "20"
         },
         {

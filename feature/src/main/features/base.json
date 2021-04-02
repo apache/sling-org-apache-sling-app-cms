@@ -78,7 +78,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.i18n:2.5.14",
+            "id":"org.apache.sling:org.apache.sling.i18n:2.5.16",
             "start-order":"20"
         },
         {
@@ -102,7 +102,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.serviceusermapper:1.4.6",
+            "id":"org.apache.sling:org.apache.sling.serviceusermapper:1.5.2",
             "start-order":"15"
         },
         {
@@ -114,15 +114,15 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.servlets.resolver:2.7.10",
+            "id":"org.apache.sling:org.apache.sling.servlets.resolver:2.7.12",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.xss:2.2.8",
+            "id":"org.apache.sling:org.apache.sling.xss:2.2.12",
             "start-order":"20"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.metatype:1.2.2",
+            "id":"org.apache.felix:org.apache.felix.metatype:1.2.4",
             "start-order":"4"
         },
         {
@@ -150,7 +150,7 @@
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.http.jetty:4.1.4",
+            "id":"org.apache.felix:org.apache.felix.http.jetty:4.1.6",
             "start-order":"5"
         },
         {
@@ -218,11 +218,11 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.6.2",
+            "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.6.6",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.26",
+            "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.34",
             "start-order":"20"
         }
     ],

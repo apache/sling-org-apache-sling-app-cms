@@ -2,7 +2,7 @@
 {
     "bundles":[
         {
-            "id":"org.antlr:antlr4-runtime:4.9",
+            "id":"org.antlr:antlr4-runtime:4.9.2",
             "start-order":"20"
         },
         {
@@ -58,7 +58,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.4-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.6-1.4.0",
             "start-order":"20"
         },
         {
@@ -66,7 +66,7 @@
             "start-order":"20"
         },
         {
-            "id": "org.freemarker:freemarker:2.3.30",
+            "id": "org.freemarker:freemarker:2.3.31",
             "start-order": "20"
         },
         {
@@ -74,7 +74,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.thymeleaf:3.0.11.RELEASE_1",
+            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.thymeleaf:3.0.12.RELEASE_1",
             "start-order":"20"
         },
         {
@@ -86,7 +86,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl:3.2.1_1",
+            "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl:3.2.18_1",
             "start-order":"20"
         },
         {

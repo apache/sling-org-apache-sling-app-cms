@@ -41,7 +41,7 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.webconsole:1.0.2",
+            "id":"org.apache.sling:org.apache.sling.jcr.webconsole:1.1.0",
             "start-order":"15"
         },
         {
