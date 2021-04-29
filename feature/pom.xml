@@ -255,7 +255,7 @@
                         <configuration>
                             <launches>
                                 <launch>
-                                    <id>sling-12-oak-tar</id>
+                                    <id>sling-cms</id>
                                     <feature>
                                         <groupId>${project.groupId}</groupId>
                                         <artifactId>${project.artifactId}</artifactId>
