@@ -22,7 +22,7 @@
     enctype="multipart/form-data" class="Form-Ajax"
     data-add-date="${properties.addDate != false}"
     data-callback="${properties.callback}">
-    <fieldset class="form-wrapper pt-4 field">
+    <div class="form-wrapper pt-4 field">
         <input type="hidden" name="_charset_" value="utf-8" />
         <sling:include path="fields" resourceType="sling-cms/components/general/container" />
         <div class="field">
@@ -33,5 +33,5 @@
                 <a href="${sling:encode(header.referer,'HTML_ATTR')}" class="button close">Cancel</a>
             </c:if>
         </div>
-    </fieldset>
+    </div>
 </form>

@@ -63,6 +63,7 @@
                         <span class="icon is-small is-left">
                             <i class="jam jam-search" aria-hidden="true"></i>
                         </span>
+                        <input class="is-right is-sr-only" type="submit" value="Search" id="search-submit" />
                     </p>
                 </form>
             </div>

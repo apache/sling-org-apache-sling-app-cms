@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <nav class="menu">
-    <a class="menu-label toggle-hidden" data-target="#${fn:replace(properties.title,' ','-')}-nav">
+    <a class="menu-label toggle-hidden toggle-${fn:replace(properties.title,' ','-')}" data-target="#${fn:replace(properties.title,' ','-')}-nav">
         <sling:encode value="${properties.title}" mode="HTML" />
     </a>
     <c:set var="hidden" value="is-hidden" />
@@ -56,7 +56,7 @@
                 </c:forEach>
             </c:if>
             <c:if test="${enabled}">
-                <li><a href="${item.valueMap.link}" class="${selected}">${item.valueMap.text}</a></li>
+                <li><a href="${item.valueMap.link}" class="${selected} nav-link-${fn:replace(item.valueMap.text,' ','-')}">${item.valueMap.text}</a></li>
             </c:if>
         </c:forEach>
     </ul>

@@ -19,12 +19,12 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:findResources var="content" query="${properties.query}" language="JCR-SQL2" />
 <aside class="menu">
-<a class="menu-label toggle-hidden" data-target="#nav-${fn:replace(properties.title,' ','-')}">${properties.title}</a>
+<a class="menu-label toggle-hidden toggle-${properties.title}" data-target="#nav-${fn:replace(properties.title,' ','-')}">${properties.title}</a>
 <ul class="menu-list ${fn:startsWith(slingRequest.requestURI, properties.prefix) ? '' : 'is-hidden'}" id="nav-${fn:replace(properties.title,' ','-')}">
     <c:forEach var="item" items="${content}">
         <c:set var="prefixPath" value="${item.path}/" />
         <li class="${(fn:startsWith(slingRequest.requestPathInfo.suffix, prefixPath) || slingRequest.requestPathInfo.suffix == item.path) ? 'is-active' : ''}">
-            <a href="${properties.itemPrefix}${item.path}" title="View ${item.valueMap['jcr:title']}">
+            <a href="${properties.itemPrefix}${item.path}" class="nav-item-${fn:replace(item.valueMap['jcr:title'],' ','-'}" title="View ${item.valueMap['jcr:title']}">
                 <c:choose>
                     <c:when test="${sling:getRelativeResource(item,'jcr:content') != null}">
                         <sling:encode value="${sling:getRelativeResource(item,'jcr:content').valueMap['jcr:title']}" mode="HTML" />
