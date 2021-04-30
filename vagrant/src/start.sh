@@ -21,6 +21,10 @@
 # The following variables may be used to override the defaults.
 #
 
+script="$0"
+basename="$(dirname $script)"
+cd $basename
+
 # port used for accessing the app
 if [ -z "$APP_PORT" ]; then
 	APP_PORT=8080
@@ -28,7 +32,7 @@ fi
 
 # default JVM options
 if [ -z "$APP_JVM_OPTS" ]; then
-	APP_JVM_OPTS='-server -Xmx1024m -XX:MaxPermSize=256M -Djava.awt.headless=true'
+	APP_JVM_OPTS='-server -Xmx512m -XX:MaxPermSize=64M -Djava.awt.headless=true -Dorg.osgi.service.http.port=${APP_PORT}'
 fi
 
 # debugging support
@@ -40,19 +44,18 @@ fi
 # do not configure below this point
 # ------------------------------------------------------------------------------
 
-if [ $APP_PORT ]; then
-	START_OPTS="${START_OPTS} -p ${APP_PORT}"
-fi
 START_OPTS="${START_OPTS}"
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-JARFILE=`ls ${SCRIPTPATH}/*cms*.jar | head -1`
-cd ${SCRIPTPATH}
-mkdir -p sling/logs
+JARFILE=`ls *cms*.jar | head -1`
+if [ -z "$JARFILE" ]; then
+  echo "No CMS JAR file found."
+  exit 1
+fi
+mkdir -p launcher/logs
 (
   (
-    java $APP_JVM_OPTS -jar $JARFILE $START_OPTS &
+    java $APP_JVM_OPTS -jar $JARFILE -f *.far $START_OPTS &
     echo $! > app.pid
-  ) >> sling/logs/stdout.log 2>&1
+  ) >> launcher/logs/stdout.log 2>&1
 ) &
 echo "Application started on port ${APP_PORT}!"
