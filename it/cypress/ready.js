@@ -1,4 +1,4 @@
-<%-- /*
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,18 +15,33 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<body class="cms">
-    <div class="gradient"></div>
-    <div class="main-section has-background-light">
-        <div class="columns">
-            <div class="column has-background-white-bis" style="overflow-y: auto; height: 100vh">
-                <main class="Main-Content">
-                    <sling:call script="content.jsp" />
-                </main>
-            </div>
-        </div>
-    </div>
-    <sling:call script="scripts.jsp" />
-</body>
+ */
+const fetch = require("node-fetch");
+
+const url = process.env.CYPRESS_BASE_URL;
+
+async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+async function main() {
+  console.log(`Waiting for Sling to start on: ${url}`);
+  for (let i = 0; i < 120; i++) {
+    try {
+      const res = await fetch(`${url}/system/sling/form/login`);
+
+      if (res.ok) {
+        const body = await res.text();
+        if (body.indexOf("Welcome to Apache Sling CMS") !== -1) {
+          console.log(`Sling started on: ${url}`);
+          return;
+        }
+      }
+    } catch (e) {}
+    await sleep(5000);
+  }
+  console.log("Sling failed to start in the allotted time, failing...");
+  throw Error(`Sling did not successfully start on URL: ${url}`);
+}
+main();

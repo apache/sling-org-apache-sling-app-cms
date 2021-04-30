@@ -40,12 +40,12 @@
             <div class="navbar-item has-dropdown is-hoverable">
                 <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" var="auth" />
                 <sling:getResource path="${auth.authorizable.path}/profile" var="profile" />
-                <a class="navbar-link">
+                <span class="navbar-link">
                     <c:if test="${sling:getRelativeResource(profile,'thumbnail') != null}">
                         <img src="${profile.path}/thumbnail.transform/sling-cms-thumbnail32.png" alt="${resourceResolver.userID}" />
                     </c:if>&nbsp;
                     <sling:encode value="${profile.valueMap.name}" default="${resourceResolver.userID}" mode="HTML" />
-                </a>
+                </span>
                 <div class="navbar-dropdown">
                     <a class="navbar-item Fetch-Modal" data-title="User Profile" data-path=".Main-Content form" href="/cms/auth/user/profile.html${auth.authorizable.path}">
                         <em class="jam jam-id-card">

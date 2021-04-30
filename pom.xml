@@ -76,6 +76,7 @@
         <module>reference</module>
         <module>feature</module>
         <module>archetype</module>
+        <module>it</module>
     </modules>
 
     <scm>

@@ -22,7 +22,7 @@
 <c:catch var="dateEx">
     <fmt:formatDate var="lastModified" type = "both"  dateStyle = "medium" timeStyle = "medium" value="${resource.valueMap[modifiedProperty].time}" />
     <c:set var="colValue" value="${lastModified} - ${resource.valueMap[modifiedByProperty]}" />
-    <td title="${sling:encode(colValue,'HTML_ATTR')}">
+    <td title="${sling:encode(colValue,'HTML_ATTR')}" data-property="lastModified">
         <sling:encode value="${lastModified}" mode="HTML" /><br/>
         <sling:encode value="${resource.valueMap[modifiedByProperty]}" mode="HTML" />
     </td>

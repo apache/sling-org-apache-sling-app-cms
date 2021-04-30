@@ -20,7 +20,7 @@
 <sling:adaptTo var="breadcrumb" adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.ContentBreadcrumb" />
 <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
-        <c:forEach var="parent" items="${breadcrumb.parents}">
+        <c:forEach var="parent" items="${breadcrumb.parents}" varStatus="status">
             <li>
                 <a href="${parent.left}">
                     <sling:encode value="${parent.right}" mode="HTML" />
@@ -28,9 +28,11 @@
             </li>
         </c:forEach>
         <li class="is-active">
-            <a href="#">
-                <sling:encode value="${breadcrumb.currentItem}" mode="HTML" />
-            </a>
+            <div role="heading" aria-level="1">
+                <a href="#">
+                    <sling:encode value="${breadcrumb.currentItem}" mode="HTML" />
+                </a>
+            </div>
         </li>
     </ul>
     <c:if test="${!properties.hideSearch}">

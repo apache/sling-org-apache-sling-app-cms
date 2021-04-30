@@ -28,8 +28,8 @@
                     resourceType="sling-cms/components/general/container" />
             </div>
             <div class="column has-background-white-bis is-full-height">
-                <div class="Main-Content"> <sling:call
-                    script="content.jsp" /> </div>
+                <main class="Main-Content"> <sling:call
+                    script="content.jsp" /> </main>
             </div>
         </div>
     </div>

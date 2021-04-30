@@ -68,7 +68,7 @@
   <body class="cms has-background-light">
     <div class="gradient"></div>
     <div class="container is-fluid">
-      <div class="columns is-centered is-vcentered" style="min-height: calc(100vh)">
+      <main class="columns is-centered is-vcentered" style="min-height: calc(100vh)">
         <div class="column is-two-thirds-tablet is-half-desktop is-one-third-widescreen">
           <div class="box mt-6">
             <div class="columns">
@@ -89,7 +89,7 @@
                 </p>
               </div>
               <div class="column">
-                <h3>Login</h3>
+                <h2>Login</h2>
                 <p class="has-text-danger">${j_reason}</p>
                 <form method="POST" action="/j_security_check" class="py-3">
                   <input type="hidden" name="_charset_" value="UTF-8" />
@@ -106,6 +106,7 @@
                         placeholder="Username"
                         required="required"
                         title="Username"
+                        aria-label="Username"
                       />
                     </div>
                   </div>
@@ -121,6 +122,7 @@
                         placeholder="Password"
                         required="required"
                         title="Password"
+                        aria-label="Password"
                       />
                     </div>
                   </div>
@@ -134,7 +136,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
     <script
       src="/static/clientlibs/sling-cms/js/scripts-all.min.js"

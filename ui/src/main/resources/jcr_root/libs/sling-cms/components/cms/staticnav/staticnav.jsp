@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<nav class="menu">
+<nav class="menu" aria-label="${sling:encode(properties.title,'HTML_ATTR')}">
     <a class="menu-label toggle-hidden toggle-${fn:replace(properties.title,' ','-')}" data-target="#${fn:replace(properties.title,' ','-')}-nav">
         <sling:encode value="${properties.title}" mode="HTML" />
     </a>

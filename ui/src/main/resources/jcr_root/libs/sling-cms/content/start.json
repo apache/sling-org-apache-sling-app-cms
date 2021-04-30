@@ -13,7 +13,7 @@
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
                 "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h2>Welcome to the Apache Sling CMS!<\/h2><p>This is a full-featured Content Management System built using the Apache Sling Framework! To begin, select Manage &gt;&gt; Site on the left to add your first website.<\/p><br\/><br\/>"
+                "text": "<h1>Welcome to the Apache Sling CMS!<\/h1><p>This is a full-featured Content Management System built using the Apache Sling Framework! To begin, select Manage &gt;&gt; Site on the left to add your first website.<\/p><br\/><br\/>"
             },
             "scrollcontainer": {
                 "jcr:primaryType": "nt:unstructured",

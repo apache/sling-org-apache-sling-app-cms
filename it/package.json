@@ -1,0 +1,22 @@
+{
+  "name": "sling-cms-it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tests/index.js",
+  "scripts": {
+    "cypress": "./node_modules/.bin/cypress open",
+    "test": "./node_modules/.bin/cypress run",
+    "wait-for-ready": "node cypress/ready.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "cypress": "^7.2.0",
+    "cypress-audit": "^0.3.0",
+    "cypress-plugin-snapshots": "^1.4.4"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

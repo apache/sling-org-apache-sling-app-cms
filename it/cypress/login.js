@@ -1,4 +1,4 @@
-<%-- /*
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,18 +15,11 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-<body class="cms">
-    <div class="gradient"></div>
-    <div class="main-section has-background-light">
-        <div class="columns">
-            <div class="column has-background-white-bis" style="overflow-y: auto; height: 100vh">
-                <main class="Main-Content">
-                    <sling:call script="content.jsp" />
-                </main>
-            </div>
-        </div>
-    </div>
-    <sling:call script="scripts.jsp" />
-</body>
+ */
+module.exports = function() {
+  cy.visit("/system/sling/form/login");
+  cy.get("input[name=j_username]").invoke("attr", "value", "admin");
+  cy.get("input[name=j_password]").invoke("attr", "value", "admin");
+  cy.get("form").submit();
+  cy.url().should("contain", "/cms/start.html");
+};
