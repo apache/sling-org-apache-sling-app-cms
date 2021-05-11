@@ -28,7 +28,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.reference.forms.FieldHandler;
 import org.apache.sling.cms.reference.forms.FormException;
 import org.apache.sling.cms.reference.forms.FormUtils;
-import org.apache.sling.cms.reference.impl.SearchServiceImpl.Config;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
@@ -38,7 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = FieldHandler.class)
-@Designate(ocd = Config.class)
+@Designate(ocd = SelectionHandler.Config.class)
 public class SelectionHandler implements FieldHandler {
 
     public static final String DEFAULT_RESOURCE_TYPE = "reference/components/forms/fields/selection";
