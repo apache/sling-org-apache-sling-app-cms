@@ -62,8 +62,6 @@ public class Search {
 
     private final List<Resource> results;
 
-    private final SearchService searchService;
-
     private final int start;
 
     private final ResourceResolver resolver;
@@ -72,7 +70,6 @@ public class Search {
     public Search(@Self SlingHttpServletRequest request, @ValueMapValue @Named("limit") int limit,
             @OSGiService SearchService searchService, @ValueMapValue @Named("basePath") String basePath) {
         this.request = request;
-        this.searchService = searchService;
 
         Set<String> distinct = new HashSet<>();
         String term = Text.escapeIllegalXpathSearchChars(request.getParameter(TERM_PARAMETER)).replace("'", "''");
@@ -154,17 +151,6 @@ public class Search {
 
     public String getTerm() {
         return request.getParameter(TERM_PARAMETER);
-    }
-
-    /**
-     * This is a horrible hack to close the resource resolver used for retrieving
-     * the search results
-     * 
-     * @return true, always
-     */
-    public String getFinalize() {
-        searchService.closeResolver(resolver);
-        return "";
     }
 
     public boolean isFirst() {

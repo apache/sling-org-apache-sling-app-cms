@@ -20,6 +20,8 @@ import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.request.SlingRequestEvent;
+import org.apache.sling.api.request.SlingRequestListener;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -37,16 +39,17 @@ import org.slf4j.LoggerFactory;
 /**
  * Implementation of the SearchService
  */
-@Component(service = { SearchService.class })
+@Component(service = { SearchService.class, SlingRequestListener.class })
 @Designate(ocd = Config.class)
-public class SearchServiceImpl implements SearchService {
+public class SearchServiceImpl implements SearchService, SlingRequestListener {
 
     private static final Logger log = LoggerFactory.getLogger(SearchServiceImpl.class);
 
-    @Reference
-    private ResourceResolverFactory factory;
+    private final ResourceResolverFactory factory;
 
-    private Config config;
+    private final Config config;
+
+    private static final String RESOURCE_RESOLVER_ATTR = SearchServiceImpl.class.getName() + ":ResourceResolver";
 
     @ObjectClassDefinition(name = "%cms.reference.search.name", description = "%cms.reference.search.description", localization = "OSGI-INF/l10n/bundle")
     public @interface Config {
@@ -56,17 +59,21 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Activate
-    public void init(Config config) {
+    public SearchServiceImpl(@Reference ResourceResolverFactory factory, Config config) {
+        this.factory = factory;
         this.config = config;
     }
 
     @Override
     public ResourceResolver getResourceResolver(SlingHttpServletRequest request) {
+
         if (config != null && StringUtils.isNotBlank(config.searchServiceUsername())) {
             try {
                 log.debug("Retrieving Service User {}", config.searchServiceUsername());
-                return factory.getServiceResourceResolver(Collections.singletonMap(ResourceResolverFactory.SUBSERVICE,
-                        (Object) config.searchServiceUsername()));
+                ResourceResolver resolver = factory.getServiceResourceResolver(
+                        Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, config.searchServiceUsername()));
+                request.setAttribute(RESOURCE_RESOLVER_ATTR, resolver);
+                return resolver;
             } catch (LoginException e) {
                 log.warn("Failed to retrieve Service User {}, falling back to request user",
                         config.searchServiceUsername(), e);
@@ -79,11 +86,14 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public void closeResolver(ResourceResolver resolver) {
-        if (resolver != null && resolver.isLive() && StringUtils.isNotBlank(config.searchServiceUsername())
-                && config.searchServiceUsername().equals(resolver.getUserID())) {
+    public void onEvent(SlingRequestEvent sre) {
+        if (sre.getType() == SlingRequestEvent.EventType.EVENT_DESTROY
+                && sre.getServletRequest().getAttribute(RESOURCE_RESOLVER_ATTR) != null
+                && sre.getServletRequest().getAttribute(RESOURCE_RESOLVER_ATTR) instanceof ResourceResolver) {
+            ResourceResolver resolver = (ResourceResolver) sre.getServletRequest().getAttribute(RESOURCE_RESOLVER_ATTR);
             resolver.close();
         }
+
     }
 
 }

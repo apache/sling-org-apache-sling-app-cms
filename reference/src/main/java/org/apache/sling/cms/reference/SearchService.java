@@ -23,14 +23,7 @@ import org.apache.sling.api.resource.ResourceResolver;
  * Service for managing the search user.
  */
 public interface SearchService {
-
-	/**
-	 * Closes the resource resolver if appropriate
-	 * 
-	 * @param resolver the resource resolver used in search
-	 */
-	void closeResolver(ResourceResolver resolver);
-
+	
 	/**
 	 * Gets either the service user resource resolver of the request resource
 	 * resolver depending if the service user is configured.
