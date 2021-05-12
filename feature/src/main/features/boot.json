@@ -101,7 +101,7 @@
             "start-order": "1"
         },
         {
-            "id": "org.osgi:org.osgi.service.log:1.4.0",
+            "id": "org.osgi:org.osgi.service.log:1.5.0",
             "start-order": "1"
         },
         {

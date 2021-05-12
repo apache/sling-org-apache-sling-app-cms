@@ -103,7 +103,8 @@
         "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~scripting":{
             "user.mapping":[
                 "org.apache.sling.scripting.core=[sling-search-path-reader]",
-                "org.apache.sling.scripting.sightly.js.provider=[sling-search-path-reader]"
+                "org.apache.sling.scripting.sightly.js.provider=[sling-search-path-reader]",
+                "org.apache.sling.scripting.thymeleaf=[sling-search-path-reader]"
             ]
         }
     }
