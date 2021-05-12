@@ -18,7 +18,7 @@
  */
 
 const lighthouseConfig = require("../lighthouse-cfg.json");
-const login = require("../login");
+const { doneLoading, login } = require("../utils");
 
 describe("Taxonomy Tests", () => {
   beforeEach(() => {
@@ -90,6 +90,7 @@ describe("Taxonomy Tests", () => {
 
     cy.get(".close-modal.is-primary").should("be.visible");
     cy.get(".close-modal.is-primary").click();
+    doneLoading();
     cy.document().toMatchImageSnapshot({
       name: "taxonomy--with-new-item",
       blackout: ["td[data-property=lastModified]"],
@@ -109,5 +110,6 @@ describe("Taxonomy Tests", () => {
 
     cy.get(".close-modal.is-primary").should("be.visible");
     cy.get(".close-modal.is-primary").click();
+    doneLoading();
   });
 });

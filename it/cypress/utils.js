@@ -16,10 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-module.exports = function() {
+module.exports.login = function() {
   cy.visit("/system/sling/form/login");
   cy.get("input[name=j_username]").invoke("attr", "value", "admin");
   cy.get("input[name=j_password]").invoke("attr", "value", "admin");
   cy.get("form").submit();
   cy.url().should("contain", "/cms/start.html");
+};
+
+module.exports.doneLoading = function() {
+  cy.get(".loader").should("not.exist");
 };
