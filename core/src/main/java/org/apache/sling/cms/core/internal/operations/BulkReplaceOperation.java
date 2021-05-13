@@ -145,7 +145,6 @@ public class BulkReplaceOperation implements PostOperation {
         }
     }
 
-    @SuppressWarnings("unlikely-arg-type")
     private boolean updateProperty(Resource resource, Pattern rfind, String find, String replace,
             ModifiableValueMap properties, boolean updated, Entry<String, Object> entry) {
         log.trace("Checking property {}@{}", resource.getPath(), entry.getKey());
@@ -165,7 +164,7 @@ public class BulkReplaceOperation implements PostOperation {
                     updated = true;
                 }
             }
-        } else if (properties.get(entry) instanceof String[]) {
+        } else if (properties.get(entry.getKey()) instanceof String[]) {
             log.trace("Found array value");
             boolean arrUpdated = false;
             String[] v = (String[]) entry.getValue();
