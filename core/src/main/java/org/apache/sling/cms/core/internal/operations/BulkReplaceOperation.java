@@ -31,6 +31,7 @@ import org.apache.sling.api.SlingException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.core.internal.CommonUtils;
 import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.PostOperation;
 import org.apache.sling.servlets.post.PostResponse;
@@ -73,14 +74,19 @@ public class BulkReplaceOperation implements PostOperation {
             Pattern rfind = null;
             String find = request.getParameter(PN_FIND);
             if (MODE_REGEX.equals(request.getParameter(PN_MODE))) {
-                log.debug("Using regular expressions to search for {}", find);
-                
+                if (log.isDebugEnabled()) {
+                    log.debug("Using regular expressions to search for {}", CommonUtils.escapeLogMessage(find));
+                }
+
                 rfind = Pattern.compile(find);
-            } else {
-                log.debug("Searching for {}", find);
+            } else if (log.isDebugEnabled()) {
+                log.debug("Searching for {}", CommonUtils.escapeLogMessage(find));
             }
             String replace = request.getParameter(PN_REPLACE);
-            log.debug("Replacing with {}", replace);
+            
+            if (log.isDebugEnabled()) {
+                log.debug("Replacing with {}", CommonUtils.escapeLogMessage(replace));
+            }
 
             final List<Modification> changes = new ArrayList<>();
             updateProperties(request.getResource(), updateProperties, rfind, find, replace, response, changes);

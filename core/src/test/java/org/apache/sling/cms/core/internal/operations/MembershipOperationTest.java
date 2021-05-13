@@ -19,13 +19,14 @@ package org.apache.sling.cms.core.internal.operations;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
 import javax.jcr.UnsupportedRepositoryOperationException;
+
+import com.google.common.collect.ImmutableMap;
 
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
@@ -38,8 +39,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import com.google.common.collect.ImmutableMap;
 
 public class MembershipOperationTest {
 
@@ -84,10 +83,10 @@ public class MembershipOperationTest {
 
         assertEquals("/home/users/test2", response.getPath());
 
-        assertTrue(added.size() == 1);
+        assertEquals(1, added.size());
         assertEquals("/home/users/test2", added.get(0));
 
-        assertTrue(removed.size() == 0);
+        assertEquals(0, removed.size());
 
     }
 

@@ -33,6 +33,7 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.cms.core.internal.CommonUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.metatype.annotations.Designate;
@@ -72,13 +73,17 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
         if (StringUtils.isEmpty(path)) {
             path = "/";
         }
-        log.debug("Finding valid paths under {}", path);
-
+        if (log.isDebugEnabled()) {
+            log.debug("Finding valid paths under {}", CommonUtils.escapeLogMessage(path));
+        }
+        
         String type = request.getParameter("type");
         if (!typeFilters.containsKey(type)) {
             type = "all";
         }
-        log.debug("Filtering by type: {}", type);
+        if (log.isDebugEnabled()) {
+            log.debug("Filtering by type: {}", CommonUtils.escapeLogMessage(type));
+        }
 
         JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
         Resource parent = request.getResourceResolver().getResource(path);
@@ -89,7 +94,9 @@ public class PathSuggestionServlet extends SlingSafeMethodsServlet {
                 path = "/";
             }
 
-            log.debug("Using stemmed path {}", path);
+            if (log.isDebugEnabled()) {
+                log.debug("Using stemmed path {}", CommonUtils.escapeLogMessage(path));
+            }
             parent = request.getResourceResolver().getResource(path);
         }
         if (parent != null) {

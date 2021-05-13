@@ -96,7 +96,7 @@ public class Search {
             log.debug("Using page {}", page);
         } else {
             page = 0;
-            log.debug("Page {} not specified or not valid", request.getParameter("page"));
+            log.debug("Page not specified or not valid");
         }
 
         if (page * limit >= count) {

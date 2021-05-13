@@ -18,6 +18,9 @@ package org.apache.sling.cms.reference.forms;
 
 public class FormConstants {
 
+    private FormConstants() {
+    }
+
     public static final String PATH_PROFILE = "profile";
 
     public static final String PN_EMAIL = "email";

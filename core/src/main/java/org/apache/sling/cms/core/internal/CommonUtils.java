@@ -21,6 +21,7 @@ import java.util.Optional;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.jackrabbit.api.JackrabbitSession;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -48,5 +49,9 @@ public class CommonUtils {
             }
             return userManager;
         }).orElseThrow(() -> new RepositoryException("Failed to get user manager"));
+    }
+
+    public static final String escapeLogMessage(String message){
+        return StringEscapeUtils.escapeHtml4(message.replaceAll("[\\n\\r]"," "));
     }
 }

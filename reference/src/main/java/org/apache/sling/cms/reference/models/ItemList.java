@@ -85,7 +85,7 @@ public class ItemList {
             log.debug("Using page {}", page);
         } else {
             page = 0;
-            log.debug("Page {} not specified or not valid", request.getParameter("page"));
+            log.debug("Page not specified or not valid");
         }
 
         int l = Integer.parseInt(limit, 10);

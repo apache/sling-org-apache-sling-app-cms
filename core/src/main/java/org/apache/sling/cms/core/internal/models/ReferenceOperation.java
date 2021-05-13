@@ -42,7 +42,7 @@ public abstract class ReferenceOperation {
 
     private Resource resource = null;
 
-    public ReferenceOperation(Resource resource) {
+    protected ReferenceOperation(Resource resource) {
         String path = resource.getPath();
         if (CMSConstants.NT_PAGE.equals(resource.getResourceType())) {
             regex = Pattern.compile("(^\\Q" + path + "\\E($|\\/)|(\\'|\\\")\\Q" + path + "\\E(\\.html|\\'|\\\"|\\/))");

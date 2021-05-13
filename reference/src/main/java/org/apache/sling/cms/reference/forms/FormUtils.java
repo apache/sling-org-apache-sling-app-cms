@@ -22,6 +22,9 @@ import org.apache.sling.api.resource.Resource;
 
 public class FormUtils {
 
+    private FormUtils() {
+    }
+
     public static final boolean handles(String[] supportedTypes, Resource resource) {
         return Stream.of(supportedTypes).anyMatch(t -> t.equals(resource.getResourceType()));
     }

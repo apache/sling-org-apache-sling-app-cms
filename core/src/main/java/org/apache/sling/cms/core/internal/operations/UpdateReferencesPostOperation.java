@@ -22,6 +22,7 @@ import java.util.List;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.cms.core.internal.CommonUtils;
 import org.apache.sling.cms.core.internal.models.ReferenceOperation;
 import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.SlingPostConstants;
@@ -55,7 +56,9 @@ public class UpdateReferencesPostOperation implements SlingPostProcessor {
     private void updateReferences(SlingHttpServletRequest request, final List<Modification> changes) {
         final String find = request.getResource().getPath();
         final String destination = request.getParameter(SlingPostConstants.RP_DEST);
-        log.debug("Using destination: {}", destination);
+        if (log.isDebugEnabled()) {
+            log.debug("Using destination: {}", CommonUtils.escapeLogMessage(destination));
+        }
         ReferenceOperation ro = new ReferenceOperation(request.getResource()) {
             @Override
             public void doProcess(Resource resource, String matchingKey) {
