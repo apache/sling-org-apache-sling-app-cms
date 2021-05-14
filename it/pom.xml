@@ -55,130 +55,7 @@
                     </filesets>
                 </configuration>
             </plugin>
-            <!-- reserve a network port for the integration tests -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>reserve-network-port</id>
-                        <goals>
-                            <goal>reserve-network-port</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <portNames>
-                                <portName>http.port</portName>
-                            </portNames>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.sling</groupId>
-                <artifactId>feature-launcher-maven-plugin</artifactId>
-                <version>0.1.0</version>
-                <configuration>
-                    <launches>
-                        <launch>
-                            <id>sling-cms</id>
-                            <feature>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>org.apache.sling.cms.feature</artifactId>
-                                <version>${project.version}</version>
-                                <classifier>slingcms-standalone</classifier>
-                                <type>slingosgifeature</type>
-                            </feature>
-                            <launcherArguments>
-                                <frameworkProperties>
-                                    <org.osgi.service.http.port>${http.port}</org.osgi.service.http.port>
-                                </frameworkProperties>
-                            </launcherArguments>
-                            <startTimeoutSeconds>180</startTimeoutSeconds>
-                        </launch>
-                    </launches>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>start</goal>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <systemPropertyVariables>
-                        <sling.http.port>${http.port}</sling.http.port>
-                        <IT.expected.bundles.count>${IT.expected.bundles.count}</IT.expected.bundles.count>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.7.6</version>
-                <executions>
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v14.2.0</nodeVersion>
-                            <npmVersion>6.14.5</npmVersion>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>wait for sling</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>integration-test</phase>
-                        <configuration>
-                            <arguments>run wait-for-ready</arguments>
-                            <environmentVariables>
-                                <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
-                            </environmentVariables>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>run cypress</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>integration-test</phase>
-                        <configuration>
-                            <arguments>run test</arguments>
-                            <environmentVariables>
-                                <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
-                            </environmentVariables>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -196,5 +73,135 @@
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>ci</id>
+            <build>
+                <plugins>
+                    <!-- reserve a network port for the integration tests -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>reserve-network-port</id>
+                                <goals>
+                                    <goal>reserve-network-port</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <portNames>
+                                        <portName>http.port</portName>
+                                    </portNames>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.sling</groupId>
+                        <artifactId>feature-launcher-maven-plugin</artifactId>
+                        <version>0.1.0</version>
+                        <configuration>
+                            <launches>
+                                <launch>
+                                    <id>sling-cms</id>
+                                    <feature>
+                                        <groupId>${project.groupId}</groupId>
+                                        <artifactId>org.apache.sling.cms.feature</artifactId>
+                                        <version>${project.version}</version>
+                                        <classifier>slingcms-standalone</classifier>
+                                        <type>slingosgifeature</type>
+                                    </feature>
+                                    <launcherArguments>
+                                        <frameworkProperties>
+                                            <org.osgi.service.http.port>${http.port}</org.osgi.service.http.port>
+                                        </frameworkProperties>
+                                    </launcherArguments>
+                                    <startTimeoutSeconds>180</startTimeoutSeconds>
+                                </launch>
+                            </launches>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>start</goal>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <sling.http.port>${http.port}</sling.http.port>
+                                <IT.expected.bundles.count>${IT.expected.bundles.count}</IT.expected.bundles.count>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
 
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.7.6</version>
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v14.2.0</nodeVersion>
+                                    <npmVersion>6.14.5</npmVersion>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>wait for sling</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <arguments>run wait-for-ready</arguments>
+                                    <environmentVariables>
+                                        <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
+                                    </environmentVariables>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>run cypress</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <arguments>run test</arguments>
+                                    <environmentVariables>
+                                        <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
+                                    </environmentVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
