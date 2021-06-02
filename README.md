@@ -20,7 +20,7 @@ Try out Sling CMS on [Gitpod](https://www.gitpod.io/) for free for up to 50 hour
  * [Releases](docs/releases.md)
  * [Users](docs/users.md)
 
-### [Download Latest Version](https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.feature/1.0.2/org.apache.sling.cms-1.0.2.jar)
+### [Download Latest Version](https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.feature/1.0.2/org.apache.sling.cms.feature-1.0.2.jar)
 ### [Report an Issue](https://issues.apache.org/jira)
 
 ## Contributing
