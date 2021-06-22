@@ -1,3 +1,4 @@
 Sling-Model-Packages: org.apache.sling.cms.transformer
 
+Export-Package: org.apache.sling.cms.transformer,net.coobird.thumbnailator.*
 -includeresource: lib/thumbnailator.jar=thumbnailator-[[0-9\.]]*.jar;lib:=true

@@ -52,54 +52,12 @@ public class ForwardAgentEndpointSynchronizationTest {
         Mockito.when(event.getNewView()).thenReturn(view);
 
         ConfigurationAdmin configAdmin = Mockito.mock(ConfigurationAdmin.class);
-        Configuration sampleConfig = new Configuration() {
-            private Dictionary<String, Object> properties = new Hashtable<>();
+        Configuration sampleConfig = Mockito.mock(Configuration.class);
 
-            @Override
-            public String getPid() {
-                return "org.apache.sling";
-            }
-
-            @Override
-            public Dictionary<String, Object> getProperties() {
-                return properties;
-            }
-
-            @Override
-            public void update(Dictionary<String, ?> properties) throws IOException {
-                this.properties = (Dictionary<String, Object>) properties;
-            }
-
-            @Override
-            public void delete() throws IOException {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public String getFactoryPid() {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public void update() throws IOException {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public void setBundleLocation(String location) {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public String getBundleLocation() {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public long getChangeCount() {
-                throw new UnsupportedOperationException();
-            }
-        };
+        Dictionary<String,Object> properties = new Hashtable<>();
+        Mockito.when(sampleConfig.getPid()).thenReturn("org.apache.sling");
+        Mockito.when(sampleConfig.getProperties()).thenReturn(properties);
+       
         Mockito.when(configAdmin.listConfigurations(Mockito.any())).thenReturn(new Configuration[] { sampleConfig });
 
         ForwardAgentEndpointSynchronization sync = new ForwardAgentEndpointSynchronization(configAdmin,
@@ -118,7 +76,7 @@ public class ForwardAgentEndpointSynchronizationTest {
                 });
         sync.handleTopologyEvent(event);
         assertTrue(Arrays.equals(new String[] { "https://sling.apache.org/libs/distribute" },
-                (String[]) sampleConfig.getProperties().get(ForwardAgentEndpointSynchronization.ENDPOINT_PROPERTY)));
+                (String[]) properties.get(ForwardAgentEndpointSynchronization.ENDPOINT_PROPERTY)));
     }
 
     @Test
