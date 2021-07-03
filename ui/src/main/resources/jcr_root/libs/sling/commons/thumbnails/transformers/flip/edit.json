@@ -1,0 +1,26 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "sling:resourceType": "sling-cms/components/editor/slingform",
+  "button": "Save",
+  "fields": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/general/container",
+    "direction": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/editor/fields/select",
+      "label": "Direction",
+      "name": "direction",
+      "required": true,
+      "options": {
+        "horizontal": {
+          "label": "Horizontal",
+          "value": "horizontal"
+        },
+        "vertical": {
+          "label": "Vertical",
+          "value": "vertical"
+        }
+      }
+    }
+  }
+}

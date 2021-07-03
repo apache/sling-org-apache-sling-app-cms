@@ -21,7 +21,7 @@
             },
             "transformationeditor": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/caconfig/transformation"
+                "sling:resourceType": "sling/commons/thumbnails/transformation"
             }
         }
     }

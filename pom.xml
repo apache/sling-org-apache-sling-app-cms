@@ -71,7 +71,6 @@
     <modules>
         <module>api</module>
         <module>core</module>
-        <module>transformer</module>
         <module>login</module>
         <module>ui</module>
         <module>reference</module>
