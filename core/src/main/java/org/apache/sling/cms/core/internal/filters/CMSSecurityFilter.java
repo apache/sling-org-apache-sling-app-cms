@@ -32,6 +32,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpStatus;
 import org.apache.jackrabbit.api.JackrabbitSession;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
@@ -42,6 +43,7 @@ import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.cms.PublishableResource;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
 import org.apache.sling.cms.publication.PublicationManagerFactory;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -83,7 +85,7 @@ public class CMSSecurityFilter implements Filter {
                     if (!allowed) {
                         log.trace("Request to {} not allowed for user {}", slingRequest.getRequestURI(),
                                 slingRequest.getResourceResolver().getUserID());
-                        ((HttpServletResponse) response).sendError(401);
+                        ((HttpServletResponse) response).sendError(HttpStatus.SC_UNAUTHORIZED);
                         return;
                     }
                 }
@@ -145,9 +147,7 @@ public class CMSSecurityFilter implements Filter {
                 return false;
             }
             log.trace("Retrieved user manager {} with session {}", userManager, session);
-            Authorizable auth;
-
-            auth = userManager.getAuthorizable(slingRequest.getUserPrincipal());
+            Authorizable auth = userManager.getAuthorizable(slingRequest.getUserPrincipal());
             if (auth == null) {
                 log.warn("Unable to retrieve user from principal {}", slingRequest.getUserPrincipal());
                 return false;

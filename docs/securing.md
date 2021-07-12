@@ -15,9 +15,14 @@
 Sling CMS by default is pretty open, so you will want to secure the application with the following steps:
 
  1. Configure the Apache Sling CMS Security Filter - The Apache Sling CMS Security Filter  allows for limiting access to non-published content and content directly through the CMS domain. To configure the Apache Sling CMS Security Filter:
-    - Open the OSGi console to [http://localhost:8080/system/console/configMgr/org.apache.sling.cms.core.filters.CMSSecurityFilter](http://localhost:8080/system/console/configMgr/org.apache.sling.cms.core.filters.CMSSecurityFilter)
-    - Configure the Host Domain and the Group
+    - Open the OSGi console to [http://localhost:8080/system/console/configMgr](http://localhost:8080/system/console/configMgr/)
+    - Select the plus indicator by _Apache Sling CMS Security Filter_
+    - Configure the Host Domain, Allowed Patterns and, optionally, the Group required to access the CMS
        ![Configure Security Filter](img/configure-security-filter.png)
+ 2. Configure the Referrer Filter - this filters which referrers are allowed send modification requests to the CMS instance. To configure the Referrer Filter:
+   - Open the OSGi console at [http://localhost:8080/system/console/configMgr/org.apache.sling.security.impl.ReferrerFilter](http://localhost:8080/system/console/configMgr/org.apache.sling.security.impl.ReferrerFilter)
+   - Configure the _Allow Hosts_ or _Allow Regexp Hosts_ to the host names allowed
+       ![Configure Referrer Filter](img/configure-referrer-filter.png)
  2. Configure Apache for Security - Add configurations to make Apache HTTPD secure:
     
         # Security Protection

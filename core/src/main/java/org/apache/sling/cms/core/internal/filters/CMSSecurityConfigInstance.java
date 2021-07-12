@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
@@ -47,9 +48,20 @@ public class CMSSecurityConfigInstance {
 
     }
 
+    private boolean domainsSet() {
+        if (ArrayUtils.isEmpty(config.hostDomains())) {
+            return false;
+        }
+        for (String value : config.hostDomains()) {
+            if (StringUtils.isNotEmpty(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean applies(HttpServletRequest request) {
-        return ArrayUtils.isEmpty(config.hostDomains())
-                || ArrayUtils.contains(config.hostDomains(), request.getServerName());
+        return !domainsSet() || ArrayUtils.contains(config.hostDomains(), request.getServerName());
     }
 
     public String getGroupName() {

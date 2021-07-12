@@ -25,8 +25,8 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 @ObjectClassDefinition(name = "%cms.security.filter.name", description = "%cms.security.filter.description", localization = "OSGI-INF/l10n/bundle")
 public @interface CMSSecurityFilterConfig {
 
-    @AttributeDefinition(name = "%hostDomains.name", description = "%hostDomains.description")
-    String[] hostDomains() default "localhost";
+    @AttributeDefinition(name = "%hostDomains.name", description = "%hostDomains.description", defaultValue = "localhost")
+    String[] hostDomains();
 
     @AttributeDefinition(name = "%allowedPatterns.name", description = "%allowedPatterns.description")
     String[] allowedPatterns() default { "^\\/content\\/starter/.*$", "^\\/static/.*$",
