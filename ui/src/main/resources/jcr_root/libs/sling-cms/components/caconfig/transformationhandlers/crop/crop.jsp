@@ -18,6 +18,6 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <dl>
-    <dt>Position</dt>
+    <dt><fmt:message key="Position" /></dt>
     <dd>${properties.position}</dd>
 </dl>

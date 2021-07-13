@@ -18,13 +18,13 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Create User</h3>
+    <h3><fmt:message key="Create User" /></h3>
     <dl>
-        <dt>Group Membership</dt>
+        <dt><fmt:message key="Group Membership" /></dt>
         <dd>${sling:encode(fn:join(properties.groups,','),'HTML')}</dd>
-        <dt>Intermediate Path</dt>
+        <dt><fmt:message key="Intermediate Path" /></dt>
         <dd>${sling:encode(properties.intermediatePath,'HTML')}</dd>
-        <dt>Set Profile Properties</dt>
+        <dt><fmt:message key="Set Profile Properties" /></dt>
         <dd>${sling:encode(fn:join(properties.profileProperties,','),'HTML')}</dd>
     </dl>
 </c:if>

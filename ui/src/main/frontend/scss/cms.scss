@@ -67,24 +67,30 @@ fieldset {
   min-inline-size: auto;
 }
 
+
 h1 {
   font-size: 200%;
+  margin-bottom: 1em;
 }
 
 h2 {
   font-size: 180%;
+  margin-bottom: .8em;
 }
 
 h3 {
   font-size: 160%;
+  margin-bottom: .6em;
 }
 
 h4 {
   font-size: 140%;
+  margin-bottom: .4em;
 }
 
 h5 {
   font-size: 120%;
+  margin-bottom: .2em;
 }
 
 .breadcrumb {
@@ -184,9 +190,9 @@ small.card-footer-item {
 
 .loader {
   margin: auto;
-  width: 2em;
-  height: 2em;
-  border: 2px solid $primary;
+  width: 5em;
+  height: 5em;
+  border: .2em solid $primary;
   border-right-color: transparent;
   border-top-color: transparent;
 }

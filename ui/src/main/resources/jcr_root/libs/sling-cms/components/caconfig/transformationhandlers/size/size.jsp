@@ -18,8 +18,8 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <dl>
-    <dt>Width</dt>
+    <dt><fmt:message key="Width" /></dt>
     <dd>${properties.width}</dd>
-    <dt>Height</dt>
+    <dt><fmt:message key="Height" /></dt>
     <dd>${properties.height}</dd>
 </dl>

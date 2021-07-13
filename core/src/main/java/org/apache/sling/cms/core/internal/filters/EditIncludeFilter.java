@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -44,9 +45,12 @@ import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.Component;
 import org.apache.sling.cms.EditableResource;
 import org.apache.sling.cms.core.internal.models.EditableResourceImpl;
+import org.apache.sling.cms.i18n.I18NDictionary;
+import org.apache.sling.cms.i18n.I18NProvider;
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,8 +72,10 @@ public class EditIncludeFilter implements Filter {
 
     private Map<String, String> templates = new HashMap<>();
 
+    private I18NProvider provider;
+
     @Activate
-    public void activate(ComponentContext context) throws IOException {
+    public EditIncludeFilter(ComponentContext context, @Reference I18NProvider provider) throws IOException {
         Bundle bundle = context.getBundleContext().getBundle();
         Enumeration<String> entries = bundle.getEntryPaths(ENTRY_BASE);
         while (entries.hasMoreElements()) {
@@ -80,6 +86,7 @@ public class EditIncludeFilter implements Filter {
                         StringUtils.substringAfter(IOUtils.toString(is, StandardCharsets.UTF_8), "-->"));
             }
         }
+        this.provider = provider;
     }
 
     @Override
@@ -173,7 +180,8 @@ public class EditIncludeFilter implements Filter {
         writeTemplate(writer, replacements, "droptarget.html");
     }
 
-    private void writeEditorMarkup(Resource resource, PrintWriter writer, boolean draggable) {
+    private void writeEditorMarkup(Resource resource, PrintWriter writer, I18NDictionary resourceBundle,
+            boolean draggable) {
 
         boolean exists = resource.getResourceResolver().getResource(resource.getPath()) != null;
         boolean last = isFirst(resource);
@@ -184,6 +192,7 @@ public class EditIncludeFilter implements Filter {
         String editPath = component.getEditPath();
         String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                 : StringUtils.substringAfterLast(resource.getResourceType(), "/");
+        title = resourceBundle.get(title);
 
         Map<String, Object> replacements = new HashMap<>();
         replacements.put("componentPath", component.getResource().getPath());
@@ -227,13 +236,16 @@ public class EditIncludeFilter implements Filter {
             editPath = "";
         }
 
+        I18NDictionary resourceBundle = provider.getDictionary(request);
+
         if (StringUtils.isNotEmpty(editPath)) {
             includeEnd = true;
-            writeEditorMarkup(resource, writer, shouldWriteDropTarget(request));
+            writeEditorMarkup(resource, writer, resourceBundle, shouldWriteDropTarget(request));
         } else if (component != null && !component.isEditable()) {
             includeEnd = true;
             String title = StringUtils.isNotEmpty(component.getTitle()) ? component.getTitle()
                     : StringUtils.substringAfterLast(resource.getResourceType(), "/");
+            title = resourceBundle.get(title);
 
             Map<String, Object> replacements = new HashMap<>();
             replacements.put("componentPath", component.getResource().getPath());

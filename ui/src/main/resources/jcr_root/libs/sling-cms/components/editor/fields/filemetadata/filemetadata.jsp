@@ -21,7 +21,8 @@
 <div class="field">
     <c:if test="${not empty properties.label}">
         <label class="label">
-            <sling:encode value="${properties.label}" mode="HTML" />
+            <fmt:message key="${properties.label}" var="label" />
+            <sling:encode value="${label}" mode="HTML" />
         </label>
     </c:if>
     <div class="control">

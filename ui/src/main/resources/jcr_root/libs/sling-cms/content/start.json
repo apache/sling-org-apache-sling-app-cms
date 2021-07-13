@@ -1,172 +1,154 @@
 {
-    "jcr:primaryType": "sling:Page",
-    "jcr:content": {
-        "sling:resourceType": "sling-cms/components/pages/base",
-        "jcr:title": "Start",
+  "jcr:primaryType": "sling:Page",
+  "jcr:content": {
+    "sling:resourceType": "sling-cms/components/pages/base",
+    "jcr:title": "Start",
+    "jcr:primaryType": "nt:unstructured",
+    "sling:vanityPath": "/cms",
+    "sling:redirect": true,
+    "center": true,
+    "container": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/general/container",
+      "title": {
         "jcr:primaryType": "nt:unstructured",
-        "sling:vanityPath": "/cms",
-        "sling:redirect": true,
-        "center": true,
-        "container": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "sling-cms/components/general/container",
-            "richtext": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h1>Welcome to the Apache Sling CMS!<\/h1><p>This is a full-featured Content Management System built using the Apache Sling Framework! To begin, select Manage &gt;&gt; Site on the left to add your first website.<\/p><br\/><br\/>"
-            },
-            "scrollcontainer": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/scrollcontainer",
-                "recent": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "sling:resourceType": "sling-cms/components/cms/startcontent"
-                }
-            }
-        },
-        "nav": {
-            "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "sling-cms/components/general/container",
-            "othernav": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/staticnav",
-                "title": "Manage",
-                "links": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "sitenav": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "alternatives": [
-                            "/cms/site"
-                        ],
-                        "link": "/cms/site/sites.html/content",
-                        "text": "Sites"
-                    },
-                    "staticnav": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "alternatives": [
-                            "/cms/static"
-                        ],
-                        "link": "/cms/static/content.html/static",
-                        "text": "Static Content"
-                    },
-                    "taxonomy": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/taxonomy/list.html/etc/taxonomy",
-                        "text": "Taxonomy"
-                    },
-                    "config": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "alternatives": [
-                            "/cms/transformations/edit.html",
-                            "/cms/template/edit.html",
-                            "/cms/config"
-                        ],
-                        "link": "/cms/config/configs.html/conf",
-                        "text": "Configuration"
-                    },
-                    "usergenerated": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "alternatives": [
-                            "/cms/usergenerated/review.html"
-                        ],
-                        "link": "/cms/usergenerated/content.html/etc/usergenerated",
-                        "text": "User Generated"
-                    }
-                }
-            },
-            "toolsnav": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/staticnav",
-                "title": "Tools",
-                "links": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "bulkreplace": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/admin/bulkreplace.html",
-                        "text": "Bulk Replace"
-                    },
-                    "contentpackages": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledGroups": [
-                            "administrators"
-                        ],
-                        "link": "/bin/packages.html",
-                        "text": "Content Packages"
-                    },
-                    "i18n": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "alternatives": [
-                            "/cms/i18n/dictionaries.html",
-                            "/cms/i18n/dictionary.html"
-                        ],
-                        "enabledGroups": [
-                            "administrators"
-                        ],
-                        "link": "/cms/i18n/dictionaries.html/etc/i18n",
-                        "text": "Internationalization (i18n)"
-                    },
-                    "jobs": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/jobs/list.html",
-                        "alternatives": [
-                            "/cms/jobs"
-                        ],
-                        "enabledGroups": [
-                            "job-users",
-                            "administrators"
-                        ],
-                        "text": "Jobs"
-                    },
-                    "loadcontent": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "link": "/cms/admin/loadcontent.html",
-                        "text": "Load Content"
-                    },
-                    "mappings": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledGroups": [
-                            "administrators"
-                        ],
-                        "link": "/cms/mappings/list.html/etc/map",
-                        "text": "Mappings"
-                    },
-                    "nodebrowser": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledGroups": [
-                            "administrators"
-                        ],
-                        "link": "/bin/browser.html",
-                        "text": "Node Browser"
-                    },
-                    "publication": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "alternatives": [
-                            "/cms/publication"
-                        ],
-                        "enabledGroups": [
-                            "publishers"
-                        ],
-                        "link": "/cms/publication/home.html",
-                        "text": "Publication"
-                    },
-                    "systemconsole": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledGroups": [
-                            "administrators"
-                        ],
-                        "link": "/system/console",
-                        "text": "System Console"
-                    },
-                    "usersgroups": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "enabledGroups": [
-                            "administrators"
-                        ],
-                        "link": "/cms/auth/list.html/home",
-                        "text": "Users &amp; Groups"
-                    }
-                }
-            }
+        "sling:resourceType": "sling-cms/components/general/textelement",
+        "i18n": true,
+        "level": "h1",
+        "text": "Welcome to the Apache Sling CMS!"
+      },
+      "description": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/textelement",
+        "i18n": true,
+        "level": "p",
+        "text": "This is a full-featured Content Management System built using the Apache Sling Framework! To begin, select Manage >> Site on the left to add your first website."
+      },
+      "scrollcontainer": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/scrollcontainer",
+        "recent": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "sling-cms/components/cms/startcontent"
         }
+      }
+    },
+    "nav": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/general/container",
+      "othernav": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/staticnav",
+        "title": "Manage",
+        "links": {
+          "jcr:primaryType": "nt:unstructured",
+          "sitenav": {
+            "jcr:primaryType": "nt:unstructured",
+            "alternatives": ["/cms/site"],
+            "link": "/cms/site/sites.html/content",
+            "text": "Sites"
+          },
+          "staticnav": {
+            "jcr:primaryType": "nt:unstructured",
+            "alternatives": ["/cms/static"],
+            "link": "/cms/static/content.html/static",
+            "text": "Static Content"
+          },
+          "taxonomy": {
+            "jcr:primaryType": "nt:unstructured",
+            "link": "/cms/taxonomy/list.html/etc/taxonomy",
+            "text": "Taxonomy"
+          },
+          "config": {
+            "jcr:primaryType": "nt:unstructured",
+            "alternatives": [
+              "/cms/transformations/edit.html",
+              "/cms/template/edit.html",
+              "/cms/config"
+            ],
+            "link": "/cms/config/configs.html/conf",
+            "text": "Configuration"
+          },
+          "usergenerated": {
+            "jcr:primaryType": "nt:unstructured",
+            "alternatives": ["/cms/usergenerated/review.html"],
+            "link": "/cms/usergenerated/content.html/etc/usergenerated",
+            "text": "User Generated"
+          }
+        }
+      },
+      "toolsnav": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/staticnav",
+        "title": "Tools",
+        "links": {
+          "jcr:primaryType": "nt:unstructured",
+          "bulkreplace": {
+            "jcr:primaryType": "nt:unstructured",
+            "link": "/cms/admin/bulkreplace.html",
+            "text": "Bulk Replace"
+          },
+          "contentpackages": {
+            "jcr:primaryType": "nt:unstructured",
+            "enabledGroups": ["administrators"],
+            "link": "/bin/packages.html",
+            "text": "Content Packages"
+          },
+          "i18n": {
+            "jcr:primaryType": "nt:unstructured",
+            "alternatives": [
+              "/cms/i18n/dictionaries.html",
+              "/cms/i18n/dictionary.html"
+            ],
+            "enabledGroups": ["administrators"],
+            "link": "/cms/i18n/dictionaries.html/etc/i18n",
+            "text": "Internationalization (i18n)"
+          },
+          "jobs": {
+            "jcr:primaryType": "nt:unstructured",
+            "link": "/cms/jobs/list.html",
+            "alternatives": ["/cms/jobs"],
+            "enabledGroups": ["job-users", "administrators"],
+            "text": "Jobs"
+          },
+          "loadcontent": {
+            "jcr:primaryType": "nt:unstructured",
+            "link": "/cms/admin/loadcontent.html",
+            "text": "Load Content"
+          },
+          "mappings": {
+            "jcr:primaryType": "nt:unstructured",
+            "enabledGroups": ["administrators"],
+            "link": "/cms/mappings/list.html/etc/map",
+            "text": "Mappings"
+          },
+          "nodebrowser": {
+            "jcr:primaryType": "nt:unstructured",
+            "enabledGroups": ["administrators"],
+            "link": "/bin/browser.html",
+            "text": "Node Browser"
+          },
+          "publication": {
+            "jcr:primaryType": "nt:unstructured",
+            "alternatives": ["/cms/publication"],
+            "enabledGroups": ["publishers"],
+            "link": "/cms/publication/home.html",
+            "text": "Publication"
+          },
+          "systemconsole": {
+            "jcr:primaryType": "nt:unstructured",
+            "enabledGroups": ["administrators"],
+            "link": "/system/console",
+            "text": "System Console"
+          },
+          "usersgroups": {
+            "jcr:primaryType": "nt:unstructured",
+            "enabledGroups": ["administrators"],
+            "link": "/cms/auth/list.html/home",
+            "text": "Users & Groups"
+          }
+        }
+      }
     }
+  }
 }

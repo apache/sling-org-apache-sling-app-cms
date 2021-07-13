@@ -18,6 +18,6 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="${properties.containerClass}">
-    <label for="${properties.name}">Do Not Fill This Out</label>   
+    <label for="${properties.name}"><fmt:message key="Do not fill this out!" /></label>   
     <textarea name="${properties.name}" id="${properties.name}" rows="1" cols="1"></textarea>
 </div>

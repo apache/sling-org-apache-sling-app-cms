@@ -42,7 +42,7 @@
                 <em class="jam jam-upload"></em>
             </span>
             <span class="file-label">
-                Browse / Drag File(s)
+                <fmt:message key="Browse / Drag File(s)" />
             </span>
         </span>
     </label>

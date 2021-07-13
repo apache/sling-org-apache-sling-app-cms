@@ -18,11 +18,11 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <option value="">
-    -- Default --
+    <fmt:message key="-- Default --" />
 </option>
 <option disabled></option>
 <option value="sling-cms/components/general/container" ${slingRequest.requestPathInfo.suffixResource.valueMap.overrideType == 'sling-cms/components/general/container' ? 'selected' : ''}>
-    Container
+    <fmt:message key="Container" />
 </option>
 <option disabled></option>
 <sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.ComponentPolicyManager" var="componentPolicyMgr" />

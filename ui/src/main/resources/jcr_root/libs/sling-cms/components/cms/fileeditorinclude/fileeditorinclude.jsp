@@ -40,14 +40,16 @@
                 <sling:include path="${general.path}/fields" resourceType="sling-cms/components/general/container" />
             </c:when>
             <c:otherwise>
-                No editor configured for <sling:encode value="${slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType']}" mode="HTML" />!
+                <fmt:message key="No editor configured for {0}!">
+                    <fmt:param value="${sling:encode(slingRequest.requestPathInfo.suffixResource.valueMap['jcr:content/jcr:mimeType'], 'HTML')}"/>
+                </fmt:message>
             </c:otherwise>
         </c:choose>
         <div class="Field-Group">
             <button type="submit" class="button is-primary">
-                Save File
+                <fmt:message key="Save File" />
             </button>
-            <button type="button" class="button close">Cancel</button>
+            <button type="button" class="button close"><fmt:message key="Cancel" /></button>
         </div>
     </fieldset>
 </form>

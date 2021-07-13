@@ -410,6 +410,7 @@
                         <exclude>vagrant/**/*</exclude>
                         <exclude>node/**/*</exclude>
                         <exclude>node_modules/**/*</exclude>
+                        <exclude>**/node_modules/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

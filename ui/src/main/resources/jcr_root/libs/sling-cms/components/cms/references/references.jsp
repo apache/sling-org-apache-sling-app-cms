@@ -21,10 +21,11 @@
 <table class="table is-fullwidth">
     <thead>
         <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Content</th>
-            <th scope="col">Subpath</th>
-            <th scope="col">Property</th>
+            <th scope="col"><fmt:message key="Type" /></th>
+            <th scope="col"><fmt:message key="Content" /></th>
+            <th scope="col"><fmt:message key="Subpath" /></th>
+            <th scope="col"><fmt:message key="Property" /></th>
+        </tr>
     </thead>
     <tbody>
         <c:forEach var="ref" items="${references.references}">

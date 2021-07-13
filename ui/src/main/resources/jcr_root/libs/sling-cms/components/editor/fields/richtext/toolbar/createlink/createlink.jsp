@@ -19,7 +19,7 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div data-wysihtml-dialog="createLink" style="display: none;">
     <div class="has-padding-1 has-background-white-ter rte-form">
-        <p>Link</p>
+        <p><fmt:message key="Link" /></p>
         <div class="field has-addons">
             <div class="control is-expanded">
                 <input class="input pathfield is-small" data-wysihtml-dialog-field="href" data-type="nt:hierarchyNode" data-base="/content" autocomplete="off" />
@@ -32,8 +32,8 @@
         </div>
        <div class="field">
             <select class="select is-small" data-wysihtml-dialog-field="target">
-                <option value="">Same Window</option>
-                <option value="_blank">New Window</option>
+                <option value=""><fmt:message key="Same Window" /></option>
+                <option value="_blank"><fmt:message key="New Window" /></option>
             </select>
        </div>
         <div class="buttons">

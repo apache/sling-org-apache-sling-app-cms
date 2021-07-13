@@ -1,85 +1,89 @@
 {
-    "jcr:primaryType": "sling:Page",
-    "jcr:content": {
-        "sling:resourceType": "sling-cms/components/pages/base",
-        "jcr:title": "i18n Dictionaries",
+  "jcr:primaryType": "sling:Page",
+  "jcr:content": {
+    "sling:resourceType": "sling-cms/components/pages/base",
+    "jcr:title": "i18n Dictionaries",
+    "jcr:primaryType": "nt:unstructured",
+    "container": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/cms/container",
+      "richtext": {
         "jcr:primaryType": "nt:unstructured",
-        "container": {
+        "sling:resourceType": "sling-cms/components/general/textelement",
+        "i18n": true,
+        "level": "h3",
+        "text": "i18n Dictionary"
+      },
+      "contentactions": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/contentactions",
+        "actions": {
+          "language": {
             "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "sling-cms/components/cms/container",
-            "richtext": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h3>i18n Dictionary</h3>"
-            },
-            "contentactions": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/contentactions",
-                "actions": {
-                    "language": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "label": "Language",
-                        "prefix": "/cms/i18n/language/create.html"
-                    }
-                }
-            },
-            "i18ncontainer": {
-                "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/cms/i18ncontainer",
-                "contenttable": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "sling:resourceType": "sling-cms/components/cms/contenttable",
-                    "columns": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "title": {
-                            "jcr:primaryType": "nt:unstructured",
-                            "title": "Language"
-                        },
-                        "language": {
-                            "jcr:primaryType": "nt:unstructured",
-                            "title": "i18n Code"
-                        },
-                        "actions": {
-                            "jcr:primaryType": "nt:unstructured",
-                            "title": "Actions"
-                        }
-                    },
-                    "types": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "sling:Folder": {
-                            "jcr:primaryType": "nt:unstructured",
-                            "columns": {
-                                "jcr:primaryType": "nt:unstructured",
-                                "language": {
-                                    "jcr:primaryType": "nt:unstructured",
-                                    "sling:resourceType": "sling-cms/components/cms/columns/localetitle"
-                                },
-                                "i18n": {
-                                    "jcr:primaryType": "nt:unstructured",
-                                    "sling:resourceType": "sling-cms/components/cms/columns/text",
-                                    "property": "jcr:language"
-                                },
-                                "actions": {
-                                    "jcr:primaryType": "nt:unstructured",
-                                    "sling:resourceType": "sling-cms/components/cms/columns/actions",
-                                    "delete": {
-                                        "jcr:primaryType": "nt:unstructured",
-                                        "sling:resourceType": "sling-cms/components/cms/actions/modal",
-                                        "title": "Delete i18n Dictionary",
-                                        "icon": "trash",
-                                        "prefix": "/cms/shared/delete.html"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "richtext_1": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "sling:resourceType": "sling-cms/components/general/richtext",
-                    "text": "<br/><h3>i18n Dictionary Entries</h3><br/>"
-                }
-            }
+            "label": "Language",
+            "prefix": "/cms/i18n/language/create.html"
+          }
         }
+      },
+      "i18ncontainer": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/i18ncontainer",
+        "contenttable": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "sling-cms/components/cms/contenttable",
+          "columns": {
+            "jcr:primaryType": "nt:unstructured",
+            "title": {
+              "jcr:primaryType": "nt:unstructured",
+              "title": "Language"
+            },
+            "language": {
+              "jcr:primaryType": "nt:unstructured",
+              "title": "i18n Code"
+            },
+            "actions": {
+              "jcr:primaryType": "nt:unstructured",
+              "title": "Actions"
+            }
+          },
+          "types": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:Folder": {
+              "jcr:primaryType": "nt:unstructured",
+              "columns": {
+                "jcr:primaryType": "nt:unstructured",
+                "language": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "sling-cms/components/cms/columns/localetitle"
+                },
+                "i18n": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "sling-cms/components/cms/columns/text",
+                  "property": "jcr:language"
+                },
+                "actions": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                  "delete": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
+                    "title": "Delete i18n Dictionary",
+                    "icon": "trash",
+                    "prefix": "/cms/shared/delete.html"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "richtext_1": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "sling-cms/components/general/textelement",
+          "i18n": true,
+          "level": "h3",
+          "text": "i18n Dictionary Entries"
+        }
+      }
     }
+  }
 }

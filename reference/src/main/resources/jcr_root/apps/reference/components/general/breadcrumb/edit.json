@@ -5,6 +5,13 @@
 	"fields": {
 		"jcr:primaryType": "nt:unstructured",
 		"sling:resourceType": "sling-cms/components/general/container",
+		"home": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "sling-cms/components/editor/fields/text",
+			"label": "Home Label",
+			"name": "home",
+			"required": true
+		},
 		"level": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "sling-cms/components/editor/fields/text",

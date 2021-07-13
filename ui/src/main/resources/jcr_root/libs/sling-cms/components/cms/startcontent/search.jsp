@@ -45,7 +45,7 @@
     </c:forEach>
     <c:if test="${!results}">
         <span class="panel-block">
-            <fmt:message key="slingcms.noresults" />
+            <fmt:message key="No Results" />
         </span>
     </c:if>
 </div>

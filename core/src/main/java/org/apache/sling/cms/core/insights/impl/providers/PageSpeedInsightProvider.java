@@ -65,9 +65,9 @@ public class PageSpeedInsightProvider extends BaseInsightProvider {
     @Reference
     private I18NProvider i18nProvider;
 
-    public static final String I18N_KEY_READABILITY_RESULT_DANGER = "slingcms.pagespeed.danger";
-    public static final String I18N_KEY_READABILITY_RESULT_WARN = "slingcms.pagespeed.warn";
-    public static final String I18N_KEY_READABILITY_RESULT_SUCCESS = "slingcms.pagespeed.success";
+    public static final String MESSAGE_RESULT_DANGER = "This website is much slower than average, page performance must be optimized";
+    public static final String MESSAGE_RESULT_WARN = "This website is slower than average, page performance should be optimized";
+    public static final String MESSAGE_RESULT_SUCCESS = "This website has acceptable performance";
     private static final String REQUEST_FORMAT = "https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=%s&fields=%s&key=%s";
     private static final String PARAMETERS = "id%2CinvalidRules%2CresponseCode%2CruleGroups";
     private static final String PAGESPEED_FORMAT = "https://developers.google.com/speed/pagespeed/insights/?url=%s";
@@ -111,11 +111,11 @@ public class PageSpeedInsightProvider extends BaseInsightProvider {
             log.debug("Parsed pagespeed score {}", score);
 
             if (score < 0.65) {
-                insight.setPrimaryMessage(Message.danger(dictionary.get(I18N_KEY_READABILITY_RESULT_DANGER)));
+                insight.setPrimaryMessage(Message.danger(dictionary.get(MESSAGE_RESULT_DANGER)));
             } else if (score < 0.8) {
-                insight.setPrimaryMessage(Message.warn(dictionary.get(I18N_KEY_READABILITY_RESULT_WARN)));
+                insight.setPrimaryMessage(Message.warn(dictionary.get(MESSAGE_RESULT_WARN)));
             } else {
-                insight.setPrimaryMessage(Message.success(dictionary.get(I18N_KEY_READABILITY_RESULT_SUCCESS)));
+                insight.setPrimaryMessage(Message.success(dictionary.get(MESSAGE_RESULT_SUCCESS)));
             }
             insight.setMoreDetailsLink(String.format(PAGESPEED_FORMAT, URLEncoder.encode(publishedUrl, "UTF-8")));
 

@@ -25,7 +25,8 @@
                     <em class="jam jam-${properties.icon} icon"></em>
                 </c:when>
                 <c:otherwise>
-                    <strong class="icon">${properties.text}</strong>
+                    <fmt:message key="${properties.text}" var="text" />
+                    <strong class="icon">${text}</strong>
                 </c:otherwise>
             </c:choose>
         </a>
@@ -37,7 +38,8 @@
                     <em class="jam jam-${properties.icon} icon"></em>
                 </c:when>
                 <c:otherwise>
-                    <strong class="icon">${properties.text}</strong>
+                    <fmt:message key="${properties.text}" var="text" />
+                    <strong class="icon">${text}</strong>
                 </c:otherwise>
             </c:choose>
         </a>

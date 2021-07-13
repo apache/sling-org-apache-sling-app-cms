@@ -23,12 +23,12 @@
     <ul>
         <li>
             <a href="/cms/publication/home.html">
-                Publication
+                <fmt:message key="Publication" />
             </a>
         </li>
         <li>
             <a href="/cms/publication/agents.html/libs/sling/distribution/settings/agents">
-                Agents
+                <fmt:message key="Agents" />
             </a>
         </li>
         <li class="is-active">
@@ -54,7 +54,7 @@
         <div class="column is-6">
             <article class="message is-light">
                 <div class="message-header">
-                    <p>Configuration</p>
+                    <p><fmt:message key="Configuration" /></p>
                 </div>
                 <div class="message-body">
                     <dl>
@@ -67,12 +67,12 @@
                     <div class="level">
                         <div class="level-left">
                             <div class="level-item">
-                                <a class="button" href="/system/console/configMgr/${agentCfg['service.pid']}">Edit</a>
+                                <a class="button" href="/system/console/configMgr/${agentCfg['service.pid']}"><fmt:message key="Edit" /></a>
                             </div>
                             <div class="level-item">
                                 <form method="post" action="/libs/sling/distribution/services/agents/${agent.name}" class="mb-0" target="_blank">
                                     <input type="hidden" name="action" value="TEST" />
-                                    <button class="button" type="submit">Test</button>
+                                    <button class="button" type="submit"><fmt:message key="Test" /></button>
                                 </form>
                             </div>
                         </div>
@@ -85,19 +85,19 @@
                 <article class="message is-light">
                     <sling:getResource var="queue" path="/libs/sling/distribution/services/agents/${agent.name}/queues/endpoint${status.index}" />
                     <div class="message-header">
-                        <p>Queue #${status.index + 1}</p>
+                        <p><fmt:message key="Queue" /> #${status.index + 1}</p>
                     </div>
                     <div class="message-body">
                         <dl>
-                            <dt>Endpoint URL</dt>
+                            <dt><fmt:message key="Endpoint URL" /></dt>
                             <dd>
                                 <sling:encode value="${url}" mode="HTML" />
                             </dd>
-                            <dt>Count</dt>
+                            <dt><fmt:message key="Count" /></dt>
                             <dd>
                                 <sling:encode value="${queue.valueMap.itemsCount}" mode="HTML" />
                             </dd>
-                            <dt>State</dt>
+                            <dt><fmt:message key="State" /></dt>
                             <dd>
                                 <sling:encode value="${queue.valueMap.state}" mode="HTML" />
                             </dd>
@@ -110,7 +110,7 @@
     
     <article class="message is-light">
         <div class="message-header">
-            <p>Logs</p>
+            <p><fmt:message key="Logs" /></p>
         </div>
         <div class="message-body">
             <figure class="image is-16by9">

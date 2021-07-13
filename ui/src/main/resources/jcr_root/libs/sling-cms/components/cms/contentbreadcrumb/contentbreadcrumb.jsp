@@ -38,7 +38,7 @@
     <c:if test="${!properties.hideSearch}">
         <div class="contentnav-search">
             <p class="control has-icons-left">
-                <label class="is-sr-only" for="search-term">Search</label>
+                <label class="is-sr-only" for="search-term"><fmt:message key="Search" /></label>
                 <input class="input is-small" type="text" name="search" id="search-term">
                 <span class="icon is-small is-left">
                     <i class="jam jam-search" aria-hidden="true"></i>

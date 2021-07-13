@@ -19,13 +19,13 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <dl>
     <dt>
-        Min Grade Level
+        <fmt:message key="Min Grade Level" />
     </dt>
     <dd>
         ${sling:encode(properties.minGradeLevel,'HTML')}
     </dd>
     <dt>
-        Max Grade Level
+        <fmt:message key="Max Grade Level" />
     </dt>
     <dd>
         ${sling:encode(properties.maxGradeLevel,'HTML')}

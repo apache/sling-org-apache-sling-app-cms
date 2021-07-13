@@ -18,5 +18,5 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Reset Password</h3>
+    <h3><fmt:message key="Reset Password" /></h3>
 </c:if>

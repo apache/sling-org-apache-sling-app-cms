@@ -35,17 +35,18 @@
 <c:if test="${cmsEditEnabled == 'true'}">
     <div class="sling-cms-droptarget" data-create="${sling:getResource(resourceResolver, resource.path) == null}" data-path="${resource.path}" data-order="last"></div>
     <div class="sling-cms-editor">
+        <fmt:message key="Add Components" var="addComponentsMessage" />
         <div class="level has-background-light has-text-black-ter">
             <div class="level-left">
                 <div class="level-item">
-                    <a href="/cms/editor/add.html${resource.path}?availableTypes=${availableTypes}" class="button action-button is-small" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="Add Component">
+                    <a href="/cms/editor/add.html${resource.path}?availableTypes=${availableTypes}" class="button action-button is-small" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="${addComponentsMessage}">
                         &#43;
                     </a>
                 </div>
             </div>
             <div class="level-right">
                 <div class="level-item">
-                    Add Components
+                    ${addComponentsMessage}
                 </div>
             </div>
         </div>

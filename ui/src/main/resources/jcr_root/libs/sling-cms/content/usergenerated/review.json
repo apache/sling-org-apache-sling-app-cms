@@ -9,8 +9,10 @@
             "sling:resourceType": "sling-cms/components/general/container",
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h3>Review User Generated Content</h3>"
+                "sling:resourceType": "sling-cms/components/general/textelement",
+                "i18n": true,
+                "level": "h3",
+                "text": "Review User Generated Content"
             },
             "preview": {
                 "jcr:primaryType": "nt:unstructured",

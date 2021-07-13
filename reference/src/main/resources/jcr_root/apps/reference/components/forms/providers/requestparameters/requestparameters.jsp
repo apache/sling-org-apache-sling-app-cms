@@ -18,9 +18,9 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Request Parameters</h3>
+    <h3><fmt:message key="Request Parameters" /></h3>
     <dl>
-        <dt>Allowed Parameters</dt>
+        <dt><fmt:message key="Allowed Parameters" /></dt>
         <dd>${sling:encode(fn:join(properties.allowedParameters,','),'HTML')}</dd>
     </dl>
 </c:if>

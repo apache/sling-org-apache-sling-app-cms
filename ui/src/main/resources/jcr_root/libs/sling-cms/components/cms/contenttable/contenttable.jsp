@@ -26,7 +26,8 @@
                 </th>
                 <c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">
                     <th class="${column.name == 'actions' ? 'is-hidden' : '' }" data-attribute="${column.name}" scope="col">
-                        <sling:encode value="${column.valueMap.title}" mode="HTML" />
+                        <fmt:message key="${column.valueMap.title}" var="title" />
+                        <sling:encode value="${title}" mode="HTML" />
                     </th>
                 </c:forEach>
             </tr>

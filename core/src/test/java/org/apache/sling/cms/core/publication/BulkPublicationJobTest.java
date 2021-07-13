@@ -96,7 +96,7 @@ public class BulkPublicationJobTest {
         BulkPublicationJob pubJob = context.registerInjectActivateService(new BulkPublicationJob());
         assertEquals("/mnt/overlay/sling-cms/content/publication/bulk", pubJob.getConfigurationPath());
         assertNotNull(pubJob.getResolverFactory());
-        assertEquals("slingcms.bulkpublication.title", pubJob.getTitleKey());
+        assertEquals("Bulk Publication", pubJob.getTitleKey());
         assertEquals(BulkPublicationJob.TOPIC, pubJob.getTopic());
     }
 

@@ -19,7 +19,8 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${config[properties.key] != null && fn:length(config[properties.key]) > 0 && not empty config[properties.key][0]}">
     <dt>
-        <sling:encode value="${properties.title}" mode="HTML" />
+        <fmt:message key="${properties.title}" var="title" />
+        <sling:encode value="${title}" mode="HTML" />
     </dt>
     <dd>
         <ul>

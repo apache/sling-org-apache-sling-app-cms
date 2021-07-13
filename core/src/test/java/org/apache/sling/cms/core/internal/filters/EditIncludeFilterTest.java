@@ -29,6 +29,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 
 import org.apache.sling.cms.core.helpers.SlingCMSTestHelper;
+import org.apache.sling.cms.i18n.I18NProvider;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
 import org.junit.Rule;
@@ -49,8 +50,6 @@ public class EditIncludeFilterTest {
             throws AccessDeniedException, UnsupportedRepositoryOperationException, RepositoryException, IOException {
         SlingCMSTestHelper.initAuthContext(context);
 
-        includeFilter = new EditIncludeFilter();
-
         Bundle bundle = Mockito.mock(Bundle.class);
         Mockito.when(bundle.getEntryPaths(Mockito.anyString()))
                 .thenReturn(Collections.enumeration(Arrays.asList(EditIncludeFilter.ENTRY_BASE + "delete.html",
@@ -65,9 +64,13 @@ public class EditIncludeFilterTest {
         BundleContext bundleContext = Mockito.mock(BundleContext.class);
         Mockito.when(bundleContext.getBundle()).thenReturn(bundle);
 
-        ComponentContext context = Mockito.mock(ComponentContext.class);
-        Mockito.when(context.getBundleContext()).thenReturn(bundleContext);
-        includeFilter.activate(context);
+        ComponentContext componentContext = Mockito.mock(ComponentContext.class);
+        Mockito.when(componentContext.getBundleContext()).thenReturn(bundleContext);
+
+        I18NProvider provider = SlingCMSTestHelper.getEchoingi18nProvider();
+
+        includeFilter = new EditIncludeFilter(componentContext, provider);
+
     }
 
     @Test

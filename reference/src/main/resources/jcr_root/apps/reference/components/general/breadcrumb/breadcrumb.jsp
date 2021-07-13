@@ -18,7 +18,7 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <a href="/">
-    Home
+    <sling:encode value="${properties.home}" mode="HTML" />
 </a>&nbsp;&#xbb;&nbsp;
 <c:if test="${not empty properties.level}">
     <c:forEach var="parent" items="${sling:getParents(currentPage.resource,properties.level)}">

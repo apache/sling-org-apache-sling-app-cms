@@ -82,7 +82,7 @@
                                 "edit": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "sling:resourceType": "sling-cms/components/cms/actions/modal",
-                                    "title": "Edit Config Properties",
+                                    "title": "Edit Configuration Properties",
                                     "icon": "cog",
                                     "prefix": "/cms/config/metadata.html"
                                 },

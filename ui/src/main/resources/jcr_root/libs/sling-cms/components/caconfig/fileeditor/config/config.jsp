@@ -19,7 +19,7 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <dl>
     <dt>
-        MIME Types
+        <fmt:message key="MIME Types" />
     </dt>
     <dd>
         <ul>
@@ -31,7 +31,7 @@
         </ul>
     </dd>
     <dt>
-        Fields
+        <fmt:message key="Fields" />
     </dt>
     <dd>
         <c:set var="oldAvailableTypes" value="${availableTypes}" />

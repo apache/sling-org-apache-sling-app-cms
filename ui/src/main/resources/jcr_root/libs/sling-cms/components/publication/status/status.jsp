@@ -20,14 +20,14 @@
 <sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.PublishableResource" var="publishableResource" />
 <dl class="my-3">
     <dt>
-        <fmt:message key="slingcms.published" />
+        <fmt:message key="Published" />
     </dt>
     <dd>
         <sling:encode value="${publishableResource.published}"  mode="HTML" />
     </dd>
     <c:if test="${publishableResource.lastPublication.time != null}">
         <dt>
-            <fmt:message key="slingcms.lastpublication" />
+            <fmt:message key="Last Publication" />
         </dt>
         <dd>
             <fmt:formatDate value="${publishableResource.lastPublication.time}" type="both" />
@@ -35,7 +35,7 @@
     </c:if>
     <c:if test="${not empty publishableResource.lastPublicationBy}">
         <dt>
-            <fmt:message key="slingcms.lastpublicationby" />
+            <fmt:message key="Last Publication By" />
         </dt>
         <dd>
             <sling:encode value="${publishableResource.lastPublicationBy}"  mode="HTML" />
@@ -43,7 +43,7 @@
     </c:if>
     <c:if test="${not empty publishableResource.lastPublicationType}">
         <dt>
-            <fmt:message key="slingcms.lastpublicationtype" />
+            <fmt:message key="Last Publication Type" />
         </dt>
         <dd>
             <sling:encode value="${publishableResource.lastPublicationType}"  mode="HTML" />

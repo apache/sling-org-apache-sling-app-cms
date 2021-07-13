@@ -23,14 +23,14 @@
     <div class="column">
         <dl>
             <dt>
-                <fmt:message key="slingcms.published" />
+                <fmt:message key="Published" />
             </dt>
             <dd>
-                <sling:encode value="${publishableResource.published}"  mode="HTML" />
+                <sling:encode value="${publishableResource.published}" mode="HTML" />
             </dd>
             <c:if test="${publishableResource.lastPublication.time != null}">
                 <dt>
-                    <fmt:message key="slingcms.lastpublication" />
+                    <fmt:message key="Last Publication" />
                 </dt>
                 <dd>
                     <fmt:formatDate value="${publishableResource.lastPublication.time}" type="both" />
@@ -38,41 +38,46 @@
             </c:if>
             <c:if test="${not empty publishableResource.lastPublicationBy}">
                 <dt>
-                    <fmt:message key="slingcms.lastpublicationby" />
+                    <fmt:message key="Last Publication By" />
                 </dt>
                 <dd>
-                    <sling:encode value="${publishableResource.lastPublicationBy}"  mode="HTML" />
+                    <sling:encode value="${publishableResource.lastPublicationBy}" mode="HTML" />
                 </dd>
             </c:if>
             <c:if test="${not empty publishableResource.lastPublicationType}">
                 <dt>
-                    <fmt:message key="slingcms.lastpublicationtype" />
+                    <fmt:message key="Last Publication Type" />
                 </dt>
                 <dd>
-                    <sling:encode value="${publishableResource.lastPublicationType}"  mode="HTML" />
+                    <sling:encode value="${publishableResource.lastPublicationType}" mode="HTML" />
                 </dd>
             </c:if>
         </dl>
     </div>
     <div class="column">
         <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.publication.PublicationManager" var="publicationManager" />
+        <fmt:message key="Publish" var="publishMessage" />
+        <fmt:message key="Republish" var="republishMessage" />
+        <fmt:message key="Unpublish" var="unpublishMessage" />
+        <fmt:message key="Content Published" var="contentPublishedMessage" />
+        <fmt:message key="Content Not Published" var="contentNotPublishedMessage" />
         <c:choose>
             <c:when test="${publishableResource.published && publicationManager.publicationMode == 'CONTENT_DISTRIBUTION'}">
-                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/publish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                    Republish
+                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/publish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="${contentPublishedMessage}" data-title="${republishMessage}" data-path=".Main-Content form">
+                    ${republishMessage}
                 </a>
-                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/unpublish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                    Unpublish
+                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/unpublish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="${contentPublishedMessage}" data-title="${unpublishMessage}" data-path=".Main-Content form">
+                    ${unpublishMessage}
                 </a>
             </c:when>
             <c:when test="${publishableResource.published}">
-                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/unpublish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                    Unpublish
+                <a class="Fetch-Modal button is-success is-outlined" href="/cms/shared/unpublish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="${contentPublishedMessage}" data-title="${unpublishMessage}" data-path=".Main-Content form">
+                    ${unpublishMessage}
                 </a>
             </c:when>
             <c:otherwise>
-                <a class="Fetch-Modal button is-warning is-outlined" href="/cms/shared/publish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
-                    Publish
+                <a class="Fetch-Modal button is-warning is-outlined" href="/cms/shared/publish.html${sling:encode(slingRequest.requestPathInfo.suffixResource.parent.path,'HTML_ATTR')}" title="${contentNotPublishedMessage}" data-title="${publishMessage}" data-path=".Main-Content form">
+                    ${publishMessage}
                 </a>
             </c:otherwise>
         </c:choose>

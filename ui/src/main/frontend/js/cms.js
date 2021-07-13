@@ -78,16 +78,16 @@ window.Sling.CMS = {
     },
     confirmReloadComponent(res, msg, path) {
       window.top.Sling.CMS.ui.confirmMessage(msg, res.title, () => {
-        const modal = window.top.Sling.CMS.ui.loaderModal('Refreshing...');
+        const modal = window.top.Sling.CMS.ui.loaderModal();
         window.parent.window.CMSEditor.ui.reloadComponent(path, () => {
           modal.remove();
         });
       });
     },
-    loaderModal(message) {
+    loaderModal() {
       const modal = document.createElement('div');
       modal.classList.add('modal');
-      modal.innerHTML = `<div class="modal-background"></div><div class="modal-content"><div class="box"><h3>${message || 'Loading...'}</h3><div class="loader is-loading"></div></div></div>`;
+      modal.innerHTML = `<div class="modal-background"></div><div class="loader is-loading"></div>`;
       document.querySelector('body').appendChild(modal);
       modal.classList.add('is-active');
       return modal;
@@ -102,7 +102,7 @@ window.Sling.CMS = {
         child.remove();
       });
       const containers = document.querySelectorAll('.reload-container');
-      const modal = Sling.CMS.ui.loaderModal('Refreshing...');
+      const modal = Sling.CMS.ui.loaderModal();
       let count = containers.length;
       if (count !== 0) {
         containers.forEach(async (container) => {
@@ -147,7 +147,7 @@ window.Sling.CMS = {
       }
       if (response.redirected && response.url.indexOf('/system/sling/form/login?resource=') !== -1) {
         CMS.ui.confirmMessage('301', 'Not logged in, please login again', () => {
-          window.location = `/system/sling/form/login?resource=${encodeURIComponent(window.location.pathname)}`;
+          window.location = `/system/sling/form/login?resource=${encodeURIComponent(window.location)}`;
         });
         return false;
       }

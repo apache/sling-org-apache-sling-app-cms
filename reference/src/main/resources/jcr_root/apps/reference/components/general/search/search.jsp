@@ -23,7 +23,7 @@
     <c:set var="search" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.Search')}" scope="request"  />
     <div class="search ${searchConfig.searchClass}">
         <div class="search__header">
-            <fmt:message key="slingcms.search.header">
+            <fmt:message key="Found {3} results for \"{0}\". Showing results {1} - {2}.">
                 <fmt:param value="${sling:encode(search.term,'HTML')}" />
                 <fmt:param value="${search.start + 1}" />
                 <fmt:param value="${search.end}" />

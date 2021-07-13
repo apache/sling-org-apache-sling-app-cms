@@ -27,10 +27,20 @@
         <sling:include path="fields" resourceType="sling-cms/components/general/container" />
         <div class="field">
             <button type="submit" class="button is-primary">
-                <sling:encode value="${properties.button}" default="Save" mode="HTML" />
+                <c:choose>
+                    <c:when test="${not empty properties.button}">
+                        <fmt:message key="${properties.button}" var="button" />
+                    </c:when>
+                    <c:otherwise>
+                        <fmt:message key="Save" var="button" />
+                    </c:otherwise>
+                </c:choose>
+                <sling:encode value="${button}" mode="HTML" />
             </button>
             <c:if test="${properties.skipcancel != true}">
-                <a href="${sling:encode(header.referer,'HTML_ATTR')}" class="button close">Cancel</a>
+                <a href="${sling:encode(header.referer,'HTML_ATTR')}" class="button close">
+                    <fmt:message key="Cancel" />
+                </a>
             </c:if>
         </div>
     </div>

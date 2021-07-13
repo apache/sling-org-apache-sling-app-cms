@@ -23,7 +23,7 @@
     <ul>
         <li>
             <a href="/cms/jobs/list.html">
-                <fmt:message key="slingcms.jobs" />
+                <fmt:message key="Jobs" />
             </a>
         </li>
         <li class="is-active">
@@ -36,28 +36,28 @@
 <h2><fmt:message key="${job.properties._titleKey}" /></h2>
 <div class="scroll-container">
     <dl>
-        <dt><fmt:message key="slingcms.state" /></dt>
+        <dt><fmt:message key="State" /></dt>
         <dd>${job.jobState}</dd>
         <c:if test="${not empty job.resultMessage}">
-            <dt><fmt:message key="slingcms.jobs.resultmessage" /></dt>
+            <dt><fmt:message key="Result Message" /></dt>
             <dd>${sling:encode(job.resultMessage,'HTML')}</dd>
         </c:if>
-        <dt><fmt:message key="slingcms.started" /></dt>
+        <dt><fmt:message key="Started" /></dt>
         <dd><fmt:formatDate value="${job.created.time}" type="both" dateStyle="long" timeStyle="long" /></dd>
         <c:if test="${job.finishedDate != null}">
-            <dt><fmt:message key="slingcms.finished" /></dt>
+            <dt><fmt:message key="Finished" /></dt>
             <dd>
                 <fmt:formatDate value="${job.finishedDate.time}" type="both" dateStyle="long" timeStyle="long" />
             </dd>
         </c:if>
         <c:if test="${job.progressStepCount > 0}">
-            <dt><fmt:message key="slingcms.jobs.progress" /></dt>
+            <dt><fmt:message key="Progress" /></dt>
             <dd>
                 ${job.finishedProgressStep} / ${job.progressStepCount}
             </dd>
         </c:if>
         <c:if test="${job.progressLog != null && fn:length(job.progressLog) > 0}">
-            <dt><fmt:message key="slingcms.jobs.progresslog" /></dt>
+            <dt><fmt:message key="Progress Log" /></dt>
             <dd>
                 <ul>
                     <c:forEach var="log" items="${job.progressLog}">
@@ -66,13 +66,18 @@
                 </ul>
             </dd>
         </c:if>
-        <dt><fmt:message key="slingcms.jobs.properties" /></dt>
+        <dt><fmt:message key="Properties" /></dt>
         <dd>
             <ul>
                 <c:forEach var="el" items="${job.properties}">
                     <c:if test="${not fn:contains(el.key, ':') && not fn:startsWith(el.key, '_') && not fn:startsWith(el.key, 'event.job.')}">
-                        <li><strong>${sling:encode(el.key,'HTML')}:</strong>
-                        ${sling:encode(el.value,'HTML')}
+                        <li>
+                            <strong>
+                                <fmt:message key="${el.key}" var="label" />
+                                ${sling:encode(label,'HTML')}:
+                            </strong>
+                            ${sling:encode(el.value,'HTML')}
+                        </li>
                     </c:if>
                 </c:forEach>
             </ul>

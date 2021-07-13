@@ -20,7 +20,7 @@
 <c:set var="rsrc" value="${sling:getResource(resourceResolver,slingRequest.requestPathInfo.suffix)}" />
 <div class="field">
     <label for="order">
-        Order
+        <fmt:message key="Order" />
     </label>
     <div class="control">
         <div class="select is-fullwidth">
@@ -30,30 +30,34 @@
                         <c:when test="${status.first}">
                             <c:choose>
                                 <c:when test="${rsrc.path == sibling.path}">
-                                    <option value="${status.index}" selected="selected">Current Position</option>
+                                    <option value="${status.index}" selected="selected"><fmt:message key="Current Position" /></option>
                                 </c:when>
                                 <c:otherwise>
-                                    <option value="${status.index}">First</option>
+                                    <option value="${status.index}"><fmt:message key="First" /></option>
                                 </c:otherwise>
                             </c:choose>
                         </c:when>
                         <c:when test="${status.last}">
                             <c:choose>
                                 <c:when test="${rsrc.path == sibling.path}">
-                                    <option value="${status.index}" selected="selected">Current Position</option>
+                                    <option value="${status.index}" selected="selected"><fmt:message key="Current Position" /></option>
                                 </c:when>
                                 <c:otherwise>
-                                    <option value="${status.index}">Last</option>
+                                    <option value="${status.index}"><fmt:message key="Last" /></option>
                                 </c:otherwise>
                             </c:choose>
                         </c:when>
                         <c:otherwise>
                             <c:choose>
                                 <c:when test="${rsrc.path == sibling.path}">
-                                    <option value="${status.index}" selected="selected">Current Position</option>
+                                    <option value="${status.index}" selected="selected"><fmt:message key="Current Position" /></option>
                                 </c:when>
                                 <c:otherwise>
-                                    <option value="${status.index}">Before ${sibling.name}</option>
+                                    <option value="${status.index}">
+                                        <fmt:message key="Before {0}">
+                                            <fmt:param>${sling:encode(sibling.path,'HTML')}</fmt:param>
+                                        </fmt:message>
+                                    </option>
                                 </c:otherwise>
                             </c:choose>
                         </c:otherwise>

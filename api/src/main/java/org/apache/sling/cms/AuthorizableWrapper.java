@@ -17,15 +17,19 @@
 package org.apache.sling.cms;
 
 import java.util.Iterator;
+import java.util.Locale;
 
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * A wrapper for working with JackRabbit Authorizables in JSPs and Sling Models
  * from a Resource
  */
+@ProviderType
 public interface AuthorizableWrapper {
 
     /**
@@ -69,6 +73,22 @@ public interface AuthorizableWrapper {
      */
     @NotNull
     public String getId();
+
+    /**
+     * Gets the locale tag configured for the authorizable
+     * 
+     * @return the locale tag
+     */
+    @Nullable
+    String getLocaleTag();
+
+    /**
+     * Gets the locale configured for the authorizable
+     * 
+     * @return the locale
+     */
+    @Nullable
+    Locale getLocale();
 
     /**
      * Gets the transitive members of this authorizable. For Users this will return

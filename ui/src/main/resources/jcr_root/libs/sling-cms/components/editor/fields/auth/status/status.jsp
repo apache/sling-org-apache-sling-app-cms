@@ -21,18 +21,18 @@
 <c:choose>
     <c:when test="${user.disabled}">
         <dl>
-            <dt>Status</dt>
-            <dd>Disabled</dd>
-            <dt>Reason</dt>
+            <dt><fmt:message key="Status"/></dt>
+            <dd><fmt:message key="Disabled"/></dd>
+            <dt><fmt:message key="Reason"/></dt>
             <dd><sling:encode value="${user.disabledReason}" mode="HTML" /></dd>
         </dl>
         <input type="hidden" name=":reason" value="" />
     </c:when>
     <c:otherwise>
         <dl>
-            <dt>Status</dt>
-            <dd>Enabled</dd>
-            <dt><label for=":reason">Disable Reason</label></dt>
+            <dt><fmt:message key="Status"/></dt>
+            <dd><fmt:message key="Enabled"/></dd>
+            <dt><label for=":reason"><fmt:message key="Disabled Reason"/></label></dt>
             <dd><input type="text" class="input" name=":reason" value="" /></dd>
         </dl>
     </c:otherwise>

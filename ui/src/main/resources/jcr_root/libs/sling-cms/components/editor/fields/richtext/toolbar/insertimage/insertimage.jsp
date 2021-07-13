@@ -19,19 +19,21 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div data-wysihtml-dialog="insertImage" style="display:none">
     <div class="has-padding-1 has-background-white-ter rte-form">
-        <p>Image</p>
+        <p><fmt:message key="Image" /></p>
         <div class="field has-addons">
             <div class="control is-expanded">
                 <input class="input pathfield is-small" data-wysihtml-dialog-field="src" data-type="nt:file" data-base="/content" autocomplete="off" />
             </div>
             <div class="control">
-              <a href="/cms/shared/search.html" class="button is-small Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
+              <fmt:message key="Search" var="searchMessage" />
+              <a href="/cms/shared/search.html" class="button is-small Fetch-Modal search-button" data-title="${searchMessage}" data-path=".Main-Content > *">
                   <span class="jam jam-search"></span>
               </a>
             </div>
         </div>
         <div class="field">
-            <input class="input is-small" data-wysihtml-dialog-field="alt" placeholder="Alternative text..." />
+            <fmt:message key="Alternative text..." var="altTextMessage" />
+            <input class="input is-small" data-wysihtml-dialog-field="alt" placeholder="${altTextMessage}" />
         </div>
         <div class="buttons">
             <a data-wysihtml-dialog-action="save" class="button is-small is-success">

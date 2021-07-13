@@ -25,7 +25,7 @@
             </span>
             <button class="delete is-small">
                 <span class="is-sr-only">
-                    Delete
+                    <fmt:message key="Delete" />
                 </span>
             </button>
         </a>
@@ -38,7 +38,7 @@
              <button class="labelfield__add button">
                  <span class="jam jam-plus">
                     <span class="is-sr-only">
-                        Add
+                        <fmt:message key="Add" />
                     </span>
                  </span>
              </button>

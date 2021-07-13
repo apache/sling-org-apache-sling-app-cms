@@ -8,7 +8,7 @@
         "doctype": {
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/editor/fields/text",
-            "label": "Doctype",
+            "label": "DocType",
             "name": "doctype",
             "type": "nt:unstructured",
             "required": true

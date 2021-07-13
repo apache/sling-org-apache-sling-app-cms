@@ -4,8 +4,10 @@
     "sling:resourceType": "sling-cms/components/general/container",
     "richtext": {
         "jcr:primaryType": "nt:unstructured",
-        "sling:resourceType": "sling-cms/components/general/richtext",
-        "text": "<br/><h3>Templates</h3>"
+        "sling:resourceType": "sling-cms/components/general/textelement",
+        "i18n": true,
+        "level": "h3",
+        "text": "Templates"
     },
     "contentactions": {
         "jcr:primaryType": "nt:unstructured",
