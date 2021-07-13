@@ -43,7 +43,6 @@ import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.cms.PublishableResource;
 import org.apache.sling.cms.publication.PUBLICATION_MODE;
 import org.apache.sling.cms.publication.PublicationManagerFactory;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
