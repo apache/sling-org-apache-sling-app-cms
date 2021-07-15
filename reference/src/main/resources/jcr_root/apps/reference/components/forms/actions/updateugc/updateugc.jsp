@@ -18,9 +18,9 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Update User Generated Content</h3>
+    <h3><fmt:message key="Update User Generated Content" /></h3>
     <dl>
-        <dt>Path</dt>
+        <dt><fmt:message key="Path" /></dt>
         <dd>${sling:encode(properties.path,'HTML')}</dd>
     </dl>
 </c:if>

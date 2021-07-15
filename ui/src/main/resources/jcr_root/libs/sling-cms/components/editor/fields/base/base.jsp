@@ -51,11 +51,19 @@
 <div class="field">
     <c:if test="${not empty properties.label}">
         <label class="label" for="${properties.name}">
-            <sling:encode value="${properties.label}" mode="HTML" />
+            <fmt:message key="${properties.label}" var="label" />
+            <sling:encode value="${label}" mode="HTML" />
             <c:if test="${properties.required}"><span class="has-text-danger">*</span></c:if>
         </label>
     </c:if>
     <div class="control">
     <sling:call script="field.jsp" />
+
+    <c:if test="${not empty properties.description}">
+        <p class="help">
+            <fmt:message key="${properties.description}" var="description" />
+            <sling:encode value="${description}" mode="HTML" />
+        </p>
+    </c:if>
     </div>
 </div>

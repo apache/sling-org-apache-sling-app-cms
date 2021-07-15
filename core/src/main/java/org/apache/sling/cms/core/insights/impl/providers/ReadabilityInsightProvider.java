@@ -44,11 +44,10 @@ import org.slf4j.LoggerFactory;
 @Component(service = InsightProvider.class, immediate = true)
 public class ReadabilityInsightProvider extends BaseInsightProvider {
 
-    public static final String I18N_KEY_READABILITY_DETAIL = "slingcms.readability.detail";
-    public static final String I18N_KEY_READABILITY_RESULT_DANGER = "slingcms.readability.danger";
-    public static final String I18N_KEY_READABILITY_RESULT_SUCCESS = "slingcms.readability.success";
-    public static final String I18N_KEY_READABILITY_RESULT_WARN = "slingcms.readability.warn";
-    public static final String I18N_KEY_READABILITY_STATS = "slingcms.readability.stats";
+    public static final String I18N_KEY_READABILITY_RESULT_DANGER = "Failed to calculate readability for {1}";
+    public static final String I18N_KEY_READABILITY_RESULT_SUCCESS = "Readability grade {2} is between expected range: ({0}-{1})";
+    public static final String I18N_KEY_READABILITY_RESULT_WARN = "Readability grade {2} is outside expected range: ({0}-{1})";
+    public static final String I18N_KEY_READABILITY_STATS = "Found {0} sentences with {1} words and {2} complex words";
 
     private static final Logger log = LoggerFactory.getLogger(ReadabilityInsightProvider.class);
 

@@ -20,6 +20,7 @@
 <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
 <c:set var="searchConfig" value="${sling:adaptTo(resource,'org.apache.sling.cms.ComponentConfiguration').properties}" scope="request" />
 <form action="${pageMgr.page.path}.html" method="GET" class="${searchConfig.formClass}">
-    <input type="text" name="q" class="${searchConfig.inputClass}" placeholder="<fmt:message key="slingcms.search"/>" />
-    <input type="submit" class="${searchConfig.buttonClass}" value="<fmt:message key="slingcms.search"/>" />
+    <fmt:message key="Search" var="searchMessage" />
+    <input type="text" name="q" class="${searchConfig.inputClass}" placeholder="${searchMessage}" />
+    <input type="submit" class="${searchConfig.buttonClass}" value="${searchMessage}" />
 </form>

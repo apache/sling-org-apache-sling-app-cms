@@ -19,7 +19,7 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="field">
     <label class="label" for="availableComponentTypes">
-        Available Component Types
+        <fmt:message key="Available Component Types" />
     </label>
     <div class="control">
         <c:set var="currentTypes" value="|${fn:join(slingRequest.requestPathInfo.suffixResource.valueMap.availableComponentTypes, '|')}|"/>

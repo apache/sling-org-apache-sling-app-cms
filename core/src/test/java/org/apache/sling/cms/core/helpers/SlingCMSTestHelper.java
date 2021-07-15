@@ -16,6 +16,10 @@
  */
 package org.apache.sling.cms.core.helpers;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,9 +40,13 @@ import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
 import org.apache.jackrabbit.api.security.user.User;
 import org.apache.jackrabbit.api.security.user.UserManager;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.ResourceTree;
+import org.apache.sling.cms.core.internal.filters.EditIncludeFilter;
+import org.apache.sling.cms.i18n.I18NDictionary;
+import org.apache.sling.cms.i18n.I18NProvider;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.mockito.Mockito;
 
@@ -157,5 +165,19 @@ public class SlingCMSTestHelper {
     public static final <I> Stream<I> toStream(Iterator<I> iterator) {
         Iterable<I> iterable = () -> iterator;
         return StreamSupport.stream(iterable.spliterator(), false);
+    }
+
+    public static final I18NProvider getEchoingi18nProvider() {
+        I18NDictionary dictionary = mock(I18NDictionary.class);
+
+        Mockito.when(dictionary.get(Mockito.anyString())).thenAnswer((in) -> {
+            String requested = in.getArgument(0, String.class);
+            return requested;
+        });
+
+        I18NProvider provider = mock(I18NProvider.class);
+        when(provider.getDictionary(any(SlingHttpServletRequest.class))).thenReturn(dictionary);
+
+        return provider;
     }
 }

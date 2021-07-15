@@ -18,9 +18,9 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Update Profile</h3>
+    <h3><fmt:message key="Update Profile" /></h3>
     <dl>
-        <dt>Subpath</dt>
+        <dt><fmt:message key="Subpath" /></dt>
         <dd>${properties.subpath}</dd>
     </dl>
 </c:if>

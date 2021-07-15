@@ -27,7 +27,7 @@
                 <button class="repeating__remove button">
                     <span class="jam jam-minus">
                         <span class="is-sr-only">
-                            Remove
+                            <fmt:message key="Remove" />
                         </span>
                     </span>
                 </button>
@@ -44,7 +44,7 @@
                     <button class="repeating__remove button">
                         <span class="jam jam-minus">
                             <span class="is-sr-only">
-                                Remove
+                                <fmt:message key="Remove" />
                             </span>
                         </span>
                     </button>

@@ -19,9 +19,12 @@ package org.apache.sling.cms.core.internal.models;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import javax.jcr.RepositoryException;
+import javax.jcr.Value;
 
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
@@ -105,6 +108,29 @@ public class AuthorizableWrapperImpl implements AuthorizableWrapper {
             log.error("Failed to get ID from authorizable: {}", authorizable, e);
             return null;
         }
+    }
+
+    @Override
+    public String getLocaleTag() {
+        try {
+            if (authorizable == null) {
+                return null;
+            }
+            Value[] val = authorizable.getProperty("profile/locale");
+            if (val != null && val.length > 0) {
+                return val[0].getString();
+            } else {
+                return null;
+            }
+        } catch (RepositoryException e) {
+            log.warn("Exception getting locale for authorizable", e);
+            return null;
+        }
+    }
+
+    @Override
+    public Locale getLocale() {
+        return Optional.ofNullable(getLocaleTag()).map(Locale::forLanguageTag).orElse(null);
     }
 
     @Override

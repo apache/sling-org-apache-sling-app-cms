@@ -18,15 +18,15 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Send Email</h3>
+    <h3><fmt:message key="Send Main" /></h3>
     <dl>
-        <dt>From</dt>
+        <dt><fmt:message key="From" /></dt>
         <dd>${properties.from}</dd>
-        <dt>To</dt>
+        <dt><fmt:message key="To" /></dt>
         <dd>${properties.to}</dd>
-        <dt>Subject</dt>
+        <dt><fmt:message key="Subject" /></dt>
         <dd>${properties.subject}</dd>
-        <dt>Message</dt>
+        <dt><fmt:message key="Message" /></dt>
         <dd>${properties.message}</dd>
     </dl>
 </c:if>

@@ -4,14 +4,6 @@
             "instanceType": "STANDALONE",
             "publicationMode": "STANDALONE",
             "agents": []
-        },
-        "org.apache.sling.cms.core.internal.filters.CMSSecurityConfigInstance": {
-            "hostDomains": [],
-            "allowedPatterns": [
-                "^\/content\/starter/.*$",
-                "^\/static/.*$",
-                "^\/system\/sling\/form\/login$"
-            ]
         }
     }
 }

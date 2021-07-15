@@ -21,6 +21,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -30,6 +32,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.core.internal.ResourceEditorAssociation;
 import org.apache.sling.cms.core.internal.ResourceEditorAssociationProvider;
+import org.apache.sling.cms.i18n.I18NProvider;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.osgi.annotation.versioning.ProviderType;
@@ -48,18 +51,24 @@ public class ContentBreadcrumb {
     private long depth;
 
     @OSGiService
-    private ResourceEditorAssociationProvider provider;
+    private ResourceEditorAssociationProvider associationProvider;
 
     private Resource resource;
 
-    private String rootTitle;
+    private final String rootTitle;
 
-    public ContentBreadcrumb(SlingHttpServletRequest request) {
+    @Inject
+    public ContentBreadcrumb(SlingHttpServletRequest request, @OSGiService I18NProvider i18nProvider) {
         this.resource = request.getRequestPathInfo().getSuffixResource();
 
         log.debug("Loading configuration from {}", request.getResource().getValueMap());
         depth = request.getResource().getValueMap().get("depth", 0L);
-        rootTitle = request.getResource().getValueMap().get("rootTitle", String.class);
+        String title = request.getResource().getValueMap().get("rootTitle", String.class);
+        if (title != null) {
+            rootTitle = i18nProvider.getDictionary(request).get(title);
+        } else {
+            rootTitle = null;
+        }
 
     }
 
@@ -72,8 +81,8 @@ public class ContentBreadcrumb {
     }
 
     private String getLink(Resource resource) {
-        log.debug("Getting link for {} from {}", resource, provider.getAssociations());
-        return provider.getAssociations().stream().filter(a -> a.matches(resource)).findFirst()
+        log.debug("Getting link for {} from {}", resource, associationProvider.getAssociations());
+        return associationProvider.getAssociations().stream().filter(a -> a.matches(resource)).findFirst()
                 .map(ResourceEditorAssociation::getEditor).orElse("/bin/browser.html") + resource.getPath();
     }
 

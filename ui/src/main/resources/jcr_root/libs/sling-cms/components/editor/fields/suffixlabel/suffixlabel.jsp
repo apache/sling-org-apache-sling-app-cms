@@ -18,6 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="field">
-	<sling:encode value="${properties.label}" mode="HTML" /><br/>
-	<sling:encode value="${slingRequest.requestPathInfo.suffix}" mode="HTML" /><br/>
+    <fmt:message key="${properties.label}" var="label" />
+    <sling:encode value="${label}" mode="HTML" /><br/>
+    <sling:encode value="${slingRequest.requestPathInfo.suffix}" mode="HTML" /><br/>
 </div>

@@ -21,16 +21,18 @@
 <td data-value="${publishableResource.published ? 0 : 1}">
     <c:choose>
         <c:when test="${publishableResource.published}">
-            <a class="button is-success is-outlined Fetch-Modal" href="/cms/shared/unpublish.html${resource.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
+            <fmt:message key="Content Published" var="publishedMessage" />
+            <a class="button is-success is-outlined Fetch-Modal" href="/cms/shared/unpublish.html${resource.path}" title="${publishedMessage}" data-title="Unpublish" data-path=".Main-Content form">
                 <i class="jam jam-check">
-                    <span class="is-sr-only">Content Published</span>
+                    <span class="is-sr-only">${publishedMessage}</span>
                 </i>
             </a>
         </c:when>
         <c:otherwise>
-            <a class="button is-warning is-outlined Fetch-Modal" href="/cms/shared/publish.html${resource.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
+            <fmt:message key="Content Not Published" var="notPublishedMessage" />
+            <a class="button is-warning is-outlined Fetch-Modal" href="/cms/shared/publish.html${resource.path}" title="${notPublishedMessage}" data-title="Publish" data-path=".Main-Content form">
                 <i class="jam jam-close">
-                    <span class="is-sr-only">Content Not Published</span>
+                    <span class="is-sr-only">${notPublishedMessage}</span>
                 </i>
             </a>
         </c:otherwise>

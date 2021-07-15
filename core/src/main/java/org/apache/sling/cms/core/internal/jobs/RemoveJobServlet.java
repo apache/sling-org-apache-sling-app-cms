@@ -55,9 +55,9 @@ public class RemoveJobServlet extends SlingAllMethodsServlet {
         String id = request.getParameter("id");
         if (jobMgr != null && id != null) {
             jobMgr.deleteJob(id);
-            message = dictionary.get("slingcms.jobs.jobremoved");
+            message = dictionary.get("Job Removed");
         } else {
-            message = dictionary.get("slingcms.jobs.badrequest");
+            message = dictionary.get("Bad Request");
             response.sendError(400, message);
         }
         response.setContentType("application/json");

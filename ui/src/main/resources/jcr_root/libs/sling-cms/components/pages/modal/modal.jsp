@@ -20,7 +20,8 @@
 <div class="modal-background"></div>
 <div class="modal-content is-draggable">
     <div class="box">
-        <h3 class="modal-title"><sling:encode value="${properties['jcr:title']}" mode="HTML" /></h3>
+        <fmt:message key="${properties['jcr:title']}" var="title" />
+        <h3 class="modal-title"><sling:encode value="${title}" mode="HTML" /></h3>
         <sling:include path="container" resourceType="sling-cms/components/general/container" />
     </div>
 </div>

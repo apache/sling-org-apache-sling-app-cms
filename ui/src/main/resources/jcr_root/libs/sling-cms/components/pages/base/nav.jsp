@@ -22,10 +22,11 @@
         <a class="navbar-item" href="${branding.logoLink}">
             <img src="${branding.logo}" width="100" alt="${branding.appName}"/>
         </a>
-        <a href="/cms/start.html" class="navbar-item" title="CMS Home">
+        <fmt:message key="Home" var="homeMessage" />
+        <a href="/cms/start.html" class="navbar-item" title="${homeMessage}">
             <span class="icon">
                 <em class="jam jam-home-f">
-                    <span class="is-sr-only">Home</span>
+                    <span class="is-sr-only">${homeMessage}</span>
                 </em>
             </span>
         </a>
@@ -51,20 +52,20 @@
                         <em class="jam jam-id-card">
                             <span class="is-sr-only">Profile</span>
                         </em>&nbsp;
-                        Profile
+                        <fmt:message key="Profile" />
                     </a>
                     <a class="navbar-item" href="${branding.helpLink}" target="_blank" rel="noopener noreferrer">
                         <em class="jam jam-help">
                             <span class="is-sr-only">Help</span>
                         </em>&nbsp;
-                        Help
+                        <fmt:message key="Help" />
                     </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item" href="/system/sling/logout">
                         <em class="jam jam-log-out">
-                            <span class="is-sr-only">Logout</span>
+                            <span class="is-sr-only"><fmt:message key="Logout" /></span>
                         </em>&nbsp;
-                        Logout
+                        <fmt:message key="Logout" />
                     </a>
                 </div>
             </div>

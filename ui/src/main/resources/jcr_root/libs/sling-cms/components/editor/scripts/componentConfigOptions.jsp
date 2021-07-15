@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<option value="">Select Component</option>
+<option value=""><fmt:message key="Select Component" /></option>
 <c:forEach var="component" items="${sling:findResources(resourceResolver,'SELECT * FROM [sling:Component] WHERE [componentType] IS NOT NULL ORDER BY [jcr:title]','JCR-SQL2')}">
     <c:if test="${sling:getRelativeResource(component,'config') != null && sling:getRelativeResource(component,'config').resourceType != 'sling:Folder' && sling:getRelativeResource(component,'config').resourceType != 'sling:Component'}">
         <c:choose>

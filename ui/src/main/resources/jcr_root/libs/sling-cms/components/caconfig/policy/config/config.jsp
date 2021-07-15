@@ -22,7 +22,7 @@
 <hr/>
 <div class="panel">
     <h4 class="panel-heading">
-        Available Component Types
+        <fmt:message key="Available Component Types" />
     </h4>
     <div class="panel-body p-2">
         <ul>
@@ -37,7 +37,7 @@
 <hr/>
 <div class="panel">
     <h4 class="panel-heading">
-        Component Configurations
+        <fmt:message key="Component Configurations" />
     </h4>
     <div class="panel-body p-2">
         <c:set var="oldAvailableTypes" value="${availableTypes}" />

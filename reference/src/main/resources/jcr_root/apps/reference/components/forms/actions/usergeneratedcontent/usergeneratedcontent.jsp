@@ -18,29 +18,29 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>User Generated Content</h3>
+    <h3><fmt:message key="Create User Generated Content" /></h3>
     <dl>
-        <dt>Action</dt>
+        <dt><fmt:message key="Action" /></dt>
         <dd>${properties.approveAction}</dd>
-        <dt>Additional Properties</dt>
+        <dt><fmt:message key="Additional Properties" /></dt>
         <dd>
             <c:if test="${not empty properties.additionalProperties}">
                 ${fn:join(properties.additionalProperties,', ')}
             </c:if>
         </dd>
-        <dt>Bucket</dt>
+        <dt><fmt:message key="Bucket" /></dt>
         <dd>${properties.bucket}</dd>
-        <dt>Content Type</dt>
+        <dt><fmt:message key="Content Type" /></dt>
         <dd>${properties.contentType}</dd>
-        <dt>Name</dt>
+        <dt><fmt:message key="Name" /></dt>
         <dd>${properties.name}</dd>
-        <dt>Path Depth</dt>
+        <dt><fmt:message key="Path Depth" /></dt>
         <dd>${properties.pathDepth}</dd>
-        <dt>Preview</dt>
+        <dt><fmt:message key="Preview" /></dt>
         <dd>${properties.preview}</dd>
-        <dt>Target Path</dt>
+        <dt><fmt:message key="Target Path" /></dt>
         <dd>${properties.targetPath}</dd>
-        <dt>Wrap in Page?</dt>
+        <dt><fmt:message key="Wrap in Page?" /></dt>
         <dd>${properties.wrapPage}</dd>
     </dl>
 </c:if>

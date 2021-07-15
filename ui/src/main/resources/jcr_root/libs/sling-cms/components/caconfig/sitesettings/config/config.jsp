@@ -17,9 +17,9 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<h3>Site Settings</h3>
+<h3><fmt:message key="Site Settings" /></h3>
 <dl>
-    <dt>Taxonomy Root</dt>
+    <dt><fmt:message key="Taxonomy Root" /></dt>
     <dd>
         ${properties.taxonomyroot}
     </dd>

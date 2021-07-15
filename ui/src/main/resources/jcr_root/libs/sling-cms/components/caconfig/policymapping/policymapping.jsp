@@ -18,10 +18,10 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <dl>
-    <dt>Path Pattern</dt>
+    <dt><fmt:message key="Path Pattern" /></dt>
     <dd><sling:encode value="${properties.pathPattern}" mode="HTML" /></dd>
     
-    <dt>Policy</dt>
+    <dt><fmt:message key="Policy" /></dt>
     <dd>
         <c:if test="${not empty properties.policyPath}">
             <sling:getResource var="policy" path="${properties.policyPath}" />

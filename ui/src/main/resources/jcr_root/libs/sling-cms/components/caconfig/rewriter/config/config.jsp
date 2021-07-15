@@ -17,13 +17,13 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<h3>Rewrite Configuration</h3>
+<h3><fmt:message key="Rewrite Configuration" /></h3>
 <dl>
-    <dt>Doctype</dt>
+    <dt><fmt:message key="DocType" /></dt>
     <dd>
         <sling:encode value="${resource.valueMap.doctype}" mode="HTML" />
     </dd>
-    <dt>Rewritten Attributes</dt>
+    <dt><fmt:message key="Rewritten Attributes" /></dt>
     <dd>
         <ul>
             <c:forEach var="attribute" items="${resource.valueMap.attributes}">

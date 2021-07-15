@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp" %>
-<pre>${properties.code} </pre>
+<pre>${properties.code}</pre>

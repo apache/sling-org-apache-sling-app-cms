@@ -16,7 +16,7 @@
     <artifactId>org.apache.sling.cms</artifactId>
     <name>Apache Sling - CMS</name>
     <description>An Apache Sling Reference CMS Application</description>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -409,6 +409,7 @@
                         <exclude>vagrant/**/*</exclude>
                         <exclude>node/**/*</exclude>
                         <exclude>node_modules/**/*</exclude>
+                        <exclude>**/node_modules/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

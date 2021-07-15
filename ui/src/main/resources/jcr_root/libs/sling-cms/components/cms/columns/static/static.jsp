@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<c:set var="colValue" value="${colConfig.valueMap.value}" />
+<fmt:message key="${colConfig.valueMap.value}" var="colValue" />
 <td title="${sling:encode(colValue,'HTML_ATTR')}">
 	<sling:encode value="${colValue}" mode="HTML" />
 </td>

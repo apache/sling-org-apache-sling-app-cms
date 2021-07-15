@@ -50,30 +50,32 @@
 </c:choose>
 <c:if test="${not empty properties.label}">
     <label class="label" for="${properties.name}">
-        <sling:encode value="${properties.label}" mode="HTML" />
+        <fmt:message key="${properties.label}" var="label" />
+        <sling:encode value="${label}" mode="HTML" />
         <c:if test="${properties.required}"><span class="has-text-danger">*</span></c:if>
     </label>
 </c:if>
 <c:choose>
     <c:when test="${properties.hidesearch != true}">
-    	<div class="field has-addons">
+        <div class="field has-addons">
           <div class="control is-expanded">
               <input class="input pathfield" type="text" id="${properties.name}" name="${properties.name}" value="${value}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
           </div>
           <div class="control">
-              <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
+            <fmt:message key="Search" var="searchMessage" />
+              <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="${searchMessage}" data-path=".Main-Content > *">
                   <span class="jam jam-search">
-                    <span class="is-sr-only">Search</span>
+                    <span class="is-sr-only">${searchMessage}</span>
                   </span>
               </a>
           </div>
          </div>
     </c:when>
     <c:otherwise>
-    	<div class="field">
-	        <div class="control">
-	        	<input class="input pathfield" type="text" name="${properties.name}" value="${value}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
-	        </div>
+        <div class="field">
+            <div class="control">
+                <input class="input pathfield" type="text" name="${properties.name}" value="${value}" ${required} ${disabled} data-type="${properties.type}" data-base="${properties.basePath}" autocomplete="off" />
+            </div>
         </div>
     </c:otherwise>
 </c:choose>

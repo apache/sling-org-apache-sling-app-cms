@@ -25,7 +25,7 @@
         </span>
         <button class="delete is-small">
             <span class="is-sr-only">
-                Delete
+                <fmt:message key="Delete" />
             </span>
         </button>
     </a>

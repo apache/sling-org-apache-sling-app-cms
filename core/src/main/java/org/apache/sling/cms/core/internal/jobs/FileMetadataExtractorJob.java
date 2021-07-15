@@ -121,7 +121,7 @@ public class FileMetadataExtractorJob extends ConfigurableJobExecutor {
 
     @Override
     public String getTitleKey() {
-        return "slingcms.filemetadata.title";
+        return "Extract File Metadata";
     }
 
     /*

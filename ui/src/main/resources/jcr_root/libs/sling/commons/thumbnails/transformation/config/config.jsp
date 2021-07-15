@@ -20,14 +20,14 @@
 <br/>
 <div>
     <dl>
-        <dt>Name</dt>
-        <dd><sling:encode value="${properties.name}" mode="HTML" /></dd>
+        <dt><fmt:message key="Name" /></dt>
+        <dd><sling:encode value="${properties.name}" mode="HTML" />
     </dl>
 </div>
 <hr/>
 <div>
     <h4>
-        Transformation Handlers
+        <fmt:message key="Transformation Handlers" />
     </h4>
     <c:set var="oldAvailableTypes" value="${availableTypes}" />
     <c:set var="availableTypes" value="SlingCMS-TransformationHandler" scope="request" />

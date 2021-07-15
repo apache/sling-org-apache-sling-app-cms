@@ -9,8 +9,10 @@
             "sling:resourceType": "sling-cms/components/general/container",
             "richtext": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling-cms/components/general/richtext",
-                "text": "<h2>Edit Configuration</h2>"
+                "sling:resourceType": "sling-cms/components/general/textelement",
+                "i18n": true,
+                "level": "h2",
+                "text": "Edit Configuration"
             },
             "contentbreadcrumb": {
                 "jcr:primaryType": "nt:unstructured",

@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>${properties['jcr:title']} :: ${branding.appName}</title>
+    <title><fmt:message key="${properties['jcr:title']}" /> :: ${branding.appName}</title>
     <link href="${branding.css}" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="${branding.appleTouchIcon}" />
     <link rel="icon" type="image/png" sizes="32x32" href="${branding.favicon32}" />

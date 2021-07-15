@@ -35,7 +35,10 @@
                             <c:set var="selected" value="" />
                         </c:otherwise>
                     </c:choose>
-                    <option ${selected} value="${sling:encode(value,'HTML_ATTR')}"><sling:encode value="${label}" mode="HTML" /></option>
+                    <option ${selected} value="${sling:encode(value,'HTML_ATTR')}">
+                        <fmt:message key="${label}" var="labelMessage" />
+                        <sling:encode value="${labelMessage}" mode="HTML" />
+                    </option>
                 </c:forEach>
             </c:when>
             <c:when test="${sling:getRelativeResource(resource,'options') != null}">
@@ -48,7 +51,10 @@
                             <c:set var="selected" value="" />
                         </c:otherwise>
                     </c:choose>
-                    <option ${selected} value="${sling:encode(option.valueMap.value,'HTML_ATTR')}"><sling:encode value="${option.valueMap.label}" mode="HTML" /></option>
+                    <option ${selected} value="${sling:encode(option.valueMap.value,'HTML_ATTR')}">
+                        <fmt:message key="${option.valueMap.label}" var="labelMessage" />
+                        <sling:encode value="${labelMessage}" mode="HTML" />
+                    </option>
                 </c:forEach>
             </c:when>
             <c:when test="${not empty properties.optionsScript}">

@@ -18,5 +18,6 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="field">
-	<button class="button" onclick="${properties.onclick}">${sling:encode(properties.label,'HTML')}</button>
+    <fmt:message key="${properties.label}" var="label" />
+    <button class="button" onclick="${properties.onclick}">${sling:encode(label,'HTML')}</button>
 </div>

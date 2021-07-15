@@ -27,17 +27,18 @@
         <div class="field">
             <label class="checkbox">
                 <input type="checkbox" name="${properties.name}" value="true" />
-                <sling:encode value="${properties.label}" mode="HTML" />
+                <fmt:message key="${properties.label}" var="label" />
+                <sling:encode value="${label}" mode="HTML" />
             </label>
         </div>
         <div class="fixed-box field">
             <table class="table" data-paginate="false">
                 <thead>
                     <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Subpath</th>
-                        <th scope="col">Property</th>
+                        <th scope="col"><fmt:message key="Type" /></th>
+                        <th scope="col"><fmt:message key="Content" /></th>
+                        <th scope="col"><fmt:message key="Subpath" /></th>
+                        <th scope="col"><fmt:message key="Property" /></th>
                 </thead>
                 <tbody>
                     <c:forEach var="ref" items="${references.references}">
@@ -63,7 +64,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                        <span class="icon"  title="Other">
+                                        <span class="icon" title="Other">
                                             <span class="jam jam-file"></span>
                                         </span>
                                     </td>
@@ -85,7 +86,7 @@
         <c:if test="${properties.includeDestination}">
             <div class="field">
                 <label for=":dest">
-                    Replacement Path
+                    <fmt:message key="Replacement Path" />
                 </label>
                 <div class="control">
                     <input type="text" name=":dest" class="pathfield input" />

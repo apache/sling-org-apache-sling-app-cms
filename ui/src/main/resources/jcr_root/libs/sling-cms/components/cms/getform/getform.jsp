@@ -31,8 +31,9 @@
         <input type="hidden" name="_charset_" value="utf-8" />
         <sling:include path="fields" resourceType="sling-cms/components/general/container" />
         <div class="Field-Group">
-            <button type="submit" class="button is-primary" title="<sling:encode value="${properties.button}" mode="HTML_ATTR" />">
-                <sling:encode value="${properties.button}" mode="HTML" />
+            <fmt:message key="${properties.button}" var="buttonMessage" />
+            <button type="submit" class="button is-primary" title="${sling:encode(buttonMessage, 'HTML')}">
+                <sling:encode value="${buttonMessage}" mode="HTML" />
             </button>
         </div>
     </fieldset>

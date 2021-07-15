@@ -59,9 +59,9 @@ import org.slf4j.LoggerFactory;
 @Designate(ocd = Config.class)
 public class HTMLValdiatorInsightProvider extends BaseInsightProvider {
 
-    public static final String I18N_KEY_HTMLVALIDATOR_DANGER = "slingcms.htmlvalidator.danger";
-    public static final String I18N_KEY_HTMLVALIDATOR_WARN = "slingcms.htmlvalidator.warn";
-    public static final String I18N_KEY_HTMLVALIDATOR_SUCCESS = "slingcms.htmlvalidator.success";
+    public static final String I18N_KEY_HTMLVALIDATOR_DANGER = "There were {0} validation errors and {1} warnings";
+    public static final String I18N_KEY_HTMLVALIDATOR_WARN = "There were {0} validation warnings";
+    public static final String I18N_KEY_HTMLVALIDATOR_SUCCESS = "HTML Validation successful!";
 
     @ObjectClassDefinition(name = "%htmlvalidator.config.name", description = "%htmlvalidator.config.description", localization = "OSGI-INF/l10n/bundle")
     public @interface Config {

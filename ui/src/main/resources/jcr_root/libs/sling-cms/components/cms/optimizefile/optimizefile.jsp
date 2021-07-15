@@ -21,30 +21,30 @@
 <sling:adaptTo var="optimizedFile" adaptable="${sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,'jcr:content')}" adaptTo="org.apache.sling.fileoptim.models.OptimizedFile" />
 <div class="columns">
     <div class="column">
-        <h4>Info</h4>
+        <h4><fmt:message key="Info" /></h4>
         <c:choose>
             <c:when test="${optimizer.canOptimize && optimizer.result.optimized}">
                 <dl>
                     <dt>
-                        Algorithm
+                        <fmt:message key="Algorithm" />
                     </dt>
                     <dd>
                         ${optimizer.result.algorithm}
                     </dd>
                     <dt>
-                        Original Size
+                        <fmt:message key="Original Size" />
                     </dt>
                     <dd>
                         ${optimizer.result.originalSize}
                     </dd>
                     <dt>
-                        Optimized Size
+                        <fmt:message key="Optimized Size" />
                     </dt>
                     <dd>
                         ${optimizer.result.optimizedSize}
                     </dd>
                     <dt>
-                        Savings
+                        <fmt:message key="Savings" />
                     </dt>
                     <dd>
                         <fmt:formatNumber value="${optimizer.result.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
@@ -54,23 +54,23 @@
                     <fieldset class="form-wrapper field">
                         <input type="hidden" name=":operation" value="fileoptim:optimize" />
                         <button type="submit" class="button is-primary">
-                            Optimize
+                            <fmt:message key="Optimize" />
                         </button>
                         <button type="button" class="button close">Cancel</button>
                     </fieldset>
                 </form>
             </c:when>
             <c:when test="${optimizer.optimized}">
-                <strong>Already Optimized</strong>
+                <strong><fmt:message key="Already Optimized" /></strong>
                 <dl>
                     <dt>
-                        Algorithm
+                        <fmt:message key="Algorithm" />
                     </dt>
                     <dd>
                         ${optimizedFile.algorithm}
                     </dd>
                     <dt>
-                        Savings
+                        <fmt:message key="Savings" />
                     </dt>
                     <dd>
                         <fmt:formatNumber value="${optimizedFile.savings * 100}" type="number" groupingUsed="false" maxFractionDigits="2" />%
@@ -80,23 +80,23 @@
                     <fieldset class="form-wrapper field">
                         <input type="hidden" name=":operation" value="fileoptim:restore" />
                         <button type="submit" class="button is-primary">
-                            Restore Original
+                            <fmt:message key="Restore Original" />
                         </button>
-                        <button type="button" class="button close">Cancel</button>
+                        <button type="button" class="button close"><fmt:message key="Cancel" /></button>
                     </fieldset>
                 </form>
             </c:when>
             <c:otherwise>
-                <strong>File Cannot be Optimized</strong>
+                <strong><fmt:message key="File Cannot be Optimized" /></strong>
                 <div>
-                    <button type="button" class="button close">Close</button>
+                    <button type="button" class="button close"><fmt:message key="Close" /></button>
                 </div>
             </c:otherwise>
         </c:choose>
     </div>
     <div class="column">
         <c:if test="${optimizer.canOptimize && optimizer.result.optimized}">
-            <h4>Preview</h4>
+            <h4><fmt:message key="Preview" /></h4>
             <img src="/system/fileoptim/preview?path=${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" class="preview" />
         </c:if>
     </div>

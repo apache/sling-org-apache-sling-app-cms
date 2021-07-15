@@ -20,7 +20,7 @@
 <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.publication.PublicationManager" var="publicationManager" />
 <br/>
 <dl>
-    <dt>Publication Mode</dt>
-    <dd>${publicationManager.publicationMode}</dd>
+    <dt><fmt:message key="Publication Mode" /></dt>
+    <dd><fmt:message key="${publicationManager.publicationMode}" /></dd>
 </dl>
 <br/>

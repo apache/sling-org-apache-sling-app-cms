@@ -22,7 +22,7 @@
 <a class="navbar-item" href="http://sling.apache.org" >
     <img src="${branding.logo}" width="100" alt="${branding.appName}"/>
 </a>
-<a href="/cms/start.html" class="navbar-item" title="CMS Home"><span class="icon"><i class="jam jam-home-f"></i></span></a>
+<a href="/cms/start.html" class="navbar-item" title="CMS Home"><span class="icon"><em class="jam jam-home-f"></em></span></a>
 </div>
 <div class="navbar-menu">
 </div>

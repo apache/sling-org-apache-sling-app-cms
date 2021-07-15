@@ -121,7 +121,7 @@ public class OptimizeFilesJob extends ConfigurableJobExecutor {
 
     @Override
     public String getTitleKey() {
-        return "slingcms.optimizefiles.title";
+        return "Optimize Files";
     }
 
     /*

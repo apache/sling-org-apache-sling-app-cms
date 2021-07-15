@@ -23,12 +23,12 @@
     <ul>
         <li>
             <a href="/cms/publication/home.html">
-                Publication
+                <fmt:message key="Publication" />
             </a>
         </li>
         <li>
             <a href="/cms/publication/importers.html/libs/sling/distribution/settings/importers">
-                Importers
+                <fmt:message key="Importers" />
             </a>
         </li>
         <li class="is-active">
@@ -46,7 +46,7 @@
         <div class="column is-6">
             <article class="message is-light">
                 <div class="message-header">
-                    <p>Configuration</p>
+                    <p><fmt:message key="Configuration" /></p>
                 </div>
                 <div class="message-body">
                     <dl>
@@ -56,7 +56,7 @@
                             <sling:include resource="${configRsrc}" />
                         </c:forEach>
                     </dl>
-                    <a class="button" href="/system/console/configMgr/${importerCfg['service.pid']}">Edit</a>
+                    <a class="button" href="/system/console/configMgr/${importerCfg['service.pid']}"><fmt:message key="Edit" /></a>
                 </div>
             </article>
         </div>

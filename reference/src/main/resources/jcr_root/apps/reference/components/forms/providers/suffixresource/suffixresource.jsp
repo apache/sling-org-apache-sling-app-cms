@@ -18,11 +18,11 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Suffix Resource</h3>
+    <h3><fmt:message key="Suffix Resource" /></h3>
     <dl>
-        <dt>Allowed Properties</dt>
+        <dt><fmt:message key="Allowed Properties" /></dt>
         <dd>${sling:encode(fn:join(properties.allowedProperties,','),'HTML')}</dd>
-        <dt>Base Path</dt>
+        <dt><fmt:message key="Base Path" /></dt>
         <dd>${sling:encode(properties.basePath,'HTML')}</dd>
     </dl>
 </c:if>

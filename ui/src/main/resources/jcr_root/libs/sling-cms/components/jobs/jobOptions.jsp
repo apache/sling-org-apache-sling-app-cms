@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<option value="">Select Job</option>
+<option value=""><fmt:message key="Select Job" /></option>
 <sling:adaptTo var="jobManager" adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.CMSJobManager" />
 <c:forEach var="job" items="${jobManager.availableJobs}">
     <option value="${job.configurationPath}">

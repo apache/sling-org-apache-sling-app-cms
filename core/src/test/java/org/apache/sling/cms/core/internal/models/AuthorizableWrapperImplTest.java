@@ -22,15 +22,20 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.security.Principal;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
 import javax.jcr.UnsupportedRepositoryOperationException;
+import javax.jcr.Value;
 
 import org.apache.jackrabbit.api.JackrabbitSession;
 import org.apache.jackrabbit.api.security.user.Authorizable;
@@ -176,6 +181,50 @@ public class AuthorizableWrapperImplTest {
 
         authWrapper = new AuthorizableWrapperImpl(adminResource);
         assertFalse(authWrapper.getDeclaredMembers().hasNext());
+    }
+
+    @Test
+    public void testLocaleNotSet()
+            throws AccessDeniedException, UnsupportedRepositoryOperationException, RepositoryException {
+        AuthorizableWrapper authWrapper = new AuthorizableWrapperImpl(userResource);
+
+        assertNull(authWrapper.getLocaleTag());
+        assertNull(authWrapper.getLocale());
+    }
+
+    @Test
+    public void testLocaleNoValue()
+            throws AccessDeniedException, UnsupportedRepositoryOperationException, RepositoryException {
+        AuthorizableWrapper authWrapper = new AuthorizableWrapperImpl(userResource);
+
+        Mockito.when(user.getProperty(anyString())).thenReturn(new Value[0]);
+
+        assertNull(authWrapper.getLocaleTag());
+        assertNull(authWrapper.getLocale());
+    }
+
+    @Test
+    public void testLocaleException()
+            throws AccessDeniedException, UnsupportedRepositoryOperationException, RepositoryException {
+        AuthorizableWrapper authWrapper = new AuthorizableWrapperImpl(userResource);
+
+        Mockito.when(user.getProperty(anyString())).thenThrow(new RepositoryException("Oh No Mr.Bill!"));
+
+        assertNull(authWrapper.getLocaleTag());
+        assertNull(authWrapper.getLocale());
+    }
+
+    @Test
+    public void testValidLocale()
+            throws AccessDeniedException, UnsupportedRepositoryOperationException, RepositoryException {
+        AuthorizableWrapper authWrapper = new AuthorizableWrapperImpl(userResource);
+
+        Value value = mock(Value.class);
+        when(value.getString()).thenReturn("de");
+        Mockito.when(user.getProperty(anyString())).thenReturn(new Value[] { value });
+
+        assertEquals("de", authWrapper.getLocaleTag());
+        assertEquals(Locale.GERMAN, authWrapper.getLocale());
     }
 
     @Test

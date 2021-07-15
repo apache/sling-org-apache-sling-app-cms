@@ -18,9 +18,9 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <h3>Request Password Reset</h3>
+    <h3><fmt:message key="Request Password Reset" /></h3>
     <dl>
-        <dt>Reset Timeout</dt>
+        <dt><fmt:message key="Reset Timeout" /></dt>
         <dd>${sling:encode(properties.resettimeout,'HTML')}</dd>
     </dl>
 </c:if>

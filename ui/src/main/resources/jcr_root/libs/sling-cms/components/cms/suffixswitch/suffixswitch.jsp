@@ -24,7 +24,8 @@
     <c:otherwise>
         <form method="get" action="${properties.target}" class="suffix-form">
             <label class="label" for="suffix">
-                <sling:encode value="${properties.label}" mode="HTML" />
+                <fmt:message key="${properties.label}" var="label" />
+                <sling:encode value="${label}" mode="HTML" />
                 <span class="has-text-danger">*</span>
             </label>
             <div class="field has-addons">
@@ -32,14 +33,16 @@
                     <input class="input pathfield" type="text" name="suffix" id="suffix" required="required" data-type="${properties.type}" data-base="${properties.base}" autocomplete="off" />
                 </div>
                 <div class="control">
-                    <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="Search" data-path=".Main-Content > *">
-                        <span class="is-sr-only">Search</span>
+                    <fmt:message key="Search" var="searchMessage" />
+                    <a href="/cms/shared/search.html" class="button Fetch-Modal search-button" data-title="${searchMessage}" data-path=".Main-Content > *">
+                        <span class="is-sr-only">${searchMessage}</span>
                         <span class="jam jam-search"></span>
                     </a>
                 </div>
             </div>
             <div class="field">
-                <button type="submit" class="button is-primary">${sling:encode(properties.button,'HTML')}</button>
+                <fmt:message key="${properties.button}" var="button" />
+                <button type="submit" class="button is-primary">${sling:encode(button,'HTML')}</button>
             </div>
         </form>
     </c:otherwise>

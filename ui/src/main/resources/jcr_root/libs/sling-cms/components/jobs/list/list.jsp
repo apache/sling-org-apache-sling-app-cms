@@ -21,22 +21,22 @@
     <table class="table is-fullwidth is-striped">
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     #
                 </th>
-                <th>
-                    <fmt:message key="slingcms.jobs.name" />
+                <th scope="col">
+                    <fmt:message key="Job Name" />
                 </th>
-                <th>
-                    <fmt:message key="slingcms.started" />
+                <th scope="col">
+                    <fmt:message key="Started" />
                 </th>
-                <th>
-                    <fmt:message key="slingcms.finished" />
+                <th scope="col">
+                    <fmt:message key="Finished" />
                 </th>
-                <th>
-                    <fmt:message key="slingcms.state" />
+                <th scope="col">
+                    <fmt:message key="State" />
                 </th>
-                <th class="is-sr-only">
+                <th scope="col" class="is-sr-only">
                 </th>
             </tr>
         </thead>
@@ -64,10 +64,12 @@
                         </c:if>
                     </td>
                     <td>
-                        <sling:encode value="${job.jobState}" mode="HTML" />
+                        <fmt:message key="${job.jobState}" var="stateMessage" />
+                        <sling:encode value="${stateMessage}" mode="HTML" />
                     </td>
                     <td class="is-sr-only cell-actions">
-                        <a class="button Fetch-Modal" data-title="<fmt:message key="slingcms.jobs.remove" />" data-path=".Main-Content form" href="/cms/jobs/delete.html/bin/cms/removejob?id=${job.id}" title="<fmt:message key="slingcms.jobs.remove" />">
+                        <fmt:message key="Remove Job" var="removeJobMessage" />
+                        <a class="button Fetch-Modal" data-title="${removeJobMessage}" data-path=".Main-Content form" href="/cms/jobs/delete.html/bin/cms/removejob?id=${job.id}" title="${removeJobMessage}">
                             <span class="jam jam-trash">
                             </span>
                         </a>

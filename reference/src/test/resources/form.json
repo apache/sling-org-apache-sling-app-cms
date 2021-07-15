@@ -138,7 +138,7 @@
                                 "required": true,
                                 "name": "integer",
                                 "type": "text",
-                                "label": "Inty",
+                                "label": "Integer",
                                 "saveAs": "integer",
                                 "sling:resourceType": "reference/components/forms/fields/textfield"
                             },

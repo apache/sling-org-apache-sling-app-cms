@@ -114,7 +114,7 @@ public class BulkPublicationJob extends ConfigurableJobExecutor {
 
     @Override
     public String getTitleKey() {
-        return "slingcms.bulkpublication.title";
+        return "Bulk Publication";
     }
 
     @Override

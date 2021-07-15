@@ -17,17 +17,18 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
+<fmt:message key="${properties.title}" var="title" />
 <div class="tile is-parent is-3 contentnav__item">
     <div class="tile is-child">
         <div class="card is-linked" title="${sling:encode(properties.title,'HTML_ATTR')}" data-value="${resource.path}">
             <div class="card-image">
                 <figure class="image is-5by4">
-                    <img src="/cms/file/preview.html${branding.gridIconsBase}${sling:encode(properties.icon,'HTML_ATTR')}" loading="lazy" alt="${sling:encode(properties.title,'HTML_ATTR')}">
+                    <img src="/cms/file/preview.html${branding.gridIconsBase}${sling:encode(properties.icon,'HTML_ATTR')}" loading="lazy" alt="${sling:encode(title,'HTML_ATTR')}">
                 </figure>
             </div>
             <footer class="card-footer">
-                <a class="card-footer-item item-link" href="${sling:encode(properties.link,'HTML_ATTR')}" title="${sling:encode(properties.title,'HTML')}">
-                    ${sling:encode(properties.title,'HTML')}
+                <a class="card-footer-item item-link" href="${sling:encode(properties.link,'HTML_ATTR')}" title="${sling:encode(title,'HTML')}">
+                    ${sling:encode(title,'HTML')}
                 </a>
             </footer>
         </div>

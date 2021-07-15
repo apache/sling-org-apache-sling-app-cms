@@ -17,12 +17,13 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
+<fmt:message key="${properties.title}" var="title" />
 <div class="card field">
     <c:choose>
         <c:when test="${properties.collapse}">
             <header class="card-header toggle-hidden" data-target="#${resource.name}">
                 <p class="card-header-title">
-                    <sling:encode value="${properties.title}" mode="HTML" />
+                    <sling:encode value="${title}" mode="HTML" />
                 </p>
                 <a href="#" class="card-header-icon" aria-label="Expand">
                     <span class="icon">
@@ -37,7 +38,7 @@
         <c:otherwise>
             <header class="card-header">
                 <p class="card-header-title">
-                    <sling:encode value="${properties.title}" mode="HTML" />
+                    <sling:encode value="${title}" mode="HTML" />
                 </p>
             </header>
             <div class="card-content">

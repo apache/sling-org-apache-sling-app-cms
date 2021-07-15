@@ -29,7 +29,7 @@
                     <input type="hidden" name=":operation" value="checkpoint" />
                     <div class="Field-Group">
                         <button type="submit" class="button is-primary" title="Create a new version for the content">
-                            Create Version
+                            <fmt:message key="Create Version" />
                         </button>
                     </div>
                 </fieldset>
@@ -44,7 +44,7 @@
                     <input type="hidden" name="jcr:mixinTypes" value="mix:versionable">
                     <div class="Field-Group">
                         <button type="submit" class="button is-primary" title="Make the content versionable">
-                            Make Versionable
+                            <fmt:message key="Make Versionable" />
                         </button>
                     </div>
                 </fieldset>
@@ -56,11 +56,11 @@
             <table class="table is-fullwidth" data-sort="false" data-paginate="false">
                 <thead>
                     <tr>
-                        <th scope="col">Version</th>
-                        <th scope="col">Created</th>
-                        <th scope="col">Successors</th>
-                        <th scope="col">Predecessors</th>
-                        <th scope="col">Restore</th>
+                        <th scope="col"><fmt:message key="Version" /></th>
+                        <th scope="col"><fmt:message key="Created" /></th>
+                        <th scope="col"><fmt:message key="Successors" /></th>
+                        <th scope="col"><fmt:message key="Predecessors" /></th>
+                        <th scope="col"><fmt:message key="Restore" /></th>
                     </tr>
                 </thead>
                 <tbody class="load-versions">
@@ -89,8 +89,11 @@
                                             <input type="hidden" name=":operation" value="restore" />
                                             <input type="hidden" name=":version" value="${version.name}" />
                                             <div class="Field-Group">
-                                                <button type="submit" class="button" title="Restore the content to ${version.name}">
-                                                    Restore Version
+                                                <fmt:message key="Restore the content to {0}" var="restoreMessage">
+                                                    <fmt:param value="${sling:encode(version.name, 'HTML')}" />
+                                                </fmt:message>
+                                                <button type="submit" class="button" title="${restoreMessage}">
+                                                    <fmt:message key="Restore Version" />
                                                 </button>
                                             </div>
                                         </fieldset>

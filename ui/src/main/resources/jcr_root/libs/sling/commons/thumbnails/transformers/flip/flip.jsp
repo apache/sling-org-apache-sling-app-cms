@@ -18,6 +18,6 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <dl>
-    <dt>Direction</dt>
+    <dt><fmt:message key="Direction" /></dt>
     <dd><sling:encode value="${properties.direction}" mode="HTML" /></dd>
 </dl>

@@ -1,0 +1,81 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "sling:resourceType": "sling-cms/components/editor/slingform",
+  "fields": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/general/container",
+    "type": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/editor/fields/text",
+      "label": "Text",
+      "name": "text",
+      "required": true
+    },
+    "level": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/editor/fields/select",
+      "label": "Level",
+      "name": "level",
+      "required": true,
+      "options": {
+        "jcr:primaryType": "nt:unstructured",
+        "h1": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "Header 1",
+          "value": "h1"
+        },
+        "h2": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "Header 2",
+          "value": "h2"
+        },
+        "h3": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "Header 3",
+          "value": "h3"
+        },
+        "h4": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "Header 4",
+          "value": "h4"
+        },
+        "h5": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "Header 5",
+          "value": "h5"
+        },
+        "p": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "Paragraph",
+          "value": "p"
+        }
+      }
+    },
+    "i18n": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/editor/fields/select",
+      "label": "i18n",
+      "name": "i18n",
+      "required": true,
+      "options": {
+        "jcr:primaryType": "nt:unstructured",
+        "no": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "No",
+          "value": false
+        },
+        "yes": {
+          "jcr:primaryType": "nt:unstructured",
+          "label": "Yes",
+          "value": true
+        }
+      }
+    },
+    "i18nTypeHint": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+      "name": "i18n@TypeHint",
+      "value": "Boolean"
+    }
+  }
+}

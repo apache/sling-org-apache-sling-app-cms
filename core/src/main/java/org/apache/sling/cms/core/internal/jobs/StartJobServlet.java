@@ -52,13 +52,13 @@ public class StartJobServlet extends SlingAllMethodsServlet {
         if (jobMgr != null) {
             Job job = jobMgr.startJob();
             if(job != null) {
-                message = dictionary.get("slingcms.jobs.jobstarted");
+                message = dictionary.get("Job Started");
             }else {
-                message = dictionary.get("slingcms.jobs.badrequest");
+                message = dictionary.get("Failed to start job");
                 response.sendError(500, message);
             }
         } else {
-            message = dictionary.get("slingcms.jobs.badrequest");
+            message = dictionary.get("Bad Request");
             response.sendError(400, message);
         }
         response.setContentType("application/json");

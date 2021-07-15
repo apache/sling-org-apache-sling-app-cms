@@ -81,7 +81,7 @@
                             <div class="card-footer-item card-footer-group">
                                 <span>${sling:encode(title,'HTML')}</span>
                                 <c:catch var="ex">
-                                    <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${child.valueMap['jcr:content/jcr:lastModified'].time}" var="lastMod" />
+                                    <fmt:formatDate type="both" dateStyle="long" timeStyle="long" value="${child.valueMap['jcr:content/jcr:lastModified'].time}" var="lastMod" />
                                     <small>${lastMod}</small>
                                 </c:catch>
                             </div>
@@ -90,26 +90,30 @@
                             <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.publication.PublicationManager" var="publicationManager" />
                             <sling:adaptTo adaptable="${child}" adaptTo="org.apache.sling.cms.PublishableResource" var="publishableResource" />
                             <c:if test="${child.resourceType == 'sling:Site' || child.resourceType == 'sling:OrderedFolder' || child.resourceType == 'sling:Folder' || child.resourceType == 'nt:folder' || child.resourceType == 'sling:Page'}">
-                                <a href="${nameConfig.valueMap.prefix}${child.path}" class="card-footer-item item-link">Open</a>
+                                <a href="${nameConfig.valueMap.prefix}${child.path}" class="card-footer-item item-link"><fmt:message key="Open" /></a>
                             </c:if>
                             <c:if test="${child.resourceType == 'sling:Page' || child.resourceType == 'sling:File' || child.resourceType == 'nt:file'}">
+                                <fmt:message key="Content Published" var="publishedMessage" />
+                                <fmt:message key="Content Not Published" var="notPublishedMessage" />
+                                <fmt:message key="Unpublish" var="unpublishMessage" />
+                                <fmt:message key="Publish" var="publishMessage" />
                                 <c:choose>
                                     <c:when test="${publishableResource.published && publicationManager.publicationMode == 'CONTENT_DISTRIBUTION'}">
-                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                            Republish
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="${publishedMessage}" data-title="${publishMessage}" data-path=".Main-Content form">
+                                            <fmt:message key="Republish" />
                                         </a>
-                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                            Unpublish
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="${publishedMessage}" data-title="${unpublishMessage}" data-path=".Main-Content form">
+                                            ${unpublishMessage}
                                         </a>
                                     </c:when>
                                     <c:when test="${publishableResource.published}">
-                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="Content Published" data-title="Unpublish" data-path=".Main-Content form">
-                                            Unpublish
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/unpublish.html${child.path}" title="${publishedMessage}" data-title="${unpublishMessage}" data-path=".Main-Content form">
+                                            ${unpublishMessage}
                                         </a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="Content Not Published" data-title="Publish" data-path=".Main-Content form">
-                                            Publish
+                                        <a class="Fetch-Modal card-footer-item" href="/cms/shared/publish.html${child.path}" title="${notPublishedMessage}" data-title="${publishMessage}" data-path=".Main-Content form">
+                                            ${publishMessage}
                                         </a>
                                     </c:otherwise>
                                 </c:choose>

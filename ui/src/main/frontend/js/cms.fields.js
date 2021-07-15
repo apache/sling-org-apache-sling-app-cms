@@ -32,8 +32,9 @@ rava.bind('.file', {
       function uploadFile(meter, action, file) {
         const formData = new FormData();
 
-        formData.append('*', file);
-        formData.append('*@TypeHint', 'sling:File');
+        formData.append("*", file);
+        formData.append("*@TypeHint", "sling:File");
+        formData.append("_charset_", "utf-8");
 
         const xhr = new XMLHttpRequest();
         xhr.upload.addEventListener('loadstart', () => {

@@ -18,10 +18,10 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <dl>
-    <dt>Position</dt>
+    <dt><fmt:message key="Position" /></dt>
     <dd><sling:encode value="${properties.position}" mode="HTML" /></dd>
-    <dt>Width</dt>
-    <dd><sling:encode value="${properties.width}" mode="HTML" /></dd>
-    <dt>Height</dt>
+    <dt><fmt:message key="Height" /></dt>
     <dd><sling:encode value="${properties.height}" mode="HTML" /></dd>
+    <dt><fmt:message key="Width" /></dt>
+    <dd><sling:encode value="${properties.width}" mode="HTML" /></dd>
 </dl>

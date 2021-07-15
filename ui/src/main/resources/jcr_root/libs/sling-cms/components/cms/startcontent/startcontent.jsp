@@ -21,9 +21,10 @@
 <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.StartContent" var="startContent" />
 <div class="columns">
     <div class="column">
-        <nav class="panel has-background-white" aria-label="<fmt:message key="slingcms.recentcontent" />">
+        <fmt:message key="Recent Content" var="recentContentMessage" />
+        <nav class="panel has-background-white" aria-label="${recentContentMessage}">
             <p class="panel-heading">
-                <fmt:message key="slingcms.recentcontent" />
+                ${recentContentMessage}
             </p>
             <c:forEach var="item" items="${startContent.recentContent}">
                 <a class="panel-block" title="${item.path}" href="/cms/site/content.html${item.parent.path}?resource=${item.path}">
@@ -53,12 +54,12 @@
     <div class="column">
         <nav class="panel has-background-white">
             <p class="panel-heading">
-                <fmt:message key="slingcms.findcontent" />
+                <fmt:message key="Find Content" />
             </p>
             <div class="panel-block">
                 <form method="get" class="get-form" data-target=".search-result-container" data-load="div" action="${resource.path}.search.html">
                     <p class="control has-icons-left">
-                        <label class="is-sr-only" for="search-term">Search</label>
+                        <label class="is-sr-only" for="search-term"><fmt:message key="Search" /></label>
                         <input class="input is-small" type="text" name="q" id="search-term" />
                         <span class="icon is-small is-left">
                             <i class="jam jam-search" aria-hidden="true"></i>

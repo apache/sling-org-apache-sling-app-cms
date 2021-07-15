@@ -20,7 +20,7 @@
 <br/>
 <h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${resource.path})</h3>
 <div class="panel">
-    <h4 class="panel-heading">Allowed Paths</h4>
+    <h4 class="panel-heading"><fmt:message key="Allowed Paths" /></h4>
     <div class="panel-body p-2">
         <ul>
             <c:forEach var="allowedPath" items="${properties.allowedPaths}">
@@ -34,7 +34,7 @@
 <hr/>
 <div class="panel">
     <h4 class="panel-heading">
-        Template Content
+        <fmt:message key="Template Content" />
     </h4>
     <div class="panel-body p-2">
         <pre><sling:encode value="${properties.template}" mode="HTML" /></pre>
@@ -43,7 +43,7 @@
 <hr/>
 <div class="panel">
     <h4 class="panel-heading">
-        Component Policies
+        <fmt:message key="Component Policies" />
     </h4>
     <div class="panel-body p-2">
         <c:set var="oldAvailableTypes" value="${availableTypes}" />
@@ -55,7 +55,7 @@
 <hr/>
 <div class="panel">
     <h4 class="panel-heading">
-        Configuration Fields
+        <fmt:message key="Configuration Fields" />
     </h4>
     <div class="panel-body p-2">
         <c:set var="oldAvailableTypes" value="${availableTypes}" />

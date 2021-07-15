@@ -27,7 +27,9 @@
     <nav class="level">
         <div class="level-left">
             <div class="level-item">
-                <a class="Button Fetch-Modal" data-title="Add Entry" data-path=".Main-Content form" href="/cms/i18n/entry/create.html${firstChild.path}">+ Entry</a>
+                <a class="Button Fetch-Modal" data-title="Add Entry" data-path=".Main-Content form" href="/cms/i18n/entry/create.html${firstChild.path}">
+                    <fmt:message key="+ Entry" />
+                </a>
             </div>
         </div>
     </nav>
@@ -38,7 +40,7 @@
                 <thead>
                     <tr>
                         <th class="Column-key" scope="col">
-                            Key
+                            <fmt:message key="Key" />
                         </th>
                         <c:forEach var="language" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
                             <c:if test="${not empty language.valueMap['jcr:language']}">
@@ -82,7 +84,7 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <button class="button is-primary">Save i18n Dictionary</button>
+            <button class="button is-primary"><fmt:message key="Save i18n Dictionary" /></button>
         </fieldset>
     </form>
 </div>

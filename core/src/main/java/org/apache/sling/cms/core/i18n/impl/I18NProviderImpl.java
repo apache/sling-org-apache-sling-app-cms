@@ -16,14 +16,18 @@
  */
 package org.apache.sling.cms.core.i18n.impl;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Value;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.cms.AuthorizableWrapper;
 import org.apache.sling.cms.i18n.I18NDictionary;
 import org.apache.sling.cms.i18n.I18NProvider;
 import org.apache.sling.commons.osgi.Order;
@@ -119,27 +123,26 @@ public class I18NProviderImpl implements I18NProvider {
 
     @Override
     public I18NDictionary getDictionary(ResourceResolver resolver) {
-
-        // TODO: make the locale a user field
-        Locale locale = Locale.ENGLISH;
-
+        AuthorizableWrapper wrapper = resolver.adaptTo(AuthorizableWrapper.class);
+        Locale locale = Optional.ofNullable(wrapper).map(AuthorizableWrapper::getAuthorizable).map(a -> {
+            try {
+                Value[] val = a.getProperty("profile/locale");
+                if (val != null && val.length == 0) {
+                    return val[0].getString();
+                } else {
+                    return Locale.ENGLISH.toLanguageTag();
+                }
+            } catch (RepositoryException e) {
+                return Locale.ENGLISH.toLanguageTag();
+            }
+        }).map(Locale::forLanguageTag).orElse(Locale.ENGLISH);
         CombinedBundleProvider cbp = new CombinedBundleProvider();
         return new I18NDictionaryImpl(cbp.getResourceBundle(locale));
     }
 
     @Override
     public I18NDictionary getDictionary(SlingHttpServletRequest request) {
-        List<Locale> locales = requestLocaleResolver.resolveLocale(request);
-
-        CombinedBundleProvider cbp = new CombinedBundleProvider();
-        ResourceBundle bundle = null;
-        for (Locale locale : locales) {
-            bundle = cbp.getResourceBundle(locale);
-            if (bundle != null) {
-                break;
-            }
-        }
-        return new I18NDictionaryImpl(bundle);
+       return getDictionary(request.getResourceResolver());
     }
 
     protected void unbindLocaleResolver(final LocaleResolver resolver) {
