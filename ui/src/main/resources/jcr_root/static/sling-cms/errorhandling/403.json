@@ -12,7 +12,7 @@
         "jcr:primaryType": "nt:unstructured",
         "sling:resourceType": "sling-cms/components/general/textelement",
         "i18n": true,
-        "level": "h3",
+        "level": "h1",
         "text": "Forbidden"
       },
       "description": {

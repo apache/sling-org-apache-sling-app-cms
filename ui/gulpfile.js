@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));;
 const header = require('gulp-header');
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');

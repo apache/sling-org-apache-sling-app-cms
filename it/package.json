@@ -12,11 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.3.4",
-    "cypress": "^7.2.0",
-    "cypress-audit": "^0.3.0",
-    "cypress-plugin-snapshots": "^1.4.4"
-  },
-  "dependencies": {
+    "cypress": "^7.7.0",
+    "cypress-audit": "^1.0.0",
+    "cypress-plugin-snapshots": "^1.4.4",
     "node-fetch": "^2.6.1"
   }
 }

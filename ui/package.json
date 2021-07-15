@@ -20,8 +20,9 @@
         "gulp-file-post": "^1.2.3",
         "gulp-header": "^2.0.7",
         "gulp-rename": "^2.0.0",
-        "gulp-sass": "^4.1.0",
-        "gulp-terser": "^1.4.0",
+        "gulp-sass": "^5.0.0",
+        "gulp-terser": "^2.0.1",
+        "sass": "^1.35.2",
         "streamqueue": "^1.1.2"
     },
     "license": "Apache-2.0"

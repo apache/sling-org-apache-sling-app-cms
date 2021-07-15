@@ -21,14 +21,14 @@ const { expect } = require("chai");
 const lighthouseConfig = require("../lighthouse-cfg.json");
 
 describe("Authorization Tests", () => {
-  it("validate 401", () => {
+  it("validate 403", () => {
     cy.request({ url: "/", failOnStatusCode: false }).should((response) => {
-      expect(response.status).to.equal(401);
+      expect(response.status).to.equal(403);
     });
   });
   it("recieve error page", () => {
     cy.visit("/", { failOnStatusCode: false });
-    cy.document().toMatchImageSnapshot({ name: "auth--401-page" });
+    cy.document().toMatchImageSnapshot({ name: "auth--403-page" });
 
     cy.pa11y();
   });
