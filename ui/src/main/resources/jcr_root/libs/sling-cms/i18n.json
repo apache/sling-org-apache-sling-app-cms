@@ -2934,6 +2934,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "الإبداع",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "تُحذف المستأجرة",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "الشحن",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "الإيجار",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "اسم الإيجار",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "شروط الإيجار",
+      "sling:key": "Renditions"
     }
   },
   "zh": {
@@ -4420,1458 +4450,1483 @@
     },
     "entry-295": {
       "jcr:primaryType": "sling:MessageEntry",
-      "sling:message": "联合执行董事会主席",
-      "sling:key": "Meta-schema for the security assessment of JSON Schemas"
-    },
-    "entry-296": {
-      "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "米格尔",
       "sling:key": "Min Grade Level"
     },
-    "entry-297": {
+    "entry-296": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "最低等级",
       "sling:key": "Minimum Grade Level"
     },
-    "entry-298": {
+    "entry-297": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "导 言",
       "sling:key": "Mode"
     },
-    "entry-299": {
+    "entry-298": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩纳哥",
       "sling:key": "Month"
     },
-    "entry-300": {
+    "entry-299": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "导 言",
       "sling:key": "Move"
     },
-    "entry-301": {
+    "entry-300": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔·阿金格",
       "sling:key": "Move / Copy Config"
     },
-    "entry-302": {
+    "entry-301": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔",
       "sling:key": "Move / Copy File"
     },
-    "entry-303": {
+    "entry-302": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔·金德",
       "sling:key": "Move / Copy Folder"
     },
-    "entry-304": {
+    "entry-303": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔·科塔什",
       "sling:key": "Move / Copy Group"
     },
-    "entry-305": {
+    "entry-304": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩托或涂料",
       "sling:key": "Move / Copy Mapping"
     },
-    "entry-306": {
+    "entry-305": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩托·古拉",
       "sling:key": "Move / Copy Page"
     },
-    "entry-307": {
+    "entry-306": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩托·金特",
       "sling:key": "Move / Copy Site"
     },
-    "entry-308": {
+    "entry-307": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔或金特集团",
       "sling:key": "Move / Copy Site Group"
     },
-    "entry-309": {
+    "entry-308": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "2. 摩托或金纳税 项目",
       "sling:key": "Move / Copy Taxonomy Item"
     },
-    "entry-310": {
+    "entry-309": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔或金字图",
       "sling:key": "Move / Copy Template"
     },
-    "entry-311": {
+    "entry-310": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩托或牙制品",
       "sling:key": "Move / Copy Transformation"
     },
-    "entry-312": {
+    "entry-311": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔·金塞",
       "sling:key": "Move / Copy User"
     },
-    "entry-313": {
+    "entry-312": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "摩韦尔·金斯科",
       "sling:key": "Move/Copy Content"
     },
-    "entry-314": {
+    "entry-313": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "多方选",
       "sling:key": "MultiSelect"
     },
-    "entry-315": {
+    "entry-314": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "多方面?",
       "sling:key": "Multiple Select?"
     },
-    "entry-316": {
+    "entry-315": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "姓名",
       "sling:key": "Name"
     },
-    "entry-317": {
+    "entry-316": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "新护照字",
       "sling:key": "New Password"
     },
-    "entry-318": {
+    "entry-317": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "新温得基金会",
       "sling:key": "New Window"
     },
-    "entry-319": {
+    "entry-318": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "无",
       "sling:key": "No"
     },
-    "entry-320": {
+    "entry-319": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "成果",
       "sling:key": "No Results"
     },
-    "entry-321": {
+    "entry-320": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "诺 选 斯",
       "sling:key": "No Selection Message"
     },
-    "entry-322": {
+    "entry-321": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "没有编辑为“0!”",
       "sling:key": "No editor configured for {0}!"
     },
-    "entry-323": {
+    "entry-322": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "诺德·巴代尔",
       "sling:key": "Node Browser"
     },
-    "entry-324": {
+    "entry-323": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "提名",
       "sling:key": "Node Name"
     },
-    "entry-325": {
+    "entry-324": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "未设立",
       "sling:key": "Not Found"
     },
-    "entry-326": {
+    "entry-325": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "未发表",
       "sling:key": "Not Published"
     },
-    "entry-327": {
+    "entry-326": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "数字",
       "sling:key": "Number"
     },
-    "entry-328": {
+    "entry-327": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "开放",
       "sling:key": "Open"
     },
-    "entry-329": {
+    "entry-328": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "在新的温得里?",
       "sling:key": "Open In New Window?"
     },
-    "entry-330": {
+    "entry-329": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "行动",
       "sling:key": "Operation"
     },
-    "entry-331": {
+    "entry-330": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "减少",
       "sling:key": "Optimize"
     },
-    "entry-332": {
+    "entry-331": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "F. 减少奴役",
       "sling:key": "Optimize File"
     },
-    "entry-333": {
+    "entry-332": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "电影的利用",
       "sling:key": "Optimize Files"
     },
-    "entry-334": {
+    "entry-333": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "全球化",
       "sling:key": "Optimized Size"
     },
-    "entry-335": {
+    "entry-334": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "备选案文",
       "sling:key": "Options"
     },
-    "entry-336": {
+    "entry-335": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "命令",
       "sling:key": "Order"
     },
-    "entry-337": {
+    "entry-336": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "原文",
       "sling:key": "Original Size"
     },
-    "entry-338": {
+    "entry-337": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "其他",
       "sling:key": "Other"
     },
-    "entry-339": {
+    "entry-338": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "B. 超额职业",
       "sling:key": "Override Type"
     },
-    "entry-340": {
+    "entry-339": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "巴布亚新几内亚",
       "sling:key": "PNG"
     },
-    "entry-341": {
+    "entry-340": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "包装布伦德目标",
       "sling:key": "Package Builder Target"
     },
-    "entry-342": {
+    "entry-341": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "页 次",
       "sling:key": "Page"
     },
-    "entry-343": {
+    "entry-342": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "项目1",
       "sling:key": "Page Item Class"
     },
-    "entry-344": {
+    "entry-343": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "模 图",
       "sling:key": "Page Template"
     },
-    "entry-345": {
+    "entry-344": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "B. 净类别",
       "sling:key": "PageLink Class"
     },
-    "entry-346": {
+    "entry-345": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "金 类",
       "sling:key": "Pagination Class"
     },
-    "entry-347": {
+    "entry-346": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "段 次 页 次",
       "sling:key": "Paragraph"
     },
-    "entry-348": {
+    "entry-347": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "护照",
       "sling:key": "Password"
     },
-    "entry-349": {
+    "entry-348": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "护照",
       "sling:key": "Password Label"
     },
-    "entry-350": {
+    "entry-349": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Path",
       "sling:key": "Path"
     },
-    "entry-351": {
+    "entry-350": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Path Depth",
       "sling:key": "Path Depth"
     },
-    "entry-352": {
+    "entry-351": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "帕思路",
       "sling:key": "Path Pattern"
     },
-    "entry-353": {
+    "entry-352": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "帕斯",
       "sling:key": "Paths"
     },
-    "entry-354": {
+    "entry-353": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "时地分配办法",
       "sling:key": "Pattern"
     },
-    "entry-355": {
+    "entry-354": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "地点",
       "sling:key": "Placeholder"
     },
-    "entry-356": {
+    "entry-355": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "政策",
       "sling:key": "Policy"
     },
-    "entry-357": {
+    "entry-356": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "政策分析",
       "sling:key": "Policy Path"
     },
-    "entry-358": {
+    "entry-357": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "立场",
       "sling:key": "Position"
     },
-    "entry-359": {
+    "entry-358": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "候选人",
       "sling:key": "Predecessors"
     },
-    "entry-360": {
+    "entry-359": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "评 注",
       "sling:key": "Preview"
     },
-    "entry-361": {
+    "entry-360": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "小学",
       "sling:key": "Primary URL"
     },
-    "entry-362": {
+    "entry-361": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "优先权",
       "sling:key": "Priority Queues"
     },
-    "entry-363": {
+    "entry-362": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "导 言",
       "sling:key": "Profile"
     },
-    "entry-364": {
+    "entry-363": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "简介",
       "sling:key": "Profile Properties"
     },
-    "entry-365": {
+    "entry-364": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "进展",
       "sling:key": "Progress"
     },
-    "entry-366": {
+    "entry-365": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "结 论",
       "sling:key": "Progress Log"
     },
-    "entry-367": {
+    "entry-366": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "资 历",
       "sling:key": "Properties"
     },
-    "entry-368": {
+    "entry-367": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "财产",
       "sling:key": "Property"
     },
-    "entry-369": {
+    "entry-368": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "B. 供应商集团",
       "sling:key": "Provider Config Groups"
     },
-    "entry-370": {
+    "entry-369": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "供应商",
       "sling:key": "Providers"
     },
-    "entry-371": {
+    "entry-370": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "出版",
       "sling:key": "Publication"
     },
-    "entry-372": {
+    "entry-371": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "A. 宣传",
       "sling:key": "Publication Agent"
     },
-    "entry-373": {
+    "entry-372": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "新闻工作者",
       "sling:key": "Publication Agents"
     },
-    "entry-374": {
+    "entry-373": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "公共出口",
       "sling:key": "Publication Exporter"
     },
-    "entry-375": {
+    "entry-374": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "公共出口商",
       "sling:key": "Publication Exporters"
     },
-    "entry-376": {
+    "entry-375": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "公共进口",
       "sling:key": "Publication Importer"
     },
-    "entry-377": {
+    "entry-376": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "公共进口公司",
       "sling:key": "Publication Importers"
     },
-    "entry-378": {
+    "entry-377": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "B. 公共运动",
       "sling:key": "Publication Mode"
     },
-    "entry-379": {
+    "entry-378": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "公共地位",
       "sling:key": "Publication Status"
     },
-    "entry-380": {
+    "entry-379": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "出版",
       "sling:key": "Publish"
     },
-    "entry-381": {
+    "entry-380": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "出版",
       "sling:key": "Published"
     },
-    "entry-382": {
+    "entry-381": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "出版日期",
       "sling:key": "Published Date"
     },
-    "entry-383": {
+    "entry-382": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "项目",
       "sling:key": "Pull Items"
     },
-    "entry-384": {
+    "entry-383": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "资格",
       "sling:key": "Query"
     },
-    "entry-385": {
+    "entry-384": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "资格",
       "sling:key": "Queue"
     },
-    "entry-386": {
+    "entry-385": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "A. 可以采用的程序",
       "sling:key": "Queue Processing Enabled"
     },
-    "entry-387": {
+    "entry-386": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "魁北克",
       "sling:key": "Queue Provider"
     },
-    "entry-388": {
+    "entry-387": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "无线电或检查箱",
       "sling:key": "Radio / Checkbox"
     },
-    "entry-389": {
+    "entry-388": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Reason",
       "sling:key": "Reason"
     },
-    "entry-390": {
+    "entry-389": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "最近的内容",
       "sling:key": "Recent Content"
     },
-    "entry-391": {
+    "entry-390": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "导 言",
       "sling:key": "Redirect"
     },
-    "entry-392": {
+    "entry-391": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "评 注",
       "sling:key": "Reference"
     },
-    "entry-393": {
+    "entry-392": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "参考资料-基地1",
       "sling:key": "Reference - Base Page"
     },
-    "entry-394": {
+    "entry-393": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "参考-Blog Post",
       "sling:key": "Reference - Blog Post Page"
     },
-    "entry-395": {
+    "entry-394": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "参考资料",
       "sling:key": "Reference Source"
     },
-    "entry-396": {
+    "entry-395": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "评 注",
       "sling:key": "References"
     },
-    "entry-397": {
+    "entry-396": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "移交",
       "sling:key": "Referrer"
     },
-    "entry-398": {
+    "entry-397": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "定期表示",
       "sling:key": "Regular Expression"
     },
-    "entry-399": {
+    "entry-398": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "卸货集装箱",
       "sling:key": "Reload Container"
     },
-    "entry-400": {
+    "entry-399": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "搬运",
       "sling:key": "Remove"
     },
-    "entry-401": {
+    "entry-400": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "取消就业",
       "sling:key": "Remove Job"
     },
-    "entry-402": {
+    "entry-401": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "重审",
       "sling:key": "Reorder"
     },
-    "entry-403": {
+    "entry-402": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "增 编",
       "sling:key": "Replace"
     },
-    "entry-404": {
+    "entry-403": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "改为",
       "sling:key": "Replace Properties"
     },
-    "entry-405": {
+    "entry-404": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "改为",
       "sling:key": "Replacement Path"
     },
-    "entry-406": {
+    "entry-405": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "拆除道路下的财产:",
       "sling:key": "Replacing properties under path:"
     },
-    "entry-407": {
+    "entry-406": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "答复",
       "sling:key": "Reply"
     },
-    "entry-408": {
+    "entry-407": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "出版",
       "sling:key": "Republish"
     },
-    "entry-409": {
+    "entry-408": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "请求授权 战略",
       "sling:key": "Request Authorization Strategy Target"
     },
-    "entry-410": {
+    "entry-409": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "请求参数",
       "sling:key": "Request Parameters"
     },
-    "entry-411": {
+    "entry-410": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "请求",
       "sling:key": "Request Password Reset"
     },
-    "entry-412": {
+    "entry-411": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "要求",
       "sling:key": "Required"
     },
-    "entry-413": {
+    "entry-412": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "所需案文a",
       "sling:key": "Required Textarea"
     },
-    "entry-414": {
+    "entry-413": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "护照处",
       "sling:key": "Reset Password"
     },
-    "entry-415": {
+    "entry-414": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "时间的选择",
       "sling:key": "Reset Timeout"
     },
-    "entry-416": {
+    "entry-415": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "恢复",
       "sling:key": "Restore"
     },
-    "entry-417": {
+    "entry-416": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "原恢复原状",
       "sling:key": "Restore Original"
     },
-    "entry-418": {
+    "entry-417": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "B. 恢复韦塞",
       "sling:key": "Restore Version"
     },
-    "entry-419": {
+    "entry-418": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "恢复原状的内容",
       "sling:key": "Restore the content to {0}"
     },
-    "entry-420": {
+    "entry-419": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "薪酬类",
       "sling:key": "Result Class"
     },
-    "entry-421": {
+    "entry-420": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "副主任",
       "sling:key": "Result Header Class"
     },
-    "entry-422": {
+    "entry-421": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "顾问",
       "sling:key": "Result Message"
     },
-    "entry-423": {
+    "entry-422": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "审评用户",
       "sling:key": "Review User Generated Content"
     },
-    "entry-424": {
+    "entry-423": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "重新编 写",
       "sling:key": "Rewrite Configuration"
     },
-    "entry-425": {
+    "entry-424": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "作者",
       "sling:key": "Rewriter"
     },
-    "entry-426": {
+    "entry-425": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Rewritten Attributes",
       "sling:key": "Rewritten Attributes"
     },
-    "entry-427": {
+    "entry-426": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Rich文本编辑",
       "sling:key": "Rich Text Editor"
     },
-    "entry-428": {
+    "entry-427": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "彩礼",
       "sling:key": "Row Class"
     },
-    "entry-429": {
+    "entry-428": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "STANDALONE",
       "sling:key": "STANDALONE"
     },
-    "entry-430": {
+    "entry-429": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Same Window",
       "sling:key": "Same Window"
     },
-    "entry-431": {
+    "entry-430": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "拯救",
       "sling:key": "Save"
     },
-    "entry-432": {
+    "entry-431": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "拯救",
       "sling:key": "Save As"
     },
-    "entry-433": {
+    "entry-432": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Save File",
       "sling:key": "Save File"
     },
-    "entry-434": {
+    "entry-433": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Save i18n Diction",
       "sling:key": "Save i18n Dictionary"
     },
-    "entry-435": {
+    "entry-434": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "储蓄",
       "sling:key": "Savings"
     },
-    "entry-436": {
+    "entry-435": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "建 议",
       "sling:key": "Search"
     },
-    "entry-437": {
+    "entry-436": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "考古班",
       "sling:key": "Search Class"
     },
-    "entry-438": {
+    "entry-437": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "建 议",
       "sling:key": "Search Form"
     },
-    "entry-439": {
+    "entry-438": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "当选",
       "sling:key": "Select"
     },
-    "entry-440": {
+    "entry-439": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "当选部门",
       "sling:key": "Select Component"
     },
-    "entry-441": {
+    "entry-440": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "当选",
       "sling:key": "Select Job"
     },
-    "entry-442": {
+    "entry-441": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "政策",
       "sling:key": "Select Policy"
     },
-    "entry-443": {
+    "entry-442": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "当选:",
       "sling:key": "Select Position:"
     },
-    "entry-444": {
+    "entry-443": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "选举",
       "sling:key": "Selection"
     },
-    "entry-445": {
+    "entry-444": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "附录",
       "sling:key": "Send Main"
     },
-    "entry-446": {
+    "entry-445": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "简介",
       "sling:key": "Set Profile Properties"
     },
-    "entry-447": {
+    "entry-446": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "签字",
       "sling:key": "Signup"
     },
-    "entry-448": {
+    "entry-447": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "单 权",
       "sling:key": "Single Select"
     },
-    "entry-449": {
+    "entry-448": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "特 耳",
       "sling:key": "Site"
     },
-    "entry-450": {
+    "entry-449": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "混凝土",
       "sling:key": "Site Configurations"
     },
-    "entry-451": {
+    "entry-450": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "地点",
       "sling:key": "Site Content"
     },
-    "entry-452": {
+    "entry-451": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "特派小组",
       "sling:key": "Site Group"
     },
-    "entry-453": {
+    "entry-452": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "标志",
       "sling:key": "Site Settings"
     },
-    "entry-454": {
+    "entry-453": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "圣地",
       "sling:key": "Sites"
     },
-    "entry-455": {
+    "entry-454": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS",
       "sling:key": "Sling CMS"
     },
-    "entry-456": {
+    "entry-455": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "处理CMS - Combo箱",
       "sling:key": "Sling CMS - Combobox"
     },
-    "entry-457": {
+    "entry-456": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 构成部分配置",
       "sling:key": "Sling CMS - Component Configuration"
     },
-    "entry-458": {
+    "entry-457": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 构成部分政策",
       "sling:key": "Sling CMS - Component Policies"
     },
-    "entry-459": {
+    "entry-458": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 构成部分政策",
       "sling:key": "Sling CMS - Component Policy"
     },
-    "entry-460": {
+    "entry-459": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 纤维参数",
       "sling:key": "Sling CMS - Config Parameter"
     },
-    "entry-461": {
+    "entry-460": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 编辑",
       "sling:key": "Sling CMS - File Editor"
     },
-    "entry-462": {
+    "entry-461": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "处理CMS - File Meta数据",
       "sling:key": "Sling CMS - File Metadata"
     },
-    "entry-463": {
+    "entry-462": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - Hidden外地",
       "sling:key": "Sling CMS - Hidden Field"
     },
-    "entry-464": {
+    "entry-463": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 投入外地",
       "sling:key": "Sling CMS - Input Field"
     },
-    "entry-465": {
+    "entry-464": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 成员",
       "sling:key": "Sling CMS - Members"
     },
-    "entry-466": {
+    "entry-465": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 成员",
       "sling:key": "Sling CMS - Membership"
     },
-    "entry-467": {
+    "entry-466": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "管理CMS - 政策协调",
       "sling:key": "Sling CMS - Policy Configuration"
     },
-    "entry-468": {
+    "entry-467": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 宣传外地",
       "sling:key": "Sling CMS - Publication Field"
     },
-    "entry-469": {
+    "entry-468": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 可读性",
       "sling:key": "Sling CMS - Readability Configuration"
     },
-    "entry-470": {
+    "entry-469": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "处理CMS - 档案",
       "sling:key": "Sling CMS - Rewriter"
     },
-    "entry-471": {
+    "entry-470": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Sling CMS - 重新撰写",
       "sling:key": "Sling CMS - Rewriter Configuration"
     },
-    "entry-472": {
+    "entry-471": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 采购外地",
       "sling:key": "Sling CMS - Select Field"
     },
-    "entry-473": {
+    "entry-472": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "处理CMS-Site Setting",
       "sling:key": "Sling CMS - Site Settings"
     },
-    "entry-474": {
+    "entry-473": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "处理CMS - 税务领域",
       "sling:key": "Sling CMS - Taxonomy Field"
     },
-    "entry-475": {
+    "entry-474": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 模版",
       "sling:key": "Sling CMS - Template Configuration"
     },
-    "entry-476": {
+    "entry-475": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "处理CMS - 模版",
       "sling:key": "Sling CMS - Templates Configuration"
     },
-    "entry-477": {
+    "entry-476": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 纺织场",
       "sling:key": "Sling CMS - Textarea Field"
     },
-    "entry-478": {
+    "entry-477": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 改变配置",
       "sling:key": "Sling CMS - Transformation Configuration"
     },
-    "entry-479": {
+    "entry-478": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 改变人类流传",
       "sling:key": "Sling CMS - Transformation Crop Handler"
     },
-    "entry-480": {
+    "entry-479": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS - 改变汉语",
       "sling:key": "Sling CMS - Transformation Size Handler"
     },
-    "entry-481": {
+    "entry-480": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "处理CMS - 改变配件",
       "sling:key": "Sling CMS - Transformations Configuration"
     },
-    "entry-482": {
+    "entry-481": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "D. 处理CMS 2. Thumbnails",
       "sling:key": "Sling CMS Thumbnails"
     },
-    "entry-483": {
+    "entry-482": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "导 言",
       "sling:key": "Start"
     },
-    "entry-484": {
+    "entry-483": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "B. 开始工作",
       "sling:key": "Start Job"
     },
-    "entry-485": {
+    "entry-484": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "导 言",
       "sling:key": "Started"
     },
-    "entry-486": {
+    "entry-485": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "国家",
       "sling:key": "State"
     },
-    "entry-487": {
+    "entry-486": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "物质",
       "sling:key": "Static Content"
     },
-    "entry-488": {
+    "entry-487": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "现状",
       "sling:key": "Status"
     },
-    "entry-489": {
+    "entry-488": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "建 议",
       "sling:key": "String"
     },
-    "entry-490": {
+    "entry-489": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "评 注",
       "sling:key": "Style Option"
     },
-    "entry-491": {
+    "entry-490": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "评 注",
       "sling:key": "Style Options"
     },
-    "entry-492": {
+    "entry-491": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Style Wrapper",
       "sling:key": "Style Wrapper"
     },
-    "entry-493": {
+    "entry-492": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "议 题",
       "sling:key": "Subject"
     },
-    "entry-494": {
+    "entry-493": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "附属类别",
       "sling:key": "Submit Class"
     },
-    "entry-495": {
+    "entry-494": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "附属法院",
       "sling:key": "Submit Label"
     },
-    "entry-496": {
+    "entry-495": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "案文",
       "sling:key": "Submit Text"
     },
-    "entry-497": {
+    "entry-496": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "次 问",
       "sling:key": "Subpath"
     },
-    "entry-498": {
+    "entry-497": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "组织",
       "sling:key": "Subsitution String"
     },
-    "entry-499": {
+    "entry-498": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "成功行动",
       "sling:key": "Success Action"
     },
-    "entry-500": {
+    "entry-499": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "成功问题",
       "sling:key": "Success Message"
     },
-    "entry-501": {
+    "entry-500": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "成功页",
       "sling:key": "Success Page"
     },
-    "entry-502": {
+    "entry-501": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "成功国",
       "sling:key": "Successors"
     },
-    "entry-503": {
+    "entry-502": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "uffix Head",
       "sling:key": "Suffix Header"
     },
-    "entry-504": {
+    "entry-503": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "资源不足",
       "sling:key": "Suffix Resource"
     },
-    "entry-505": {
+    "entry-504": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "B. 固定资源财产",
       "sling:key": "Suffix Resource Property"
     },
-    "entry-506": {
+    "entry-505": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "A. 制度",
       "sling:key": "System Console"
     },
-    "entry-507": {
+    "entry-506": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "表",
       "sling:key": "Table"
     },
-    "entry-508": {
+    "entry-507": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Tag",
       "sling:key": "Tag"
     },
-    "entry-509": {
+    "entry-508": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "塔格莱",
       "sling:key": "Tag Page"
     },
-    "entry-510": {
+    "entry-509": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Tag Root",
       "sling:key": "Tag Root"
     },
-    "entry-511": {
+    "entry-510": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "塔格斯",
       "sling:key": "Tags"
     },
-    "entry-512": {
+    "entry-511": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "目标帕",
       "sling:key": "Target Path"
     },
-    "entry-513": {
+    "entry-512": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "税务",
       "sling:key": "Taxonomy"
     },
-    "entry-514": {
+    "entry-513": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "税务项目",
       "sling:key": "Taxonomy Item"
     },
-    "entry-515": {
+    "entry-514": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "税务司",
       "sling:key": "Taxonomy Root"
     },
-    "entry-516": {
+    "entry-515": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "电话",
       "sling:key": "Telephone"
     },
-    "entry-517": {
+    "entry-516": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "模范",
       "sling:key": "Template"
     },
-    "entry-518": {
+    "entry-517": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "模范内容",
       "sling:key": "Template Content"
     },
-    "entry-519": {
+    "entry-518": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "模范",
       "sling:key": "Templates"
     },
-    "entry-520": {
+    "entry-519": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "用语",
       "sling:key": "Term"
     },
-    "entry-521": {
+    "entry-520": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "试验",
       "sling:key": "Test"
     },
-    "entry-522": {
+    "entry-521": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "试验表",
       "sling:key": "Test Form"
     },
-    "entry-523": {
+    "entry-522": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "案文",
       "sling:key": "Text"
     },
-    "entry-524": {
+    "entry-523": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "案文",
       "sling:key": "Text Field"
     },
-    "entry-525": {
+    "entry-524": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "案文area",
       "sling:key": "Textarea"
     },
-    "entry-526": {
+    "entry-525": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "要求的内容没有发现。",
       "sling:key": "The requested content was not found."
     },
-    "entry-527": {
+    "entry-526": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "这是利用Apache Sling框架建立的正式帐篷管理系统! 首先,选择了> 左边上来补充你的第一个网站。",
       "sling:key": "This is a full-featured Content Management System built using the Apache Sling Framework! To begin, select Manage >> Site on the left to add your first website."
     },
-    "entry-528": {
+    "entry-527": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Thumbnail",
       "sling:key": "Thumbnail"
     },
-    "entry-529": {
+    "entry-528": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "时间",
       "sling:key": "Time"
     },
-    "entry-530": {
+    "entry-529": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "标题",
       "sling:key": "Title"
     },
-    "entry-531": {
+    "entry-530": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "通 知",
       "sling:key": "To"
     },
-    "entry-532": {
+    "entry-531": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "工具",
       "sling:key": "Tools"
     },
-    "entry-533": {
+    "entry-532": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "教 中心",
       "sling:key": "Top Center"
     },
-    "entry-534": {
+    "entry-533": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "假释",
       "sling:key": "Top Left"
     },
-    "entry-535": {
+    "entry-534": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "权利",
       "sling:key": "Top Right"
     },
-    "entry-536": {
+    "entry-535": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "笔译",
       "sling:key": "Transformation"
     },
-    "entry-537": {
+    "entry-536": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "格式",
       "sling:key": "Transformation Format"
     },
-    "entry-538": {
+    "entry-537": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "A. 移 员",
       "sling:key": "Transformation Handlers"
     },
-    "entry-539": {
+    "entry-538": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "笔译名称",
       "sling:key": "Transformation Name"
     },
-    "entry-540": {
+    "entry-539": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "笔译",
       "sling:key": "Transformations"
     },
-    "entry-541": {
+    "entry-540": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "运输秘密供应目标",
       "sling:key": "Transport Secret Provider Target"
     },
-    "entry-542": {
+    "entry-541": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "类型",
       "sling:key": "Type"
     },
-    "entry-543": {
+    "entry-542": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "URL",
       "sling:key": "URL"
     },
-    "entry-544": {
+    "entry-543": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "未批准",
       "sling:key": "Unauthorized"
     },
-    "entry-545": {
+    "entry-544": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "预期例外",
       "sling:key": "Unexpected Exception"
     },
-    "entry-546": {
+    "entry-545": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "未出版",
       "sling:key": "Unpublish"
     },
-    "entry-547": {
+    "entry-546": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "最新地图",
       "sling:key": "Update Mapping"
     },
-    "entry-548": {
+    "entry-547": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "最新资料",
       "sling:key": "Update Profile"
     },
-    "entry-549": {
+    "entry-548": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "最新业绩",
       "sling:key": "Update Properties"
     },
-    "entry-550": {
+    "entry-549": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "最新资料?",
       "sling:key": "Update References?"
     },
-    "entry-551": {
+    "entry-550": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "最新用户资料",
       "sling:key": "Update User Generated Content"
     },
-    "entry-552": {
+    "entry-551": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "载 录",
       "sling:key": "Upload File"
     },
-    "entry-553": {
+    "entry-552": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "使用费",
       "sling:key": "User"
     },
-    "entry-554": {
+    "entry-553": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "使用费",
       "sling:key": "User Agent"
     },
-    "entry-555": {
+    "entry-554": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "用户创作",
       "sling:key": "User Generated"
     },
-    "entry-556": {
+    "entry-555": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "使用商",
       "sling:key": "User Generated Content"
     },
-    "entry-557": {
+    "entry-556": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "用户IP",
       "sling:key": "User IP"
     },
-    "entry-558": {
+    "entry-557": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "使用简介",
       "sling:key": "User Profile"
     },
-    "entry-559": {
+    "entry-558": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "使用情况",
       "sling:key": "User Status"
     },
-    "entry-560": {
+    "entry-559": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "传真号码:Label",
       "sling:key": "Username Label"
     },
-    "entry-561": {
+    "entry-560": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "用户和集团",
       "sling:key": "Users & Groups"
     },
-    "entry-562": {
+    "entry-561": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "用户或集团",
       "sling:key": "Users / Groups"
     },
-    "entry-563": {
+    "entry-562": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "价值",
       "sling:key": "Value"
     },
-    "entry-564": {
+    "entry-563": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "目 录",
       "sling:key": "Version"
     },
-    "entry-565": {
+    "entry-564": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "很少见",
       "sling:key": "View Insights"
     },
-    "entry-566": {
+    "entry-565": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "View Job",
       "sling:key": "View Job"
     },
-    "entry-567": {
+    "entry-566": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "评 注",
       "sling:key": "View References"
     },
-    "entry-568": {
+    "entry-567": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "我们对Apache Sling CMS!",
       "sling:key": "Welcome to the Apache Sling CMS!"
     },
-    "entry-569": {
+    "entry-568": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "A. 维德",
       "sling:key": "Width"
     },
-    "entry-570": {
+    "entry-569": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "吗?",
       "sling:key": "Wrap In Container?"
     },
-    "entry-571": {
+    "entry-570": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "强奸:第1页?",
       "sling:key": "Wrap in Page?"
     },
-    "entry-572": {
+    "entry-571": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "食堂",
       "sling:key": "Wrapper Class"
     },
-    "entry-573": {
+    "entry-572": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "食堂",
       "sling:key": "Wrapper Classes"
     },
-    "entry-574": {
+    "entry-573": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "第十条",
       "sling:key": "XML"
     },
-    "entry-575": {
+    "entry-574": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "否",
       "sling:key": "Yes"
     },
-    "entry-576": {
+    "entry-575": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "你不能获得所要求的资源。",
       "sling:key": "You cannot access the requested resource."
     },
-    "entry-577": {
+    "entry-576": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "ZIP",
       "sling:key": "ZIP"
     },
-    "entry-578": {
+    "entry-577": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "i18",
       "sling:key": "i18n"
     },
-    "entry-579": {
+    "entry-578": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "i18 守则",
       "sling:key": "i18n Code"
     },
-    "entry-580": {
+    "entry-579": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "i18 区别",
       "sling:key": "i18n Dictionaries"
     },
-    "entry-581": {
+    "entry-580": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "i18 迪亚拉特",
       "sling:key": "i18n Dictionarties"
     },
-    "entry-582": {
+    "entry-581": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "i18 区别",
       "sling:key": "i18n Dictionary"
     },
-    "entry-583": {
+    "entry-582": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "i18 不同实体",
       "sling:key": "i18n Dictionary Entries"
     },
-    "entry-584": {
+    "entry-583": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "N. 评 注",
       "sling:key": "N/A"
     },
-    "entry-585": {
+    "entry-584": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "附 件",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "创建",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "删除",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "D. 保留",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "重新定性",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "引渡名称",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "重新定性",
+      "sling:key": "Renditions"
     }
   },
   "fr": {
@@ -8805,6 +8860,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Créer",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Supprimer Rendition",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Télécharger Rendition",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition Name",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Renditions",
+      "sling:key": "Renditions"
     }
   },
   "de": {
@@ -11738,6 +11823,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Erstellen",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Löschen von Rendition",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition herunterladen",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Änderung",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Renditionsname",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Renditionen",
+      "sling:key": "Renditions"
     }
   },
   "hi": {
@@ -14671,6 +14786,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "यूजीसी",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "बनाना",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "डिलीट पुनर्व्यवस्था",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "डाउनलोड पुनर्व्यवस्था",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "पुनर्जागरण",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "नाम",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "धर्म",
+      "sling:key": "Renditions"
     }
   },
   "id": {
@@ -17609,6 +17754,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Login",
       "sling:key": "UGC"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Login",
+      "sling:key": "Create"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Hapus Rendition",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Unduh Rendition",
+      "sling:key": "Download Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Login",
+      "sling:key": "Rendition"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Nama Rendition",
+      "sling:key": "Rendition Name"
+    },
+    "entry-591": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Login",
+      "sling:key": "Renditions"
     }
   },
   "ga": {
@@ -20542,6 +20717,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "GCUI",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "tréimhse saoil: ilbhliantúil",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Scrios Aiseolas",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Íoslódáil an Athchúrsáil",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Aiséirí",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Ainm an Aisghabhála",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Aiseolas",
+      "sling:key": "Renditions"
     }
   },
   "it": {
@@ -23475,6 +23680,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Creare",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Cancellare la registrazione",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Scarica Rendition",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendizione",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Nome della registrazione",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendizioni",
+      "sling:key": "Renditions"
     }
   },
   "ja": {
@@ -26408,6 +26643,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGCについて",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "作成する",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "削除のレンダリング",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "ダウンロードのレンダリング",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "レンタル",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "レンタル名",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "レンタル",
+      "sling:key": "Renditions"
     }
   },
   "ko": {
@@ -29341,6 +29606,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "사이트맵",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "을 읽다",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition 삭제",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "다운로드 Rendition",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "언어 선택",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "이름 *",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "한국어",
+      "sling:key": "Renditions"
     }
   },
   "pl": {
@@ -32274,6 +32569,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Create",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Delete Rendition",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Download Rendition",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Nazwy Rendition",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition",
+      "sling:key": "Renditions"
     }
   },
   "pt": {
@@ -35207,6 +35532,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Criar um",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Excluir interpretação",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Baixar interpretação",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendição",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Nome de interpretação",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendições",
+      "sling:key": "Renditions"
     }
   },
   "ru": {
@@ -38140,6 +38495,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "УГК",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Создать",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Удаление Rendition",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Скачать Rendition",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Восстановить",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition Имя",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Восстановления",
+      "sling:key": "Renditions"
     }
   },
   "es": {
@@ -41073,6 +41458,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Crear",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Suprímase la entrega",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Descargar Rendición",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Entrega",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Nombre de la entrega",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendiciones",
+      "sling:key": "Renditions"
     }
   },
   "tr": {
@@ -44006,6 +44421,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Oluşturma",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition Sil",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition İndir",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Türkçe",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Rendition Adı",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Türkçe",
+      "sling:key": "Renditions"
     }
   },
   "vi": {
@@ -46939,6 +47384,36 @@
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "UGC",
       "sling:key": "UGC"
+    },
+    "entry-585": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Tạo ra",
+      "sling:key": "Create"
+    },
+    "entry-586": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Xóa điều kiện",
+      "sling:key": "Delete Rendition"
+    },
+    "entry-587": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Tải về",
+      "sling:key": "Download Rendition"
+    },
+    "entry-588": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Điều kiện",
+      "sling:key": "Rendition"
+    },
+    "entry-589": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Tên điều hòa",
+      "sling:key": "Rendition Name"
+    },
+    "entry-590": {
+      "jcr:primaryType": "sling:MessageEntry",
+      "sling:message": "Điều kiện",
+      "sling:key": "Renditions"
     }
   }
 }

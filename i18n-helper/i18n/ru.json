@@ -583,5 +583,11 @@
   "i18n Dictionary": "i18n словарь",
   "i18n Dictionary Entries": "i18n словарь записи",
   "N/A": "Н или А",
-  "UGC": "УГК"
+  "UGC": "УГК",
+  "Create": "Создать",
+  "Delete Rendition": "Удаление Rendition",
+  "Download Rendition": "Скачать Rendition",
+  "Rendition": "Восстановить",
+  "Rendition Name": "Rendition Имя",
+  "Renditions": "Восстановления"
 }

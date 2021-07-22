@@ -583,5 +583,11 @@
   "i18n Dictionary": "i18n Wörterbuch",
   "i18n Dictionary Entries": "i18n Wörterbuch Einträge",
   "N/A": "N oder A",
-  "UGC": "UGC"
+  "UGC": "UGC",
+  "Create": "Erstellen",
+  "Delete Rendition": "Löschen von Rendition",
+  "Download Rendition": "Rendition herunterladen",
+  "Rendition": "Änderung",
+  "Rendition Name": "Renditionsname",
+  "Renditions": "Renditionen"
 }

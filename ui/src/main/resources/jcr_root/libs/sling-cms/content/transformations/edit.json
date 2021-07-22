@@ -23,7 +23,7 @@
             },
             "transformationeditor": {
                 "jcr:primaryType": "nt:unstructured",
-                "sling:resourceType": "sling/commons/thumbnails/transformation"
+                "sling:resourceType": "sling/thumbnails/transformation"
             }
         }
     }

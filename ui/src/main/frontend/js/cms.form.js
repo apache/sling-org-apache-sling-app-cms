@@ -64,7 +64,10 @@ rava.bind('.Form-Ajax', {
           },
         });
         if (Sling.CMS.utils.ok(response)) {
-          const res = await response.json();
+          let res = {};
+          if (response.headers.get('content-type').indexOf("application/json") !== -1) {
+            res = await response.json();
+          }
           form.querySelector('.form-wrapper').disabled = false;
           if (callback && Sling.CMS.handlers[callback]) {
             Sling.CMS.handlers[callback](res, 'success');

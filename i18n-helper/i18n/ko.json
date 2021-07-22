@@ -583,5 +583,11 @@
   "i18n Dictionary": "i18n 사전",
   "i18n Dictionary Entries": "i18n 사전 항목",
   "N/A": "N 또는 A",
-  "UGC": "사이트맵"
+  "UGC": "사이트맵",
+  "Create": "을 읽다",
+  "Delete Rendition": "Rendition 삭제",
+  "Download Rendition": "다운로드 Rendition",
+  "Rendition": "언어 선택",
+  "Rendition Name": "이름 *",
+  "Renditions": "한국어"
 }

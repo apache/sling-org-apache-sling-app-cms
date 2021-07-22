@@ -1,9 +1,9 @@
 {
   "prototype": {
-    "id": "org.apache.sling:org.apache.sling.commons.thumbnails:slingosgifeature:default:1.0.0-SNAPSHOT"
+    "id": "org.apache.sling:org.apache.sling.thumbnails:slingosgifeature:default:1.0.0-SNAPSHOT"
   },
   "configurations": {
-    "org.apache.sling.commons.thumbnails.internal.ThumbnailSupportImpl": {
+    "org.apache.sling.thumbnails.internal.ThumbnailSupportImpl": {
       "errorSuffix": "/sling-cms-thumbnail.png",
       "errorResourcePath": "/static/sling-cms/thumbnails/file.png",
       "persistableTypes": ["sling:File=jcr:content/renditions"],
@@ -12,9 +12,9 @@
         "sling:File=jcr:content/jcr:mimeType"
       ]
     },
-    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-commons-thumbnails-core":{
+    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-thumbnails":{
         "user.mapping":[
-            "org.apache.sling.cms.core:sling-commons-thumbnails=[sling-commons-thumbnails]"
+            "org.apache.sling.thumbnails:sling-thumbnails=[sling-thumbnails]"
         ]
     }
   }

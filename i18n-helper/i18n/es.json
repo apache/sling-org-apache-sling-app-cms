@@ -583,5 +583,11 @@
   "i18n Dictionary": "i18n Dictionary",
   "i18n Dictionary Entries": "i18n Dictionary Entries",
   "N/A": "N o A",
-  "UGC": "UGC"
+  "UGC": "UGC",
+  "Create": "Crear",
+  "Delete Rendition": "Suprímase la entrega",
+  "Download Rendition": "Descargar Rendición",
+  "Rendition": "Entrega",
+  "Rendition Name": "Nombre de la entrega",
+  "Renditions": "Rendiciones"
 }

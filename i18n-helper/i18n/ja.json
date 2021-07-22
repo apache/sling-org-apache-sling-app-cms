@@ -583,5 +583,11 @@
   "i18n Dictionary": "i18n辞書",
   "i18n Dictionary Entries": "i18n辞書エントリ",
   "N/A": "N または A",
-  "UGC": "UGCについて"
+  "UGC": "UGCについて",
+  "Create": "作成する",
+  "Delete Rendition": "削除のレンダリング",
+  "Download Rendition": "ダウンロードのレンダリング",
+  "Rendition": "レンタル",
+  "Rendition Name": "レンタル名",
+  "Renditions": "レンタル"
 }

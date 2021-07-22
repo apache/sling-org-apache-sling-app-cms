@@ -78,7 +78,7 @@
             "sling-cms-thumbnail": {
                 "jcr:primaryType": "nt:unstructured",
                 "name": "sling-cms-thumbnail",
-                "sling:resourceType": "sling/commons/thumbnails/transformation",
+                "sling:resourceType": "sling/thumbnails/transformation",
                 "handlers": {
                     "jcr:primaryType": "nt:unstructured",
                     "crop": {
@@ -86,14 +86,14 @@
                         "position": "CENTER",
                         "height": "480",
                         "width": "600",
-                        "sling:resourceType": "sling/commons/thumbnails/transformers/crop"
+                        "sling:resourceType": "sling/thumbnails/transformers/crop"
                     }
                 }
             },
             "sling-cms-thumbnail128": {
                 "jcr:primaryType": "nt:unstructured",
                 "name": "sling-cms-thumbnail128",
-                "sling:resourceType": "sling/commons/thumbnails/transformation",
+                "sling:resourceType": "sling/thumbnails/transformation",
                 "handlers": {
                     "jcr:primaryType": "nt:unstructured",
                     "crop": {
@@ -101,14 +101,14 @@
                         "position": "CENTER",
                         "height": "128",
                         "width": "128",
-                        "sling:resourceType": "sling/commons/thumbnails/transformers/crop"
+                        "sling:resourceType": "sling/thumbnails/transformers/crop"
                     }
                 }
             },
             "sling-cms-thumbnail32": {
                 "jcr:primaryType": "nt:unstructured",
                 "name": "sling-cms-thumbnail32",
-                "sling:resourceType": "sling/commons/thumbnails/transformation",
+                "sling:resourceType": "sling/thumbnails/transformation",
                 "handlers": {
                     "jcr:primaryType": "nt:unstructured",
                     "crop": {
@@ -116,7 +116,7 @@
                         "height": "32",
                         "width": "32",
                         "position": "CENTER",
-                        "sling:resourceType": "sling/commons/thumbnails/transformers/crop"
+                        "sling:resourceType": "sling/thumbnails/transformers/crop"
                     }
                 }
             }

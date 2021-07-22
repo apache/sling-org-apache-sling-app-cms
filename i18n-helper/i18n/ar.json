@@ -583,5 +583,11 @@
   "i18n Dictionary": "I18n Dictionary",
   "i18n Dictionary Entries": "I18n Dictionary Entries",
   "N/A": "نون أو ألف",
-  "UGC": "UGC"
+  "UGC": "UGC",
+  "Create": "الإبداع",
+  "Delete Rendition": "تُحذف المستأجرة",
+  "Download Rendition": "الشحن",
+  "Rendition": "الإيجار",
+  "Rendition Name": "اسم الإيجار",
+  "Renditions": "شروط الإيجار"
 }

@@ -583,5 +583,11 @@
   "i18n Dictionary": "i18n Foclóir",
   "i18n Dictionary Entries": "i18n Foclóir Iontrálacha",
   "N/A": "N nó A",
-  "UGC": "GCUI"
+  "UGC": "GCUI",
+  "Create": "tréimhse saoil: ilbhliantúil",
+  "Delete Rendition": "Scrios Aiseolas",
+  "Download Rendition": "Íoslódáil an Athchúrsáil",
+  "Rendition": "Aiséirí",
+  "Rendition Name": "Ainm an Aisghabhála",
+  "Renditions": "Aiseolas"
 }

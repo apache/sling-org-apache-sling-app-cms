@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@include file="/libs/sling-cms/global.jsp"%>
-<td class="${colConfig.valueMap.show ? '' : 'is-vhidden'} cell-actions">
-    <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
-        <c:set var="actionConfig" value="${ac}" scope="request" />
-        <sling:include path="${resource.path}" resourceType="${actionConfig.resourceType}" />
-    </c:forEach>
-</td>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.thumbnails.TransformationManager" var="transformationManager" />
+<option value="">None</option>
+<c:forEach var="transformation" items="${transformationManager.transformations}">
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == transformation.name ? 'selected' : ''} value="${sling:encode(transformation.path,'HTML_ATTR')}">
+        ${sling:encode(transformation.name,'HTML')}
+    </option>
+</c:forEach>

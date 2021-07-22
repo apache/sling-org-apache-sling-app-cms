@@ -584,5 +584,11 @@
   "i18n Dictionary": "i18n Kamus",
   "i18n Dictionary Entries": "i18n Kamus Entries",
   "N/A": "Sitemap",
-  "UGC": "Login"
+  "UGC": "Login",
+  "Create": "Login",
+  "Delete Rendition": "Hapus Rendition",
+  "Download Rendition": "Unduh Rendition",
+  "Rendition": "Login",
+  "Rendition Name": "Nama Rendition",
+  "Renditions": "Login"
 }

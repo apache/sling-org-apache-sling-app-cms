@@ -17,9 +17,13 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="encoding" value="multipart/form-data" />
+<c:if test="${not empty properties.encoding}">
+    <c:set var="encoding" value="${properties.encoding}" />
+</c:if>
 <form method="post"
     action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}${sling:encode(properties.actionSuffix,'HTML_ATTR')}"
-    enctype="multipart/form-data" class="Form-Ajax"
+    enctype="${encoding}" class="Form-Ajax"
     data-add-date="${properties.addDate != false}"
     data-callback="${properties.callback}">
     <div class="form-wrapper pt-4 field">

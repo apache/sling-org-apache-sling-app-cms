@@ -583,5 +583,11 @@
   "i18n Dictionary": "Dicionário i18n",
   "i18n Dictionary Entries": "Dicionário i18n",
   "N/A": "N ou A",
-  "UGC": "UGC"
+  "UGC": "UGC",
+  "Create": "Criar um",
+  "Delete Rendition": "Excluir interpretação",
+  "Download Rendition": "Baixar interpretação",
+  "Rendition": "Rendição",
+  "Rendition Name": "Nome de interpretação",
+  "Renditions": "Rendições"
 }
