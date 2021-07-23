@@ -16,9 +16,14 @@ Apache Sling CMS uses [Apache Sling Commons Messing Mail](https://github.com/apa
 
 ## Crypto Configuration
 
-The Reference project includes base configurations for [Apache Sling Commons Crypto](https://sling.apache.org/documentation/bundles/commons-crypto.html), however you must still configure the [Apache Sling Commons Crypto “File Password Provider”](http://localhost:8080/system/console/configMgr/org.apache.sling.commons.crypto.internal.FilePasswordProvider).
+Apache Sling Commons Messing Mail uses [Apache Sling Commons Crypto](https://sling.apache.org/documentation/bundles/commons-crypto.html).
 
-The _Names_ for the configuration should be _default_ and the _Path_ should be the filesystem path to a file containing the password.
+To configure Commons Crypto, you should provide the following configurations:
+
+- org.apache.sling.commons.crypto.internal.FilePasswordProvider~[somename]
+- org.apache.sling.commons.crypto.jasypt.internal.JasyptRandomIvGeneratorRegistrar~[somename]
+- org.apache.sling.commons.crypto.jasypt.internal.JasyptRandomSaltGeneratorRegistrar~d[somename]
+- org.apache.sling.commons.crypto.jasypt.internal.JasyptStandardPBEStringCryptoService~[somename]
 
 ## SMTP Configuration
 

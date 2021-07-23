@@ -13,12 +13,21 @@
 # Releases
 
 
-## 1.0.2 - CURRENT VERSION
+## 1.0.4 - CURRENT VERSION
+
+Enhancements to the forms capabilities, support for logged in sites, support for content fragments and support for different instance types. Major build process update to use the Sling Feature Model instead of the Sling Provisioning Model.
+
+ * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-1.0.4)
+ * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/1.0.4)
+
+
+## 1.0.2
 
 Enhancements to the forms capabilities, support for logged in sites, support for content fragments and support for different instance types. Major build process update to use the Sling Feature Model instead of the Sling Provisioning Model.
 
  * [View Release](https://github.com/apache/sling-org-apache-sling-app-cms/releases/org.apache.sling.cms-1.0.2)
  * [API JavaDoc](http://javadoc.io/doc/org.apache.sling/org.apache.sling.cms.api/1.0.2)
+ * [Documentation](https://github.com/apache/sling-org-apache-sling-app-cms/tree/28837086739c63ca3efca5339cab887ae48775fb)
 
 ## 0.16.2
 
