@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<textarea class="textarea" name="${properties.name}" id="${properties.name}" ${required} ${disabled}>${value}</textarea>
+<textarea class="textarea" name="${sling:encode(properties.name,'HTML_ATTR')}" id="${sling:encode(properties.name,'HTML_ATTR')}" ${required} ${disabled}>${sling:encode(value,'HTML')}</textarea>

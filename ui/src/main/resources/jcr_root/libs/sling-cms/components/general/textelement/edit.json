@@ -51,6 +51,12 @@
         }
       }
     },
+    "href": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/editor/fields/text",
+      "label": "Link",
+      "name": "href"
+    },
     "i18n": {
       "jcr:primaryType": "nt:unstructured",
       "sling:resourceType": "sling-cms/components/editor/fields/select",

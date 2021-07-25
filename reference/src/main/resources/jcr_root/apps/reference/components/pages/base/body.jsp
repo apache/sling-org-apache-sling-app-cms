@@ -52,15 +52,15 @@
 		</div>
 		<div class="footer">
 			<div class="revisionInfo">
-				Last modified by <span class="author">${sling:encode(resource.valueMap['jcr:lastModifiedBy'],'HTML')}</span>
-				on <span class="comment"><fmt:formatDate type="both" dateStyle="long" timeStyle="long" value = "${resource.valueMap['jcr:lastModified'].time}" /></span>
+				Last modified by <span class="author">admin</span>
+				on <span class="comment">2021</span>
 			</div>
 			<p>
 				Apache Sling, Sling, Apache, the Apache feather logo, and the Apache Sling project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
 			</p>
 			<p>
 				<jsp:useBean id="date" class="java.util.Date" />
-				Copyright © 2011-<fmt:formatDate value="${date}" pattern="yyyy" /> The Apache Software Foundation.
+				Copyright ï¿½ 2011-2021 The Apache Software Foundation.
 			</p>
 		</div>
 	</div>

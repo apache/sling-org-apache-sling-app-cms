@@ -19,7 +19,7 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:choose>
     <c:when test="${properties.accepts}">
-        <c:set var="accepts" value="${properties.accepts}" />
+        <c:set var="accepts" value="${sling:encode(properties.accepts,'HTML_ATTR')}" />
     </c:when>
     <c:otherwise>
         <c:set var="accepts" value=".doc,.docx,.ppt,.pptx,.xls,.xlsx,image/*,audio/*,video/*,application/json,text/css,application/pdf" />
@@ -36,7 +36,7 @@
 </div>
 <div class="file is-fullwidth is-boxed">
     <label class="file-label">
-        <input type="file" class="file-input" name="${properties.name}" ${required} accept="${accepts}" multiple="multiple" />
+        <input type="file" class="file-input" name="${sling:encode(properties.name,'HTML_ATTR')}" ${required} accept="${accepts}" multiple="multiple" />
         <span class="file-cta">
             <span class="file-icon">
                 <em class="jam jam-upload"></em>

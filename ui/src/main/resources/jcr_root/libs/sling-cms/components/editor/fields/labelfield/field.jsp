@@ -20,7 +20,7 @@
  <div class="labelfield">
      <fieldset disabled="disabled" class="labelfield__template is-hidden">
          <a class="tag labelfield__item" title="">
-            <input type="hidden" name="${properties.name}" value="" />
+            <input type="hidden" name="${sling:encode(properties.name,'HTML_ATTR')}" value="" />
             <span class="labelfield__title">
             </span>
             <button class="delete is-small">
@@ -32,7 +32,7 @@
     </fieldset>
     <div class="labelfield__field field has-addons">
         <div class="control is-expanded">
-             <input class="input" type="text" ${required} ${disabled} id="${properties.name}" list="labelfield-${fn:replace(resource.name,':','-')}" autocomplete="off" />
+             <input class="input" type="text" ${required} ${disabled} id="${sling:encode(properties.name,'HTML_ATTR')}" list="labelfield-${fn:replace(resource.name,':','-')}" autocomplete="off" />
          </div>
          <div class="control">
              <button class="labelfield__add button">
@@ -48,6 +48,6 @@
          <sling:call script="values.jsp" />
      </div>
     <sling:call script="options" />
-    <input type="hidden" name="${properties.name}@TypeHint" value="String[]"/>
-    <input type="hidden" name="${properties.name}@Delete" value="delete" />
+    <input type="hidden" name="${sling:encode(properties.name,'HTML_ATTR')}@TypeHint" value="String[]"/>
+    <input type="hidden" name="${sling:encode(properties.name,'HTML_ATTR')}@Delete" value="delete" />
 </div>

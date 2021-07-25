@@ -207,7 +207,7 @@
                         "type": "reference/components/general/iframe",
                         "sling:resourceType": "sling-cms/components/caconfig/component",
                         "wrapperClasses": [
-                            "embed-responsive"
+                            "Responsive=embed-responsive"
                         ]
                     },
                     "component_1264147350": {

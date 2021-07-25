@@ -19,7 +19,7 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${not empty properties.src}">
     <c:if test="${not empty properties.transformation}">
-        <c:set var="transform" value=".transform/${properties.transformation}.${properties.transformationFormat}" />
+        <c:set var="transform" value=".transform/${sling:encode(properties.transformation,'HTML_ATTR')}.${properties.transformationFormat}" />
     </c:if>
-    <img src="${properties.src}${transform}" alt="${properties.alt}" class="${properties.imageClass}" />
+    <img src="${sling:encode(properties.src,'HTML_ATTR')}${transform}" alt="${sling:encode(properties.alt,'HTML_ATTR')}" class="${sling:encode(properties.imageClass,'HTML_ATTR')}" />
 </c:if>

@@ -18,3 +18,4 @@
  */
 
 import "cypress-audit/commands";
+

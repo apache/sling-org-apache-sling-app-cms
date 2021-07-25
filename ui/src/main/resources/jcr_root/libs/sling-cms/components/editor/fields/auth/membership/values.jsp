@@ -19,8 +19,8 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="auth" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" />
 <c:forEach var="group" items="${auth.declaredMembership}">
-    <a class="tag labelfield__item" title="${group.path}">
-        <input type="hidden" name="${properties.name}" value="${group.path}" />
+    <a class="tag labelfield__item" title="${sling:encode(group.path,'HTML_ATTR')}">
+        <input type="hidden" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(group.path,'HTML_ATTR')}" />
         <span class="labelfield__title">
             ${sling:encode(group,'HTML')}
         </span>

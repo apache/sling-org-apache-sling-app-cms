@@ -19,6 +19,6 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="field">
     <c:if test="${sling:getRelativeResource(slingRequest.requestPathInfo.suffixResource,properties.subpath) != null}">
-        <img src="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}/${sling:encode(properties.subpath,'HTML_ATTR')}${properties.suffix}" alt="${sling:encode(properties.alt,'HTML_ATTR')}" class="image ${properties.className}" />
+        <img src="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}/${sling:encode(properties.subpath,'HTML_ATTR')}${properties.suffix}" alt="${sling:encode(properties.alt,'HTML_ATTR')}" class="image ${sling:encode(properties.className,'HTML_ATTR')}" />
     </c:if>
 </div>

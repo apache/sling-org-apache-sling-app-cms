@@ -20,7 +20,7 @@
 <li>
     <c:choose>
         <c:when test="${item.resourceType == 'sling:File' || item.resourceType == 'nt:file'}">
-            <c:set var="url" value="${item.path }" />
+            <c:set var="url" value="${item.path}" />
         </c:when>
         <c:otherwise>
             <c:set var="url" value="${item.path}.html" />

@@ -19,8 +19,8 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo var="pageMgr" adaptable="${resource}" adaptTo="org.apache.sling.cms.PageManager" />
 <c:set var="searchConfig" value="${sling:adaptTo(resource,'org.apache.sling.cms.ComponentConfiguration').properties}" scope="request" />
-<form action="${pageMgr.page.path}.html" method="GET" class="${searchConfig.formClass}">
+<form action="${pageMgr.page.path}.html" method="GET" class="${sling:encode(searchConfig.formClass,'HTML_ATTR')}">
     <fmt:message key="Search" var="searchMessage" />
-    <input type="text" name="q" class="${searchConfig.inputClass}" placeholder="${searchMessage}" />
-    <input type="submit" class="${searchConfig.buttonClass}" value="${searchMessage}" />
+    <input type="text" name="q" class="${sling:encode(searchConfig.inputClass,'HTML_ATTR')}" placeholder="${sling:encode(searchMessage,'HTML_ATTR')}" />
+    <input type="submit" class="${searchConfig.buttonClass}" value="${sling:encode(searchMessage,'HTML_ATTR')}" />
 </form>

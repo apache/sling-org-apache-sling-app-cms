@@ -21,7 +21,7 @@
     <c:set var="multiple" value="multiple = \"multiple\"" />
 </c:if>
 <div class="select is-fullwidth">
-    <select name="${properties.name}" id="${properties.name}" ${required} ${disabled} ${multiple}>
+    <select name="${sling:encode(properties.name,'HTML_ATTR')}" id="${sling:encode(properties.name,'HTML_ATTR')}" ${required} ${disabled} ${multiple}>
         <c:choose>
             <c:when test="${not empty properties.options}">
                 <c:forEach var="option" items="${properties.options}">

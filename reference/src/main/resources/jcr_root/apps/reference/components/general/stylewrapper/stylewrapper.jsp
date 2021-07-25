@@ -23,6 +23,6 @@
 <c:if test="${ex != null}">
     <c:set var="style" value="${properties.style}" />
 </c:if>
-<div class="${style}">
+<div class="${sling:encode(style,'HTML_ATTR')}">
     <sling:include path="container" resourceType="sling-cms/components/general/container" />
 </div>

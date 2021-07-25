@@ -17,5 +17,9 @@
  * under the License.
  */
 
-import './commands'
-import 'cypress-plugin-snapshots/commands';
+import "./commands";
+import "cypress-plugin-snapshots/commands";
+
+Cypress.Cookies.defaults({
+  preserve: "sling.formauth",
+});
