@@ -18,11 +18,11 @@
  */
 /* global wysihtml, wysihtmlParserRules */
 
-rava.bind('.file', {
+rava.bind(".file", {
   callbacks: {
     created() {
       const field = this;
-      const close = field.closest('form').querySelector('a.close');
+      const close = field.closest("form").querySelector("a.close");
 
       function setProgress(m, progress) {
         const meter = m;
@@ -37,89 +37,131 @@ rava.bind('.file', {
         formData.append("_charset_", "utf-8");
 
         const xhr = new XMLHttpRequest();
-        xhr.upload.addEventListener('loadstart', () => {
-          setProgress(meter, 0);
-        }, false);
-        xhr.upload.addEventListener('progress', (event) => {
-          const percent = (event.loaded / event.total) * 100;
-          setProgress(meter, percent);
-        }, false);
-        xhr.upload.addEventListener('load', () => {
-          meter.classList.add('is-info');
-        }, false);
-        xhr.addEventListener('readystatechange', (event) => {
-          let status; let text; let
-            readyState;
-          try {
-            readyState = event.target.readyState;
-            text = event.target.responseText;
-            status = event.target.status;
-          } catch (e) {
-            meter.classList.add('is-danger');
-          }
-          if (readyState === 4) {
-            meter.classList.remove('is-info');
-            if (status === 200 && text) {
-              meter.classList.add('is-success');
-            } else {
-              meter.classList.add('is-danger');
-              console.warn('Failed to upload %s, recieved message %s', file.name, text); // eslint-disable-line no-console
+        xhr.upload.addEventListener(
+          "loadstart",
+          () => {
+            setProgress(meter, 0);
+          },
+          false
+        );
+        xhr.upload.addEventListener(
+          "progress",
+          (event) => {
+            const percent = (event.loaded / event.total) * 100;
+            setProgress(meter, percent);
+          },
+          false
+        );
+        xhr.upload.addEventListener(
+          "load",
+          () => {
+            meter.classList.add("is-info");
+          },
+          false
+        );
+        xhr.addEventListener(
+          "readystatechange",
+          (event) => {
+            let status;
+            let text;
+            let readyState;
+            try {
+              readyState = event.target.readyState;
+              text = event.target.responseText;
+              status = event.target.status;
+            } catch (e) {
+              meter.classList.add("is-danger");
             }
-          }
-        }, false);
-        xhr.open('POST', action, true);
+            if (readyState === 4) {
+              meter.classList.remove("is-info");
+              if (status === 200 && text) {
+                meter.classList.add("is-success");
+              } else {
+                meter.classList.add("is-danger");
+                console.warn(
+                  "Failed to upload %s, recieved message %s",
+                  file.name,
+                  text
+                ); // eslint-disable-line no-console
+              }
+            }
+          },
+          false
+        );
+        xhr.open("POST", action, true);
         xhr.send(formData);
       }
       function handleFile(scope, file) {
-        const it = document.createElement('div');
-        const ctr = scope.closest('.control').querySelector('.file-item-container');
+        const it = document.createElement("div");
+        const ctr = scope
+          .closest(".control")
+          .querySelector(".file-item-container");
         let meter = null;
-        it.innerHTML = document.querySelector('.file-item-template').innerHTML;
-        meter = it.querySelector('.progress');
-        it.querySelector('.file-item-name').innerText = file.name;
-        ctr.classList.remove('is-hidden');
+        it.innerHTML = document.querySelector(".file-item-template").innerHTML;
+        meter = it.querySelector(".progress");
+        it.querySelector(".file-item-name").innerText = file.name;
+        ctr.classList.remove("is-hidden");
         ctr.appendChild(it);
-        uploadFile(meter, scope.closest('form').action, file);
+        uploadFile(meter, scope.closest("form").action, file);
       }
 
-      field.addEventListener('dragover', (event) => {
-        event.preventDefault();
-      }, false);
-      field.addEventListener('dragenter', (event) => {
-        event.preventDefault();
-        field.classList.add('is-primary');
-      }, false);
-      field.addEventListener('dragleave', (event) => {
-        event.preventDefault();
-        if(!field.contains(event.fromElement)){
-          field.classList.remove('is-primary');
-        }
-      }, false);
-      field.addEventListener('drop', (event) => {
-        event.preventDefault();
-        field.classList.remove('is-primary');
-        if (event.dataTransfer.items) {
-          const { items } = event.dataTransfer;
-          for (let i = 0; i < items.length; i++) { // eslint-disable-line no-plusplus
-            if (items[i].kind === 'file') {
-              handleFile(field, items[i].getAsFile());
+      field.addEventListener(
+        "dragover",
+        (event) => {
+          event.preventDefault();
+        },
+        false
+      );
+      field.addEventListener(
+        "dragenter",
+        (event) => {
+          event.preventDefault();
+          field.classList.add("is-primary");
+        },
+        false
+      );
+      field.addEventListener(
+        "dragleave",
+        (event) => {
+          event.preventDefault();
+          if (!field.contains(event.fromElement)) {
+            field.classList.remove("is-primary");
+          }
+        },
+        false
+      );
+      field.addEventListener(
+        "drop",
+        (event) => {
+          event.preventDefault();
+          field.classList.remove("is-primary");
+          if (event.dataTransfer.items) {
+            const { items } = event.dataTransfer;
+            for (let i = 0; i < items.length; i++) {
+              // eslint-disable-line no-plusplus
+              if (items[i].kind === "file") {
+                handleFile(field, items[i].getAsFile());
+              }
+            }
+          } else {
+            const { files } = event.dataTransfer;
+            for (let i = 0; i < files.length; i++) {
+              // eslint-disable-line no-plusplus
+              handleFile(field, files[i]);
             }
           }
-        } else {
-          const { files } = event.dataTransfer;
-          for (let i = 0; i < files.length; i++) { // eslint-disable-line no-plusplus
-            handleFile(field, files[i]);
-          }
-        }
-      }, false);
-      field.closest('form').querySelector('button[type=submit]').remove();
-      close.innerText = 'Done';
-      close.addEventListener('click', () => {
+        },
+        false
+      );
+      field.closest("form").querySelector("button[type=submit]").remove();
+      close.innerText = "Done";
+      close.addEventListener("click", () => {
         window.Sling.CMS.ui.reloadContext();
       });
-      field.querySelector('input').addEventListener('change', (event) => {
+      field.querySelector("input").addEventListener("change", (event) => {
         const { files } = event.target;
-        for (let i = 0; i < files.length; i++) { // eslint-disable-line no-plusplus
+        for (let i = 0; i < files.length; i++) {
+          // eslint-disable-line no-plusplus
           handleFile(field, files[i]);
         }
       });
@@ -128,37 +170,41 @@ rava.bind('.file', {
 });
 
 /* Support for updating the namehint when creating a component */
-rava.bind('.namehint', {
+rava.bind(".namehint", {
   callbacks: {
     created() {
       const field = this;
-      this.closest('.Form-Ajax').querySelector('select[name="sling:resourceType"]').addEventListener('change', (evt) => {
-        const resourceType = evt.target.value.split('/');
-        field.value = resourceType[resourceType.length - 1];
-      });
+      this.closest(".Form-Ajax")
+        .querySelector('select[name="sling:resourceType"]')
+        .addEventListener("change", (evt) => {
+          const resourceType = evt.target.value.split("/");
+          field.value = resourceType[resourceType.length - 1];
+        });
     },
   },
 });
 
 /* Support for repeating form fields */
-rava.bind('.repeating', {
+rava.bind(".repeating", {
   callbacks: {
     created() {
       const ctr = this;
-      this.querySelectorAll('.repeating__add').forEach((el) => {
-        el.addEventListener('click', (event) => {
+      this.querySelectorAll(".repeating__add").forEach((el) => {
+        el.addEventListener("click", (event) => {
           event.stopPropagation();
           event.preventDefault();
-          const node = ctr.querySelector('.repeating__template > .repeating__item').cloneNode(true);
-          ctr.querySelector('.repeating__container').appendChild(node);
+          const node = ctr
+            .querySelector(".repeating__template > .repeating__item")
+            .cloneNode(true);
+          ctr.querySelector(".repeating__container").appendChild(node);
         });
       });
     },
   },
 });
-rava.bind('.repeating__item', {
+rava.bind(".repeating__item", {
   events: {
-    ':scope .repeating__remove': {
+    ":scope .repeating__remove": {
       click(event) {
         event.stopPropagation();
         event.preventDefault();
@@ -168,13 +214,38 @@ rava.bind('.repeating__item', {
   },
 });
 
-rava.bind('.rte', {
+rava.bind(".rte", {
   callbacks: {
     created() {
-      new wysihtml.Editor(this.querySelector('.rte-editor'), { // eslint-disable-line no-new, new-cap
-        toolbar: this.querySelector('.rte-toolbar'),
+      new wysihtml.Editor(this.querySelector(".rte-editor"), {
+        // eslint-disable-line no-new, new-cap
+        toolbar: this.querySelector(".rte-toolbar"),
         parserRules: wysihtmlParserRules,
       });
+    },
+  },
+});
+
+rava.bind('.field[data-events]:not([data-events=""])', {
+  callbacks: {
+    async created() {
+      const events = this.dataset.events.split(",").filter((e) => e !== "");
+      const res = await fetch(`${this.dataset.path}/events.json`, {
+        cache: "no-cache",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      const handlers = await res.json();
+      for (var event of events) {
+        this.querySelectorAll("input,select,textarea").forEach((el) => {
+          if (event === "load") {
+            Function(handlers[event])();
+          } else {
+            el.addEventListener(event, Function(handlers[event]));
+          }
+        });
+      }
     },
   },
 });

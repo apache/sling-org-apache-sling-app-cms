@@ -19,24 +19,28 @@
 /* global autoComplete */
 Sling.CMS.pathfield = null;
 
-rava.bind('input.pathfield', {
+rava.bind("input.pathfield", {
   callbacks: {
     created() {
-      const { type } = this.dataset;
-      const { base } = this.dataset;
-
-      new autoComplete({ // eslint-disable-line no-new, new-cap
+      const { base, type } = this.dataset;
+      const field = this;
+      // eslint-disable-line no-new, new-cap
+      new autoComplete({
         minChars: 1,
         selector: this,
+        debounce: 100,
+        onSelect: function (e, term, item) {
+          setTimeout(() => field.dispatchEvent(new Event("input")), 500);
+        },
         source(t, response) {
           let term = t;
-          if (term === '/') {
+          if (term === "/") {
             term = base;
           }
           fetch(
             `/bin/cms/paths?path=${encodeURIComponent(
-              term,
-            )}&type=${encodeURIComponent(type)}`,
+              term
+            )}&type=${encodeURIComponent(type)}`
           )
             .then((resp) => resp.json())
             .then((data) => {
@@ -48,15 +52,15 @@ rava.bind('input.pathfield', {
   },
 });
 
-rava.bind('.search-button', {
+rava.bind(".search-button", {
   events: {
     click() {
-      Sling.CMS.pathfield = this.closest('.field').querySelector('.pathfield');
+      Sling.CMS.pathfield = this.closest(".field").querySelector(".pathfield");
     },
   },
 });
 
-rava.bind('.search-select-button', {
+rava.bind(".search-select-button", {
   events: {
     click() {
       const { path } = this.dataset;
@@ -65,23 +69,24 @@ rava.bind('.search-select-button', {
       } else {
         Sling.CMS.pathfield.postMessage(
           {
-            action: 'slingcms.setpath',
+            action: "slingcms.setpath",
             path,
           },
-          window.location.origin,
+          window.location.origin
         );
       }
-      this.closest('.modal').remove();
+      this.closest(".modal").remove();
     },
   },
 });
 
 window.addEventListener(
-  'message',
+  "message",
   (event) => {
-    if (event.data.action === 'slingcms.setpath') {
+    if (event.data.action === "slingcms.setpath") {
       Sling.CMS.pathfield.value = event.data.path;
+      Sling.CMS.pathfield.dispatchEvent(new Event("change"));
     }
   },
-  false,
+  false
 );

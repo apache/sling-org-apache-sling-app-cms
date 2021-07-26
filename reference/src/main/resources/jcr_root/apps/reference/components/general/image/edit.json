@@ -13,7 +13,11 @@
             "label": "Image Source",
             "name": "src",
             "titleProperty": "jcr:content/jcr:title",
-            "required": true
+            "required": true,
+            "events": {
+                "input": "const srcValue = document.querySelector('input[name=src]').value;\r\nconst transformationField = document.querySelector('select[name=transformation]').closest('.field');\r\ntransformationField.disabled=true;\r\nconst url = `${transformationField.dataset.path}.html${location.pathname.replace('\/cms\/editor\/edit.html','')}?src=${srcValue}`;\r\nfetch(url).then(res => res.text()).then(html => {\r\n    const div = document.createElement('div');\r\n    div.innerHTML = html;    \r\n    transformationField.replaceWith(div.querySelector('.field'));\r\n});",
+                "load": "const srcValue = document.querySelector('input[name=src]').value;\r\nconst transformationField = document.querySelector('select[name=transformation]').closest('.field');\r\ntransformationField.disabled=true;\r\nconst url = `${transformationField.dataset.path}.html${location.pathname.replace('\/cms\/editor\/edit.html','')}?src=${srcValue}`;\r\nfetch(url).then(res => res.text()).then(html => {\r\n    const div = document.createElement('div');\r\n    div.innerHTML = html;    \r\n    transformationField.replaceWith(div.querySelector('.field'));\r\n});"
+            }
         },
         "transformation": {
             "jcr:primaryType": "nt:unstructured",
@@ -30,6 +34,11 @@
             "name": "transformationFormat",
             "required": false,
             "options": {
+                "default": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "label": "Default Extension",
+                    "value": "default"
+                },
                 "png": {
                     "jcr:primaryType": "nt:unstructured",
                     "label": "PNG",
