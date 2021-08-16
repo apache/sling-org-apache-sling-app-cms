@@ -87,6 +87,7 @@
                                     <form method="post" action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}" enctype="multipart/form-data" class="Form-Ajax" data-add-date="false">
                                         <fieldset class="form-wrapper field">
                                             <input type="hidden" name=":operation" value="restore" />
+                                            <input type="hidden" name=":checkoutPostOp" value="true" />
                                             <input type="hidden" name=":version" value="${version.name}" />
                                             <div class="Field-Group">
                                                 <fmt:message key="Restore the content to {0}" var="restoreMessage">
