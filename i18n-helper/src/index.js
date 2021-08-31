@@ -19,23 +19,12 @@ const fs = require("fs");
 
 const languages = require("./languages");
 
-const mappings = {
-  "&": "and",
-  "/": " or ",
-  "(": " ",
-  ")": " ",
-  "  ": " ",
-};
-
 if (!fs.existsSync("i18n/")) {
   fs.mkdirSync("i18n/");
 }
 
-function cleanSymbols(message = "") {
-  for (const key in mappings) {
-    message = message.replace(key, mappings[key]);
-  }
-  return message;
+if (!fs.existsSync("dist/")) {
+  fs.mkdirSync("dist/");
 }
 
 function cleanupMessages() {
@@ -50,29 +39,15 @@ function cleanupMessages() {
 async function main() {
   cleanupMessages();
 
-  await translateMessages();
-
+  findUntranslated();
+  
   writeToSlingCms();
 }
 
-async function translateMessage(message = "", targetLanguage = "en") {
-  const res = await fetch("http://localhost:5000/translate", {
-    method: "POST",
-    body: JSON.stringify({
-      q: cleanSymbols(message),
-      source: "en",
-      target: targetLanguage,
-    }),
-    headers: { "Content-Type": "application/json" },
-  });
-
-  const json = await res.json();
-  return json.translatedText;
-}
-
-async function translateMessages() {
+function findUntranslated() {
+  const untranslatedKeys = new Set();
   for (const language of languages) {
-    console.log(`Translating messages to: ${language}...`);
+    console.log(`Finding untranslated for ${language}...`);
     let translated = {};
     if (fs.existsSync(`i18n/${language}.json`)) {
       console.log("Loading existing dictionary...");
@@ -83,7 +58,8 @@ async function translateMessages() {
     for (const message of messages) {
       if (!translated[message]) {
         console.log(`Translating message: ${message}`);
-        translated[message] = await translateMessage(message, language);
+        translated[message] = "";
+        untranslatedKeys.add(message);
       } else {
         console.log(`Using existing message for: ${message}`);
       }
@@ -93,6 +69,9 @@ async function translateMessages() {
       JSON.stringify(translated, null, 2)
     );
   }
+  const untranslatedJson = {};
+  [...new Set(untranslatedKeys)].forEach((k) => (untranslatedJson[k] = k));
+
 }
 
 function writeToSlingCms() {

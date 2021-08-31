@@ -1,15 +1,20 @@
 # i18n Helper
 
-Automatically translates the i18n Dictionaries using LibreTranslate and updates the dictionaries in Sling CMS.
+Helps generate i18n Dictionaries based on a list of messages and languages.
+
+## Languages
+
+The translated languages are defined in the `i18n-helper/src/languages.json` file.
+
+## i18n Dictionaries
+
+The i18n dictionaries are generated in the `i18n-helper/i18n` directory. Dictionaries will not appended but replaced or keys removed.
 
 ## Dependencies
 
 - NodeJS
-- Docker
-- LibreTranslate
 
 ## Use
 
-1. Start LibreTranslate: `docker run -ti --rm -p 5000:5000 libretranslate/libretranslate`
-2. Run `npm install`
-3. Run `node .`
+1. Run `npm install`
+2. Run `node .`

@@ -592,5 +592,7 @@
   "Do you want to unpublish": "您是否要取消发布",
   "Existing Path": "存在路径",
   "Replacing properties under path": "替换此路径内所有资源的属性",
-  "Select Position": "选择位置"
+  "Select Position": "选择位置",
+  "Job Name": "",
+  "None": ""
 }
