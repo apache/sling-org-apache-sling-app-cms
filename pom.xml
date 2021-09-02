@@ -38,7 +38,7 @@
         <commons-io-version>2.8.0</commons-io-version>
         <commons-lang3-version>3.12.0</commons-lang3-version>
         <commons-text-version>1.9</commons-text-version>
-        <composum-version>1.12.4</composum-version>
+        <composum-nodes-version>2.6.6</composum-nodes-version>
         <geronimo-atinject_1-0_spec-version>1.2</geronimo-atinject_1-0_spec-version>
         <groovy-version>3.0.7</groovy-version>
         <httpclient-version>4.5.13</httpclient-version>

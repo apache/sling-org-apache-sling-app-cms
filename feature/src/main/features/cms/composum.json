@@ -2,28 +2,27 @@
 {
     "bundles":[
         {
-            "id":"com.composum.sling.core:composum-sling-core-commons:${composum-version}",
+            "id":"com.composum.nodes:composum-nodes-commons:${composum-nodes-version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-core-console:${composum-version}",
+            "id":"com.composum.nodes:composum-nodes-console:${composum-nodes-version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-core-jslibs:${composum-version}",
+            "id":"com.composum.nodes:composum-nodes-jslibs:${composum-nodes-version}",
             "start-order":"20"
         },
         {
-            "id":"com.composum.sling.core:composum-sling-package-manager:${composum-version}",
+            "id":"com.composum.nodes:composum-nodes-pckgmgr:${composum-nodes-version}",
             "start-order":"20"
         }
     ],
     "configurations":{
         "org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment~composum":{
             "whitelist.bundles":[
-                "com.composum.core.commons",
-                "com.composum.core.pckgmgr",
-                "com.composum.core.pckginstall"
+                "com.composum.nodes.commons",
+                "com.composum.nodes.pckgmgr"
             ],
             "whitelist.name":"composum"
         }
