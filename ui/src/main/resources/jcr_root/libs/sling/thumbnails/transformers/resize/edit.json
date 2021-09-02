@@ -1,0 +1,45 @@
+ {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "sling-cms/components/editor/slingform",
+    "button": "Save",
+    "fields": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/container",
+        "width": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Width",
+            "name": "width",
+            "type": "number"
+        },
+        "height": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Height",
+            "name": "height",
+            "type": "number"
+        },
+        "keepAspectRatio": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Keep Aspect Ratio",
+            "name": "keepAspectRatio",
+            "options": {
+                "yes": {
+                    "label": "Yes",
+                    "value": true
+                },
+                "no": {
+                    "label": "No",
+                    "value": false
+                }
+            }
+        },
+        "keepAspectRatioTypeHint": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/hidden",
+            "name": "keepAspectRatio@TypeHint",
+            "value": "Boolean"
+        }
+    }
+}

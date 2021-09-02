@@ -48,7 +48,12 @@
         <c:set var="value" value="${editProperties[properties.name]}" scope="request" />
     </c:otherwise>
 </c:choose>
-<div class="field">
+<c:forEach var="event" items="${sling:getRelativeResource(resource,'./events').valueMap}">
+    <c:if test="${!fn:contains(event.key,':')}">
+        <c:set var="events" value="${events},${event.key}" />
+    </c:if>
+</c:forEach>
+<div class="field" data-events="${events}" data-path="${resource.path}">
     <c:if test="${not empty properties.label}">
         <label class="label" for="${properties.name}">
             <fmt:message key="${properties.label}" var="label" />

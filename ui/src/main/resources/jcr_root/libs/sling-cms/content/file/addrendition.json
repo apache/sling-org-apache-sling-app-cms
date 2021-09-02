@@ -1,0 +1,62 @@
+{
+  "jcr:primaryType": "sling:Page",
+  "jcr:content": {
+    "sling:resourceType": "sling-cms/components/pages/modal",
+    "jcr:title": "Render File",
+    "jcr:primaryType": "nt:unstructured",
+    "container": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/general/container",
+      "slingform": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/editor/slingform",
+        "button": "Create",
+        "encoding": "application/x-www-form-urlencoded",
+        "successPrepend": "/cms/site/content.html",
+        "fields": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "sling-cms/components/general/container",
+          "resource": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/resourceparam",
+            "name": "resource",
+            "param": "resource"
+          },
+          "renditionName": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/text",
+            "label": "Rendition Name",
+            "name": "renditionName"
+          },
+          "transformation": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Transformation",
+            "name": "transformationResource",
+            "required": true,
+            "optionsScript": "/libs/sling-cms/components/editor/scripts/transformations.jsp"
+          },
+          "format": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Transformation Format",
+            "name": "format",
+            "required": true,
+            "options": {
+              "png": {
+                "jcr:primaryType": "nt:unstructured",
+                "label": "PNG",
+                "value": "png"
+              },
+              "jpg": {
+                "jcr:primaryType": "nt:unstructured",
+                "label": "Jpeg",
+                "value": "jpeg"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

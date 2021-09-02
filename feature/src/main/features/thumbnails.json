@@ -1,0 +1,21 @@
+{
+  "prototype": {
+    "id": "org.apache.sling:org.apache.sling.thumbnails:slingosgifeature:default:1.0.0-SNAPSHOT"
+  },
+  "configurations": {
+    "org.apache.sling.thumbnails.internal.ThumbnailSupportImpl": {
+      "errorSuffix": "/sling-cms-thumbnail.png",
+      "errorResourcePath": "/static/sling-cms/thumbnails/file.png",
+      "persistableTypes": ["sling:File=jcr:content/renditions"],
+      "supportedTypes": [
+        "nt:file=jcr:content/jcr:mimeType",
+        "sling:File=jcr:content/jcr:mimeType"
+      ]
+    },
+    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-thumbnails":{
+        "user.mapping":[
+            "org.apache.sling.thumbnails:sling-thumbnails=[sling-thumbnails]"
+        ]
+    }
+  }
+}

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${resource.path}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
+<a class="button Fetch-Modal" data-title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}" data-path="${actionConfig.valueMap.ajaxPath != null ? actionConfig.valueMap.ajaxPath : '.Main-Content form'}" href="${actionConfig.valueMap.prefix}${resource.path}${actionConfig.valueMap.suffix}" title="${sling:encode(actionConfig.valueMap.title,'HTML_ATTR')}">
     <span class="jam jam-${actionConfig.valueMap.icon}">
         <span class="is-sr-only">
             ${sling:encode(actionConfig.valueMap.title,'HTML')}

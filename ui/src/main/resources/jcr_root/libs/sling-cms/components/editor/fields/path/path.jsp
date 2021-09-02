@@ -55,9 +55,14 @@
         <c:if test="${properties.required}"><span class="has-text-danger">*</span></c:if>
     </label>
 </c:if>
+<c:forEach var="event" items="${sling:getRelativeResource(resource,'./events').valueMap}">
+    <c:if test="${!fn:contains(event.key,':')}">
+        <c:set var="events" value="${events},${event.key}" />
+    </c:if>
+</c:forEach>
 <c:choose>
     <c:when test="${properties.hidesearch != true}">
-        <div class="field has-addons">
+        <div class="field has-addons" data-events="${events}" data-path="${resource.path}">
           <div class="control is-expanded">
               <input class="input pathfield" type="text" id="${sling:encode(properties.name,'HTML_ATTR')}" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(value,'HTML_ATTR')}" ${required} ${disabled} data-type="${sling:encode(properties.type,'HTML_ATTR')}" data-base="${sling:encode(properties.basePath,'HTML_ATTR')}" autocomplete="off" />
           </div>
@@ -72,7 +77,7 @@
          </div>
     </c:when>
     <c:otherwise>
-        <div class="field">
+        <div class="field" data-events="${events}" data-path="${resource.path}">
             <div class="control">
                 <input class="input pathfield" type="text" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(value,'HTML_ATTR')}" ${required} ${disabled} data-type="${sling:encode(properties.type,'HTML_ATTR')}" data-base="${sling:encode(properties.basePath,'HTML_ATTR')}" autocomplete="off" />
             </div>

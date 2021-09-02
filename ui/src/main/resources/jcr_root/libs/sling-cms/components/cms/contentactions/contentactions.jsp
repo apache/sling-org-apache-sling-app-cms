@@ -22,7 +22,7 @@
         <div class="level-item">
             <div class="buttons has-addons">
                 <c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
-                    <a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
+                    <a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}${action.valueMap.suffix}">
                         + <fmt:message key="${action.valueMap.label}" />
                     </a>
                 </c:forEach>

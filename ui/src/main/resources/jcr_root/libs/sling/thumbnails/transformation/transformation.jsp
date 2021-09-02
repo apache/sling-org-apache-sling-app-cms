@@ -17,9 +17,10 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td class="${colConfig.valueMap.show ? '' : 'is-vhidden'} cell-actions">
-    <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
-        <c:set var="actionConfig" value="${ac}" scope="request" />
-        <sling:include path="${resource.path}" resourceType="${actionConfig.resourceType}" />
-    </c:forEach>
-</td>
+<div class="scroll-container">
+    <c:set var="cmsEditEnabled" value="true" scope="request" />
+    <sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
+    <sling:include path="${slingRequest.requestPathInfo.suffix}" resourceType="sling/thumbnails/transformation/config" />
+    <sling:call script="/libs/sling-cms/components/editor/scripts/finalize.jsp" />
+    <c:set var="cmsEditEnabled" value="false" scope="request" />
+</div>

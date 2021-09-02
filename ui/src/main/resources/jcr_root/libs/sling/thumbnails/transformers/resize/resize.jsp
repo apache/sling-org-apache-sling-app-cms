@@ -16,10 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
-<%@include file="/libs/sling-cms/global.jsp"%>
-<td class="${colConfig.valueMap.show ? '' : 'is-vhidden'} cell-actions">
-    <c:forEach var="ac" items="${sling:listChildren(colConfig)}">
-        <c:set var="actionConfig" value="${ac}" scope="request" />
-        <sling:include path="${resource.path}" resourceType="${actionConfig.resourceType}" />
-    </c:forEach>
-</td>
+ <%@include file="/libs/sling-cms/global.jsp"%>
+<dl>
+    <dt>Width</dt>
+    <dd><sling:encode value="${properties.width}" mode="HTML" /></dd>
+    <dt>Height</dt>
+    <dd><sling:encode value="${properties.height}" mode="HTML" /></dd>
+    <dt>Keep Aspect Ratio</dt>
+    <dd><sling:encode value="${properties.keepAspectRatio}" mode="HTML" /></dd>
+</dl>

@@ -67,7 +67,7 @@ window.Sling.CMS = {
     },
     confirmReload(res, msg) {
       if (window.self !== window.top) {
-        window.top.Sling.CMS.ui.confirmMessage(msg, res.title, () => {
+        window.top.Sling.CMS.ui.confirmMessage(msg, res ? res.title : '', () => {
           window.top.location.reload();
         });
       } else {
@@ -77,7 +77,7 @@ window.Sling.CMS = {
       }
     },
     confirmReloadComponent(res, msg, path) {
-      window.top.Sling.CMS.ui.confirmMessage(msg, res.title, () => {
+      window.top.Sling.CMS.ui.confirmMessage(msg, res ? res.title : '', () => {
         const modal = window.top.Sling.CMS.ui.loaderModal();
         window.parent.window.CMSEditor.ui.reloadComponent(path, () => {
           modal.remove();

@@ -270,6 +270,14 @@
                                     "icon": "download",
                                     "prefix": "/cms/file/download.html"
                                 },
+                                "renditions": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "sling:resourceType": "sling-cms/components/cms/actions/modal",
+                                    "title": "Renditions",
+                                    "icon": "pictures",
+                                    "prefix": "/cms/file/renditions.table.html",
+                                    "suffix": "/jcr:content/renditions"
+                                },
                                 "references": {
                                     "jcr:primaryType": "nt:unstructured",
                                     "sling:resourceType": "sling-cms/components/cms/actions/modal",

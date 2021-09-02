@@ -1,5 +1,0 @@
-{
-    "jcr:primaryType": "sling:Component",
-    "jcr:title": "Sling CMS - Transformation Crop Handler",
-    "componentType": "SlingCMS-TransformationHandler"
-}

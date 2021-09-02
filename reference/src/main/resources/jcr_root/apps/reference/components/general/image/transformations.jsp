@@ -17,10 +17,10 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.transformer.TransformationManager" var="transformationManager" />
+<sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.thumbnails.RenderedResource" var="rendered" />
 <option value=""><fmt:message key="None" /></option>
-<c:forEach var="transformation" items="${transformationManager.transformations}">
-    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == transformation.name ? 'selected' : ''} value="${sling:encode(transformation.name,'HTML_ATTR')}">
-        ${sling:encode(transformation.name,'HTML')}
+<c:forEach var="rendition" items="${rendered.supportedRenditions}">
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == rendition ? 'selected' : ''} value="${sling:encode(rendition,'HTML_ATTR')}">
+        ${sling:encode(rendition,'HTML')}
     </option>
 </c:forEach>
