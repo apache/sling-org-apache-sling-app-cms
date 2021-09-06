@@ -594,5 +594,11 @@
   "Replacing properties under path": "替换此路径内所有资源的属性",
   "Select Position": "选择位置",
   "Job Name": "",
-  "None": ""
+  "None": "",
+  "Create": "",
+  "Delete Rendition": "",
+  "Download Rendition": "",
+  "Rendition": "",
+  "Rendition Name": "",
+  "Renditions": ""
 }

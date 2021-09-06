@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const fetch = require("node-fetch");
 const fs = require("fs");
 
 const languages = require("./languages");
