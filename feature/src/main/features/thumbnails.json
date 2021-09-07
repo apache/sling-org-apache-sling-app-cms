@@ -1,6 +1,6 @@
 {
   "prototype": {
-    "id": "org.apache.sling:org.apache.sling.thumbnails:slingosgifeature:default:1.0.0-SNAPSHOT"
+    "id": "org.apache.sling:org.apache.sling.thumbnails:slingosgifeature:default:1.0.0"
   },
   "configurations": {
     "org.apache.sling.thumbnails.internal.ThumbnailSupportImpl": {
