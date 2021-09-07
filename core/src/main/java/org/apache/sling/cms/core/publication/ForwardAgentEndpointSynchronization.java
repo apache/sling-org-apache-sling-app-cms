@@ -22,6 +22,7 @@ import java.util.Dictionary;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.cms.publication.INSTANCE_TYPE;
 import org.apache.sling.discovery.InstanceDescription;
 import org.apache.sling.discovery.TopologyEvent;
@@ -56,7 +57,7 @@ public class ForwardAgentEndpointSynchronization implements TopologyEventListene
     }
 
     private void updateInstances(Set<InstanceDescription> instances) {
-        log.info("updateInstances");
+        log.trace("updateInstances");
 
         String[] endpoints = instances.stream().map(id -> {
             String endpointBase = id.getProperty(InstanceDescription.PROPERTY_ENDPOINTS).split("\\,")[0];
@@ -90,8 +91,18 @@ public class ForwardAgentEndpointSynchronization implements TopologyEventListene
         }
     }
 
+    private boolean agentTargetSet() {
+        return StringUtils.isNotBlank(config.agentTarget());
+    }
+
     @Override
     public void handleTopologyEvent(TopologyEvent event) {
+
+        if (!agentTargetSet()) {
+            log.debug("Agent targets not set, skipping update");
+            return;
+        }
+
         Set<InstanceDescription> renderers = event.getNewView().findInstances(id -> INSTANCE_TYPE.RENDERER.toString()
                 .equals(id.getProperty(PublicationPropertyProvider.INSTANCE_TYPE)));
         updateInstances(renderers);

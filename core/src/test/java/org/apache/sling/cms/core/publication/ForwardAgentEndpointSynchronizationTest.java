@@ -16,8 +16,11 @@
  */
 package org.apache.sling.cms.core.publication;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -54,11 +57,35 @@ public class ForwardAgentEndpointSynchronizationTest {
         ConfigurationAdmin configAdmin = Mockito.mock(ConfigurationAdmin.class);
         Configuration sampleConfig = Mockito.mock(Configuration.class);
 
-        Dictionary<String,Object> properties = new Hashtable<>();
+        Dictionary<String, Object> properties = new Hashtable<>();
         Mockito.when(sampleConfig.getPid()).thenReturn("org.apache.sling");
         Mockito.when(sampleConfig.getProperties()).thenReturn(properties);
-       
+
         Mockito.when(configAdmin.listConfigurations(Mockito.any())).thenReturn(new Configuration[] { sampleConfig });
+
+        ForwardAgentEndpointSynchronization sync = new ForwardAgentEndpointSynchronization(configAdmin,
+                new ForwardAgentEndpointSynchronizationConfig() {
+
+                    @Override
+                    public Class<? extends Annotation> annotationType() {
+                        return null;
+                    }
+
+                    @Override
+                    public String agentTarget() {
+                        return "(thing=1)";
+                    }
+
+                });
+        sync.handleTopologyEvent(event);
+        assertTrue(Arrays.equals(new String[] { "https://sling.apache.org/libs/distribute" },
+                (String[]) properties.get(ForwardAgentEndpointSynchronization.ENDPOINT_PROPERTY)));
+    }
+
+    @Test
+    public void testNoTarget() throws IOException, InvalidSyntaxException {
+        TopologyEvent event = Mockito.mock(TopologyEvent.class);
+        ConfigurationAdmin configAdmin = Mockito.mock(ConfigurationAdmin.class);
 
         ForwardAgentEndpointSynchronization sync = new ForwardAgentEndpointSynchronization(configAdmin,
                 new ForwardAgentEndpointSynchronizationConfig() {
@@ -75,8 +102,8 @@ public class ForwardAgentEndpointSynchronizationTest {
 
                 });
         sync.handleTopologyEvent(event);
-        assertTrue(Arrays.equals(new String[] { "https://sling.apache.org/libs/distribute" },
-                (String[]) properties.get(ForwardAgentEndpointSynchronization.ENDPOINT_PROPERTY)));
+        verify(event, never()).getNewView();
+
     }
 
     @Test
@@ -99,12 +126,13 @@ public class ForwardAgentEndpointSynchronizationTest {
 
                     @Override
                     public String agentTarget() {
-                        return null;
+                        return "(thing=1)";
                     }
 
                 });
         sync.handleTopologyEvent(event);
-        assertFalse(false);
+        verify(event, times(1)).getNewView();
+        verify(configAdmin, times(1)).listConfigurations(anyString());
     }
 
 }
