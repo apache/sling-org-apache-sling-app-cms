@@ -25,7 +25,7 @@
                     #
                 </th>
                 <th scope="col">
-                    <fmt:message key="Job Name" />
+                    <fmt:message key="Job Name" />
                 </th>
                 <th scope="col">
                     <fmt:message key="Started" />
