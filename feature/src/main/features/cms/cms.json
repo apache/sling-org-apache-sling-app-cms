@@ -13,10 +13,6 @@
             "start-order": "20"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.cms.transformer:${cms-version}",
-            "start-order": "20"
-        },
-        {
             "id": "org.apache.sling:org.apache.sling.cms.login:${cms-version}",
             "start-order": "20"
         }
