@@ -39,7 +39,7 @@ async function main() {
   cleanupMessages();
 
   findUntranslated();
-  
+
   writeToSlingCms();
 }
 
@@ -70,7 +70,13 @@ function findUntranslated() {
   }
   const untranslatedJson = {};
   [...new Set(untranslatedKeys)].forEach((k) => (untranslatedJson[k] = k));
+}
 
+function slugify(key) {
+  return key
+    .substring(0, 50)
+    .replace(/[\W_]+/g, "-")
+    .toLowerCase();
 }
 
 function writeToSlingCms() {
@@ -90,14 +96,17 @@ function writeToSlingCms() {
       "jcr:language": language,
       "sling:resourceType": "sling-cms/components/cms/blank",
     };
-    let i = 0;
-    for (const key of Object.keys(translated)) {
-      langJson[`entry-${i}`] = {
-        "jcr:primaryType": "sling:MessageEntry",
-        "sling:message": translated[key],
-        "sling:key": key,
-      };
-      i++;
+
+    const messages = require("./messages");
+    for (const message of messages) {
+      if (translated[message]) {
+        langJson[`msg-${slugify(message, { lower: true }).substring(0, 40)}`] =
+          {
+            "jcr:primaryType": "sling:MessageEntry",
+            "sling:message": translated[message],
+            "sling:key": message,
+          };
+      }
     }
     i18n[language] = langJson;
   }

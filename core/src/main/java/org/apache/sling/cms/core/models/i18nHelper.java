@@ -16,10 +16,10 @@
  */
 package org.apache.sling.cms.core.models;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.jcr.query.Query;
 
@@ -36,7 +36,7 @@ public class i18nHelper {
 
     private Resource resource;
 
-    private Set<String> keys = new HashSet<>();
+    private Set<String> keys = new TreeSet<>();
 
     private Random rand = new Random();
 
