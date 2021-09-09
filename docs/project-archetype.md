@@ -20,7 +20,7 @@ To create a project with the archetype, run the following command:
 
     mvn archetype:generate -DarchetypeGroupId=org.apache.sling \
       -DarchetypeArtifactId=org.apache.sling.cms.archetype \
-      -DarchetypeVersion=0.14.0
+      -DarchetypeVersion=[RELEASE_VERSION]
 
 You should then enter the following values:
 

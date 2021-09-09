@@ -39,6 +39,7 @@ In addition to these reference components, there are two general use components 
 
  - container - a container into which other components can be added. This is the most foundational component in Sling CMS allowing for component-driven content development
  - rte - a HTML based rich text editor using [wysihtml](http://wysihtml.com/) as the RTE
+ - textelement - a block level text element which can be run through i18n
  
 ## Form Components
 
@@ -46,6 +47,8 @@ There are a number of components specifically for configuring the form.
 
 **Form Value Provider**
 
+ - requestparameters - Loads form values from the request parameters
+ - suffixresource - Loads form values from the suffix resource
  - userprofile - Loads form field values from the current user's profile subnode
  
 **Form Field**
@@ -55,3 +58,14 @@ There are a number of components specifically for configuring the form.
  - selection - allows for the users to select from options defined in tags, can be rendered as radio, checkboxes or a dropdown
  - textfield - basic text field with support for HTML5 types
  - textarea - basic text area
+
+**Form Actions**
+
+ - createuser - creates a new user based on the form data
+ - deleteugc - deletes user generated content
+ - requestpasswordreset - requests a password reset
+ - resetpassword - resets the password for a user
+ - sendemail - sends an email
+ - updateprofile - updates the user's profile
+ - updateugc - updates user generated content
+ - usergeneratedcontent - creates user generated content
