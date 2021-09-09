@@ -101,6 +101,7 @@ describe("Taxonomy Tests", () => {
     cy.get('tr[data-resource="/etc/taxonomy/new-reference"]').click();
     cy.get('.has-addons>a[title="Delete Taxonomy Item"]').click();
 
+    doneLoading();
     cy.get(".modal").should("be.visible");
     cy.document().toMatchImageSnapshot({
       name: "taxonomy--delete",
