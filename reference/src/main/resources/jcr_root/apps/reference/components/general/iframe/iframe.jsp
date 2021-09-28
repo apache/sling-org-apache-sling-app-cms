@@ -19,7 +19,7 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${not empty properties.src}">
     <sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.ComponentConfiguration" var="cmpCfg" />
-    <div class="${sling:encode(properties.wrapperClass,'HTML_ATTR')}}">
+    <div class="${sling:encode(properties.wrapperClass,'HTML_ATTR')}">
         <iframe src="${sling:encode(properties.src,'HTML_ATTR')}" class="${sling:encode(cmpCfg.properties.iframeClass,'HTML_ATTR')}" ${properties.allowFullscreen}></iframe>
     </div>
 </c:if>
