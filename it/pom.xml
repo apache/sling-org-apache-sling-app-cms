@@ -23,7 +23,6 @@
     <name>Apache Sling - CMS Integration Tests</name>
 
     <properties>
-        <sling.java.version>8</sling.java.version>
         <bnd.baseline.skip>true</bnd.baseline.skip>
     </properties>
 

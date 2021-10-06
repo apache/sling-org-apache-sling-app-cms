@@ -15,9 +15,6 @@
     <name>Apache Sling - CMS API</name>
     <description>An API for the Apache Sling Reference CMS Application</description>
 
-    <properties>
-        <sling.java.version>8</sling.java.version>
-    </properties>
 
     <build>
         <plugins>
@@ -29,8 +26,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${sling.cms.java.version}</source>
+                    <target>${sling.cms.java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

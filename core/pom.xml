@@ -15,9 +15,6 @@
     <name>Apache Sling - CMS Core</name>
     <description>The core for the Apache Sling Reference CMS Application</description>
 
-    <properties>
-        <sling.java.version>8</sling.java.version>
-    </properties>
 
     <build>
         <plugins>
@@ -29,8 +26,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${sling.cms.java.version}</source>
+                    <target>${sling.cms.java.version}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -119,10 +116,6 @@
             <artifactId>org.apache.sling.rewriter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.cocoon</groupId>
-            <artifactId>cocoon-serializers-charsets</artifactId>
-        </dependency>
-        <dependency>
             <artifactId>jstl</artifactId>
             <groupId>org.apache.geronimo.bundles</groupId>
         </dependency>
@@ -147,10 +140,6 @@
             <artifactId>org.apache.sling.cms.api</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.jackrabbit</groupId>
-            <artifactId>oak-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -189,37 +178,13 @@
             <artifactId>org.apache.sling.fileoptim</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.coobird</groupId>
-            <artifactId>thumbnailator</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <artifactId>pdfbox</artifactId>
-            <groupId>org.apache.pdfbox</groupId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-scratchpad</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.commons.classloader</artifactId>
-        </dependency>
-        <dependency>
-            <artifactId>oak-jcr</artifactId>
-            <groupId>org.apache.jackrabbit</groupId>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
@@ -236,10 +201,6 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.discovery.api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.jknack</groupId>
-            <artifactId>handlebars</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>

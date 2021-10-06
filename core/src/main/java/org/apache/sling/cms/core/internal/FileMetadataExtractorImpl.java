@@ -18,9 +18,7 @@ package org.apache.sling.cms.core.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,11 +36,6 @@ import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.wiring.FrameworkWiring;
-import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,46 +44,12 @@ import org.xml.sax.SAXException;
 @Component(service = FileMetadataExtractor.class)
 public class FileMetadataExtractorImpl implements FileMetadataExtractor {
 
-    private static final String METADATA_EXTRACTOR_BUNDLE_NAME = "org.apache.sling.cms.metadata-extractor";
-
     private static final Logger log = LoggerFactory.getLogger(FileMetadataExtractorImpl.class);
-
-    private BundleContext bcx;
-
-    @Activate
-    public void activate(ComponentContext context) {
-        bcx = context.getBundleContext();
-    }
 
     @Override
     public Map<String, Object> extractMetadata(File file) throws IOException {
         try {
             return extractMetadata(file.getResource());
-        } catch (NoClassDefFoundError ncdfe) {
-
-            log.info("Caught exception: {}, Attempting to reload metadata extractor bundle", String.valueOf(ncdfe));
-            Bundle metadataExtractorBundle = Arrays.stream(bcx.getBundles())
-                    .filter(b -> METADATA_EXTRACTOR_BUNDLE_NAME.equals(b.getSymbolicName())).findFirst().orElse(null);
-
-            if (metadataExtractorBundle != null) {
-                try {
-                    log.debug("Reloading metadata bundle: {}", metadataExtractorBundle);
-                    Bundle systemBundle = bcx.getBundle(0);
-                    metadataExtractorBundle.stop();
-                    metadataExtractorBundle.start();
-
-                    FrameworkWiring frameworkWiring = systemBundle.adapt(FrameworkWiring.class);
-                    frameworkWiring.refreshBundles(Collections.singleton(metadataExtractorBundle));
-                    log.debug("Bundle reloaded successfully!");
-                } catch (Exception e) {
-                    log.warn("Failed to refresh metadata exporter packages", e);
-                }
-            }
-            try {
-                return extractMetadata(file.getResource());
-            } catch (SAXException | TikaException | NoClassDefFoundError e) {
-                throw new IOException("Failed to parse metadata after reloading metadata extractor bundle", e);
-            }
         } catch (SAXException | TikaException e) {
             throw new IOException("Failed to parse metadata", e);
         }

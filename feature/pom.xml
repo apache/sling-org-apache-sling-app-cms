@@ -23,7 +23,6 @@
     <name>Apache Sling - CMS Feature Model</name>
 
     <properties>
-        <sling.java.version>8</sling.java.version>
         <IT.expected.bundles.count>240</IT.expected.bundles.count>
         <bnd.baseline.skip>true</bnd.baseline.skip>
         <run.sling.smoke.test>true</run.sling.smoke.test>
