@@ -62,6 +62,7 @@
 [sling:Site] > nt:hierarchyNode, mix:lastModified
     orderable
     - sling:configRef (string)
+    - sling:sitemapRoot (boolean)
     - sling:url (string)
     - jcr:language (string)
     - jcr:title (string)

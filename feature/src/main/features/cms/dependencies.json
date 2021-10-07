@@ -107,6 +107,10 @@
         {
             "id": "org.apache.sling:org.apache.sling.security:1.1.20",
             "start-order": "20"
+        },
+        {
+            "id": "org.apache.sling:org.apache.sling.sitemap:${org-apache-sling-sitemap-version}",
+            "start-order": "20"
         }
     ],
     "configurations": {
@@ -136,6 +140,12 @@
                 "org.apache.sling.serviceuser.webconsole"
             ],
             "whitelist.name": "org.apache.sling.serviceuser.webconsole"
+        },
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sitemap": {
+            "user.mapping": [
+                "org.apache.sling.sitemap:sitemap-reader=[sling-readall]",
+                "org.apache.sling.sitemap:sitemap-writer=sling-cms-sitemapwriter"
+            ]
         }
     }
 }

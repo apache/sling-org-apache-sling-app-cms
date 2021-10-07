@@ -63,9 +63,8 @@ public class PageInsightRequestImpl implements PageInsightRequest {
     private String getContents(String url) {
         log.trace("getLocalPageHTML");
         if (!markupCache.containsKey(url)) {
-            String requestPath = page.getPath() + ".html";
-            log.debug("Loading local page HTML from {}", requestPath);
-            HttpServletRequest req = new FakeRequest("GET", requestPath);
+            log.debug("Loading local page HTML from {}", url);
+            HttpServletRequest req = new FakeRequest("GET", url);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             HttpServletResponse resp;
             try {

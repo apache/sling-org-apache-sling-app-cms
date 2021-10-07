@@ -1,0 +1,24 @@
+{
+    "bundles": [
+    ],
+    "configurations": {
+        "org.apache.sling.sitemap.impl.SitemapServlet": {
+            "sling.servlet.resourceTypes": [
+                "reference/components/pages/base"
+            ],
+            "sling.servlet.selectors": [
+                "sitemap",
+                "sitemap-index"
+            ],
+            "sling.servlet.extensions": [
+                "xml"
+            ]
+        },
+        "org.apache.sling.sitemap.impl.SitemapScheduler~default": {
+            "scheduler.name": "default-sitemap",
+            "scheduler.expression": "0 0 */4 * * ?",
+            "scheduler.runOn": "SINGLE",
+            "scheduler.concurrent": false
+        }
+    }
+} 
