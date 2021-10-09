@@ -20,6 +20,7 @@ package org.apache.sling.cms.core.insights.impl;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.Page;
@@ -36,6 +38,7 @@ import org.apache.sling.engine.SlingRequestProcessor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +49,7 @@ public class PageInsightRequestImpl implements PageInsightRequest {
 
     private static final Logger log = LoggerFactory.getLogger(PageInsightRequestImpl.class);
 
-    private Map<String, String> markupCache = new HashMap<>();
+    private String markupCache;
 
     private final Page page;
 
@@ -60,25 +63,6 @@ public class PageInsightRequestImpl implements PageInsightRequest {
         this.resourceResolver = page.getResource().getResourceResolver();
     }
 
-    private String getContents(String url) {
-        log.trace("getLocalPageHTML");
-        if (!markupCache.containsKey(url)) {
-            String requestPath = page.getPath() + ".html";
-            log.debug("Loading local page HTML from {}", requestPath);
-            HttpServletRequest req = new FakeRequest("GET", requestPath);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            HttpServletResponse resp;
-            try {
-                resp = new FakeResponse(out);
-                requestProcessor.processRequest(req, resp, resourceResolver);
-            } catch (ServletException | IOException | NoSuchAlgorithmException e) {
-                log.warn("Exception retrieving page contents for {}", url, e);
-            }
-            markupCache.put(url, out.toString());
-        }
-        return markupCache.get(url);
-    }
-
     @Override
     public Page getPage() {
         return this.page;
@@ -86,12 +70,18 @@ public class PageInsightRequestImpl implements PageInsightRequest {
 
     @Override
     public Element getPageBodyElement() throws IOException {
-        return Jsoup.parseBodyFragment(getPageBodyHtml()).body();
+        Document doc = getPageDocument();
+        Elements main = doc.getElementsByTag("main");
+        if(!main.isEmpty()){
+            return main.first();
+        } else {
+            return doc.body();
+        }
     }
 
     @Override
     public String getPageBodyHtml() throws IOException {
-        return getContents(page.getPath() + "/jcr:content/container.html");
+        return getPageBodyElement().html();
     }
 
     @Override
@@ -101,7 +91,21 @@ public class PageInsightRequestImpl implements PageInsightRequest {
 
     @Override
     public String getPageHtml() throws IOException {
-        return getContents(page.getPath() + ".html");
+        if (markupCache == null) {
+            String url = page.getPath() + ".html";
+            log.debug("Loading local page HTML from {}", url);
+            HttpServletRequest req = new FakeRequest("GET", url);
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            HttpServletResponse resp;
+            try {
+                resp = new FakeResponse(out);
+                requestProcessor.processRequest(req, resp, resourceResolver);
+            } catch (ServletException | IOException | NoSuchAlgorithmException e) {
+                log.warn("Exception retrieving page contents for {}", url, e);
+            }
+            markupCache = new String(out.toByteArray(), StandardCharsets.UTF_8);
+        }
+        return markupCache;
     }
 
     @Override

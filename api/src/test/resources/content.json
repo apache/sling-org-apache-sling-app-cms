@@ -42,7 +42,7 @@
     "apache": {
         "jcr:primaryType": "sling:OrderedFolder",
         "jcr:createdBy": "admin",
-        "sling:configRef": "/conf/global",
+        "sling:configRef": "/conf/asf",
         "jcr:created": "Wed May 15 2019 12:40:00 GMT-0400",
         "jcr:content": {
             "jcr:primaryType": "nt:unstructured",
@@ -60,7 +60,7 @@
                 "jcr:content": {
                     "jcr:primaryType": "nt:unstructured",
                     "jcr:title": "Not Published",
-                    "sling:template": "/conf/global/site/templates/base-page",
+                    "sling:template": "/conf/asf/site/templates/base-page",
                     "sling:resourceType": "reference/components/pages/base",
                     "sling:published": false
                 }
