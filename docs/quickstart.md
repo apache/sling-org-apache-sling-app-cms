@@ -21,8 +21,8 @@ This guide will give you a quick introduction to getting started with Sling CMS.
 
 This installation is the simplest option for developers or those looking to quickly set up a test instance Sling CMS. To run the Sling CMS on a local envionment:
 
- 1. Download the [Sling CMS JAR](https://search.maven.org/search?q=org.apache.sling.cms) to a directory on your computer. The jar that you are looking for has the name `java -jar org.apache.sling.app.cms-[version].jar`
- 2. Run the command `java -jar org.apache.sling.app.cms-[version].jar` to start Sling CMS
+ 1. Download the [Sling CMS JAR](https://github.com/apache/sling-org-apache-sling-app-cms/releases) to a directory on your computer. 
+ 2. Run the command `java -jar org.apache.sling.app.cms-[version].jar` to start Sling 9CMS
  3. Open a browser and navigate to [http://localhost:8080/](http://localhost:8080/). The default credentials are *admin*/*admin*.
 
 ## Installing on a VM with Vagrant
