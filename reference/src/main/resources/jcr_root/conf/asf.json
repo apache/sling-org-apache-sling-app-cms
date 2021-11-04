@@ -2,13 +2,112 @@
     "jcr:primaryType": "sling:OrderedFolder",
     "jcr:content": {
       "jcr:primaryType": "nt:unstructured",
-      "jcr:title": "Global"
+      "jcr:title": "Apache Software Foundation"
     },
     "site": {
       "jcr:primaryType": "sling:OrderedFolder",
       "jcr:content": {
         "jcr:primaryType": "nt:unstructured",
         "jcr:title": "ASF Site Configuration"
+      },
+      "policies": {
+        "jcr:primaryType": "sling:Config",
+        "jcr:title": "Default Policy",
+        "sling:resourceType": "sling-cms/components/caconfig/policies",
+        "bootstrap": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "Bootstrap CSS Policy",
+          "availableComponentTypes": ["General"],
+          "sling:resourceType": "sling-cms/components/caconfig/policy",
+          "componentConfigurations": {
+            "jcr:primaryType": "nt:unstructured",
+            "component": {
+              "jcr:primaryType": "nt:unstructured",
+              "fieldConfigGroups": "Form Field,General",
+              "checkInputClass": "form-check-input",
+              "fieldGroupClass": "form-group",
+              "checkLabelClass": "form-check-label",
+              "fieldRequiredClass": "text-danger",
+              "type": "reference/components/forms/form",
+              "submitClass": "btn btn-primary",
+              "fieldClass": "form-control",
+              "actionConfigGroups": "Form Action",
+              "providerConfigGroups": "Form Value Provider",
+              "sling:resourceType": "sling-cms/components/caconfig/component",
+              "checkFieldClass": "form-check",
+              "formClass": "form",
+              "alertClass": "alert alert-dark"
+            },
+            "component_1310080869": {
+              "jcr:primaryType": "nt:unstructured",
+              "ctaClasses": ["Primary=btn-primary"],
+              "type": "reference/components/general/cta",
+              "sling:resourceType": "sling-cms/components/caconfig/component"
+            },
+            "component_867209498": {
+              "jcr:primaryType": "nt:unstructured",
+              "type": "reference/components/general/columncontrol",
+              "containerclass": "container",
+              "columns": [
+                "100%=col-md-12",
+                "50% 50%=col-6,col-6",
+                "33% 33% 33%=col-4,col-4,col-4"
+              ],
+              "rowClass": "row",
+              "sling:resourceType": "sling-cms/components/caconfig/component"
+            },
+            "component_1644835788": {
+              "jcr:primaryType": "nt:unstructured",
+              "iframeClass": "frame",
+              "type": "reference/components/general/iframe",
+              "sling:resourceType": "sling-cms/components/caconfig/component",
+              "wrapperClasses": ["Responsive=embed-responsive"]
+            },
+            "component_1264147350": {
+              "jcr:primaryType": "nt:unstructured",
+              "type": "reference/components/general/image",
+              "sling:resourceType": "sling-cms/components/caconfig/component",
+              "imageClasses": ["Responsive=img-responsive"]
+            },
+            "component_2817746": {
+              "jcr:primaryType": "nt:unstructured",
+              "pageItemClass": "page-item",
+              "pageLinkClass": "page-link",
+              "type": "reference/components/general/list",
+              "paginationClass": "pagination",
+              "sling:resourceType": "sling-cms/components/caconfig/component"
+            },
+            "component_55724978": {
+              "jcr:primaryType": "nt:unstructured",
+              "pageItemClass": "page-item",
+              "pageLinkClass": "page-link",
+              "searchClass": "search",
+              "resultClass": "search-result",
+              "type": "reference/components/general/search",
+              "paginationClass": "pagination",
+              "resultHeaderClass": "search-header",
+              "sling:resourceType": "sling-cms/components/caconfig/component"
+            },
+            "component_928101893": {
+              "jcr:primaryType": "nt:unstructured",
+              "buttonClass": "btn btn-primary",
+              "type": "reference/components/general/searchform",
+              "sling:resourceType": "sling-cms/components/caconfig/component",
+              "inputClass": "input",
+              "formClass": "form"
+            },
+            "component_1816434016": {
+              "jcr:primaryType": "nt:unstructured",
+              "tagPage": "",
+              "listClass": "tag-list",
+              "type": "reference/components/general/tags",
+              "listTag": "div",
+              "sling:resourceType": "sling-cms/components/caconfig/component",
+              "itemTag": "div",
+              "itemClass": "tag-item"
+            }
+          }
+        }
       },
       "templates": {
         "jcr:primaryType": "sling:Config",
@@ -45,7 +144,7 @@
               "jcr:primaryType": "nt:unstructured",
               "sling:resourceType": "sling-cms/components/caconfig/policymapping",
               "pathPattern": ".*",
-              "policyPath": "/conf/global/site/policies/bootstrap"
+              "policyPath": "/conf/asf/site/policies/bootstrap"
             }
           }
         },

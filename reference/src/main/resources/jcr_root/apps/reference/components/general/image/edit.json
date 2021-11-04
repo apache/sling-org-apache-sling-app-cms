@@ -34,11 +34,6 @@
             "name": "transformationFormat",
             "required": false,
             "options": {
-                "default": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "label": "Default Extension",
-                    "value": "default"
-                },
                 "png": {
                     "jcr:primaryType": "nt:unstructured",
                     "label": "PNG",

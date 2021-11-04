@@ -54,6 +54,12 @@
                         </em>&nbsp;
                         <fmt:message key="Profile" />
                     </a>
+                    <a class="navbar-item Fetch-Modal" data-title="User Transformations" data-path=".Main-Content form" href="/cms/transformations/user.html${auth.authorizable.path}/transformations">
+                        <em class="jam jam-pictures">
+                            <span class="is-sr-only">My Transformations</span>
+                        </em>&nbsp;
+                        <fmt:message key="My Transformations" />
+                    </a>
                     <a class="navbar-item" href="${branding.helpLink}" target="_blank" rel="noopener noreferrer">
                         <em class="jam jam-help">
                             <span class="is-sr-only">Help</span>

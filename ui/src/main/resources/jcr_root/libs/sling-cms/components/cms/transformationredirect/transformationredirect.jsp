@@ -17,16 +17,5 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<c:if test="${not empty properties.src}">
-    <c:if test="${not empty properties.transformation}">
-        <c:choose>
-            <c:when test="${fn:indexOf(properties.transformation,'.') != -1}">
-                <c:set var="transform" value=".transform/${properties.transformation}" />
-            </c:when>
-            <c:otherwise>
-                <c:set var="transform" value=".transform/${properties.transformation}.${properties.transformationFormat}" />
-            </c:otherwise>
-        </c:choose>
-    </c:if>
-    <img src="${sling:encode(properties.src,'HTML_ATTR')}${transform}" alt="${sling:encode(properties.alt,'HTML_ATTR')}" class="${sling:encode(properties.imageClass,'HTML_ATTR')}" />
-</c:if>
+<sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" var="auth" />
+<c:redirect url = "/cms/transformations/user.html${auth.authorizable.path}/transformations"/>

@@ -1,0 +1,92 @@
+{
+  "jcr:primaryType": "sling:Page",
+  "jcr:content": {
+    "sling:resourceType": "sling-cms/components/pages/modal",
+    "jcr:title": "My Transformations",
+    "jcr:primaryType": "nt:unstructured",
+    "container": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/general/container",
+      "contentactions": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/contentactions",
+        "includeSwitcher": false,
+        "actions": {
+          "transformation": {
+            "jcr:primaryType": "nt:unstructured",
+            "label": "Transformation",
+            "prefix": "/cms/transformations/create.html",
+            "suffix": "/../"
+          }
+        }
+      },
+      "contenttable": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/contenttable",
+        "columns": {
+          "jcr:primaryType": "nt:unstructured",
+          "name": {
+            "jcr:primaryType": "nt:unstructured",
+            "title": "Name"
+          },
+          "title": {
+            "jcr:primaryType": "nt:unstructured",
+            "title": "Transformation Name"
+          },
+          "lastModified": {
+            "jcr:primaryType": "nt:unstructured",
+            "title": "Last Modified"
+          },
+          "transformation-actions": {
+            "jcr:primaryType": "nt:unstructured",
+            "title": "Actions"
+          }
+        },
+        "types": {
+          "jcr:primaryType": "nt:unstructured",
+          "nt:unstructured": {
+            "jcr:primaryType": "nt:unstructured",
+            "columns": {
+              "jcr:primaryType": "nt:unstructured",
+              "name": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/columns/name",
+                "link": false
+              },
+              "transformationName": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/columns/text",
+                "property": "name"
+              },
+              "lastModified": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/columns/lastmodified",
+                "subPath": ""
+              },
+              "transformation-actions": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "sling-cms/components/cms/columns/actions",
+                "show": true,
+                "edit": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "sling-cms/components/cms/actions/basic",
+                  "new": false,
+                  "title": "Edit Transformation",
+                  "icon": "pencil-f",
+                  "prefix": "/cms/transformations/useredit.html"
+                },
+                "delete": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "sling-cms/components/cms/actions/modal",
+                  "title": "Delete Transformation",
+                  "icon": "trash",
+                  "prefix": "/cms/shared/delete.html"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

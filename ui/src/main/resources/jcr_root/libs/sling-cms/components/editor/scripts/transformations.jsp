@@ -17,10 +17,11 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<sling:adaptTo adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.thumbnails.RenderedResource" var="rendered" />
-<option value="">None</option>
-<c:forEach var="transformation" items="${rendered.availableTransformations}">
-    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == transformation.name ? 'selected' : ''} value="${sling:encode(transformation.path,'HTML_ATTR')}">
+ <sling:adaptTo adaptable="${resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" var="auth" />
+<sling:findResources query="SELECT * FROM [nt:unstructured] WHERE (ISDESCENDANTNODE([/conf]) OR ISDESCENDANTNODE([${auth.authorizable.path }])) AND [sling:resourceType]='sling/thumbnails/transformation' ORDER BY [name]" language="JCR-SQL2" var="transformations" />
+<option value=""></option>
+<c:forEach var="transformation" items="${transformations}">
+    <option value="${sling:encode(transformation.path,'HTML_ATTR')}">
         ${sling:encode(transformation.name,'HTML')}
     </option>
 </c:forEach>

@@ -60,7 +60,7 @@
                 "jcr:content": {
                     "jcr:primaryType": "nt:unstructured",
                     "jcr:title": "Not Published",
-                    "sling:template": "/conf/asf/site/templates/base-page",
+                    "sling:template": "/conf/global/site/templates/base-page",
                     "sling:resourceType": "reference/components/pages/base",
                     "sling:published": false
                 }

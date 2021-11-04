@@ -19,8 +19,20 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.thumbnails.RenderedResource" var="rendered" />
 <option value=""><fmt:message key="None" /></option>
-<c:forEach var="rendition" items="${rendered.supportedRenditions}">
-    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == rendition ? 'selected' : ''} value="${sling:encode(rendition,'HTML_ATTR')}">
-        ${sling:encode(rendition,'HTML')}
-    </option>
-</c:forEach>
+<fmt:message key="Asset-Specific Renditions" var="specificMsg" />
+<optgroup label="${specificMsg}">
+    <c:forEach var="rendition" items="${rendered.supportedRenditions}">
+        <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == rendition ? 'selected' : ''} value="${sling:encode(rendition,'HTML_ATTR')}">
+            ${sling:encode(rendition,'HTML')}
+        </option>
+    </c:forEach>
+</optgroup>
+<fmt:message key="All Renditions" var="allMsg" />
+<optgroup label="${allMsg}">
+    <sling:findResources query="SELECT * FROM [nt:unstructured] WHERE ISDESCENDANTNODE([/conf]) AND [sling:resourceType]='sling/thumbnails/transformation' ORDER BY [name]" language="JCR-SQL2" var="transformations" />
+    <c:forEach var="transformation" items="${transformations}">
+        <option ${slingRequest.requestPathInfo.suffixResource.valueMap.transformation == transformation.name ? 'selected' : ''} value="${sling:encode(transformation.valueMap.name,'HTML_ATTR')}">
+            ${sling:encode(transformation.valueMap.name,'HTML')}
+        </option>
+    </c:forEach>
+</optgroup>

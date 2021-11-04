@@ -12,10 +12,16 @@
                 "sling:resourceType": "sling-cms/components/cms/contentactions",
                 "includeSwitcher": false,
                 "actions": {
-                    "page": {
+                    "rendition": {
                         "jcr:primaryType": "nt:unstructured",
                         "label": "Rendition",
                         "prefix": "/cms/file/addrendition.html/bin/sling/thumbnails/transform?resource=",
+                        "suffix":"/../../"
+                    },
+                    "my-renditions": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "label": "My Transformations",
+                        "prefix": "/cms/transformations/userredirect.html",
                         "suffix":"/../../"
                     }
                 }

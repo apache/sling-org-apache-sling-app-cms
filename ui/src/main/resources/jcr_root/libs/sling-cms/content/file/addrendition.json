@@ -26,7 +26,11 @@
             "jcr:primaryType": "nt:unstructured",
             "sling:resourceType": "sling-cms/components/editor/fields/text",
             "label": "Rendition Name",
-            "name": "renditionName"
+            "name": "renditionName",
+            "events": {
+              "jcr:primaryType": "nt:unstructured",
+              "change": "const renditionNameEl = document.getElementById('renditionName');\nif(renditionNameEl.value.indexOf('.') === -1){\n  renditionNameEl.value = renditionNameEl.value+'.'+document.getElementById('format').value\n}"
+            }
           },
           "transformation": {
             "jcr:primaryType": "nt:unstructured",
