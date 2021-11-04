@@ -18,22 +18,8 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <body>
-    <sling:include path="container" resourceType="sling-cms/components/general/container"  />
+    <main class="editor-form-box">
+        <sling:include path="container" resourceType="sling-cms/components/general/container"  />
+    </main>
     <sling:call script="scripts.jsp" />
-    <script>
-    if (window.parent && window.parent !== window) {
-        document.onreadystatechange = () => {
-            if (document.readyState == "complete") {
-                setTimeout(() => {
-                    window.parent.postMessage({
-                        action: "slingcms.editorloaded",
-                        height: document.querySelector("form").clientHeight + 40,
-                    },
-                    window.location.origin
-                );
-                }, 10);
-            }
-        };
-    }
-    </script>
 </body>
