@@ -110,7 +110,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.servlets.post:2.4.2",
+            "id":"org.apache.sling:org.apache.sling.servlets.post:2.4.6",
             "start-order":"20"
         },
         {

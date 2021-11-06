@@ -89,7 +89,7 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.commons.messaging:1.0.0",
+            "id": "org.apache.sling:org.apache.sling.commons.messaging:1.0.2",
             "start-order": "15"
         },
         {
