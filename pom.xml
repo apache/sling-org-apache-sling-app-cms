@@ -62,7 +62,7 @@
         <org.apache.felix.webconsole-version>4.7.0</org.apache.felix.webconsole-version>
         <osgi-annotation-version>8.0.0</osgi-annotation-version>
         <guava-version>15.0</guava-version>
-        <pdfbox-version>2.0.23</pdfbox-version>
+        <pdfbox-version>2.0.24</pdfbox-version>
         <servlet-api-version>2.5</servlet-api-version>
         <slf4j-version>1.7.25</slf4j-version>
         <tika-version>1.26</tika-version>
