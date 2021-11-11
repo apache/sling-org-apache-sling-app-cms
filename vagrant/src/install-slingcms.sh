@@ -29,7 +29,7 @@ adduser sling
 echo "Created Sling user..."
 
 mkdir -p /opt/slingcms
-curl https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.feature/1.0.4/org.apache.sling.cms.feature-1.0.4.jar --output /opt/slingcms/org.apache.sling.cms.jar
+curl https://search.maven.org/remotecontent?filepath=org/apache/sling/org.apache.sling.cms.feature/1.1.0/org.apache.sling.cms.feature-1.1.0.jar --output /opt/slingcms/org.apache.sling.cms.jar
 cp /vagrant_data/start.sh /vagrant_data/stop.sh /opt/slingcms
 chmod +x /opt/slingcms/*.sh
 chown -R sling:sling /opt/slingcms
