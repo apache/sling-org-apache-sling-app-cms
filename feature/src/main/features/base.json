@@ -10,7 +10,15 @@
             "start-order":"15"
         },
         {
-            "id":"javax.mail:mail:1.5.0-b01",
+            "id":"jakarta.activation:jakarta.activation-api:jar:2.0.1",
+            "start-order":"15"
+        },
+        {
+            "id":"jakarta.mail:jakarta.mail-api:2.0.1",
+            "start-order":"20"
+        },
+        {
+            "id":"com.sun.mail:javax.mail:jar:1.6.2",
             "start-order":"20"
         },
         {

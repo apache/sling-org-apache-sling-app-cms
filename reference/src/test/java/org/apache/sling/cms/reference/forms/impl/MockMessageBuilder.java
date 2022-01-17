@@ -16,12 +16,14 @@
  */
 package org.apache.sling.cms.reference.forms.impl;
 
-import javax.mail.Header;
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.InternetHeaders;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.Header;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.InternetHeaders;
+import jakarta.mail.internet.MimeMessage;
+
+import java.util.Collection;
 
 import org.apache.sling.commons.messaging.mail.MessageBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -73,23 +75,12 @@ public class MockMessageBuilder implements MessageBuilder {
 
     @Override
     public @NotNull MessageBuilder inline(@NotNull final byte[] content, @NotNull final String type,
-            @NotNull final String cid, @Nullable final Header[] headers) {
-        return this;
-    }
-
-    @Override
-    public @NotNull MessageBuilder inline(@NotNull final byte[] content, @NotNull final String type,
             @NotNull final String cid) {
         return this;
     }
 
     @Override
     public @NotNull MessageBuilder html(@NotNull final String html) {
-        return this;
-    }
-
-    @Override
-    public @NotNull MessageBuilder headers(@NotNull final InternetHeaders headers) {
         return this;
     }
 
@@ -152,14 +143,85 @@ public class MockMessageBuilder implements MessageBuilder {
 
     @Override
     public @NotNull MessageBuilder attachment(@NotNull final byte[] content, @NotNull final String type,
-            @NotNull final String filename, @Nullable final Header[] headers) {
+            @NotNull final String filename) {
         return this;
     }
 
     @Override
-    public @NotNull MessageBuilder attachment(@NotNull final byte[] content, @NotNull final String type,
-            @NotNull final String filename) {
-        return this;
+    public @NotNull MessageBuilder headers(@NotNull Collection<Header> headers) {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder to(@NotNull InternetAddress[] addresses) {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder to(@NotNull String[] addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder to(@NotNull Collection<String> addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder cc(@NotNull InternetAddress[] addresses) {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder cc(@NotNull String[] addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder cc(@NotNull Collection<String> addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder bcc(@NotNull InternetAddress[] addresses) {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder bcc(@NotNull String[] addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder bcc(@NotNull Collection<String> addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder replyTo(@NotNull InternetAddress[] addresses) {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder replyTo(@NotNull String[] addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder replyTo(@NotNull Collection<String> addresses) throws AddressException {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder attachment(byte @NotNull [] content, @NotNull String type, @NotNull String filename,
+            @Nullable Collection<Header> headers) {
+        return null;
+    }
+
+    @Override
+    public @NotNull MessageBuilder inline(byte @NotNull [] content, @NotNull String type, @NotNull String cid,
+            @Nullable Collection<Header> headers) {
+        return null;
     }
 
 }

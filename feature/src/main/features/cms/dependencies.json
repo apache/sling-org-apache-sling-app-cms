@@ -29,10 +29,6 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.commons:commons-email:1.5",
-            "start-order": "15"
-        },
-        {
             "id": "org.apache.commons:commons-math3:3.6.1",
             "start-order": "15"
         },
@@ -61,7 +57,7 @@
             "start-order": "15"
         },
         {
-            "id": "com.sun.mail:javax.mail:1.6.2",
+            "id": "com.sun.mail:jakarta.mail:2.0.1",
             "start-order": "15"
         },
         {
@@ -77,7 +73,7 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.commons.crypto:1.0.0",
+            "id": "org.apache.sling:org.apache.sling.commons.crypto:1.1.0",
             "start-order": "15"
         },
         {
@@ -85,7 +81,7 @@
             "start-order": "15"
         },
         {
-            "id": "org.apache.sling:org.apache.sling.commons.messaging.mail:1.0.0",
+            "id": "org.apache.sling:org.apache.sling.commons.messaging.mail:2.0.0",
             "start-order": "15"
         },
         {

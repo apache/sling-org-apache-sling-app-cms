@@ -16,8 +16,8 @@
  */
 package org.apache.sling.cms.reference.forms.impl.actions;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 
 import org.apache.commons.text.StringSubstitutor;
 import org.apache.sling.api.resource.Resource;
