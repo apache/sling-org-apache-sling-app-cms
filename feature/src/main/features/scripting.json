@@ -14,6 +14,10 @@
             "start-order":"20"
         },
         {
+            "id":"org.apache.sling:org.apache.sling.scripting.spi:1.0.4",
+            "start-order":"20"
+        },
+        {
             "id":"org.apache.sling:org.apache.sling.scripting.core:2.3.4",
             "start-order":"20"
         },
@@ -34,7 +38,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.5.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.5.4",
             "start-order":"20"
         },
         {
@@ -54,11 +58,11 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.runtime:1.2.4-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.runtime:1.2.6-1.4.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.6-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.14-1.4.0",
             "start-order":"20"
         },
         {

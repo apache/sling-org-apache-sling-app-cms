@@ -50,7 +50,7 @@
         <jstl-version>1.2_1</jstl-version>
         <mockito-core-version>3.6.28</mockito-core-version>
         <oak-version>1.40.0</oak-version>
-        <org-apache-sling-api-version>2.23.6</org-apache-sling-api-version>
+        <org-apache-sling-api-version>2.24.0</org-apache-sling-api-version>
         <org-apache-sling-caconfig-api-version>1.2.0</org-apache-sling-caconfig-api-version>
         <org-apache-sling-commons-johnzon-version>1.2.6</org-apache-sling-commons-johnzon-version>
         <org-apache-sling-engine-version>2.7.10</org-apache-sling-engine-version>

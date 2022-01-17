@@ -98,7 +98,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.7.4",
+            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.8.0",
             "start-order":"20"
         },
         {
@@ -114,7 +114,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.servlets.resolver:2.7.12",
+            "id":"org.apache.sling:org.apache.sling.servlets.resolver:2.9.2",
             "start-order":"20"
         },
         {
@@ -174,7 +174,7 @@
             "start-order":"5"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.auth.core:1.5.2",
+            "id":"org.apache.sling:org.apache.sling.auth.core:1.5.6",
             "start-order":"5"
         },
         {
