@@ -58,7 +58,7 @@ public class PublishableResourceImplTest {
         assertNotNull(publishableResource.getProperties());
         assertEquals("/index", publishableResource.getPublishedPath());
         assertEquals("https://sling.apache.org/index", publishableResource.getPublishedUrl());
-        assertEquals(context.currentResource(), publishableResource.getResource());
+        assertEquals(context.currentResource().getPath(), publishableResource.getResource().getPath());
         assertNotNull(publishableResource.getSite());
     }
 

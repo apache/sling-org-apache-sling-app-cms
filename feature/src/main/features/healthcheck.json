@@ -1,112 +1,112 @@
 {
-    "bundles": [
-        {
-            "id": "org.apache.felix:org.apache.felix.healthcheck.api:2.0.4",
-            "start-order": "5"
-        },
-        {
-            "id": "org.apache.felix:org.apache.felix.healthcheck.core:2.0.8",
-            "start-order": "5"
-        },
-        {
-            "id": "org.apache.felix:org.apache.felix.healthcheck.generalchecks:2.0.6",
-            "start-order": "5"
-        },
-        {
-            "id": "org.apache.felix:org.apache.felix.healthcheck.webconsoleplugin:2.0.2",
-            "start-order": "5"
-        },
-        {
-            "id": "org.apache.sling:org.apache.sling.hc.api:1.0.4",
-            "start-order": "20"
-        },
-        {
-            "id": "org.apache.sling:org.apache.sling.hc.support:1.0.6",
-            "start-order": "20"
-        }
-    ],
-    "configurations": {
-        "org.apache.felix.hc.generalchecks.BundlesStartedCheck": {
-            "hc.tags": [
-                "bundles"
-            ]
-        },
-        "org.apache.felix.hc.generalchecks.CpuCheck": {
-            "hc.tags": [
-                "cpu",
-                "system-resources"
-            ],
-            "cpuPercentageThresholdWarn": 95
-        },
-        "org.apache.felix.hc.generalchecks.DiskSpaceCheck": {
-            "hc.tags": [
-                "diskspace",
-                "system-resources"
-            ],
-            "diskPaths": [
-                "."
-            ]
-        },
-        "org.apache.felix.hc.generalchecks.FrameworkStartCheck": {
-            "hc.tags": [
-                "systemalive"
-            ],
-            "targetStartLevel:Integer":"30"
-        },
-        "org.apache.felix.hc.generalchecks.MemoryCheck": {
-            "hc.tags": [
-                "memory",
-                "system-resources"
-            ],
-            "heapUsedPercentageThresholdCritical": 100,
-            "heapUsedPercentageThresholdWarn": 95
-        },
-        "org.apache.felix.hc.generalchecks.ServicesCheck": {
-            "hc.tags": [
-                "systemalive"
-            ],
-            "services.list": [
-                "org.apache.sling.jcr.api.SlingRepository",
-                "org.apache.sling.engine.auth.Authenticator",
-                "org.apache.sling.api.resource.ResourceResolverFactory",
-                "org.apache.sling.api.servlets.ServletResolver",
-                "javax.script.ScriptEngineManager"
-            ]
-        },
-        "org.apache.felix.hc.generalchecks.ThreadUsageCheck": {
-            "hc.tags": [
-                "threads",
-                "cpu",
-                "system-resources"
-            ]
-        },
-        "org.apache.felix.hc.core.impl.filter.ServiceUnavailableFilter~startupandshutdown": {
-            "osgi.http.whiteboard.filter.regex": "(?!/system/).*",
-            "avoid404DuringStartup": true,
-            "service.ranking:Integer": "2147483647",
-            "includeExecutionResult": false,
-            "osgi.http.whiteboard.context.select": "(osgi.http.whiteboard.context.name=*)",
-            "tags": [
-                "systemalive"
-            ],
-            "autoDisableFilter": true,
-            "responseTextFor503": "classpath:org.apache.sling.cms.ui:/content/startup/index.html"
-        },
-        "org.apache.sling.jcr.contentloader.hc.BundleContentLoadedCheck~default": {
-            "tags": [
-                "systemalive"
-            ],
-            "includesRegex": ".*",
-            "useCriticalForNotLoaded": true,
-            "excludesRegex": ""
-        },
-        "org.apache.felix.hc.core.impl.servlet.HealthCheckExecutorServlet~default": {
-            "servletPath": "/system/health"
-        },
-        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~hc-support": {
-            "user.mapping": [
-                "org.apache.sling.hc.support=sling-readall"
-            ]
-        }
+  "bundles":[
+    {
+      "id":"org.apache.felix:org.apache.felix.healthcheck.api:2.0.4",
+      "start-order":"5"
+    },
+    {
+      "id":"org.apache.felix:org.apache.felix.healthcheck.core:2.0.12",
+      "start-order":"5"
+    },
+    {
+      "id":"org.apache.felix:org.apache.felix.healthcheck.generalchecks:3.0.0",
+      "start-order":"5"
+    },
+    {
+      "id":"org.apache.felix:org.apache.felix.healthcheck.webconsoleplugin:2.0.2",
+      "start-order":"5"
     }
+  ],
+  "configurations":{
+    "org.apache.felix.hc.core.impl.monitor.HealthCheckMonitor~systemready":{
+      "tags":[
+        "systemalive"
+      ],
+      "intervalInSec":"5",
+      "registerHealthyMarkerService":true,
+      "registerUnhealthyMarkerService":true
+    },
+    "org.apache.felix.hc.generalchecks.BundlesStartedCheck":{
+      "hc.tags":[
+        "bundles"
+      ]
+    },
+    "org.apache.felix.hc.generalchecks.CpuCheck":{
+      "hc.tags":[
+        "cpu",
+        "system-resources"
+      ],
+      "cpuPercentageThresholdWarn":95
+    },
+    "org.apache.felix.hc.generalchecks.DiskSpaceCheck":{
+      "hc.tags":[
+        "diskspace",
+        "system-resources"
+      ],
+      "diskPaths":[
+        "."
+      ]
+    },
+    "org.apache.felix.hc.generalchecks.FrameworkStartCheck":{
+      "hc.tags":[
+        "systemalive"
+      ],
+      "targetStartLevel:Integer":30
+    },
+    "org.apache.felix.hc.generalchecks.MemoryCheck":{
+      "hc.tags":[
+        "memory",
+        "system-resources"
+      ],
+      "heapUsedPercentageThresholdCritical":100,
+      "heapUsedPercentageThresholdWarn":95
+    },
+    "org.apache.felix.hc.generalchecks.ServicesCheck":{
+      "hc.tags":[
+        "systemalive"
+      ],
+      "services.list":[
+        "org.apache.sling.jcr.api.SlingRepository",
+        "org.apache.sling.engine.auth.Authenticator",
+        "org.apache.sling.api.resource.ResourceResolverFactory",
+        "org.apache.sling.api.servlets.ServletResolver",
+        "javax.script.ScriptEngineManager"
+      ]
+    },
+    "org.apache.felix.hc.generalchecks.ThreadUsageCheck":{
+      "hc.tags":[
+        "threads",
+        "cpu",
+        "system-resources"
+      ]
+    },
+    "org.apache.felix.hc.core.impl.filter.ServiceUnavailableFilter~startupandshutdown":{
+      "osgi.http.whiteboard.filter.regex":"(?!/system/).*",
+      "avoid404DuringStartup":true,
+      "service.ranking:Integer":2147483647,
+      "includeExecutionResult":false,
+      "osgi.http.whiteboard.context.select":"(osgi.http.whiteboard.context.name=*)",
+      "tags":[
+        "systemalive"
+      ],
+      "autoDisableFilter":true,
+      "responseTextFor503":"classpath:org.apache.sling.cms.ui:/content/startup/index.html"
+    },
+    "org.apache.sling.jcr.contentloader.hc.BundleContentLoadedCheck~default":{
+      "tags":[
+        "systemalive"
+      ],
+      "includesRegex":".*",
+      "useCriticalForNotLoaded":true,
+      "excludesRegex":""
+    },
+    "org.apache.felix.hc.core.impl.servlet.HealthCheckExecutorServlet~default":{
+      "servletPath":"/system/health"
+    },
+    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~hc-support":{
+      "user.mapping":[
+        "org.apache.sling.hc.support=sling-readall"
+      ]
+    }
+  }
 }

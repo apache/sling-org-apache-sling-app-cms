@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
         Licensed to the Apache Software Foundation (ASF) under one or more contributor license
         agreements. See the NOTICE file distributed with this work for additional information
@@ -11,23 +11,19 @@
         and limitations under the License.
     -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>org.apache.sling.cms</artifactId>
         <groupId>org.apache.sling</groupId>
         <version>1.1.1-SNAPSHOT</version>
     </parent>
-
     <artifactId>org.apache.sling.cms.feature</artifactId>
     <name>Apache Sling - CMS Feature Model</name>
-
     <properties>
         <IT.expected.bundles.count>240</IT.expected.bundles.count>
         <bnd.baseline.skip>true</bnd.baseline.skip>
         <run.sling.smoke.test>true</run.sling.smoke.test>
     </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -176,9 +172,7 @@
                     <finalName>org.apache.sling.cms-${project.version}</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>
-                                org.apache.sling.cms.feature.Main
-                            </mainClass>
+                            <mainClass>org.apache.sling.cms.feature.Main</mainClass>
                             <classpathPrefix>lib/</classpathPrefix>
                             <addClasspath>true</addClasspath>
                         </manifest>
@@ -196,9 +190,7 @@
                     <arguments>-Drun.sling.smoke.test=false</arguments>
                 </configuration>
             </plugin>
-
         </plugins>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -216,7 +208,6 @@
             </plugins>
         </pluginManagement>
     </build>
-
     <profiles>
         <profile>
             <id>run-smoke-test</id>
@@ -300,7 +291,6 @@
             </build>
         </profile>
     </profiles>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -322,7 +312,72 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.feature.launcher</artifactId>
-            <version>1.1.16</version>
+            <version>1.2.0</version>
+            <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.feature.io</artifactId>
+            <version>1.3.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-cli</groupId>
+            <artifactId>commons-cli</artifactId>
+            <version>1.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.cm.json</artifactId>
+            <version>1.0.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <version>1.1.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.1.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.util.converter</artifactId>
+            <version>1.0.8</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.util.function</artifactId>
+            <version>1.2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.9</version>
+            <scope>compile</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-lang3</artifactId>
+             <version>3.12.0</version>
+             <scope>compile</scope>
+          </dependency>
     </dependencies>
 </project>

@@ -1,50 +1,50 @@
 {
-    "bundles": [
-        {
-            "id": "org.apache.sling:org.apache.sling.distribution.api:0.5.0",
-            "start-order": "20"
-        },
-        {
-            "id": "org.apache.sling:org.apache.sling.distribution.core:0.4.2",
-            "start-order": "20"
-        }
-    ],
-    "configurations": {
-        "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~agent": {
-            "provider.roots": "/libs/sling/distribution/settings/agents",
-            "kind": "agent"
-        },
-        "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~exporter": {
-            "provider.roots": "/libs/sling/distribution/settings/exporters",
-            "kind": "exporter"
-        },
-        "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~importer": {
-            "provider.roots": "/libs/sling/distribution/settings/importers",
-            "kind": "importer"
-        },
-        "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~agent": {
-            "provider.roots": "/libs/sling/distribution/services/agents",
-            "kind": "agent"
-        },
-        "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~exporter": {
-            "provider.roots": "/libs/sling/distribution/services/exporter",
-            "kind": "exporter"
-        },
-        "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~importer": {
-            "provider.roots": "/libs/sling/distribution/services/importer",
-            "kind": "importer"
-        },
-        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~distribution": {
-            "user.mapping": [
-                "org.apache.sling.distribution.core=sling-package-install"
-            ]
-        },
-        "org.apache.sling.distribution.agent.impl.PrivilegeDistributionRequestAuthorizationStrategyFactory~default": {
-            "name": "default",
-            "jcrPrivilege": "sling:publish"
-        }
+  "bundles":[
+    {
+      "id":"org.apache.sling:org.apache.sling.distribution.api:0.5.0",
+      "start-order":"20"
     },
-    "repoinit:TEXT|true": [
-        "register privilege sling:publish"
-    ]
+    {
+      "id":"org.apache.sling:org.apache.sling.distribution.core:0.4.8",
+      "start-order":"20"
+    }
+  ],
+  "configurations":{
+    "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~agent":{
+      "provider.roots":"/libs/sling/distribution/settings/agents",
+      "kind":"agent"
+    },
+    "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~exporter":{
+      "provider.roots":"/libs/sling/distribution/settings/exporters",
+      "kind":"exporter"
+    },
+    "org.apache.sling.distribution.resources.impl.DistributionConfigurationResourceProviderFactory~importer":{
+      "provider.roots":"/libs/sling/distribution/settings/importers",
+      "kind":"importer"
+    },
+    "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~agent":{
+      "provider.roots":"/libs/sling/distribution/services/agents",
+      "kind":"agent"
+    },
+    "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~exporter":{
+      "provider.roots":"/libs/sling/distribution/services/exporter",
+      "kind":"exporter"
+    },
+    "org.apache.sling.distribution.resources.impl.DistributionServiceResourceProviderFactory~importer":{
+      "provider.roots":"/libs/sling/distribution/services/importer",
+      "kind":"importer"
+    },
+    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~distribution":{
+      "user.mapping":[
+        "org.apache.sling.distribution.core=sling-package-install"
+      ]
+    },
+    "org.apache.sling.distribution.agent.impl.PrivilegeDistributionRequestAuthorizationStrategyFactory~default":{
+      "name":"default",
+      "jcrPrivilege":"sling:publish"
+    }
+  },
+  "repoinit:TEXT|true":[
+    "register privilege sling:publish"
+  ]
 }

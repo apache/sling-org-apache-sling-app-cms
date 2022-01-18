@@ -2,6 +2,10 @@
 {
     "bundles":[
         {
+            "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.commons-httpclient:3.1_7",
+            "start-order": "20"
+        },
+        {
             "id":"com.composum.nodes:composum-nodes-commons:${composum-nodes-version}",
             "start-order":"20"
         },

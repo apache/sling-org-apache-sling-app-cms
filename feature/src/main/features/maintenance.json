@@ -1,5 +1,5 @@
 {
     "prototype": {
-        "id": "org.apache.sling:org.apache.sling.jcr.maintenance:slingosgifeature:default:1.0.0"
+        "id": "org.apache.sling:org.apache.sling.jcr.maintenance:slingosgifeature:default:1.0.2"
     }
 }

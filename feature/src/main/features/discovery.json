@@ -1,35 +1,34 @@
-
 {
-    "bundles":[
-        {
-            "id":"org.apache.sling:org.apache.sling.discovery.api:1.0.4",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.discovery.base:2.0.8",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.discovery.commons:1.0.20",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.discovery.oak:1.2.30",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.discovery.support:1.0.6",
-            "start-order":"20"
-        }
-    ],
-    "configurations":{
-        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling.discovery":{
-            "user.mapping":[
-                "org.apache.sling.discovery.commons=[sling-discovery]",
-                "org.apache.sling.discovery.base=[sling-discovery]",
-                "org.apache.sling.discovery.oak=[sling-discovery]"
-            ]
-        }
+  "bundles":[
+    {
+      "id":"org.apache.sling:org.apache.sling.discovery.api:1.0.4",
+      "start-order":"20"
     },
-    "repoinit:TEXT|true": "@file"
+    {
+      "id":"org.apache.sling:org.apache.sling.discovery.base:2.0.10",
+      "start-order":"20"
+    },
+    {
+      "id":"org.apache.sling:org.apache.sling.discovery.commons:1.0.24",
+      "start-order":"20"
+    },
+    {
+      "id":"org.apache.sling:org.apache.sling.discovery.oak:1.2.34",
+      "start-order":"20"
+    },
+    {
+      "id":"org.apache.sling:org.apache.sling.discovery.support:1.0.6",
+      "start-order":"20"
+    }
+  ],
+  "configurations":{
+    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling.discovery":{
+      "user.mapping":[
+        "org.apache.sling.discovery.commons=[sling-discovery]",
+        "org.apache.sling.discovery.base=[sling-discovery]",
+        "org.apache.sling.discovery.oak=[sling-discovery]"
+      ]
+    }
+  },
+  "repoinit:TEXT|true":"@file"
 }

@@ -14,13 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.cms.core.models;
+package org.apache.sling.cms.core.internal.servlets;
 
+import java.io.IOException;
 import java.util.Collections;
+import java.util.Optional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jackrabbit.JcrConstants;
@@ -34,30 +37,27 @@ import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.api.wrappers.SlingHttpServletRequestWrapper;
 import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.cms.Site;
 import org.apache.sling.cms.SiteManager;
-import org.apache.sling.models.annotations.Default;
-import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
-import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Sling Model for retrieving an error handler based on the specified Sling
- * Request. Checks if the specified resource is contained within a Sling site
- * and if so, will display the error page found at
- * [site-root]/errors/[error-code] or [site-root]/errors/default
+ * Servlet which includes the content of the page when the page is accessed.
  */
-@ProviderType
-@Model(adaptables = SlingHttpServletRequest.class)
-public class ErrorHandler {
+@Component(service = Servlet.class, property = {
+        "sling.servlet.paths=sling/servlet/errorhandler/default",
+        "sling.servlet.prefix=-1",
+        Constants.SERVICE_RANKING + ":Integer=1"
+})
+public class CmsDefaultErrorHandlerServlet extends SlingSafeMethodsServlet {
 
     private static class GetRequest extends SlingHttpServletRequestWrapper {
 
@@ -116,12 +116,12 @@ public class ErrorHandler {
 
     }
 
+    private static final Logger log = LoggerFactory.getLogger(CmsDefaultErrorHandlerServlet.class);
+
     /**
      * The page to fall back to if there is not an error page for the specific code
      */
     public static final String DEFAULT_ERROR_PAGE = "default";
-
-    private static final Logger log = LoggerFactory.getLogger(ErrorHandler.class);
 
     /**
      * Service User Name for the Error Handler
@@ -138,21 +138,29 @@ public class ErrorHandler {
      */
     public static final String SLING_CMS_ERROR_PATH = "/static/sling-cms/errorhandling/";
 
-    private Resource handler;
+    private final ResourceResolverFactory factory;
 
-    private final SlingHttpServletRequest slingRequest;
-    private final SlingHttpServletResponse slingResponse;
+    @Activate
+    public CmsDefaultErrorHandlerServlet(@Reference ResourceResolverFactory factory) {
+        this.factory = factory;
+    }
 
-    @Inject
-    public ErrorHandler(@Self SlingHttpServletRequest slingRequest, @SlingObject SlingHttpServletResponse slingResponse,
-            @RequestAttribute @Named(SlingConstants.ERROR_STATUS) @Optional @Default(intValues = HttpServletResponse.SC_INTERNAL_SERVER_ERROR) Integer errorCode,
-            @OSGiService ResourceResolverFactory factory) {
-        this.slingRequest = slingRequest;
-        this.slingResponse = slingResponse;
+    @Override
+    public void service(ServletRequest req, ServletResponse res)
+            throws IOException {
+        if (req instanceof SlingHttpServletRequest) {
+            handleError((SlingHttpServletRequest) req, (SlingHttpServletResponse) res);
+        } else {
+            log.error("Unable to handle request, not an instance of SlingHttpServletRequest: {}", req);
+        }
+    }
+
+    private void handleError(SlingHttpServletRequest slingRequest, SlingHttpServletResponse slingResponse) {
 
         Resource resource = slingRequest.getResource();
         ResourceResolver resolver = slingRequest.getResourceResolver();
 
+        int errorCode = getErrorCode(slingRequest, resolver);
         log.debug("Calculating error handling scripts for resource {} and error code {}", resource, errorCode);
 
         if (slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION) != null) {
@@ -160,15 +168,14 @@ public class ErrorHandler {
                     slingRequest.getAttribute(SlingConstants.ERROR_EXCEPTION));
         }
 
-        calculateErrorCode(resolver, factory, errorCode);
-
+        Resource handler = null;
         try {
             SiteManager siteMgr = resource.adaptTo(SiteManager.class);
             if (siteMgr != null && siteMgr.getSite() != null) {
                 Site site = siteMgr.getSite();
                 log.debug("Checking for error pages in the site {}", site.getPath());
 
-                handler = site.getResource().getChild(SITE_ERRORS_SUBPATH + errorCode.toString());
+                handler = site.getResource().getChild(SITE_ERRORS_SUBPATH + errorCode);
                 if (handler == null) {
                     handler = site.getResource().getChild(SITE_ERRORS_SUBPATH + DEFAULT_ERROR_PAGE);
                 }
@@ -184,7 +191,7 @@ public class ErrorHandler {
 
         if (handler == null) {
             log.debug("Using Sling CMS default error pages");
-            handler = resolver.getResource(SLING_CMS_ERROR_PATH + errorCode.toString());
+            handler = resolver.getResource(SLING_CMS_ERROR_PATH + errorCode);
             if (handler == null) {
                 handler = resolver.getResource(SLING_CMS_ERROR_PATH + DEFAULT_ERROR_PAGE);
             }
@@ -196,17 +203,19 @@ public class ErrorHandler {
         slingResponse.setContentType("text/html");
         slingResponse.setStatus(errorCode);
 
-        doInclude();
+        doInclude(slingRequest, slingResponse, handler);
 
         log.debug("Error handler initialized successfully!");
     }
 
-    private void calculateErrorCode(ResourceResolver resolver, ResourceResolverFactory factory, Integer errorCode) {
+    private int getErrorCode(SlingHttpServletRequest slingRequest, ResourceResolver resolver) {
+
+        int errorCode = Optional.ofNullable(slingRequest.getAttribute(SlingConstants.ERROR_STATUS))
+                .map(val -> Integer.parseInt(val.toString())).orElse(500);
         if (errorCode == HttpServletResponse.SC_NOT_FOUND) {
             log.debug("Validating the resource does not exist for all users");
             ResourceResolver adminResolver = null;
             try {
-
                 adminResolver = factory.getServiceResourceResolver(
                         Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, SERVICE_USER_NAME));
                 Resource pResource = adminResolver.resolve(slingRequest, slingRequest.getResource().getPath());
@@ -225,9 +234,11 @@ public class ErrorHandler {
                 }
             }
         }
+        return errorCode;
     }
 
-    private void doInclude() {
+    private void doInclude(SlingHttpServletRequest slingRequest, SlingHttpServletResponse slingResponse,
+            Resource handler) {
 
         Resource handlerContent = handler.getChild(JcrConstants.JCR_CONTENT);
         if (handlerContent != null) {
@@ -242,7 +253,7 @@ public class ErrorHandler {
                 try {
                     dispatcher.include(new GetRequest(slingRequest), slingResponse);
                 } catch (Exception e) {
-                    log.debug("Exception swallowed while including error page", e);
+                    log.error("Exception swallowed while including error page", e);
                 }
             } else {
                 log.warn("Failed to get request dispatcher for handler {}", handler.getPath());
@@ -251,5 +262,4 @@ public class ErrorHandler {
             log.warn("Error hander {} content is null", handler);
         }
     }
-
 }
