@@ -27,17 +27,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>ianal-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>verify-legal-files</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>
