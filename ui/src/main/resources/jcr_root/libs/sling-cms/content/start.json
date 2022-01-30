@@ -135,6 +135,12 @@
             "link": "/cms/publication/home.html",
             "text": "Publication"
           },
+          "querydebug": {
+            "jcr:primaryType": "nt:unstructured",
+            "enabledGroups": ["administrators"],
+            "link": "/cms/admin/querydebug.html",
+            "text": "Query Debugger"
+          },
           "systemconsole": {
             "jcr:primaryType": "nt:unstructured",
             "enabledGroups": ["administrators"],

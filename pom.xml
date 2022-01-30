@@ -331,6 +331,12 @@
         <version>${osgi-annotation-version}</version>
         <scope>provided</scope>
       </dependency>
+      <dependency>
+        <groupId>javax.management.j2ee</groupId>
+        <artifactId>javax.management.j2ee-api</artifactId>
+        <version>1.1.2</version>
+        <scope>provided</scope>
+      </dependency>
       <!-- Document Processing Dependencies -->
       <dependency>
         <artifactId>jsoup</artifactId>
@@ -438,4 +444,3 @@
     </pluginManagement>
   </build>
 </project>
-

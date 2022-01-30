@@ -1,0 +1,66 @@
+{
+  "jcr:primaryType": "sling:Page",
+  "jcr:content": {
+    "sling:resourceType": "sling-cms/components/pages/base",
+    "jcr:title": "Query Debugger",
+    "jcr:primaryType": "nt:unstructured",
+    "container": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "sling-cms/components/general/container",
+      "title": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/general/textelement",
+        "i18n": true,
+        "level": "h3",
+        "text": "Query Debugger"
+      },
+      "getform": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/getform",
+        "button": "Debug Query",
+        "load": "#query-debug",
+        "target": "#query-debug",
+        "action": "/libs/sling-cms/content/admin/querydebug/jcr:content/container/querydebug.html",
+        "skipcancel": true,
+        "fields": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "sling-cms/components/general/container",
+          "statement": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/textarea",
+            "label": "Query Statement",
+            "name": "statement"
+          },
+          "language": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Query Language",
+            "name": "language",
+            "options": {
+              "JCR-SQL2": {
+                "label": "JCR-SQL2",
+                "value": "JCR-SQL2"
+              },
+              "xpath": {
+                "label": "xpath",
+                "value": "xpath"
+              },
+              "JCR-JQOM": {
+                "label": "JCR-JQOM",
+                "value": "JCR-JQOM"
+              },
+              "sql": {
+                "label": "SQL",
+                "value": "sql"
+              }
+            }
+          }
+        }
+      },
+      "querydebug": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "sling-cms/components/cms/querydebug"
+      }
+    }
+  }
+}

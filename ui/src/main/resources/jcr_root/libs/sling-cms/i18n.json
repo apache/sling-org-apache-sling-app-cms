@@ -4211,7 +4211,7 @@
     "msg-job-name": {
       "jcr:primaryType": "sling:MessageEntry",
       "sling:message": "Name des Jobs",
-      "sling:key": "Job Name"
+      "sling:key": "Job Name"
     },
     "msg-jpeg": {
       "jcr:primaryType": "sling:MessageEntry",

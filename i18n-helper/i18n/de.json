@@ -254,7 +254,7 @@
   "JSON": "JSON",
   "Job": "Job",
   "Jobs": "Jobs",
-  "Job Name": "Name des Jobs",
+  "Job Name": "Name des Jobs",
   "Jpeg": "Jpeg",
   "Key": "Schlüssel",
   "Keywords": "Schlüsselwort",
@@ -590,5 +590,13 @@
   "i18n Dictionaries": "I18N-Verzeichnisse",
   "i18n Dictionarties": "I18N-Verzeichnisse",
   "i18n Dictionary": "I18N-Verzeichnis",
-  "i18n Dictionary Entries": "I18N-Verzeichniseinträge"
+  "i18n Dictionary Entries": "I18N-Verzeichniseinträge",
+  "Debug Query": "",
+  "Duration": "",
+  "Plan": "",
+  "Popular Queries": "",
+  "Query Debugger": "",
+  "Query Language": "",
+  "Query Statement": "",
+  "Slow Queries": ""
 }
