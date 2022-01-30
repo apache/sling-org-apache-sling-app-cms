@@ -37,23 +37,29 @@
     <h2><fmt:message key="Popular Queries" /></h2>
     <table class="table">
         <tr>
-            <th>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
                 <fmt:message key="Query Statement" />
             </th>
-            <th>
+            <th scope="col">
                 <fmt:message key="Query Language" />
             </th>
-            <th>
+            <th scope="col">
                 <fmt:message key="Count" />
             </th>
-            <th>
+            <th scope="col">
                 <fmt:message key="Duration" />
             </th>
         </tr>
         <c:forEach var="query" items="${queryDebugger.popularQueries}">
             <tr>
                 <td>
-                    ${query.statement}
+                    ${query.position}
+                </td>
+                <td>
+                    ${fn:encode(query.statement,'HTML')}
                 </td>
                 <td>
                     ${query.language}
@@ -70,23 +76,29 @@
     <h2><fmt:message key="Slow Queries" /></h2>
     <table class="table">
         <tr>
-            <th>
+            <th scope="col">
+                #
+            </th>
+            <th scope="col">
                 <fmt:message key="Query Statement" />
             </th>
-            <th>
+            <th scope="col">
                 <fmt:message key="Query Language" />
             </th>
-            <th>
+            <th scope="col">
                 <fmt:message key="Count" />
             </th>
-            <th>
+            <th scope="col">
                 <fmt:message key="Duration" />
             </th>
         </tr>
         <c:forEach var="query" items="${queryDebugger.slowQueries}">
             <tr>
                 <td>
-                    ${query.statement}
+                    ${query.position}
+                </td>
+                <td>
+                    ${fn:encode(query.statement,'HTML')}
                 </td>
                 <td>
                     ${query.language}

@@ -44,7 +44,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.cms.ResourceTree;
-import org.apache.sling.cms.core.internal.filters.EditIncludeFilter;
 import org.apache.sling.cms.i18n.I18NDictionary;
 import org.apache.sling.cms.i18n.I18NProvider;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;

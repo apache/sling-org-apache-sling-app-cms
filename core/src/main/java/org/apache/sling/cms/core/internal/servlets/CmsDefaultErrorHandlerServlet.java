@@ -138,7 +138,7 @@ public class CmsDefaultErrorHandlerServlet extends SlingSafeMethodsServlet {
      */
     public static final String SLING_CMS_ERROR_PATH = "/static/sling-cms/errorhandling/";
 
-    private final ResourceResolverFactory factory;
+    private final transient ResourceResolverFactory factory;
 
     @Activate
     public CmsDefaultErrorHandlerServlet(@Reference ResourceResolverFactory factory) {

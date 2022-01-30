@@ -37,6 +37,9 @@ public class QueryDebuggerTest {
         assertNull(debugger.getException());
         assertNull(debugger.getPlan());
         assertNull(debugger.getStatement());
+
+        assertNotNull(debugger.getPopularQueries());
+        assertNotNull(debugger.getSlowQueries());
     }
 
     @Test
