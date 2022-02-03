@@ -2,15 +2,15 @@
   "bundles":[
     {
       "id":"com.fasterxml.jackson.core:jackson-annotations:${jackson-version}",
-      "start-order":"20"
+      "start-order":"1"
     },
     {
       "id":"com.fasterxml.jackson.core:jackson-core:${jackson-version}",
-      "start-order":"20"
+      "start-order":"1"
     },
     {
       "id":"com.fasterxml.jackson.core:jackson-databind:${jackson-version}",
-      "start-order":"20"
+      "start-order":"1"
     },
     {
       "id":"org.apache.sling:org.apache.sling.models.jacksonexporter:1.1.2",

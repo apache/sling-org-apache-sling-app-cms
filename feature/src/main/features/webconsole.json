@@ -25,10 +25,6 @@
             "start-order":"5"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.commons.log.webconsole:1.0.0",
-            "start-order":"5"
-        },
-        {
             "id":"org.apache.sling:org.apache.sling.extensions.webconsolebranding:1.0.2",
             "start-order":"5"
         },

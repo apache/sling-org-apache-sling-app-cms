@@ -50,7 +50,7 @@
                     <framework>
                         <groupId>org.apache.felix</groupId>
                         <artifactId>org.apache.felix.framework</artifactId>
-                        <version>6.0.3</version>
+                        <version>7.0.3</version>
                     </framework>
                     <aggregates>
                         <aggregate>

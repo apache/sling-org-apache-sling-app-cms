@@ -61,11 +61,15 @@
       "start-order":"1"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.commons.log:5.4.0",
+      "id":"ch.qos.logback:logback-core:1.2.10",
       "start-order":"1"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.commons.logservice:1.1.0",
+      "id":"ch.qos.logback:logback-classic:1.2.10",
+      "start-order":"1"
+    },
+    {
+      "id":"net.logstash.logback:logstash-logback-encoder:7.0.1",
       "start-order":"1"
     },
     {
@@ -73,8 +77,20 @@
       "start-order":"1"
     },
     {
+      "id":"org.apache.felix:org.apache.felix.logback:1.0.2",
+      "start-order": "1"
+    },
+    {
+        "id": "org.apache.sling:org.apache.sling.commons.log.logback.configurator:1.0.0-SNAPSHOT",
+        "start-order": "1"
+    },
+    {
       "id":"org.apache.sling:org.apache.sling.commons.osgi:2.4.2",
       "start-order":"1"
+    },
+    {
+        "id": "org.apache.sling:org.apache.sling.commons.log.json:1.0.0-SNAPSHOT",
+        "start-order": "1"
     },
     {
       "id":"org.apache.sling:org.apache.sling.installer.core:3.12.0",
