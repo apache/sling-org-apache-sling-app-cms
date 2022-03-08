@@ -30,7 +30,9 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
 import javax.jcr.query.Row;
+import javax.jcr.query.RowIterator;
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanException;
@@ -42,6 +44,7 @@ import javax.management.openmbean.CompositeData;
 import javax.management.openmbean.TabularData;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.osgi.annotation.versioning.ProviderType;
@@ -56,10 +59,14 @@ public class QueryDebugger {
 
     private static final Logger log = LoggerFactory.getLogger(QueryDebugger.class);
     private final String plan;
+    private final long duration;
+    private final long estimatedSize;
     private final String exception;
+    private final List<Resource> results = new ArrayList<>();
     private final String statement;
     private final List<Map<String, Object>> slowQueries = new ArrayList<>();
     private final List<Map<String, Object>> popularQueries = new ArrayList<>();
+    private final boolean enabled;
 
     @Inject
     public QueryDebugger(@Self SlingHttpServletRequest request) {
@@ -67,6 +74,11 @@ public class QueryDebugger {
         Optional<String> statementParam = Optional.ofNullable(request.getParameter("statement"));
         String language = Optional.ofNullable(request.getParameter("language")).orElse(Query.JCR_SQL2);
 
+        int limit = Optional.ofNullable(request.getParameter("sample")).map(s -> Integer.parseInt(s, 10)).orElse(0);
+
+        boolean lenabled = false;
+        long lestimate = 0;
+        long lduration = -1;
         String lplan = null;
         String lexception = null;
         String lstatement = null;
@@ -75,18 +87,44 @@ public class QueryDebugger {
 
                 QueryManager queryManager = request.getResourceResolver().adaptTo(Session.class).getWorkspace()
                         .getQueryManager();
-                Query query = queryManager.createQuery("explain " + statementParam.get(), language);
-                Row row = query.execute().getRows().nextRow();
+                Query explainQuery = queryManager.createQuery("explain " + statementParam.get(), language);
+                Row row = explainQuery.execute().getRows().nextRow();
                 lplan = row.getValue("plan").getString();
                 lstatement = statementParam.get();
+
+                if (limit > 0) {
+                    lenabled = true;
+                    long start = System.currentTimeMillis();
+                    Query query = queryManager.createQuery(statementParam.get(), language);
+                    query.setLimit(limit);
+                    QueryResult queryResult = query.execute();
+                    RowIterator rowIterator = queryResult.getRows();
+                    lestimate = rowIterator.getSize();
+                    lduration = System.currentTimeMillis() - start;
+                    while (rowIterator.hasNext()) {
+                        Optional.ofNullable(rowIterator.nextRow())
+                                .map(n -> {
+                                    try {
+                                        return request.getResourceResolver().getResource(n.getPath());
+                                    } catch (RepositoryException e) {
+                                        log.warn("Exception getting path from row: {}", n, e);
+                                        return null;
+                                    }
+                                })
+                                .ifPresent(results::add);
+                    }
+                }
             }
         } catch (RepositoryException re) {
             lexception = re.toString();
             log.warn("Failed to debug query: {}", statementParam, re);
         } finally {
             this.plan = lplan;
+            this.duration = lduration;
             this.exception = lexception;
             this.statement = lstatement;
+            this.estimatedSize = lestimate;
+            this.enabled = lenabled;
         }
 
         try {
@@ -110,10 +148,24 @@ public class QueryDebugger {
     }
 
     /**
-     * @return the plan
+     * @return the execution duration or -1
      */
-    public String getPlan() {
-        return plan;
+    public long getDuration() {
+        return duration;
+    }
+
+    /**
+     * @return the estimated size
+     */
+    public long getEstimatedSize() {
+        return estimatedSize;
+    }
+
+    /**
+     * @return if execution enabled
+     */
+    public boolean getExecutionEnabled() {
+        return enabled;
     }
 
     /**
@@ -121,6 +173,20 @@ public class QueryDebugger {
      */
     public String getException() {
         return exception;
+    }
+
+    /**
+     * @return the plan
+     */
+    public String getPlan() {
+        return plan;
+    }
+
+    /**
+     * @return the results
+     */
+    public List<Resource> getResults() {
+        return results;
     }
 
     /**

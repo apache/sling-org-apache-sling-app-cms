@@ -21,18 +21,35 @@
     <sling:adaptTo adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.core.models.QueryDebugger" var="queryDebugger" />
     <br/><hr/><br/>
     <dl>
-    <c:if test="${not empty queryDebugger.statement}">
-        <dt><fmt:message key="Query Statement" /><dt>
-        <dd>${sling:encode(queryDebugger.statement,'HTML')}</dd>
-    </c:if>
-    <c:if test="${not empty queryDebugger.plan}">
-        <dt><fmt:message key="Plan" /><dt>
-        <dd>${sling:encode(queryDebugger.plan,'HTML')}</dd>
-    </c:if>
-    <c:if test="${not empty queryDebugger.exception}">
-        <dt><fmt:message key="Exception" /><dt>
-        <dd>${sling:encode(queryDebugger.exception,'HTML')}</dd>
-    </c:if>
+        <c:if test="${not empty queryDebugger.statement}">
+            <dt><fmt:message key="Query Statement" /><dt>
+            <dd>${sling:encode(queryDebugger.statement,'HTML')}</dd>
+        </c:if>
+        <c:if test="${not empty queryDebugger.plan}">
+            <dt><fmt:message key="Plan" /><dt>
+            <dd>${sling:encode(queryDebugger.plan,'HTML')}</dd>
+        </c:if>
+        <c:if test="${not empty queryDebugger.exception}">
+            <dt><fmt:message key="Exception" /><dt>
+            <dd>${sling:encode(queryDebugger.exception,'HTML')}</dd>
+        </c:if>
+        <c:if test="${queryDebugger.executionEnabled}">
+            <dt><fmt:message key="Duration" /><dt>
+            <dd>${queryDebugger.duration}</dd>
+            <dt><fmt:message key="Size" /><dt>
+            <dd>${queryDebugger.estimatedSize}</dd>
+            <dt><fmt:message key="Results" /><dt>
+            <dd>
+                <nav class="panel fixed-box">
+                    <c:forEach var="result" items="${queryDebugger.results}">
+                        <a class="panel-block" href="/bin/browser.html${result.path}" target="_blank">
+                            ${result.path} [${result.resourceType}]
+                        </a>
+                    </c:forEach>
+                </nav>
+            </dd>
+        </c:if>
+    </dl>
     <br/><hr/><br/>
     <h2><fmt:message key="Popular Queries" /></h2>
     <table class="table">
@@ -59,7 +76,7 @@
                     ${query.position}
                 </td>
                 <td>
-                    ${fn:encode(query.statement,'HTML')}
+                    ${sling:encode(query.statement,'HTML')}
                 </td>
                 <td>
                     ${query.language}
@@ -98,7 +115,7 @@
                     ${query.position}
                 </td>
                 <td>
-                    ${fn:encode(query.statement,'HTML')}
+                    ${sling:encode(query.statement,'HTML')}
                 </td>
                 <td>
                     ${query.language}

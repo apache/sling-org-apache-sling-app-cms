@@ -54,6 +54,42 @@
                 "value": "sql"
               }
             }
+          },
+          "sampleResults": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "sling-cms/components/editor/fields/select",
+            "label": "Sample Results",
+            "name": "sample",
+            "options": {
+              "none": {
+                "label": "None",
+                "value": "0"
+              },
+              "100": {
+                "label": "100",
+                "value": "100"
+              },
+              "1000": {
+                "label": "1000",
+                "value": "1000"
+              },
+              "10000": {
+                "label": "10000",
+                "value": "10000"
+              },
+              "100000": {
+                "label": "100000",
+                "value": "100000"
+              },
+              "1000000": {
+                "label": "1000000",
+                "value": "1000000"
+              },
+              "2147483647": {
+                "label": "MAX",
+                "value": "2147483647"
+              }
+            }
           }
         }
       },
