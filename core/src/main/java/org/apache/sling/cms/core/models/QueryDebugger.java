@@ -164,7 +164,7 @@ public class QueryDebugger {
     /**
      * @return if execution enabled
      */
-    public boolean getExecutionEnabled() {
+    public boolean isExecutionEnabled() {
         return enabled;
     }
 
