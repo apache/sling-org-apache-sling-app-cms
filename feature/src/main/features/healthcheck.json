@@ -5,7 +5,7 @@
       "start-order":"5"
     },
     {
-      "id":"org.apache.felix:org.apache.felix.healthcheck.core:2.0.12",
+      "id":"org.apache.felix:org.apache.felix.healthcheck.core:2.0.14",
       "start-order":"5"
     },
     {

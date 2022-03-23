@@ -89,7 +89,7 @@
       "start-order":"15"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.rewriter:1.3.0",
+      "id":"org.apache.sling:org.apache.sling.rewriter:1.3.2",
       "start-order":"15"
     },
     {
@@ -101,7 +101,7 @@
       "start-order":"15"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.security:1.1.22",
+      "id":"org.apache.sling:org.apache.sling.security:1.1.24",
       "start-order":"20"
     }
   ],

@@ -10,6 +10,7 @@
         <ignoreVersion type="regex">.*-beta.*</ignoreVersion>
         <ignoreVersion type="regex">.*-RC.*</ignoreVersion>
         <ignoreVersion type="regex">.*b.*</ignoreVersion>
+        <ignoreVersion type="regex">.*test.*</ignoreVersion>
     </ignoreVersions>
     <rules>
         <rule groupId="com.google.guava" artifactId="guava" comparisonMethod="maven">
@@ -43,6 +44,16 @@
         <rule groupId="org.jvnet.staxex" artifactId="stax-ex" comparisonMethod="maven">
             <ignoreVersions>
                 <ignoreVersion type="regex">2.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="commons-codec" artifactId="commons-codec" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">2004.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="commons-io" artifactId="commons-io" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">2003.*</ignoreVersion>
             </ignoreVersions>
         </rule>
     </rules>

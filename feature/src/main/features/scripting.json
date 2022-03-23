@@ -5,7 +5,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino:1.7.13_1",
+      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino:1.7.14_2",
       "start-order":"20"
     },
     {
@@ -17,7 +17,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.scripting.core:2.4.2",
+      "id":"org.apache.sling:org.apache.sling.scripting.core:2.4.4",
       "start-order":"20"
     },
     {
@@ -61,7 +61,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.14-1.4.0",
+      "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.16-1.4.0",
       "start-order":"20"
     },
     {
@@ -89,7 +89,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl:3.3.0_1",
+      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl:3.3.2_1",
       "start-order":"20"
     },
     {

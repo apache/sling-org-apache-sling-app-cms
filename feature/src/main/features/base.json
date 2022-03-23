@@ -9,11 +9,11 @@
       "start-order":"15"
     },
     {
-      "id":"jakarta.activation:jakarta.activation-api:2.0.1",
+      "id":"jakarta.activation:jakarta.activation-api:2.1.0",
       "start-order":"15"
     },
     {
-      "id":"jakarta.mail:jakarta.mail-api:2.0.1",
+      "id":"jakarta.mail:jakarta.mail-api:2.1.0",
       "start-order":"20"
     },
     {
@@ -101,7 +101,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.resourceresolver:1.8.0",
+      "id":"org.apache.sling:org.apache.sling.resourceresolver:1.8.4",
       "start-order":"20"
     },
     {
@@ -153,11 +153,11 @@
       "start-order":"5"
     },
     {
-      "id":"org.apache.felix:org.apache.felix.http.jetty:4.1.14",
+      "id":"org.apache.felix:org.apache.felix.http.jetty:4.2.0",
       "start-order":"5"
     },
     {
-      "id":"org.apache.felix:org.apache.felix.http.servlet-api:1.1.4",
+      "id":"org.apache.felix:org.apache.felix.http.servlet-api:1.2.0",
       "start-order":"5"
     },
     {
@@ -189,7 +189,7 @@
       "start-order":"5"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.commons.metrics:1.2.8",
+      "id":"org.apache.sling:org.apache.sling.commons.metrics:1.2.10",
       "start-order":"5"
     },
     {
@@ -221,11 +221,11 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.6.10",
+      "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.6.14",
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.36",
+      "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.38",
       "start-order":"20"
     }
   ],

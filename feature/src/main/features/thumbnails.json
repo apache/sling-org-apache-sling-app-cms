@@ -7,19 +7,16 @@
       "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.batik:1.14_1",
       "start-order": "20"
     },
-
     {
       "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.bcel:5.2_4",
       "start-order": "20"
     },
-
     {
       "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xalan:2.7.2_3",
       "start-order": "20"
     },
-
     {
-      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xerces:2.12.1_1",
+      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xerces:2.12.2_1",
       "start-order": "20"
     },
     {

@@ -125,7 +125,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.resource:3.1.0",
+      "id":"org.apache.sling:org.apache.sling.jcr.resource:3.2.0",
       "start-order":"20"
     },
     {
@@ -133,11 +133,11 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.jackrabbit.vault:org.apache.jackrabbit.vault:3.5.8",
+      "id":"org.apache.jackrabbit.vault:org.apache.jackrabbit.vault:3.6.0",
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.contentloader:2.5.0",
+      "id":"org.apache.sling:org.apache.sling.jcr.contentloader:2.5.2",
       "start-order":"20"
     },
     {
@@ -145,7 +145,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager:2.2.16",
+      "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager:2.2.18",
       "start-order":"20"
     }
   ],
