@@ -183,6 +183,12 @@
             "user.mapping": [
                 "org.apache.sling.cms.core:sling-cms-versionmgr=sling-cms-versionmgr"
             ]
+        },
+        "org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment~sling-cms":{
+            "whitelist.bundles":[
+                "org.apache.sling.cms.core"
+            ],
+            "whitelist.name":"sling-cms"
         }
     },
     "repoinit:TEXT|true": "@file"
