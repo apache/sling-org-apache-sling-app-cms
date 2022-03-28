@@ -17,6 +17,15 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
+<c:choose>
+    <c:when test="${not empty param.page}">
+        <c:set var="paginationPage" value="${param.page}" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="paginationPage" value="0" />
+    </c:otherwise>
+</c:choose>
+<c:set var="PAGE_SIZE" value="${60}" />
  <div class="reload-container table__wrapper scroll-container contentnav" data-path="${resource.path}.table.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
     <table class="table is-fullwidth is-striped sortable">
         <thead>
@@ -34,8 +43,8 @@
         </thead>
         <tbody>
             <c:set var="parentPath" value="${slingRequest.requestPathInfo.suffix}${not empty properties.appendSuffix ? properties.appendSuffix : ''}" />
-            <c:set var="count" value="1" />
-            <c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}" varStatus="status">
+            <c:set var="count" value="${paginationPage * PAGE_SIZE + 1}" />
+            <c:forEach var="child" items="${sling:listChildren(sling:getResource(resourceResolver, parentPath))}" varStatus="status" begin="${paginationPage * PAGE_SIZE}" end="${(paginationPage * PAGE_SIZE + PAGE_SIZE) - 1}">
                 <c:set var="type" value="${not empty child.valueMap['jcr:primaryType'] ? child.valueMap['jcr:primaryType'] : fn:replace(child.resourceType,'/','-')}" />
                 <sling:getResource var="typeConfig" base="${resource}" path="types/${type}" />
                 <c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
@@ -56,4 +65,12 @@
             </c:forEach> 
         </tbody>
     </table>
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <c:if test="${paginationPage != 0}">
+            <a class="pagination-previous" href="?page=${paginationPage - 1}"><fmt:message key="Previous" /></a>
+        </c:if>
+        <c:if test="${paginationPage * PAGE_SIZE + PAGE_SIZE < fn:length(sling:listChildren(slingRequest.requestPathInfo.suffixResource))}">
+            <a class="pagination-next" href="?page=${paginationPage + 1}"><fmt:message key="Next" /></a>
+        </c:if>
+    </nav>
 </div>

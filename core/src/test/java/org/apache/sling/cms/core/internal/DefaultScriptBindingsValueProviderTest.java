@@ -24,7 +24,6 @@ import static org.junit.Assert.assertTrue;
 import javax.script.Bindings;
 
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.cms.Component;
 import org.apache.sling.cms.Page;
 import org.apache.sling.cms.core.helpers.SlingCMSTestHelper;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
@@ -59,8 +58,6 @@ public class DefaultScriptBindingsValueProviderTest {
         assertEquals(bindings.get("currentPage"), bindings.get("page"));
         assertNotNull(bindings.get("properties"));
         assertTrue(bindings.get("properties") instanceof ValueMap);
-        assertNotNull(bindings.get("component"));
-        assertTrue(bindings.get("component") instanceof Component);
         assertNotNull(bindings.get("componentConfiguration"));
         assertTrue(bindings.get("componentConfiguration") instanceof ValueMap);
 
@@ -82,8 +79,6 @@ public class DefaultScriptBindingsValueProviderTest {
         assertNull(bindings.get("currentPage"));
         assertNotNull(bindings.get("properties"));
         assertTrue(bindings.get("properties") instanceof ValueMap);
-        assertNotNull(bindings.get("component"));
-        assertTrue(bindings.get("component") instanceof Component);
         assertNotNull(bindings.get("componentConfiguration"));
         assertTrue(bindings.get("componentConfiguration") instanceof ValueMap);
 

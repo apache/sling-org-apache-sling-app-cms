@@ -58,7 +58,7 @@
           },
           "published": {
             "jcr:primaryType": "nt:unstructured",
-            "name": "jcr:content/published",
+            "name": "jcr:content/sling:published",
             "label": "Published",
             "sling:resourceType": "sling-cms/components/editor/fields/publication"
           },

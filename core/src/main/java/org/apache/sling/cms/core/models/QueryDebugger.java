@@ -87,7 +87,7 @@ public class QueryDebugger {
 
                 QueryManager queryManager = request.getResourceResolver().adaptTo(Session.class).getWorkspace()
                         .getQueryManager();
-                Query explainQuery = queryManager.createQuery("explain " + statementParam.get(), language);
+                Query explainQuery = queryManager.createQuery("explain measure " + statementParam.get(), language);
                 Row row = explainQuery.execute().getRows().nextRow();
                 lplan = row.getValue("plan").getString();
                 lstatement = statementParam.get();

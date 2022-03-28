@@ -44,7 +44,7 @@
     - * (UNDEFINED) multiple
     - * (UNDEFINED)
     
-[sling:File] > nt:file, mix:publishable
+[sling:File] > nt:file
      - * (undefined) copy
      + jcr:content (sling:FileContent) = sling:FileContent copy primary autocreated
     

@@ -82,8 +82,8 @@ public abstract class ReferenceOperation {
 
     public void init() {
         log.debug("Finding references to {}", resource.getPath());
-        String query = "SELECT * FROM [nt:base] AS s WHERE NOT ISDESCENDANTNODE([/jcr:system/jcr:versionStorage]) AND CONTAINS(s.*, '"
-                + Text.escapeIllegalXpathSearchChars(resource.getPath()) + "')";
+        String query = "SELECT * FROM [nt:base] AS s WHERE NOT ISDESCENDANTNODE([/jcr:system]) AND CONTAINS(s.*, '\""
+                + Text.escapeIllegalXpathSearchChars(resource.getPath()) + "\"')";
         Set<String> paths = new HashSet<>();
 
         Iterator<Resource> resources = resource.getResourceResolver().findResources(query, Query.JCR_SQL2);

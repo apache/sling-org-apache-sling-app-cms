@@ -1,9 +1,0 @@
-{
-	"jcr:primaryType": "oak:QueryIndexDefinition",
-	"jcr:name:propertyNames": [
-		"sling:template"
-	],
-	"type": "property",
-	"reindex": false,
-	"reindexCount": 1
-}

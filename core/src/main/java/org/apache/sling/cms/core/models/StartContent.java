@@ -66,49 +66,48 @@ public class StartContent {
     }
 
     public List<Resource> getRelatedContent() {
-        return Stream.concat(get10Related(resolver, CMSConstants.NT_PAGE, term),
-                get10Related(resolver, CMSConstants.NT_FILE, term)).sorted((o1, o2) -> {
-                    try {
-                        return (int) ((o1.getScore() - o2.getScore()) * 100);
-                    } catch (RepositoryException e) {
-                        log.warn("Exception getting score", e);
-                        return 0;
-                    }
-                }).limit(9).map(row -> {
-                    try {
-                        return resolver.getResource(row.getPath());
-                    } catch (RepositoryException e) {
-                        log.warn("Failed to get resource", e);
-                        return null;
-                    }
-                }).filter(Objects::nonNull).collect(Collectors.toList());
+        return get10Related(resolver, term).sorted((o1, o2) -> {
+            try {
+                return (int) ((o1.getScore() - o2.getScore()) * 100);
+            } catch (RepositoryException e) {
+                log.warn("Exception getting score", e);
+                return 0;
+            }
+        }).limit(9).map(row -> {
+            try {
+                return resolver.getResource(row.getPath());
+            } catch (RepositoryException e) {
+                log.warn("Failed to get resource", e);
+                return null;
+            }
+        }).filter(Objects::nonNull).collect(Collectors.toList());
 
     }
 
     public List<Resource> getRecentContent() {
-        return Stream.concat(get10Recent(resolver, CMSConstants.NT_PAGE), get10Recent(resolver, CMSConstants.NT_FILE))
-                .sorted((o1,
-                        o2) -> o1.getValueMap().get("jcr:content/jcr:lastModified", new Date())
-                                .compareTo(o2.getValueMap().get("jcr:content/jcr:lastModified", new Date())) * -1)
+        return get10Recent(resolver).sorted((o1, o2) -> o1.getValueMap().get("jcr:content/jcr:lastModified", new Date())
+                .compareTo(o2.getValueMap().get("jcr:content/jcr:lastModified", new Date())) * -1)
                 .limit(10).collect(Collectors.toList());
     }
 
-    private Stream<Resource> get10Recent(ResourceResolver resolver, String type) {
+    private Stream<Resource> get10Recent(ResourceResolver resolver) {
         Iterator<Resource> it = resolver.findResources(
-                "SELECT * FROM [" + type + "] WHERE [jcr:content/jcr:lastModifiedBy] = '" + resolver.getUserID()
-                        + "' AND ISDESCENDANTNODE([/content]) ORDER BY [jcr:content/jcr:lastModified] DESC",
+                "SELECT * FROM [nt:hierarchyNode] WHERE [jcr:content/jcr:lastModifiedBy] = '" + resolver.getUserID()
+                        + "' AND ISDESCENDANTNODE([/content]) ORDER BY [jcr:content/jcr:lastModified] DESC /* slingQueryLimit=10 */",
                 Query.JCR_SQL2);
         return StreamSupport.stream(Spliterators.spliteratorUnknownSize(it, Spliterator.NONNULL), false).limit(10);
     }
 
-    private Stream<Row> get10Related(ResourceResolver resolver, String type, String term) {
+    private Stream<Row> get10Related(ResourceResolver resolver, String term) {
         Session session = resolver.adaptTo(Session.class);
         if (session != null) {
             try {
                 Query query = session.getWorkspace().getQueryManager()
-                        .createQuery("SELECT * FROM [" + type
-                                + "] AS s WHERE ISDESCENDANTNODE([/content]) AND CONTAINS(s.*,'"
-                                + term.replace("'", "''") + "')", Query.JCR_SQL2);
+                        .createQuery(
+                                "SELECT * FROM [nt:hierarchyNode] AS s WHERE ISDESCENDANTNODE([/content]) AND CONTAINS(s.*,'"
+                                        + term.replace("'", "''") + "')",
+                                Query.JCR_SQL2);
+                query.setLimit(10);
                 QueryResult result = query.execute();
                 @SuppressWarnings("unchecked")
                 Iterable<Row> iterable = () -> {

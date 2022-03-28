@@ -16,10 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:choose>
+    <c:when test="${not empty param.page}">
+        <c:set var="paginationPage" value="${param.page}" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="paginationPage" value="0" />
+    </c:otherwise>
+</c:choose>
+<c:set var="PAGE_SIZE" value="${60}" />
 <div class="reload-container scroll-container contentnav" data-path="${resource.path}.grid.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
     <div class="columns is-multiline">
-        <c:forEach var="child" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}" varStatus="status">
+        <c:forEach var="child" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}" varStatus="status" begin="${paginationPage * PAGE_SIZE}" end="${(paginationPage * PAGE_SIZE + PAGE_SIZE) - 1}">
             <c:set var="showCard" value="${false}" />
             <c:forEach var="type" items="${sling:listChildren(sling:getRelativeResource(resource,'types'))}">
                 <c:if test="${child.valueMap['jcr:primaryType'] == type.name}">
@@ -124,4 +133,12 @@
             </c:if>
         </c:forEach>
     </div>
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <c:if test="${paginationPage != 0}">
+            <a class="pagination-previous" href="?page=${paginationPage - 1}"><fmt:message key="Previous" /></a>
+        </c:if>
+        <c:if test="${paginationPage * PAGE_SIZE + PAGE_SIZE < fn:length(sling:listChildren(slingRequest.requestPathInfo.suffixResource))}">
+            <a class="pagination-next" href="?page=${paginationPage + 1}"><fmt:message key="Next" /></a>
+        </c:if>
+    </nav>
 </div>

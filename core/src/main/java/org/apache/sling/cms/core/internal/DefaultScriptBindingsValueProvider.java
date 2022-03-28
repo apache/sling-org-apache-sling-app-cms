@@ -38,20 +38,17 @@ public class DefaultScriptBindingsValueProvider implements BindingsValuesProvide
     @Override
     public void addBindings(Bindings bindings) {
         Resource resource = (Resource) bindings.get("resource");
-        ServletRequest request = (ServletRequest) bindings.get("request");
+
         bindings.put("properties", resource.getValueMap());
 
         Optional.ofNullable(resource.adaptTo(ComponentConfiguration.class)).map(ComponentConfiguration::getProperties)
                 .ifPresent(p -> bindings.put("componentConfiguration", p));
 
-        Optional.ofNullable(resource.getResourceResolver().resolve(resource.getPath()))
-                .map(rt -> rt.adaptTo(org.apache.sling.cms.Component.class))
-                .ifPresent(c -> bindings.put("component", c));
-
         Resource publishableParent = CMSUtils.findPublishableParent(resource);
         if (publishableParent != null && CMSConstants.NT_PAGE.equals(publishableParent.getResourceType())) {
             Optional.of(publishableParent.adaptTo(Page.class)).ifPresent(p -> {
                 bindings.put("page", p);
+                ServletRequest request = (ServletRequest) bindings.get("request");
                 if (request.getAttribute(PN_CURRENT_PAGE) == null) {
                     request.setAttribute(PN_CURRENT_PAGE, p);
                     bindings.put(PN_CURRENT_PAGE, p);
