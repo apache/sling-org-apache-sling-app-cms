@@ -22,7 +22,7 @@ Next build the code with:
 
     mvn clean install
     
-The JAR will be located under: `builder/target/org.apache.sling.cms-{VERSION].jar`
+The JAR will be located under: `feature/target/org.apache.sling.cms-{VERSION].jar`
 
 ## Running
 
