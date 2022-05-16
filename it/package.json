@@ -15,6 +15,6 @@
     "cypress": "^7.7.0",
     "cypress-audit": "^1.0.0",
     "cypress-plugin-snapshots": "^1.4.4",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   }
 }
