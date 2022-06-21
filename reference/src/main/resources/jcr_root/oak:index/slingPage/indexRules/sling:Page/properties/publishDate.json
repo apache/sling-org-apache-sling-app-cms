@@ -1,0 +1,8 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "propertyIndex": true,
+  "name": "jcr:content/publishDate",
+  "type": "String",
+  "nullCheckEnabled": true,
+  "ordered": true
+}

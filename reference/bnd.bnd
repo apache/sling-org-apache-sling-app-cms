@@ -1,2 +1,8 @@
-Sling-Initial-Content: jcr_root;ignoreImportProviders:=xml,jcr_root/content/apache.json;overwrite:=false;uninstall:=false;path:=/content/apache,jcr_root/etc/taxonomy/reference.json;overwrite:=false;uninstall:=false;path:=/etc/taxonomy/reference,jcr_root;ignoreImportProviders:=xml,jcr_root/apps/reference;overwrite:=true;uninstall:=true;path:=/apps/reference,jcr_root/static/clientlibs/reference;overwrite:=true;ignoreImportProviders:=xml;path:=/static/clientlibs/reference,jcr_root/conf/asf.json;overwrite:=true;ignoreImportProviders:=xml;path:=/conf/asf
+Sling-Initial-Content: jcr_root/apps/reference;overwrite:=true;uninstall:=true;path:=/apps/reference,\
+    jcr_root/conf/asf.json;overwrite:=true;ignoreImportProviders:=xml;path:=/conf/asf,\
+    jcr_root/content/apache.json;overwrite:=false;uninstall:=false;path:=/content/apache,\
+    jcr_root/etc/taxonomy/reference.json;overwrite:=false;uninstall:=false;path:=/etc/taxonomy/reference,\
+    jcr_root/oak:index/slingPage/indexRules/sling:Page/properties/hideInSitemap.json;overwrite:=true;path:=/oak:index/slingPage/indexRules/sling:Page/properties/hideInSitemap,\
+    jcr_root/oak:index/slingPage/indexRules/sling:Page/properties/publishDate.json;overwrite:=true;path:=/oak:index/slingPage/indexRules/sling:Page/properties/publishDate,\
+    jcr_root/static/clientlibs/reference;overwrite:=true;ignoreImportProviders:=xml;path:=/static/clientlibs/reference
 Sling-Model-Packages: org.apache.sling.cms.reference.models,org.apache.sling.cms.reference.forms.impl

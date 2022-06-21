@@ -6,7 +6,7 @@
         },
         {
             "id": "org.apache.sling:org.apache.sling.cms.ui:${cms-version}",
-            "start-order": "20"
+            "start-order": "19"
         },
         {
             "id": "org.apache.sling:org.apache.sling.cms.core:${cms-version}",

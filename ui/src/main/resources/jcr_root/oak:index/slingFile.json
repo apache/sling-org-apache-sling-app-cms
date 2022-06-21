@@ -27,10 +27,7 @@
         "jcr:primaryType": "nt:unstructured",
         "jcrDescription": {
           "jcr:primaryType": "nt:unstructured",
-          "nodeScopeIndex": true,
-          "useInSuggest": true,
           "propertyIndex": true,
-          "useInSpellcheck": true,
           "analyzed": true,
           "name": "jcr:content/jcr:description"
         },
@@ -49,20 +46,14 @@
         },
         "jcrTitle": {
           "jcr:primaryType": "nt:unstructured",
-          "nodeScopeIndex": true,
-          "useInSuggest": true,
           "propertyIndex": true,
-          "useInSpellcheck": true,
           "analyzed": true,
           "name": "jcr:content/jcr:title",
           "boost": 2
         },
         "nodeName": {
           "jcr:primaryType": "nt:unstructured",
-          "nodeScopeIndex": true,
-          "useInSuggest": true,
           "propertyIndex": true,
-          "useInSpellcheck": true,
           "name": ":nodeName",
           "type": "String"
         },
@@ -74,10 +65,7 @@
         },
         "slingTaxonomy": {
           "jcr:primaryType": "nt:unstructured",
-          "nodeScopeIndex": true,
-          "useInSuggest": true,
           "propertyIndex": true,
-          "useInSpellcheck": true,
           "analyzed": true,
           "name": "jcr:content/sling:taxonomy"
         }

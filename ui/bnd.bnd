@@ -1,3 +1,15 @@
 Sling-Nodetypes: SLING-INF/nodetypes/nodetypes.cnd
-Sling-Initial-Content: jcr_root;overwriteProperties:=true;overwrite:=false;ignoreImportProviders:=xml,jcr_root/conf/global.json;overwrite:=true;ignoreImportProviders:=xml;path:=/conf/global,jcr_root/etc/taxonomy;overwrite:=false;uninstall:=true;path:=/etc/taxonomy,jcr_root/oak%3Aindex;overwrite:=false;uninstall:=true;path:=/oak:index,jcr_root/libs/sling-cms;overwrite:=true;uninstall:=true;path:=/libs/sling-cms,jcr_root/libs/sling/thumbnails;overwrite:=true;uninstall:=true;path:=/libs/sling/thumbnails,jcr_root/static/clientlibs/sling-cms;overwrite:=true;uninstall:=true;path:=/static/clientlibs/sling-cms;ignoreImportProviders:=xml,jcr_root/static/clientlibs/sling-cms-editor;overwrite:=true;uninstall:=true;path:=/static/clientlibs/sling-cms-editor;ignoreImportProviders:=xml,jcr_root/static/sling-cms;overwrite:=true;uninstall:=true;path:=/static/sling-cms;ignoreImportProviders:=xml
+Sling-Initial-Content: jcr_root;overwriteProperties:=true;overwrite:=false;ignoreImportProviders:=xml,\
+    jcr_root/conf/global.json;overwrite:=true;ignoreImportProviders:=xml;path:=/conf/global,\
+    jcr_root/etc/taxonomy;overwrite:=false;path:=/etc/taxonomy,\
+    jcr_root/libs/sling-cms;overwrite:=true;path:=/libs/sling-cms,\
+    jcr_root/libs/sling/thumbnails;overwrite:=true;path:=/libs/sling/thumbnails,\
+    jcr_root/oak:index/ntHierarchyNode.json;overwrite:=true;path:=/oak:index/ntHierarchyNode,\
+    jcr_root/oak:index/slingComponent.json;overwrite:=true;path:=/oak:index/slingComponent,\
+    jcr_root/oak:index/slingFile.json;overwrite:=true;path:=/oak:index/slingFile,\
+    jcr_root/oak:index/slingPage.json;overwrite:=true;path:=/oak:index/slingPage,\
+    jcr_root/oak:index/slingTaxonomy.json;overwrite:=true;path:=/oak:index/slingTaxonomy,\
+    jcr_root/static/clientlibs/sling-cms;overwrite:=true;path:=/static/clientlibs/sling-cms;ignoreImportProviders:=xml,\
+    jcr_root/static/clientlibs/sling-cms-editor;overwrite:=true;path:=/static/clientlibs/sling-cms-editor;ignoreImportProviders:=xml,\
+    jcr_root/static/sling-cms;overwrite:=true;path:=/static/sling-cms;ignoreImportProviders:=xml
 -includeresource: target/frontend/dist
