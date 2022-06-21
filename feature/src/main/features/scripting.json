@@ -17,7 +17,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.scripting.core:2.4.4",
+      "id":"org.apache.sling:org.apache.sling.scripting.core:2.4.8",
       "start-order":"20"
     },
     {
@@ -37,7 +37,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.5.4",
+      "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.6.0",
       "start-order":"20"
     },
     {
@@ -61,7 +61,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.16-1.4.0",
+      "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.18-1.4.0",
       "start-order":"20"
     },
     {
@@ -77,7 +77,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.thymeleaf:3.0.14.RELEASE_1",
+      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.thymeleaf:3.0.15.RELEASE_1",
       "start-order":"20"
     },
     {
@@ -93,7 +93,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.javassist:javassist:3.28.0-GA",
+      "id":"org.javassist:javassist:3.29.0-GA",
       "start-order":"20"
     }
   ],

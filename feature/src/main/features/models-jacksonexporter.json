@@ -1,11 +1,11 @@
 {
   "bundles":[
     {
-      "id":"com.fasterxml.jackson.core:jackson-annotations:${jackson-version}",
+      "id":"com.fasterxml.jackson.core:jackson-annotations:2.13.3",
       "start-order":"20"
     },
     {
-      "id":"com.fasterxml.jackson.core:jackson-core:${jackson-version}",
+      "id":"com.fasterxml.jackson.core:jackson-core:2.13.3",
       "start-order":"20"
     },
     {

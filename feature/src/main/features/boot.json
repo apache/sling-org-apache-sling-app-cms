@@ -13,7 +13,7 @@
       "start-order":"1"
     },
     {
-      "id":"org.apache.felix:org.apache.felix.configadmin:1.9.22",
+      "id":"org.apache.felix:org.apache.felix.configadmin:1.9.24",
       "start-order":"1"
     },
     {
@@ -61,7 +61,7 @@
       "start-order":"1"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.commons.log:5.4.0",
+      "id":"org.apache.sling:org.apache.sling.commons.log:5.4.2",
       "start-order":"1"
     },
     {
@@ -102,6 +102,10 @@
     },
     {
       "id":"org.osgi:org.osgi.service.log:1.5.0",
+      "start-order":"1"
+    },
+    {
+      "id":"org.osgi:org.osgi.service.component:1.5.0",
       "start-order":"1"
     },
     {

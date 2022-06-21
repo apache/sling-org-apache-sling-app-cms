@@ -21,7 +21,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.installer.factory.feature:0.6.0",
+      "id":"org.apache.sling:org.apache.sling.installer.factory.feature:0.7.0",
       "start-order":"20"
     }
   ]
