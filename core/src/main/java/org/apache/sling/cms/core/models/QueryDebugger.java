@@ -55,7 +55,7 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = SlingHttpServletRequest.class)
 public class QueryDebugger {
 
-    private static final String MBEAN_NAME = "org.apache.jackrabbit.oak:name=Oak Query Statistics,type=QueryStat";
+    private static final String MBEAN_NAME = "org.apache.jackrabbit.oak:name=Oak Query Statistics (Extended),type=QueryStats";
 
     private static final Logger log = LoggerFactory.getLogger(QueryDebugger.class);
     private final String plan;
