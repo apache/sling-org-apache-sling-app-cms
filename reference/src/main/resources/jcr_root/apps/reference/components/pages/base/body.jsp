@@ -16,10 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */ --%>
- <%@include file="/libs/sling-cms/global.jsp"%>
-
- <h1>site=${sling:adaptTo(resource,'org.apache.sling.cms.SiteManager').site}</h1>
- <c:set var="site" value="${sling:adaptTo(resource,'org.apache.sling.cms.SiteManager').site}" />
+<%@include file="/libs/sling-cms/global.jsp"%>
+<c:set var="site" value="${sling:adaptTo(resource,'org.apache.sling.cms.SiteManager').site}" />
 <body>
 	<sling:call script="/libs/sling-cms/components/editor/scripts/init.jsp" />
 	<div class="title">
@@ -35,7 +33,7 @@
 		</div>
 	</div>
 	<div class="menu">
-		<sling:include path="${site.path}/index/jcr:content/menu" resourceType="sling-cms/components/general/container" />
+		<sling:include path="${sling:encode(site.path,'HTML_ATTR')}/index/jcr:content/menu" resourceType="sling-cms/components/general/container" />
 		<a href="http://apache.org/foundation/contributing.html">
             <img border="0" alt="Support the Apache Software Foundation!" src="/static/clientlibs/reference/img/SupportApache-small.png" width="115px">
         </a>

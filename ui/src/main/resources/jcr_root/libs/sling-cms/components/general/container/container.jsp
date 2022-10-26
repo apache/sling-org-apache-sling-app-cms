@@ -33,13 +33,13 @@
     <sling:include resource="${child}" />
 </c:forEach>
 <c:if test="${cmsEditEnabled == 'true'}">
-    <div class="sling-cms-droptarget" data-create="${sling:getResource(resourceResolver, resource.path) == null}" data-path="${resource.path}" data-order="last"></div>
+    <div class="sling-cms-droptarget" data-create="${sling:getResource(resourceResolver, resource.path) == null}" data-path="${sling:encode(resource.path,'HTML_ATTR')}" data-order="last"></div>
     <div class="sling-cms-editor">
         <fmt:message key="Add Components" var="addComponentsMessage" />
         <div class="level has-background-light has-text-black-ter">
             <div class="level-left">
                 <div class="level-item">
-                    <a href="/cms/editor/add.html${resource.path}?availableTypes=${availableTypes}" class="button action-button is-small" data-sling-cms-action="add" data-sling-cms-path="${resource.path}" data-sling-cms-available-types="${availableTypes}" title="${addComponentsMessage}">
+                    <a href="/cms/editor/add.html${sling:encode(resource.path,'HTML_ATTR')}?availableTypes=${availableTypes}" class="button action-button is-small" data-sling-cms-action="add" data-sling-cms-path="${sling:encode(resource.path,'HTML_ATTR')}" data-sling-cms-available-types="${availableTypes}" title="${addComponentsMessage}">
                         &#43;
                     </a>
                 </div>

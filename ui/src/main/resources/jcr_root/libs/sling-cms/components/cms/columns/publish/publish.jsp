@@ -22,7 +22,7 @@
     <c:choose>
         <c:when test="${publishableResource.published}">
             <fmt:message key="Content Published" var="publishedMessage" />
-            <a class="button is-success is-outlined Fetch-Modal" href="/cms/shared/unpublish.html${resource.path}" title="${publishedMessage}" data-title="Unpublish" data-path=".Main-Content form">
+            <a class="button is-success is-outlined Fetch-Modal" href="/cms/shared/unpublish.html${sling:encode(resource.path,'HTML_ATTR')}" title="${publishedMessage}" data-title="Unpublish" data-path=".Main-Content form">
                 <i class="jam jam-check">
                     <span class="is-sr-only">${publishedMessage}</span>
                 </i>
@@ -30,7 +30,7 @@
         </c:when>
         <c:otherwise>
             <fmt:message key="Content Not Published" var="notPublishedMessage" />
-            <a class="button is-warning is-outlined Fetch-Modal" href="/cms/shared/publish.html${resource.path}" title="${notPublishedMessage}" data-title="Publish" data-path=".Main-Content form">
+            <a class="button is-warning is-outlined Fetch-Modal" href="/cms/shared/publish.html${sling:encode(resource.path,'HTML_ATTR')}" title="${notPublishedMessage}" data-title="Publish" data-path=".Main-Content form">
                 <i class="jam jam-close">
                     <span class="is-sr-only">${notPublishedMessage}</span>
                 </i>

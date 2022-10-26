@@ -53,7 +53,7 @@
         <c:set var="events" value="${events},${event.key}" />
     </c:if>
 </c:forEach>
-<div class="field" data-events="${events}" data-path="${resource.path}">
+<div class="field" data-events="${events}" data-path="${sling:encode(resource.path,'HTML_ATTR')}">
     <c:if test="${not empty properties.label}">
         <label class="label" for="${properties.name}">
             <fmt:message key="${properties.label}" var="label" />

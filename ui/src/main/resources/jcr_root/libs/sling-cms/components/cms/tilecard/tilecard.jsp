@@ -20,7 +20,7 @@
 <fmt:message key="${properties.title}" var="title" />
 <div class="tile is-parent is-3 contentnav__item">
     <div class="tile is-child">
-        <div class="card is-linked" title="${sling:encode(properties.title,'HTML_ATTR')}" data-value="${resource.path}">
+        <div class="card is-linked" title="${sling:encode(properties.title,'HTML_ATTR')}" data-value="${sling:encode(resource.path,'HTML_ATTR')}">
             <div class="card-image">
                 <figure class="image is-5by4">
                     <img src="/cms/file/preview.html${branding.gridIconsBase}${sling:encode(properties.icon,'HTML_ATTR')}" loading="lazy" alt="${sling:encode(title,'HTML_ATTR')}">

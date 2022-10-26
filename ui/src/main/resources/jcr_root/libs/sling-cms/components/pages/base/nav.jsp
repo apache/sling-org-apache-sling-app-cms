@@ -43,7 +43,7 @@
                 <sling:getResource path="${auth.authorizable.path}/profile" var="profile" />
                 <span class="navbar-link">
                     <c:if test="${sling:getRelativeResource(profile,'thumbnail') != null}">
-                        <img src="${profile.path}/thumbnail.transform/sling-cms-thumbnail32.png" alt="${resourceResolver.userID}" />
+                        <img src="${sling:encode(profile.path,'HTML_ATTR')}/thumbnail.transform/sling-cms-thumbnail32.png" alt="${resourceResolver.userID}" />
                     </c:if>&nbsp;
                     <sling:encode value="${profile.valueMap.name}" default="${resourceResolver.userID}" mode="HTML" />
                 </span>

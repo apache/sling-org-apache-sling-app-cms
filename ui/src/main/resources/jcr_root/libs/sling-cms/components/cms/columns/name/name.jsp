@@ -17,11 +17,11 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<td data-value="${resource.path}">
+<td data-value="${sling:encode(resource.path,'HTML_ATTR')}">
     <c:set var="colValue" value="${resource.name}" />
     <c:choose>
         <c:when test="${colConfig.valueMap.link}">
-            <a class="item-link" href="${colConfig.valueMap.prefix}${resource.path}">
+            <a class="item-link" href="${colConfig.valueMap.prefix}${sling:encode(resource.path,'HTML_ATTR')}">
                 <sling:encode value="${colValue}" mode="HTML" />
             </a>
         </c:when>

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="scroll-container reload-container" data-path="${resource.path}.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
+<div class="scroll-container reload-container" data-path="${sling:encode(resource.path,'HTML_ATTR')}.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
     <sling:include path="${resource.path}" resourceType="sling-cms/components/general/container" />
     <c:forEach var="language" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
         <c:if test="${firstChild == null && not empty language.valueMap['jcr:language']}">
@@ -27,7 +27,7 @@
     <nav class="level">
         <div class="level-left">
             <div class="level-item">
-                <a class="Button Fetch-Modal" data-title="Add Entry" data-path=".Main-Content form" href="/cms/i18n/entry/create.html${firstChild.path}">
+                <a class="Button Fetch-Modal" data-title="Add Entry" data-path=".Main-Content form" href="/cms/i18n/entry/create.html${sling:encode(firstChild.path,'HTML_ATTR')}">
                     <fmt:message key="+ Entry" />
                 </a>
             </div>

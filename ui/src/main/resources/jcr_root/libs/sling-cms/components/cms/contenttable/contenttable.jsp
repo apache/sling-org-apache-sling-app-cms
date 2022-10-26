@@ -26,7 +26,7 @@
     </c:otherwise>
 </c:choose>
 <c:set var="PAGE_SIZE" value="${60}" />
- <div class="reload-container table__wrapper scroll-container contentnav" data-path="${resource.path}.table.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
+ <div class="reload-container table__wrapper scroll-container contentnav" data-path="${sling:encode(resource.path,'HTML_ATTR')}.table.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}">
     <table class="table is-fullwidth is-striped sortable">
         <thead>
             <tr>
@@ -48,7 +48,7 @@
                 <c:set var="type" value="${not empty child.valueMap['jcr:primaryType'] ? child.valueMap['jcr:primaryType'] : fn:replace(child.resourceType,'/','-')}" />
                 <sling:getResource var="typeConfig" base="${resource}" path="types/${type}" />
                 <c:if test="${typeConfig != null && !fn:contains(child.name,':')}">
-                    <tr class="contentnav__item sortable__row" data-resource="${child.path}" data-type="${typeConfig.path}">
+                    <tr class="contentnav__item sortable__row" data-resource="${sling:encode(child.path,'HTML_ATTR')}" data-type="${sling:encode(typeConfig.path,'HTML_ATTR')}">
                         <td class="Cell-Static" title="# ${status.index + 1}" data-sort-value="<fmt:formatNumber pattern="0000" value="${count}" />">
                             ${count}
                         </td>
@@ -56,7 +56,7 @@
                             <c:set var="configPath" value="columns/${column.name}"/>
                             <c:set var="colConfig" value="${sling:getRelativeResource(typeConfig,configPath)}" scope="request" />
                             <c:if test="${colConfig != null}">
-                                <sling:include path="${child.path}" resourceType="${colConfig.valueMap['sling:resourceType']}" />
+                                <sling:include path="${sling:encode(child.path,'HTML_ATTR')}" resourceType="${colConfig.valueMap['sling:resourceType']}" />
                             </c:if>
                         </c:forEach>
                     </tr>

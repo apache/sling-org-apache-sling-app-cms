@@ -57,7 +57,7 @@
                 <fmt:message key="Find Content" />
             </p>
             <div class="panel-block">
-                <form method="get" class="get-form" data-target=".search-result-container" data-load="div" action="${resource.path}.search.html">
+                <form method="get" class="get-form" data-target=".search-result-container" data-load="div" action="${sling:encode(resource.path,'HTML_ATTR')}.search.html">
                     <p class="control has-icons-left">
                         <label class="is-sr-only" for="search-term"><fmt:message key="Search" /></label>
                         <input class="input is-small" type="text" name="q" id="search-term" />

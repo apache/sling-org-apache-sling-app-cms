@@ -26,7 +26,7 @@
             <c:set var="url" value="${item.path}.html" />
         </c:otherwise>
     </c:choose>
-    <a href="${url}">
+    <a href="${sling:encode(url,'HTML_ATTR')}">
         <sling:encode value="${item.valueMap['jcr:content/jcr:title']}" default="${item.name}" mode="HTML" />
     </a>
 </li>

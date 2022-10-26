@@ -50,7 +50,7 @@
                         </c:otherwise>
                     </c:choose>
                     <c:if test="${icon == 'file'}">
-                        <img src="${result.path}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${sling:encode(title,'HTML_ATTR')}" />
+                        <img src="${sling:encode(result.path,'HTML_ATTR')}.transform/sling-cms-thumbnail.png" loading="lazy" alt="${sling:encode(title,'HTML_ATTR')}" />
                     </c:if>
                     <h5 title="${sling:encode(title,'HTML_ATTR')}">
                         <span class="jam jam-${icon}"></span>&nbsp;${sling:encode(title,'HTML')}
@@ -58,7 +58,7 @@
                     <small class="is-size-7">
                         <em title="${sling:encode(result.path,'HTML_ATTR')}">${sling:encode(result.path,'HTML')}</em>
                     </small><br/>
-                    <a href="#" class="button search-select-button is-pulled-right" data-path="${result.path}"><fmt:message key="Select" /></a>
+                    <a href="#" class="button search-select-button is-pulled-right" data-path="${sling:encode(result.path,'HTML_ATTR')"><fmt:message key="Select" /></a>
                     <br class="clearfix" />
                 </div>
             </div>

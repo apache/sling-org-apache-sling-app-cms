@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
- <div class="reload-container" data-path="${resource.path}.html">
+ <div class="reload-container" data-path="${sling:encode(resource.path,'HTML_ATTR')}.html">
     <table class="table is-fullwidth is-striped">
         <thead>
             <tr>

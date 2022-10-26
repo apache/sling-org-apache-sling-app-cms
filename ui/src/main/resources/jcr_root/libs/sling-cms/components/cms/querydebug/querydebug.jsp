@@ -42,8 +42,8 @@
             <dd>
                 <nav class="panel fixed-box">
                     <c:forEach var="result" items="${queryDebugger.results}">
-                        <a class="panel-block" href="/bin/browser.html${result.path}" target="_blank">
-                            ${result.path} [${result.resourceType}]
+                        <a class="panel-block" href="/bin/browser.html${sling:encode(result.path,'HTML_ATTR')}" target="_blank">
+                            ${sling:encode(result.path,'HTML_ATTR')} [${result.resourceType}]
                         </a>
                     </c:forEach>
                 </nav>

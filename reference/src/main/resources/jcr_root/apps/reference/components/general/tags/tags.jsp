@@ -27,7 +27,7 @@
     <c:forEach var="tagPath" items="${contentResource.valueMap['sling:taxonomy']}">
         <c:set var="tag" value="${sling:getResource(resourceResolver,tagPath)}" />
         <${itemTag} class="${config.itemClass}">
-            <a href="${config.tagPage}.html${tag.path}">
+            <a href="${config.tagPage}.html${sling:encode(tag.path,'HTML_ATTR')}">
                 <sling:encode value="${tag.valueMap['jcr:title']}" default="${tag.name}" mode="HTML" />
             </a>
         </${itemTag}>

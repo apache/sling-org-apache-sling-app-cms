@@ -62,7 +62,7 @@
 </c:forEach>
 <c:choose>
     <c:when test="${properties.hidesearch != true}">
-        <div class="field has-addons" data-events="${events}" data-path="${resource.path}">
+        <div class="field has-addons" data-events="${events}" data-path="${sling:encode(resource.path,'HTML_ATTR')}">
           <div class="control is-expanded">
               <input class="input pathfield" type="text" id="${sling:encode(properties.name,'HTML_ATTR')}" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(value,'HTML_ATTR')}" ${required} ${disabled} data-type="${sling:encode(properties.type,'HTML_ATTR')}" data-base="${sling:encode(properties.basePath,'HTML_ATTR')}" autocomplete="off" />
           </div>
@@ -77,7 +77,7 @@
          </div>
     </c:when>
     <c:otherwise>
-        <div class="field" data-events="${events}" data-path="${resource.path}">
+        <div class="field" data-events="${events}" data-path="${sling:encode(resource.path,'HTML_ATTR')}">
             <div class="control">
                 <input class="input pathfield" type="text" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(value,'HTML_ATTR')}" ${required} ${disabled} data-type="${sling:encode(properties.type,'HTML_ATTR')}" data-base="${sling:encode(properties.basePath,'HTML_ATTR')}" autocomplete="off" />
             </div>

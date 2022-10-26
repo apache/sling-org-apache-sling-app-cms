@@ -21,13 +21,13 @@
 <c:forEach var="component" items="${sling:findResources(resourceResolver,'SELECT * FROM [sling:Component] WHERE [componentType] IS NOT NULL ORDER BY [jcr:title]','JCR-SQL2')}">
     <c:if test="${sling:getRelativeResource(component,'config') != null && sling:getRelativeResource(component,'config').resourceType != 'sling:Folder' && sling:getRelativeResource(component,'config').resourceType != 'sling:Component'}">
         <c:choose>
-            <c:when test="${fn:startsWith(component.path,'/apps/')}">
-                <c:set var="rt" value="${fn:substringAfter(component.path,'/apps/')}" />
+            <c:when test="${fn:startsWith(sling:encode(component.path,'HTML_ATTR'),'/apps/')}">
+                <c:set var="rt" value="${fn:substringAfter(sling:encode(component.path,'HTML_ATTR'),'/apps/')}" />
             </c:when>
             <c:otherwise>
-                <c:set var="rt" value="${fn:substringAfter(component.path,'/libs/')}" />
+                <c:set var="rt" value="${fn:substringAfter(sling:encode(component.path,'HTML_ATTR'),'/libs/')}" />
             </c:otherwise>
         </c:choose>
-        <option value="${rt}" ${rt == editProperties.type ? 'selected' : ''} data-config="${component.path}/config.html"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
+        <option value="${rt}" ${rt == editProperties.type ? 'selected' : ''} data-config="${sling:encode(component.path,'HTML_ATTR')}/config.html"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
     </c:if>
 </c:forEach>

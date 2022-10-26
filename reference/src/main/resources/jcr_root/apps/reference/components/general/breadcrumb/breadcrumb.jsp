@@ -23,7 +23,7 @@
 <c:if test="${not empty properties.level}">
     <c:forEach var="parent" items="${sling:getParents(currentPage.resource,properties.level)}">
         <c:if test="${parent.path != page.resource.path}">
-            <a href="${parent.path}.html">
+            <a href="${sling:encode(parent.path,'HTML_ATTR')}.html">
                 <sling:encode value="${parent.valueMap['jcr:content/jcr:title']}" default="${parent.name}" mode="HTML" />
             </a>&nbsp;&#xbb;&nbsp;
         </c:if>

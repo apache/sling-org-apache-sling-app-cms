@@ -18,7 +18,7 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <br/>
-<h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${resource.path})</h3>
+<h3><sling:encode value="${properties['jcr:title']}" mode="HTML" /> (${sling:encode(resource.path,'HTML_ATTR')})</h3>
 <hr/>
 <div class="panel">
     <h4 class="panel-heading">
