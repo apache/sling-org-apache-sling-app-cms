@@ -58,7 +58,7 @@
                     <small class="is-size-7">
                         <em title="${sling:encode(result.path,'HTML_ATTR')}">${sling:encode(result.path,'HTML')}</em>
                     </small><br/>
-                    <a href="#" class="button search-select-button is-pulled-right" data-path="${sling:encode(result.path,'HTML_ATTR')"><fmt:message key="Select" /></a>
+                    <a href="#" class="button search-select-button is-pulled-right" data-path="${sling:encode(result.path,'HTML_ATTR')}"><fmt:message key="Select" /></a>
                     <br class="clearfix" />
                 </div>
             </div>
