@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="page-properties-container field" data-path="${resource.path}.include.html" data-source="select[name=pageTemplate]">
+<div class="page-properties-container field" data-path="${sling:encode(resource.path,'HTML_ATTR')}.include.html" data-source="select[name=pageTemplate]">
 </div>
 <input type="hidden" name=":operation" value="import" />
 <input type="hidden" name=":replaceProperties" value="true" />

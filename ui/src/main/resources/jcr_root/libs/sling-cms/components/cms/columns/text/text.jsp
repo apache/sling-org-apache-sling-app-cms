@@ -21,7 +21,7 @@
 <td title="${sling:encode(colValue,'HTML_ATTR')}" data-property="${colConfig.valueMap.property}">
 	<c:choose>
 		<c:when test="${colConfig.valueMap.link}">
-			<a href="${colConfig.valueMap.prefix}${resource.path}">
+			<a href="${colConfig.valueMap.prefix}${sling:encode(resource.path,'HTML_ATTR')}">
 				<sling:encode value="${colValue}" mode="HTML" />
 			</a>
 		</c:when>

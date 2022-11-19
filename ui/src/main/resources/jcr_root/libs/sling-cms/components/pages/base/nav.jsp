@@ -43,18 +43,18 @@
                 <sling:getResource path="${auth.authorizable.path}/profile" var="profile" />
                 <span class="navbar-link">
                     <c:if test="${sling:getRelativeResource(profile,'thumbnail') != null}">
-                        <img src="${sling:encode(profile.path,'HTML_ATTR')}/thumbnail.transform/sling-cms-thumbnail32.png" alt="${resourceResolver.userID}" />
+                        <img src="${sling:encode(profile.path,'HTML_ATTR')}/thumbnail.transform/sling-cms-thumbnail32.png" alt="${sling:encode(resourceResolver.userID,'HTML_ATTR')}" />
                     </c:if>&nbsp;
                     <sling:encode value="${profile.valueMap.name}" default="${resourceResolver.userID}" mode="HTML" />
                 </span>
                 <div class="navbar-dropdown">
-                    <a class="navbar-item Fetch-Modal" data-title="User Profile" data-path=".Main-Content form" href="/cms/auth/user/profile.html${auth.authorizable.path}">
+                    <a class="navbar-item Fetch-Modal" data-title="User Profile" data-path=".Main-Content form" href="/cms/auth/user/profile.html${sling:encode(auth.authorizable.path,'HTML_ATTR')}">
                         <em class="jam jam-id-card">
                             <span class="is-sr-only">Profile</span>
                         </em>&nbsp;
                         <fmt:message key="Profile" />
                     </a>
-                    <a class="navbar-item Fetch-Modal" data-title="User Transformations" data-path=".Main-Content form" href="/cms/transformations/user.html${auth.authorizable.path}/transformations">
+                    <a class="navbar-item Fetch-Modal" data-title="User Transformations" data-path=".Main-Content form" href="/cms/transformations/user.html${sling:encode(auth.authorizable.path,'HTML_ATTR')}/transformations">
                         <em class="jam jam-pictures">
                             <span class="is-sr-only">My Transformations</span>
                         </em>&nbsp;

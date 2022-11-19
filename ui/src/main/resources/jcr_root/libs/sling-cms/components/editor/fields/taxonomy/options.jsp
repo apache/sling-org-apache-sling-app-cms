@@ -21,6 +21,6 @@
 <datalist id="labelfield-${fn:replace(resource.name,':','-')}">
     <c:set var="query" value="SELECT * FROM [sling:Taxonomy] WHERE ISDESCENDANTNODE([${not empty properties.basePath ? properties.basePath : sitesettings.valueMap.taxonomyroot}])" />
     <c:forEach var="taxonomy" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
-        <option value="${taxonomy.path}">${taxonomy.valueMap['jcr:title']}</option>
+        <option value="${sling:encode(taxonomy.path,'HTML_ATTR')}">${taxonomy.valueMap['jcr:title']}</option>
     </c:forEach>
 </datalist>
