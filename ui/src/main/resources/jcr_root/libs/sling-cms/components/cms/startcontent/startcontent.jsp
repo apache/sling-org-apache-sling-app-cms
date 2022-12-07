@@ -43,7 +43,7 @@
                             <sling:encode value="${item.valueMap['jcr:content/jcr:title']}" default="${item.name}" mode="HTML" />
                         </c:when>
                         <c:otherwise>
-                            ${item.name}
+                            <sling:encode value="${item.name}" mode="HTML" />
                         </c:otherwise>
                     </c:choose>&nbsp;&mdash;&nbsp;
                     <small><fmt:formatDate value="${item.valueMap['jcr:content/jcr:lastModified'].time}" type="both" dateStyle="short" timeStyle="short" /></small>

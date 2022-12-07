@@ -52,7 +52,9 @@ window.Sling.CMS = {
   ui: {
     confirmMessage(title, message, complete) {
       const modal = document.createElement('div');
-      modal.innerHTML = `<div class="modal-background"></div><div class="is-draggable modal-content"><div class="box"><h3 class="modal-title">${title}</h3><p>${message}</p><br/><button type="button" class="close-modal button is-primary">OK</button></div></div><button class="modal-close is-large" aria-label="close"></button>`;
+      modal.innerHTML = `<div class="modal-background"></div><div class="is-draggable modal-content"><div class="box"><h3 class="modal-title"></h3><p class="modal-message"></p><br/><button type="button" class="close-modal button is-primary">OK</button></div></div><button class="modal-close is-large" aria-label="close"></button>`;
+      modal.querySelector('.modal-title').textContent = title;
+      modal.querySelector('.modal-message').textContent = message;
       document.body.appendChild(modal);
       modal.classList.add('modal');
       modal.classList.add('is-active');
