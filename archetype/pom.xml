@@ -16,7 +16,7 @@ License. -->
   <description>A Maven Archetype for creating Sling CMS projects</description>
 
   <properties>
-    <bnd.baseline.skip>true</bnd.baseline.skip>
+    <legal.dir>${basedir}/..</legal.dir>
   </properties>
 
   <build>

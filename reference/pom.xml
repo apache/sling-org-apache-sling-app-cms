@@ -14,6 +14,10 @@
     <artifactId>org.apache.sling.cms.reference</artifactId>
     <name>Apache Sling - CMS Reference Application</name>
     <description>A reference application within the Apache Sling Reference CMS Application</description>
+    
+    <properties>
+        <legal.dir>${basedir}/..</legal.dir>
+    </properties>
 
     <build>
         <plugins>

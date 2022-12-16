@@ -17,6 +17,7 @@ License. -->
   <properties>
     <frontend.target>target/frontend</frontend.target>
     <frontend.mode>dev</frontend.mode>
+    <legal.dir>${basedir}/..</legal.dir>
   </properties>
 
   <dependencies>

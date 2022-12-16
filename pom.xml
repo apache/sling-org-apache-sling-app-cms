@@ -17,6 +17,7 @@
   <version>1.1.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
+    <legal.dir>${basedir}</legal.dir>
     <sling.protocol>http</sling.protocol>
     <sling.host>localhost</sling.host>
     <sling.port>8080</sling.port>
@@ -440,6 +441,31 @@
             </signature>
           </configuration>
         </plugin>
+        <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-legal-files</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${basedir}/target/classes</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${legal.dir}</directory>
+                      <includes>
+                        <include>LICENSE</include>
+                        <include>NOTICE</include>
+                      </includes>
+                      <filtering>false</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
       </plugins>
     </pluginManagement>
   </build>

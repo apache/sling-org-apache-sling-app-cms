@@ -13,6 +13,9 @@ License. -->
     <artifactId>org.apache.sling.cms.login</artifactId>
     <name>Apache Sling - Login Fragment</name>
     <description>Provides a custom login window for Sling CMS</description>
+    <properties>
+        <legal.dir>${basedir}/..</legal.dir>
+    </properties>
     <build>
         <plugins>
             <plugin>

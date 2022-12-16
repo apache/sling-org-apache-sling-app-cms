@@ -15,6 +15,9 @@
     <name>Apache Sling - CMS Core</name>
     <description>The core for the Apache Sling Reference CMS Application</description>
 
+    <properties>
+        <legal.dir>${basedir}/..</legal.dir>
+    </properties>
 
     <build>
         <plugins>
