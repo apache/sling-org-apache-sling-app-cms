@@ -92,7 +92,7 @@ public class StartContent {
     private Stream<Resource> get10Recent(ResourceResolver resolver) {
         Iterator<Resource> it = resolver.findResources(
                 "SELECT * FROM [nt:hierarchyNode] WHERE [jcr:content/jcr:lastModifiedBy] = '" + resolver.getUserID()
-                        + "' AND ISDESCENDANTNODE([/content]) ORDER BY [jcr:content/jcr:lastModified] DESC /* slingQueryLimit=10 */",
+                        + "' AND ISDESCENDANTNODE([/content]) ORDER BY [jcr:content/jcr:lastModified] DESC",
                 Query.JCR_SQL2);
         return StreamSupport.stream(Spliterators.spliteratorUnknownSize(it, Spliterator.NONNULL), false).limit(10);
     }
