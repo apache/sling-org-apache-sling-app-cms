@@ -121,7 +121,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.xss:2.2.20",
+      "id":"org.apache.sling:org.apache.sling.xss:2.3.2",
       "start-order":"20"
     },
     {
@@ -221,11 +221,11 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.6.14",
+      "id":"org.apache.sling:org.apache.sling.repoinit.parser:1.8.0",
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.38",
+      "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.42",
       "start-order":"20"
     }
   ],

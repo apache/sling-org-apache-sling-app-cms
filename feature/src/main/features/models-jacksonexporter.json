@@ -13,6 +13,14 @@
       "start-order":"20"
     },
     {
+      "id":"com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${jackson-version}",
+      "start-order":"20"
+    },
+    {
+      "id":"org.codehaus.woodstox:stax2-api:4.2.1",
+      "start-order":"20"
+    },
+    {
       "id":"org.apache.sling:org.apache.sling.models.jacksonexporter:1.1.2",
       "start-order":"20"
     }

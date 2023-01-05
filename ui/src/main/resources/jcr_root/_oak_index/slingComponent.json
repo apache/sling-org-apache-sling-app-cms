@@ -2,27 +2,27 @@
   "jcr:primaryType": "oak:QueryIndexDefinition",
   "compatVersion": 2,
   "type": "lucene",
-  "includedPaths": ["/etc/taxonomy"],
   "async": ["async", "nrt"],
+  "includedPaths": ["/apps", "/libs"],
   "evaluatePathRestrictions": true,
+  "reindex": true,
   "indexRules": {
     "jcr:primaryType": "nt:unstructured",
-    "sling:Taxonomy": {
+    "sling:Component": {
       "jcr:primaryType": "nt:unstructured",
       "properties": {
         "jcr:primaryType": "nt:unstructured",
+        "componentType": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "notNullCheckEnabled": true,
+          "name": "componentType"
+        },
         "jcrTitle": {
           "jcr:primaryType": "nt:unstructured",
+          "ordered": true,
           "propertyIndex": true,
-          "analyzed": true,
-          "name": "jcr:title",
-          "type": "String"
-        },
-        "nodeName": {
-          "jcr:primaryType": "nt:unstructured",
-          "propertyIndex": true,
-          "name": ":nodeName",
-          "type": "String"
+          "name": "jcr:title"
         }
       }
     }

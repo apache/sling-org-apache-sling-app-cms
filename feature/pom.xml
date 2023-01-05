@@ -43,7 +43,7 @@
       <plugin>
         <groupId>org.apache.sling</groupId>
         <artifactId>slingfeature-maven-plugin</artifactId>
-        <version>1.4.24</version>
+        <version>1.6.8</version>
         <extensions>true</extensions>
         <configuration>
           <framework>

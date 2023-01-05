@@ -1,0 +1,103 @@
+{
+  "jcr:primaryType": "oak:QueryIndexDefinition",
+  "compatVersion": 2,
+  "type": "lucene",
+  "async": ["async", "nrt"],
+  "evaluatePathRestrictions": true,
+  "includedPaths": ["/content", "/static"],
+  "reindex": true,
+  "aggregates": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:Page": {
+      "jcr:primaryType": "nt:unstructured",
+      "include0": {
+        "jcr:primaryType": "nt:unstructured",
+        "relativeNode": true,
+        "path": "jcr:content"
+      },
+      "include1": {
+        "jcr:primaryType": "nt:unstructured",
+        "path": "jcr:content/*"
+      },
+      "include2": {
+        "jcr:primaryType": "nt:unstructured",
+        "path": "jcr:content/*/*"
+      },
+      "include3": {
+        "jcr:primaryType": "nt:unstructured",
+        "path": "jcr:content/*/*/*"
+      },
+      "include4": {
+        "jcr:primaryType": "nt:unstructured",
+        "path": "jcr:content/*/*/*/*"
+      }
+    }
+  },
+  "indexRules": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:Page": {
+      "jcr:primaryType": "nt:unstructured",
+      "properties": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcrDescription": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "analyzed": true,
+          "name": "jcr:content/jcr:description"
+        },
+        "jcrTitle": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "analyzed": true,
+          "name": "jcr:content/jcr:title",
+          "type": "String",
+          "boost": 2
+        },
+        "nodeName": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "name": ":nodeName",
+          "type": "String"
+        },
+        "jcrLastModified": {
+          "jcr:primaryType": "nt:unstructured",
+          "ordered": true,
+          "propertyIndex": true,
+          "name": "jcr:content/jcr:lastModified",
+          "type": "Date"
+        },
+        "jcrLastModifiedBy": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "name": "jcr:content/jcr:lastModifiedBy",
+          "type": "String"
+        },
+        "slingPublished": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "name": "jcr:content/sling:published",
+          "type": "Boolean"
+        },
+        "slingTaxonomy": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "analyzed": true,
+          "name": "jcr:content/sling:taxonomy",
+          "type": "String"
+        },
+        "slingTemplate": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "name": "jcr:content/sling:template",
+          "type": "String"
+        },
+        "allProperties": {
+          "jcr:primaryType": "nt:unstructured",
+          "isRegexp": true,
+          "propertyIndex": true,
+          "name": "jcr:content/\\w*"
+        }
+      }
+    }
+  }
+}

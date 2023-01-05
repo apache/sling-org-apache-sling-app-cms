@@ -3,38 +3,26 @@
   "compatVersion": 2,
   "type": "lucene",
   "async": ["async", "nrt"],
-  "evaluatePathRestrictions": true,
   "includedPaths": ["/content", "/static"],
+  "evaluatePathRestrictions": true,
+  "reindex": true,
   "aggregates": {
     "jcr:primaryType": "nt:unstructured",
-    "sling:Page": {
+    "sling:File": {
       "jcr:primaryType": "nt:unstructured",
       "include0": {
         "jcr:primaryType": "nt:unstructured",
-        "relativeNode": true,
         "path": "jcr:content"
       },
       "include1": {
         "jcr:primaryType": "nt:unstructured",
-        "path": "jcr:content/*"
-      },
-      "include2": {
-        "jcr:primaryType": "nt:unstructured",
-        "path": "jcr:content/*/*"
-      },
-      "include3": {
-        "jcr:primaryType": "nt:unstructured",
-        "path": "jcr:content/*/*/*"
-      },
-      "include4": {
-        "jcr:primaryType": "nt:unstructured",
-        "path": "jcr:content/*/*/*/*"
+        "path": "jcr:content/metadata"
       }
     }
   },
   "indexRules": {
     "jcr:primaryType": "nt:unstructured",
-    "sling:Page": {
+    "sling:File": {
       "jcr:primaryType": "nt:unstructured",
       "properties": {
         "jcr:primaryType": "nt:unstructured",
@@ -43,20 +31,6 @@
           "propertyIndex": true,
           "analyzed": true,
           "name": "jcr:content/jcr:description"
-        },
-        "jcrTitle": {
-          "jcr:primaryType": "nt:unstructured",
-          "propertyIndex": true,
-          "analyzed": true,
-          "name": "jcr:content/jcr:title",
-          "type": "String",
-          "boost": 2
-        },
-        "nodeName": {
-          "jcr:primaryType": "nt:unstructured",
-          "propertyIndex": true,
-          "name": ":nodeName",
-          "type": "String"
         },
         "jcrLastModified": {
           "jcr:primaryType": "nt:unstructured",
@@ -71,6 +45,19 @@
           "name": "jcr:content/jcr:lastModifiedBy",
           "type": "String"
         },
+        "jcrTitle": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "analyzed": true,
+          "name": "jcr:content/jcr:title",
+          "boost": 2
+        },
+        "nodeName": {
+          "jcr:primaryType": "nt:unstructured",
+          "propertyIndex": true,
+          "name": ":nodeName",
+          "type": "String"
+        },
         "slingPublished": {
           "jcr:primaryType": "nt:unstructured",
           "propertyIndex": true,
@@ -81,20 +68,7 @@
           "jcr:primaryType": "nt:unstructured",
           "propertyIndex": true,
           "analyzed": true,
-          "name": "jcr:content/sling:taxonomy",
-          "type": "String"
-        },
-        "slingTemplate": {
-          "jcr:primaryType": "nt:unstructured",
-          "propertyIndex": true,
-          "name": "jcr:content/sling:template",
-          "type": "String"
-        },
-        "allProperties": {
-          "jcr:primaryType": "nt:unstructured",
-          "isRegexp": true,
-          "propertyIndex": true,
-          "name": "jcr:content/\\w*"
+          "name": "jcr:content/sling:taxonomy"
         }
       }
     }

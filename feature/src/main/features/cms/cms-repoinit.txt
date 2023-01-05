@@ -18,24 +18,29 @@
 #
 
 # CMS root paths
-create path (sling:OrderedFolder) /etc/i18n
+add mixin sling:Redirect to /
+set properties on /
+  set sling:resourceType{String} to sling:redirect
+  set sling:target{String} to /cms/start.html
+end
+create path (sling:Folder) /etc/i18n
 set ACL for everyone
     allow   jcr:read	on /etc/i18n
 end
-create path (sling:OrderedFolder) /etc/taxonomy
+create path (sling:Folder) /etc/taxonomy
 set ACL for everyone
     allow   jcr:read	on /etc/taxonomy
 end
-create path (sling:OrderedFolder) /static
+create path (sling:Folder) /static
 set ACL for everyone
     allow   jcr:read	on /static
 end
-create path (sling:OrderedFolder) /conf
+create path (sling:Folder) /conf
 set ACL for everyone
     allow   jcr:read	on /conf
 end
-create path (sling:OrderedFolder) /content
-create path (sling:OrderedFolder) /etc/usergenerated
+create path (sling:Folder) /content
+create path (sling:Folder) /etc/usergenerated
 set ACL for everyone
     allow   jcr:read    on /etc/usergenerated
 end
