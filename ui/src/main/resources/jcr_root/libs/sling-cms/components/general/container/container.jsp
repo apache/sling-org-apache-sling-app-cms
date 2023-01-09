@@ -39,7 +39,7 @@
         <div class="level has-background-light has-text-black-ter">
             <div class="level-left">
                 <div class="level-item">
-                    <a href="/cms/editor/add.html${sling:encode(resource.path,'HTML_ATTR')}?availableTypes=${availableTypes}" class="button action-button is-small" data-sling-cms-action="add" data-sling-cms-path="${sling:encode(resource.path,'HTML_ATTR')}" data-sling-cms-available-types="${availableTypes}" title="${addComponentsMessage}">
+                    <a href="/cms/editor/add.html${sling:encode(resource.path,'HTML_ATTR')}?availableTypes=${sling:encode(availableTypes,'HTML_ATTR')}" class="button action-button is-small" data-sling-cms-action="add" data-sling-cms-path="${sling:encode(resource.path,'HTML_ATTR')}" data-sling-cms-available-types="${sling:encode(availableTypes,'HTML_ATTR')}" title="${addComponentsMessage}">
                         &#43;
                     </a>
                 </div>

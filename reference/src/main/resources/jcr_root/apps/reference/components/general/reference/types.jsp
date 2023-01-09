@@ -38,7 +38,7 @@
             <c:set var="type" value="${fn:substringAfter(component.path, '/apps/')}" />
         </c:otherwise>
     </c:choose>
-    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.overrideType == type ? 'selected' : ''} value="${type}">
+    <option ${slingRequest.requestPathInfo.suffixResource.valueMap.overrideType == type ? 'selected' : ''} value="${sling:encode(type,'HTML_ATTR')}">
         ${sling:encode(component.valueMap['jcr:title'],'HTML')}
     </option>
 </c:forEach>

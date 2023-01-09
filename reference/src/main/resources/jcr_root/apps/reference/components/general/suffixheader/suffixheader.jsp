@@ -25,6 +25,6 @@
         <c:set var="value" value="${slingRequest.requestPathInfo.suffixResource.name}" />
     </c:otherwise>
 </c:choose>
-<${properties.tag}>
+<${sling:encode(properties.tag,'HTML')}>
     <sling:encode value="${fn:replace(properties.subString,'{SUFFIX}',value)}" mode="HTML" />
-</${properties.tag}>
+</${sling:encode(properties.tag,'HTML')}>

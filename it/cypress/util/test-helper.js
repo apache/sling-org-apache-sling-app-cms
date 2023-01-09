@@ -17,19 +17,29 @@
  * under the License.
  */
 
-const { lighthouse, pa11y, prepareAudit } = require("cypress-audit");
-const { initPlugin } = require("cypress-plugin-snapshots/plugin");
 
-module.exports = (on, config) => {
-  initPlugin(on, config);
-
-  on("before:browser:launch", (browser = {}, launchOptions) => {
-    prepareAudit(launchOptions);
+/**
+ * Sends a post to the specified URL
+ * @param {string} url the URL to which to send the post
+ * @param {Record<string, string>} body the body of the post to send
+ */
+export function sendPost(url, body) {
+  cy.request({
+    method: "POST",
+    url,
+    form: true,
+    body,
+    headers: {
+      Referer: process.env.CYPRESS_BASE_URL || "http://localhost:8080",
+    },
   });
-
-  on("task", {
-    lighthouse: lighthouse(), // calling the function is important
-    pa11y: pa11y(), // calling the function is important
+}
+/**
+ * Login directly by posting to the login endpoint
+ */
+export function login() {
+  sendPost("/j_security_check", {
+    j_username: "admin",
+    j_password: "admin",
   });
-  return config;
-};
+}

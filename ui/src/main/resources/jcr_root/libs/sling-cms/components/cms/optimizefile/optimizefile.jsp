@@ -56,7 +56,7 @@
                         <button type="submit" class="button is-primary">
                             <fmt:message key="Optimize" />
                         </button>
-                        <button type="button" class="button close">Cancel</button>
+                        <button type="button" class="button close"><fmt:message key="Cancel" /></button>
                     </fieldset>
                 </form>
             </c:when>

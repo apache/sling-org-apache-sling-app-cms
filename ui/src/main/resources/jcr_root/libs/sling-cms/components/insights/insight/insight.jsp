@@ -17,18 +17,18 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<article class="message ${insight.primaryMessage.styleClass}">
-    <div class="message-header toggle-hidden" data-target="#${insight.provider.id}-body">
+<article class="message ${sling:encode(insight.primaryMessage.styleClass,'HTML_ATTR')}">
+    <div class="message-header toggle-hidden" data-target="#${sling:encode(insight.provider.id,'HTML_ATTR')}-body">
         <p>
             <sling:encode value="${insight.provider.title}" mode="HTML" />
             <c:if test="${insight.scored}">
-                <span class="score" data-score="${insight.score}">
+                <span class="score" data-score="${sling:encode(insight.score,'HTML_ATTR')}">
                     <fmt:formatNumber type="percent" maxFractionDigits="2" value="${insight.score}" />
                 </span>
             </c:if>
         </p>
         <c:if test="${not empty insight.moreDetailsLink}">
-            <a class="button ${insight.primaryMessage.styleClass}" href="${insight.moreDetailsLink}" target="_blank">
+            <a class="button ${sling:encode(insight.primaryMessage.styleClass,'HTML_ATTR')}" href="${sling:encode(insight.moreDetailsLink,'HTML_ATTR')}" target="_blank">
                 <em class="jam jam-info icon"></em>
             </a>
         </c:if>

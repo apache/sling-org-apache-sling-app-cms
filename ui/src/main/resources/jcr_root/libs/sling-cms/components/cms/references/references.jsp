@@ -37,8 +37,8 @@
                                 <span class="jam jam-document"></span>
                             </span>
                         </td>
-                        <td title="${ref.containingPage.path}">
-                            <a href="/cms/site/content.html${ref.containingPage.parent.path}?resource=${ref.containingPage.path}" target="_blank">
+                        <td title="${sling:encode(ref.containingPage.path,'HTML_ATTR')}">
+                            <a href="/cms/site/content.html${sling:encode(ref.containingPage.parent.path,'HTML_ATTR')}?resource=${sling:encode(ref.containingPage.path,'HTML_ATTR')}" target="_blank">
                                 ${sling:encode(ref.containingPage.title,'HTML')}
                             </a>
                         </td>
@@ -56,7 +56,7 @@
                             </span>
                         </td>
                         <td>
-                            ${ref.resource.path}
+                            ${sling:encode(ref.resource.path,'HTML')}
                         </td>
                         <td>
                         </td>

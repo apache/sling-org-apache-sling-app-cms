@@ -21,26 +21,26 @@
     <h3><fmt:message key="Create User Generated Content" /></h3>
     <dl>
         <dt><fmt:message key="Action" /></dt>
-        <dd>${properties.approveAction}</dd>
+        <dd>${sling:encode(properties.approveAction,'HTML')}</dd>
         <dt><fmt:message key="Additional Properties" /></dt>
         <dd>
             <c:if test="${not empty properties.additionalProperties}">
-                ${fn:join(properties.additionalProperties,', ')}
+                ${sling:encode(fn:join(properties.additionalProperties,', '),'HTML')}
             </c:if>
         </dd>
         <dt><fmt:message key="Bucket" /></dt>
-        <dd>${properties.bucket}</dd>
+        <dd>${sling:encode(properties.bucket,'HTML')}</dd>
         <dt><fmt:message key="Content Type" /></dt>
-        <dd>${properties.contentType}</dd>
+        <dd>${sling:encode(properties.contentType,'HTML')}</dd>
         <dt><fmt:message key="Name" /></dt>
-        <dd>${properties.name}</dd>
+        <dd>${sling:encode(properties.name,'HTML')}</dd>
         <dt><fmt:message key="Path Depth" /></dt>
-        <dd>${properties.pathDepth}</dd>
+        <dd>${sling:encode(properties.pathDepth,'HTML')}</dd>
         <dt><fmt:message key="Preview" /></dt>
-        <dd>${properties.preview}</dd>
+        <dd>${sling:encode(properties.preview,'HTML')}</dd>
         <dt><fmt:message key="Target Path" /></dt>
-        <dd>${properties.targetPath}</dd>
+        <dd>${sling:encode(properties.targetPath,'HTML')}</dd>
         <dt><fmt:message key="Wrap in Page?" /></dt>
-        <dd>${properties.wrapPage}</dd>
+        <dd>${sling:encode(properties.wrapPage,'HTML')}</dd>
     </dl>
 </c:if>

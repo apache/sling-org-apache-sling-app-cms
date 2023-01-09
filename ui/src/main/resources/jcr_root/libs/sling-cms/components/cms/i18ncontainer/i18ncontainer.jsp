@@ -45,7 +45,7 @@
                             </th>
                             <c:forEach var="language" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
                                 <c:if test="${not empty language.valueMap['jcr:language']}">
-                                    <th class="Column-${language.valueMap['jcr:language']}" scope="col">
+                                    <th id="Column-${language.valueMap['jcr:language']}" scope="col">
                                         <sling:adaptTo adaptable="${language}" adaptTo="org.apache.sling.cms.core.models.LocaleResource" var="localeResource" />
                                         <sling:encode value="${localeResource.locale.displayLanguage}" mode="HTML" /> <sling:encode value="${localeResource.locale.displayCountry}" mode="HTML" />
                                         <br/>
@@ -64,19 +64,20 @@
                                 </td>
                                 <c:forEach var="language" items="${sling:listChildren(slingRequest.requestPathInfo.suffixResource)}">
                                     <c:if test="${not empty language.valueMap['jcr:language']}">
-                                        <td>
+                                        <td role="group" aria-labelledby="Column-${language.valueMap['jcr:language']}">
                                             <c:set var="keyfound" value="false" />
                                             <c:forEach var="entry" items="${sling:listChildren(language)}">
                                                 <c:if test="${entry.valueMap['sling:key'] == key}">
                                                     <c:set var="keyfound" value="true" />
-                                                    <input name="${language.name}/${entry.name}/sling:message" class="input" type="text" value="${sling:encode(entry.valueMap['sling:message'],'HTML_ATTR')}" />
-                                                    <input name="${language.name}/${entry.name}/sling:key" type="hidden" value="${key}" />
+                                                    <input name="${sling:encode(language.name,'HTML_ATTR')}/${sling:encode(entry.name,'HTML_ATTR')}/sling:message" class="input" type="text" value="${sling:encode(entry.valueMap['sling:message'],'HTML_ATTR')}" />
+                                                    <input name="${sling:encode(language.name,'HTML_ATTR')}/${sling:encode(entry.name,'HTML_ATTR')}/sling:key" type="hidden" value="${sling:encode(key,'HTML_ATTR')}" />
                                                 </c:if>
                                             </c:forEach>
                                             <c:if test="${keyfound == 'false'}">
-                                                <input name="${language.name}/${key}/sling:message" class="input" type="text" value="" />
-                                                <input name="${language.name}/${key}/sling:key" type="hidden" value="${key}" />
-                                                <input name="${language.name}/${key}/jcr:primaryType" type="hidden" value="sling:MessageEntry" />
+                                            
+                                                <input name="${sling:encode(language.name,'HTML_ATTR')}/${sling:encode(key,'HTML_ATTR')}/sling:message" class="input" type="text" value="" />
+                                                <input name="${sling:encode(language.name,'HTML_ATTR')}/${sling:encode(key,'HTML_ATTR')}/sling:key" type="hidden" value="${sling:encode(key,'HTML_ATTR')}" />
+                                                <input name="${sling:encode(language.name,'HTML_ATTR')}/${sling:encode(key,'HTML_ATTR')}/jcr:primaryType" type="hidden" value="sling:MessageEntry" />
                                             </c:if>
                                         </td>
                                     </c:if>

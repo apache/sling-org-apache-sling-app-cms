@@ -27,7 +27,9 @@
     <dd>
         <ul>
             <c:forEach var="attribute" items="${resource.valueMap.attributes}">
-                <sling:encode value="${attribute}" mode="HTML" />
+                <li>
+                    <sling:encode value="${attribute}" mode="HTML" />
+                </li>
             </c:forEach>
         </ul>
     </dd>

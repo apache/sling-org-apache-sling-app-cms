@@ -16,10 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+const { defineConfig } = require("cypress");
+const { pa11y, prepareAudit } = require("@cypress-audit/pa11y");
 
-import "./commands";
-import "cypress-plugin-snapshots/commands";
+module.exports = defineConfig({
+  e2e: {
+    baseUrl: "http://localhost:8080",
+    viewportWidth: 1000,
+    viewportHeight: 660,
+    excludeSpecPattern: ["**/__snapshots__/*", "**/__image_snapshots__/*"],
+    setupNodeEvents(on, _config) {
+      on("before:browser:launch", (_browser = {}, launchOptions) => {
+        prepareAudit(launchOptions);
+      });
 
-Cypress.Cookies.defaults({
-  preserve: "sling.formauth",
+      on("task", {
+        pa11y: pa11y(console.log.bind(console)),
+      });
+    },
+  },
 });

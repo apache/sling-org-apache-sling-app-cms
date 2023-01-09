@@ -19,12 +19,12 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${not empty properties.tagRoot}">
     <c:set var="children" value="${sling:listChildren(sling:getResource(resourceResolver,properties.tagRoot))}" />
-    <div class="${formConfig.fieldGroupClass} ${properties.addClasses}">
+    <div class="${sling:encode(formConfig.fieldGroupClass,'HTML_ATTR')} ${sling:encode(properties.addClasses,'HTML_ATTR')}">
         <c:if test="${not empty properties.label}">
-            <label for="${properties.name}">
+            <label for="${sling:encode(properties.name,'HTML_ATTR')}">
                 <sling:encode value="${properties.label}" mode="HTML" />
                 <c:if test="${properties.required}">
-                    <span class="${formConfig.fieldRequiredClass}">
+                    <span class="${sling:encode(formConfig.fieldRequiredClass,'HTML_ATTR')}">
                         *
                     </span>
                 </c:if>
@@ -33,7 +33,7 @@
         <c:choose>
             <c:when test="${properties.display == 'radioCheckbox'}">
                 <c:forEach var="tag" items="${children}">
-                    <div class="${formConfig.checkFieldClass}">
+                    <div class="${sling:encode(formConfig.checkFieldClass,'HTML_ATTR')}">
                         <c:set var="selected" value="${false}" />
                         <c:choose>
                             <c:when test="${properties.multiple}">
@@ -47,15 +47,15 @@
                                 <c:set var="selected" value="${true}" />
                             </c:when>
                         </c:choose>
-                        <input class="${formConfig.checkInputClass}" type="${properties.multiple ? 'checkbox' : 'radio'}" name="${properties.name}" id="${properties.name}-${tag.name}" value="${tag.name}" ${selected ? 'checked="checked"' : ''} ${properties.required ? 'required="required"' : ''} />
-                        <label class="${formConfig.checkLabelClass}" for="${properties.name}-${tag.name}">
+                        <input class="${sling:encode(formConfig.checkInputClass,'HTML_ATTR')}" type="${properties.multiple ? 'checkbox' : 'radio'}" name="${sling:encode(properties.name,'HTML_ATTR')}" id="${sling:encode(properties.name,'HTML_ATTR')}-${sling:encode(tag.name,'HTML_ATTR')}" value="${sling:encode(tag.name,'HTML_ATTR')}" ${selected ? 'checked="checked"' : ''} ${properties.required ? 'required="required"' : ''} />
+                        <label class="${sling:encode(formConfig.checkLabelClass,'HTML_ATTR')}" for="${sling:encode(properties.name,'HTML_ATTR')}-${sling:encode(tag.name,'HTML_ATTR')}">
                             <sling:encode value="${tag.valueMap['jcr:title']}" mode="HTML" />
                         </label>
                     </div>
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <select id="${properties.name}" class="form-control" ${properties.multiple ? 'multiple="multiple"' : ''} ${properties.required ? 'required="required"' : ''} name="${properties.name}">
+                <select id="${sling:encode(properties.name,'HTML_ATTR')}" class="form-control" ${properties.multiple ? 'multiple="multiple"' : ''} ${properties.required ? 'required="required"' : ''} name="${sling:encode(properties.name,'HTML_ATTR')}">
                     <c:if test="${not empty properties.noSelection && !properties.muliple}">
                         <option value="">
                             <sling:encode value="${properties.noSelection}" mode="HTML" />
@@ -75,8 +75,8 @@
                                 <c:set var="selected" value="${true}" />
                             </c:when>
                         </c:choose>
-                        <option value="${tag.name}" ${selected ? 'selected="selected"' : ''} >
-                            <sling:encode value="${tag.valueMap['jcr:title']}" mode="HTML" />
+                        <option value="${sling:encode(tag.name,'HTML_ATTR')}" ${selected ? 'selected="selected"' : ''} >
+                            <sling:encode value="${sling:encode(tag.valueMap['jcr:title'],'HTML_ATTR')}" mode="HTML" />
                         </option>
                     </c:forEach>
                 </select>

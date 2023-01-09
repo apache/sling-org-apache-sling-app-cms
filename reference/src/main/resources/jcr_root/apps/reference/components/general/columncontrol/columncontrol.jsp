@@ -21,7 +21,7 @@
 <c:set var="configRsrc" value="${componentPolicyMgr.componentPolicy.componentConfigs['reference/components/general/columncontrol']}" />
 <c:choose>
     <c:when test="${properties.container == true}">
-        <div class="${configRsrc.valueMap.containerclass}">
+        <div class="${sling:encode(configRsrc.valueMap.containerclass,'HTML_ATTR')}">
             <div class="${configRsrc.valueMap.rowClass}">
                 <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
                     <div class="${sling:encode(col,'HTML_ATTR')}">
@@ -32,7 +32,7 @@
          </div>
      </c:when>
      <c:otherwise>
-         <div class="${configRsrc.valueMap.rowClass}">
+         <div class="${sling:encode(configRsrc.valueMap.containerclass,'HTML_ATTR')}">
             <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
                 <div class="${sling:encode(col,'HTML_ATTR')}">
                     <sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />

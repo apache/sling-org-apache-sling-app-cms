@@ -28,5 +28,5 @@
             </c:otherwise>
         </c:choose>
     </c:if>
-    <img src="${sling:encode(properties.src,'HTML_ATTR')}${transform}" alt="${sling:encode(properties.alt,'HTML_ATTR')}" class="${sling:encode(properties.imageClass,'HTML_ATTR')}" />
+    <img src="${sling:encode(properties.src,'HTML_ATTR')}${sling:encode(transform,'HTML_ATTR')}" alt="${sling:encode(properties.alt,'HTML_ATTR')}" class="${sling:encode(properties.imageClass,'HTML_ATTR')}" />
 </c:if>

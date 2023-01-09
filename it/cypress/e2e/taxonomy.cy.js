@@ -17,23 +17,18 @@
  * under the License.
  */
 
-const lighthouseConfig = require("../lighthouse-cfg.json");
-const { doneLoading, login } = require("../utils");
+const { login } = require("../util/test-helper");
+const { doneLoading } = require("../utils");
 
 describe("Taxonomy Tests", () => {
   beforeEach(() => {
     login();
   });
   it("view taxonomy list", () => {
+    cy.visit("/cms/start.html");
     cy.get(".toggle-Manage").click();
     cy.get(".nav-link-Taxonomy").click();
     cy.url().should("contain", "/cms/taxonomy/list.html/etc/taxonomy");
-
-    cy.document().toMatchImageSnapshot({
-      name: "taxonomy--list",
-      blackout: ["td[data-property=lastModified]"],
-    });
-
     cy.pa11y();
   });
   it("show select taxonomy item", () => {
@@ -45,10 +40,6 @@ describe("Taxonomy Tests", () => {
       "be.visible"
     );
     cy.get('.has-addons>a[title="Delete Taxonomy Item"]').should("be.visible");
-    cy.document().toMatchImageSnapshot({
-      name: "taxonomy--edit",
-      blackout: ["td[data-property=lastModified]"],
-    });
   });
   it("should show allow for editing", () => {
     cy.visit("/cms/taxonomy/list.html/etc/taxonomy");
@@ -56,20 +47,12 @@ describe("Taxonomy Tests", () => {
     cy.get('.has-addons>a[title="Edit Taxonomy Item"]').click();
     cy.get('input[name="jcr:title"]').should("be.visible");
     cy.pa11y();
-    cy.document().toMatchImageSnapshot({
-      name: "taxonomy--edit-dialog",
-      blackout: ["td[data-property=lastModified]"],
-    });
 
     cy.get('input[name="jcr:title"]').invoke("attr", "value", "Reference2");
     cy.get(".modal .Form-Ajax").submit();
 
     cy.get(".close-modal.is-primary").should("be.visible");
-    cy.document().toMatchImageSnapshot({
-      name: "taxonomy--save",
-      blackout: ["td[data-property=lastModified]"],
-    });
-    cy.lighthouse(lighthouseConfig);
+    cy.pa11y();
   });
   it("should show allow for adding new taxonomy item", () => {
     cy.visit("/cms/taxonomy/list.html/etc/taxonomy");
@@ -82,19 +65,11 @@ describe("Taxonomy Tests", () => {
       "A New Reference"
     );
     cy.get('input[name=":name"]').invoke("attr", "value", "new-reference");
-    cy.document().toMatchImageSnapshot({
-      name: "taxonomy--new-tag-dialog",
-      blackout: ["td[data-property=lastModified]"],
-    });
     cy.get(".modal .Form-Ajax").submit();
 
     cy.get(".close-modal.is-primary").should("be.visible");
     cy.get(".close-modal.is-primary").click();
-    doneLoading();
-    cy.document().toMatchImageSnapshot({
-      name: "taxonomy--with-new-item",
-      blackout: ["td[data-property=lastModified]"],
-    });
+    cy.pa11y();
   });
   it("should show allow for adding deleting a taxonomy item", () => {
     cy.visit("/cms/taxonomy/list.html/etc/taxonomy");
@@ -103,14 +78,10 @@ describe("Taxonomy Tests", () => {
 
     doneLoading();
     cy.get(".modal").should("be.visible");
-    cy.document().toMatchImageSnapshot({
-      name: "taxonomy--delete",
-      blackout: ["td[data-property=lastModified]"],
-    });
     cy.get(".modal .Form-Ajax").submit();
-
     cy.get(".close-modal.is-primary").should("be.visible");
     cy.get(".close-modal.is-primary").click();
     doneLoading();
+    cy.pa11y();
   });
 });

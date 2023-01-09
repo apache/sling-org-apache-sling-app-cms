@@ -21,7 +21,7 @@
 <div>
     <dl>
         <dt><fmt:message key="Name" /></dt>
-        <dd><sling:encode value="${properties.name}" mode="HTML" />
+        <dd><sling:encode value="${sling:encode(properties.name,'HTML_ATTR')}" mode="HTML" />
     </dl>
 </div>
 <hr/>

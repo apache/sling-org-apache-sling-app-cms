@@ -27,7 +27,7 @@
                 ${recentContentMessage}
             </p>
             <c:forEach var="item" items="${startContent.recentContent}">
-                <a class="panel-block" title="${sling:encode(item.path,'HTML_ATTR')}" href="/cms/site/content.html${item.parent.path}?resource=${sling:encode(item.path,'HTML_ATTR')}">
+                <a class="panel-block" title="${sling:encode(item.path,'HTML_ATTR')}" href="/cms/site/content.html${sling:encode(item.parent.path,'HTML_ATTR')}?resource=${sling:encode(item.path,'HTML_ATTR')}">
                     <span class="panel-icon">
                         <c:choose>
                             <c:when test="${item.resourceType == 'sling:Page'}">

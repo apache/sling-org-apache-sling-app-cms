@@ -25,7 +25,7 @@
     <dd>
         <c:choose>
             <c:when test="${not empty properties.objectClass}">
-                <a href="/system/console/services?filter=%28%26%28objectClass%3D${properties.objectClass}%29%28name%3D${sling:encode(config[properties.key],'HTML_ATTR')}%29%29">
+                <a href="/system/console/services?filter=%28%26%28objectClass%3D${sling:encode(properties.objectClass,'HTML_ATTR')}%29%28name%3D${sling:encode(config[properties.key],'HTML_ATTR')}%29%29">
                     <sling:encode value="${config[properties.key]}" mode="HTML" />
                 </a>
             </c:when>

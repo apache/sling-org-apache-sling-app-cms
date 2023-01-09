@@ -19,14 +19,14 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <c:if test="${slingRequest.requestPathInfo.suffix != null}">
     <sling:getResource path="${slingRequest.requestPathInfo.suffix}" var="editedResource" />
-    <c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.resource.ValueMap')}" scope="request"/>
+    <c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.x.ValueMap')}" scope="request"/>
 </c:if>
 <sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.References" />
 <c:if test="${fn:length(references.references) gt 0}">
     <div class="field ${properties.toggle ? 'is-hidden toggle-value' : ''}" data-toggle-source=":operation" data-toggle-value="move">
         <div class="field">
             <label class="checkbox">
-                <input type="checkbox" name="${properties.name}" value="true" />
+                <input type="checkbox" name="${sling:encode(properties.name,'HTML_ATTR')}" value="true" />
                 <fmt:message key="${properties.label}" var="label" />
                 <sling:encode value="${label}" mode="HTML" />
             </label>
@@ -50,8 +50,8 @@
                                             <span class="jam jam-document"></span>
                                         </span>
                                     </td>
-                                    <td title="${ref.containingPage.path}">
-                                        <a href="/cms/site/content.html${ref.containingPage.parent.path}" target="_blank">
+                                    <td title="${sling:encode(ref.containingPage.path,'HTML_ATTR')}">
+                                        <a href="/cms/site/content.html${sling:encode(ref.containingPage.parent.path,'HTML_ATTR')}" target="_blank">
                                             ${sling:encode(ref.containingPage.title,'HTML')}
                                         </a>
                                     </td>
@@ -69,7 +69,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        ${ref.resource.path}
+                                        ${sling:encode(ref.resource.path,'HTML')}
                                     </td>
                                     <td>
                                     </td>

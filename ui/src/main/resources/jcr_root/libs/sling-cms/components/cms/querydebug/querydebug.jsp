@@ -51,9 +51,9 @@
         </c:if>
     </dl>
     <br/><hr/><br/>
-    <h2><fmt:message key="Popular Queries" /></h2>
+    <h2 id="popular-queries-header"><fmt:message key="Popular Queries" /></h2>
     <div class="table-container">
-        <table class="table">
+        <table class="table popular-queries-table" aria-labelledby="popular-queries-header">
             <tr>
                 <th scope="col">
                     #
@@ -110,64 +110,66 @@
             </c:forEach>
         </table>
     </div>
-    <h2><fmt:message key="Slow Queries" /></h2>
-    <div class="table-container">
-        <table class="table">
-            <tr>
-                <th scope="col">
-                    #
-                </th>
-                <th scope="col">
-                    <fmt:message key="Query Statement" />
-                </th>
-                <th scope="col">
-                    <fmt:message key="Query Language" />
-                </th>
-                <th scope="col">
-                    <fmt:message key="Count" />
-                </th>
-                <th scope="col">
-                    <fmt:message key="Last Thread" />
-                </th>
-                <th scope="col">
-                    <fmt:message key="Duration" />
-                </th>
-                <th scope="col">
-                    <fmt:message key="Max Rows Scanned" />
-                </th>
-                <th scope="col">
-                    <fmt:message key="Rows Scanned / Read" />
-                </th>
-            </tr>
-            <c:forEach var="query" items="${queryDebugger.slowQueries}">
+    <c:if test="${not empty queryDebugger.slowQueries}">
+        <h2 id="slow-queries-header"><fmt:message key="Slow Queries" /></h2>
+        <div class="table-container">
+            <table class="table popular-queries-table" aria-labelledby="slow-queries-header">
                 <tr>
-                    <td>
-                        ${query.position}
-                    </td>
-                    <td>
-                        ${sling:encode(query.statement,'HTML')}
-                    </td>
-                    <td>
-                        ${query.language}
-                    </td>
-                    <td>
-                        ${query.executeCount}
-                    </td>
-                    <td>
-                        ${sling:encode(query.lastThread,'HTML')}
-                    </td>
-                    <td>
-                        ${query.totalTimeMillis}
-                    </td>
-                    <td>
-                        ${query.maxRowsScanned}
-                    </td>
-                    <td>
-                        ${query.rowsScanned} / ${query.rowsRead}
-                    </td>
+                    <th scope="col">
+                        #
+                    </th>
+                    <th scope="col">
+                        <fmt:message key="Query Statement" />
+                    </th>
+                    <th scope="col">
+                        <fmt:message key="Query Language" />
+                    </th>
+                    <th scope="col">
+                        <fmt:message key="Count" />
+                    </th>
+                    <th scope="col">
+                        <fmt:message key="Last Thread" />
+                    </th>
+                    <th scope="col">
+                        <fmt:message key="Duration" />
+                    </th>
+                    <th scope="col">
+                        <fmt:message key="Max Rows Scanned" />
+                    </th>
+                    <th scope="col">
+                        <fmt:message key="Rows Scanned / Read" />
+                    </th>
                 </tr>
-            </c:forEach>
-        </table>
-    </div>
+                <c:forEach var="query" items="${queryDebugger.slowQueries}">
+                    <tr>
+                        <td>
+                            ${query.position}
+                        </td>
+                        <td>
+                            ${sling:encode(query.statement,'HTML')}
+                        </td>
+                        <td>
+                            ${query.language}
+                        </td>
+                        <td>
+                            ${query.executeCount}
+                        </td>
+                        <td>
+                            ${sling:encode(query.lastThread,'HTML')}
+                        </td>
+                        <td>
+                            ${query.totalTimeMillis}
+                        </td>
+                        <td>
+                            ${query.maxRowsScanned}
+                        </td>
+                        <td>
+                            ${query.rowsScanned} / ${query.rowsRead}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </c:if>
     <br/><br/><br/>
 </div>

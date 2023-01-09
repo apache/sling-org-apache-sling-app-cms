@@ -30,7 +30,7 @@
             </label>
             <div class="field has-addons">
                 <div class="control is-expanded">
-                    <input class="input pathfield" type="text" name="suffix" id="suffix" required="required" data-type="${properties.type}" data-base="${properties.base}" autocomplete="off" />
+                    <input class="input pathfield" type="text" name="suffix" id="suffix" required="required" data-type="${sling:encode(properties.type,'HTML_ATTR')}" data-base="${sling:encode(properties.base,'HTML_ATTR')}" autocomplete="off" />
                 </div>
                 <div class="control">
                     <fmt:message key="Search" var="searchMessage" />

@@ -56,7 +56,7 @@
                             <sling:include resource="${configRsrc}" />
                         </c:forEach>
                     </dl>
-                    <a class="button" href="/system/console/configMgr/${importerCfg['service.pid']}"><fmt:message key="Edit" /></a>
+                    <a class="button" href="/system/console/configMgr/${sling:encode(importerCfg['service.pid'],'HTML_ATTR')}"><fmt:message key="Edit" /></a>
                 </div>
             </article>
         </div>

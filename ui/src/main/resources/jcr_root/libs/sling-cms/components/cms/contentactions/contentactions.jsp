@@ -23,7 +23,7 @@
             <div class="buttons has-addons">
                 <c:forEach var="action" items="${sling:listChildren(sling:getRelativeResource(resource,'actions'))}" varStatus="status">
                     <a class="button Fetch-Modal" data-title="Add ${action.valueMap.label}" data-path=".Main-Content form" href="${action.valueMap.prefix}${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}${action.valueMap.suffix}">
-                        + <fmt:message key="${action.valueMap.label}" />
+                        + <fmt:message key="${action.valueMap.label}" var="label" />${sling:encode(label,'HTML_ATTR')}
                     </a>
                 </c:forEach>
             </div>
@@ -43,15 +43,15 @@
                         <c:set var="pagePath" value="${sling:adaptTo(resource,'org.apache.sling.cms.PageManager').page.path}" />
                         <form method="get" action="" class="layout-switch is-inline">
                             <div class="select">
-                                <select>
+                                <select aria-label="Select View">
                                     <c:choose>
                                         <c:when test="${slingRequest.requestPathInfo.selectorString == 'table' || (profile.valueMap.defaultLayout == 'table' && slingRequest.requestPathInfo.selectorString != 'grid')}">
-                                            <option value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.grid.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Grid" /></option>
-                                            <option selected value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.table.html$${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Table" /></option>
+                                            <option value="/cms${sling:encode(fn:substring(pagePath,30,fn:length(pagePath)),'HTML_ATTR')}.grid.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Grid" /></option>
+                                            <option selected value="/cms${sling:encode(fn:substring(pagePath,30,fn:length(pagePath)),'HTML_ATTR')}.table.html$${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Table" /></option>
                                         </c:when>
                                         <c:otherwise>
-                                            <option selected value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.grid.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Grid" /></option>
-                                            <option value="/cms${fn:substring(pagePath,30,fn:length(pagePath))}.table.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Table" /></option>
+                                            <option selected value="/cms${sling:encode(fn:substring(pagePath,30,fn:length(pagePath)),'HTML_ATTR')}.grid.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Grid" /></option>
+                                            <option value="/cms${sling:encode(fn:substring(pagePath,30,fn:length(pagePath)),'HTML_ATTR')}.table.html${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}"><fmt:message key="Table" /></option>
                                         </c:otherwise>
                                     </c:choose>
                                 </select>

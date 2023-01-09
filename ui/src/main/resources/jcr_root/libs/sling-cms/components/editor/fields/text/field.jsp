@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<input type="${not empty properties.type ? properties.type : 'text'}" class="input" id="${properties.name}" name="${properties.name}" value="${sling:encode(value,'HTML_ATTR')}" ${required} ${disabled} />
+<input type="${sling:encode(not empty properties.type ? properties.type : 'text','HTML_ATTR')}" class="input" id="${sling:encode(properties.name,'HTML_ATTR')}" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(value,'HTML_ATTR')}" ${required} ${disabled} />

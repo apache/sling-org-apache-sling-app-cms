@@ -23,9 +23,10 @@
 <div class="sling-cms-editor">
     <div class="level has-background-grey">
         <div class="level-left">
-            <a href="/cms/start.html" target="_blank" title="${branding.appName}"
+            <a href="/cms/start.html" target="_blank" title="${sling:encode(branding.appName,'HTML_ATTR')}"
                 class="button"> <img
-                src="${branding.logo}"
+                src="${sling:encode(branding.logo,'HTML_ATTR')}"
+                alt="Sling Logo"
                 class="sling-cms-logo" />
             </a>
         </div>

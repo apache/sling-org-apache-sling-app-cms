@@ -21,6 +21,6 @@
 <dl>
     <dt><fmt:message key="Taxonomy Root" /></dt>
     <dd>
-        ${properties.taxonomyroot}
+        ${sling:encode(properties.taxonomyroot,'HTML')}
     </dd>
 </dl>

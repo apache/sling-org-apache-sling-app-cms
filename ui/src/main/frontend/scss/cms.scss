@@ -67,7 +67,6 @@ fieldset {
   min-inline-size: auto;
 }
 
-
 h1 {
   font-size: 200%;
   margin-bottom: 1em;
@@ -265,6 +264,9 @@ nav .level-right {
   height: calc(100vh - 500px);
 }
 
+#query-debug h2 {
+  color: #363636;
+}
 .rte-form {
   margin: 0.5em 0;
 }

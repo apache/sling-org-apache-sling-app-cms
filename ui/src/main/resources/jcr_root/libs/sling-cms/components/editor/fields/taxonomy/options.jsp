@@ -18,9 +18,9 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:getCAConfigResource resource="${slingRequest.requestPathInfo.suffixResource}" bucket="site" name="settings" var="sitesettings" />
-<datalist id="labelfield-${fn:replace(resource.name,':','-')}">
+<datalist id="labelfield-${sling:encode(fn:replace(resource.name,':','-'),'HTML_ATTR')}">
     <c:set var="query" value="SELECT * FROM [sling:Taxonomy] WHERE ISDESCENDANTNODE([${not empty properties.basePath ? properties.basePath : sitesettings.valueMap.taxonomyroot}])" />
     <c:forEach var="taxonomy" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
-        <option value="${sling:encode(taxonomy.path,'HTML_ATTR')}">${taxonomy.valueMap['jcr:title']}</option>
+        <option value="${sling:encode(taxonomy.path,'HTML_ATTR')}">${sling:encode(taxonomy.valueMap['jcr:title'],'HTML')}</option>
     </c:forEach>
 </datalist>

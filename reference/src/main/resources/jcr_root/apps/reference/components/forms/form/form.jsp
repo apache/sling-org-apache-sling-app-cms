@@ -21,18 +21,18 @@
 <c:set var="formData" value="${sling:adaptTo(slingRequest,'org.apache.sling.cms.reference.forms.FormRequest').formData}" scope="request" />
 <form class="${formConfig.formClass}" action="${sling:encode(resource.path,'HTML_ATTR')}.allowpost.html" method="post" data-analytics-id="${sling:encode(properties.formId,'HTML_ATTR')}" enctype="multipart/form-data">
     <c:if test="${param.message == 'success'}">
-        <div class="${formConfig.alertClass}">
-            ${properties.successMessage}
+        <div class="${sling:encode(formConfig.alertClass,'HTML_ATTR')}">
+            <sling:encode value="${properties.successMessage}" mode="HTML" />
         </div>
     </c:if>
     <c:if test="${param.error == 'actions'}">
-        <div class="${formConfig.alertClass}">
-            ${properties.actionsErrorMessage}
+        <div class="${sling:encode(formConfig.alertClass,'HTML_ATTR')}">
+            <sling:encode value="${properties.actionsErrorMessage}" mode="HTML" />
         </div>
     </c:if>
     <c:if test="${param.error == 'fields'}">
-        <div class="${formConfig.alertClass}">
-            ${properties.fieldsErrorMessage}
+        <div class="${sling:encode(formConfig.alertClass,'HTML_ATTR')}">
+            <sling:encode value="${properties.fieldsErrorMessage}" mode="HTML" />
         </div>
     </c:if>
 
@@ -57,6 +57,8 @@
     <sling:include path="actions" resourceType="sling-cms/components/general/reloadcontainer" />
     <c:set var="availableTypes" value="${oldAvailableTypes}" scope="request" />
     
-    <button type="submit" class="${formConfig.submitClass}">${properties.submitText}</button>
+    <button type="submit" class="${sling:encode(formConfig.submitClass,'HTML_ATTR')}">
+        <sling:encode value="${properties.submitText}" mode="HTML" />
+    </button>
     
 </form>

@@ -17,11 +17,11 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<fmt:message key="${properties.title}" var="title" />
+<fmt:message key="${sling:encode(properties.title,'HTML_ATTR')}" var="title" />
 <div class="card field">
     <c:choose>
         <c:when test="${properties.collapse}">
-            <header class="card-header toggle-hidden" data-target="#${resource.name}">
+            <header class="card-header toggle-hidden" data-target="#${sling:encode(resource.name,'HTML_ATTR')}">
                 <p class="card-header-title">
                     <sling:encode value="${title}" mode="HTML" />
                 </p>
@@ -31,7 +31,7 @@
                     </span>
                 </a>
             </header>
-            <div class="card-content is-hidden" id="${resource.name}">
+            <div class="card-content is-hidden" id="${sling:encode(resource.name,'HTML_ATTR')}">
                 <sling:include path="content" resourceType="sling-cms/components/general/container" />
             </div>
         </c:when>

@@ -19,7 +19,7 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:call script="init.jsp" />
 <c:if test="${list != null}">
-    <${tag} class="list ${clazz}">
+    <${sling:encode(tag,'HTML')} class="list ${sling:encode(clazz,'HTML')}">
         <c:forEach var="it" items="${list.items}">
             <c:set var="item" value="${it}" scope="request" />
             <sling:call script="item.jsp" />
@@ -27,5 +27,5 @@
         <c:if test="${includePagination}">
             <sling:call script="pagination.jsp" />
         </c:if>
-    </${tag}>
+    </${sling:encode(tag,'HTML')}>
 </c:if>

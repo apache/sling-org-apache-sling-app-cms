@@ -19,7 +19,7 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:forEach var="item" items="${value}">
     <a class="tag labelfield__item" title="${item}">
-        <input type="hidden" name="${properties.name}" value="${item}" />
+        <input type="hidden" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(item,'HTML_ATTR')}" />
         <span class="labelfield__title">
             ${sling:encode(item,'HTML')}
         </span>

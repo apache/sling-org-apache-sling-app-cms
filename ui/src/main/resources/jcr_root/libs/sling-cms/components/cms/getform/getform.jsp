@@ -26,7 +26,7 @@
         <c:set var="action" value="${page.path}.html" />
     </c:otherwise>
 </c:choose>
-<form method="get" action="${action}" class="get-form" data-target="${properties.target}" data-load="${properties.load}">
+<form method="get" action="${action}" class="get-form" data-target="${sling:encode(properties.target,'HTML_ATTR')}" data-load="${sling:encode(properties.load,'HTML_ATTR')}">
     <fieldset class="form-wrapper field">
         <input type="hidden" name="_charset_" value="utf-8" />
         <sling:include path="fields" resourceType="sling-cms/components/general/container" />

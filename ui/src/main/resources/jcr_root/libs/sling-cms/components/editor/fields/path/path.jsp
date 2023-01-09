@@ -49,7 +49,7 @@
     </c:otherwise>
 </c:choose>
 <c:if test="${not empty properties.label}">
-    <label class="label" for="${properties.name}">
+    <label class="label" for="${sling:encode(properties.name,'HTML_ATTR')}">
         <fmt:message key="${properties.label}" var="label" />
         <sling:encode value="${label}" mode="HTML" />
         <c:if test="${properties.required}"><span class="has-text-danger">*</span></c:if>

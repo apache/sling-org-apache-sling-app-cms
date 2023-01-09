@@ -18,6 +18,6 @@
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
 <sling:adaptTo adaptable="${resource}" adaptTo="org.apache.sling.cms.core.models.LocaleResource" var="localeResource" />
-<td title="${sling:encode(localeResource.locale.displayLanguage,'HTML_ATTR')} ${sling:encode(localeResource.locale.displayCountry,'HTML_ATTR')}" data-value="${localeResource.locale}">
+<td title="${sling:encode(localeResource.locale.displayLanguage,'HTML_ATTR')} ${sling:encode(localeResource.locale.displayCountry,'HTML_ATTR')}" data-value="${sling:encode(localeResource.locale,'HTML_ATTR')}">
 	${localeResource.locale.displayLanguage} ${localeResource.locale.displayCountry}
 </td>

@@ -21,7 +21,7 @@
 	<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Apache Sling :: ${resource.valueMap['jcr:title']}</title>
+    <title>Apache Sling :: ${sling:encode(resource.valueMap['jcr:title'],'HTML')}</title>
     <link rel="icon" href="/static/clientlibs/reference/img/favicon.ico"/>
     <link rel="stylesheet" href="/static/clientlibs/reference/site.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>

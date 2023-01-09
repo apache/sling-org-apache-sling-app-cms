@@ -17,4 +17,4 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<input type="hidden" name="${properties.name}" value="${sling:getResource(resourceResolver, param[properties.param]).path}" />
+<input type="hidden" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(sling:getResource(resourceResolver, param[properties.param]).path,'HTML_ATTR')}" />

@@ -19,10 +19,10 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <c:choose>
     <c:when test="${not empty properties.value}">
-        <a class="button is-small" data-wysihtml-command="${properties.command}" data-wysihtml-command-value="${properties.value}">
+        <a class="button is-small" data-wysihtml-command="${sling:encode(properties.command,'HTML_ATTR')}" data-wysihtml-command-value="${sling:encode(properties.value,'HTML_ATTR')}">
             <c:choose>
                 <c:when test="${not empty properties.icon}">
-                    <em class="jam jam-${properties.icon} icon"></em>
+                    <em class="jam jam-${sling:encode(properties.icon,'HTML_ATTR')} icon"></em>
                 </c:when>
                 <c:otherwise>
                     <fmt:message key="${properties.text}" var="text" />
@@ -32,10 +32,10 @@
         </a>
     </c:when>
     <c:otherwise>
-        <a class="button is-small" data-wysihtml-command="${properties.command}">
+        <a class="button is-small" data-wysihtml-command="${sling:encode(properties.command,'HTML_ATTR')}">
             <c:choose>
                 <c:when test="${not empty properties.icon}">
-                    <em class="jam jam-${properties.icon} icon"></em>
+                    <em class="jam jam-${sling:encode(properties.icon,'HTML_ATTR')} icon"></em>
                 </c:when>
                 <c:otherwise>
                     <fmt:message key="${properties.text}" var="text" />

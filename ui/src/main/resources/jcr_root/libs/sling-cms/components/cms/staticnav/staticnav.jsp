@@ -18,7 +18,7 @@
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
 <nav class="menu" aria-label="${sling:encode(properties.title,'HTML_ATTR')}">
-    <a class="menu-label toggle-hidden toggle-${fn:replace(properties.title,' ','-')}" data-target="#${fn:replace(properties.title,' ','-')}-nav">
+    <a class="menu-label toggle-hidden toggle-${sling:encode(fn:replace(properties.title,' ','-'),'HTML_ATTR')}" data-target="#${sling:encode(fn:replace(properties.title,' ','-'),'HTML_ATTR')}-nav">
         <fmt:message key="${properties.title}" var="title" />
         <sling:encode value="${title}" mode="HTML" />
     </a>
@@ -34,7 +34,7 @@
         </c:forEach>
     </c:forEach>
     <sling:adaptTo var="currentUser" adaptable="${slingRequest.resourceResolver}" adaptTo="org.apache.sling.cms.AuthorizableWrapper" />
-    <ul id="${fn:replace(properties.title,' ','-')}-nav" class="menu-list ${hidden}">
+    <ul id="${sling:encode(fn:replace(properties.title,' ','-'),'HTML_ATTR')}-nav" class="menu-list ${hidden}">
         <c:forEach var="item" items="${sling:listChildren(sling:getRelativeResource(resource,'links'))}">
             <c:set var="selected" value="" />
             <c:if test="${fn:startsWith(slingRequest.requestURI,item.valueMap.link)}">
@@ -58,7 +58,7 @@
             </c:if>
             <c:if test="${enabled}">
                 <li>
-                    <a href="${item.valueMap.link}" class="${selected} nav-link-${fn:replace(item.valueMap.text,' ','-')}">
+                    <a href="${sling:encode(item.valueMap.link,'HTML_ATTR')}" class="${selected} nav-link-${sling:encode(fn:replace(item.valueMap.text,' ','-'),'HTML_ATTR')}">
                         <fmt:message key="${item.valueMap.text}" var="text" />
                         <sling:encode value="${text}" mode="HTML" />
                     </a>

@@ -32,7 +32,7 @@
     </fieldset>
     <div class="labelfield__field field has-addons">
         <div class="control is-expanded">
-             <input class="input" type="text" ${required} ${disabled} id="${sling:encode(properties.name,'HTML_ATTR')}" list="labelfield-${fn:replace(resource.name,':','-')}" autocomplete="off" />
+             <input class="input" type="text" ${required} ${disabled} id="${sling:encode(properties.name,'HTML_ATTR')}" list="labelfield-${sling:encode(fn:replace(resource.name,':','-'),'HTML_ATTR')}" autocomplete="off" />
          </div>
          <div class="control">
              <button class="labelfield__add button">

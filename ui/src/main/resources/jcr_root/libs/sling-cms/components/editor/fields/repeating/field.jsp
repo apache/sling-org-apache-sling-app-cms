@@ -21,7 +21,7 @@
     <fieldset disabled="disabled" class="repeating__template is-hidden">
         <div class="repeating__item field has-addons">
             <div class="control is-expanded">
-                <input type="${properties.type}" value="" class="input" name="${sling:encode(properties.name,'HTML_ATTR')}" ${required} ${disabled} />
+                <input type="${sling:encode(properties.type,'HTML_ATTR')}" value="" class="input" name="${sling:encode(properties.name,'HTML_ATTR')}" ${required} ${disabled} />
             </div>
             <div class="control">
                 <button class="repeating__remove button">
@@ -52,7 +52,8 @@
             </div>
         </c:forEach>
     </div>
-    <button type="button" class="repeating__add button" name="${properties.name}">
+    <fmt:message key="Add" var="addMsg" />
+    <button type="button" class="repeating__add button" aria-label="${addMsg}" name="${sling:encode(properties.name,'HTML_ATTR')}">
         <span class="jam jam-plus"></span>
     </button>
 </div>

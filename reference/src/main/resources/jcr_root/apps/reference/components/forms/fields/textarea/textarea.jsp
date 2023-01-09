@@ -17,12 +17,12 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="${formConfig.fieldGroupClass} ${properties.addClasses}">
+<div class="${sling:encode(formConfig.fieldGroupClass,'HTML_ATTR')} ${sling:encode(properties.addClasses,'HTML_ATTR')}">
     <c:if test="${not empty properties.label}">
-        <label for="${properties.name}">
+        <label for="${sling:encode(properties.name,'HTML_ATTR')}">
             <sling:encode value="${properties.label}" mode="HTML" />
             <c:if test="${properties.required}">
-                <span class="${formConfig.fieldRequiredClass}">
+                <span class="${sling:encode(formConfig.fieldRequiredClass,'HTML_ATTR')}">
                     *
                 </span>
             </c:if>

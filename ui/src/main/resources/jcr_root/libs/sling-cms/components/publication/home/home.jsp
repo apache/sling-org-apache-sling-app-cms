@@ -21,6 +21,6 @@
 <br/>
 <dl>
     <dt><fmt:message key="Publication Mode" /></dt>
-    <dd><fmt:message key="${publicationManager.publicationMode}" /></dd>
+    <dd><fmt:message key="${sling:encode(publicationManager.publicationMode,'HTML')}" /></dd>
 </dl>
 <br/>

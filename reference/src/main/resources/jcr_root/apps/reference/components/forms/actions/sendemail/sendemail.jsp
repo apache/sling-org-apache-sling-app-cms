@@ -21,12 +21,12 @@
     <h3><fmt:message key="Send Main" /></h3>
     <dl>
         <dt><fmt:message key="From" /></dt>
-        <dd>${properties.from}</dd>
+        <dd>${sling:encode(properties.from,'HTML')}</dd>
         <dt><fmt:message key="To" /></dt>
-        <dd>${properties.to}</dd>
+        <dd>${sling:encode(properties.to,'HTML')}</dd>
         <dt><fmt:message key="Subject" /></dt>
-        <dd>${properties.subject}</dd>
+        <dd>${sling:encode(properties.subject,'HTML')}</dd>
         <dt><fmt:message key="Message" /></dt>
-        <dd>${properties.message}</dd>
+        <dd>${sling:encode(properties.message,'HTML')}</dd>
     </dl>
 </c:if>

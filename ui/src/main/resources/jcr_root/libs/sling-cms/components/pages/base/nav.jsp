@@ -19,8 +19,8 @@
 <%@include file="/libs/sling-cms/global.jsp"%>
 <nav class="navbar has-background-light" role="navigation" aria-label="main mavigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="${branding.logoLink}">
-            <img src="${branding.logo}" width="100" alt="${branding.appName}"/>
+        <a class="navbar-item" href="${sling:encode(branding.logoLink,'HTML_ATTR')}">
+            <img src="${sling:encode(branding.logo,'HTML_ATTR')}" width="100" alt="${sling:encode(branding.appName,'HTML_ATTR')}"/>
         </a>
         <fmt:message key="Home" var="homeMessage" />
         <a href="/cms/start.html" class="navbar-item" title="${homeMessage}">
@@ -60,7 +60,7 @@
                         </em>&nbsp;
                         <fmt:message key="My Transformations" />
                     </a>
-                    <a class="navbar-item" href="${branding.helpLink}" target="_blank" rel="noopener noreferrer">
+                    <a class="navbar-item" href="${sling:encode(branding.helpLink,'HTML_ATTR')}" target="_blank" rel="noopener noreferrer">
                         <em class="jam jam-help">
                             <span class="is-sr-only">Help</span>
                         </em>&nbsp;

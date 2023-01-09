@@ -23,13 +23,13 @@
 <c:set var="contentResource" value="${sling:getRelativeResource(pageMgr.page.resource,'jcr:content')}" />
 <c:set var="listTag" value="${empty config.listTag ? 'div' : config.listTag}" />
 <c:set var="itemTag" value="${empty config.listTag ? 'span' : config.itemTag}"  />
-<${listTag} class="${sling:encode(config.listClass,'HTML_ATTR')}">
+<${sling:encode(listTag,'HTML')} class="${sling:encode(config.listClass,'HTML_ATTR')}">
     <c:forEach var="tagPath" items="${contentResource.valueMap['sling:taxonomy']}">
         <c:set var="tag" value="${sling:getResource(resourceResolver,tagPath)}" />
-        <${itemTag} class="${config.itemClass}">
-            <a href="${config.tagPage}.html${sling:encode(tag.path,'HTML_ATTR')}">
+        <${sling:encode(itemTag,'HTML')} class="${sling:encode(config.itemClass,'HTML_ATTR')}">
+            <a href="${sling:encode(config.tagPage,'HTML_ATTR')}.html${sling:encode(tag.path,'HTML_ATTR')}">
                 <sling:encode value="${tag.valueMap['jcr:title']}" default="${tag.name}" mode="HTML" />
             </a>
-        </${itemTag}>
+        </${sling:encode(itemTag,'HTML')}>
     </c:forEach>
-</${listTag}>
+</${sling:encode(listTag,'HTML')}>

@@ -23,7 +23,7 @@
         <div class="card is-linked" title="${sling:encode(properties.title,'HTML_ATTR')}" data-value="${sling:encode(resource.path,'HTML_ATTR')}">
             <div class="card-image">
                 <figure class="image is-5by4">
-                    <img src="/cms/file/preview.html${branding.gridIconsBase}${sling:encode(properties.icon,'HTML_ATTR')}" loading="lazy" alt="${sling:encode(title,'HTML_ATTR')}">
+                    <img src="/cms/file/preview.html${sling:encode(branding.gridIconsBase,'HTML_ATTR')}${sling:encode(properties.icon,'HTML_ATTR')}" loading="lazy" alt="${sling:encode(title,'HTML_ATTR')}">
                 </figure>
             </div>
             <footer class="card-footer">

@@ -28,7 +28,8 @@
         </li>
         <li class="is-active">
             <a href="#">
-                <fmt:message key="${job.properties._titleKey}" />
+                <fmt:message key="${job.properties._titleKey}" var="title" />
+                <sling:encode value="title" mode="HTML" />
             </a>
         </li>
     </ul>
@@ -37,7 +38,7 @@
 <div class="scroll-container">
     <dl>
         <dt><fmt:message key="State" /></dt>
-        <dd>${job.jobState}</dd>
+        <dd>${sling:encode(job.jobState,'HTML')}</dd>
         <c:if test="${not empty job.resultMessage}">
             <dt><fmt:message key="Result Message" /></dt>
             <dd>${sling:encode(job.resultMessage,'HTML')}</dd>
@@ -53,7 +54,7 @@
         <c:if test="${job.progressStepCount > 0}">
             <dt><fmt:message key="Progress" /></dt>
             <dd>
-                ${job.finishedProgressStep} / ${job.progressStepCount}
+                ${sling:encode(job.finishedProgressStep,'HTML')} / ${sling:encode(job.progressStepCount,'HTML')}
             </dd>
         </c:if>
         <c:if test="${job.progressLog != null && fn:length(job.progressLog) > 0}">

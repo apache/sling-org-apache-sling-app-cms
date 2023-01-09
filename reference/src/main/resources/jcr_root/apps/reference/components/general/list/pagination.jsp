@@ -21,36 +21,36 @@
     <ul class="${listConfig.valueMap.paginationClass}">
         <c:choose>
             <c:when test="${list.first == true}">
-                <li class="${listConfig.valueMap.pageItemClass} disabled">
-                    <span class="${listConfig.valueMap.pageLinkClass}">
+                <li class="${sling:encode(listConfig.valueMap.pageItemClass,'HTML_ATTR')} disabled">
+                    <span class="${sling:encode(listConfig.valueMap.pageLinkClass,'HTML_ATTR')}">
                         &lt;
                     </span>
                 </li>
             </c:when>
             <c:otherwise>
-                <li class="${listConfig.valueMap.pageItemClass}">
-                    <a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage - 1}">&lt;</a>
+                <li class="${sling:encode(listConfig.valueMap.pageItemClass,'HTML_ATTR')}">
+                    <a class="${sling:encode(listConfig.valueMap.pageLinkClass,'HTML_ATTR')}" href="?page=${list.currentPage - 1}">&lt;</a>
                 </li>
             </c:otherwise>
         </c:choose>
         <c:forEach var="page" items="${list.pages}">
-            <li class="${listConfig.valueMap.pageItemClass} ${page == list.currentPage ? 'active' : ''}">
-                <a href="?page=${page}" class="${listConfig.valueMap.pageLinkClass}">
+            <li class="${sling:encode(listConfig.valueMap.pageItemClass,'HTML_ATTR')} ${page == list.currentPage ? 'active' : ''}">
+                <a href="?page=${page}" class="${sling:encode(listConfig.valueMap.pageLinkClass,'HTML_ATTR')}">
                     ${page}
                 </a>
             </li>
         </c:forEach>
         <c:choose>
             <c:when test="${list.last}">
-                <li class="${listConfig.valueMap.pageItemClass} disabled">
-                    <span class="${listConfig.valueMap.pageLinkClass}">
+                <li class="${sling:encode(listConfig.valueMap.pageItemClass,'HTML_ATTR')} disabled">
+                    <span class="${sling:encode(listConfig.valueMap.pageLinkClass,'HTML_ATTR')}">
                         &gt;
                     </span>
                 </li>
             </c:when>
             <c:otherwise>
-                <li class="${listConfig.valueMap.pageItemClass}">
-                    <a class="${listConfig.valueMap.pageLinkClass}" href="?page=${list.currentPage + 1}">&gt;</a>
+                <li class="${sling:encode(listConfig.valueMap.pageItemClass,'HTML_ATTR')}">
+                    <a class="${sling:encode(listConfig.valueMap.pageLinkClass,'HTML_ATTR')}" href="?page=${list.currentPage + 1}">&gt;</a>
                 </li>
             </c:otherwise>
         </c:choose>

@@ -22,7 +22,7 @@
     <c:set var="results" value="${false}" />
     <c:forEach var="item" items="${startContent.relatedContent}">
         <c:set var="results" value="${true}" />
-        <a class="panel-block" title="${sling:encode(item.path,'HTML_ATTR')}" href="/cms/site/content.html${item.parent.path}?resource=${sling:encode(item.path,'HTML_ATTR')}">
+        <a class="panel-block" title="${sling:encode(item.path,'HTML_ATTR')}" href="/cms/site/content.html${sling:encode(item.parent.path,'HTML_ATTR')}?resource=${sling:encode(item.path,'HTML_ATTR')}">
             <span class="panel-icon">
                 <c:choose>
                     <c:when test="${item.resourceType == 'sling:Page'}">
@@ -38,7 +38,7 @@
                     <sling:encode value="${item.valueMap['jcr:content/jcr:title']}" default="${item.name}" mode="HTML" />
                 </c:when>
                 <c:otherwise>
-                    ${item.name}
+                    <sling:encode value="${item.name}" mode="HTML" />
                 </c:otherwise>
             </c:choose>
         </a>

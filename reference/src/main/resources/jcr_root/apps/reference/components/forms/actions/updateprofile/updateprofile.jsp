@@ -21,6 +21,6 @@
     <h3><fmt:message key="Update Profile" /></h3>
     <dl>
         <dt><fmt:message key="Subpath" /></dt>
-        <dd>${properties.subpath}</dd>
+        <dd>${sling:encode(properties.subpath,'HTML')}</dd>
     </dl>
 </c:if>

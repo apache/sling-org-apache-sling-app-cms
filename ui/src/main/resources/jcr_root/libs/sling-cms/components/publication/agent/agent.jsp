@@ -70,7 +70,7 @@
                                 <a class="button" href="/system/console/configMgr/${agentCfg['service.pid']}"><fmt:message key="Edit" /></a>
                             </div>
                             <div class="level-item">
-                                <form method="post" action="/libs/sling/distribution/services/agents/${agent.name}" class="mb-0" target="_blank">
+                                <form method="post" action="/libs/sling/distribution/services/agents/${sling:encode(agent.name,'HTML_ATTR')}" class="mb-0" target="_blank">
                                     <input type="hidden" name="action" value="TEST" />
                                     <button class="button" type="submit"><fmt:message key="Test" /></button>
                                 </form>
@@ -83,7 +83,7 @@
         <div class="column is-6">
             <c:forEach var="url" items="${agentCfg['packageImporter.endpoints']}" varStatus="status">
                 <article class="message is-light">
-                    <sling:getResource var="queue" path="/libs/sling/distribution/services/agents/${agent.name}/queues/endpoint${status.index}" />
+                    <sling:getResource var="queue" path="/libs/sling/distribution/services/agents/${sling:encode(agent.name,'HTML_ATTR')}/queues/endpoint${status.index}" />
                     <div class="message-header">
                         <p><fmt:message key="Queue" /> #${status.index + 1}</p>
                     </div>
@@ -114,7 +114,7 @@
         </div>
         <div class="message-body">
             <figure class="image is-16by9">
-                <iframe class="has-ratio" src="/libs/sling/distribution/services/agents/${agent.name}/log.txt"></iframe>
+                <iframe class="has-ratio" title="Agent Logs" src="/libs/sling/distribution/services/agents/${sling:encode(agent.name,'HTML_ATTR')}/log.txt"></iframe>
             </figure>
         </div>
     </article>

@@ -21,7 +21,7 @@
 <c:set var="searchConfig" value="${sling:adaptTo(resource,'org.apache.sling.cms.ComponentConfiguration').properties}" scope="request" />
 <c:if test="${not empty properties.limit && not empty param.q}">
     <c:set var="search" value="${sling:adaptTo(slingRequest, 'org.apache.sling.cms.reference.models.Search')}" scope="request"  />
-    <div class="search ${searchConfig.searchClass}">
+    <div class="search ${sling:encode(searchConfig.searchClass,'HTML_ATTR')}">
         <div class="search__header">
             <fmt:message key="Found {3} results for \"{0}\". Showing results {1} - {2}.">
                 <fmt:param value="${sling:encode(search.term,'HTML')}" />

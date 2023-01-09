@@ -28,6 +28,6 @@
                 <c:set var="rt" value="${fn:substringAfter(sling:encode(component.path,'HTML_ATTR'),'/libs/')}" />
             </c:otherwise>
         </c:choose>
-        <option value="${rt}" ${rt == editProperties.type ? 'selected' : ''} data-config="${sling:encode(component.path,'HTML_ATTR')}/config.html"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
+        <option value="${sling:encode(rt,'HTML_ATTR')}" ${rt == editProperties.type ? 'selected' : ''} data-config="${sling:encode(component.path,'HTML_ATTR')}/config.html"><sling:encode value="${component.valueMap['jcr:title']}" mode="HTML" /></option>
     </c:if>
 </c:forEach>

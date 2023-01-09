@@ -22,7 +22,7 @@
     <ul>
         <c:forEach var="parent" items="${breadcrumb.parents}" varStatus="status">
             <li>
-                <a href="${parent.left}">
+                <a href="${sling:encode(parent.left,'HTML_ATTR')}">
                     <sling:encode value="${parent.right}" mode="HTML" />
                 </a>
             </li>

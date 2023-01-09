@@ -67,19 +67,19 @@
                     <c:forEach var="version" items="${sling:adaptTo(slingRequest.requestPathInfo.suffixResource,'org.apache.sling.cms.core.models.VersionInfo').versions}" varStatus="status">
                         <tr>
                             <td>
-                                ${version.name}
+                                ${sling:encode(version.name, 'HTML')}
                             </td>
                             <td>
                                 <fmt:formatDate value="${version.created.time}" type="both"  dateStyle="long" timeStyle="long" />
                             </td>
                             <td>
                                 <c:forEach var="successor" items="${version.successors}">
-                                    ${successor.name}<br/>
+                                    ${sling:encode(successor.name,'HTML')}<br/>
                                 </c:forEach>
                             </td>
                             <td>
                                 <c:forEach var="predecessor" items="${version.predecessors}">
-                                    ${predecessor.name}<br/>
+                                    ${sling:encode(predecessor.name,'HTML')}<br/>
                                 </c:forEach>
                             </td>
                             <td>

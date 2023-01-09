@@ -23,9 +23,9 @@
 </c:if>
 <form method="post"
     action="${sling:encode(slingRequest.requestPathInfo.suffix,'HTML_ATTR')}${sling:encode(properties.actionSuffix,'HTML_ATTR')}"
-    enctype="${encoding}" class="Form-Ajax"
+    enctype="${sling:encode(encoding,'HTML_ATTR')}" class="Form-Ajax"
     data-add-date="${properties.addDate != false}"
-    data-callback="${properties.callback}">
+    data-callback="${sling:encode(properties.callback,'HTML_ATTR')}">
     <div class="form-wrapper pt-4 field">
         <input type="hidden" name="_charset_" value="utf-8" />
         <sling:include path="fields" resourceType="sling-cms/components/general/container" />

@@ -17,8 +17,8 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="searchresult ${searchConfig.resultClass}">
-    <div class="searchresult__header ${searchConfig.resultHeaderClass}">
+<div class="searchresult ${sling:encode(searchConfig.resultClass,'HTML_ATTR')}">
+    <div class="searchresult__header ${sling:encode(searchConfig.resultHeaderClass,'HTML_ATTR')}">
         <a href="${sling:encode(result.path,'HTML_ATTR')}.html" class="searchresult__link">
             <sling:encode value="${result.valueMap['jcr:content/jcr:title']}" mode="HTML" />
         </a>
@@ -27,6 +27,6 @@
         <sling:encode value="${result.valueMap['jcr:content/jcr:description']}" mode="HTML" />
     </p>
     <a href="${sling:encode(result.path,'HTML_ATTR')}.html" class="searchresult__link">
-        ${fn:replace(result.path,sling:getAbsoluteParent(result,3).path,'')}.html
+        ${sling:encode(fn:replace(result.path,sling:getAbsoluteParent(result,3).path,''),'HTML')}.html
     </a>
 </div>

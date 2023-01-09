@@ -27,13 +27,13 @@
 </c:choose>
 <c:choose>
     <c:when test="${not empty properties.href}">
-        <${properties.level}>
+        <${sling:encode(properties.level,'HTML')}>
             <a href="${sling:encode(properties.href,'HTML_ATTR')}">
                 <sling:encode value="${text}" mode="HTML" />
             </a>
-        </${properties.level}>
+        </${sling:encode(properties.level,'HTML')}>
     </c:when>
     <c:otherwise>
-        <${properties.level}><sling:encode value="${text}" mode="HTML" /></${properties.level}>
+        <${sling:encode(properties.level,'HTML')}><sling:encode value="${text}" mode="HTML" /></${sling:encode(properties.level,'HTML')}>
     </c:otherwise>
 </c:choose>

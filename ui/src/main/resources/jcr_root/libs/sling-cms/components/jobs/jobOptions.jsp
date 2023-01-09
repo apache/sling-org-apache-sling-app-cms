@@ -20,7 +20,8 @@
 <option value=""><fmt:message key="Select Job" /></option>
 <sling:adaptTo var="jobManager" adaptable="${slingRequest}" adaptTo="org.apache.sling.cms.CMSJobManager" />
 <c:forEach var="job" items="${jobManager.availableJobs}">
-    <option value="${job.configurationPath}">
-        <fmt:message key="${job.titleKey}" />
+    <option value="${sling:encode(job.configurationPath,'HTML_ATTR')}">
+        <fmt:message key="${job.titleKey}" var="title" />
+        <sling:encode value="${title}" mode="HTML" />
     </option>
 </c:forEach>

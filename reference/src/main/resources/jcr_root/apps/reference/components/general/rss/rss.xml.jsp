@@ -23,11 +23,11 @@
         <title>${sling:encode(site.title,'XML')}</title>
         <description>${sling:encode(site.description,'XML')}</description>
         <language>${site.locale.language}</language>
-        <link>${site.url}</link>
+        <link>${sling:encode(site.url,'XML')}</link>
         <image>
-            <url>${site.url}${fn:replace(properties.image,site.path,'')}</url>
+            <url>${sling:encode(site.url,'XML')}${sling:encode(fn:replace(properties.image,site.path,''),'HTML')}</url>
             <title>${sling:encode(site.title,'XML')}</title>
-            <link>${site.url}</link>
+            <link>${sling:encode(site.url,'XML')}</link>
         </image>
         <atom:link href="${site.url}${fn:replace(resource.path,site.path,'')}.xml" rel="self" type="application/rss+xml" />
         <c:set var="query" value="SELECT * FROM [sling:Page] WHERE ISDESCENDANTNODE([${site.path}/${properties.subpath}]) AND ([jcr:content/published]=true OR [jcr:content/sling:published]=true ) ORDER BY [jcr:content/publishDate] DESC" />
@@ -57,14 +57,14 @@
                 </c:choose>
                 <content:encoded>
                     <![CDATA[
-                        <img src="${thumbLink}" title="${sling:encode(post.title,'XML_ATTR')}" />
+                        <img src="${sling:encode(thumbLink,'XML_ATTR')}" title="${sling:encode(post.title,'XML_ATTR')}" />
                         <c:choose>
                             <c:when test="${not empty post.properties.snippet}">
-                                    <sling:encode value="${post.properties.snippet}" mode="XML" />
+                                <sling:encode value="${post.properties.snippet}" mode="XML" />
                             </c:when>
                             <c:otherwise>
                                 <c:set var="insight" value="${sling:adaptTo(postRsrc,'org.apache.sling.cms.insights.PageInsightRequest')}" />
-                                ${insight.pageBodyHtml}
+                                <sling:encode value="${insight.pageBodyHtml}" mode="XML" />
                             </c:otherwise>
                         </c:choose>
                     ]]>
@@ -74,8 +74,8 @@
                 </c:if>
                 <fmt:parseDate value="${post.properties.publishDate}" var="publishDate" pattern="yyyy-MM-dd" />
                 <pubDate><fmt:formatDate value="${publishDate}" pattern="EEE, dd MMM yyyy HH:mm:ss Z" /></pubDate>
-                <link>${site.url}${post.publishedPath}</link>
-                <guid isPermaLink="true">${site.url}${post.publishedPath}</guid>
+                <link>${sling:encode(site.url,'XML')}${sling:encode(post.publishedPath,'XML')}</link>
+                <guid isPermaLink="true">${sling:encode(site.url,'XML')}${sling:encode(post.publishedPath,'XML')}</guid>
             </item>
         </c:forEach>
     </channel>

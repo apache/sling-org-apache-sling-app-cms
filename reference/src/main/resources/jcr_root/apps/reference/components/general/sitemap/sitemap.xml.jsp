@@ -24,12 +24,12 @@
 	<c:forEach var="pageRsrc" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
 		<c:set var="page" value="${sling:adaptTo(pageRsrc,'org.apache.sling.cms.PageManager').page}" />
 		<url>
-			<loc>${site.url}${fn:replace(page.publishedPath,'index.html','')}</loc>
+			<loc>${sling:encode(site.url,'XML')}${sling:encode(fn:replace(page.publishedPath,'index.html',''),'XML')}</loc>
 			<changefreq>monthly</changefreq>
 		</url>
 	</c:forEach>
 	<url>
-		<loc>${site.url}/</loc>
+		<loc>${sling:encode(site.url,'XML')}/</loc>
 		<changefreq>always</changefreq>
 	</url>
 </urlset>

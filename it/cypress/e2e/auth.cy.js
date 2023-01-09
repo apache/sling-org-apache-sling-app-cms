@@ -18,7 +18,7 @@
  */
 
 const { expect } = require("chai");
-const lighthouseConfig = require("../lighthouse-cfg.json");
+const { login } = require("../utils");
 
 describe("Authorization Tests", () => {
   it("validate 403", () => {
@@ -28,31 +28,25 @@ describe("Authorization Tests", () => {
   });
   it("recieve error page", () => {
     cy.visit("/", { failOnStatusCode: false });
-    cy.document().toMatchImageSnapshot({ name: "auth--403-page" });
-
     cy.pa11y();
   });
   it("can click to login", () => {
+    cy.visit("/", { failOnStatusCode: false });
     cy.get("a").click();
-    cy.document().toMatchImageSnapshot({ name: "auth--login-page" });
+    cy.url().should("contain", "/system/sling/form/login");
     cy.pa11y();
-  });
-  it("can login", () => {
     cy.get("input[name=j_username]").invoke("attr", "value", "admin");
     cy.get("input[name=j_password]").invoke("attr", "value", "admin");
     cy.get("form").submit();
     cy.url().should("contain", "/cms/start.html");
-    cy.document().toMatchImageSnapshot({ name: "auth--home-page" });
-
-    cy.lighthouse(lighthouseConfig);
     cy.pa11y();
   });
   it("can logout", () => {
+    login();
+    cy.visit("/cms/start.html");
     cy.get(".navbar-burger").click();
     cy.get(".navbar-menu").should("be.visible");
     cy.get('a[href="/system/sling/logout"]').click();
-    cy.document().toMatchImageSnapshot({ name: "auth--401-page" });
-
     cy.pa11y();
   });
 });

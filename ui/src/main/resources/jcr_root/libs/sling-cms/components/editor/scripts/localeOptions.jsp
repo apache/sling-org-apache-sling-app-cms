@@ -20,8 +20,8 @@
 <option value="">Select Locale</option>
 <c:forEach var="locale" items="${sling:adaptTo(slingRequest,'org.apache.sling.cms.core.models.LocaleList').locales}">
     <c:if test="${not empty locale.language}">
-        <option value="${locale}" ${locale == editProperties[properties.name] ? 'selected' : ''}>
-            ${locale.displayLanguage} ${locale.displayCountry} (${locale})
+        <option value="${sling:encode(locale,'HTML_ATTR')}" ${locale == editProperties[properties.name] ? 'selected' : ''}>
+            ${sling:encode(locale.displayLanguage,'HTML')} ${sling:encode(locale.displayCountry,'HTML')} (${sling:encode(locale,'HTML')})
         </option>
     </c:if>
 </c:forEach>

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<datalist id="labelfield-${fn:replace(resource.name,':','-')}">
+<datalist id="labelfield-${sling:encode(fn:replace(resource.name,':','-'),'HTML_ATTR')}">
     <c:choose>
         <c:when test="${not empty properties.options}">
             <c:forEach var="option" items="${properties.options}">

@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="${properties.containerClass}">
-    <label for="${properties.name}"><fmt:message key="Do not fill this out!" /></label>   
-    <textarea name="${properties.name}" id="${properties.name}" rows="1" cols="1"></textarea>
+<div class="${sling:encode(properties.containerClass,'HTML_ATTR')}">
+    <label for="${sling:encode(properties.name,'HTML_ATTR')}"><fmt:message key="Do not fill this out!" /></label>   
+    <textarea name="${sling:encode(properties.name,'HTML_ATTR')}" id="${sling:encode(properties.name,'HTML_ATTR')}" rows="1" cols="1"></textarea>
 </div>

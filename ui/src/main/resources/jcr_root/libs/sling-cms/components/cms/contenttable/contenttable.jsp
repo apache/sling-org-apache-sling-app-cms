@@ -34,7 +34,7 @@
                     #
                 </th>
                 <c:forEach var="column" items="${sling:listChildren(sling:getRelativeResource(resource,'columns'))}">
-                    <th class="${column.name == 'actions' ? 'is-hidden' : '' }" data-attribute="${column.name}" scope="col">
+                    <th class="${column.name == 'actions' ? 'is-hidden' : '' }" data-attribute="${sling:encode(column.name,'HTML_ATTR')}" scope="col">
                         <fmt:message key="${column.valueMap.title}" var="title" />
                         <sling:encode value="${title}" mode="HTML" />
                     </th>
@@ -56,7 +56,7 @@
                             <c:set var="configPath" value="columns/${column.name}"/>
                             <c:set var="colConfig" value="${sling:getRelativeResource(typeConfig,configPath)}" scope="request" />
                             <c:if test="${colConfig != null}">
-                                <sling:include path="${sling:encode(child.path,'HTML_ATTR')}" resourceType="${colConfig.valueMap['sling:resourceType']}" />
+                                <sling:include path="${child.path}" resourceType="${colConfig.valueMap['sling:resourceType']}" />
                             </c:if>
                         </c:forEach>
                     </tr>

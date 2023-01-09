@@ -17,7 +17,7 @@
  * under the License.
  */ --%>
 <%@include file="/libs/sling-cms/global.jsp"%>
-<datalist id="labelfield-${fn:replace(resource.name,':','-')}">
+<datalist id="labelfield-${sling:encode(fn:replace(resource.name,':','-'),'HTML_ATTR')}">
     <c:set var="query" value="SELECT * FROM [rep:Group] WHERE ISDESCENDANTNODE([/home/groups]) ORDER BY [rep:principalName]" />
     <c:forEach var="group" items="${sling:findResources(resourceResolver,query,'JCR-SQL2')}">
         <option value="${sling:encode(group.path,'HTML_ATTR')}">${sling:encode(group.valueMap['rep:principalName'],'HTML')}</option>

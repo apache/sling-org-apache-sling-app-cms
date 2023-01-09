@@ -50,10 +50,10 @@
                         ${count}
                     </td>
                     <td>
-                        <a href="/cms/jobs/view.html/${job.id}">
+                        <a href="/cms/jobs/view.html/${sling:encode(job.id,'HTML_ATTR')}">
                             <fmt:message key="${job.properties._titleKey}" />
                         </a><br/>
-                        <small>${job.topic}</small>
+                        <small>${sling:encode(job.topic,'HTML')}</small>
                     </td>
                     <td>
                         <fmt:formatDate value="${job.created.time}" type="both" dateStyle="long" timeStyle="long" />
@@ -69,7 +69,7 @@
                     </td>
                     <td class="is-sr-only cell-actions">
                         <fmt:message key="Remove Job" var="removeJobMessage" />
-                        <a class="button Fetch-Modal" data-title="${removeJobMessage}" data-path=".Main-Content form" href="/cms/jobs/delete.html/bin/cms/removejob?id=${job.id}" title="${removeJobMessage}">
+                        <a class="button Fetch-Modal" data-title="${removeJobMessage}" data-path=".Main-Content form" href="/cms/jobs/delete.html/bin/cms/removejob?id=${sling:encode(job.id,'HTML_ATTR')}" title="${removeJobMessage}">
                             <span class="jam jam-trash">
                             </span>
                         </a>

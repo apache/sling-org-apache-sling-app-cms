@@ -17,19 +17,19 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<div class="${formConfig.fieldGroupClass} ${properties.addClasses}">
+<div class="${sling:encode(formConfig.fieldGroupClass,'HTML_ATTR')} ${sling:encode(properties.addClasses,'HTML_ATTR')}">
     <c:if test="${not empty properties.label}">
-        <label for="${properties.name}">
+        <label for="${sling:encode(properties.addClasses,'HTML_ATTR')}">
             <sling:encode value="${properties.label}" mode="HTML" />
             <c:if test="${properties.required}">
-                <span class="${formConfig.fieldRequiredClass}">
+                <span class="${sling:encode(formConfig.fieldRequiredClass,'HTML_ATTR')}">
                     *
                 </span>
             </c:if>
         </label>
     </c:if>
-    <c:set var="placeholderStr" value="placeholder='${properties.placeholder}'" />
-    <c:set var="patternStr" value="pattern='${properties.pattern}'" />
+    <c:set var="placeholderStr" value="placeholder='${sling:encode(properties.placeholder,'HTML_ATTR')}'" />
+    <c:set var="patternStr" value="pattern='${sling:encode(properties.pattern,'HTML_ATTR')}'" />
     <c:choose>
         <c:when test="${not empty formData[properties.name]}">
             <c:set var="fieldValue" value="${formData[properties.name]}" />
@@ -43,7 +43,7 @@
     </c:choose>
     <input type="${sling:encode(properties.type,'HTML_ATTR')}" class="${sling:encode(formConfig.fieldClass,'HTML_ATTR')}" id="${sling:encode(properties.name,'HTML_ATTR')}" name="${sling:encode(properties.name,'HTML_ATTR')}" value="${sling:encode(fieldValue,'HTML_ATTR')}" ${not empty properties.pattern ? patternStr : ''} ${not empty properties.placeholder ? placeholderStr : ''} ${properties.required ? 'required="required"' : ''}
         <c:forEach var="attr" items="${properties.additionalAttributes}">
-            ${fn:split(attr,'\\=')[0]}="${fn:split(attr,'\\=')[1]}"
+            ${sling:encode(fn:split(attr,'\\=')[0],'HTML_ATTR')}="${sling:encode(fn:split(attr,'\\=')[1],'HTML_ATTR')}"
         </c:forEach> 
         />
 </div>

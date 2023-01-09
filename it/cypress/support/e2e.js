@@ -16,6 +16,4 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-import "cypress-audit/commands";
-
+import "@cypress-audit/pa11y/commands";
