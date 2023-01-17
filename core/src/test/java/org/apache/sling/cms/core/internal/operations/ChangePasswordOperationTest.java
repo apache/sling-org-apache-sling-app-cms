@@ -19,6 +19,8 @@ package org.apache.sling.cms.core.internal.operations;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.Collections;
+
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
 import javax.jcr.UnsupportedRepositoryOperationException;
@@ -34,7 +36,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.google.common.collect.ImmutableMap;
 
 public class ChangePasswordOperationTest {
 
@@ -50,7 +51,6 @@ public class ChangePasswordOperationTest {
         SlingCMSTestHelper.initAuthContext(context);
 
         user = (User) SlingCMSTestHelper.AUTH_REGISTRY.get(USER_PATH);
-
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ChangePasswordOperationTest {
 
         context.currentResource(USER_PATH);
         context.request().setParameterMap(
-                ImmutableMap.<String, Object>builder().put(CreateUserOperation.PN_PASSWORD, "test1").build());
+                Collections.singletonMap(CreateUserOperation.PN_PASSWORD, "test1"));
 
         operation.run(context.request(), response, new SlingPostProcessor[] { Mockito.mock(SlingPostProcessor.class) });
 
@@ -77,7 +77,7 @@ public class ChangePasswordOperationTest {
 
         context.currentResource("/home/groups/sling-cms/authors");
         context.request().setParameterMap(
-                ImmutableMap.<String, Object>builder().put(CreateUserOperation.PN_PASSWORD, "test1").build());
+                Collections.singletonMap(CreateUserOperation.PN_PASSWORD, "test1"));
 
         operation.run(context.request(), response, null);
 

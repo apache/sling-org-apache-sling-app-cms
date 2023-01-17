@@ -21,12 +21,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
 import javax.jcr.UnsupportedRepositoryOperationException;
-
-import com.google.common.collect.ImmutableMap;
 
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
@@ -73,8 +72,8 @@ public class MembershipOperationTest {
         PostResponse response = new JSONResponse();
 
         context.currentResource("/home/users/test2");
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put(MembershipOperation.PN_MEMBERSHIP, new String[] { "/home/groups/sling-cms/authors" }).build());
+        context.request().setParameterMap(Collections.singletonMap(MembershipOperation.PN_MEMBERSHIP,
+                new String[] { "/home/groups/sling-cms/authors" }));
 
         membersOperation.run(context.request(), response,
                 new SlingPostProcessor[] { Mockito.mock(SlingPostProcessor.class) });
@@ -96,8 +95,8 @@ public class MembershipOperationTest {
         PostResponse response = new JSONResponse();
 
         context.currentResource("/content");
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put(":members", new String[] { "/home/groups/sling-cms/authors" }).build());
+        context.request().setParameterMap(
+                Collections.singletonMap(":members", new String[] { "/home/groups/sling-cms/authors" }));
 
         membersOperation.run(context.request(), response, null);
 
@@ -110,8 +109,8 @@ public class MembershipOperationTest {
         PostResponse response = new JSONResponse();
 
         context.currentResource("/home/users/test");
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put(MembershipOperation.PN_MEMBERSHIP, new String[] { "/home/groups/sling-cms/authors32" }).build());
+        context.request().setParameterMap(Collections.singletonMap(MembershipOperation.PN_MEMBERSHIP,
+                new String[] { "/home/groups/sling-cms/authors32" }));
 
         membersOperation.run(context.request(), response, null);
 

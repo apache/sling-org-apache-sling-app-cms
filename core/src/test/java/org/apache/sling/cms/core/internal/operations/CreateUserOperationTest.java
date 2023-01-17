@@ -21,6 +21,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.security.Principal;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
@@ -40,8 +43,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import com.google.common.collect.ImmutableMap;
 
 public class CreateUserOperationTest {
 
@@ -71,9 +72,11 @@ public class CreateUserOperationTest {
         CreateUserOperation createUserOperation = new CreateUserOperation();
         PostResponse response = new JSONResponse();
 
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put(SlingPostConstants.RP_NODE_NAME, "tests");
+        parameters.put(CreateUserOperation.PN_PASSWORD, "test5");
         context.currentResource("/home/users");
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put(SlingPostConstants.RP_NODE_NAME, "tests").put(CreateUserOperation.PN_PASSWORD, "test5").build());
+        context.request().setParameterMap(parameters);
 
         createUserOperation.run(context.request(), response,
                 new SlingPostProcessor[] { Mockito.mock(SlingPostProcessor.class) });
@@ -92,7 +95,7 @@ public class CreateUserOperationTest {
 
         context.currentResource("/home/users");
         context.request().setParameterMap(
-                ImmutableMap.<String, Object>builder().put(SlingPostConstants.RP_NODE_NAME, "test5").build());
+                Collections.singletonMap(SlingPostConstants.RP_NODE_NAME, "test5"));
 
         UserManager userManager = CommonUtils.getUserManager(context.resourceResolver());
         Mockito.when(userManager.getAuthorizable(Mockito.any(Principal.class))).thenReturn(Mockito.mock(Group.class));

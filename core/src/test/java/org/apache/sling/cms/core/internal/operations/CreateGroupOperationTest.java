@@ -21,6 +21,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.security.Principal;
+import java.util.Collections;
 
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
@@ -39,8 +40,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import com.google.common.collect.ImmutableMap;
 
 public class CreateGroupOperationTest {
 
@@ -71,7 +70,7 @@ public class CreateGroupOperationTest {
 
         context.currentResource("/home/users");
         context.request().setParameterMap(
-                ImmutableMap.<String, Object>builder().put(SlingPostConstants.RP_NODE_NAME, "test5").build());
+                Collections.singletonMap(SlingPostConstants.RP_NODE_NAME, "test5"));
 
         createGroupOperation.run(context.request(), response,
                 new SlingPostProcessor[] { Mockito.mock(SlingPostProcessor.class) });
@@ -90,7 +89,7 @@ public class CreateGroupOperationTest {
 
         context.currentResource("/home/users");
         context.request().setParameterMap(
-                ImmutableMap.<String, Object>builder().put(SlingPostConstants.RP_NODE_NAME, "test5").build());
+                Collections.singletonMap(SlingPostConstants.RP_NODE_NAME, "test5"));
 
         UserManager userManager = CommonUtils.getUserManager(context.resourceResolver());
         Mockito.when(userManager.getAuthorizable(Mockito.any(Principal.class))).thenReturn(Mockito.mock(Group.class));

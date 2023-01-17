@@ -21,12 +21,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.jcr.AccessDeniedException;
 import javax.jcr.RepositoryException;
 import javax.jcr.UnsupportedRepositoryOperationException;
-
-import com.google.common.collect.ImmutableMap;
 
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.Group;
@@ -72,8 +71,8 @@ public class MembersOperationTest {
         PostResponse response = new JSONResponse();
 
         context.currentResource("/home/groups/sling-cms/authors");
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put(":members", new String[] { "/home/users/test2", "/home/users/test3" }).build());
+        context.request().setParameterMap(
+                Collections.singletonMap(":members", new String[] { "/home/users/test2", "/home/users/test3" }));
 
         membersOperation.run(context.request(), response, null);
 
@@ -87,7 +86,6 @@ public class MembersOperationTest {
         assertEquals(1, removed.size());
         assertEquals("/home/users/test", removed.get(0));
     }
-    
 
     @Test
     public void testNotGroup() throws RepositoryException {
@@ -95,14 +93,13 @@ public class MembersOperationTest {
         PostResponse response = new JSONResponse();
 
         context.currentResource("/home/users/test2");
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put(":members", new String[] { "/home/users/test2", "/home/users/test3" }).build());
+        context.request().setParameterMap(
+                Collections.singletonMap(":members", new String[] { "/home/users/test2", "/home/users/test3" }));
 
         membersOperation.run(context.request(), response, null);
 
         assertNotNull(response.getError());
     }
-    
 
     @Test
     public void testInvalidPath() throws RepositoryException {
@@ -110,8 +107,8 @@ public class MembersOperationTest {
         PostResponse response = new JSONResponse();
 
         context.currentResource("/home/groups/sling-cms/authors");
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put(":members", new String[] { "/home/users/test2", "/home/users/test4" }).build());
+        context.request().setParameterMap(
+                Collections.singletonMap(":members", new String[] { "/home/users/test2", "/home/users/test4" }));
 
         membersOperation.run(context.request(), response, null);
 
