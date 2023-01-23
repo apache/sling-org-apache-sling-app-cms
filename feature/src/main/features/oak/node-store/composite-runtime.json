@@ -18,11 +18,11 @@
             "mountName": "libs",
             "readOnlyMount": true,
             "pathsSupportingFragments": [
-                "/oak:index/*$"
+                "/oak:index/.*$"
             ],
             "mountedPaths": [
-                "/libs",
                 "/apps",
+                "/libs",
                 "/static",
                 "/jcr:system/rep:permissionStore/oak:mount-libs-default"
             ]
@@ -63,7 +63,6 @@
             "excludedTargets": [
                 "^\/apps\/.*$",
                 "^\/libs\/.*$",
-                "^\/oak:index\/.*$",
                 "^\/static\/.*$"
             ]
         }
