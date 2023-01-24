@@ -90,3 +90,35 @@ set ACL for sling-cms-versionmgr
     allow   jcr:write,jcr:nodeTypeManagement,jcr:versionManagement    on /
     allow   jcr:read    on /jcr:system/jcr:versionStorage
 end
+
+# Namespaces
+register namespace (acdsee) "http://ns.acdsee.com/iptc/1.0/"
+register namespace (album) "http://ns.adobe.com/album/1.0/"
+register namespace (cc) "http://creativecommons.org/ns#"
+register namespace (crs) "http://ns.adobe.com/camera-raw-settings/1.0/"
+register namespace (dc) "http://purl.org/dc/elements/1.1/"
+register namespace (dcterms) "http://purl.org/dc/terms/"
+register namespace (Iptc4xmpCore) "http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/"
+register namespace (lr) "http://ns.adobe.com/lightroom/1.0/"
+register namespace (mediapro) "http://ns.iview-multimedia.com/mediapro/1.0/"
+register namespace (MP) "http://ns.microsoft.com/photo/1.2/"
+register namespace (photoshop) "http://ns.adobe.com/photoshop/1.0/"
+register namespace (plus) "http://ns.useplus.org/ldf/xmp/1.0/"
+register namespace (pdf) "http://ns.adobe.com/pdf/1.3/"
+register namespace (pdfx) "http://ns.adobe.com/pdfx/1.3/"
+register namespace (prism) "http://prismstandard.org/namespaces/basic/2.1/"
+register namespace (prl) "http://prismstandard.org/namespaces/prl/2.1/"
+register namespace (psAux) "http://ns.adobe.com/exif/1.0/aux/"
+register namespace (rdf) "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+register namespace (stEvt) "http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+register namespace (stEvt) "http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+register namespace (tiff) "http://ns.adobe.com/tiff/1.0/"
+register namespace (xmp) "http://ns.adobe.com/xap/1.0/"
+register namespace (xmpBJ) "http://ns.adobe.com/xap/1.0/bj/"
+register namespace (xmpDM) "http://ns.adobe.com/xmp/1.0/DynamicMedia/"
+register namespace (xmpMM) "http://ns.adobe.com/xap/1.0/mm/"
+register namespace (xmpNote) "http://ns.adobe.com/xmp/note/"
+register namespace (xmpPLUS) "http://ns.adobe.com/xap/1.0/PLUS/"
+register namespace (xmpRights) "http://ns.adobe.com/xap/1.0/rights/"
+register namespace (xmpTPg) "http://ns.adobe.com/xap/1.0/t/pg/"
+

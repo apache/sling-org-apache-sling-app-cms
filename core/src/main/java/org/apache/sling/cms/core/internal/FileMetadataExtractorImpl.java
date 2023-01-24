@@ -22,10 +22,19 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.jcr.NamespaceRegistry;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.JcrConstants;
-import org.apache.jackrabbit.util.Text;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.File;
 import org.apache.sling.cms.FileMetadataExtractor;
@@ -36,7 +45,9 @@ import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -46,11 +57,18 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
 
     private static final Logger log = LoggerFactory.getLogger(FileMetadataExtractorImpl.class);
 
+    private ResourceResolverFactory resolverFactory;
+
+    @Activate
+    public FileMetadataExtractorImpl(@Reference ResourceResolverFactory resolverFactory) {
+        this.resolverFactory = resolverFactory;
+    }
+
     @Override
     public Map<String, Object> extractMetadata(File file) throws IOException {
         try {
             return extractMetadata(file.getResource());
-        } catch (SAXException | TikaException e) {
+        } catch (SAXException | TikaException | RepositoryException | LoginException e) {
             throw new IOException("Failed to parse metadata", e);
         }
     }
@@ -80,6 +98,8 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
             }
             if (properties != null) {
                 properties.putAll(extractMetadata(file.getResource()));
+                properties.put("SHA1", generateSha1(resource));
+                resource.getResourceResolver().refresh();
                 if (metadata == null) {
                     resource.getResourceResolver().create(content, CMSConstants.NN_METADATA, properties);
                 }
@@ -90,30 +110,74 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
             } else {
                 throw new IOException("Unable to update metadata for " + resource.getPath());
             }
-        } catch (SAXException | TikaException e) {
+        } catch (SAXException | TikaException | RepositoryException | LoginException e) {
             throw new IOException("Failed to parse metadata", e);
         }
-
     }
 
-    public Map<String, Object> extractMetadata(Resource resource) throws IOException, SAXException, TikaException {
+    public String generateSha1(Resource resource) throws IOException {
+        try (InputStream is = resource.adaptTo(InputStream.class)) {
+            String sha1 = DigestUtils.sha1Hex(is);
+            log.info("Generated SHA {} for {}", sha1, resource.getPath());
+            return sha1;
+        }
+    }
+
+    public Map<String, Object> extractMetadata(Resource resource)
+            throws IOException, SAXException, TikaException, RepositoryException, LoginException {
         log.info("Extracting metadata from {}", resource.getPath());
-        InputStream is = resource.adaptTo(InputStream.class);
         Map<String, Object> properties = new HashMap<>();
-        Parser parser = new AutoDetectParser();
-        BodyContentHandler handler = new BodyContentHandler();
-        Metadata md = new Metadata();
-        ParseContext context = new ParseContext();
-        parser.parse(is, handler, md, context);
-        for (String name : md.names()) {
-            putMetadata(properties, name, md);
+        try (InputStream is = resource.adaptTo(InputStream.class)) {
+            Parser parser = new AutoDetectParser();
+            BodyContentHandler handler = new BodyContentHandler();
+            Metadata md = new Metadata();
+            ParseContext context = new ParseContext();
+            try {
+                parser.parse(is, handler, md, context);
+            } catch (SAXException se) {
+                if ("WriteLimitReachedException".equals(se.getClass().getSimpleName())) {
+                    log.info("Write limit reached for {}", resource.getPath());
+                } else {
+                    throw se;
+                }
+            }
+
+            try (ResourceResolver adminResolver = resolverFactory.getAdministrativeResourceResolver(null)) {
+                NamespaceRegistry registry = adminResolver.adaptTo(Session.class).getWorkspace().getNamespaceRegistry();
+                for (String name : md.names()) {
+                    putMetadata(properties, name, md, registry);
+                }
+            }
         }
         return properties;
     }
 
-    private void putMetadata(Map<String, Object> properties, String name, Metadata metadata) {
+    protected String formatKey(String initialKey, NamespaceRegistry registry)
+            throws RepositoryException {
+        String namespace = null;
+        String key = null;
+        if (initialKey.contains(":")) {
+            namespace = StringUtils.substringBefore(initialKey, ":");
+            key = StringUtils.substringAfter(initialKey, ":");
+        } else {
+            key = initialKey;
+        }
+        key = key.replace(" ", "").replace("/", "-");
+        if (namespace != null) {
+            namespace = namespace.replace(" ", "").replace("/", "-");
+            if (!ArrayUtils.contains(registry.getPrefixes(), namespace)) {
+                registry.registerNamespace(namespace, "http://sling.apache.org/cms/ns/" + namespace);
+            }
+            return namespace + ":" + key;
+        } else {
+            return key;
+        }
+    }
+
+    private void putMetadata(Map<String, Object> properties, String name, Metadata metadata, NamespaceRegistry registry)
+            throws RepositoryException {
         log.trace("Updating property: {}", name);
-        String filtered = Text.escapeIllegalJcrChars(name);
+        String filtered = formatKey(name, registry);
         Property property = Property.get(name);
         if (property != null) {
             if (metadata.isMultiValued(property)) {
