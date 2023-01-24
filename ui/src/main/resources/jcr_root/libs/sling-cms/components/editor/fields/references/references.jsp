@@ -17,10 +17,6 @@
  * under the License.
  */ --%>
  <%@include file="/libs/sling-cms/global.jsp"%>
-<c:if test="${slingRequest.requestPathInfo.suffix != null}">
-    <sling:getResource path="${slingRequest.requestPathInfo.suffix}" var="editedResource" />
-    <c:set var="editProperties" value="${sling:adaptTo(editedResource,'org.apache.sling.api.x.ValueMap')}" scope="request"/>
-</c:if>
 <sling:adaptTo var="references" adaptable="${slingRequest.requestPathInfo.suffixResource}" adaptTo="org.apache.sling.cms.References" />
 <c:if test="${fn:length(references.references) gt 0}">
     <div class="field ${properties.toggle ? 'is-hidden toggle-value' : ''}" data-toggle-source=":operation" data-toggle-value="move">
