@@ -147,15 +147,20 @@ window.Sling.CMS = {
       if (window.self !== window.top) {
         CMS = window.top.Sling.CMS;
       }
+      let loc = window.location;
+      if (window.self !== window.top) {
+        loc = window.top.location;
+      }
       if (response.redirected && response.url.indexOf('/system/sling/form/login?resource=') !== -1) {
         CMS.ui.confirmMessage('301', 'Not logged in, please login again', () => {
-          window.location = `/system/sling/form/login?resource=${encodeURIComponent(window.location)}`;
+          const resource = encodeURIComponent(`${loc.pathname}${loc.search}`);
+          window.location = `/system/sling/form/login?resource=${resource}`;
         });
         return false;
       }
       if (!response.ok) {
         CMS.ui.confirmMessage(response.status, response.statusText, () => {
-          window.location = response.url;
+          window.location.reload();
         });
         return false;
       }
