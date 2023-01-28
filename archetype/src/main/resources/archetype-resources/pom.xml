@@ -238,7 +238,7 @@ Sling-Model-Packages: ${package}
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13.1</version>
       <scope>provided</scope>
     </dependency>
     <!-- Fixed version due to Scanner issues with 2.6.x -->
