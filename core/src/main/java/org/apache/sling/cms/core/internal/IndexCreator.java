@@ -31,6 +31,9 @@ import org.osgi.service.component.annotations.Component;
 @Component(service = RepositoryInitializer.class)
 public class IndexCreator implements RepositoryInitializer {
 
+    private static final String VAL_NODE_NAME = ":nodeName";
+    private static final String PN_NODE_NAME = "nodeName";
+    private static final String PN_JCR_TITLE = "jcrTitle";
     private static final String[] CONTENT_PATHS = new String[] { "/content", "/static" };
     private static final String JCR_CONTENT_PROPERTIES = "jcr:content/*";
     private static final String SLINGCMS = "slingcms";
@@ -84,8 +87,8 @@ public class IndexCreator implements RepositoryInitializer {
 
         IndexRule indexRule = builder.indexRule("sling:Component");
         indexRule.property("componentType", "componentType", false).propertyIndex().notNullCheckEnabled();
-        indexRule.property("jcrTitle", "jcr:title", false).analyzed().propertyIndex().ordered();
-        indexRule.property("nodeName", ":nodeName", false).analyzed().propertyIndex().ordered();
+        indexRule.property(PN_JCR_TITLE, "jcr:title", false).analyzed().propertyIndex().ordered();
+        indexRule.property(PN_NODE_NAME, VAL_NODE_NAME, false).analyzed().propertyIndex().ordered();
 
         indexRule.property("jcrLastModifiedBy", "jcr:content/jcr:lastModifiedBy", false).propertyIndex();
     }
@@ -151,13 +154,13 @@ public class IndexCreator implements RepositoryInitializer {
         builder.tags(SLINGCMS, "slingcms-slingTaxonomy");
 
         IndexRule indexRule = builder.indexRule("sling:Taxonomy");
-        indexRule.property("jcrTitle", "jcr:title", false).analyzed().propertyIndex().ordered();
-        indexRule.property("nodeName", ":nodeName", false).analyzed().propertyIndex().ordered();
+        indexRule.property(PN_JCR_TITLE, "jcr:title", false).analyzed().propertyIndex().ordered();
+        indexRule.property(PN_NODE_NAME, VAL_NODE_NAME, false).analyzed().propertyIndex().ordered();
     }
 
     private void ensureCommonSlingProperties(IndexRule indexRule) {
-        indexRule.property("jcrTitle", "jcr:content/jcr:title", false).analyzed().propertyIndex().boost(2).ordered();
-        indexRule.property("nodeName", ":nodeName", false).analyzed().propertyIndex().ordered();
+        indexRule.property(PN_JCR_TITLE, "jcr:content/jcr:title", false).analyzed().propertyIndex().boost(2).ordered();
+        indexRule.property(PN_NODE_NAME, VAL_NODE_NAME, false).analyzed().propertyIndex().ordered();
         indexRule.property("jcrDescription", "jcr:content/jcr:description", false).analyzed().propertyIndex();
         indexRule.property("jcrLastModified", "jcr:content/jcr:lastModified", false).propertyIndex().ordered()
                 .type("Date");

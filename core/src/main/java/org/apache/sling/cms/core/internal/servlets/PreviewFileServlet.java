@@ -36,7 +36,7 @@ public class PreviewFileServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 6234007100684499058L;
 
-    private SlingRequestProcessor requestProcessor;
+    private transient SlingRequestProcessor requestProcessor;
 
     @Activate
     public PreviewFileServlet(@Reference SlingRequestProcessor requestProcessor) {

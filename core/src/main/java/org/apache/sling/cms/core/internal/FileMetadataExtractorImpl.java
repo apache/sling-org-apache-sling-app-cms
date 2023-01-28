@@ -123,6 +123,7 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
         }
     }
 
+    @SuppressWarnings(value={"java:S1872", "java:S1874"})
     public Map<String, Object> extractMetadata(Resource resource)
             throws IOException, SAXException, TikaException, RepositoryException, LoginException {
         log.info("Extracting metadata from {}", resource.getPath());
@@ -135,6 +136,7 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
             try {
                 parser.parse(is, handler, md, context);
             } catch (SAXException se) {
+                // unfortunately, we can't use instanceof to check as the class is not exported
                 if ("WriteLimitReachedException".equals(se.getClass().getSimpleName())) {
                     log.info("Write limit reached for {}", resource.getPath());
                 } else {
@@ -142,6 +144,7 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
                 }
             }
 
+            
             try (ResourceResolver adminResolver = resolverFactory.getAdministrativeResourceResolver(null)) {
                 NamespaceRegistry registry = adminResolver.adaptTo(Session.class).getWorkspace().getNamespaceRegistry();
                 for (String name : md.names()) {

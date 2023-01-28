@@ -170,7 +170,7 @@ public class AuthorizableWrapperImpl implements AuthorizableWrapper {
 
     @Override
     public boolean isMember(String groupName) {
-        Iterable<Group> iterable = () -> getMembership();
+        Iterable<Group> iterable = this::getMembership;
         return StreamSupport.stream(iterable.spliterator(), false).anyMatch(g -> {
             try {
                 return groupName.equals(g.getID());

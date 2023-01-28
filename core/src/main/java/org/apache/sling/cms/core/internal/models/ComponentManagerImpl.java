@@ -107,9 +107,7 @@ public class ComponentManagerImpl implements ComponentManager {
             Component component = cmpRsrc.adaptTo(Component.class);
             if (component != null) {
                 for (String type : component.getComponentType()) {
-                    if (!componentCache.containsKey(type)) {
-                        componentCache.put(type, new ArrayList<>());
-                    }
+                    componentCache.putIfAbsent(type, new ArrayList<>());
                     componentCache.get(type).add(component);
                 }
             }

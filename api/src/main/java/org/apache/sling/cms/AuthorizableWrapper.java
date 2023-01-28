@@ -71,7 +71,7 @@ public interface AuthorizableWrapper {
      * 
      * @return the current user's ID
      */
-    @NotNull
+    @Nullable
     public String getId();
 
     /**
