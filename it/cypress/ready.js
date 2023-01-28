@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-const fetch = require("node-fetch");
+const fetch = require("node-fetch-commonjs");
 
 const url = process.env.CYPRESS_BASE_URL;
 

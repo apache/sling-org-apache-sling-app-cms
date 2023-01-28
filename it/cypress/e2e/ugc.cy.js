@@ -18,12 +18,7 @@
  */
 
 const { doneLoading } = require("../utils");
-const {
-  createComponentPage,
-  configureComponentFromDialog,
-  COMPONENT_SUBPATH,
-  XSS_PAYLOAD,
-} = require("../util/component-test-helper");
+const { createComponentPage } = require("../util/component-test-helper");
 const { login, sendPost } = require("../util/test-helper");
 
 describe("UGC Tests", () => {
