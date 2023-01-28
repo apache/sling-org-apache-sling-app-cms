@@ -9,7 +9,7 @@
   <parent>
     <groupId>org.apache.sling</groupId>
     <artifactId>sling-bundle-parent</artifactId>
-    <version>46</version>
+    <version>49</version>
   </parent>
   <artifactId>org.apache.sling.cms</artifactId>
   <name>Apache Sling - CMS</name>
