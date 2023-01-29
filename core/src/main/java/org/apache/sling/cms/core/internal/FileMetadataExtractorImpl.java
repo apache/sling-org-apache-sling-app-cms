@@ -98,7 +98,7 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
             }
             if (properties != null) {
                 properties.putAll(extractMetadata(file.getResource()));
-                properties.put("SHA1", generateSha1(resource)); //NOSONAR
+                properties.put("SHA256", generateSha(resource));
                 resource.getResourceResolver().refresh();
                 if (metadata == null) {
                     resource.getResourceResolver().create(content, CMSConstants.NN_METADATA, properties);
@@ -115,15 +115,15 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
         }
     }
 
-    public String generateSha1(Resource resource) throws IOException {
+    public String generateSha(Resource resource) throws IOException {
         try (InputStream is = resource.adaptTo(InputStream.class)) {
-            String sha1 = DigestUtils.sha1Hex(is);
-            log.info("Generated SHA {} for {}", sha1, resource.getPath());
-            return sha1;
+            String sha256 = DigestUtils.sha256Hex(is);
+            log.info("Generated SHA {} for {}", sha256, resource.getPath());
+            return sha256;
         }
     }
 
-    @SuppressWarnings(value={"java:S1874"})
+    @SuppressWarnings(value = { "java:S1874" })
     public Map<String, Object> extractMetadata(Resource resource)
             throws IOException, SAXException, TikaException, RepositoryException, LoginException {
         log.info("Extracting metadata from {}", resource.getPath());
@@ -137,14 +137,13 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
                 parser.parse(is, handler, md, context);
             } catch (SAXException se) {
                 // unfortunately, we can't use instanceof to check as the class is not exported
-                if ("WriteLimitReachedException".equals(se.getClass().getSimpleName())) { //NOSONAR
+                if ("WriteLimitReachedException".equals(se.getClass().getSimpleName())) { // NOSONAR
                     log.info("Write limit reached for {}", resource.getPath());
                 } else {
                     throw se;
                 }
             }
 
-            
             try (ResourceResolver adminResolver = resolverFactory.getAdministrativeResourceResolver(null)) {
                 NamespaceRegistry registry = adminResolver.adaptTo(Session.class).getWorkspace().getNamespaceRegistry();
                 for (String name : md.names()) {
