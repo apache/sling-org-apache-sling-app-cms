@@ -98,7 +98,7 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
             }
             if (properties != null) {
                 properties.putAll(extractMetadata(file.getResource()));
-                properties.put("SHA1", generateSha1(resource));
+                properties.put("SHA1", generateSha1(resource)); //NOSONAR
                 resource.getResourceResolver().refresh();
                 if (metadata == null) {
                     resource.getResourceResolver().create(content, CMSConstants.NN_METADATA, properties);
@@ -123,7 +123,7 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
         }
     }
 
-    @SuppressWarnings(value={"java:S1872", "java:S1874"})
+    @SuppressWarnings(value={"java:S1874"})
     public Map<String, Object> extractMetadata(Resource resource)
             throws IOException, SAXException, TikaException, RepositoryException, LoginException {
         log.info("Extracting metadata from {}", resource.getPath());
@@ -137,7 +137,7 @@ public class FileMetadataExtractorImpl implements FileMetadataExtractor {
                 parser.parse(is, handler, md, context);
             } catch (SAXException se) {
                 // unfortunately, we can't use instanceof to check as the class is not exported
-                if ("WriteLimitReachedException".equals(se.getClass().getSimpleName())) {
+                if ("WriteLimitReachedException".equals(se.getClass().getSimpleName())) { //NOSONAR
                     log.info("Write limit reached for {}", resource.getPath());
                 } else {
                     throw se;
