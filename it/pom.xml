@@ -64,6 +64,11 @@
     <profiles>
         <profile>
             <id>ci</id>
+            <activation>
+                <property>
+                    <name>ci</name>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <!-- reserve a network port for the integration tests -->
