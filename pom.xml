@@ -14,7 +14,7 @@
   <artifactId>org.apache.sling.cms</artifactId>
   <name>Apache Sling - CMS</name>
   <description>An Apache Sling Reference CMS Application</description>
-  <version>1.1.5-SNAPSHOT</version>
+  <version>1.1.6</version>
   <packaging>pom</packaging>
   <properties>
     <legal.dir>${basedir}</legal.dir>
@@ -28,7 +28,7 @@
     <sling.cms.java.version>11</sling.cms.java.version>
     <maven.compiler.source>${sling.cms.java.version}</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-    <project.build.outputTimestamp>1671161716</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1675173286</project.build.outputTimestamp>
     <!-- Common Versions -->
     <cms-version>${project.parent.version}</cms-version>
     <asm-version>9.4</asm-version>
@@ -79,7 +79,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-app-cms.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-app-cms.git</developerConnection>
     <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-app-cms.git</url>
-    <tag>HEAD</tag>
+    <tag>org.apache.sling.cms-1.1.6</tag>
   </scm>
   <dependencyManagement>
     <dependencies>
