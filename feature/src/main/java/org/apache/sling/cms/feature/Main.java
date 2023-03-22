@@ -30,7 +30,7 @@ public class Main {
         List<String> arguments = new ArrayList<>();
         arguments.addAll(Arrays.asList(args));
         arguments.add("-f");
-        arguments.add(farUrl.toString());
+        arguments.add(farUrl.getPath());
 
         org.apache.sling.feature.launcher.impl.Main.main(arguments.toArray(new String[arguments.size()]));
     }
