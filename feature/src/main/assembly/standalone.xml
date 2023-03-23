@@ -25,7 +25,6 @@
                 <include>commons-cli:commons-cli</include>
                 <include>org.slf4j:slf4j-api</include>
                 <include>org.slf4j:slf4j-simple</include>
-                <include>org.apache.sling:org.apache.sling.feature.io</include>
                 <include>org.apache.sling:org.apache.sling.feature</include>
                 <include>org.apache.felix:org.apache.felix.cm.json</include>
                 <include>javax.json:javax.json-api</include>
