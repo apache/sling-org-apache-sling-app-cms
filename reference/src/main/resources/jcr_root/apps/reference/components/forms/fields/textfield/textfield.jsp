@@ -19,7 +19,7 @@
  <%@include file="/libs/sling-cms/global.jsp"%>
 <div class="${sling:encode(formConfig.fieldGroupClass,'HTML_ATTR')} ${sling:encode(properties.addClasses,'HTML_ATTR')}">
     <c:if test="${not empty properties.label}">
-        <label for="${sling:encode(properties.addClasses,'HTML_ATTR')}">
+        <label for="${sling:encode(properties.name,'HTML_ATTR')}">
             <sling:encode value="${properties.label}" mode="HTML" />
             <c:if test="${properties.required}">
                 <span class="${sling:encode(formConfig.fieldRequiredClass,'HTML_ATTR')}">
