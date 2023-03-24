@@ -22,7 +22,7 @@
 <c:choose>
     <c:when test="${properties.container == true}">
         <div class="${sling:encode(configRsrc.valueMap.containerclass,'HTML_ATTR')}">
-            <div class="${configRsrc.valueMap.rowClass}">
+            <div class="${sling:encode(configRsrc.valueMap.rowClass,'HTML_ATTR')}">
                 <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
                     <div class="${sling:encode(col,'HTML_ATTR')}">
                         <sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
@@ -32,7 +32,7 @@
          </div>
      </c:when>
      <c:otherwise>
-         <div class="${sling:encode(configRsrc.valueMap.containerclass,'HTML_ATTR')}">
+         <div class="${sling:encode(configRsrc.valueMap.rowClass,'HTML_ATTR')}">
             <c:forEach var="col" items="${fn:split(properties.layout,',')}" varStatus="status">
                 <div class="${sling:encode(col,'HTML_ATTR')}">
                     <sling:include path="col-${status.index}" resourceType="sling-cms/components/general/container" />
