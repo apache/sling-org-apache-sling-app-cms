@@ -26,10 +26,14 @@ import org.apache.jackrabbit.oak.spi.state.NodeBuilder;
 import org.apache.sling.cms.CMSConstants;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("deprecation") // The non-deprecated versions reference a non-exported class
 @Component(service = RepositoryInitializer.class)
 public class IndexCreator implements RepositoryInitializer {
+
+    private static Logger log = LoggerFactory.getLogger(IndexCreator.class);
 
     private static final String VAL_NODE_NAME = ":nodeName";
     private static final String PN_NODE_NAME = "nodeName";
@@ -40,6 +44,7 @@ public class IndexCreator implements RepositoryInitializer {
 
     @Override
     public void initialize(@NotNull NodeBuilder builder) {
+        log.info("Initializing Sling CMS indexes");
         NodeBuilder indexRoot = builder.child(IndexConstants.INDEX_DEFINITIONS_NAME);
         ensureFolderIndex(indexRoot);
         ensurentHierarchyNodeIndex(indexRoot);
@@ -48,9 +53,11 @@ public class IndexCreator implements RepositoryInitializer {
         ensureSlingFileIndex(indexRoot);
         ensureSlingPageIndex(indexRoot);
         ensureSlingTaxonomyIndex(indexRoot);
+        log.info("Indexes initialized");
     }
 
     private void ensureFolderIndex(NodeBuilder indexRoot) {
+        log.info("ensureFolderIndex");
         NodeBuilder index = ensureNode(indexRoot, "ntFolder", IndexConstants.INDEX_DEFINITIONS_NODE_TYPE);
 
         IndexDefinitionBuilder builder = new IndexDefinitionBuilder(index, true);
@@ -63,6 +70,7 @@ public class IndexCreator implements RepositoryInitializer {
     }
 
     private void ensurentHierarchyNodeIndex(NodeBuilder indexRoot) {
+        log.info("ensurentHierarchyNodeIndex");
         NodeBuilder index = ensureNode(indexRoot, "ntHierarchyNode", IndexConstants.INDEX_DEFINITIONS_NODE_TYPE);
 
         IndexDefinitionBuilder builder = new IndexDefinitionBuilder(index, true);
@@ -77,6 +85,7 @@ public class IndexCreator implements RepositoryInitializer {
     }
 
     private void ensureSlingComponentIndex(NodeBuilder indexRoot) {
+        log.info("ensureSlingComponentIndex");
         NodeBuilder index = ensureNode(indexRoot, "slingComponent", IndexConstants.INDEX_DEFINITIONS_NODE_TYPE);
 
         IndexDefinitionBuilder builder = new IndexDefinitionBuilder(index, true);
@@ -94,6 +103,7 @@ public class IndexCreator implements RepositoryInitializer {
     }
 
     private void ensureSlingEventJobIndex(NodeBuilder indexRoot) {
+        log.info("ensureSlingEventJobIndex");
         NodeBuilder index = ensureNode(indexRoot, "slingeventJob", IndexConstants.INDEX_DEFINITIONS_NODE_TYPE);
 
         IndexDefinitionBuilder builder = new IndexDefinitionBuilder(index, true);
@@ -112,6 +122,7 @@ public class IndexCreator implements RepositoryInitializer {
     }
 
     private void ensureSlingFileIndex(NodeBuilder indexRoot) {
+        log.info("ensureSlingFileIndex");
         NodeBuilder index = ensureNode(indexRoot, "slingFile", IndexConstants.INDEX_DEFINITIONS_NODE_TYPE);
 
         IndexDefinitionBuilder builder = new IndexDefinitionBuilder(index, true);
@@ -128,6 +139,7 @@ public class IndexCreator implements RepositoryInitializer {
     }
 
     private void ensureSlingPageIndex(NodeBuilder indexRoot) {
+        log.info("ensureSlingPageIndex");
         NodeBuilder index = ensureNode(indexRoot, "slingPage", IndexConstants.INDEX_DEFINITIONS_NODE_TYPE);
 
         IndexDefinitionBuilder builder = new IndexDefinitionBuilder(index, true);
@@ -145,6 +157,7 @@ public class IndexCreator implements RepositoryInitializer {
     }
 
     private void ensureSlingTaxonomyIndex(NodeBuilder indexRoot) {
+        log.info("ensureSlingTaxonomyIndex");
         NodeBuilder index = ensureNode(indexRoot, "slingTaxonomy", IndexConstants.INDEX_DEFINITIONS_NODE_TYPE);
 
         IndexDefinitionBuilder builder = new IndexDefinitionBuilder(index, true);
