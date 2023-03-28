@@ -1,6 +1,7 @@
 {
   "jenkins": {
-    "jdks": [11]
-  },
-  "mavenGoal": "install"
+    "jdks": [11],
+    "mavenGoal": "install",
+    "operatingSystems": ["windows", "linux"]
+  }
 }
