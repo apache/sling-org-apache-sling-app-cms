@@ -51,6 +51,7 @@ export function setupBasicTest(componentName, subpath, additionalProperties) {
     additionalProperties
   );
   cy.visit(`${page}.html`);
+  cy.pa11y();
 }
 
 /**

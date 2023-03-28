@@ -1,7 +1,0 @@
-{
-  "jcr:primaryType": "nt:unstructured",
-  "propertyIndex": true,
-  "name": "jcr:content/hideInSitemap",
-  "type": "Boolean",
-  "nullCheckEnabled": true
-}
