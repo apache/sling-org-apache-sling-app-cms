@@ -51,7 +51,7 @@
     <org-apache-sling-api-version>2.25.4</org-apache-sling-api-version>
     <org-apache-sling-caconfig-api-version>1.3.0</org-apache-sling-caconfig-api-version>
     <org-apache-sling-commons-johnzon-version>1.2.14</org-apache-sling-commons-johnzon-version>
-    <org-apache-sling-engine-version>2.9.0</org-apache-sling-engine-version>
+    <org-apache-sling-engine-version>2.14.0</org-apache-sling-engine-version>
     <org-apache-sling-fileoptim-version>0.9.4</org-apache-sling-fileoptim-version>
     <org-apache-sling-models-api-version>1.4.2</org-apache-sling-models-api-version>
     <org-apache-sling-scripting-api-version>2.2.0</org-apache-sling-scripting-api-version>
