@@ -77,16 +77,20 @@ public class CMSSecurityFilter implements Filter {
         if (pubMgrFactory.getPublicationMode() == PUBLICATION_MODE.STANDALONE) {
             SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
             for (CMSSecurityConfigInstance securityConfig : securityConfigInstances) {
-                log.trace("Checking to see if security config {} applies to request", securityConfig);
                 if (securityConfig.applies(slingRequest)) {
+                    log.trace("Security config {} applies to request to {}", securityConfig, request.getServerName());
                     boolean allowed = checkAllowed(securityConfig, slingRequest);
                     // permission checked failed, so return an unauthorized error
                     if (!allowed) {
-                        log.trace("Request to {} not allowed for user {}", slingRequest.getRequestURI(),
+                        log.trace("Request to {} not allowed for user {}", slingRequest.getRequestURL(),
                                 slingRequest.getResourceResolver().getUserID());
                         ((HttpServletResponse) response).sendError(HttpStatus.SC_UNAUTHORIZED);
                         return;
+                    } else {
+                        log.trace("Request {} allowed", slingRequest.getRequestURL());
                     }
+                } else {
+                    log.trace("Security config {} does not apply to request to {}", securityConfig, request.getServerName());
                 }
             }
         } else {
