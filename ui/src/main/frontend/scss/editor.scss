@@ -20,6 +20,7 @@
   @import "fonts";
   @import "overrides";
   @import "../../../../node_modules/bulma/bulma.sass";
+
   font-family: "Open Sans", sans-serif;
 
   * {
@@ -68,7 +69,7 @@
   }
 
   .modal-content {
-    overflow: hidden;
+    overflow: auto;
   }
 
   .modal-frame {
