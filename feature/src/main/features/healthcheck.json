@@ -9,7 +9,7 @@
       "start-order":"5"
     },
     {
-      "id":"org.apache.felix:org.apache.felix.healthcheck.generalchecks:3.0.2",
+      "id":"org.apache.felix:org.apache.felix.healthcheck.generalchecks:3.0.4",
       "start-order":"5"
     },
     {
@@ -19,52 +19,36 @@
   ],
   "configurations":{
     "org.apache.felix.hc.core.impl.monitor.HealthCheckMonitor~systemready":{
-      "tags":[
-        "systemalive"
-      ],
+      "tags":["systemalive"],
       "intervalInSec":"5",
       "registerHealthyMarkerService":true,
       "registerUnhealthyMarkerService":true
     },
     "org.apache.felix.hc.generalchecks.BundlesStartedCheck":{
-      "hc.tags":[
-        "bundles"
-      ]
+      "hc.tags":["bundles"]
+    },
+    "org.apache.sling.jcr.contentloader.hc.BundleContentLoadedCheck":{
+      "hc.tags":["bundles", "content-loading"]
     },
     "org.apache.felix.hc.generalchecks.CpuCheck":{
-      "hc.tags":[
-        "cpu",
-        "system-resources"
-      ],
+      "hc.tags":["cpu", "system-resources"],
       "cpuPercentageThresholdWarn":95
     },
     "org.apache.felix.hc.generalchecks.DiskSpaceCheck":{
-      "hc.tags":[
-        "diskspace",
-        "system-resources"
-      ],
-      "diskPaths":[
-        "."
-      ]
+      "hc.tags":["diskspace", "system-resources"],
+      "diskPaths":["."]
     },
     "org.apache.felix.hc.generalchecks.FrameworkStartCheck":{
-      "hc.tags":[
-        "systemalive"
-      ],
+      "hc.tags":["systemalive"],
       "targetStartLevel:Integer":30
     },
     "org.apache.felix.hc.generalchecks.MemoryCheck":{
-      "hc.tags":[
-        "memory",
-        "system-resources"
-      ],
+      "hc.tags":["memory", "system-resources"],
       "heapUsedPercentageThresholdCritical":100,
       "heapUsedPercentageThresholdWarn":95
     },
     "org.apache.felix.hc.generalchecks.ServicesCheck":{
-      "hc.tags":[
-        "systemalive"
-      ],
+      "hc.tags":["systemalive"],
       "services.list":[
         "org.apache.sling.jcr.api.SlingRepository",
         "org.apache.sling.engine.auth.Authenticator",
@@ -74,11 +58,7 @@
       ]
     },
     "org.apache.felix.hc.generalchecks.ThreadUsageCheck":{
-      "hc.tags":[
-        "threads",
-        "cpu",
-        "system-resources"
-      ]
+      "hc.tags":["threads", "cpu", "system-resources"]
     },
     "org.apache.felix.hc.core.impl.filter.ServiceUnavailableFilter~startupandshutdown":{
       "osgi.http.whiteboard.filter.regex":"(?!/system/).*",
@@ -86,16 +66,12 @@
       "service.ranking:Integer":2147483647,
       "includeExecutionResult":false,
       "osgi.http.whiteboard.context.select":"(osgi.http.whiteboard.context.name=*)",
-      "tags":[
-        "systemalive"
-      ],
+      "tags":["systemalive"],
       "autoDisableFilter":true,
       "responseTextFor503":"classpath:org.apache.sling.cms.ui:/content/startup/index.html"
     },
     "org.apache.sling.jcr.contentloader.hc.BundleContentLoadedCheck~default":{
-      "tags":[
-        "systemalive"
-      ],
+      "tags":["systemalive"],
       "includesRegex":".*",
       "useCriticalForNotLoaded":true,
       "excludesRegex":""
@@ -104,9 +80,7 @@
       "servletPath":"/system/health"
     },
     "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~hc-support":{
-      "user.mapping":[
-        "org.apache.sling.hc.support=sling-readall"
-      ]
+      "user.mapping":["org.apache.sling.hc.support=[sling-readall]"]
     }
   }
 }

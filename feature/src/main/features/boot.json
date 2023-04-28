@@ -17,11 +17,15 @@
       "start-order":"1"
     },
     {
+      "id":"org.apache.felix:org.apache.felix.configadmin.plugin.interpolation:1.2.4",
+      "start-order":"1"
+    },
+    {
       "id":"org.apache.felix:org.apache.felix.converter:1.0.18",
       "start-order":"1"
     },
     {
-      "id":"org.apache.felix:org.apache.felix.eventadmin:1.6.2",
+      "id":"org.apache.felix:org.apache.felix.eventadmin:1.6.4",
       "start-order":"1"
     },
     {
@@ -37,7 +41,7 @@
       "start-order":"1"
     },
     {
-      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl:2.2.11_1",
+      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-runtime:2.3.2_3",
       "start-order":"1"
     },
     {
@@ -45,7 +49,7 @@
       "start-order":"1"
     },
     {
-      "id":"org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.2:2.9.0",
+      "id":"org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.3:2.3_3",
       "start-order":"1"
     },
     {
@@ -133,8 +137,26 @@
       "start-order":"1"
     },
     {
-      "id":"org.apache.felix:org.apache.felix.scr:2.1.30",
+      "id":"org.apache.felix:org.apache.felix.scr:2.2.6",
+      "start-order":"1"
+    },
+    {
+      "id":"jakarta.json:jakarta.json-api:2.1.1",
       "start-order":"1"
     }
-  ]
+  ],
+  "framework-properties":{
+    "localIndexDir":"${sling.home}/repository/index",
+    "repository.home":"${sling.home}/repository",
+    // export XML packages in addition to JRE version with special versions for backwards-compatibility reasons
+    "sling.jre-1.8.javax.xml":",javax.xml;version=\"2.1.0\",javax.xml.datatype;uses:=\"javax.xml.namespace\";version=\"2.1.0\",javax.xml.namespace;version=\"2.1.0\",javax.xml.parsers;uses:=\"javax.xml.validation,org.w3c.dom,org.xml.sax,org.xml.sax.helpers\";version=\"2.1.0\",javax.xml.stream;uses:=\"javax.xml.namespace,javax.xml.stream.events,javax.xml.stream.util,javax.xml.transform\";version=\"1.0.0\",javax.xml.stream.events;uses:=\"javax.xml.namespace,javax.xml.stream\";version=\"1.0.0\",javax.xml.stream.util;uses:=\"javax.xml.namespace,javax.xml.stream,javax.xml.stream.events\";version=\"1.0.0\",javax.xml.transform;version=\"2.1.0\",javax.xml.transform.dom;uses:=\"javax.xml.transform,org.w3c.dom\";version=\"2.1.0\",javax.xml.transform.sax;uses:=\"javax.xml.transform,javax.xml.transform.stream,org.xml.sax,org.xml.sax.ext\";version=\"2.1.0\",javax.xml.transform.stax;uses:=\"javax.xml.stream,javax.xml.stream.events,javax.xml.transform\";version=\"2.1.0\",javax.xml.transform.stream;uses:=\"javax.xml.transform\";version=\"2.1.0\",javax.xml.validation;uses:=\"javax.xml.transform,javax.xml.transform.stream,org.w3c.dom,org.w3c.dom.ls,org.xml.sax\";version=\"2.1.0\",javax.xml.xpath;uses:=\"javax.xml.namespace,org.xml.sax\";version=\"2.1.0\",org.w3c.dom;version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.bootstrap;uses:=\"org.w3c.dom\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.css;uses:=\"org.w3c.dom,org.w3c.dom.stylesheets,org.w3c.dom.views\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.events;uses:=\"org.w3c.dom,org.w3c.dom.views\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.html;uses:=\"org.w3c.dom\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.ls;uses:=\"org.w3c.dom,org.w3c.dom.events\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.ranges;uses:=\"org.w3c.dom\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.stylesheets;uses:=\"org.w3c.dom\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.traversal;uses:=\"org.w3c.dom\";version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.views;version=\"{dollar}{felix.detect.java.version}\",org.w3c.dom.xpath;uses:=\"org.w3c.dom\";version=\"{dollar}{felix.detect.java.version}\",org.xml.sax;version=\"{dollar}{felix.detect.java.version}\",org.xml.sax.ext;uses:=\"org.xml.sax,org.xml.sax.helpers\";version=\"{dollar}{felix.detect.java.version}\",org.xml.sax.helpers;uses:=\"org.xml.sax\";version=\"{dollar}{felix.detect.java.version}\"",
+    "sling.jpms.javax.xml":"{dollar}{sling.jre-1.8.javax.xml},javax.xml.catalog;uses:=\"javax.xml.namespace\";version=\"1.0.0\"", // all from Java 1.8 and in addition javax.xml.catalog
+    "felix.systempackages.calculate.uses":"true",
+    "org.osgi.framework.bootdelegation":"sun.*,com.sun.*,jdk.internal.reflect,jdk.internal.reflect.*",
+    "org.osgi.framework.system.packages.extra":"{dollar}{sling.jre-{dollar}{java.specification.version}.javax.xml}{dollar}{sling.{dollar}{felix.detect.jpms}.javax.xml}",
+    "felix.systempackages.substitution":"true",
+    "sling.fileinstall.dir":"${sling.home}/install",
+    "sling.fileinstall.dir.autocreate":"true",
+    "felix.cm.config.plugins":"org.apache.felix.configadmin.plugin.interpolation"
+  }
 }

@@ -49,7 +49,7 @@
           <framework>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.framework</artifactId>
-            <version>6.0.3</version>
+            <version>7.0.5</version>
           </framework>
           <aggregates>
             <aggregate>
@@ -95,7 +95,6 @@
             <aggregate>
               <classifier>slingcms-upgrade</classifier>
               <filesInclude>**/*.json</filesInclude>
-              <filesExclude>framework-properties.json</filesExclude>
               <filesExclude>oak/node-store/*.json</filesExclude>
               <filesExclude>runmodes/*.json</filesExclude>
               <title>Sling CMS - Upgrade</title>

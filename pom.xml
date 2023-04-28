@@ -31,36 +31,36 @@
     <project.build.outputTimestamp>1675173380</project.build.outputTimestamp>
     <!-- Common Versions -->
     <cms-version>${project.parent.version}</cms-version>
-    <asm-version>9.4</asm-version>
+    <asm-version>9.5</asm-version>
     <cocoon-serializers-charsets-version>1.0.2</cocoon-serializers-charsets-version>
     <commons-io-version>2.11.0</commons-io-version>
     <commons-lang3-version>3.12.0</commons-lang3-version>
     <commons-text-version>1.10.0</commons-text-version>
-    <composum-nodes-version>4.1.2</composum-nodes-version>
+    <composum-nodes-version>4.2.1</composum-nodes-version>
     <geronimo-atinject_1-0_spec-version>1.2</geronimo-atinject_1-0_spec-version>
-    <groovy-version>3.0.13</groovy-version>
-    <httpclient-version>4.5.13</httpclient-version>
-    <jackrabbit-version>2.21.13</jackrabbit-version>
-    <jackson-version>2.14.0</jackson-version>
+    <groovy-version>3.0.16</groovy-version>
+    <httpclient-version>4.5.14</httpclient-version>
+    <jackrabbit-version>2.21.15</jackrabbit-version>
+    <jackson-version>2.14.2</jackson-version>
     <javax-annotation-api-version>1.3.2</javax-annotation-api-version>
-    <jsoup-version>1.15.3</jsoup-version>
+    <jsoup-version>1.15.4</jsoup-version>
     <jsp-api-version>2.0</jsp-api-version>
     <jstl-version>1.2_1</jstl-version>
-    <mockito-core-version>4.6.1</mockito-core-version>
+    <mockito-core-version>5.2.0</mockito-core-version>
     <oak-version>1.44.0</oak-version>
-    <org-apache-sling-api-version>2.25.4</org-apache-sling-api-version>
+    <org-apache-sling-api-version>2.27.0</org-apache-sling-api-version>
     <org-apache-sling-caconfig-api-version>1.3.0</org-apache-sling-caconfig-api-version>
     <org-apache-sling-commons-johnzon-version>1.2.14</org-apache-sling-commons-johnzon-version>
-    <org-apache-sling-engine-version>2.9.0</org-apache-sling-engine-version>
+    <org-apache-sling-engine-version>2.14.0</org-apache-sling-engine-version>
     <org-apache-sling-fileoptim-version>0.9.4</org-apache-sling-fileoptim-version>
     <org-apache-sling-models-api-version>1.4.2</org-apache-sling-models-api-version>
     <org-apache-sling-scripting-api-version>2.2.0</org-apache-sling-scripting-api-version>
     <org-apache-sling-scripting-jsp-taglib-version>2.4.0</org-apache-sling-scripting-jsp-taglib-version>
-    <org-apache-sling-testing-sling-mock-junit4-version>3.3.0</org-apache-sling-testing-sling-mock-junit4-version>
-    <org.apache.felix.webconsole-version>4.8.2</org.apache.felix.webconsole-version>
+    <org-apache-sling-testing-sling-mock-junit4-version>3.4.4</org-apache-sling-testing-sling-mock-junit4-version>
+    <org.apache.felix.webconsole-version>4.8.8</org.apache.felix.webconsole-version>
     <osgi-annotation-version>8.1.0</osgi-annotation-version>
     <guava-version>15.0</guava-version>
-    <pdfbox-version>2.0.26</pdfbox-version>
+    <pdfbox-version>2.0.27</pdfbox-version>
     <servlet-api-version>2.5</servlet-api-version>
     <slf4j-version>1.7.36</slf4j-version>
     <tika-version>1.28.4</tika-version>
@@ -208,13 +208,13 @@
       <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.i18n</artifactId>
-        <version>2.5.18</version>
+        <version>2.6.2</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.jcr.resource</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.4</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
@@ -249,12 +249,6 @@
       </dependency>
       <!-- Utilities / Misc -->
       <dependency>
-        <groupId>com.github.jknack</groupId>
-        <artifactId>handlebars</artifactId>
-        <version>4.3.0</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>${guava-version}</version>
@@ -263,13 +257,13 @@
       <dependency>
         <groupId>jakarta.activation</groupId>
         <artifactId>jakarta.activation-api</artifactId>
-        <version>2.1.0</version>
+        <version>2.1.1</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>jakarta.mail</groupId>
         <artifactId>jakarta.mail-api</artifactId>
-        <version>2.1.0</version>
+        <version>2.1.1</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
@@ -323,7 +317,7 @@
       <dependency>
         <groupId>org.jetbrains</groupId>
         <artifactId>annotations</artifactId>
-        <version>23.0.0</version>
+        <version>24.0.1</version>
         <scope>compile</scope>
       </dependency>
       <dependency>
@@ -346,27 +340,9 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
-        <groupId>net.coobird</groupId>
-        <artifactId>thumbnailator</artifactId>
-        <version>0.4.17</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
         <groupId>org.apache.pdfbox</groupId>
         <artifactId>pdfbox</artifactId>
         <version>${pdfbox-version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-ooxml</artifactId>
-        <version>5.2.2</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-scratchpad</artifactId>
-        <version>5.2.2</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
@@ -391,7 +367,7 @@
       <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.testing.sling-mock-oak</artifactId>
-        <version>3.1.2-1.40.0</version>
+        <version>3.1.8-1.44.0</version>
         <scope>test</scope>
       </dependency>
     </dependencies>

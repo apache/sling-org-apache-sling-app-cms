@@ -1,7 +1,7 @@
 {
   "bundles":[
     {
-      "id":"org.antlr:antlr4-runtime:4.9.3",
+      "id":"org.antlr:antlr4-runtime:4.12.0",
       "start-order":"20"
     },
     {
@@ -37,7 +37,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.6.0",
+      "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.6.2",
       "start-order":"20"
     },
     {
@@ -61,7 +61,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.18-1.4.0",
+      "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.22-1.4.0",
       "start-order":"20"
     },
     {
@@ -69,7 +69,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.freemarker:freemarker:2.3.31",
+      "id":"org.freemarker:freemarker:2.3.32",
       "start-order":"20"
     },
     {
@@ -81,7 +81,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.attoparser:attoparser:2.0.5.RELEASE",
+      "id":"org.attoparser:attoparser:2.0.6.RELEASE",
       "start-order":"20"
     },
     {
@@ -89,19 +89,17 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl:3.3.2_1",
+      "id":"org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl:3.3.4_1",
       "start-order":"20"
     },
     {
-      "id":"org.javassist:javassist:3.29.0-GA",
+      "id":"org.javassist:javassist:3.29.2-GA",
       "start-order":"20"
     }
   ],
   "configurations":{
     "org.apache.sling.scripting.core.impl.ScriptCacheImpl":{
-      "org.apache.sling.scripting.cache.additional_extensions":[
-        "js"
-      ]
+      "org.apache.sling.scripting.cache.additional_extensions":["js"]
     },
     "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~scripting":{
       "user.mapping":[

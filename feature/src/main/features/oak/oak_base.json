@@ -101,7 +101,7 @@
       "start-order":"15"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.base:3.1.10",
+      "id":"org.apache.sling:org.apache.sling.jcr.base:3.1.12",
       "start-order":"15"
     },
     {
@@ -125,7 +125,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.resource:3.2.0",
+      "id":"org.apache.sling:org.apache.sling.jcr.resource:3.2.4",
       "start-order":"20"
     },
     {
@@ -145,7 +145,7 @@
       "start-order":"20"
     },
     {
-      "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager:2.2.22",
+      "id":"org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager:2.2.26",
       "start-order":"20"
     }
   ],
