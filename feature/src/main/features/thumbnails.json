@@ -4,7 +4,7 @@
   },
   "bundles": [
     {
-      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.batik:1.16_1",
+      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.batik:1.14_1",
       "start-order": "20"
     },
     {
