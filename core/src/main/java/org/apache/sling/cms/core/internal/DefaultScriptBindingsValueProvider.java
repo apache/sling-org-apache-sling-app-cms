@@ -22,6 +22,7 @@ import javax.script.Bindings;
 import javax.servlet.ServletRequest;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.scripting.LazyBindings;
 import org.apache.sling.cms.CMSConstants;
 import org.apache.sling.cms.CMSUtils;
 import org.apache.sling.cms.ComponentConfiguration;
@@ -34,29 +35,57 @@ import org.osgi.service.component.annotations.Component;
 public class DefaultScriptBindingsValueProvider implements BindingsValuesProvider {
 
     public static final String PN_CURRENT_PAGE = "currentPage";
+    public static final String PN_CURRENT_PAGE_EVALUATED = "org.apache.sling.cms.core.internal.DefaultScriptBindingsValueProvider_"
+            + PN_CURRENT_PAGE + "_evaluated";
 
     @Override
     public void addBindings(Bindings bindings) {
         Resource resource = (Resource) bindings.get("resource");
-
-        bindings.put("properties", resource.getValueMap());
-
-        Optional.ofNullable(resource.adaptTo(ComponentConfiguration.class)).map(ComponentConfiguration::getProperties)
-                .ifPresent(p -> bindings.put("componentConfiguration", p));
-
-        Resource publishableParent = CMSUtils.findPublishableParent(resource);
-        if (publishableParent != null && CMSConstants.NT_PAGE.equals(publishableParent.getResourceType())) {
-            Optional.of(publishableParent.adaptTo(Page.class)).ifPresent(p -> {
-                bindings.put("page", p);
-                ServletRequest request = (ServletRequest) bindings.get("request");
-                if (request.getAttribute(PN_CURRENT_PAGE) == null) {
-                    request.setAttribute(PN_CURRENT_PAGE, p);
-                    bindings.put(PN_CURRENT_PAGE, p);
-                } else {
-                    bindings.put(PN_CURRENT_PAGE, request.getAttribute(PN_CURRENT_PAGE));
-                }
-            });
-        }
-
+        bindLazy((LazyBindings) bindings, resource);
     }
+
+    private void bindLazy(LazyBindings bindings, Resource resource) {
+        bindings.put("properties", new LazyBindings.Supplier() {
+            @Override
+            public Object get() {
+                return resource.getValueMap();
+            }
+        });
+
+        bindings.put("componentConfiguration", new LazyBindings.Supplier() {
+            @Override
+            public Object get() {
+                return Optional.ofNullable(resource.adaptTo(ComponentConfiguration.class))
+                        .map(ComponentConfiguration::getProperties).orElse(null);
+            }
+        });
+
+        bindings.put("page", new LazyBindings.Supplier() {
+            @Override
+            public Object get() {
+                Resource publishableParent = CMSUtils.findPublishableParent(resource);
+                if (publishableParent != null && CMSConstants.NT_PAGE.equals(publishableParent.getResourceType())) {
+                    return publishableParent.adaptTo(Page.class);
+                }
+                return null;
+            }
+        });
+        ServletRequest request = (ServletRequest) bindings.get("request");
+        if (request.getAttribute(PN_CURRENT_PAGE_EVALUATED) == null) {
+            Resource publishableParent = CMSUtils.findPublishableParent(resource);
+            if (publishableParent != null && CMSConstants.NT_PAGE.equals(publishableParent.getResourceType())) {
+                Optional.of(publishableParent.adaptTo(Page.class)).ifPresent(p -> {
+                    bindings.put("page", p);
+                    if (request.getAttribute(PN_CURRENT_PAGE) == null) {
+                        request.setAttribute(PN_CURRENT_PAGE, p);
+                        bindings.put(PN_CURRENT_PAGE, p);
+                    } else {
+                        bindings.put(PN_CURRENT_PAGE, request.getAttribute(PN_CURRENT_PAGE));
+                    }
+                });
+            }
+            request.setAttribute(PN_CURRENT_PAGE_EVALUATED, true);
+        }
+    }
+
 }

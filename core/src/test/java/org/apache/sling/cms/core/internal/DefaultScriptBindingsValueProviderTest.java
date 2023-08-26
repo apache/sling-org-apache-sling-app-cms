@@ -24,6 +24,7 @@ import static org.junit.Assert.assertTrue;
 import javax.script.Bindings;
 
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.scripting.SlingBindings;
 import org.apache.sling.cms.Page;
 import org.apache.sling.cms.core.helpers.SlingCMSTestHelper;
 import org.apache.sling.testing.mock.sling.junit.SlingContext;
@@ -43,7 +44,7 @@ public class DefaultScriptBindingsValueProviderTest {
 
     @Test
     public void testPageBinding() {
-        Bindings bindings = new MockBindings();
+        Bindings bindings = new SlingBindings();
         context.currentResource("/content/apache/sling-apache-org/index");
         bindings.put("resource", context.currentResource());
         bindings.put("request", context.request());
@@ -66,7 +67,7 @@ public class DefaultScriptBindingsValueProviderTest {
 
     @Test
     public void testSiteBinding() {
-        Bindings bindings = new MockBindings();
+        Bindings bindings = new SlingBindings();
         context.currentResource("/content/apache/sling-apache-org");
         bindings.put("resource", context.currentResource());
         bindings.put("request", context.request());
