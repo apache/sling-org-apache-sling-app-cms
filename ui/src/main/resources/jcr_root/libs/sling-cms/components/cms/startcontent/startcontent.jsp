@@ -50,6 +50,35 @@
                 </a>
             </c:forEach>
         </nav>
+        <fmt:message key="Recent Drafts" var="recentDraftsMessage" />
+        <nav class="panel has-background-white" aria-label="${recentDraftsMessage}">
+            <p class="panel-heading">
+                ${recentDraftsMessage}
+            </p>
+            <c:forEach var="item" items="${startContent.recentDrafts}">
+                <a class="panel-block" title="${sling:encode(item.path,'HTML_ATTR')}" href="/cms/site/content.html${sling:encode(item.parent.path,'HTML_ATTR')}?resource=${sling:encode(item.path,'HTML_ATTR')}">
+                    <span class="panel-icon">
+                        <c:choose>
+                            <c:when test="${item.resourceType == 'sling:Page'}">
+                                <i class="jam jam-document" aria-hidden="true"></i>
+                            </c:when>
+                            <c:otherwise>
+                                <i class="jam jam-file" aria-hidden="true"></i>
+                            </c:otherwise>
+                        </c:choose>
+                    </span>
+                    <c:choose>
+                        <c:when test="${item.resourceType == 'sling:Page'}">
+                            <sling:encode value="${item.valueMap['jcr:content/jcr:title']}" default="${item.name}" mode="HTML" />
+                        </c:when>
+                        <c:otherwise>
+                            <sling:encode value="${item.name}" mode="HTML" />
+                        </c:otherwise>
+                    </c:choose>&nbsp;&mdash;&nbsp;
+                    <small><fmt:formatDate value="${item.valueMap['jcr:content/jcr:lastModified'].time}" type="both" dateStyle="short" timeStyle="short" /></small>
+                </a>
+            </c:forEach>
+        </nav>
     </div>
     <div class="column">
         <nav class="panel has-background-white">

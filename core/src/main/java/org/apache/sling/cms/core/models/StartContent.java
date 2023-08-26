@@ -22,22 +22,16 @@
  */
 package org.apache.sling.cms.core.models;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import javax.jcr.query.Query;
-import javax.jcr.query.QueryResult;
-import javax.jcr.query.Row;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -56,8 +50,8 @@ public class StartContent {
 
     private static final Logger log = LoggerFactory.getLogger(StartContent.class);
 
-    private ResourceResolver resolver;
-    private String term;
+    private final ResourceResolver resolver;
+    private final String term;
 
     public StartContent(SlingHttpServletRequest request) {
         this.resolver = request.getResourceResolver();
@@ -65,63 +59,44 @@ public class StartContent {
     }
 
     public List<Resource> getRelatedContent() {
-        return get10Related(resolver, term).sorted((o1, o2) -> {
-            try {
-                return (int) ((o1.getScore() - o2.getScore()) * 100);
-            } catch (RepositoryException e) {
-                log.warn("Exception getting score", e);
-                return 0;
-            }
-        }).limit(9).map(row -> {
-            try {
-                return resolver.getResource(row.getPath());
-            } catch (RepositoryException e) {
-                log.warn("Failed to get resource", e);
-                return null;
-            }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+        return getTenResults(
+                "SELECT * FROM [nt:hierarchyNode] AS s WHERE ISDESCENDANTNODE([/content]) AND CONTAINS(s.*,'"
+                        + escape(term.replaceAll("[\\Q+-&|!(){}[]^\"~*?:\\/\\E]", "")) + "')");
 
+    }
+
+    public List<Resource> getRecentDrafts() {
+        return Stream.concat(getTenResults("SELECT * FROM [sling:Page] WHERE [jcr:content/jcr:lastModifiedBy] = '"
+                + escape(resolver.getUserID())
+                + "' AND ISDESCENDANTNODE([/content]) AND [jcr:content/sling:published] = false ORDER BY [jcr:content/jcr:lastModified] DESC")
+                .stream(),
+                getTenResults("SELECT * FROM [sling:Page] WHERE [jcr:content/jcr:lastModifiedBy] = '"
+                        + escape(resolver.getUserID())
+                        + "' AND ISDESCENDANTNODE([/content]) AND [jcr:content/sling:published] IS NULL ORDER BY [jcr:content/jcr:lastModified] DESC")
+                        .stream())
+                .sorted((r1, r2) -> r2.getValueMap().get("jcr:content/jcr:lastModified", Calendar.class)
+                        .compareTo(r1.getValueMap().get("jcr:content/jcr:lastModified", Calendar.class))
+
+                ).limit(10).collect(Collectors.toList());
     }
 
     public List<Resource> getRecentContent() {
-        return get10Recent(resolver).sorted((o1, o2) -> o1.getValueMap().get("jcr:content/jcr:lastModified", new Date())
-                .compareTo(o2.getValueMap().get("jcr:content/jcr:lastModified", new Date())) * -1)
-                .limit(10).collect(Collectors.toList());
+        return getTenResults(
+                "SELECT * FROM [nt:hierarchyNode] WHERE [jcr:content/jcr:lastModifiedBy] = '"
+                        + escape(resolver.getUserID())
+                        + "' AND ISDESCENDANTNODE([/content]) ORDER BY [jcr:content/jcr:lastModified] DESC");
     }
 
-    private Stream<Resource> get10Recent(ResourceResolver resolver) {
-        Iterator<Resource> it = resolver.findResources(
-                "SELECT * FROM [nt:hierarchyNode] WHERE [jcr:content/jcr:lastModifiedBy] = '" + resolver.getUserID()
-                        + "' AND ISDESCENDANTNODE([/content]) ORDER BY [jcr:content/jcr:lastModified] DESC",
+    private String escape(String str) {
+        return str.replace("'", "''");
+    }
+
+    private List<Resource> getTenResults(String query) {
+        log.debug("Executing query: {}", query);
+        Iterator<Resource> it = resolver.findResources(query,
                 Query.JCR_SQL2);
-        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(it, Spliterator.NONNULL), false).limit(10);
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(it, Spliterator.NONNULL), false).limit(10)
+                .collect(Collectors.toList());
     }
 
-    private Stream<Row> get10Related(ResourceResolver resolver, String term) {
-        Session session = resolver.adaptTo(Session.class);
-        if (session != null) {
-            try {
-                Query query = session.getWorkspace().getQueryManager()
-                        .createQuery(
-                                "SELECT * FROM [nt:hierarchyNode] AS s WHERE ISDESCENDANTNODE([/content]) AND CONTAINS(s.*,'"
-                                        + term.replace("'", "''") + "')",
-                                Query.JCR_SQL2);
-                query.setLimit(10);
-                QueryResult result = query.execute();
-                @SuppressWarnings("unchecked")
-                Iterable<Row> iterable = () -> {
-                    try {
-                        return result.getRows();
-                    } catch (RepositoryException e) {
-                        log.warn("Failed to get iterator", e);
-                    }
-                    return null;
-                };
-                return StreamSupport.stream(iterable.spliterator(), false).limit(10);
-            } catch (RepositoryException e) {
-                log.warn("Exception searching for related content", e);
-            }
-        }
-        return new ArrayList<Row>().stream();
-    }
 }
