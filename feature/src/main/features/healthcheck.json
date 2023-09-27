@@ -26,11 +26,6 @@
       "registerHealthyMarkerService":true,
       "registerUnhealthyMarkerService":true
     },
-    "org.apache.felix.hc.generalchecks.BundlesStartedCheck":{
-      "hc.tags":[
-        "bundles"
-      ]
-    },
     "org.apache.felix.hc.generalchecks.CpuCheck":{
       "hc.tags":[
         "cpu",
@@ -47,12 +42,6 @@
         "."
       ]
     },
-    "org.apache.felix.hc.generalchecks.FrameworkStartCheck":{
-      "hc.tags":[
-        "systemalive"
-      ],
-      "targetStartLevel:Integer":30
-    },
     "org.apache.felix.hc.generalchecks.MemoryCheck":{
       "hc.tags":[
         "memory",
@@ -63,7 +52,8 @@
     },
     "org.apache.felix.hc.generalchecks.ServicesCheck":{
       "hc.tags":[
-        "systemalive"
+        "systemalive",
+        "systemready"
       ],
       "services.list":[
         "org.apache.sling.jcr.api.SlingRepository",
@@ -72,6 +62,31 @@
         "org.apache.sling.api.servlets.ServletResolver",
         "javax.script.ScriptEngineManager"
       ]
+    },
+    "org.apache.felix.hc.generalchecks.DsComponentsCheck~systemready": {
+      "hc.name":"DS Components Ready Check",
+      "hc.tags":[
+        "systemalive",
+        "systemready"
+      ],
+      "components.list":[
+        "org.apache.sling.cms.core.internal.servlets.CMSPageServlet",
+        "org.apache.sling.cms.core.internal.filters.CMSSecurityFilter"
+      ]
+    },
+    "org.apache.felix.hc.generalchecks.BundlesStartedCheck~systemready":    {
+      "hc.name":"All bundles are up",
+      "hc.tags":[
+        "systemalive",
+        "systemready"
+      ]
+    },
+    "org.apache.felix.hc.generalchecks.FrameworkStartCheck":    {
+      "hc.tags":[
+        "systemalive",
+        "systemready"
+      ],
+      "targetStartLevel:Integer":30
     },
     "org.apache.felix.hc.generalchecks.ThreadUsageCheck":{
       "hc.tags":[

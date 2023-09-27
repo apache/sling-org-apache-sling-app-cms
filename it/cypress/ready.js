@@ -19,26 +19,53 @@
 const fetch = require("node-fetch-commonjs");
 
 const url = process.env.CYPRESS_BASE_URL;
+const auth = Buffer.from("admin:admin").toString("base64");
 
 async function sleep(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
+
+async function checkSystemReady() {
+  const res = await fetch(`${url}/system/health?tags=systemalive&format=txt`, {
+    headers: { Authorization: `Basic ${auth}` },
+  });
+  return res.ok;
+}
+
+async function checkLoginContent() {
+  const res = await fetch(`${url}/system/sling/login`);
+  if (res.ok) {
+    const body = await res.text();
+    if (body.indexOf("Welcome to Apache Sling CMS") !== -1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+async function checkHomeStatus() {
+  const res = await fetch(`${url}/`);
+  return res.status === 403;
+}
+
 async function main() {
   console.log(`Waiting for Sling to start on: ${url}`);
-  for (let i = 0; i < 120; i++) {
+  for (let i = 0; i < 240; i++) {
     try {
-      const res = await fetch(`${url}/system/sling/form/login`);
+      const systemReadyOk = await checkSystemReady();
+      const homeStatusOk = await checkHomeStatus();
+      const loginContentOk = await checkLoginContent();
 
-      if (res.ok) {
-        const body = await res.text();
-        if (body.indexOf("Welcome to Apache Sling CMS") !== -1) {
-          console.log(`Sling started on: ${url}`);
-          return;
-        }
+      if (systemReadyOk && homeStatusOk && loginContentOk) {
+        console.log(`Sling started on: ${url}`);
+        await sleep(2000);
+        return;
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Caught error checking status", e);
+    }
     await sleep(5000);
   }
   console.log("Sling failed to start in the allotted time, failing...");
