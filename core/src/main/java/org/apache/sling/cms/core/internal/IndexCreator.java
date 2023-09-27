@@ -178,7 +178,7 @@ public class IndexCreator implements RepositoryInitializer {
         indexRule.property("jcrLastModified", "jcr:content/jcr:lastModified", false).propertyIndex().ordered()
                 .type("Date");
         indexRule.property("jcrLastModifiedBy", "jcr:content/jcr:lastModifiedBy", false).propertyIndex();
-        indexRule.property("slingPublished", "jcr:content/sling:published", false).propertyIndex().type("Boolean");
+        indexRule.property("slingPublished", "jcr:content/sling:published", false).propertyIndex().nullCheckEnabled().type("Boolean");
         indexRule.property("slingTaxonomy", "jcr:content/sling:taxonomy", false).propertyIndex().analyzed();
         indexRule.property("allProperties", "jcr:content/.*", true).propertyIndex().analyzed();
     }
