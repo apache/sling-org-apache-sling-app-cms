@@ -25,6 +25,7 @@ package org.apache.sling.cms.core.models;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Collectors;
@@ -61,7 +62,7 @@ public class StartContent {
     public List<Resource> getRelatedContent() {
         return getTenResults(
                 "SELECT * FROM [nt:hierarchyNode] AS s WHERE ISDESCENDANTNODE([/content]) AND CONTAINS(s.*,'"
-                        + escape(term.replaceAll("[\\Q+-&|!(){}[]^\"~*?:\\/\\E]", "")) + "')");
+                        + escape(term).replaceAll("[\\Q+-&|!(){}[]^\"~*?:\\/\\E]", "") + "')");
 
     }
 
@@ -88,7 +89,7 @@ public class StartContent {
     }
 
     private String escape(String str) {
-        return str.replace("'", "''");
+        return Optional.ofNullable(str).map(s -> s.replace("'", "''")).orElse("");
     }
 
     private List<Resource> getTenResults(String query) {
