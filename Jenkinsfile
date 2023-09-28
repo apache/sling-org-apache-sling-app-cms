@@ -17,5 +17,4 @@
  * under the License.
  */
 
-@Library('sling@SLING-12050')
 slingOsgiBundleBuild()

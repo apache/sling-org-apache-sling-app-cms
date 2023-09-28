@@ -2,7 +2,7 @@
   "jenkins": {
     "jdks": [11],
     "mavenGoal": "install",
-    "operatingSystems": ["windows", "linux"],
+    "operatingSystems": ["linux"],
     "buildTimeout": 120
   }
 }
