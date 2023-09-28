@@ -62,6 +62,12 @@ async function main() {
         console.log(`Sling started on: ${url}`);
         await sleep(2000);
         return;
+      } else {
+        console.info("Sling not ready", {
+          systemReadyOk,
+          homeStatusOk,
+          loginContentOk,
+        });
       }
     } catch (e) {
       console.warn("Caught error checking status", e);
