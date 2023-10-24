@@ -22,10 +22,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.lang.annotation.Annotation;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.collect.ImmutableMap;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -95,7 +94,7 @@ public class TextareaHandlerTest {
         ResourceResolver resolver = context.resourceResolver();
 
         context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("textarea", "Hello World").build());
+                .setParameterMap(Collections.singletonMap("textarea", "Hello World"));
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -126,7 +125,7 @@ public class TextareaHandlerTest {
         ResourceResolver resolver = context.resourceResolver();
 
         context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World").build());
+                .setParameterMap(Collections.singletonMap("requiredtextarea", "Hello World"));
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver

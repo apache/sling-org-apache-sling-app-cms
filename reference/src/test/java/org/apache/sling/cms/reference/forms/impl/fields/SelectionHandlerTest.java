@@ -22,10 +22,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.lang.annotation.Annotation;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.collect.ImmutableMap;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -83,7 +82,7 @@ public class SelectionHandlerTest {
         ResourceResolver resolver = context.resourceResolver();
 
         context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("singleselect", "Hello World").build());
+                .setParameterMap(Collections.singletonMap("singleselect", "Hello World"));
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -115,7 +114,7 @@ public class SelectionHandlerTest {
     public void testMultipleSelect() throws FormException {
         ResourceResolver resolver = context.resourceResolver();
 
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder().put("multiselect", "").build());
+        context.request().setParameterMap(Collections.singletonMap("multiselect", ""));
 
         Map<String, Object> formData = new HashMap<>();
         Resource fieldResource = resolver
@@ -123,8 +122,7 @@ public class SelectionHandlerTest {
         handler.handleField(context.request(), fieldResource, formData);
         assertFalse(formData.containsKey("multiselect"));
 
-        context.request().setParameterMap(ImmutableMap.<String, Object>builder()
-                .put("multiselect", new String[] { "Thing 1", "Thing 2" }).build());
+        context.request().setParameterMap(Collections.singletonMap("multiselect", new String[] { "Thing 1", "Thing 2" }));
         handler.handleField(context.request(), fieldResource, formData);
         assertTrue(formData.containsKey("multiselect"));
     }

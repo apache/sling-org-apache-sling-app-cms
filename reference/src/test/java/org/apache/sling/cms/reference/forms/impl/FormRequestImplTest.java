@@ -24,8 +24,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayInputStream;
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
-
-import com.google.common.collect.ImmutableMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.cms.reference.forms.FormException;
@@ -47,11 +47,19 @@ public class FormRequestImplTest {
         SlingContextHelper.initContext(context);
         context.request().setResource(context.resourceResolver().getResource("/form/jcr:content/container/form"));
 
+        Map<String, Object> params = new HashMap<>();
+        params.put("requiredtextarea", "Hello World!");
+        params.put("singleselect", "Hello World!");
+        params.put("anotherkey", "Hello World!");
+        params.put("money", "123");
+        params.put("patternfield", "123");
+        params.put("double", "2.7");
+        params.put("integer", "2");
+        params.put("file", new ByteArrayInputStream(new byte[0]));
+        params.put("datefield", "2019-02-02");
+
         context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World!")
-                        .put("singleselect", "Hello World!").put("anotherkey", "Hello World!").put("money", "123")
-                        .put("patternfield", "123").put("double", "2.7").put("integer", "2")
-                        .put("file", new ByteArrayInputStream(new byte[0])).put("datefield", "2019-02-02").build());
+                .setParameterMap(params);
 
         formRequest = new FormRequestImpl(context.request(), null,
                 Arrays.asList(new SelectionHandler(new SelectionHandler.Config() {

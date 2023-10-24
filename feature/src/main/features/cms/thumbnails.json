@@ -1,0 +1,43 @@
+{
+  "prototype": {
+    "id": "org.apache.sling:org.apache.sling.thumbnails:slingosgifeature:default:1.0.2"
+  },
+  "bundles": [
+    {
+      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.batik:1.14_1",
+      "start-order": "20"
+    },
+    {
+      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.bcel:5.2_4",
+      "start-order": "20"
+    },
+    {
+      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xalan:2.7.2_3",
+      "start-order": "20"
+    },
+    {
+      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xerces:2.12.2_1",
+      "start-order": "20"
+    },
+    {
+      "id": "org.apache.servicemix.bundles:org.apache.servicemix.bundles.xmlresolver:1.2_5",
+      "start-order": "20"
+    }
+  ],
+  "configurations": {
+    "org.apache.sling.thumbnails.internal.ThumbnailSupportImpl": {
+      "errorSuffix": "/sling-cms-thumbnail.png",
+      "errorResourcePath": "/static/sling-cms/thumbnails/file.png",
+      "persistableTypes": ["sling:File=jcr:content/renditions"],
+      "supportedTypes": [
+        "nt:file=jcr:content/jcr:mimeType",
+        "sling:File=jcr:content/jcr:mimeType"
+      ]
+    },
+    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-thumbnails": {
+      "user.mapping": [
+        "org.apache.sling.thumbnails:sling-thumbnails=[sling-thumbnails]"
+      ]
+    }
+  }
+}

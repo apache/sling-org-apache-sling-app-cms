@@ -22,11 +22,11 @@ import static org.mockito.Mockito.never;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.common.collect.ImmutableMap;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -54,11 +54,16 @@ public class FormHandlerTest {
     public void init() throws NoSuchFieldException, SecurityException, FormException {
         SlingContextHelper.initContext(context);
         context.request().setMethod("POST");
-        context.request()
-                .setParameterMap(ImmutableMap.<String, Object>builder().put("requiredtextarea", "Hello World!")
-                        .put("singleselect", "Hello World!").put("anotherkey", "Hello World!").put("money", "123")
-                        .put("patternfield", "123").put("double", "2.7").put("integer", "2")
-                        .put("datefield", "2019-02-02").build());
+        Map<String, Object> params = new HashMap<>();
+        params.put("requiredtextarea", "Hello World!");
+        params.put("singleselect", "Hello World!");
+        params.put("anotherkey", "Hello World!");
+        params.put("money", "123");
+        params.put("patternfield", "123");
+        params.put("double", "2.7");
+        params.put("integer", "2");
+        params.put("datefield", "2019-02-02");
+        context.request().setParameterMap(params);
         context.currentResource(Mockito.mock(Resource.class));
 
         formRequest = new FormRequestImpl(context.request(), null,
