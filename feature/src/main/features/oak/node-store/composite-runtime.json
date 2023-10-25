@@ -1,4 +1,7 @@
 {
+    "variables": {
+        "sling.home": null
+    },
     "configurations": {
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
             "name": "Default NodeStore",

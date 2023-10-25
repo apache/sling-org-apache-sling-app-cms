@@ -1,13 +1,22 @@
 {
-    "configurations": {
-        "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
-            "name": "Default NodeStore",
-            "customBlobStore": true
-        },
-        "org.apache.jackrabbit.oak.plugins.blob.datastore.FileDataStore": {
-            "minRecordLength": 4096,
-            "path": "${sling.home}/repository/datastore",
-            "cacheSizeInMB": 128
-        }
+  "variables": {
+      "sling.home": null
+  },
+  "bundles": [
+    {
+      "id": "org.apache.jackrabbit:oak-segment-tar:${oak.version}",
+      "start-order": "15"
     }
+  ],
+  "configurations": {
+    "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
+      "name": "Default NodeStore",
+      "customBlobStore": true
+    },
+    "org.apache.jackrabbit.oak.plugins.blob.datastore.FileDataStore": {
+      "minRecordLength": 4096,
+      "path": "${sling.home}/repository/datastore",
+      "cacheSizeInMB": 128
+    }
+  }
 }
