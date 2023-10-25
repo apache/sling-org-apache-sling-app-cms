@@ -1,8 +1,7 @@
 {
   "jenkins": {
-    "jdks": [11],
+    "jdks": [11, 17],
     "mavenGoal": "install",
-    "operatingSystems": ["linux"],
-    "buildTimeout": 120
+    "operatingSystems": ["linux"]
   }
 }
