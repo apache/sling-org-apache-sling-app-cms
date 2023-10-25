@@ -1,24 +1,29 @@
+
 {
-  "bundles":[
-    {
-      "id":"org.apache.sling:org.apache.sling.caconfig.api:${org-apache-sling-caconfig-api-version}",
-      "start-order":"20"
+    "bundles":[
+        {
+            "id":"org.apache.sling:org.apache.sling.caconfig.api:1.3.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.caconfig.impl:1.6.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.caconfig.spi:1.4.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.models.caconfig:1.0.2",
+            "start-order":"20"
+        }
+    ],
+    "configurations":{
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-caconfig":{
+            "user.mapping":[
+                "org.apache.sling.caconfig.impl=[sling-readall]"
+            ]
+        }
     },
-    {
-      "id":"org.apache.sling:org.apache.sling.caconfig.impl:1.6.0",
-      "start-order":"20"
-    },
-    {
-      "id":"org.apache.sling:org.apache.sling.caconfig.spi:1.4.0",
-      "start-order":"20"
-    }
-  ],
-  "configurations":{
-    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling-caconfig":{
-      "user.mapping":[
-        "org.apache.sling.caconfig.impl=[sling-readall]"
-      ]
-    }
-  },
-  "repoinit:TEXT|true":"@file"
+    "repoinit:TEXT|true": "@file"
 }

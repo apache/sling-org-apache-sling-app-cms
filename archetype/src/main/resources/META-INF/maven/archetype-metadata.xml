@@ -47,8 +47,8 @@ License. -->
     <requiredProperty key="servlet-api-version">
       <defaultValue>${servlet-api-version}</defaultValue>
     </requiredProperty>
-    <requiredProperty key="slf4j-version">
-      <defaultValue>${slf4j-version}</defaultValue>
+    <requiredProperty key="slf4j.version">
+      <defaultValue>${slf4j.version}</defaultValue>
     </requiredProperty>
 
   </requiredProperties>

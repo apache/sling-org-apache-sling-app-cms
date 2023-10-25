@@ -1,68 +1,77 @@
 {
-    "configurations": {
-        "org.apache.felix.hc.generalchecks.JmxAttributeCheck~index": {
-            "mbean.name": "org.apache.jackrabbit.oak:name=async,type=IndexStats",
-            "hc.tags": [
-                "oak",
-                "system-resources"
-            ],
-            "hc.name": "Jackrabbit Oak - Index",
-            "attribute.value.constraint": "false",
-            "attribute.name": "Failing",
-            "statusForFailedContraint": "CRITICAL"
-        },
-        "org.apache.felix.hc.generalchecks.JmxAttributeCheck~jobqueue": {
-            "mbean.name": "org.apache.sling:type=queues,name=AllQueues",
-            "hc.tags": [
-                "sling",
-                "system-resources"
-            ],
-            "hc.name": "Sling - Job Queue",
-            "attribute.value.constraint": "< 1000",
-            "attribute.name": "NumberOfQueuedJobs",
-            "statusForFailedContraint": "WARN"
-        },
-        "org.apache.felix.hc.generalchecks.JmxAttributeCheck~luceneindex": {
-            "mbean.name": "org.apache.jackrabbit.oak:name=Lucene Index statistics,type=LuceneIndex",
-            "hc.tags": [
-                "oak",
-                "system-resources"
-            ],
-            "hc.name": "Jackrabbit Oak - Lucene Index",
-            "attribute.value.constraint": "false",
-            "attribute.name": "Failing",
-            "statusForFailedContraint": "CRITICAL"
-        },
-        "org.apache.felix.hc.generalchecks.JmxAttributeCheck~requestdurationcritical": {
-            "mbean.name": "org.apache.sling:type=engine,service=RequestProcessor",
-            "hc.tags": [
-                "sling",
-                "system-resources"
-            ],
-            "hc.name": "Sling - StdDev Request Duration (CRITICAL)",
-            "attribute.value.constraint": "matches (1|2|3|4)?\\d?\\d\\..*",
-            "attribute.name": "StandardDeviationDurationMsec",
-            "statusForFailedContraint": "CRITICAL"
-        },
-        "org.apache.felix.hc.generalchecks.JmxAttributeCheck~requestdurationwarn": {
-            "mbean.name": "org.apache.sling:type=engine,service=RequestProcessor",
-            "hc.tags": [
-                "sling",
-                "system-resources"
-            ],
-            "hc.name": "Sling - StdDev Request Duration (WARN)",
-            "attribute.value.constraint": "matches (1)?\\d?\\d\\..*",
-            "attribute.name": "StandardDeviationDurationMsec",
-            "statusForFailedContraint": "WARN"
-        },
-        "org.apache.sling.hc.support.DefaultLoginsHealthCheck~slingcms": {
-            "logins": [
-                "admin:admin"
-            ],
-            "hc.tags": [
-                "configuration"
-            ],
-            "hc.name": "Sling CMS - Default Logins Check"
-        }
+  "configurations": {
+    "org.apache.felix.hc.generalchecks.JmxAttributeCheck~index": {
+      "mbean.name": "org.apache.jackrabbit.oak:name=async,type=IndexStats",
+      "hc.tags": ["oak", "system-resources"],
+      "hc.name": "Jackrabbit Oak - Index",
+      "attribute.value.constraint": "false",
+      "attribute.name": "Failing",
+      "statusForFailedContraint": "CRITICAL"
+    },
+    "org.apache.felix.hc.generalchecks.JmxAttributeCheck~jobqueue": {
+      "mbean.name": "org.apache.sling:type=queues,name=AllQueues",
+      "hc.tags": ["sling", "system-resources"],
+      "hc.name": "Sling - Job Queue",
+      "attribute.value.constraint": "< 1000",
+      "attribute.name": "NumberOfQueuedJobs",
+      "statusForFailedContraint": "WARN"
+    },
+    "org.apache.felix.hc.generalchecks.JmxAttributeCheck~luceneindex": {
+      "mbean.name": "org.apache.jackrabbit.oak:name=Lucene Index statistics,type=LuceneIndex",
+      "hc.tags": ["oak", "system-resources"],
+      "hc.name": "Jackrabbit Oak - Lucene Index",
+      "attribute.value.constraint": "false",
+      "attribute.name": "Failing",
+      "statusForFailedContraint": "CRITICAL"
+    },
+    "org.apache.felix.hc.generalchecks.JmxAttributeCheck~requestdurationcritical": {
+      "mbean.name": "org.apache.sling:type=engine,service=RequestProcessor",
+      "hc.tags": ["sling", "system-resources"],
+      "hc.name": "Sling - StdDev Request Duration (CRITICAL)",
+      "attribute.value.constraint": "matches (1|2|3|4)?\\d?\\d\\..*",
+      "attribute.name": "StandardDeviationDurationMsec",
+      "statusForFailedContraint": "CRITICAL"
+    },
+    "org.apache.felix.hc.generalchecks.JmxAttributeCheck~requestdurationwarn": {
+      "mbean.name": "org.apache.sling:type=engine,service=RequestProcessor",
+      "hc.tags": ["sling", "system-resources"],
+      "hc.name": "Sling - StdDev Request Duration (WARN)",
+      "attribute.value.constraint": "matches (1)?\\d?\\d\\..*",
+      "attribute.name": "StandardDeviationDurationMsec",
+      "statusForFailedContraint": "WARN"
+    },
+    "org.apache.sling.hc.support.DefaultLoginsHealthCheck~slingcms": {
+      "logins": ["admin:admin"],
+      "hc.tags": ["configuration"],
+      "hc.name": "Sling CMS - Default Logins Check"
+    },
+    "org.apache.felix.hc.generalchecks.DsComponentsCheck~systemready": {
+      "hc.name": "DS Components Ready Check",
+      "hc.tags": ["systemalive", "systemready"],
+      "components.list": [
+        "org.apache.sling.cms.core.internal.servlets.CMSPageServlet",
+        "org.apache.sling.cms.core.internal.filters.CMSSecurityFilter"
+      ]
+    },
+    "org.apache.felix.hc.generalchecks.BundlesStartedCheck~systemready": {
+      "hc.name": "All bundles are up",
+      "hc.tags": ["systemalive", "systemready"]
+    },
+    "org.apache.sling.jcr.contentloader.hc.BundleContentLoadedCheck~default": {
+      "tags": ["systemalive"],
+      "includesRegex": ".*",
+      "useCriticalForNotLoaded": true,
+      "excludesRegex": ""
+    },
+    "org.apache.felix.hc.core.impl.filter.ServiceUnavailableFilter~startupandshutdown": {
+      "osgi.http.whiteboard.filter.regex": "(?!/system/).*",
+      "avoid404DuringStartup": true,
+      "service.ranking:Integer": "2147483647",
+      "includeExecutionResult": false,
+      "osgi.http.whiteboard.context.select": "(osgi.http.whiteboard.context.name=*)",
+      "tags": ["systemalive"],
+      "autoDisableFilter": true,
+      "responseTextFor503":"classpath:org.apache.sling.cms.ui:/content/startup/index.html"
     }
+  }
 }

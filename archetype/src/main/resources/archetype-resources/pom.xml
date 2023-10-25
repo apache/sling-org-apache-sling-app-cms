@@ -230,7 +230,7 @@ Sling-Model-Packages: ${package}
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>${slf4j-version}</version>
+      <version>${slf4j.version}</version>
       <scope>provided</scope>
     </dependency>
 

@@ -1,6 +1,14 @@
 {
   "bundles":[
     {
+      "id":"jakarta.activation:jakarta.activation-api:2.1.0",
+      "start-order":"15"
+    },
+    {
+      "id":"jakarta.mail:jakarta.mail-api:2.1.0",
+      "start-order":"20"
+    },
+    {
       "id":"com.github.livesense:org.liveSense.fragment.sun.misc:1.0.5",
       "start-order":"5"
     },
@@ -33,11 +41,11 @@
       "start-order":"15"
     },
     {
-      "id":"org.apache.jackrabbit:oak-auth-external:${oak-version}",
+      "id":"org.apache.jackrabbit:oak-auth-external:${oak.version}",
       "start-order":"15"
     },
     {
-      "id":"org.apache.jackrabbit:oak-auth-ldap:${oak-version}",
+      "id":"org.apache.jackrabbit:oak-auth-ldap:${oak.version}",
       "start-order":"15"
     },
     {
@@ -58,10 +66,6 @@
     },
     {
       "id":"com.sun.mail:jakarta.mail:2.0.1",
-      "start-order":"15"
-    },
-    {
-      "id":"org.apache.commons:commons-text:${commons-text-version}",
       "start-order":"15"
     },
     {
@@ -93,15 +97,15 @@
       "start-order":"15"
     },
     {
-      "id":"org.apache.aries.spifly:org.apache.aries.spifly.dynamic.bundle:1.3.5",
-      "start-order":"15"
-    },
-    {
       "id":"org.apache.tika:tika-bundle:${tika-version}",
       "start-order":"15"
     },
     {
       "id":"org.apache.sling:org.apache.sling.security:1.1.24",
+      "start-order":"20"
+    },
+    {
+      "id":"org.apache.sling:org.apache.sling.discovery.standalone:1.0.2",
       "start-order":"20"
     }
   ],

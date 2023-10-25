@@ -1,0 +1,35 @@
+
+{
+    "bundles":[
+        {
+            "id":"com.composum.nodes:composum-nodes-commons:${composum.nodes.version}",
+            "start-order":"20"
+        },
+        {
+            "id":"com.composum.nodes:composum-nodes-console:${composum.nodes.version}",
+            "start-order":"20"
+        },
+        {
+            "id":"com.composum.nodes:composum-nodes-jslibs:${composum.nodes.version}",
+            "start-order":"20"
+        },
+        {
+            "id":"com.composum.nodes:composum-nodes-pckgmgr:${composum.nodes.version}",
+            "start-order":"20"
+        },
+        {
+            "id":"com.composum.nodes:composum-nodes-usermgr:${composum.nodes.version}",
+            "start-order":"20"
+        }
+    ],
+    "configurations":{
+        "org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment~composum":{
+            "whitelist.bundles":[
+                "com.composum.nodes.commons",
+                "com.composum.nodes.pckgmgr",
+                "com.composum.nodes.usermgr"
+            ],
+            "whitelist.name":"composum"
+        }
+    }
+}

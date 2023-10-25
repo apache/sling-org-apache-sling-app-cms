@@ -1,41 +1,35 @@
+
 {
-  "bundles":[
-    {
-      "id":"org.apache.sling:org.apache.sling.discovery.api:1.0.4",
-      "start-order":"20"
+    "bundles":[
+        {
+            "id":"org.apache.sling:org.apache.sling.discovery.api:1.0.4",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.discovery.base:2.0.14",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.discovery.commons:1.0.28",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.discovery.oak:1.2.44",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.discovery.support:1.0.6",
+            "start-order":"20"
+        }
+    ],
+    "configurations":{
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling.discovery":{
+            "user.mapping":[
+                "org.apache.sling.discovery.commons=[sling-discovery]",
+                "org.apache.sling.discovery.base=[sling-discovery]",
+                "org.apache.sling.discovery.oak=[sling-discovery]"
+            ]
+        }
     },
-    {
-      "id":"org.apache.sling:org.apache.sling.discovery.base:2.0.14",
-      "start-order":"20"
-    },
-    {
-      "id":"org.apache.sling:org.apache.sling.discovery.commons:1.0.28",
-      "start-order":"20"
-    },
-    {
-      "id":"org.apache.sling:org.apache.sling.discovery.oak:1.2.42",
-      "start-order":"20"
-    },
-    {
-      "id":"org.apache.sling:org.apache.sling.discovery.support:1.0.6",
-      "start-order":"20"
-    },
-    {
-      "id":"org.apache.sling:org.apache.sling.discovery.standalone:1.0.2",
-      "start-order":"20"
-    }
-  ],
-  "configurations":{
-    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~sling.discovery":{
-      "user.mapping":[
-        "org.apache.sling.discovery.commons=[sling-discovery]",
-        "org.apache.sling.discovery.base=[sling-discovery]",
-        "org.apache.sling.discovery.oak=[sling-discovery]"
-      ]
-    },
-    "org.apache.sling.discovery.oak.Config":    {
-      "connectorPingTimeout":300
-    }
-  },
-  "repoinit:TEXT|true":"@file"
+    "repoinit:TEXT|true": "@file"
 }

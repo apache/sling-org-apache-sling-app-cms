@@ -1,27 +1,27 @@
 {
     "bundles": [
         {
-            "id":"org.apache.felix:org.apache.felix.webconsole:${org.apache.felix.webconsole-version}",
+            "id":"org.apache.felix:org.apache.felix.webconsole:4.9.6",
             "start-order":"5"
         },    
         {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.ds:2.1.0",
+            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.ds:2.3.0",
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.event:1.1.8",
+            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.event:1.2.0",
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.memoryusage:1.0.10",
+            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.memoryusage:1.1.0",
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.obr:1.0.4",
+            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.obr:1.1.0",
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.packageadmin:1.0.4",
+            "id":"org.apache.felix:org.apache.felix.webconsole.plugins.packageadmin:1.1.0",
             "start-order":"5"
         },
         {
@@ -33,11 +33,19 @@
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.healthcheck.webconsoleplugin:2.0.2",
+            "id":"org.apache.felix:org.apache.felix.healthcheck.webconsoleplugin:2.2.0",
             "start-order":"5"
-        },       
+        },
         {
-            "id":"org.apache.sling:org.apache.sling.extensions.webconsolesecurityprovider:1.2.4",
+            "id":"org.apache.felix:org.apache.felix.http.webconsoleplugin:1.1.0",
+            "start-order":"5"
+        },
+        {
+            "id":"org.apache.felix:org.apache.felix.http.inventoryprinter:1.0.0",
+            "start-order":"5"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.extensions.webconsolesecurityprovider:1.2.8",
             "start-order":"15"
         },
         {
@@ -49,7 +57,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.installer.console:1.1.0",
+            "id":"org.apache.sling:org.apache.sling.installer.console:1.1.2",
             "start-order":"20"
         }
     ],

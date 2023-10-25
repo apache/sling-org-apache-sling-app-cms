@@ -78,3 +78,7 @@ set principal ACL for sling-jcr-usermanager
     allow jcr:read,jcr:readAccessControl,jcr:modifyAccessControl,rep:write,rep:userManagement on /home
 end
 # SLING-9809 - Define service user and ACLs for jcr.usermanager >>>
+
+# SLING-10597 - Simplify setup of resource resolution mappings
+create path (sling:Folder) /etc/map
+create path (sling:Folder) /etc/map/http

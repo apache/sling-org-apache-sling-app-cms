@@ -10,7 +10,9 @@
         either express or implied. See the License for the specific language governing permissions
         and limitations under the License.
     -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>org.apache.sling.cms</artifactId>
@@ -43,14 +45,9 @@
       <plugin>
         <groupId>org.apache.sling</groupId>
         <artifactId>slingfeature-maven-plugin</artifactId>
-        <version>1.6.8</version>
+        <version>1.7.2</version>
         <extensions>true</extensions>
         <configuration>
-          <framework>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.framework</artifactId>
-            <version>6.0.3</version>
-          </framework>
           <aggregates>
             <aggregate>
               <classifier>slingcms-standalone</classifier>
@@ -95,7 +92,6 @@
             <aggregate>
               <classifier>slingcms-upgrade</classifier>
               <filesInclude>**/*.json</filesInclude>
-              <filesExclude>framework-properties.json</filesExclude>
               <filesExclude>oak/node-store/*.json</filesExclude>
               <filesExclude>runmodes/*.json</filesExclude>
               <title>Sling CMS - Upgrade</title>
@@ -140,7 +136,8 @@
               <goal>attach-featurearchives</goal>
             </goals>
             <configuration>
-              <replacePropertyVariables>asm-version,org-apache-sling-api-version,org-apache-sling-scripting-jsp-taglib-version,cms-version,composum-nodes-version,groovy-version,guava-version,jackrabbit-version,jackson-version,oak-version,slf4j-version,cocoon-serializers-charsets-version,org.apache.felix.webconsole-version,commons-lang3-version,jstl-version,org-apache-sling-models-api-version,org.apache.sling.scripting.jsp.taglib,geronimo-atinject_1-0_spec-version,commons-io-version,tika-version,pdfbox-version,httpclient-version,org-apache-sling-caconfig-api-version,jsoup-version,org-apache-sling-fileoptim-version,org-apache-sling-engine-version,org-apache-sling-commons-johnzon-version,commons-text-version,org-apache-sling-scripting-api-version</replacePropertyVariables>
+              <replacePropertyVariables>
+                asm.version,org-apache-sling-api-version,org-apache-sling-scripting-jsp-taglib-version,cms-version,composum.nodes.version,groovy.version,guava-version,jackrabbit.version,jackson.version,oak.version,slf4j.version,cocoon-serializers-charsets-version,org.apache.felix.webconsole-version,commons-lang3-version,jstl-version,org-apache-sling-models-api-version,org.apache.sling.scripting.jsp.taglib,geronimo-atinject_1-0_spec-version,commons-io-version,tika-version,pdfbox-version,httpclient-version,org-apache-sling-caconfig-api-version,jsoup-version,org-apache-sling-fileoptim-version,org-apache-sling-engine-version,org-apache-sling-commons-johnzon-version,commons-text-version,org-apache-sling-scripting-api-version</replacePropertyVariables>
             </configuration>
           </execution>
         </executions>
@@ -229,7 +226,7 @@
           <plugin>
             <groupId>org.apache.sling</groupId>
             <artifactId>feature-launcher-maven-plugin</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.6</version>
             <configuration>
               <launches>
                 <launch>

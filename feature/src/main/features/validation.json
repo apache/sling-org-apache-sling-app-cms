@@ -1,23 +1,24 @@
+
 {
-  "bundles":[
-    {
-      "id":"org.apache.sling:org.apache.sling.models.validation-impl:1.1.0",
-      "start-order":"20"
-    },
-    {
-      "id":"org.apache.sling:org.apache.sling.validation.api:1.0.0",
-      "start-order":"20"
-    },
-    {
-      "id":"org.apache.sling:org.apache.sling.validation.core:1.0.4",
-      "start-order":"20"
+    "bundles":[
+        {
+            "id":"org.apache.sling:org.apache.sling.models.validation-impl:1.1.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.validation.api:1.0.0",
+            "start-order":"20"
+        },
+        {
+            "id":"org.apache.sling:org.apache.sling.validation.core:1.0.4",
+            "start-order":"20"
+        }
+    ],
+    "configurations":{
+        "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~validation":{
+            "user.mapping":[
+                "org.apache.sling.validation.core=[sling-search-path-reader]"
+            ]
+        }
     }
-  ],
-  "configurations":{
-    "org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~validation":{
-      "user.mapping":[
-        "org.apache.sling.validation.core=[sling-search-path-reader]"
-      ]
-    }
-  }
 }
