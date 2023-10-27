@@ -16,17 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-const { expect } = require("chai");
+const assert = require("assert");
 const { login } = require("../utils");
 
 describe("Authorization Tests", () => {
   it("validate 403", () => {
     cy.request({ url: "/", failOnStatusCode: false }).should((response) => {
-      expect(response.status).to.equal(403);
+      assert.strictEqual(response.status, 403);
     });
   });
-  it("recieve error page", () => {
+  it("receive error page", () => {
     cy.visit("/", { failOnStatusCode: false });
     cy.pa11y();
   });
