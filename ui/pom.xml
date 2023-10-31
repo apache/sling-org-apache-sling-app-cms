@@ -89,6 +89,7 @@ License. -->
           <version>3.1.0</version>
           <executions>
               <execution>
+                <phase>validate</phase>
                   <goals>
                       <goal>exec</goal>
                   </goals>
