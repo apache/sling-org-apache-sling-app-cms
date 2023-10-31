@@ -83,6 +83,24 @@ License. -->
           </execution>
         </executions>
       </plugin>
+      <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>exec</goal>
+                  </goals>
+              </execution>
+          </executions>
+          <configuration>
+              <executable>node</executable>
+              <arguments>
+                  <argument>-v</argument>
+              </arguments>
+          </configuration>
+      </plugin>
 
       <plugin>
         <groupId>com.github.eirslett</groupId>
