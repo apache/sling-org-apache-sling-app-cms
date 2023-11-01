@@ -10,7 +10,9 @@
         either express or implied. See the License for the specific language governing permissions
         and limitations under the License.
     -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -116,86 +118,52 @@
                         </configuration>
                         <executions>
                             <execution>
+                                <id>start</id>
+                                <phase>verify</phase>
                                 <goals>
                                     <goal>start</goal>
-                                    <goal>stop</goal>
                                 </goals>
                             </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <executions>
                             <execution>
+                                <id>stop</id>
+                                <phase>deploy</phase>
                                 <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
+                                    <goal>start</goal>
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <sling.http.port>${http.port}</sling.http.port>
-                                <IT.expected.bundles.count>${IT.expected.bundles.count}</IT.expected.bundles.count>
-                            </systemPropertyVariables>
-                        </configuration>
                     </plugin>
 
                     <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <version>1.14.2</version>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
-                                <id>install node and npm</id>
+                                <id>npm-install</id>
+                                <phase>validate</phase>
                                 <goals>
-                                    <goal>install-node-and-npm</goal>
+                                    <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <nodeVersion>v18.16.1</nodeVersion>
-                                    <npmVersion>9.5.1</npmVersion>
+                                    <executable>npm</executable>
+                                    <arguments>
+                                        <argument>ci</argument>
+                                    </arguments>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>npm install</id>
+                                <id>run-it</id>
+                                <phase>verify</phase>
                                 <goals>
-                                    <goal>npm</goal>
+                                    <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>install</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>wait for sling</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>integration-test</phase>
-                                <configuration>
-                                    <arguments>run wait-for-ready</arguments>
-                                    <environmentVariables>
-                                        <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
-                                    </environmentVariables>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>install cypress</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>integration-test</phase>
-                                <configuration>
-                                    <arguments>run cypress:install --force</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>run cypress</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>integration-test</phase>
-                                <configuration>
-                                    <arguments>run test</arguments>
+                                    <executable>npm</executable>
+                                    <arguments>
+                                        <argument>run</argument>
+                                        <argument>ci</argument>
+                                    </arguments>
                                     <environmentVariables>
                                         <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
                                     </environmentVariables>
