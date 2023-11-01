@@ -2,6 +2,6 @@
   "jenkins": {
     "jdks": [11, 17],
     "mavenGoal": "install",
-    "operatingSystems": ["ubuntu"]
+    "operatingSystems": ["linux"]
   }
 }
