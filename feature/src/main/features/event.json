@@ -6,7 +6,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.event:4.3.12",
+            "id":"org.apache.sling:org.apache.sling.event:4.3.14",
             "start-order":"20"
         }
     ],
