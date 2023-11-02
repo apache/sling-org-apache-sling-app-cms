@@ -76,6 +76,11 @@
     <pdfbox-version>2.0.26</pdfbox-version>
     <servlet-api-version>2.5</servlet-api-version>
     <tika-version>1.28.4</tika-version>
+
+    <!-- Node version -->
+    <node.version>v16.20.2</node.version>
+    <npm.version>8.19.4</npm.version>
+    
   </properties>
   <modules>
     <module>api</module>

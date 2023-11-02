@@ -118,52 +118,79 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>start</id>
-                                <phase>verify</phase>
+                                <id>start-sling</id>
+                                <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>start</goal>
                                 </goals>
                             </execution>
                             <execution>
-                                <id>stop</id>
-                                <phase>deploy</phase>
+                                <id>stop-sling</id>
+                                <phase>post-integration-test</phase>
                                 <goals>
-                                    <goal>start</goal>
+                                    <goal>stop</goal>
                                 </goals>
                             </execution>
                         </executions>
                     </plugin>
 
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.14.2</version>
                         <executions>
                             <execution>
-                                <id>npm-install</id>
+                                <id>install node and npm</id>
                                 <phase>validate</phase>
                                 <goals>
-                                    <goal>exec</goal>
+                                    <goal>install-node-and-npm</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>npm</executable>
-                                    <arguments>
-                                        <argument>ci</argument>
-                                    </arguments>
+                                    <nodeVersion>${node.version}</nodeVersion>
+                                    <npmVersion>${npm.version}</npmVersion>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>run-it</id>
-                                <phase>verify</phase>
+                                <id>npm install</id>
+                                <phase>validate</phase>
                                 <goals>
-                                    <goal>exec</goal>
+                                    <goal>npm</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>npm</executable>
-                                    <arguments>
-                                        <argument>run</argument>
-                                        <argument>ci</argument>
-                                    </arguments>
+                                    <arguments>ci</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>install cypress</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>validate</phase>
+                                <configuration>
+                                    <arguments>run cypress:install</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>wait for sling</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run wait-for-ready</arguments>
+                                    <environmentVariables>
+                                        <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
+                                    </environmentVariables>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>run cypress</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <arguments>run test</arguments>
                                     <environmentVariables>
                                         <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
                                     </environmentVariables>

@@ -21,6 +21,9 @@ const { pa11y, prepareAudit } = require("@cypress-audit/pa11y");
 
 module.exports = defineConfig({
   e2e: {
+    retries: {
+      runMode: 3,
+    },
     baseUrl: "http://localhost:8080",
     viewportWidth: 1000,
     viewportHeight: 660,
