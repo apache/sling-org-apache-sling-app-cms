@@ -10,7 +10,9 @@
         either express or implied. See the License for the specific language governing permissions
         and limitations under the License.
     -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -116,29 +118,20 @@
                         </configuration>
                         <executions>
                             <execution>
+                                <id>start-sling</id>
+                                <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop-sling</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
                                     <goal>stop</goal>
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <sling.http.port>${http.port}</sling.http.port>
-                                <IT.expected.bundles.count>${IT.expected.bundles.count}</IT.expected.bundles.count>
-                            </systemPropertyVariables>
-                        </configuration>
                     </plugin>
 
                     <plugin>
@@ -148,6 +141,7 @@
                         <executions>
                             <execution>
                                 <id>install node and npm</id>
+                                <phase>validate</phase>
                                 <goals>
                                     <goal>install-node-and-npm</goal>
                                 </goals>
@@ -158,6 +152,7 @@
                             </execution>
                             <execution>
                                 <id>npm install</id>
+                                <phase>validate</phase>
                                 <goals>
                                     <goal>npm</goal>
                                 </goals>
@@ -166,26 +161,26 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>wait for sling</id>
+                                <id>install cypress</id>
                                 <goals>
                                     <goal>npm</goal>
                                 </goals>
+                                <phase>validate</phase>
+                                <configuration>
+                                    <arguments>run cypress:install</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>wait for sling</id>
                                 <phase>integration-test</phase>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
                                 <configuration>
                                     <arguments>run wait-for-ready</arguments>
                                     <environmentVariables>
                                         <CYPRESS_BASE_URL>http://localhost:${http.port}</CYPRESS_BASE_URL>
                                     </environmentVariables>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>install cypress</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>integration-test</phase>
-                                <configuration>
-                                    <arguments>run cypress:install</arguments>
                                 </configuration>
                             </execution>
                             <execution>
