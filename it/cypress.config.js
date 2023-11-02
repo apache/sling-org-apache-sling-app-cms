@@ -23,7 +23,6 @@ module.exports = defineConfig({
   e2e: {
     retries: {
       runMode: 3,
-      openMode: 0,
     },
     baseUrl: "http://localhost:8080",
     viewportWidth: 1000,

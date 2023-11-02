@@ -83,11 +83,10 @@ License. -->
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>com.github.eirslett</groupId>
         <artifactId>frontend-maven-plugin</artifactId>
-        <version>1.7.6</version>
+        <version>1.14.2</version>
         <executions>
           <execution>
             <id>install node and npm</id>
@@ -95,8 +94,8 @@ License. -->
               <goal>install-node-and-npm</goal>
             </goals>
             <configuration>
-              <nodeVersion>v14.2.0</nodeVersion>
-              <npmVersion>6.14.5</npmVersion>
+              <nodeVersion>${node.version}</nodeVersion>
+              <npmVersion>${npm.version}</npmVersion>
             </configuration>
           </execution>
           <execution>
@@ -105,7 +104,7 @@ License. -->
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>install</arguments>
+              <arguments>ci</arguments>
             </configuration>
           </execution>
           <execution>
