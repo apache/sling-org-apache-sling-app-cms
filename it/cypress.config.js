@@ -21,6 +21,11 @@ const { pa11y, prepareAudit } = require("@cypress-audit/pa11y");
 
 module.exports = defineConfig({
   e2e: {
+    reporter: 'junit',
+    reporterOptions: {
+      mochaFile: 'target/surefire-reports/TEST-[suiteName].xml',
+      toConsole: true,
+    },
     baseUrl: "http://localhost:8080",
     viewportWidth: 1000,
     viewportHeight: 660,

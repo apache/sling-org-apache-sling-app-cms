@@ -4,7 +4,7 @@
   "description": "",
   "main": "tests/index.js",
   "scripts": {
-    "cypress:install": "./node_modules/.bin/cypress install",
+    "cypress:install": "./node_modules/.bin/cypress install --force",
     "cypress": "./node_modules/.bin/cypress open",
     "test": "./node_modules/.bin/cypress run",
     "wait-for-ready": "node cypress/ready.js"
