@@ -110,6 +110,12 @@
                                             <org.osgi.service.http.port>${http.port}</org.osgi.service.http.port>
                                         </frameworkProperties>
                                     </launcherArguments>
+                                    <repositoryUrls>
+                                        <repositoryUrl>file:.repository</repositoryUrl>
+                                        <repositoryUrl>file:${user.home}/.m2/repository</repositoryUrl>
+                                        <repositoryUrl>https://repo.maven.apache.org/maven2</repositoryUrl>
+                                        <repositoryUrl>https://repository.apache.org/content/groups/snapshots</repositoryUrl>
+                                    </repositoryUrls>
                                     <startTimeoutSeconds>180</startTimeoutSeconds>
                                 </launch>
                             </launches>
