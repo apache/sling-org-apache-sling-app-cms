@@ -30,6 +30,27 @@
                 "com.composum.nodes.usermgr"
             ],
             "whitelist.name":"composum"
+        },
+        "com.composum.sling.core.proxy.GenericProxyRequest~health": {
+          "tags.to.strip":[
+            "body"
+          ],
+          "name":"System Health",
+          "XSLT.chain.paths":[
+          ],
+          "tags.to.rename":[
+            "html:div"
+          ],
+          "targetUrl":"",
+          "tags.to.drop":[
+            "head",
+            "style",
+            "script",
+            "link"
+          ],
+          "referencePath":"/",
+          "enabled":true,
+          "targetPattern":"/system/health.*"
         }
     }
 }
