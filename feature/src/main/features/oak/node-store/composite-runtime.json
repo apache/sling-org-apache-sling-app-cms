@@ -2,6 +2,12 @@
     "variables": {
         "sling.home": null
     },
+    "bundles": [
+      {
+        "id": "org.apache.jackrabbit:oak-segment-tar:${oak.version}",
+        "start-order": "15"
+      }
+    ],
     "configurations": {
         "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService": {
             "name": "Default NodeStore",
