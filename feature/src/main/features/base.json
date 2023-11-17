@@ -219,7 +219,7 @@
             "start-order":"10"
         },
         {
-            "id":"org.apache.tika:tika-parsers:1.28.5",
+            "id":"org.apache.tika:tika-bundle:1.28.5",
             "start-order":"10"
         },
         {

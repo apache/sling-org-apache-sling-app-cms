@@ -97,10 +97,6 @@
       "start-order":"15"
     },
     {
-      "id":"org.apache.tika:tika-bundle:${tika-version}",
-      "start-order":"15"
-    },
-    {
       "id":"org.apache.sling:org.apache.sling.security:1.1.24",
       "start-order":"20"
     },
