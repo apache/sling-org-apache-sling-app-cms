@@ -84,8 +84,9 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <executable>apt-get</executable>
+                            <executable>sudo</executable>
                             <arguments>
+                                <argument>apt-get</argument>
                                 <argument>install</argument>
                                 <argument>-y</argument>
                                 <argument>libgbm-dev</argument>
