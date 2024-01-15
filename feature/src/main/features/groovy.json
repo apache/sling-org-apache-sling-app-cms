@@ -1,6 +1,30 @@
 {
     "bundles": [
         {
+            "id": "org.ow2.asm:asm:${asm.version}",
+            "start-order": "1"
+        },
+        {
+            "id": "org.ow2.asm:asm-analysis:${asm.version}",
+            "start-order": "1"
+        },
+        {
+            "id": "org.ow2.asm:asm-commons:${asm.version}",
+            "start-order": "1"
+        },
+        {
+            "id": "org.ow2.asm:asm-tree:${asm.version}",
+            "start-order": "1"
+        },
+        {
+            "id": "org.ow2.asm:asm-util:${asm.version}",
+            "start-order": "1"
+        },
+        {
+            "id": "org.apache.aries.spifly:org.apache.aries.spifly.dynamic.bundle:1.3.7",
+            "start-order": "1"
+        },
+        {
             "id": "org.apache.groovy:groovy:${groovy.version}",
             "start-order": "20"
         },

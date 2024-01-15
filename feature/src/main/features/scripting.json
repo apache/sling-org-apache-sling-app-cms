@@ -90,7 +90,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.javassist:javassist:3.29.2-GA",
+            "id":"org.javassist:javassist:3.30.2-GA",
             "start-order":"20"
         }
     ],

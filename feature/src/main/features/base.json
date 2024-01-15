@@ -71,7 +71,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.commons.mime:2.2.4",
+            "id":"org.apache.sling:org.apache.sling.commons.mime:2.3.0",
             "start-order":"15"
         },
         {
@@ -83,7 +83,7 @@
             "start-order":"15"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.engine:2.15.6",
+            "id":"org.apache.sling:org.apache.sling.engine:2.15.10",
             "start-order":"20"
         },
         {
@@ -111,7 +111,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.11.0",
+            "id":"org.apache.sling:org.apache.sling.resourceresolver:1.11.4",
             "start-order":"20"
         },
         {
@@ -131,7 +131,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.xss:2.3.8",
+            "id":"org.apache.sling:org.apache.sling.xss:2.4.0",
             "start-order":"20"
         },
         {
@@ -143,7 +143,7 @@
             "start-order":"5"
         },
         {
-            "id":"commons-io:commons-io:2.15.0",
+            "id":"commons-io:commons-io:2.15.1",
             "start-order":"5"
         },
         {
@@ -163,7 +163,7 @@
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.http.jetty:5.1.2",
+            "id":"org.apache.felix:org.apache.felix.http.jetty:5.1.6",
             "start-order":"5"
         },
         {
@@ -203,7 +203,7 @@
             "start-order":"10"
         },
         {
-            "id":"org.apache.pdfbox:fontbox:2.0.29",
+            "id":"org.apache.pdfbox:fontbox:2.0.30",
             "start-order":"10"
         },
         {
@@ -211,7 +211,7 @@
             "start-order":"10"
         },
         {
-            "id":"org.apache.pdfbox:pdfbox:2.0.29",
+            "id":"org.apache.pdfbox:pdfbox:2.0.30",
             "start-order":"10"
         },
         {
@@ -235,7 +235,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.44",
+            "id":"org.apache.sling:org.apache.sling.jcr.repoinit:1.1.46",
             "start-order":"20"
         }
     ],
