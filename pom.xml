@@ -35,15 +35,15 @@
     <!-- renovate: depName=org.ow2.asm:asm -->
     <asm.version>9.6</asm.version>
     <!-- renovate: depName=org.apache.jackrabbit:jackrabbit-jcr-commons -->
-    <jackrabbit.version>2.20.12</jackrabbit.version>
+    <jackrabbit.version>2.20.14</jackrabbit.version>
     <!-- renovate: depName=org.apache.jackrabbit:oak-api -->
-    <oak.version>1.58.0</oak.version>
+    <oak.version>1.60.0</oak.version>
     <!-- renovate: depName=org.slf4j:slf4j-api -->
     <slf4j.version>1.7.36</slf4j.version>
     <!-- renovate: depName=com.composum.nodes:composum-nodes-commons -->
     <composum.nodes.version>4.2.2</composum.nodes.version>
     <!-- renovate: depName=com.fasterxml.jackson.core:jackson-core -->
-    <jackson.version>2.15.3</jackson.version>
+    <jackson.version>2.16.1</jackson.version>
     <!-- renovate: depName=org.codehaus.groovy:groovy -->
     <groovy.version>4.0.10</groovy.version>
 
