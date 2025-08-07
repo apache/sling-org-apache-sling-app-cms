@@ -13,7 +13,7 @@
             "start-order":"1"
         },
         {
-            "id":"org.apache.commons:commons-lang3:3.13.0",
+            "id":"org.apache.commons:commons-lang3:3.14.0",
             "start-order":"1"
         },
         {
@@ -85,35 +85,7 @@
             "start-order":"1"
         },
         {
-            "id": "org.ow2.asm:asm:${asm.version}",
-            "start-order": "1"
-        },
-        {
-            "id": "org.ow2.asm:asm-analysis:${asm.version}",
-            "start-order": "1"
-        },
-        {
-            "id": "org.ow2.asm:asm-commons:${asm.version}",
-            "start-order": "1"
-        },
-        {
-            "id": "org.ow2.asm:asm-tree:${asm.version}",
-            "start-order": "1"
-        },
-        {
-            "id": "org.ow2.asm:asm-util:${asm.version}",
-            "start-order": "1"
-        },
-        {
-            "id": "org.apache.aries.spifly:org.apache.aries.spifly.dynamic.bundle:1.3.6",
-            "start-order": "1"
-        },
-        {
-            "id":"jakarta.json:jakarta.json-api:2.1.3",
-            "start-order":"1"
-        },
-        {
-            "id":"org.eclipse.parsson:parsson:1.1.5",
+            "id":"org.apache.sling:org.apache.sling.commons.johnzon:2.0.0",
             "start-order":"1"
         },
         {
@@ -202,8 +174,6 @@
         "felix.systempackages.substitution":"true",
         "sling.fileinstall.dir":"${sling.home}/install",
         "sling.fileinstall.dir.autocreate":"true",
-        "felix.cm.config.plugins": "org.apache.felix.configadmin.plugin.interpolation",
-        "org.apache.aries.spifly.auto.consumers":"jakarta.json-api",
-        "org.apache.aries.spifly.auto.providers": "org.eclipse.parsson"
+        "felix.cm.config.plugins": "org.apache.felix.configadmin.plugin.interpolation"
     }
 }
